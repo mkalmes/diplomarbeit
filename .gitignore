@@ -13,3 +13,6 @@
 *.out
 *.run.xml
 *.toc
+main-blx.bib
+main.pdf
+resources/
