@@ -6,3 +6,10 @@
 *.bbl
 *.blg
 *.log
+*.glg
+*.glo
+*.gls
+*.ist
+*.out
+*.run.xml
+*.toc

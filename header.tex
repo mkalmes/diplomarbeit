@@ -1,0 +1,73 @@
+\documentclass[pdftex,a4paper,twoside,12pt,final,toc=bib]{scrbook}
+% \documentclass[pdftex,a4paper,twoside,12pt,draft,toc=bib]{scrbook}
+\usepackage[T1]{fontenc}
+
+\usepackage{amssymb,amsmath}
+
+\usepackage{algorithm,algpseudocode}
+
+\usepackage{color}
+
+\usepackage{setspace}
+%\doublespacing		% doppelzeilig oder
+\onehalfspacing		% anderthalbzeilig
+
+% Umlaut können direkt als UTF-8 Zeichen eingegeben werden
+\usepackage[utf8]{inputenc}
+
+% Setup for fullpage use
+\usepackage{fullpage}
+
+% Surround parts of graphics with box
+\usepackage{boxedminipage}
+
+% Package for including code in the document
+\usepackage{listings}
+
+% Package for my comments
+\usepackage{verbatim}
+\usepackage{fancyvrb,relsize}
+
+\DefineVerbatimEnvironment%
+      {VerbatimProg}%
+      {Verbatim}%
+      {fontsize=\relsize{-1}}
+
+% If you want to generate a toc for each chapter (use with book)
+% \usepackage{minitoc}
+
+% This is now the recommended way for checking for PDFLaTeX:
+\usepackage{ifpdf}
+
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+
+
+\usepackage[bibstyle=authoryear,citestyle=authoryear,language=german,block=ragged,doi=false]{biblatex}
+\DeclareFieldFormat[article]{citetitle}{\mkbibemph{#1\isdot}}
+\DeclareFieldFormat[inbook]{citetitle}{\mkbibemph{#1\isdot}}
+\DeclareFieldFormat[incollection]{citetitle}{\mkbibemph{#1\isdot}}
+\DeclareFieldFormat[inproceedings]{citetitle}{\mkbibemph{#1\isdot}}
+
+\usepackage{csquotes}
+\bibliography{bibliography/bibliography}	% 7) vorläufige Literaturangabe
+
+
+\usepackage{hyperref}
+
+\renewcommand {\chapterautorefname}{Kapitel}
+
+\hypersetup{
+	a4paper,
+	bookmarksnumbered = true,
+	pdftitle = Tracking Verfahren für Augmented Reality Anwendungen unter iOS 4,
+	pdfauthor = Marc Kalmes ,
+	pdfsubject = Exposé
+}
+
+\usepackage{glossaries}
+\input{chapters/glossary.tex}
+\makeglossaries

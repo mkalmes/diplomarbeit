@@ -1,0 +1,46 @@
+%
+%  Created by Marc Kalmes on 2010-06-19.
+%
+
+\input{header}
+
+\begin{document}
+\frontmatter
+
+\ifpdf
+\DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+\else
+\DeclareGraphicsExtensions{.eps, .jpg}
+\fi
+
+% \include{titel}	% TODO: Titel als eigenes tex-dokument setzen
+\titlehead{Fachhochschule Köln\\ Fakultät für Informatik und Ingenieurwissenschaften}
+\subject{Diplomarbeit}
+\title{Tracking Verfahren für Augmented Reality Anwendungen unter iOS 4}
+\author{Marc Kalmes}
+\date{September 2010}
+\publishers{betreut durch Prof. Dr. Heiner Klocke}
+
+\maketitle
+
+\tableofcontents
+\printglossary[style=altlist,title=Glossar]
+
+
+\mainmatter
+
+\include{chapters/einleitung}				% bis zu 10% der Arbeit
+\include{chapters/untersuchungsdesign}		% Löwenanteil	85% inkl. Ergebnisse + Diskussion
+\include{chapters/ergebnisse}				% knapp
+\include{chapters/diskussion}				% ausführlich
+\include{chapters/zusammenfassung}			% bis zu 5% der Arbeit
+
+\nocite{*}
+
+%\bibliographystyle{bib}
+% 7) vorläufige Literaturangabe ist im header
+\printbibliography[]
+
+\backmatter
+
+\end{document}

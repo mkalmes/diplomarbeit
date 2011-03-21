@@ -1,0 +1,37 @@
+\section{Material} % (fold)
+\label{sec:material}
+\begin{comment}
+	Material:
+	Vorstellung der Geräte, Frameworks, Libs, Opensource Code, etc. inkl. Referenzangabe wie ein Glossar.
+\end{comment}
+
+\begin{comment}
+	\gls{AR}-Anwendungen für Smartphones werden durch einen geeigneten Softwareentwurf speziell für Smartphones ermöglicht\footcite[Vgl.][]{wagner09a}.
+
+	Die Software Architektur für AR auf Smartphones unterscheidet sich von einer PC Architektur grundsätzlich durch die Menge und Bandbreite des Arbeitsspeichers. Die Software kann nach gängigen Entwurfskriterien entworfen werden wobei die Vor- und Nachteile von dynamic und static Libraries berücksichtigt werden müssen.
+
+	Bei der Entwicklung ist zu beachten, dass Emulatoren für mobile Geräte ungeeignet sind um Algorithmen zu entwickeln, da ein Emulator nicht die tatsächliche Geschwindigkeit ermöglicht. Dadurch bedingt sollte eine Anwendung besser als native PC Anwendung entwickelt werden und im letzten Schritt auf der Zielplattform getestet werden. Bei der Entwicklung ist darauf zu achten, dass die Software speziell für Smartphones entwickelt wird um hohe Permormanz und Robustheit zu erreichen.
+
+	Durch die Verwendung von multithreading oder interleaving kann auch auf Geräten ohne Multicore oder Hyperthreading eine parallele Ausführung von Verarbeitungsschritte ermöglicht werden. Der Bezug von Kameradaten und der Posenberechnung erfolgt dann in zwei Threads.
+
+	Durch die Verwendung von kompakten Pixelformaten wird nicht nur die Speicherbandbreite effektiver ausgenutzt sondern auch die digitale Bildverarbeitung erleichtert\footcite[Vgl.][]{wagner09b}.
+
+	Durch die gerätespezifischen Rendering Engines muss eine Gerätekonfiguration sorgfälltig ausgewählt werden. Wird das rendering für eine Library abstrahiert muss es für alle unterstützten Geräte angepasst werden. Dies wird nur zur Vollständigkeit erwähnt und ist kein Bestandteil dieser Arbeit.
+
+	Da die meisten Smartphones im Gegensatz zu PCs keine floating point einheit besitzen, werden die Operation in Software emuliert. Daraus resultiert eine geringe Geschwindigkeit. Um das Problem zu umgehen sollte wo mögliche fixed point oder integer verwendet werden, oder auch lookup tables und interpolation/annährung.
+
+	Statistik-basierte Verfahren die mittels einer Hypotese (hypostesize) ein Liniensegment schätzen.
+	Gradienten-basierte Verfahren die durch gradient magnitude und Orientierung linien erkennen.
+	Pixel-Conectivity Verfahren erkennen Linien durch die Nähe von Pixeln und ihrer Orientierung.
+	Verfahren nach Hough erkennen geometrische Figuren durch ihre parameter darstellung. (Linien durch Polar-Darstellung)\footcite[Vgl.][]{hirzer08}
+\end{comment}
+
+Die Entwicklung der Software wurde auf einem MacBook Pro und einem Mac Mini mit OS X 10.6 und Xcode 3.2 durchgeführt. Als Zielplattform kam ein iPhone 4 mit iOS 4 zum Einsatz.
+
+Die Softwarebibliothek MKVideoIO abstrahiert Apple's AVFoundation (iPhone) und QTKit (OS X) Bibliotheken um Videosignale anzufordern und zu verarbeiten. Die Bibliothek wurde so entworfen, dass ein Einsatz auf dem iPhone und einem Mac möglich ist. Der Entwurf wurde nach dem Observer Muster\footcite[Vgl.][S.~287--300]{gamma96} angefertigt.
+
+Für das iPhone gibt es von Apple keine Bibliothek um Aufgaben aus dem Bereich der Bildverarbeitung durchzuführen. Um diese Aufgaben durchzuführen, wurde die Softwarebibliothek MKImageProcessing entworfen. Die Aufgaben der Bibliothek umfasst das Auslesen und Schreiben einer Bildmatrix, sowie der Konvertierung von Pixeln. Bei der Konvertierung wurde besonderer Wert darauf gelegt, dass die Speicherbandbreite des iPhones ausgenutzt wird um Geschwindigkeitseinbußen zu vermeiden. Die Bibliothek umfasst einen Testmodus, indem es möglich ist, Ergebnisse einer Bildmanipulation auszugeben. Dies erleichterte die Entwicklung erheblich.
+
+Um die Linienerkennung durchzuführen, verwendet MKImageProcessing die vorgestelle Method aus Kap~\ref{sub:verfahren_nach_hirzer}. Die Implementierung umfasst neben dem Verfahren auch Klassen um Linien und Edgels zu beschreiben. Die Implementierung verzichtet auf einen objektorientierten Entwurf um die Geschwindigkeit zu erhöhen. Ferner wurde eine eigene Speicherverwaltung entwickelt, die dafür sorgt, dass während der Ausführung kein neuer Speicher vom System angefordert werden muss. Auch dies wurde aus Gründen der Performanz durchgeführt um geeignete Ergebnisse zu erzielen.
+
+% section material (end)

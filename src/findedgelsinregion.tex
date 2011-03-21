@@ -1,0 +1,49 @@
+\begin{algorithm}
+	\caption{Finde edgels in Region}
+	\label{src:findEdgelsInRegion}
+	\begin{algorithmic}[1]
+	\Require $top$, $left$, $regionWidth$, $regionHeight$
+	\Statex
+	\Procedure{FINDEDGELSINREGION}{$top$, $left$, $regionWidth$, $regionHeight$}
+	\State $edgels\gets \infty$
+	\State $y\gets top$
+	\While{$y < top + regionHeight$}
+		\State $y\gets y+5$
+		\For{$x\gets left, left+regionWidth$}
+			\State $currentEdgel\gets$ \Call{FALTUNG}{}
+			\If{$currentEdgel > Threshold$}
+				\Comment Ein Edgel-Kandidat
+			\Else
+				\State $currentEdgel\gets 0$
+			\EndIf
+			\If{$previous1 > 0 \land previous2 > previous1 \land previous1 > currentEdgel $}
+				\State $edgel.x\gets x - 1$
+				\State $edgel.y\gets y$
+				\State $edgel.orientation\gets $\Call{GRADIENT INTENSITY}{}
+				\State $edgels\gets edgel$
+			\EndIf
+		\EndFor
+	\EndWhile
+	\Statex
+	\State $x\gets left$
+	\While{$x < left + regionWidth$}
+		\State $x\gets x+5$
+		\For{$y\gets top, top+regionHeight$}
+			\State $currentEdgel\gets$ \Call{FALTUNG}{}
+			\If{$currentEdgel > Threshold$}
+				\Comment Ein Edgel-Kandidat
+			\Else
+				\State $currentEdgel\gets 0$
+			\EndIf
+			\If{$previous1 > 0 \land previous2 > previous1 \land previous1 > currentEdgel $}
+				\State $edgel.x\gets x$
+				\State $edgel.y\gets y - 1$
+				\State $edgel.orientation\gets $\Call{GRADIENT INTENSITY}{}
+				\State $edgels\gets edgel$
+			\EndIf
+		\EndFor
+	\EndWhile
+	\State \textbf{return} $edgels$
+	\EndProcedure
+	\end{algorithmic}
+\end{algorithm}

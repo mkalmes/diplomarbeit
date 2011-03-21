@@ -1,0 +1,61 @@
+\section{Untersuchungsgegenstand: Tracking Verfahren und Tracking Algorithmen} % (fold)
+\label{sec:untersuchungsgegenstand}
+\begin{comment}
+	Untersuchungsgegenstand: Verfahren und Algorithmen präzise vorstellen und ihre Unterschiede hervorheben.
+	Notwendige Kriterien der Algorithmen bestimmen
+
+	Grober Ablauf der Verfahren - Wer hats erfunden? Welche Kriterien müssen erfüllt sein (monochrome, rgb eingabe)? Wie ist das Verfahren aufgebaut (Algo in grob)
+	Detailierte Beschreibung der Algorithmen inkl. O-Notation (Nitty-Gritty Darstellung des Algos)
+	1. ARToolKit
+	2. ARToolKitPlus
+	3. Zissermann/Clarke
+\end{comment}
+
+\subsection{Verfahren nach Hirzer} % (fold)
+\label{sub:verfahren_nach_hirzer}
+
+Die Erkennung von Marken basiert auf dem auffinden von Kanten oder Linien. Das Verfahren nach \citeauthor{hirzer08}\footcite{hirzer08} basiert auf der Untersuchung von \citeauthor{clarke96}\footcite{clarke96}, indem ein Verfahren zur Linienerkennung mittels eines Hypothesize and Test Verfahren beschrieben wird. Das Verfahren von \citeauthor{clarke96} besteht aus zwei Schritten um Linien zu erkennen. Im ersten Schritt werden Bilddaten verarbeitet um Punkte einer Kante, sogenannte \gls{edgels}, zu bestimmen. Im zweiten Schritt werden \gls{edgels} als Eingabemenge für einen RANSAC Grouper verwendet, um daraus Linien zu erkennen.
+
+\input{src/clarke1}
+
+Das Bestimmen von \gls{edgels} wird in mehreren Schritten durchgeführt. Um die Untersuchung aller \gls{pixel} in einem Eingabebild zu vermeiden, wird das Bild in Regionen mit $40 \times 40$ \gls{pixel} unterteilt und jede Region in vertikale und horizontale Scanlines unterteilt. Der Abstand der Scanlines beträgt 5 \gls{pixel}.
+
+Jede Scanline wird wird mit einem derivative of gaussian gefaltet um die Intensität des Gradienten zu bestimmen.
+\begin{comment}
+	Ist Intensity Gradient = Intensität des Gradienten?
+\end{comment}
+Als Kernel wird $0.0625 \times \left[-3,-5,0,5,3\right]$ verwendet. Jedes lokale Maximum, dass größer als ein festgelegter Schwellwert ist, gilt als \gls{edgels}.
+
+Die Orientierung eines \gls{edgels} wird durch Berechnung des Gradienten bestimmt und mit den beiden Komponenten $g_y$ und $g_x$ des Gradienten durch $\Theta = \arctan{\left(\frac{g_y}{g_x}\right)}$.
+
+\begin{comment}
+	Auf einem engem Samplingraster wird das Eingangsbild mit einem derivative of Gaussian gefaltet und der intensity gradient bestimmt. Ist das lokale maxium des intensity gradient höher als ein festgelegter Schwellwert wird das Pixel als Edgel erkannt und die Orientierung berechnet.
+\end{comment}
+
+\input{src/clarke2}
+
+RANSAC ist ein Verfahren, dass eine Schätzung für ein Modell durch zufällig Auswahl von Messwerten liefert. \citeauthor{clarke96} verwenden RANSAC um Liniensegmente zu bestimmen. Als Eingabemenge dienen die aus Pseudcode \ref{src:edgelDetection} gewonnenen \gls{edgels}. Aus der Eingabemenge werden zufällig zwei \gls{edgels} ausgewählt und ihre Orientierung verglichen. Wenn ihre Orientierung kompatibel ist, werden die beiden \gls{edgels} als Hypothese einer Linie betrachtet.
+
+Die Anzahl der \gls{edgels} die nahe an der hypothetischen Linie liegen, werden gezählt. Um als Support für eine Linie zu gelten, muss ein \gls{edgels} innerhalb eines Distanzschwellwerts zur Linie liegen und eine kompatible Orientierung aufweisen können.
+
+Die beiden Schritte werden mehrmals wiederholt um somit eine dominante Line aus der Menge zu bestimmen. In \citeauthor{clarke96}\footcite[Vgl.][S.~417]{clarke96} werden 25 Wiederholungen vorgeschlagen.
+
+Besitzt eine Linehypothese genügend Support-\gls{edgels}, wird sie als Linie im Eingangsbild erkannt. Die Support-\gls{edgels} werden aus der Eingabemenge entfernt und die Schritte wiederholt bis entweder keine \gls{edgels} mehr in der Eingabemenge sind oder eine festgelegte maximale Anzahl von Iterationen erreicht wurde.
+
+Zusätzlich kann in einem letzten Schritt die Genauigkeit der erkannten Linien erhöht werden, indem eine Linie mit ihren Support-\gls{edgels} durch eine ortogonale Regression erneut berechnet wird.
+
+\begin{comment}
+	Der RANSAC Grouper wird verwendet um gerade Liniensegmente zu finden. Dazu werden zwei zufällige edgels ausgewählt und ihre kompatible Orientierung überprüft. Die Anzahl der supporting edgels wird durch die Distanz des Liniensegments und der Orientierung bestimmt. Durch wiederholung dieses Prozesses wird die dominante Linie in der Region bestimmt. Die supporting edgels werden entfernt und der Prozess wird wiederholt bis keine edgels mehr vorhanden sind oder eine maximale Anzahl von wiederholungen erreicht wurde. Durch dieses Wiederholung wird sichergestellt, daß alle dominanten Linien in einer Region erkannt werden.
+
+	Vorteil: Der Algorithmus ist sehr schnell und lässt sich für gewünschte Liniensegmente anpassen.
+	Nachteil: Durch sein antisotropic detection verhalten diskriminiert das verfahren diagonale liniensegmente. Dies ist durch ein rechteckiges samplingrid bedingt.
+
+	Hirzer hat das Verfahren um zwei Punkte erweitert und angepasst.
+	Wird in einem RGB Bild ein Kanal untersucht und ein Edgel gefunden, werden in den restlichen zwei Kanälen an der gleichen Position nach einem Edgel gesucht. Falls in allen drei Kanälen ein Edgel gefunden wird, handelt es sich um ein Linie (schwarz/weiss) und keine Farblinie.
+
+	Nur das erste Frame wird vollständig untersucht und die Position der gefundenen Marken notiert. In den folgenden frames wird nur in den Regionen der gefundenen Marke das Verfahren benutzt. Erst nach einer festgelegten Anzahl von frames wird wieder ein vollständiger durchlauf des Verfahrens durchgeführt.
+\end{comment}
+
+% subsection verfahren_nach_hirzer (end)
+
+% section section_name (end)
