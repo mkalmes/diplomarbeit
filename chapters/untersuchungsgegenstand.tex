@@ -4,11 +4,10 @@
 	Untersuchungsgegenstand: Verfahren und Algorithmen präzise vorstellen und ihre Unterschiede hervorheben.
 	Notwendige Kriterien der Algorithmen bestimmen
 
-	Grober Ablauf der Verfahren - Wer hats erfunden? Welche Kriterien müssen erfüllt sein (monochrome, rgb eingabe)? Wie ist das Verfahren aufgebaut (Algo in grob)
-	Detailierte Beschreibung der Algorithmen inkl. O-Notation (Nitty-Gritty Darstellung des Algos)
-	1. ARToolKit
-	2. ARToolKitPlus
-	3. Zissermann/Clarke
+	Grober Ablauf der Verfahren:
+	* Wer hats erfunden?
+	* Wie ist das Verfahren aufgebaut (Algo in grob)
+	* Welche Kriterien müssen erfüllt sein (monochrome, rgb eingabe)?
 \end{comment}
 
 \subsection{Verfahren nach Hirzer} % (fold)
@@ -31,8 +30,6 @@ Die Orientierung eines \gls{edgels} wird durch Berechnung des Gradienten bestimm
 \begin{comment}
 	Auf einem engem Samplingraster wird das Eingangsbild mit einem derivative of Gaussian gefaltet und der intensity gradient bestimmt. Ist das lokale maxium des intensity gradient höher als ein festgelegter Schwellwert wird das Pixel als Edgel erkannt und die Orientierung berechnet.
 \end{comment}
-
-\input{src/clarke2}
 
 RANSAC ist ein Verfahren, dass eine Schätzung für ein Modell durch zufällig Auswahl von Messwerten liefert. \citeauthor{clarke96} verwenden RANSAC um Liniensegmente zu bestimmen. Als Eingabemenge dienen die aus Pseudcode \ref{src:edgelDetection} gewonnenen \gls{edgels}. Aus der Eingabemenge werden zufällig zwei \gls{edgels} ausgewählt und ihre Orientierung verglichen. Wenn ihre Orientierung kompatibel ist, werden die beiden \gls{edgels} als Hypothese einer Linie betrachtet.
 
