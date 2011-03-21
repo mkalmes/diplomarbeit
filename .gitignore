@@ -1,0 +1,8 @@
+# OS X Annoyance
+._*
+
+# LaTeX Files
+*.aux
+*.bbl
+*.blg
+*.log
