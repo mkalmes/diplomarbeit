@@ -3,31 +3,6 @@
 	\label{src:lineDetection}
 	\begin{algorithmic}[1]
 	\Procedure{LineDetection}{$I_m$}
-		\State $I_m$ in $40 \times 40$ Pixel große Regionen unterteilen
-		\For{$i \gets 0$, alle Regionen}
-			\State $Liste \gets \infty$
-			\State $i$ in horizontale und vertikale Scanlines unterteilen mit $5$ Pixel Abstand
-			\For{$j \gets 0$, alle Pixel auf allen Scanlines}
-				\State $x \gets$ Falte $I_m\left(j\right)$ mit Gauß-Kernel
-				\If{$x > Schwellwert$}
-					\Comment Edgel gefunden
-					\State Orientierung des Edgels berechnen
-					\State $Liste \gets edgel$
-				\EndIf
-			\EndFor
-			\State $k \gets 0$
-			\While{$Liste \not=0 \lor k <$ maximale Iterationen}
-				\For{$j \gets 1, 25$}
-					\State $Linie \gets$ zwei zufällige Edgels mit kompatibler Orientierung aus $Liste$ wählen
-					\State Anzahl von Support-Edgels in der Nähe der Linie bestimmen
-				\EndFor
-				\If{Anzahl von Support-Edgels > Schwellwert}
-					\Comment Linie wurde erkannt
-					\State $Liste \gets Liste -$ Support-Edgels der Linie
-				\EndIf
-				\State $k \gets k + 1$
-			\EndWhile
-		\EndFor
 	\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
