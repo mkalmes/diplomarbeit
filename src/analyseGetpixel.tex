@@ -1,0 +1,21 @@
+\begin{algorithm}
+	\caption{Pixelwert auslesen}
+	\label{src:analyseGetpixel}
+	\begin{algorithmic}[1]
+		\Procedure{getPixel}{$x, y, width, height$}
+		\If{$x < 0$}
+			\State $x \gets 0$
+		\EndIf
+		\If{$y < 0$}
+			\State $y \gets 0$
+		\EndIf
+		\If{$x \geq width$}
+			\State $x \gets width - 1$
+		\EndIf
+		\If{$y \geq height$}
+			\State $y \gets height -1$
+		\EndIf
+		\State \textbf{return} $I(x,y)$
+		\EndProcedure
+	\end{algorithmic}	
+\end{algorithm}

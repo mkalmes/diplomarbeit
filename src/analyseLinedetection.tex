@@ -1,0 +1,16 @@
+\begin{algorithm}
+	\caption{Line Detection}
+	\label{src:analyseLineDetection}
+	\begin{algorithmic}[1]
+		\Procedure{LineDetection}{$I$}
+			\State $witdh \gets width\left(I\right)$
+			\State $height \gets height\left(I\right)$
+			\For{$y \gets 0, y < height, y \gets y + 40$}
+				\For{$x \gets 0, x < width, x \gets x + 40$}
+					\State $findEdgelsInRegion top left, width$
+					\State $findLineSegments$
+				\EndFor
+			\EndFor
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}

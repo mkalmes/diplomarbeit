@@ -1,0 +1,12 @@
+\begin{algorithm}
+	\caption{Normalisierter Vektor}
+	\label{src:analyseNormalizedvector}
+	\begin{algorithmic}[1]
+		\Procedure{normalizedVector}{$x, y$}
+			\State $invLength \gets sqrt(\left(x \times x\right) + \left(y \times y\right))$
+			\State $x \gets x \times invLength$
+			\State $y \gets y \times invLength$
+			\State \textbf{return} $x,y$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}

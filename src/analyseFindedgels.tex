@@ -1,0 +1,55 @@
+\begin{algorithm}
+	\caption{Edgels bestimmen}
+	\label{src:analyseFindedgels}
+	\begin{algorithmic}[1]
+		\Procedure{FindEdgelsInRegion}{$top, left, regionWidth, regionHeight, imageWidth, imageHeight$}
+			\For{$y \gets top, y < top + regionHeight, y \gets y + 5$}
+			\Comment Horizontale Scanlines
+				\State $prev1 \gets 0$
+				\State $prev2 \gets 0$
+				\For{$x \gets left, x < left + regionWidth, x \gets x + 1$}
+					\State $currentEdgel \gets convolute()$
+					\If{$currentEdgel > threshold$}
+						\Comment Edgel gefunden
+					\Else
+						\State $currentEdgel \gets 0$
+					\EndIf 
+					\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
+						\Comment $prev1$ ist lokales Maximum
+						\State $edgel \gets \infty$
+						\State $edgel.x \gets x - 1$
+						\State $edgel.y \gets y$
+						\State $edgel.orientation \gets orientation()$
+						\State $Liste \gets edgel$
+					\EndIf
+					\State $prev2 \gets prev1$
+					\State $prev1 \gets currentEdgel$
+				\EndFor
+			\EndFor
+			\Statex
+			\For{$x \gets left, x < left + regionWidth, x \gets x + 5$}
+			\Comment Vertikale Scanlines
+				\State $prev1 \gets 0$
+				\State $prev2 \gets 0$
+				\For{$y \gets top, y < top + regionHeight, y \gets y + 1$}
+					\State $currentEdgel \gets convolute()$
+					\If{$currentEdgel > threshold$}
+						\Comment Edgel gefunden
+					\Else
+						\State $currentEdgel \gets 0$
+					\EndIf
+					\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
+						\Comment $prev1$ ist lokales Maximum
+						\State $edgel \gets \infty$
+						\State $edgel.x \gets x$
+						\State $edgel.y \gets y - 1$
+						\State $edgel.orientation \gets orientation()$
+						\State $Liste \gets edgel$
+					\EndIf
+					\State $prev2 \gets prev1$
+					\State $prev1 \gets currentEdgel$
+				\EndFor
+			\EndFor
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
