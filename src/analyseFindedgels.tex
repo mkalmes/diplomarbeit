@@ -8,7 +8,7 @@
 				\State $prev1 \gets 0$
 				\State $prev2 \gets 0$
 				\For{$x \gets left, x < left + regionWidth, x \gets x + 1$}
-					\State $currentEdgel \gets convolute()$
+					\State $currentEdgel \gets convolute(x, y)$
 					\If{$currentEdgel > threshold$}
 						\Comment Edgel gefunden
 					\Else
@@ -19,7 +19,7 @@
 						\State $edgel \gets \infty$
 						\State $edgel.x \gets x - 1$
 						\State $edgel.y \gets y$
-						\State $edgel.orientation \gets orientation()$
+						\State $edgel.orientation \gets orientation(x - 1, y)$
 						\State $Liste \gets edgel$
 					\EndIf
 					\State $prev2 \gets prev1$
@@ -32,7 +32,7 @@
 				\State $prev1 \gets 0$
 				\State $prev2 \gets 0$
 				\For{$y \gets top, y < top + regionHeight, y \gets y + 1$}
-					\State $currentEdgel \gets convolute()$
+					\State $currentEdgel \gets convolute(x,y)$
 					\If{$currentEdgel > threshold$}
 						\Comment Edgel gefunden
 					\Else
@@ -43,7 +43,7 @@
 						\State $edgel \gets \infty$
 						\State $edgel.x \gets x$
 						\State $edgel.y \gets y - 1$
-						\State $edgel.orientation \gets orientation()$
+						\State $edgel.orientation \gets orientation(x, y - 1)$
 						\State $Liste \gets edgel$
 					\EndIf
 					\State $prev2 \gets prev1$
