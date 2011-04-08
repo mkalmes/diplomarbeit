@@ -3,14 +3,19 @@
 	\label{src:analyseLineDetection}
 	\begin{algorithmic}[1]
 		\Procedure{LineDetection}{$I$}
-			\State $witdh \gets width\left(I\right)$
-			\State $height \gets height\left(I\right)$
-			\For{$y \gets 0, y < height, y \gets y + 40$}
-				\For{$x \gets 0, x < width, x \gets x + 40$}
-					\State $findEdgelsInRegion top left, width$
-					\State $findLineSegments$
+			\State \Call{ConvertToMonochrome}{$I,I_m$}
+			\State $w \gets width\left(I\right)$
+			\State $h \gets height\left(I\right)$
+			\For{$y \gets 0$ \textbf{to} $y < h$}
+			\label{src:analyseLineDetectionStart}
+				\For{$x \gets 0$ \textbf{to} $x < w$}
+					\State $E \gets$ \Call{FindEdgels}{$I_m,x,y,40,40,w,h$}
+					\State \Call{findLineSegments}{}
+					\State $ x \gets x + 40$
 				\EndFor
+				\State $y \gets y + 40$
 			\EndFor
+			\label{src:analyseLineDetectionEnd}
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
