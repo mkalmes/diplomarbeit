@@ -10,10 +10,30 @@
 
 \subsection{Hirzer} % (fold)
 \label{sub:hirzer}
+
+\citeauthor{clarke96} verwenden in ihrem Verfahren ein monochromes Bildsignal $I_m$\footcite[Vgl.][S.~417]{clarke96}. Die Konvertierung des Bildsignals $I$ von YCbCr in $I_m$ erfolgt durch Algorithmus \ref{src:analyseConvertMonochrome}. Wie in Kapitel \ref{sub:farbräume} beschrieben, besteht ein YCbCr Signal aus einem Luminaz-Kanal $Y$ und den Chroma Abweichungen $Cb$ und $Cr$. Um ein monochromes Signal $I_m$ zu erstellen, muss der Luminanz Kanal ausgelesen und in einen Buffer kopiert werden.
+
+\input{src/analyseConvertMonochrome}
+
+Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_m$ auf einen Buffer für das monochrome Signal. Der Monochromebuffer $I_m$ ist ein Array mit fester Größe, das beim initialisieren einmalig angelegt wird und danach wiederverwendet werden kann. In Zeile \algref{src:analyseConvertMonochrome}{src:analyseConvertMonochromeBaseaddress} wird die Adresse des Luminanz-Kanals $Y$ ausgelesen. Die Funktionen $width$ und $height$ liefern die Breite und Höhe des Signals in Pixeln, mit denen die Länge der Daten berechnet wird. Anschließend werden die Daten in den Buffer kopiert. Die Laufzeit des Algorithmus entspricht $\Theta(1)$. (Vorsicht: Nur Zeile 5 verwendet keine Funktionen, deren Laufzeit dir nicht bekannt sind. baseaddress, width und height greifen evtl. auf metadaten zurück und wären damit ein einfacher lookup mit $\Theta(1)$. Dann wäre nur noch memcpy zu bestimmen, was im schlimmsten Fall $\Theta(n)$ wäre.)
+
+Um auf \gls{pixel} zugreifen zu könne, verwende ich Algorithmus \ref{src:analyseGetpixel}. Es wird der Buffer $I_m$ als Pointer übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$ entsprechen der Breite und Höhe von $I_m$. Zeile \ref{src:analyseGetpixelStart} bis Zeile \ref{src:analyseGetpixelEnd} sorgen dafür, dass keine Werte außerhalb des Buffers gelesen werden können.
+
+\input{src/analyseGetpixel}
+
+Die Laufzeit von Algorithmus \ref{src:analyseGetpixel} ist im worst-case und im best-case konstant und somit $\Theta(1)$.
+
+Der Algorithmus von \citeauthor{clarke96} ist in Algorithmus \ref{src:analyseLineDetection} aufgeführt. Zuerst wird das Signal $I$ in die monochrome Variante $I_m$ konvertiert. Danach wird die Breite und Höhe des Signals festgehalten. Die doppelte For-Schleife in Zeile \ref{src:analyseLineDetectionStart} bis \ref{src:analyseLineDetectionEnd} unterteilt das Signal in Regionen der Größe $40 \times 40$ \gls{pixel}, indem die Koordinate der oberen linken Ecke berechnet wird.
+
+In \citeauthor{clarke96} ist keine Angabe zu den Abmessungen der untersuchten Signale angegeben. Auch der Grund warum eine Region $40 \times 40$ \gls{pixel} gross sein muss, fehlt. Zur Analyse der Videosignale verwendeten \citeauthor{clarke96} einen Framegrabber 2000 der eine Auflösung von 640x480px schafft. Betrachtet man
+
+$640 mod 40 = 0$ und $480 mod 40 = 0$
+
+ist ersichtlich, dass die Größe der Region in der Aufteilung des Bildsignals in Zusammenhang steht.
+
 \input{src/analyseLinedetection}
 \input{src/analyseFindedgels}
 \input{src/analyseConvolute}
-\input{src/analyseGetpixel}
 \input{src/analyseOrientation}
 \input{src/analyseNormalizedvector}
 % subsection hirzer (end)
