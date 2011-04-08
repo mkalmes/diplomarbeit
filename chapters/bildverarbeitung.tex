@@ -131,7 +131,7 @@ Die Chromakomponente $V$ definiert die Differenz von Luminanz $Y$ und dem Rotant
 	\label{eq:vchroma}
 \end{equation}
 
-Die Chromakomponenten $Cb$ und $Cr$ von YCbCr sind, wie bei YUV, Differenzwerte des Blau- und Rotanteil und der Luminanz. Der Unterschied zwischen YUV und YCbCr besteht in der unterschiedlichen Berechnung der \gls{chrominanz} und ist in \citeauthor{burger06}\footcite[][S.265--266]{burger06} beschrieben.
+Die Chromakomponenten $Cb$ und $Cr$ von YCbCr sind, wie bei YUV, Differenzwerte des Blau- und Rotanteil und der Luminanz. Der Unterschied zwischen YUV und YCbCr besteht in der unterschiedlichen Berechnung der \gls{chrominanz} und ist in \citeauthor{burger05}\footcite[][S.265--266]{burger05} beschrieben.
 
 Durch die Trennung der Luminanz und \gls{chrominanz} ist es möglich das Signal auf Schwarz/Weiß Fernsehern zu nutzen, indem nur die Luminanzkomponente berücksichtigt wird. Bei Farbfernsehern werden die zusätzlichen Chromakomponenten verwendet.
 
@@ -148,7 +148,7 @@ Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arryas 
 	\label{eq:planarImage}
 \end{equation}
 
-besteht aus den den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (Abb.~\ref{fig:planareAnordnung}). Der Zugriff auf ein \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in \citeauthor{burger06}\footcite[Vgl.][S.~235--236]{burger06} beschrieben. Der Zugriff erfolgt durch
+besteht aus den den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (Abb.~\ref{fig:planareAnordnung}). Der Zugriff auf ein \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in \citeauthor{burger05}\footcite[Vgl.][S.~235--236]{burger05} beschrieben. Der Zugriff erfolgt durch
 
 \begin{equation}
 	\begin{pmatrix}
@@ -207,7 +207,7 @@ Im allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \eqref{
 	\label{eq:readPackedRGB}
 \end{equation}
 
-$Red()$, $Green()$ und $Blue()$ sind abhänging vom eingesetzten Format\footcite[Vgl.][S.~236--237]{burger06}.
+$Red()$, $Green()$ und $Blue()$ sind abhänging vom eingesetzten Format\footcite[Vgl.][S.~236--237]{burger05}.
 % subsection pixelanordnung (end)
 
 
