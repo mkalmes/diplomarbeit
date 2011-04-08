@@ -2,20 +2,23 @@
 	\caption{Pixelwert auslesen}
 	\label{src:analyseGetpixel}
 	\begin{algorithmic}[1]
-		\Procedure{getPixel}{$x, y, width, height$}
+		\Procedure{getPixel}{$I_m, x, y, w, h$}
 		\If{$x < 0$}
+		\label{src:analyseGetpixelStart}
 			\State $x \gets 0$
 		\EndIf
 		\If{$y < 0$}
 			\State $y \gets 0$
 		\EndIf
-		\If{$x \geq width$}
-			\State $x \gets width - 1$
+		\If{$x \geq w$}
+			\State $x \gets w - 1$
 		\EndIf
-		\If{$y \geq height$}
-			\State $y \gets height -1$
+		\If{$y \geq h$}
+			\State $y \gets h -1$
 		\EndIf
-		\State \textbf{return} $I(x,y)$
+		\label{src:analyseGetpixelEnd}
+		\State $address \gets x + \left(y \cdot w\right)$
+		\State \textbf{return} $I_m[address]$
 		\EndProcedure
 	\end{algorithmic}	
 \end{algorithm}
