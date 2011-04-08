@@ -4,10 +4,10 @@
 	\begin{algorithmic}[1]
 		\Procedure{convolute}{$x,y, imageWidth, imageHeight$}
 		\State $value \gets \infty$
-		\State $value \gets -3 \times I(x - 2, y)$
-		\State $value \gets value + -5 \times I(x - 1, y)$
-		\State $value \gets value + 5 \times I(x + 1, y)$
-		\State $value \gets value + 3 \times I(x + 2, y)$
+		\State $value \gets -3 \times getPixel(x - 2, y)$
+		\State $value \gets value + -5 \times getPixel(x - 1, y)$
+		\State $value \gets value + 5 \times getPixel(x + 1, y)$
+		\State $value \gets value + 3 \times getPixel(x + 2, y)$
 		\State \textbf{return} $value$
 		\EndProcedure
 	\end{algorithmic}
