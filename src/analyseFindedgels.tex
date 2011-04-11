@@ -2,13 +2,13 @@
 	\caption{Edgels bestimmen}
 	\label{src:analyseFindedgels}
 	\begin{algorithmic}[1]
-		\Procedure{FindEdgelsInRegion}{$top, left, regionWidth, regionHeight, imageWidth, imageHeight$}
-			\For{$y \gets top, y < top + regionHeight, y \gets y + 5$}
+		\Procedure{FindEdgelsInRegion}{$I_m, t, l, rw, rh, w, h$}
+			\For{$y \gets t$ \textbf{to} $y < t + rh$}
 			\Comment Horizontale Scanlines
 				\State $prev1 \gets 0$
 				\State $prev2 \gets 0$
-				\For{$x \gets left, x < left + regionWidth, x \gets x + 1$}
-					\State $currentEdgel \gets convolute(x, y)$
+				\For{$x \gets left$ \textbf{to} $x < left + rw$}
+					\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
 					\If{$currentEdgel > threshold$}
 						\Comment Edgel gefunden
 					\Else
@@ -19,20 +19,21 @@
 						\State $edgel \gets \infty$
 						\State $edgel.x \gets x - 1$
 						\State $edgel.y \gets y$
-						\State $edgel.orientation \gets orientation(x - 1, y)$
+						\State $edgel.orientation \gets$ \Call{Orientation}{$x - 1, y$}
 						\State $Liste \gets edgel$
 					\EndIf
 					\State $prev2 \gets prev1$
 					\State $prev1 \gets currentEdgel$
 				\EndFor
+				\State $y \gets y + 5$
 			\EndFor
 			\Statex
-			\For{$x \gets left, x < left + regionWidth, x \gets x + 5$}
+			\For{$x \gets left$ \textbf{to} $x < left + rw$}
 			\Comment Vertikale Scanlines
 				\State $prev1 \gets 0$
 				\State $prev2 \gets 0$
-				\For{$y \gets top, y < top + regionHeight, y \gets y + 1$}
-					\State $currentEdgel \gets convolute(x,y)$
+				\For{$y \gets t$ \textbf{to} $y < t + rh$}
+					\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
 					\If{$currentEdgel > threshold$}
 						\Comment Edgel gefunden
 					\Else
@@ -43,12 +44,13 @@
 						\State $edgel \gets \infty$
 						\State $edgel.x \gets x$
 						\State $edgel.y \gets y - 1$
-						\State $edgel.orientation \gets orientation(x, y - 1)$
+						\State $edgel.orientation \gets$ \Call{Orientation}{$x, y - 1$}
 						\State $Liste \gets edgel$
 					\EndIf
 					\State $prev2 \gets prev1$
 					\State $prev1 \gets currentEdgel$
 				\EndFor
+				\State $x \gets x + 5$
 			\EndFor
 		\EndProcedure
 	\end{algorithmic}
