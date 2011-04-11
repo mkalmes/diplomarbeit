@@ -3,11 +3,15 @@
 	\label{src:analyseConvolution}
 	\begin{algorithmic}[1]
 		\Procedure{convolute}{$I_m,x,y,w,h$}
-		\State $value \gets \infty$
-		\State $value \gets -3 \cdot getPixel(I_m, x - 2, y, w, h)$
-		\State $value \gets value + -5 \cdot getPixel(I_m, x - 1, y, w, h)$
-		\State $value \gets value + 5 \cdot getPixel(I_m, x + 1, y, w, h)$
-		\State $value \gets value + 3 \cdot getPixel\cdot(I_m, x + 2, y, w, h)$
+		\State $pos_1 \gets$ \Call{getPixel}{$I_m, x - 2, y, w, h$}
+		\State $pos_2 \gets$ \Call{getPixel}{$I_m, x - 1, y, w, h$}
+		\State $pos_4 \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
+		\State $pos_5 \gets$ \Call{getPixel}{$I_m, x + 2, y, w, h$}
+		\State $value \gets 0$
+		\State $value \gets value + \left( -3 \cdot pos_1 \right)$
+		\State $value \gets value + \left( -5 \cdot pos_2 \right)$
+		\State $value \gets value + \left( 5 \cdot pos_4 \right)$
+		\State $value \gets value + \left( 3 \cdot pos_5 \right)$
 		\State \textbf{return} $value$
 		\EndProcedure
 	\end{algorithmic}
