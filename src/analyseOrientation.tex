@@ -3,21 +3,36 @@
 	\label{src:analyseOrientation}
 	\begin{algorithmic}[1]
 		\Procedure{orientation}{$I_m, x, y, w, h$}
-			\State $gx \gets \infty$
-			\State $gy \gets \infty$
-			\State $gx \gets getPixel(x - 1, y - 1, w, h)$
-			\State $gx \gets gx + 2 \times getPixel(x, y - 1, w, h)$
-			\State $gx \gets gx + getPixel(x + 1, y - 1, w, h)$
-			\State $gx \gets gx - getPixel(x - 1, y + 1, w, h)$
-			\State $gx \gets gx - 2 \times getPixel(x, y + 1, w, h)$
-			\State $gx \gets gx - getPixel(x + 1, y + 1, w, h)$
-			\State $gy \gets getPixel(x - 1, y - 1, w, h)$
-			\State $gy \gets gy + 2 \times getPixel(x - 1, y, w, h)$
-			\State $gy \gets gy + getPixel(x - 1, y + 1, w, h)$
-			\State $gy \gets gy - getPixel(x + 1, y - 1, w, h)$
-			\State $gy \gets gy - 2 \times getPixel(x + 1, y, w, h)$
-			\State $gy \gets gy - getPixel(x + 1, y + 1, w, h)$
-			
+			\State $pixel_x[1] \gets$ \Call{getPixel}{$I_m, x - 1, y - 1, w, h$}
+			\State $pixel_x[2] \gets$ \Call{getPixel}{$I_m, x, y - 1, w, h$}
+			\State $pixel_x[3] \gets$ \Call{getPixel}{$I_m, x + 1, y - 1, w, h$}
+			\State $pixel_x[4] \gets$ \Call{getPixel}{$I_m, x - 1, y + 1, w, h$}
+			\State $pixel_x[5] \gets$ \Call{getPixel}{$I_m, x, y + 1, w, h$}
+			\State $pixel_x[6] \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
+			\Statex
+			\State $pixel_y[1] \gets$ \Call{getPixel}{$I_m, x - 1, y - 1, w, h$}
+			\State $pixel_y[2] \gets$ \Call{getPixel}{$I_m, x - 1, y, w, h$}
+			\State $pixel_y[3] \gets$ \Call{getPixel}{$I_m, x - 1, y + 1, w, h$}
+			\State $pixel_y[4] \gets$ \Call{getPixel}{$I_m, x + 1, y - 1, w, h$}
+			\State $pixel_y[5] \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
+			\State $pixel_y[6] \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
+			\Statex
+			\State $g_x \gets 0$
+			\State $g_y \gets 0$
+			\Statex
+			\State $g_x \gets g_x + pixel_x[1]$
+			\State $g_x \gets g_x + pixel_x[2] \cdot 2$
+			\State $g_x \gets g_x + pixel_x[3]$
+			\State $g_x \gets g_x - pixel_x[4]$
+			\State $g_x \gets g_x - pixel_x[5] \cdot 2$
+			\State $g_x \gets g_x - pixel_x[6]$
+			\Statex
+			\State $g_y \gets g_y + pixel_y[1]$
+			\State $g_y \gets g_y + pixel_y[2] \cdot 2$
+			\State $g_y \gets g_y + pixel_y[3]$
+			\State $g_y \gets g_y - pixel_y[4]$
+			\State $g_y \gets g_y - pixel_y[5] \cdot 2$
+			\State $g_y \gets g_y - pixel_y[6]$
 			\State \textbf{return} $normalizedVector(gy, gx)$
 		\EndProcedure
 	\end{algorithmic}
