@@ -2,21 +2,21 @@
 	\caption{Orientierung berechnen}
 	\label{src:analyseOrientation}
 	\begin{algorithmic}[1]
-		\Procedure{orientation}{$x, y, width, height$}
+		\Procedure{orientation}{$I_m, x, y, w, h$}
 			\State $gx \gets \infty$
 			\State $gy \gets \infty$
-			\State $gx \gets getPixel(x - 1, y - 1, width, height)$
-			\State $gx \gets gx + 2 \times getPixel(x, y - 1, width, height)$
-			\State $gx \gets gx + getPixel(x + 1, y - 1, width, height)$
-			\State $gx \gets gx - getPixel(x - 1, y + 1, width, height)$
-			\State $gx \gets gx - 2 \times getPixel(x, y + 1, width, height)$
-			\State $gx \gets gx - getPixel(x + 1, y + 1, width, height)$
-			\State $gy \gets getPixel(x - 1, y - 1, width, height)$
-			\State $gy \gets gy + 2 \times getPixel(x - 1, y, width, height)$
-			\State $gy \gets gy + getPixel(x - 1, y + 1, width, height)$
-			\State $gy \gets gy - getPixel(x + 1, y - 1, width, height)$
-			\State $gy \gets gy - 2 \times getPixel(x + 1, y, width, height)$
-			\State $gy \gets gy - getPixel(x + 1, y + 1, width, height)$
+			\State $gx \gets getPixel(x - 1, y - 1, w, h)$
+			\State $gx \gets gx + 2 \times getPixel(x, y - 1, w, h)$
+			\State $gx \gets gx + getPixel(x + 1, y - 1, w, h)$
+			\State $gx \gets gx - getPixel(x - 1, y + 1, w, h)$
+			\State $gx \gets gx - 2 \times getPixel(x, y + 1, w, h)$
+			\State $gx \gets gx - getPixel(x + 1, y + 1, w, h)$
+			\State $gy \gets getPixel(x - 1, y - 1, w, h)$
+			\State $gy \gets gy + 2 \times getPixel(x - 1, y, w, h)$
+			\State $gy \gets gy + getPixel(x - 1, y + 1, w, h)$
+			\State $gy \gets gy - getPixel(x + 1, y - 1, w, h)$
+			\State $gy \gets gy - 2 \times getPixel(x + 1, y, w, h)$
+			\State $gy \gets gy - getPixel(x + 1, y + 1, w, h)$
 			
 			\State \textbf{return} $normalizedVector(gy, gx)$
 		\EndProcedure
