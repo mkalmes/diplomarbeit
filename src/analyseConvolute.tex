@@ -2,12 +2,12 @@
 	\caption{Faltung mit Gauß-Kernel (horizontale Scanline)}
 	\label{src:analyseConvolution}
 	\begin{algorithmic}[1]
-		\Procedure{convolute}{$x,y, imageWidth, imageHeight$}
+		\Procedure{convolute}{$I_m,x,y,w,h$}
 		\State $value \gets \infty$
-		\State $value \gets -3 \times getPixel(x - 2, y)$
-		\State $value \gets value + -5 \times getPixel(x - 1, y)$
-		\State $value \gets value + 5 \times getPixel(x + 1, y)$
-		\State $value \gets value + 3 \times getPixel(x + 2, y)$
+		\State $value \gets -3 \cdot getPixel(I_m, x - 2, y, w, h)$
+		\State $value \gets value + -5 \cdot getPixel(I_m, x - 1, y, w, h)$
+		\State $value \gets value + 5 \cdot getPixel(I_m, x + 1, y, w, h)$
+		\State $value \gets value + 3 \cdot getPixel\cdot(I_m, x + 2, y, w, h)$
 		\State \textbf{return} $value$
 		\EndProcedure
 	\end{algorithmic}
