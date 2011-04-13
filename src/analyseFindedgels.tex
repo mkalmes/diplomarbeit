@@ -4,17 +4,22 @@
 	\begin{algorithmic}[1]
 		\Procedure{FindEdgelsInRegion}{$I_m, t, l, rw, rh, w, h$}
 			\For{$y \gets t$ \textbf{to} $y < t + rh$}
+			\label{src:analyseFindedgelsHorizontalScanlineStart}
 			\Comment Horizontale Scanlines
 				\State $prev1 \gets 0$
 				\State $prev2 \gets 0$
 				\For{$x \gets left$ \textbf{to} $x < left + rw$}
+				\label{src:analyseFindedgelsLoop2Start}
 					\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
+					\label{src:analyseFindedgelsConvolute}
 					\If{$currentEdgel > threshold$}
+					\label{src:analyseFindedgelsFoundEdgel}
 						\Comment Edgel gefunden
 					\Else
 						\State $currentEdgel \gets 0$
 					\EndIf 
 					\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
+					\label{src:analyseFindedgelsLocalMaxima}
 						\Comment $prev1$ ist lokales Maximum
 						\State $edgel \gets \infty$
 						\State $edgel.x \gets x - 1$
@@ -23,12 +28,18 @@
 						\State $Liste \gets edgel$
 					\EndIf
 					\State $prev2 \gets prev1$
+					\label{src:analyseFindedgelsCopy1}
 					\State $prev1 \gets currentEdgel$
+					\label{src:analyseFindedgelsCopy2}
 				\EndFor
+				\label{src:analyseFindedgelsLoop2End}
 				\State $y \gets y + 5$
+				\label{src:analyseFindedgelsIncrementScanline}
 			\EndFor
+			\label{src:analyseFindedgelsHorizontalScanlineEnd}
 			\Statex
 			\For{$x \gets left$ \textbf{to} $x < left + rw$}
+			\label{src:analyseFindedgelsVerticalScanlineStart}
 			\Comment Vertikale Scanlines
 				\State $prev1 \gets 0$
 				\State $prev2 \gets 0$
@@ -52,6 +63,7 @@
 				\EndFor
 				\State $x \gets x + 5$
 			\EndFor
+			\label{src:analyseFindedgelsVerticalScanlineEnd}
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
