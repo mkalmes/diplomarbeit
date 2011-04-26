@@ -235,6 +235,26 @@ Bei einer Filtermatrix wird ein eigenes Koordinatensystem verwendet, dessen Ursp
 	\end{pmatrix}
 \end{equation}
 
+Somit können alle Pixel von $I'$ durch
+
+\begin{equation}
+	I'\left(u,v\right) \gets
+	\sum \limits_{\left(i = -1\right)}^{i = 1}
+	\sum \limits_{\left(j = -1\right)}^{j = 1}
+	I\left(u + i, v + j\right) \cdot H\left(i,j\right)
+\end{equation}
+
+berechnet werden. Für Filter mit einer anderen Größe als $3 \times 3$, lautet die Formel
+
+\begin{equation}
+	I'\left(u,v\right) \gets
+	\sum_{\left(i,j\right)\in\mathbb{R}} I\left(u + i, v + j\right) \cdot H\left(i,j\right)
+\end{equation}
+
+wobei $\mathbb{R}$ die Größe des Filters angibt\footcite[Vgl.][S.~92--93]{burger05}.
+
+
+
 % subsection filter (end)
 
 % section bildverarbeitung (end)
