@@ -253,7 +253,25 @@ berechnet werden. Für Filter mit einer anderen Größe als $3 \times 3$, lautet
 
 wobei $\mathbb{R}$ die Größe des Filters angibt\footcite[Vgl.][S.~92--93]{burger05}.
 
+Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footcite[Vgl.][S.~113]{burger05}, da der Filter $H$ an den Bildrändern über die definierte Bildmenge hinausragt. Um dieses Problem zu umgehen, gibt es die Möglichkeit
 
+\begin{enumerate}
+	\item am Randbereich einen konstanten Wert zuzuweisen,\label{konstant}
+	\item den ursprünglichen Bildwert beizubehalten,\label{nix}
+	\item die Randwerte zu berechnen, indem
+	\begin{enumerate}
+		\item ausserhalb des Bildbereichs konstante Werte angenommen werden,\label{berechneKonstant}
+		\item die Randpixel fortgesetzt werden,\label{berechneRand}
+		\item die Bildwerte wiederholt werden.\label{berechneBild}
+	\end{enumerate}
+\end{enumerate}
+
+Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autoref{nix} der Filter an den Rändern nicht
+ angewendet. Bei \autoref{berechneKonstant} kann durch die zuweisung eines konstanten Wertes, beispielsweise Schwarz,
+ das Ergebnis verfälschen. \autoref{berechneRand} weist die geringste Verfälschung auf. Bei \autoref{berechneBild} wird
+ durch die Wiederholung des Bildes implizit eine periodische Funktion betrachtet. Welche dieser Randbetrachtung
+ eingesetzt wird ist abhängig von den benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert
+ betrachtet werden.
 
 % subsection filter (end)
 
