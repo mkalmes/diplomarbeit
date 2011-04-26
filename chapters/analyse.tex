@@ -145,7 +145,43 @@ In Zeile~\ref{src:analyseFindedgelsVerticalScanlineStart}--\ref{src:analyseFinde
  Zeile~\ref{src:analyseFindedgelsHorizontalScanlineStart}--\ref{src:analyseFindedgelsHorizontalScanlineEnd} die
  vertikalen Scanlines untersucht.
 
+
+In Algorithmus~\autoref{src:analyseConvolution} wird durch Faltung mit dem Gauß-Kernel
+$\left( \begin{smallmatrix}
+-3& -5& 0& 5& 3
+\end{smallmatrix} \right)$
+der Gradient berechnet.
+
 \input{src/analyseConvolute}
+
+In \citeauthor{clarke96}\footcite[Vgl.][S.~417]{clarke96} wird das Ergebnis der Faltung mit $\tfrac{1}{16}$
+ multipliziert. Dadurch wird erreicht, dass die berechneten Werte dem Wertebereichs des monochromen Bildes entsprechen.
+ Der maximale Wert entspricht
+$\tfrac{1}{16}
+\cdot
+\left( \begin{smallmatrix}
+	-3& -5& 0& 5& 3
+\end{smallmatrix} \right)
+\cdot
+\left( \begin{smallmatrix}
+	0& 0& 0& 255& 255
+\end{smallmatrix} \right)
+= 127.5
+$
+und der minimale Wert entspricht
+$\tfrac{1}{16}
+\cdot
+\left( \begin{smallmatrix}
+	-3& -5& 0& 5& 3
+\end{smallmatrix} \right)
+\cdot
+\left( \begin{smallmatrix}
+	255& 255& 0& 0& 0
+\end{smallmatrix} \right)
+= -127.5 \text{.}
+$
+
+
 \input{src/analyseOrientation}
 \input{src/analyseNormalizedvector}
 % subsection hirzer (end)
