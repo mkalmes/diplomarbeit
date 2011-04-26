@@ -273,6 +273,58 @@ Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autor
  eingesetzt wird ist abhängig von den benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert
  betrachtet werden.
 
+In der digitalen Bildverarbeitung basieren Filter auf der mathematischen Operation der Faltung
+\footcite[Vgl.][S.~101--104]{burger05}, bei der für zwei Funktionen ein dritte Funktion erzeugt wird. Die diskrete
+ lineare Faltung ist definiert als
+
+\begin{equation}
+	I'\left(u,v\right) =
+	\sum \limits_{i = -\infty}^{\infty}
+	\sum \limits_{j = -\infty}^{\infty}
+	I\left(u - i, v - j\right) \cdot H\left(i,j\right)
+\end{equation}
+
+und gekürzt
+
+\begin{equation}
+	I' = I * H,
+\end{equation}
+
+wobei $I$ dem Bildsignal und $H$ dem Faltungskern entspricht. Die Operation der Faltung ist die grundlage aller
+ linearen Filter in der digitalen Bildverarbeitung. Unterschiedliche Filter sind nur durch den Filterkern (Kernel)
+ definiert. Die Faltungsoperation besitzt die algebraischen Eigenschaften der Kommutativität, Assoziativität und
+ Distributivität.
+
+\begin{align}
+	\text{Kommutativität:}& I * H = H * I\\
+	\text{Assoziativität:}& A * (B * C) = (A * B) * C\\
+	\text{Distributivität:}& H * \left(I_1 + I_2\right) = \left(H * I_1\right) + \left(H * I_2\right)
+\end{align}
+
+Durch die Distributivität kann ein Kernel $H$ als Produkt mehrerer kleiner Kernel ausgedrückt werden was wiederum
+ Rechenoperationen einspart. Ein $3 \times 3$ Filter kann in eine $x$-Richtung und $y$-Richtung aufgeteilt werden.
+
+\begin{align}
+	H_{xy} = & H_x \otimes H_y\\
+	\begin{pmatrix}
+		1& 1& 1\\
+		1& 1& 1\\
+		1& 1& 1
+	\end{pmatrix} = &
+	\begin{pmatrix}
+		1& 1& 1
+	\end{pmatrix}
+	\otimes
+	\begin{pmatrix}
+		1\\
+		1\\
+		1
+	\end{pmatrix}
+\end{align}
+
+Bei der Berechnung von $I * H_{xy}$ entspricht dies $3 \cdot 3 = 9$ Multiplikationen und bei der Berechnung von
+ $I * H_x * H_y = 3 + 3 = 6$ Multiplikationen.
+
 % subsection filter (end)
 
 % section bildverarbeitung (end)
