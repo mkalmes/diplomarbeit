@@ -1,21 +1,19 @@
-\begin{algorithm}
-	\caption{Line Detection}
-	\label{src:analyseLineDetection}
+\begin{algorithm}[ht]
+\caption{Line Detection}
+\label{alg:linedetection-analyze}
 	\begin{algorithmic}[1]
-		\Procedure{LineDetection}{$I$}
-			\State \Call{ConvertToMonochrome}{$I,I_m$}
-			\State $w \gets width\left(I\right)$
-			\State $h \gets height\left(I\right)$
-			\For{$y \gets 0$ \textbf{to} $y < h$}
-			\label{src:analyseLineDetectionStart}
-				\For{$x \gets 0$ \textbf{to} $x < w$}
-					\State $E \gets$ \Call{FindEdgels}{$I_m,x,y,40,40,w,h$}
-					\State \Call{findLineSegments}{}
-					\State $ x \gets x + 40$
-				\EndFor
-				\State $y \gets y + 40$
+		\Require $I_m$
+		\State $w \gets$ \Call{width}{$I_m$} \Cost{$c_1$}{$1$}
+		\State $h \gets$ \Call{height}{$I_m$} \Cost{$c_2$}{$1$}
+		\For{$y \gets 0$ \textbf{to} $y < h$} \Cost{$c_3$}{$\tfrac{h}{40} + 1$}
+		\label{alg:linedetection-analyze-start}
+			\For{$x \gets 0$ \textbf{to} $x < w$} \Cost{$c_4$}{$\sum_{y=0}^{\tfrac{h}{40}} \left(\tfrac{w}{40} + 1\right)$}
+				\State $E \gets$ \Call{FindEdgels}{$I_m,x,y,40,40,w,h$} \Cost{$c_5$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\State \Call{findLineSegments}{$E$} \Cost{$c_6$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\State $ x \gets x + 40$ \Cost{$c_7$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
 			\EndFor
-			\label{src:analyseLineDetectionEnd}
-		\EndProcedure
+			\State $y \gets y + 40$ \Cost{$c_9$}{$\sum_{y = 0}^{\frac{h}{40}} t_y$}
+		\EndFor
+		\label{alg:linedetection-analyze-end}
 	\end{algorithmic}
 \end{algorithm}
