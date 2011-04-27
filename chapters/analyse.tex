@@ -29,15 +29,14 @@ Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_
  nicht bekannt sind. baseaddress, width und height greifen evtl. auf metadaten zurück und wären damit ein einfacher
  lookup mit $\Theta(1)$. Dann wäre nur noch memcpy zu bestimmen, was im schlimmsten Fall $\Theta(n)$ wäre.)
 
-Um auf \gls{pixel} zugreifen zu könne, verwende ich Algorithmus \ref{src:analyseGetpixel}. Es wird der Buffer $I_m$ als
- Pointer übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$ entsprechen der Breite und
- Höhe von $I_m$. Zeile \ref{src:analyseGetpixelStart} bis Zeile \ref{src:analyseGetpixelEnd} sorgen dafür, dass keine
- Werte außerhalb des Buffers gelesen werden können.
+Um auf \gls{pixel} zugreifen zu können, verwende ich \autoref{alg:getpixel}. Es wird der Buffer $I_m$ als Pointer
+ übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$ entsprechen der Breite und Höhe von
+ $I_m$. Zeile \ref{alg:getpixel-startcheck} bis Zeile \ref{alg:getpixel-stopcheck} sorgen dafür, dass keine Werte
+ außerhalb des Buffers gelesen werden können.
 
-\input{alg/analyseGetpixel}
+\input{alg/getpixel}
 
-Die Laufzeit von Algorithmus \ref{src:analyseGetpixel} ist im worst-case und im best-case konstant und somit
- $\Theta(1)$.
+Die Laufzeit von \autoref{alg:getpixel} ist im worst-case und im best-case konstant und somit $\Theta(1)$.
 
 Der Algorithmus von \citeauthor{clarke96} ist in Algorithmus \ref{src:analyseLineDetection} aufgeführt. Zuerst wird das
  Signal $I$ in die monochrome Variante $I_m$ konvertiert. Danach wird die Breite und Höhe des Signals festgehalten. Die

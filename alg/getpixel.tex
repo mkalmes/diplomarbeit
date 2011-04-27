@@ -1,0 +1,24 @@
+\begin{algorithm}
+\caption{Pixelwert auslesen}
+\label{alg:getpixel}
+	\begin{algorithmic}[1]
+		\Require $I_m, x, y, w, h$
+		\Ensure $I_m[i]$
+		\If{$x < 0$}
+		\label{alg:getpixel-startcheck}
+			\State $x \gets 0$
+		\EndIf
+		\If{$y < 0$}
+			\State $y \gets 0$
+		\EndIf
+		\If{$x \geq w$}
+			\State $x \gets w - 1$
+		\EndIf
+		\If{$y \geq h$}
+			\State $y \gets h -1$
+		\EndIf
+		\label{alg:getpixel-stopcheck}
+		\State $i \gets x + \left(y \cdot w\right)$
+		\State \textbf{return} $I_m[i]$
+	\end{algorithmic}	
+\end{algorithm}
