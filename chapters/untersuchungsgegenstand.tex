@@ -19,13 +19,18 @@ Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbil
 \label{sub:line_detection}
 Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC Verfaren eine Linienhypothese zu erstellen und zu bewerten.
 
-Im ersten Schritt wird zuerst das Eingabesignal in $40 \times 40$ \gls{pixel} große Regionen unterteilt. Jede nachfolgende Operation erfolgt innerhalb einer Region. Eine Region wird wiederum unterteilt in horizontale und vertikale Scanlines, die jeweils $5$ \gls{pixel} Abstand zueinander haben. Jedes \gls{pixel} auf den Scanlines wird mit einem Gauß-Kernel gefaltet um die Komponente des Gradienten zu bestimmen. Ein lokales Maximum des Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgels} betrachtet und seine Orientierung berechnet.
+Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 40$ \gls{pixel} große Regionen
+ unterteilt. Jede nachfolgende Operation erfolgt innerhalb einer Region. Eine Region wird wiederum unterteilt in
+ horizontale und vertikale Scanlines, die jeweils $5$ \gls{pixel} Abstand zueinander haben. Jedes \gls{pixel} auf den
+ Scanlines wird mit einem Gauß-Kernel gefaltet um die Komponente des Gradienten zu bestimmen. Ein lokales Maximum des
+ Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgels} betrachtet und seine Orientierung
+ berechnet.
 
 Im zweiten Schritt wird das RANSAC Verfahren verwendet, um aus der Menge der \gls{edgels} Liniensegmente zu bestimmen. Eine Linienhypothese wird durch die zufällige Auswahl zweier \gls{edgels} erstellt, deren Orientierung innerhalb eines Grenzwert liegen müssen. Ein edgel dient als Startpunkt und das andere edgel als Endpunkt der Linie. Im Anschluss wird die Anzahl der \gls{edgels} betrachtet, die in der Nähe dieser Linie liegen und eine kompatible Orientierung mit der Linie aufweisen. Diese \gls{edgels} unterstützen die Hypothese einer Linie im Bildsignal, wenn die Anzahl größer ist als die minimal geforderte Anzahl von Unterstützungsedgels. Die zufällige Auswahl zweier \gls{edgels} um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln wird mehrmals wiederholt um die Linie mit der meisten Edgelunterstützung zu finden. Wenn eine solche dominante Linie gefunden wurde, gilt die Hypothese als bestätigt und die Linie als im Bild vorhanden betrachtet. Die Edgels die zur Unterstüztung der Hyptohese der Linie galten, werden aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind.
 
-Das Verfahren ist in \algref{src:lineDetection}{} dargestellt.
+Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
 
-\input{alg/linedetection}
+\input{alg/linedetection-clarke}
 
 Das Verfahren von \citeauthor{clarke96} liefert nur kurze Liniensegmente. Diese Segmente müssen noch zusammengeführt werden. \citeauthor{hirzer08} beschreibt das Verfahren \dots
 % subsubsection line_detection (end)
