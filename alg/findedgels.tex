@@ -1,69 +1,74 @@
 \begin{algorithm}
-	\caption{Edgels bestimmen}
-	\label{src:analyseFindedgels}
+\caption{Edgels bestimmen (horizontal)}
+\label{alg:findedgels-horizontal}
 	\begin{algorithmic}[1]
-		\Procedure{FindEdgelsInRegion}{$I_m, t, l, rw, rh, w, h$}
-			\For{$y \gets t$ \textbf{to} $y < t + rh$}
-			\label{src:analyseFindedgelsHorizontalScanlineStart}
-			\Comment Horizontale Scanlines
-				\State $prev1 \gets 0$
-				\State $prev2 \gets 0$
-				\For{$x \gets left$ \textbf{to} $x < left + rw$}
-				\label{src:analyseFindedgelsLoop2Start}
-					\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
-					\label{src:analyseFindedgelsConvolute}
-					\If{$currentEdgel > threshold$}
-					\label{src:analyseFindedgelsFoundEdgel}
-						\Comment Edgel gefunden
-					\Else
-						\State $currentEdgel \gets 0$
-					\EndIf 
-					\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
-					\label{src:analyseFindedgelsLocalMaxima}
-						\Comment $prev1$ ist lokales Maximum
-						\State $edgel \gets \infty$
-						\State $edgel.x \gets x - 1$
-						\State $edgel.y \gets y$
-						\State $edgel.orientation \gets$ \Call{Orientation}{$x - 1, y$}
-						\State $Liste \gets edgel$
-					\EndIf
-					\State $prev2 \gets prev1$
-					\label{src:analyseFindedgelsCopy1}
-					\State $prev1 \gets currentEdgel$
-					\label{src:analyseFindedgelsCopy2}
-				\EndFor
-				\label{src:analyseFindedgelsLoop2End}
-				\State $y \gets y + 5$
-				\label{src:analyseFindedgelsIncrementScanline}
-			\EndFor
-			\label{src:analyseFindedgelsHorizontalScanlineEnd}
-			\Statex
+		\Require $I_m, t, l, rw, rh, w, h$
+		\For{$y \gets t$ \textbf{to} $y < t + rh$}
+		\label{alg:findedgels-horizontal-scanlinestart}
+		\Comment Horizontale Scanlines
+			\State $prev1 \gets 0$
+			\State $prev2 \gets 0$
 			\For{$x \gets left$ \textbf{to} $x < left + rw$}
-			\label{src:analyseFindedgelsVerticalScanlineStart}
-			\Comment Vertikale Scanlines
-				\State $prev1 \gets 0$
-				\State $prev2 \gets 0$
-				\For{$y \gets t$ \textbf{to} $y < t + rh$}
-					\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
-					\If{$currentEdgel > threshold$}
-						\Comment Edgel gefunden
-					\Else
-						\State $currentEdgel \gets 0$
-					\EndIf
-					\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
-						\Comment $prev1$ ist lokales Maximum
-						\State $edgel \gets \infty$
-						\State $edgel.x \gets x$
-						\State $edgel.y \gets y - 1$
-						\State $edgel.orientation \gets$ \Call{Orientation}{$x, y - 1$}
-						\State $Liste \gets edgel$
-					\EndIf
-					\State $prev2 \gets prev1$
-					\State $prev1 \gets currentEdgel$
-				\EndFor
-				\State $x \gets x + 5$
+			\label{alg:findedgels-horizontal-loopstart}
+				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
+				\label{alg:findedgels-horizontal-convolute}
+				\If{$currentEdgel > threshold$}
+				\label{alg:findedgels-horizontal-foundedgel}
+					\Comment Edgel gefunden
+				\Else
+					\State $currentEdgel \gets 0$
+				\EndIf
+				\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
+				\label{alg:findedgels-horizontal-maxima}
+					\Comment $prev1$ ist lokales Maximum
+					\State $edgel \gets \infty$
+					\State $edgel.x \gets x - 1$
+					\State $edgel.y \gets y$
+					\State $edgel.orientation \gets$ \Call{Orientation}{$x - 1, y$}
+					\State $Liste \gets edgel$
+				\EndIf
+				\State $prev2 \gets prev1$
+				\label{alg:findedgels-horizontal-copy-prev1}
+				\State $prev1 \gets currentEdgel$
+				\label{alg:findedgels-horizontal-copy-edgel}
 			\EndFor
-			\label{src:analyseFindedgelsVerticalScanlineEnd}
-		\EndProcedure
+			\label{alg:findedgels-horizontal-loopstart}
+			\State $y \gets y + 5$
+			\label{alg:findedgels-horizontal-increment}
+		\EndFor
+		\label{alg:findedgels-horizontal-scanlineend}
+	\algstore{brkfindedgels}
+	\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}[ht]
+	\caption{Edgels bestimmen (vertikal)}
+	\label{alg:findedgels-vertical}
+	\begin{algorithmic}[1]
+	\algrestore{brkfindedgels}
+		\For{$x \gets left$ \textbf{to} $x < left + rw$}
+		\label{alg:findedgels-vertical-scanlinestart}
+			\State $prev1 \gets 0$
+			\State $prev2 \gets 0$
+			\For{$y \gets t$ \textbf{to} $y < t + rh$}
+				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
+				\If{$currentEdgel > threshold$}
+					\Comment Edgel gefunden
+				\Else
+					\State $currentEdgel \gets 0$
+				\EndIf
+				\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
+					\Comment $prev1$ ist lokales Maximum
+					\State $edgel \gets \infty$
+					\State $edgel.x \gets x$
+					\State $edgel.y \gets y - 1$
+					\State $edgel.orientation \gets$ \Call{Orientation}{$x, y - 1$}
+					\State $Liste \gets edgel$
+				\EndIf
+				\State $prev2 \gets prev1$
+				\State $prev1 \gets currentEdgel$
+			\EndFor
+			\State $x \gets x + 5$
+		\EndFor
+		\label{alg:findedgels-vertical-scanlineend}
 	\end{algorithmic}
 \end{algorithm}

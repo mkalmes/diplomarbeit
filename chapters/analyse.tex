@@ -97,39 +97,40 @@ Der \autoref{alg:linedetection-analyze} ist der zentrale Algorithmus von \citeau
 \end{multline}
 \end{subequations}
 
-Das Verfahren zur Bestimmung der Edgels benötigt das monochrome Bildsignal $I_m$, sowie die Position der oberen linken
+Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal}) benötigt das monochrome Bildsignal $I_m$, sowie die Position der oberen linken
  Ecke der Region, die durch oben $t$ und links $l$ definiert ist. Die Breite und Höhe der Region ist durch $rw$ und
  $rh$ angegeben. Die Abmessung des Bildsignals werden als $w$ und $h$ bezeichnet.
 
-\input{alg/analyseFindedgels}
+\input{alg/findedgels}
 
-Zeile~\ref{src:analyseFindedgelsHorizontalScanlineStart}--\ref{src:analyseFindedgelsHorizontalScanlineEnd} ist für den
- Aufbau der horizontalen Scanlines verantwortlich. Die Überprüfung sorgt dafür, dass die Scanlines bis zum Ende der
- Region im Abstand von $5$ Pixeln untersucht werden. Nach der Initialisierung der Variablen wird in der Schleife von
- Zeile~\ref{src:analyseFindedgelsLoop2Start}--\ref{src:analyseFindedgelsLoop2End} jeder Pixel auf der Scanline
- untersucht. Zuerst wird in Zeile~\ref{src:analyseFindedgelsConvolute} die Faltung mit einem Gauß-Kernel vorgenommen
- (Vgl. Algorithmus \ref{src:analyseConvolution} S.~\pageref{src:analyseConvolution}). Der Test in Zeile~\ref
-{src:analyseFindedgelsFoundEdgel} überprüft anschließend das Ergebnis der Faltung. Wenn der Schwellwert nicht
- überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergbnis wird auf $0$ gesetzt. Wird
- der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergbnis wird in den Bedingungen von Zeile~\ref
-{src:analyseFindedgelsLocalMaxima} weiter untersucht, ob es sich um ein lokales Maximum handelt. Ein lokales Maximum
- bedeutet, dass ein Edgel einen größeren Gradienten besitzt als seine beiden Nachbarn.
+Zeile~\ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend} ist für den Aufbau der
+ horizontalen Scanlines verantwortlich. Die Überprüfung sorgt dafür, dass die Scanlines bis zum Ende der Region im
+ Abstand von $5$ Pixeln untersucht werden. Nach der Initialisierung der Variablen wird in der Schleife von
+ Zeile~\ref{alg:findedgels-horizontal-loopstart}--\ref{alg:findedgels-horizontal-loopend} jeder Pixel auf der Scanline
+ untersucht. Zuerst wird in Zeile~\ref{alg:findedgels-horizontal-convolute} die Faltung mit einem Gauß-Kernel
+ vorgenommen (Vgl. Algorithmus \ref{src:analyseConvolution} S.~\pageref{src:analyseConvolution}). Der Test in
+ Zeile~\ref{alg:findedgels-horizontal-foundedgel} überprüft anschließend das Ergebnis der Faltung. Wenn der Schwellwert
+ nicht überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergbnis wird auf $0$ gesetzt.
+ Wird der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergbnis wird in den Bedingungen von
+ Zeile~\ref{alg:findedgels-horizontal-maxima} weiter untersucht, ob es sich um ein lokales Maximum handelt. Ein lokales
+ Maximum bedeutet, dass ein Edgel einen größeren Gradienten besitzt als seine beiden Nachbarn.
 
-Die Bedingung in Zeile~\ref{src:analyseFindedgelsLocalMaxima} wird bei der ersten Überprüfung immer fehlschlagen.
+Die Bedingung in Zeile~\ref{alg:findedgels-horizontal-maxima} wird bei der ersten Überprüfung immer fehlschlagen.
  Dadurch wird sichergestellt, dass kein Maxium an den Rändern existiert, da hier nicht genügend Nachbarn vorhanden sind
- um eine verlässliche Aussage zu treffen. Zeile~\ref{src:analyseFindedgelsCopy1} und
- Zeile~\ref{src:analyseFindedgelsCopy2} kopieren die Werte für den nächsten Durchlauf. Durch das kopieren der Werte
- werden die Nachbarn für den nächsten Durchlauf um eine Position weiterverschoben. Nur bei einem lokalen Maximum wird
- die Position des Edgels gespeichert, und seine Orientierung (Vlg. Algorithmus \ref{src:analyseOrientation}
+ um eine verlässliche Aussage zu treffen. Zeile~\ref{alg:findedgels-horizontal-copy-prev1} und
+ Zeile~\ref{alg:findedgels-horizontal-copy-edgel} kopieren die Werte für den nächsten Durchlauf. Durch das kopieren der
+ Werte werden die Nachbarn für den nächsten Durchlauf um eine Position weiterverschoben. Nur bei einem lokalen Maximum
+ wird die Position des Edgels gespeichert, und seine Orientierung (Vlg. Algorithmus \ref{src:analyseOrientation}
  S.~\pageref{src:analyseOrientation}) berechnet. Der Edgel wird in (einer Liste|einem Memorypool) zu weiteren
  Verarbeitung gespeichert.
 
-Sind alle Pixel auf einer Scanline untersucht, wird in Zeile~\ref{src:analyseFindedgelsIncrementScanline} die nächste
+Sind alle Pixel auf einer Scanline untersucht, wird in Zeile~\ref{alg:findedgels-horizontal-increment} die nächste
  Scanline ausgewählt. Das Verfahren wird solange wiederholt, bis alle Scanlines innerhalb der Region untersucht wurden.
 
-In Zeile~\ref{src:analyseFindedgelsVerticalScanlineStart}--\ref{src:analyseFindedgelsVerticalScanlineEnd} werden wie in
- Zeile~\ref{src:analyseFindedgelsHorizontalScanlineStart}--\ref{src:analyseFindedgelsHorizontalScanlineEnd} die
- vertikalen Scanlines untersucht.
+\autoref{alg:findedgels-vertical} untersucht die vertikalen Scanlines in Zeile
+ \ref{alg:findedgels-vertical-scanlinestart}--\ref{alg:findedgels-vertical-scanlineend} analog zu
+ \autoref{alg:findedgels-horizontal} Zeile
+ \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 
 
 In Algorithmus~\autoref{src:analyseConvolution} wird durch Faltung mit dem Gauß-Kernel
