@@ -133,13 +133,13 @@ Sind alle Pixel auf einer Scanline untersucht, wird in Zeile~\ref{alg:findedgels
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 
 
-In Algorithmus~\autoref{src:analyseConvolution} wird durch Faltung mit dem Gauß-Kernel
+In Algorithmus~\autoref{alg:derivativeofgauss-horizontal} wird durch Faltung mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
 -3& -5& 0& 5& 3
 \end{smallmatrix} \right)$
 der Gradient berechnet.
 
-\input{alg/analyseConvolute}
+\input{alg/derivativeofgauss.tex}
 
 In \citeauthor{clarke96}\footcite[Vgl.][S.~417]{clarke96} wird das Ergebnis der Faltung mit $\tfrac{1}{16}$
  multipliziert. Dadurch wird erreicht, dass die berechneten Werte dem Wertebereichs des monochromen Bildes entsprechen.
@@ -168,8 +168,17 @@ $\tfrac{1}{16}
 = -127.5 \text{.}
 $
 
+Die Laufzeit von \autoref{alg:derivativeofgauss-horizontal} ist konstant.
 
-\input{alg/analyseOrientation}
+\autoref{alg:derivativeofgauss-vertical} berechnet den Gradient analog zu \autoref{alg:derivativeofgauss-horizontal}.
+
+Die Orientierung eines \gls{edgels} wird durch \autoref{alg:sobel} berechnet. Dazu wird der Sobel-Operator verwendet um
+ den Gradienten $G_x$ und $G_y$ zu bestimmen. Durch $\Theta = \arctan{\left(\tfrac{G_y}{G_x}\right)}$ wird die
+ Orientierung bestimmt. \autoref{alg:sobel} erfordert einen Pointer zu dem Bildsignal $I_m$, sowie die $x$- und
+ $y$-Position des \gls{edgels}. Die Parameter $w$ und $h$ geben die Breite und Höhe von $I_m$ an. Die Laufzeit von
+ \autoref{alg:sobel} ist konstant.
+
+\input{alg/sobel}
 \input{alg/analyseNormalizedvector}
 % subsection hirzer (end)
 

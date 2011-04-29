@@ -1,18 +1,43 @@
-\begin{algorithm}
-	\caption{Faltung mit Gauß-Kernel (horizontale Scanline)}
-	\label{src:analyseConvolution}
-	\begin{algorithmic}[1]
-		\Procedure{convolute}{$I_m,x,y,w,h$}
-		\State $pos_1 \gets$ \Call{getPixel}{$I_m, x - 2, y, w, h$}
-		\State $pos_2 \gets$ \Call{getPixel}{$I_m, x - 1, y, w, h$}
-		\State $pos_4 \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
-		\State $pos_5 \gets$ \Call{getPixel}{$I_m, x + 2, y, w, h$}
-		\State $value \gets 0$
-		\State $value \gets value + \left( -3 \cdot pos_1 \right)$
-		\State $value \gets value + \left( -5 \cdot pos_2 \right)$
-		\State $value \gets value + \left( 5 \cdot pos_4 \right)$
-		\State $value \gets value + \left( 3 \cdot pos_5 \right)$
-		\State \textbf{return} $value$
-		\EndProcedure
-	\end{algorithmic}
+\begin{algorithm}[ht]
+\caption{Faltung mit Gauß-Kernel (horizontale Scanline)}
+\label{alg:derivativeofgauss-horizontal}
+\begin{algorithmic}[1]
+	\Require $I_m,x,y,w,h$
+	\Ensure $-127.5 \leq value \leq 127.5$
+	\State $p_1 \gets$ \Call{getPixel}{$I_m, x - 2, y, w, h$}
+	\State $p_2 \gets$ \Call{getPixel}{$I_m, x - 1, y, w, h$}
+	\State $p_3 \gets$ \Call{getPixel}{$I_m, x, y, w, h$}
+	\State $p_4 \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
+	\State $p_5 \gets$ \Call{getPixel}{$I_m, x + 2, y, w, h$}
+	\State $value \gets 0$
+	\State $value \gets value + \left( -3 \cdot p_1 \right)$
+	\State $value \gets value + \left( -5 \cdot p_2 \right)$
+	\State $value \gets value + \left( 0 \cdot p_3 \right)$
+	\State $value \gets value + \left( 5 \cdot p_4 \right)$
+	\State $value \gets value + \left( 3 \cdot p_5 \right)$
+	\State $value \gets value \cdot \frac{1}{16}$
+	\State \textbf{return} $value$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[ht]
+\caption{Faltung mit Gauß-Kernel (vertikale Scanline)}
+\label{alg:derivativeofgauss-vertical}
+\begin{algorithmic}[1]
+	\Require $I_m,x,y,w,h$
+	\Ensure $-127.5 \leq value \leq 127.5$
+	\State $p_1 \gets$ \Call{getPixel}{$I_m, x, y - 2, w, h$}
+	\State $p_2 \gets$ \Call{getPixel}{$I_m, x, y - 1, w, h$}
+	\State $p_3 \gets$ \Call{getPixel}{$I_m, x, y, w, h$}
+	\State $p_4 \gets$ \Call{getPixel}{$I_m, x, y + 1, w, h$}
+	\State $p_5 \gets$ \Call{getPixel}{$I_m, x, y + 2, w, h$}
+	\State $value \gets 0$
+	\State $value \gets value + \left( -3 \cdot p_1 \right)$
+	\State $value \gets value + \left( -5 \cdot p_2 \right)$
+	\State $value \gets value + \left( 0 \cdot p_3 \right)$
+	\State $value \gets value + \left( 5 \cdot p_4 \right)$
+	\State $value \gets value + \left( 3 \cdot p_5 \right)$
+	\State $value \gets value \cdot \frac{1}{16}$
+	\State \textbf{return} $value$
+\end{algorithmic}
 \end{algorithm}
