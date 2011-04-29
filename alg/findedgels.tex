@@ -1,14 +1,14 @@
 \begin{algorithm}
-\caption{Edgels bestimmen (horizontal)}
+\caption{Edgels bestimmen}
 \label{alg:findedgels-horizontal}
 	\begin{algorithmic}[1]
-		\Require $I_m, t, l, rw, rh, w, h$
-		\For{$y \gets t$ \textbf{to} $y < t + rh$}
+		\Require $I_m, t, l, \mathit{rw}, \mathit{rh}, w, h$
+		\For{$y \gets t$ \textbf{to} $y < t + \mathit{rh}$}
 		\label{alg:findedgels-horizontal-scanlinestart}
 		\Comment Horizontale Scanlines
 			\State $prev1 \gets 0$
 			\State $prev2 \gets 0$
-			\For{$x \gets left$ \textbf{to} $x < left + rw$}
+			\For{$x \gets left$ \textbf{to} $x < left + \mathit{rw}$}
 			\label{alg:findedgels-horizontal-loopstart}
 				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
 				\label{alg:findedgels-horizontal-convolute}
@@ -41,15 +41,15 @@
 	\end{algorithmic}
 \end{algorithm}
 \begin{algorithm}[ht]
-	\caption{Edgels bestimmen (vertikal)}
+	\caption{Edgels bestimmen (Fortsetzung)}
 	\label{alg:findedgels-vertical}
 	\begin{algorithmic}[1]
 	\algrestore{brkfindedgels}
-		\For{$x \gets left$ \textbf{to} $x < left + rw$}
+		\For{$x \gets left$ \textbf{to} $x < left + \mathit{rw}$}
 		\label{alg:findedgels-vertical-scanlinestart}
 			\State $prev1 \gets 0$
 			\State $prev2 \gets 0$
-			\For{$y \gets t$ \textbf{to} $y < t + rh$}
+			\For{$y \gets t$ \textbf{to} $y < t + \mathit{rh}$}
 				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
 				\If{$currentEdgel > threshold$}
 					\Comment Edgel gefunden
