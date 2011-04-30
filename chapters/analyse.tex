@@ -130,45 +130,59 @@ Sind alle Pixel auf einer Scanline untersucht, wird in Zeile~\ref{alg:findedgels
  \autoref{alg:findedgels-horizontal} Zeile
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 
-
-In Algorithmus~\autoref{alg:derivativeofgauss-horizontal} wird durch Faltung mit dem Gauß-Kernel
+\autoref{alg:derivativeofgauss-horizontal} und \autoref{alg:derivativeofgauss-vertical} berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
 -3& -5& 0& 5& 3
 \end{smallmatrix} \right)$
-der Gradient berechnet.
+ auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Pointer des monochromen
+ Bildsignals $I_m$, die Position des Pixels ($x$ und $y$), sowie die Breite $w$ und Höhe $h$ von $I_m$. In Zeile
+ \ref{alg:derivativeofgauss-horizontal-readstart}--\ref{alg:derivativeofgauss-horizontal-readend} werden durch die
+ Funktion \textproc{getpixel} (Vgl. \autoref{alg:getpixel}, S. \pageref{alg:getpixel}) die benötigten Pixelwerte
+ ausgelsen und den Variablen zugewiesen. Im Anschluss werden die Werte mit dem Gauß-Kernel
+$\left( \begin{smallmatrix}
+-3& -5& 0& 5& 3
+\end{smallmatrix} \right)$
+berechnet um den Gradienten zu bestimmen.
 
 \input{alg/derivativeofgauss.tex}
 
-In \citeauthor{clarke96}\footcite[Vgl.][S.~417]{clarke96} wird das Ergebnis der Faltung mit $\tfrac{1}{16}$
- multipliziert. Dadurch wird erreicht, dass die berechneten Werte dem Wertebereichs des monochromen Bildes entsprechen.
- Der maximale Wert entspricht
-$\tfrac{1}{16}
-\cdot
-\left( \begin{smallmatrix}
-	-3& -5& 0& 5& 3
-\end{smallmatrix} \right)
-\cdot
-\left( \begin{smallmatrix}
-	0& 0& 0& 255& 255
-\end{smallmatrix} \right)
-= 127.5
-$
-und der minimale Wert entspricht
-$\tfrac{1}{16}
-\cdot
-\left( \begin{smallmatrix}
-	-3& -5& 0& 5& 3
-\end{smallmatrix} \right)
-\cdot
-\left( \begin{smallmatrix}
-	255& 255& 0& 0& 0
-\end{smallmatrix} \right)
-= -127.5 \text{.}
-$
+Durch die Multiplikation mit $\tfrac{1}{16}$ wird sichergestellt, dass der maximale Wert
 
-Die Laufzeit von \autoref{alg:derivativeofgauss-horizontal} ist konstant.
+\begin{equation}
+	\tfrac{1}{16}
+	\cdot
+	\left( \begin{smallmatrix}
+		-3& -5& 0& 5& 3
+	\end{smallmatrix} \right)
+	\cdot
+	\left( \begin{smallmatrix}
+		0& 0& 0& 255& 255
+	\end{smallmatrix} \right)
+	= 127.5
+\end{equation}
 
-\autoref{alg:derivativeofgauss-vertical} berechnet den Gradient analog zu \autoref{alg:derivativeofgauss-horizontal}.
+und der minimale Wert
+
+\begin{equation}
+	\tfrac{1}{16}
+	\cdot
+	\left( \begin{smallmatrix}
+		-3& -5& 0& 5& 3
+	\end{smallmatrix} \right)
+	\cdot
+	\left( \begin{smallmatrix}
+		255& 255& 0& 0& 0
+	\end{smallmatrix} \right)
+	= -127.5
+\end{equation}
+
+für ein monochromes Bild eingehalten werden.
+
+Bei genauer Betrachtung von \autoref{alg:derivativeofgauss-horizontal} und \autoref{alg:derivativeofgauss-vertical}
+ fällt auf, dass der Wert $p_3$ in der Berechnung nicht mit einfliesst. Dies ist darauf zurückzuführen, dass bei der
+ Multiplikation des Gauß-Kernels an der dritten Stelle des Filter mit $0$ definiert ist. Eine Multiplikation mit $0$
+ ergibt immer $0$ und kann somit vernachlässigt werden. Die Laufzeit von \autoref{alg:derivativeofgauss-horizontal} und
+ \autoref{alg:derivativeofgauss-vertical} ist konstant.
 
 Die Orientierung eines \gls{edgels} wird durch \autoref{alg:sobel} berechnet. Dazu wird der Sobel-Operator verwendet um
  den Gradienten $G_x$ und $G_y$ zu bestimmen. Durch $\Phi = \arctan{\left(\tfrac{G_y}{G_x}\right)}$ wird die
