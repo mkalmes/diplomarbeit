@@ -1,0 +1,26 @@
+\begin{algorithm}[ht]
+\caption{Orientierung von zwei edgels überprüfen}
+\label{alg:compatibleedgel}
+\begin{algorithmic}[1]
+	\Require $e_1, e_2$
+	\State $c \gets 0$
+	\If{$e_1.o == e_2.o$}
+		\State \textbf{return TRUE}
+	\ElsIf{$e_1.o < e_2.o$}
+		\State $c \gets e_2.o - e_1.o$
+		\If{$c < d$}
+			\State \textbf{return TRUE}
+		\Else
+			\State \textbf{return FALSE}
+		\EndIf
+	\Else
+		\Comment $e_1.o > e_2.o$
+		\State $c \gets e_1.o - e_2.o$
+		\If{$c < d$}
+			\State \textbf{return TRUE}
+		\Else
+			\State \textbf{return FALSE}
+		\EndIf
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

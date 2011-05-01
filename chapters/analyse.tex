@@ -222,9 +222,14 @@ wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orienti
 
 Die Datenstruktur eines \gls{edgels} besteht aus der $x$- und $y$-Koordinate und der Orientierung
  (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \gls{edgels} sind konstant.
- Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt.
 
 \input{alg/datastructure-edgel}
+
+Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
+ werden zwei zu vergleichende \gls{edgels} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
+ $e_1.o$ und $e_2.o$ innerhalb von $67.5^\circ$\footcite[Vgl.][S.~417]{clarke96} liegen und damit kompatibel wären.
+
+\input{alg/compatibleedgel}
 
 % subsection hirzer (end)
 
