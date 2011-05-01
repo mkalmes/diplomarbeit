@@ -31,7 +31,8 @@ Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_
 Um auf \gls{pixel} zugreifen zu können, verwende ich \autoref{alg:getpixel}. Es wird der Buffer $I_m$ als Pointer
  übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$ entsprechen der Breite und Höhe von
  $I_m$. Zeile \ref{alg:getpixel-startcheck} bis Zeile \ref{alg:getpixel-stopcheck} sorgen dafür, dass keine Werte
- außerhalb des Buffers gelesen werden können.
+ außerhalb des Buffers gelesen werden können. Dies ist für die Randbehandlung bei Faltungsoperationen
+ (Vgl. \autoref{sub:filter}) wichtig und wiederholt den \gls{pixel}.
 
 \input{alg/getpixel}
 
