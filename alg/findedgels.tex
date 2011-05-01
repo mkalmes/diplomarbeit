@@ -2,13 +2,13 @@
 \caption{Edgels bestimmen}
 \label{alg:findedgels-horizontal}
 	\begin{algorithmic}[1]
-		\Require $I_m, t, l, \mathit{rw}, \mathit{rh}, w, h$
+		\Require $I_m, E, t, l, \mathit{rw}, \mathit{rh}, w, h$
 		\For{$y \gets t$ \textbf{to} $y < t + \mathit{rh}$}
 		\label{alg:findedgels-horizontal-scanlinestart}
 		\Comment Horizontale Scanlines
-			\State $prev1 \gets 0$
-			\State $prev2 \gets 0$
-			\For{$x \gets left$ \textbf{to} $x < left + \mathit{rw}$}
+			\State $p_1 \gets 0$
+			\State $p_2 \gets 0$
+			\For{$x \gets l$ \textbf{to} $x < l + \mathit{rw}$}
 			\label{alg:findedgels-horizontal-loopstart}
 				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
 				\label{alg:findedgels-horizontal-convolute}
@@ -18,18 +18,18 @@
 				\Else
 					\State $currentEdgel \gets 0$
 				\EndIf
-				\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
+				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
 				\label{alg:findedgels-horizontal-maxima}
-					\Comment $prev1$ ist lokales Maximum
+					\Comment $p_1$ ist lokales Maximum
 					\State $edgel \gets \infty$
 					\State $edgel.x \gets x - 1$
 					\State $edgel.y \gets y$
 					\State $edgel.orientation \gets$ \Call{Orientation}{$x - 1, y$}
-					\State $Liste \gets edgel$
+					\State $E \gets edgel$
 				\EndIf
-				\State $prev2 \gets prev1$
+				\State $p_2 \gets p_1$
 				\label{alg:findedgels-horizontal-copy-prev1}
-				\State $prev1 \gets currentEdgel$
+				\State $p_1 \gets currentEdgel$
 				\label{alg:findedgels-horizontal-copy-edgel}
 			\EndFor
 			\label{alg:findedgels-horizontal-loopend}
@@ -45,10 +45,11 @@
 	\label{alg:findedgels-vertical}
 	\begin{algorithmic}[1]
 	\algrestore{brkfindedgels}
-		\For{$x \gets left$ \textbf{to} $x < left + \mathit{rw}$}
+		\For{$x \gets l$ \textbf{to} $x < l + \mathit{rw}$}
+		\Comment Vertikale Scanlines
 		\label{alg:findedgels-vertical-scanlinestart}
-			\State $prev1 \gets 0$
-			\State $prev2 \gets 0$
+			\State $p_1 \gets 0$
+			\State $p_2 \gets 0$
 			\For{$y \gets t$ \textbf{to} $y < t + \mathit{rh}$}
 				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
 				\If{$currentEdgel > threshold$}
@@ -56,16 +57,16 @@
 				\Else
 					\State $currentEdgel \gets 0$
 				\EndIf
-				\If{$prev1 > 0 \land prev1 > prev2 \land prev1 > currentEdgel$}
-					\Comment $prev1$ ist lokales Maximum
+				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
+					\Comment $p_1$ ist lokales Maximum
 					\State $edgel \gets \infty$
 					\State $edgel.x \gets x$
 					\State $edgel.y \gets y - 1$
 					\State $edgel.orientation \gets$ \Call{Orientation}{$x, y - 1$}
-					\State $Liste \gets edgel$
+					\State $E \gets edgel$
 				\EndIf
-				\State $prev2 \gets prev1$
-				\State $prev1 \gets currentEdgel$
+				\State $p_2 \gets p_1$
+				\State $p_1 \gets currentEdgel$
 			\EndFor
 			\State $x \gets x + 5$
 		\EndFor

@@ -8,8 +8,8 @@
 		\For{$y \gets 0$ \textbf{to} $y < h$} \Cost{$c_3$}{$\tfrac{h}{40} + 1$}
 		\label{alg:linedetection-analyze-start}
 			\For{$x \gets 0$ \textbf{to} $x < w$} \Cost{$c_4$}{$\sum_{y=0}^{\tfrac{h}{40}} \left(\tfrac{w}{40} + 1\right)$}
-				\State $E \gets$ \Call{FindEdgels}{$I_m,x,y,40,40,w,h$} \Cost{$c_5$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
-				\State \Call{findLineSegments}{$E$} \Cost{$c_6$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\State \Call{FindEdgels}{$I_m,E,x,y,40,40,w,h$} \Cost{$c_5$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\State \Call{findLineSegments}{$E,L$} \Cost{$c_6$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
 				\State $ x \gets x + 40$ \Cost{$c_7$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
 			\EndFor
 			\State $y \gets y + 40$ \Cost{$c_9$}{$\sum_{y = 0}^{\frac{h}{40}} t_y$}
