@@ -51,7 +51,7 @@
 			\State $p_1 \gets 0$
 			\State $p_2 \gets 0$
 			\For{$y \gets t$ \textbf{to} $y < t + \mathit{rh}$}
-				\State $currentEdgel \gets$ \Call{Convolute}{$I_m,x,y,w,h$}
+				\State $currentEdgel \gets$ \Call{convolute}{$I_m,x,y,w,h$}
 				\If{$currentEdgel > threshold$}
 					\Comment Edgel gefunden
 				\Else
@@ -62,7 +62,7 @@
 					\State $edgel \gets \infty$
 					\State $edgel.x \gets x$
 					\State $edgel.y \gets y - 1$
-					\State $edgel.orientation \gets$ \Call{Orientation}{$x, y - 1$}
+					\State $edgel.orientation \gets$ \Call{orientation}{$x, y - 1$}
 					\State $E \gets edgel$
 				\EndIf
 				\State $p_2 \gets p_1$
