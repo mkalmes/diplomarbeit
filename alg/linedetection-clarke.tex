@@ -1,9 +1,9 @@
-\begin{algorithm}
-	\caption{Line Detection nach \citeauthor{clarke96}}
-	\label{src:lineDetection}
-	\begin{algorithmic}[1]
-	\Procedure{LineDetection}{$I$}
-		\State $I$ in $40 \times 40$ Pixel große Regionen unterteilen
+\begin{algorithm}[ht]
+\caption{Line Detection nach \citeauthor{clarke96}}
+\label{alg:linedetection-clarke}
+\begin{algorithmic}[1]
+	\Require $I_m$
+	\State $I_m$ in $40 \times 40$ Pixel große Regionen unterteilen
 		\For{$i \gets 0$, alle Regionen}
 			\State $Liste \gets \infty$
 			\State $i$ in horizontale und vertikale Scanlines unterteilen mit $5$ Pixel Abstand
@@ -30,7 +30,6 @@
 				\EndIf
 			\EndWhile
 		\EndFor
-	\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
 

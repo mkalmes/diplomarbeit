@@ -1,14 +1,16 @@
 % \documentclass[pdftex,a4paper,twoside,12pt,final,toc=bib]{scrbook}
 \documentclass[pdftex,a4paper,twoside,12pt,draft,toc=bib]{scrbook}
+\usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 
 \usepackage{amssymb,amsmath}
 
 \usepackage{algorithm,algpseudocode}
 \floatname{algorithm}{Algorithmus}
+\newcommand{\algorithmautorefname}{Alg.}
 % \newcommand*\Cost[2]{\hfill \mbox{#1} \mbox{#2}}
-%\newcommand*\Cost[2]{\hfill \begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
-\newcommand*\Cost[2]{\begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
+\newcommand*\Cost[2]{\hfill \begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
+%\newcommand*\Cost[2]{\begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
 
 
 \usepackage{color}

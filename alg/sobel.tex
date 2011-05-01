@@ -1,0 +1,41 @@
+\begin{algorithm}[ht]
+\caption{Orientierung berechnen}
+\label{alg:sobel}
+\begin{algorithmic}[1]
+	\Require $I_m, x, y, w, h$
+	\Ensure $-\pi < v \leq \pi$
+	\State $p_{x_1} \gets$ \Call{getPixel}{$I_m, x -1, y - 1, w, h$}
+	\label{alg:sobel-readstart}
+	\State $p_{x_2} \gets$ \Call{getPixel}{$I_m, x, y - 1, w, h$}
+	\State $p_{x_3} \gets$ \Call{getPixel}{$I_m, x + 1, y - 1, w, h$}
+	\State $p_{x_4} \gets$ \Call{getPixel}{$I_m, x - 1, y + 1, w, h$}
+	\State $p_{x_5} \gets$ \Call{getPixel}{$I_m, x, y + 1, w, h$}
+	\State $p_{x_6} \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
+	\State $p_{y_1} \gets$ \Call{getPixel}{$I_m, x - 1, y - 1, w, h$}
+	\State $p_{y_2} \gets$ \Call{getPixel}{$I_m, x - 1, y, w, h$}
+	\State $p_{y_3} \gets$ \Call{getPixel}{$I_m, x - 1, y + 1, w, h$}
+	\State $p_{y_4} \gets$ \Call{getPixel}{$I_m, x + 1, y - 1, w, h$}
+	\State $p_{y_5} \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
+	\State $p_{y_6} \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
+	\label{alg:sobel-readend}
+	\State $g_x \gets 0$
+	\State $g_y \gets 0$
+	\State $g_x \gets g_x + p_{x_1}$
+	\label{alg:sobel-convolutestart}
+	\State $g_x \gets g_x + \left(p_{x_2} \cdot 2\right)$
+	\State $g_x \gets g_x + p_{x_3}$
+	\State $g_x \gets g_x - p_{x_4}$
+	\State $g_x \gets g_x - \left(p_{x_5} \cdot 2\right)$
+	\State $g_x \gets g_x - p_{x_6}$
+	\State $g_y \gets g_y + p_{y_1}$
+	\State $g_y \gets g_y + \left(p_{y_2} \cdot 2\right)$
+	\State $g_y \gets g_y + p_{y_3}$
+	\State $g_y \gets g_y - p_{y_4}$
+	\State $g_y \gets g_y - \left(p_{y_5} \cdot 2\right)$
+	\State $g_y \gets g_y - p_{y_6}$
+	\label{alg:sobel-convoluteend}
+	\State $v \gets \arctan{\left(gy, gx\right)}$
+	\label{alg:sobel-arctan}
+	\State \textbf{return} $v$
+\end{algorithmic}
+\end{algorithm}

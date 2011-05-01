@@ -296,16 +296,16 @@ wobei $I$ dem Bildsignal und $H$ dem Faltungskern entspricht. Die Operation der 
  Distributivität.
 
 \begin{align}
-	\text{Kommutativität:}& I * H = H * I\\
-	\text{Assoziativität:}& A * (B * C) = (A * B) * C\\
-	\text{Distributivität:}& H * \left(I_1 + I_2\right) = \left(H * I_1\right) + \left(H * I_2\right)
+	&\text{Kommutativität: } &I * H = H * I\\
+	&\text{Assoziativität: } &A * (B * C) = (A * B) * C\\
+	&\text{Distributivität: } &H * \left(I_1 + I_2\right) = \left(H * I_1\right) + \left(H * I_2\right)
 \end{align}
 
-Durch die Distributivität kann ein Kernel $H$ als Produkt mehrerer kleiner Kernel ausgedrückt werden was wiederum
+Durch die Assoziativität kann ein Kernel $H$ als Produkt mehrerer kleiner Kernel ausgedrückt werden was wiederum
  Rechenoperationen einspart. Ein $3 \times 3$ Filter kann in eine $x$-Richtung und $y$-Richtung aufgeteilt werden.
 
 \begin{align}
-	H_{xy} = & H_x \otimes H_y\\
+	H_{xy} = & H_x * H_y\\
 	\begin{pmatrix}
 		1& 1& 1\\
 		1& 1& 1\\
@@ -314,7 +314,7 @@ Durch die Distributivität kann ein Kernel $H$ als Produkt mehrerer kleiner Kern
 	\begin{pmatrix}
 		1& 1& 1
 	\end{pmatrix}
-	\otimes
+	*
 	\begin{pmatrix}
 		1\\
 		1\\
