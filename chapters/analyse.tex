@@ -219,6 +219,13 @@ den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:derivativeofgauss-
 \end{equation}
 
 wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orientierung unterscheidet sich um $180^\circ$ wenn anstatt von weiß nach schwarz ein verlauf von schwarz nach weiß erfolgt. Das Ergebnis liegt im Bereich $-\pi < v \leq \pi$. $\arctan$ in \autoref{eq:orientation} kann in C durch \textproc{atan2} zur Berechnung verwendet werden. Die Laufzeit von \autoref{alg:sobel} ist konstant.
+
+Die Datenstruktur eines \gls{edgels} besteht aus der $x$- und $y$-Koordinate und der Orientierung
+ (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \gls{edgels} sind konstant.
+ Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt.
+
+\input{alg/datastructure-edgel}
+
 % subsection hirzer (end)
 
 % section analyse (end)
