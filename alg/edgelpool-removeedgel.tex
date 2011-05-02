@@ -1,0 +1,18 @@
+\begin{algorithm}[ht]
+\caption{Edgel löschen}
+\label{alg:edgelpool-removeedgel}
+\begin{algorithmic}[1]
+	\Require $p,i$
+	\If{$!p$}
+		\State \textbf{return}
+	\EndIf
+	\State $c \gets p(\mathit{count})$
+	\If{$! c > i$}
+		\State \textbf{return}
+	\EndIf
+	\If{$c > i + 1$}
+		\State \Call{memmove}{$p(\mathit{data}[i]), p(\mathit{data}[i + 1]), c - (i + 1) * \textproc{sizeof}(e)$}
+	\EndIf
+	\State $p(\mathit{count}) = c - 1$
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,16 @@
+\begin{algorithm}[ht]
+\caption{Edgel hinzufügen}
+\label{alg:edgelpool-addedgel}
+\begin{algorithmic}[1]
+	\Require $p,e$
+	\If{$!p$}
+		\State \textbf{return}
+	\EndIf
+	\If{$!p(\mathit{count}) < S$}
+		\State \textbf{return} \Comment Speicher voll
+	\EndIf
+	\State $c \gets p(\mathit{count}) + 1$
+	\State $p(\mathit{data}[c]) \gets e$
+	\State $p(\mathit{count}) \gets c$
+\end{algorithmic}
+\end{algorithm}

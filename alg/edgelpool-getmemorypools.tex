@@ -1,0 +1,13 @@
+\begin{algorithm}[ht]
+\caption{Hole Edgelpools}
+\label{alg:edgelpool-getmemorypools}
+\begin{algorithmic}[1]
+	\Require $n$
+	\If{$\mathit{data} + S - {pool} \geq n$}
+		\State $pool = pool + n$
+		\State \textbf{return} $\mathit{pool} - n$
+	\Else
+		\State \textbf{return} $\mathit{NULL}$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,14 @@
+\begin{algorithm}[ht]
+\caption{Speicher des Edgelpool freigeben}
+\label{alg:edgelpool-freememorypool}
+\begin{algorithmic}[1]
+	\Require $p$
+	\If{$!p$}
+		\State \textbf{return}
+	\EndIf
+	\State \Call{resetmemorypool}{$p$}
+	\If{$p \geq \mathit{data} \land p \leq \mathit{data} + S$}
+		\State $\mathit{pool} \gets p$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}
