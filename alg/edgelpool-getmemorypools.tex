@@ -3,8 +3,8 @@
 \label{alg:edgelpool-getmemorypools}
 \begin{algorithmic}[1]
 	\Require $n$
-	\If{$\mathit{data} + S - {pool} \geq n$}
-		\State $pool = pool + n$
+	\If{$\mathit{data} + S - \mathit{pool} \geq n$}
+		\State $\mathit{pool} \gets \mathit{pool} + n$
 		\State \textbf{return} $\mathit{pool} - n$
 	\Else
 		\State \textbf{return} $\mathit{NULL}$
