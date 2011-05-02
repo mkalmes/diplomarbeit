@@ -218,7 +218,10 @@ den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:derivativeofgauss-
 	\Phi(x,y) = \arctan{\left(\tfrac{G_y}{G_x}\right)}
 \end{equation}
 
-wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orientierung unterscheidet sich um $180^\circ$ wenn anstatt von weiß nach schwarz ein verlauf von schwarz nach weiß erfolgt. Das Ergebnis liegt im Bereich $-\pi < v \leq \pi$. $\arctan$ in \autoref{eq:orientation} kann in C durch \textproc{atan2} zur Berechnung verwendet werden. Die Laufzeit von \autoref{alg:sobel} ist konstant.
+wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orientierung unterscheidet sich um $180^\circ$
+ wenn anstatt von weiß nach schwarz ein verlauf von schwarz nach weiß erfolgt. Das Ergebnis liegt im Bereich
+ $-\pi < v \leq \pi$. $\arctan$ in \autoref{eq:orientation} kann in C durch \textproc{atan2} zur Berechnung verwendet
+ werden. Die Laufzeit von \autoref{alg:sobel} ist konstant.
 
 Die Datenstruktur eines \gls{edgels} besteht aus der $x$- und $y$-Koordinate und der Orientierung
  (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \gls{edgels} sind konstant.
@@ -228,6 +231,13 @@ Die Datenstruktur eines \gls{edgels} besteht aus der $x$- und $y$-Koordinate und
 Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
  werden zwei zu vergleichende \gls{edgels} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
  $e_1.o$ und $e_2.o$ innerhalb von $67.5^\circ$\footcite[Vgl.][S.~417]{clarke96} liegen und damit kompatibel wären.
+ Dies wird durch
+
+\begin{equation}
+	d = 2 \pi \left( \frac{ \frac{67.5}{2} }{360} \right) = 0.589
+\end{equation}
+
+überprüft. Es muss sichergestellt werden, dass die Orientierung in Bogenmaß erfolgt.
 
 \input{alg/compatibleedgel}
 
