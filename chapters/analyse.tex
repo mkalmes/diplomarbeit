@@ -239,7 +239,18 @@ Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatible
 
 überprüft. Es muss sichergestellt werden, dass die Orientierung in Bogenmaß erfolgt.
 
+
+Die Datenstruktur eines Liniensegments ist in \autoref{alg:datastructure-line} definiert. Eine Linie besteht aus den
+ \gls{edgels} $s$ und $e$, die den Start- und End-Punkt der Linie darstellen. Variable $c$ speichert die Anzahl der
+ unterstützenden Edgels der Linie. Die Lese- und Schreibzugriffe auf die Datenstruktur ist konstant.
+
+\input{alg/datastructure-edgelpool}
+
+\input{alg/datastructure-line}
+
 \input{alg/compatibleedgel}
+
+\input{alg/findlinesegments}
 
 % subsection hirzer (end)
 
