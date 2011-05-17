@@ -286,13 +286,65 @@ Um \gls{edgels} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-
 
 \input{alg/edgelpool-getedgel}
 
+Damit \gls{edgels} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird der
+ Pool-Pointer $p$ und die Position $i$ des zu löschenden \gls{edgels} übergeben. Nach der Überprüfung des Pointers $p$
+ in Zeile \ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und der
+ Überprüfung des zulässigen Bereichs in Zeile
+ \ref{alg:edgelpool-removeedgel-validrange-start}--\ref{alg:edgelpool-removeedgel-validrange-end}, gibt es zwei zu
+ behandelten Fälle um einen \gls{edgels} zu löschen.
+
+\input{alg/edgelpool-removeedgel}
+
+Der Edgel liegt
+\begin{enumerate}
+	\item nicht am Ende des Arrays oder \label{removeedgel-worst}
+	\item liegt am Ende des Arrays. \label{removeedgel-best}
+\end{enumerate}
+
+Bei \ref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert werden um auf den vorigen Wert zu verweisen
+ (Vgl. \autoref{fig:decrementcounter}). Das dekrementieren der Zählvaribale $p(\mathit{count})$ ist eine Zuweisung in
+ konstanter Zeit. % TODO: Grafik -> [1][2]..[n-1][n|c] wird zu [1][2]..[n-1|c][n]
+
+Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
+ wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}). % TODO: Grafik [1][2]..[i-1][i][i+1]..[i-n]
+In Zeile \autoref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
+ \gls{edgels} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
+ verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
+
+Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprogramm geschrieben, dass die Zeit misst,
+ die benötigt wird, um Einträge zu verschieben. Anahand der Daten wurde mittels einer Regressionsanalyse untersucht, ob
+ die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2000$ Datenpunkte wurde nach dem Vorbild von
+ \textproc{time} % TODO: Referenz auf den Katalog für /usr/bin/time und man-page
+ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Aus User- und Sys-Zeit wurde die CPU-Zeit bestimmt, die zur
+ Analyse benutzt wurde. Die Kovarianz für $X = \mathit{BYTES}$ und $Y = \mathit{CPU}$ beträgt $r = 0.9937538$. An
+ dieser Stelle sei darauf hingewiesen, dass die Kovarianz für $X = \mathit{BYTES}$ und
+ $Y = \mathit{REAL}$ mit $r = 0.9981969$ zwar größer ist, aber nicht die tatsächlichen Operationen des Testprogramms
+ untersucht. Aus diesem Grund wurde $Y = \mathit{CPU}$ untersucht. Der Interzept beträgt $\beta_0 = -71.89\e{-06}$ und
+ die Steigung $\beta_1 = 4.410\e{-09}$, sodass
+
+\begin{subequations}
+\begin{multline}
+	y =\\ \beta_0 + \beta_1n
+\end{multline}
+\begin{multline}
+	y =\\ -71.89\e{-06} + 4.410\e{-09}n
+\end{multline}
+\end{subequations} % TODO: Sauber formatieren
+
+Daraus ergibt sich eine Laufzeit von $\Theta(n)$. In \autoref{fig:regression-memmove} ist der Plot der Daten angegeben.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.8\textwidth]{resources/Regression-memmove.png}
+	\caption{Regressionsanalyse von $2000$ Datenpunkten.}
+	\label{fig:regression-memmove}
+\end{figure}
+
 \input{alg/edgelpool-resetmemorypool}
 
 \input{alg/edgelpool-freememorypool}
 
 \input{alg/edgelpool-count}
-
-\input{alg/edgelpool-removeedgel}
 
 \input{alg/datastructure-line}
 
