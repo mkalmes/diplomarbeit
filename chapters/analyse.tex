@@ -275,13 +275,22 @@ Um \gls{edgels} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-
 
 \input{alg/edgelpool-addedgel}
 
+\gls{edgels} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
+ Index $i$ übergeben. In Zeile
+ \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
+ sich um einen gesetzten Pointer handelt. Anschliessend wird in Zeile
+ \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
+ innerhalb des gespeicherten Bereichs der \gls{edgels} liegt. Danach wird in Zeile
+ \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \gls{edgels} an Position $i$ zurückgegeben. Der Zugriff auf
+ einen \gls{edgels} ist konstant.
+
+\input{alg/edgelpool-getedgel}
+
 \input{alg/edgelpool-resetmemorypool}
 
 \input{alg/edgelpool-freememorypool}
 
 \input{alg/edgelpool-count}
-
-\input{alg/edgelpool-getedgel}
 
 \input{alg/edgelpool-removeedgel}
 
