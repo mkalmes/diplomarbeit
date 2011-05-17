@@ -4,12 +4,17 @@
 \begin{algorithmic}[1]
 	\Require $p,i$
 	\If{$!p$}
+	\label{alg:edgelpool-getedgel-validpointer-start}
 		\State \textbf{return}
 	\EndIf
+	\label{alg:edgelpool-getedgel-validpointer-end}
 	\State $c \gets p(\mathit{count})$
 	\If{$! c > i$}
+	\label{alg:edgelpool-getedgel-validrange-start}
 		\State \textbf{return}
 	\EndIf
+	\label{alg:edgelpool-getedgel-validrange-end}
 	\State \textbf{return} $p(\mathit{data}[i])$
+	\label{alg:edgelpool-getedgel-returnedgel}
 \end{algorithmic}
 \end{algorithm}
