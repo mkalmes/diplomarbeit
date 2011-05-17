@@ -251,6 +251,14 @@ Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array v
 
 \input{alg/datastructure-edgelpool}
 
+\autoref{alg:edgelpool-getmemorypools} basiert auf einem einfachen Stack Allocator von
+ \citeauthor{kr}\footcite[Vgl.][S.~100--104]{kr}. Die Variable $n$ gibt die Anzahl der angeforderten Pools an. In Zeile
+ \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Pools zur Verfügung stehen und liefert im
+ Erfolgsfall die Adresse zu einem Speicher (\autoref{alg:datastructure-edgelpool}) zurück. Falls kein Pool mehr zur
+ Verfügung steht, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool} vereinfacht die Anforderung
+ eines Pools, da in den meisten Fällen nur ein Pool benötigt wird. Bei einem Aufruf kann somit auf einen Parameter
+ verzichetet werden.
+
 \input{alg/edgelpool-getmemorypools}
 
 \input{alg/edgelpool-getmemorypool}
