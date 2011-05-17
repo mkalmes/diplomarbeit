@@ -4,13 +4,19 @@
 \begin{algorithmic}[1]
 	\Require $p,e$
 	\If{$!p$}
+	\label{alg:edgelpool-addedgel-validpointer-start}
 		\State \textbf{return}
 	\EndIf
+	\label{alg:edgelpool-addedgel-validpointer-end}
 	\If{$!p(\mathit{count}) < N$}
+	\label{alg:edgelpool-addedgel-checkspace-start}
 		\State \textbf{return} \Comment Speicher voll
 	\EndIf
+	\label{alg:edgelpool-addedgel-checkspace-end}
 	\State $c \gets p(\mathit{count})$
+	\label{alg:edgelpool-addedgel-add-start}
 	\State $p(\mathit{data}[c]) \gets e$
 	\State $p(\mathit{count}) \gets c + 1$
+	\label{alg:edgelpool-addedgel-add-end}
 \end{algorithmic}
 \end{algorithm}

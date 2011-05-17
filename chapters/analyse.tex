@@ -264,13 +264,22 @@ Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array v
 
 \input{alg/edgelpool-getmemorypool}
 
+Um \gls{edgels} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-addedgel}. Der Algorithmus benötigt
+ einen Pointer $p$ auf einen Pool und einen \gls{edgels} $e$. In Zeile
+ \ref{alg:edgelpool-addedgel-validpointer-start}--\ref{alg:edgelpool-addedgel-validpointer-end} wird geprüft, ob der
+ Pointer auf eine Adresse verweist. Falls $p$ null ist, wird der Algorithmus verlassen. In Zeile
+ \ref{alg:edgelpool-addedgel-checkspace-start}--\ref{alg:edgelpool-addedgel-checkspace-end} wird geprüft, ob im Array
+ genügend Platz für einen weiteren Eintrag vorhanden ist. Die Größe von $N$ Einträgen richtet sich nach der in \autoref{alg:datastructure-edgelpool} festgelegten Arraygröße $N$. Wenn genügend Platz vorhanden ist, wird in Zeile
+ \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgels} $e$ an die freie
+ Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das hinzufügen eines \gls{edgels} ist konstant.
+
+\input{alg/edgelpool-addedgel}
+
 \input{alg/edgelpool-resetmemorypool}
 
 \input{alg/edgelpool-freememorypool}
 
 \input{alg/edgelpool-count}
-
-\input{alg/edgelpool-addedgel}
 
 \input{alg/edgelpool-getedgel}
 
