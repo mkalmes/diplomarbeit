@@ -4,6 +4,7 @@
 \begin{algorithmic}[1]
 	\Require $n$
 	\If{$\mathit{data} + S - \mathit{pool} \geq n$}
+	\label{alg:edgelpool-getmemorypools-checkpoolsize}
 		\State $\mathit{pool} \gets \mathit{pool} + n$
 		\State \textbf{return} $\mathit{pool} - n$
 	\Else
