@@ -257,7 +257,8 @@ Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array v
  Erfolgsfall die Adresse zu einem Speicher (\autoref{alg:datastructure-edgelpool}) zurück. Falls kein Pool mehr zur
  Verfügung steht, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool} vereinfacht die Anforderung
  eines Pools, da in den meisten Fällen nur ein Pool benötigt wird. Bei einem Aufruf kann somit auf einen Parameter
- verzichetet werden.
+ verzichetet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben
+ eine konstante Laufzeit.
 
 \input{alg/edgelpool-getmemorypools}
 
