@@ -347,7 +347,22 @@ Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpo
 
 \input{alg/edgelpool-resetmemorypool}
 
+Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
+ Der Pointer $p$ wird in Zeile
+ \ref{alg:edgelpool-freememorypool-validpointer-start}--\ref{alg:edgelpool-freememorypool-validpointer-end} überprüft.
+ Zeile \ref{alg:edgelpool-freememorypool-resetmemory} werden die Daten des Pools gelöscht
+ (Vgl. \autoref{alg:edgelpool-resetmemorypool}). Im Anschluss wird in Zeile
+ \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
+ als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Pointer $p$ zur weiteren Verwendung in
+ $\mathit{pool}$ gespeichert. Das freigeben eines Pools erfolgt in konstanter Zeit.
+
 \input{alg/edgelpool-freememorypool}
+
+Die Anzahl der \gls{edgels} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
+ Pointer $p$ übergeben und in Zeile
+ \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der
+ Einträge wird in Zeile \ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
+ Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit.
 
 \input{alg/edgelpool-count}
 
