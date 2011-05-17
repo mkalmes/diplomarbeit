@@ -4,14 +4,19 @@
 \begin{algorithmic}[1]
 	\Require $p,i$
 	\If{$!p$}
+	\label{alg:edgelpool-removeedgel-validpointer-start}
 		\State \textbf{return}
 	\EndIf
+	\label{alg:edgelpool-removeedgel-validpointer-end}
 	\State $c \gets p(\mathit{count})$
 	\If{$! c > i$}
+	\label{alg:edgelpool-removeedgel-validrange-start}
 		\State \textbf{return}
 	\EndIf
+	\label{alg:edgelpool-removeedgel-validrange-end}
 	\If{$c > i + 1$}
 		\State \Call{memmove}{$p(\mathit{data}[i]), p(\mathit{data}[i + 1]), c - (i + 1) * \textproc{sizeof}(e)$}
+		\label{alg:edgelpool-removeedgel-memmove}
 	\EndIf
 	\State $p(\mathit{count}) = c - 1$
 \end{algorithmic}
