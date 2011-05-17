@@ -244,6 +244,11 @@ Die Datenstruktur eines Liniensegments ist in \autoref{alg:datastructure-line} d
  \gls{edgels} $s$ und $e$, die den Start- und End-Punkt der Linie darstellen. Variable $c$ speichert die Anzahl der
  unterstützenden Edgels der Linie. Die Lese- und Schreibzugriffe auf die Datenstruktur ist konstant.
 
+Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \gls{edgels}
+ (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die die nächste freie Position
+ im Array zu makieren. Der Speicherpool wiederum ist ein Array der Größe $S$ und die Adresse wird in einem Pointer
+ $\mathit{pool}$ gespeichert.
+
 \input{alg/datastructure-edgelpool}
 
 \input{alg/edgelpool-getmemorypools}
