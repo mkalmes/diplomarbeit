@@ -339,6 +339,12 @@ Daraus ergibt sich eine Laufzeit von $\Theta(n)$. In \autoref{fig:regression-mem
 	\label{fig:regression-memmove}
 \end{figure}
 
+Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz. Als
+ Parameter wird der Pointer $p$ übergeben und in Zeile
+ \ref{alg:edgelpool-resetmemorypool-validpointer-start}--\ref{alg:edgelpool-resetmemorypool-validpointer-end}
+ überprüft. Um alle Daten als gelöscht zu makieren, wird lediglich die Zählvariable in Zeile
+ \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit.
+
 \input{alg/edgelpool-resetmemorypool}
 
 \input{alg/edgelpool-freememorypool}
