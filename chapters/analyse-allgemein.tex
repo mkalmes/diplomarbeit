@@ -1,0 +1,36 @@
+\section{Allgemein} % (fold)
+\label{sec:allgemein}
+
+Die in diesem Abschnitt vorgestellten Algorithmen sind sowohl in ARToolKit als auch in dem Verfahren nach Hirzer
+ anzutreffen.
+
+\ldots
+
+\citeauthor{clarke96} verwenden in ihrem Verfahren ein monochromes Bildsignal $I_m$\footcite[Vgl.][S.~417]{clarke96}.
+ Die Konvertierung des Bildsignals $I$ von YCbCr in $I_m$ erfolgt durch \autoref{alg:convertmonochrome}. Wie in
+ \autoref{sub:farbräume} beschrieben, besteht ein YCbCr Signal aus einem Luminaz Kanal $Y$ und den Chroma Abweichungen
+ $Cb$ und $Cr$. Um ein monochromes Signal $I_m$ zu erstellen, muss der Luminanz Kanal ausgelesen und in einen Puffer
+ kopiert werden.
+
+\input{alg/convertmonochrome}
+
+Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_m$ auf einen Puffer für das monochrome
+ Signal. Der Monochromepuffer $I_m$ ist ein Array mit fester Größe, das beim initialisieren einmalig angelegt wird und
+ danach wiederverwendet werden kann. In Zeile \ref{alg:convertmonochrome-baseaddress} wird die Adresse des
+ Luminanz-Kanals $Y$ ausgelesen. Die Funktionen \textproc{width} und \textproc{height} liefern die Breite und Höhe des
+ Signals in Pixeln, mit denen die Länge der Daten berechnet wird. Anschließend werden die Daten in den Puffer kopiert.
+ Die Laufzeit des Algorithmus entspricht $\Theta(1)$. (Vorsicht: Nur Zeile 5 verwendet keine Funktionen, deren Laufzeit
+ dir nicht bekannt sind. baseaddress, width und height greifen evtl. auf metadaten zurück und wären damit ein einfacher
+ lookup mit $\Theta(1)$. Dann wäre nur noch memcpy zu bestimmen, was im schlimmsten Fall $\Theta(n)$ wäre.)
+
+Um auf \gls{pixel} zugreifen zu können, verwende ich \autoref{alg:getpixel}. Es wird der Puffer $I_m$ als Pointer
+ übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$ entsprechen der Breite und Höhe von
+ $I_m$. Zeile \ref{alg:getpixel-startcheck} bis Zeile \ref{alg:getpixel-stopcheck} sorgen dafür, dass keine Werte
+ außerhalb des Puffers gelesen werden können. Dies ist für die Randbehandlung bei Faltungsoperationen
+ (Vgl. \autoref{sub:filter}) wichtig und wiederholt den \gls{pixel}.
+
+\input{alg/getpixel}
+
+Die Laufzeit von \autoref{alg:getpixel} ist im worst-case und im best-case konstant und somit $\Theta(1)$.
+
+% section allgemein (end)
