@@ -1,0 +1,14 @@
+\begin{algorithm}[ht]
+\caption{Anzahl der Einträge}
+\label{alg:linepool-count}
+\begin{algorithmic}[1]
+	\Require $p$
+	\If{$!p$}
+	\label{alg:linepool-count-validpointer-start}
+		\State \textbf{return}
+	\EndIf
+	\label{alg:linepool-count-validpointer-end}
+	\State \textbf{return} $p(\mathit{count})$
+	\label{alg:linepool-count-counter}
+\end{algorithmic}
+\end{algorithm}

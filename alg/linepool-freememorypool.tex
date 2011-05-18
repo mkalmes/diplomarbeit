@@ -1,0 +1,18 @@
+\begin{algorithm}[ht]
+\caption{Speicher des Linienpool freigeben}
+\label{alg:linepool-freememorypool}
+\begin{algorithmic}[1]
+	\Require $p$
+	\If{$!p$}
+	\label{alg:linepool-freememorypool-validpointer-start}
+		\State \textbf{return}
+	\EndIf
+	\label{alg:linepool-freememorypool-validpointer-end}
+	\State \Call{resetmemorypool}{$p$}
+	\label{alg:linepool-freememorypool-resetmemory}
+	\If{$p \geq \mathit{data} \land p \leq \mathit{data} + S$}
+	\label{alg:linepool-freememorypool-checkpointer}
+		\State $\mathit{pool} \gets p$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

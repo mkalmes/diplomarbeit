@@ -1,0 +1,14 @@
+\begin{algorithm}[ht]
+\caption{Hole Linepools}
+\label{alg:linepool-getmemorypools}
+\begin{algorithmic}[1]
+	\Require $n$
+	\If{$\mathit{data} + S - \mathit{pool} \geq n$}
+	\label{alg:linepool-getmemorypools-checkpoolsize}
+		\State $\mathit{pool} \gets \mathit{pool} + n$
+		\State \textbf{return} $\mathit{pool} - n$
+	\Else
+		\State \textbf{return} $\mathit{NULL}$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}
