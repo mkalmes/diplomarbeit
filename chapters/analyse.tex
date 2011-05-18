@@ -1,5 +1,5 @@
-\section{Analyse} % (fold)
-\label{sec:analyse}
+\chapter{Analyse} % (fold)
+\label{cha:analyse}
 \begin{comment}
 	Detailierte Beschreibung der Algorithmen inkl. O-Notation (Nitty-Gritty Darstellung der Algos)
 	1. ARToolKitPlus
@@ -7,8 +7,23 @@
 	Analyse: Die auswertung nach den Kriterein aus Kap. Vorgehen OHNE WERTUNG! Nur die Daten erheben und auswerten.
 \end{comment}
 
-\subsection{Hirzer} % (fold)
-\label{sub:hirzer}
+\section{Allgemein} % (fold)
+\label{sec:allgemein}
+
+Die in diesem Abschnitt vorgestellten Algorithmen sind sowohl in ARToolKit als auch in dem Verfahren nach Hirzer
+ anzutreffen.
+
+\ldots
+
+% section allgemein (end)
+
+\section{ARToolKit} % (fold)
+\label{sec:artoolkit}
+
+% section artoolkit (end)
+
+\section{Hirzer} % (fold)
+\label{sec:hirzer}
 
 \citeauthor{clarke96} verwenden in ihrem Verfahren ein monochromes Bildsignal $I_m$\footcite[Vgl.][S.~417]{clarke96}.
  Die Konvertierung des Bildsignals $I$ von YCbCr in $I_m$ erfolgt durch \autoref{alg:convertmonochrome}. Wie in
@@ -434,6 +449,6 @@ Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)
 
 \input{alg/findlinesegments}
 
-% subsection hirzer (end)
+% section hirzer (end)
 
-% section analyse (end)
+% chapter analyse (end)
