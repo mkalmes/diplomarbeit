@@ -35,7 +35,7 @@ Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array v
  Erfolgsfall die Adresse zu einem Speicher (\autoref{alg:datastructure-edgelpool}) zurück. Falls kein Pool mehr zur
  Verfügung steht, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool} vereinfacht die Anforderung
  eines Pools, da in den meisten Fällen nur ein Pool benötigt wird. Bei einem Aufruf kann somit auf einen Parameter
- verzichetet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben
+ verzichtet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben
  eine konstante Laufzeit.
 
 \input{alg/edgelpool-getmemorypools}
@@ -56,7 +56,7 @@ Um \gls{edgels} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-
 \gls{edgels} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
  Index $i$ übergeben. In Zeile
  \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
- sich um einen gesetzten Pointer handelt. Anschliessend wird in Zeile
+ sich um einen gesetzten Pointer handelt. Anschließend wird in Zeile
  \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
  innerhalb des gespeicherten Bereichs der \gls{edgels} liegt. Danach wird in Zeile
  \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \gls{edgels} an Position $i$ zurückgegeben. Der Zugriff auf
@@ -80,7 +80,7 @@ Der Edgel liegt
 \end{enumerate}
 
 Bei \ref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert werden um auf den vorigen Wert zu verweisen
- (Vgl. \autoref{fig:decrementcounter}). Das dekrementieren der Zählvaribale $p(\mathit{count})$ ist eine Zuweisung in
+ (Vgl. \autoref{fig:decrementcounter}). Das dekrementieren der Zählvariable $p(\mathit{count})$ ist eine Zuweisung in
  konstanter Zeit. % TODO: Grafik -> [1][2]..[n-1][n|c] wird zu [1][2]..[n-1|c][n]
 
 Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
@@ -121,7 +121,7 @@ Daraus ergibt sich eine Laufzeit von $\Theta(n)$. In \autoref{fig:regression-mem
 Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz. Als
  Parameter wird der Pointer $p$ übergeben und in Zeile
  \ref{alg:edgelpool-resetmemorypool-validpointer-start}--\ref{alg:edgelpool-resetmemorypool-validpointer-end}
- überprüft. Um alle Daten als gelöscht zu makieren, wird lediglich die Zählvariable in Zeile
+ überprüft. Um alle Daten als gelöscht zu markieren, wird lediglich die Zählvariable in Zeile
  \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit.
 
 \input{alg/edgelpool-resetmemorypool}
@@ -175,7 +175,7 @@ Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline
  den Speicherpool, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Pointer $p$ handelt und genügend
  freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
  \ref{alg:linepool-addline-add-start}--\ref{alg:linepool-addline-add-end} die Linie hinzugefügt und die Zählvariable
- inkrementiert. Das hinzfügen einer Linie ist konstant.
+ inkrementiert. Das hinzufügen einer Linie ist konstant.
 
 \input{alg/linepool-addline}
 
@@ -227,7 +227,7 @@ Der Algorithmus von \citeauthor{clarke96} ist in \autoref{alg:linedetection-anal
 \input{alg/linedetection-analyze}
 
 In \citeauthor{clarke96} ist keine Angabe zu den Abmessungen der untersuchten Signale angegeben. Auch der Grund warum
- eine Region $40 \times 40$ \gls{pixel} gross sein muss, fehlt. Zur Analyse der Videosignale verwendeten
+ eine Region $40 \times 40$ \gls{pixel} groß sein muss, fehlt. Zur Analyse der Videosignale verwendeten
  \citeauthor{clarke96} einen Framegrabber 2000 der eine Auflösung von 640x480px schafft. Betrachtet man
 
 $640 mod 40 = 0$ und $480 mod 40 = 0$
@@ -295,8 +295,8 @@ Zeile~\ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizon
  untersucht. Zuerst wird in Zeile~\ref{alg:findedgels-horizontal-convolute} die Faltung mit einem Gauß-Kernel
  vorgenommen (Vgl. \autoref{alg:derivativeofgauss-horizontal}, S.~\pageref{alg:derivativeofgauss-horizontal}). Der Test
  in Zeile~\ref{alg:findedgels-horizontal-foundedgel} überprüft anschließend das Ergebnis der Faltung. Wenn der
- Schwellwert nicht überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergbnis wird auf
- $0$ gesetzt. Wird der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergbnis wird in den
+ Schwellwert nicht überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergebnis wird auf
+ $0$ gesetzt. Wird der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergebnis wird in den
  Bedingungen von Zeile~\ref{alg:findedgels-horizontal-maxima} weiter untersucht, ob es sich um ein lokales Maximum
  handelt. Ein lokales Maximum bedeutet, dass ein Edgel einen größeren Gradienten besitzt als seine beiden Nachbarn.
 
@@ -366,7 +366,7 @@ und der minimale Wert
 für ein monochromes Bild eingehalten werden.
 
 Bei genauer Betrachtung von \autoref{alg:derivativeofgauss-horizontal} und \autoref{alg:derivativeofgauss-vertical}
- fällt auf, dass der Wert $p_3$ in der Berechnung nicht mit einfliesst. Dies ist darauf zurückzuführen, dass bei der
+ fällt auf, dass der Wert $p_3$ in der Berechnung nicht [mit einfließt|vorkommt]. Dies ist darauf zurückzuführen, dass bei der
  Multiplikation des Gauß-Kernels an der dritten Stelle des Filter mit $0$ definiert ist. Eine Multiplikation mit $0$
  ergibt immer $0$ und kann somit vernachlässigt werden. Die Laufzeit von \autoref{alg:derivativeofgauss-horizontal} und
  \autoref{alg:derivativeofgauss-vertical} ist konstant.
