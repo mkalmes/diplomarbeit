@@ -8,7 +8,6 @@
 
 \usepackage{algorithm,algpseudocode}
 \floatname{algorithm}{Algorithmus}
-\newcommand{\algorithmautorefname}{Alg.}
 % \newcommand*\Cost[2]{\hfill \mbox{#1} \mbox{#2}}
 \newcommand*\Cost[2]{\hfill \begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
 %\newcommand*\Cost[2]{\begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
@@ -64,18 +63,22 @@
 \bibliography{bibliography/bibliography}	% 7) vorläufige Literaturangabe
 
 
-\usepackage{hyperref}
-
-\renewcommand {\chapterautorefname}{Kapitel}
-
+\usepackage[ngerman]{hyperref}
 \hypersetup{
 	a4paper,
 	bookmarksnumbered = true,
-	pdftitle = Tracking Verfahren für Augmented Reality Anwendungen unter iOS 4,
-	pdfauthor = Marc Kalmes ,
-	pdfsubject = Exposé
+	pdftitle = Marker-basierte Tracking-Verfahren für Augmented Reality Anwendungen unter iOS 4,
+	pdfauthor = Marc Kalmes,
+	pdfsubject = Diplomarbeit
+}
+\addto\extrasngerman{%
+	\def\algorithmautorefname{Alg.}%
+	\def\equationautorefname{Gl.}%
+	\def\figureautorefname{Abb.}
+	\def\subsectionautorefname{Abschnitt}%
 }
 
-\usepackage{glossaries}
+\usepackage[acronym]{glossaries}
 \input{chapters/glossary.tex}
+\input{chapters/acronym.tex}
 \makeglossaries
