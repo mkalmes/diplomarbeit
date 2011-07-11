@@ -6,10 +6,10 @@
 	\Procedure{RANSAC}{$edgels$}
 		\While{$edgels\not=0 \lor i<maxIteration$}
 			\For{1--25}
-				\State 2 zufällige \gls{edgels} auswählen und Kriterien prüfen
-				\State Anzahl Support-\gls{edgels} bestimmen
+				\State 2 zufällige \glspl{edgel} auswählen und Kriterien prüfen
+				\State Anzahl Support-\glspl{edgel} bestimmen
 			\EndFor
-			\If{Support-\gls{edgels} > Schwellwert}
+			\If{Support-\glspl{edgel} > Schwellwert}
 				\State Linie erkannt
 				\State Support-Edgels aus Eingabemenge entfernen
 			\EndIf
