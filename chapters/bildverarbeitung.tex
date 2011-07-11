@@ -33,7 +33,7 @@ Bevor ich mich den \gls{AR}-Verfahren widme, möchte ich die grundlegenden Aspek
 \subsection{Grundlagen} % (fold)
 \label{sub:grundlagen}
 
-Ein digitales Bild ist eine Ansammlung numerischer Werte, die in einem Array gespeichert sind. Durch die Höhe und Breite des Bildes kann das Array, wie in Abbildung \ref{fig:bildmatrix}, als Matrix dargestellt werden. Die Höhe $N$ entspricht dann den Zeilen und die Breite $M$ den Spalten der Matrix. Ein Bild $I$ ist somit definiert als eine Funktion auf einer Menge von Bildwerten $\mathbb{P}$, wie in \ref{eq:digitalesBild} dargestellt ist.
+Ein digitales Bild ist eine Ansammlung numerischer Werte, die in einem Array gespeichert sind. Durch die Höhe und Breite des Bildes kann das Array, wie in \autoref{fig:bildmatrix}, als Matrix dargestellt werden. Die Höhe $N$ entspricht dann den Zeilen und die Breite $M$ den Spalten der Matrix. Ein Bild $I$ ist somit definiert als eine Funktion auf einer Menge von Bildwerten $\mathbb{P}$, wie in \autoref{eq:digitalesBild} dargestellt ist.
 
 \begin{figure}
 	\centering
@@ -62,19 +62,19 @@ Monochrome Bilder, die im allgemeinen Sprachgebrauch als Schwarz/Weiß Bilder be
 Binäre Bilder sind eine spezielle Form der monochromen Bilder. In binären Bildern werden nur Schwarz/Weiß Werte gespeichert. Die Information kann dadurch in nur einem Bit, mit $0$ für Schwarz und $1$ für Weiß, gespeichert werden.
 
 Farbbilder speichern im Unterschied zu monochromen Bildern mehr Informationen in einem \gls{pixel} ab. Der Aufbau der
-Informationen von Farbbildern ist abhängig von dem eingesetzten Farbraum, der in Kapitel \ref{sub:farbräume} erläutert
+Informationen von Farbbildern ist abhängig von dem eingesetzten Farbraum, der in \autoref{sub:farbräume} erläutert
 wird. In den meisten Fällen wird die Information eines Farbbildes in drei Komponenten für Rot, Grün und Blau, mit
 jeweils 8 Bit, kodiert. Somit besteht ein Pixel aus \(3 \cdot 8 = 24\) Bits mit einem Wertebereich von
 \(\left[0 \dotsc 255\right]\) pro Farbkomponente.
 
-Der Aufbau der Farbinformationen ist abhängig von der Anordnung, die in Kapitel \ref{sub:pixelanordnung} genauer definiert wird.
+Der Aufbau der Farbinformationen ist abhängig von der Anordnung, die in \autoref{sub:pixelanordnung} genauer definiert wird.
 
 % subsection bildtypen (end)
 
 \subsection{Farbräume} % (fold)
 \label{sub:farbräume}
 
-Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus roten, grünen und blauen Komponenten besteht (Abb.~\ref{fig:rgbLenna}).
+Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus roten, grünen und blauen Komponenten besteht (\autoref{fig:rgbLenna}).
 
 \begin{figure}[!ht]
 	\centering
@@ -88,7 +88,7 @@ Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus
 
 Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Primärfarben einen Farbton und dessen
  Helligkeit generiert. Der RGB Farbraum kann als dreidimensionaler Würfel dargestellt werden
- (Abb.~\ref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und Blau
+ (\autoref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und Blau
  dar. Normiert man den Würfel zu einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von
  \(\left[0 \dotsc 1.0\right]\). Innerhalb dieses Würfels kann durch Verschiebung der Koordinate jeder Farbton generiert
  werden. Die Grundfarben können in diesem Würfel durch die Punkte $R = \left(1,0,0\right)$, $G = \left(0,1,0\right)$
@@ -122,7 +122,7 @@ Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Pri
 YUV und YCbCr sind standardisierte Formate zur Aufnahme, Darstellung und Übertragung von Bildern im Fehrnsehbereich und
 stellen andere Farbräume dar. YUV findet Verwendung bei analogen PAL und NTSC Systemen während YCbCr bei digitalen
 Systemen verwendet wird. Beide Farbräume unterteilen die Informationen in eine Luminanzkomponente $Y$ und zwei
-Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (Abb.~\ref{fig:yuvLenna}).
+Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (\autoref{fig:yuvLenna}).
 
 \begin{figure}[!ht]
 	\centering
@@ -134,14 +134,14 @@ Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (Abb.~\ref{fig:yu
 	\label{fig:yuvLenna}
 \end{figure}
 
-Bei YUV ist die Chromakomponente $U$ als Differenz zwischen der Luminanz $Y$ und dem Blauanteil definiert (Vgl.~\ref{eq:uchroma}).
+Bei YUV ist die Chromakomponente $U$ als Differenz zwischen der Luminanz $Y$ und dem Blauanteil definiert (Vgl.~\autoref{eq:uchroma}).
 
 \begin{equation}
 	U = 0.492 \cdot \left(B-Y\right)
 	\label{eq:uchroma}
 \end{equation}
 
-Die Chromakomponente $V$ definiert die Differenz von Luminanz $Y$ und dem Rotanteil (Vgl.~\ref{eq:vchroma}).
+Die Chromakomponente $V$ definiert die Differenz von Luminanz $Y$ und dem Rotanteil (Vgl.~\autoref{eq:vchroma}).
 
 \begin{equation}
 	V = 0.877 \cdot \left(R-Y\right)
@@ -165,7 +165,7 @@ Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arrays 
 	\label{eq:planarImage}
 \end{equation}
 
-besteht aus den den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (Abb.~\ref{fig:planareAnordnung}). Der Zugriff auf ein \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in \citeauthor{burger05}\footcite[Vgl.][S.~235--236]{burger05} beschrieben. Der Zugriff erfolgt durch
+besteht aus den den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (\autoref{fig:planareAnordnung}). Der Zugriff auf ein \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in \citeauthor{burger05}\footcite[Vgl.][S.~235--236]{burger05} beschrieben. Der Zugriff erfolgt durch
 
 \begin{equation}
 	\begin{pmatrix}
@@ -190,7 +190,7 @@ besteht aus den den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (Abb.~\ref{fig:p
 	\label{fig:planareAnordnung}
 \end{figure}
 
-Bei der gepackten Anordnung sind alle Farbkomponenten in einem \gls{pixel} gespeichert und in einem Array hinterlegt (Abb.~\ref{fig:gepackteAnordnung}). Die gepackte Anordnung ist mit
+Bei der gepackten Anordnung sind alle Farbkomponenten in einem \gls{pixel} gespeichert und in einem Array hinterlegt (\autoref{fig:gepackteAnordnung}). Die gepackte Anordnung ist mit
 
 \begin{equation}
 	I\left(u,v\right) = \left(R,G,B\right)

@@ -66,7 +66,7 @@ Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool
 
 Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird
  der Pool-Pointer $p$ und die Position $i$ des zu löschenden \glspl{edgel} übergeben. Nach der Überprüfung des Pointers
- $p$ in Zeile \ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und
+ $p$ in Zeile~\ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und
  der Überprüfung des zulässigen Bereichs in Zeile
  \ref{alg:edgelpool-removeedgel-validrange-start}--\ref{alg:edgelpool-removeedgel-validrange-end}, gibt es zwei zu
  behandelnde Fälle um einen \gls{edgel} zu löschen.
@@ -79,19 +79,19 @@ Der Edgel liegt
 	\item liegt am Ende des Arrays. \label{removeedgel-best}
 \end{enumerate}
 
-Bei \ref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert werden um auf den vorigen Wert zu verweisen
+Bei \autoref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert werden um auf den vorigen Wert zu verweisen
  (Vgl. \autoref{fig:decrementcounter}). Das dekrementieren der Zählvariable $p(\mathit{count})$ ist eine Zuweisung in
  konstanter Zeit. % TODO: Grafik -> [1][2]..[n-1][n|c] wird zu [1][2]..[n-1|c][n]
 
 Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
  wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}). % TODO: Grafik [1][2]..[i-1][i][i+1]..[i-n]
-In Zeile \autoref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
+In Zeile \ref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
  \glspl{edgel} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
  verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
 
 Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprogramm geschrieben, dass die Zeit misst,
  die benötigt wird, um Einträge zu verschieben. Anhand der Daten wurde mittels einer Regressionsanalyse untersucht, ob
- die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2000$ Datenpunkte wurde nach dem Vorbild von
+ die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2000$ Datenpunkte wurden nach dem Vorbild von
  \textproc{time} % TODO: Referenz auf den Katalog für /usr/bin/time und man-page
 ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Aus User- und Sys-Zeit wurde die CPU-Zeit bestimmt, die zur
  Analyse benutzt wurde. Die Kovarianz für $X = \mathit{BYTES}$ und $Y = \mathit{CPU}$ beträgt $r = 0.9937538$ und
@@ -129,7 +129,7 @@ Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpo
 Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
  Der Pointer $p$ wird in Zeile
  \ref{alg:edgelpool-freememorypool-validpointer-start}--\ref{alg:edgelpool-freememorypool-validpointer-end} überprüft.
- Zeile \ref{alg:edgelpool-freememorypool-resetmemory} werden die Daten des Pools gelöscht
+ Zeile~\ref{alg:edgelpool-freememorypool-resetmemory} werden die Daten des Pools gelöscht
  (Vgl. \autoref{alg:edgelpool-resetmemorypool}). Im Anschluss wird in Zeile
  \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
  als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Pointer $p$ zur weiteren Verwendung in
@@ -140,7 +140,7 @@ Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelp
 Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
  Pointer $p$ übergeben und in Zeile
  \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der
- Einträge wird in Zeile \ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
+ Einträge wird in Zeile~\ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
  Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit.
 
 \input{alg/edgelpool-count}
@@ -182,7 +182,7 @@ Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline
 Zum auslesen einer Linie aus dem Speicherpool, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
  Pointer $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Pool ausgelesen werden soll. In Zeile
  \ref{alg:linepool-getline-validrange-start} wird geprüft, ob der Index sich innerhalb der Grenzen der gespeicherten
- Linien befindet. Wenn dies der Fall ist, wird in Zeile \ref{alg:linepool-getline-returnline} die Linie in konstanter
+ Linien befindet. Wenn dies der Fall ist, wird in Zeile~\ref{alg:linepool-getline-returnline} die Linie in konstanter
  Zeit zurückgegeben.
 
 \input{alg/linepool-getline}
@@ -197,7 +197,7 @@ Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool 
 
 Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigegeben werden. Dazu wird der Pointer $p$
  auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetmemorypool}
- (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile \ref{alg:linepool-freememorypool-checkpointer} wird
+ (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile~\ref{alg:linepool-freememorypool-checkpointer} wird
  überprüft, ob der Pointer $p$ zu dem entsprechenden Pool gehört um danach die Adresse in Zeile
  \ref{alg:linepool-freememorypool-savepointer} im Speicherpool $\mathit{pool}$ zu speichern. Auch hier erfolgt das
  freigeben des Speichers wieder in konstanter Zeit.
@@ -377,8 +377,8 @@ In \autoref{alg:sobel} wird, wie in \autoref{alg:derivativeofgauss-horizontal}, 
 
 \input{alg/sobel}
 
-In Zeile \ref{alg:sobel-readstart}--\ref{alg:sobel-readend} werden die Pixelwerte ausgelesen und den Variablen
- zugewiesen. In Zeile \ref{alg:sobel-convolutestart}--\ref{alg:sobel-convoluteend} erfolgt die Faltung mit dem
+In Zeile~\ref{alg:sobel-readstart}--\ref{alg:sobel-readend} werden die Pixelwerte ausgelesen und den Variablen
+ zugewiesen. In Zeile~\ref{alg:sobel-convolutestart}--\ref{alg:sobel-convoluteend} erfolgt die Faltung mit dem
  Sobel-Operator\footcite[Vgl.][S.~120--123]{burger05}, dessen Filter
 
 \begin{subequations}
@@ -409,7 +409,7 @@ den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:derivativeofgauss-
 \end{equation}
 
 wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orientierung unterscheidet sich um $180^\circ$
- wenn anstatt von Weiß nach Schwarz ein verlauf von Schwarz nach Weiß erfolgt. Das Ergebnis liegt im Bereich
+ wenn anstatt von Weiß nach Schwarz ein Verlauf von Schwarz nach Weiß erfolgt. Das Ergebnis liegt im Bereich
  $-\pi < v \leq \pi$. $\arctan$ in \autoref{eq:orientation} kann in C durch \textproc{atan2} zur Berechnung verwendet
  werden. Die Laufzeit von \autoref{alg:sobel} ist konstant.
 
