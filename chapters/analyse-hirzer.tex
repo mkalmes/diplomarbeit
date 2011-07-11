@@ -4,13 +4,13 @@
 \subsection{Datenstrukturen} % (fold)
 \label{sub:datenstrukturen}
 
-Die Datenstruktur eines \gls{edgels} besteht aus der $x$- und $y$-Koordinate und der Orientierung
- (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \gls{edgels} sind konstant.
+Die Datenstruktur eines \glspl{edgel} besteht aus der $x$- und $y$-Koordinate und der Orientierung
+ (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} sind konstant.
 
 \input{alg/datastructure-edgel}
 
-Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
- werden zwei zu vergleichende \gls{edgels} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
+Der Vergleich, ob \glspl{edgel} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
+ werden zwei zu vergleichende \gls{edgel} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
  $e_1.o$ und $e_2.o$ innerhalb von $67.5^\circ$\footcite[Vgl.][S.~417]{clarke96} liegen und damit kompatibel wären.
  Dies wird durch
 
@@ -22,7 +22,7 @@ Der Vergleich, ob \gls{edgels} kompatibel sind, wird mit \autoref{alg:compatible
 
 \input{alg/compatibleedgel}
 
-Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \gls{edgels}
+Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
  (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die nächste freie Position im
  Array zu markieren. Der Speicherpool aus \autoref{alg:datastructure-poolimplementation} ist ein Array vom Typ des
  Edgelspeichers mit der Größe $S$, dessen Adresse im Pointer $\mathit{pool}$ gespeichert wird.
@@ -42,34 +42,34 @@ Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array v
 
 \input{alg/edgelpool-getmemorypool}
 
-Um \gls{edgels} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-addedgel}. Der Algorithmus benötigt
- einen Pointer $p$ auf einen Pool und einen \gls{edgels} $e$. In Zeile
+Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-addedgel}. Der Algorithmus benötigt
+ einen Pointer $p$ auf einen Pool und einen \gls{edgel} $e$. In Zeile
  \ref{alg:edgelpool-addedgel-validpointer-start}--\ref{alg:edgelpool-addedgel-validpointer-end} wird geprüft, ob der
  Pointer auf eine Adresse verweist. Falls $p$ null ist, wird der Algorithmus verlassen. In Zeile
  \ref{alg:edgelpool-addedgel-checkspace-start}--\ref{alg:edgelpool-addedgel-checkspace-end} wird geprüft, ob im Array
  genügend Platz für einen weiteren Eintrag vorhanden ist. Die Größe von $N$ Einträgen richtet sich nach der in \autoref{alg:datastructure-edgelpool} festgelegten Arraygröße $N$. Wenn genügend Platz vorhanden ist, wird in Zeile
- \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgels} $e$ an die freie
- Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das hinzufügen eines \gls{edgels} ist konstant.
+ \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgel} $e$ an die freie
+ Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das hinzufügen eines \glspl{edgel} ist konstant.
 
 \input{alg/edgelpool-addedgel}
 
-\gls{edgels} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
+\glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
  Index $i$ übergeben. In Zeile
  \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
  sich um einen gesetzten Pointer handelt. Anschließend wird in Zeile
  \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
- innerhalb des gespeicherten Bereichs der \gls{edgels} liegt. Danach wird in Zeile
- \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \gls{edgels} an Position $i$ zurückgegeben. Der Zugriff auf
- einen \gls{edgels} ist konstant.
+ innerhalb des gespeicherten Bereichs der \glspl{edgel} liegt. Danach wird in Zeile
+ \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \glspl{edgel} an Position $i$ zurückgegeben. Der Zugriff auf
+ einen \gls{edgel} ist konstant.
 
 \input{alg/edgelpool-getedgel}
 
-Damit \gls{edgels} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird der
- Pool-Pointer $p$ und die Position $i$ des zu löschenden \gls{edgels} übergeben. Nach der Überprüfung des Pointers $p$
- in Zeile \ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und der
- Überprüfung des zulässigen Bereichs in Zeile
+Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird
+ der Pool-Pointer $p$ und die Position $i$ des zu löschenden \glspl{edgel} übergeben. Nach der Überprüfung des Pointers
+ $p$ in Zeile \ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und
+ der Überprüfung des zulässigen Bereichs in Zeile
  \ref{alg:edgelpool-removeedgel-validrange-start}--\ref{alg:edgelpool-removeedgel-validrange-end}, gibt es zwei zu
- behandelnde Fälle um einen \gls{edgels} zu löschen.
+ behandelnde Fälle um einen \gls{edgel} zu löschen.
 
 \input{alg/edgelpool-removeedgel}
 
@@ -86,7 +86,7 @@ Bei \ref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert werden 
 Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
  wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}). % TODO: Grafik [1][2]..[i-1][i][i+1]..[i-n]
 In Zeile \autoref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
- \gls{edgels} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
+ \glspl{edgel} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
  verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
 
 Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprogramm geschrieben, dass die Zeit misst,
@@ -137,7 +137,7 @@ Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelp
 
 \input{alg/edgelpool-freememorypool}
 
-Die Anzahl der \gls{edgels} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
+Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
  Pointer $p$ übergeben und in Zeile
  \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der
  Einträge wird in Zeile \ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
@@ -147,7 +147,7 @@ Die Anzahl der \gls{edgels} in einem Pool werden durch \autoref{alg:edgelpool-co
 
 Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, löschen und freigeben des Speichers sind nach
  dem Vorbild des Edgelspeichers aufgebaut. Die Datenstruktur eines Liniensegments ist in
- \autoref{alg:datastructure-line} definiert. Eine Linie besteht aus den \gls{edgels} $s$ und $e$, die den Start- und
+ \autoref{alg:datastructure-line} definiert. Eine Linie besteht aus den \glspl{edgel} $s$ und $e$, die den Start- und
  End-Punkt der Linie darstellen. Variable $c$ speichert die Anzahl der unterstützenden Edgels der Linie. Die Lese- und
  Schreibzugriffe auf die Datenstruktur ist konstant.
 
@@ -164,7 +164,7 @@ Der Speicherpool für Linien in \autoref{alg:datastructure-linepool-implementati
 
 Mehrere Speicherpools können mit \autoref{alg:linepool-getmemorypools} geholt werden und mit
  \autoref{alg:linepool-getmemorypool} wird ein Speicherpool angefordert. Der Aufbau entspricht dem des Speicherpool für
- \gls{edgels} (Vgl. \autoref{alg:edgelpool-getmemorypools} und \autoref{alg:edgelpool-getmemorypool}). Der Zugriff
+ \glspl{edgel} (Vgl. \autoref{alg:edgelpool-getmemorypools} und \autoref{alg:edgelpool-getmemorypool}). Der Zugriff
  erfolgt in konstanter Zeit.
 
 \input{alg/linepool-getmemorypools}
@@ -210,7 +210,7 @@ Die Anzahl der Einträge in einem Pool werden durch \autoref{alg:linepool-count}
 \input{alg/linepool-count}
 
 Im Verfahren nach \citeauthor{clarke96} gibt es keinen Grund Linien aus dem Speicherpool zu löschen. Darum kann auf
- einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \gls{edgels} verzichtet werden.
+ einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel} verzichtet werden.
 
 Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
 
@@ -284,7 +284,7 @@ Der \autoref{alg:linedetection-analyze} ist der zentrale Algorithmus von \citeau
 Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal}) benötigt das monochrome Bildsignal $I_m$,
  sowie die Position der oberen linken Ecke der Region, die durch oben $t$ und links $l$ definiert ist. Die Breite und
  Höhe der Region ist durch $\mathit{rw}$ und $\mathit{rh}$ angegeben. Die Abmessung des Bildsignals werden als $w$ und
- $h$ bezeichnet. Der Pointer $E$ wird zur Speicherung der gefundenen \gls{edgels} verwendet.
+ $h$ bezeichnet. Der Pointer $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet.
 
 \input{alg/findedgels}
 
@@ -372,8 +372,8 @@ Bei genauer Betrachtung von \autoref{alg:derivativeofgauss-horizontal} und \auto
  \autoref{alg:derivativeofgauss-vertical} ist konstant.
 
 In \autoref{alg:sobel} wird, wie in \autoref{alg:derivativeofgauss-horizontal}, mittels Faltung die Orientierung eines
- \gls{edgels} bestimmt. Als Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$,
- sowie die Position des \gls{edgels} ($x,y$) benötigt.
+ \glspl{edgel} bestimmt. Als Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$,
+ sowie die Position des \glspl{edgel} ($x,y$) benötigt.
 
 \input{alg/sobel}
 
