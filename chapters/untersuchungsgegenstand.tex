@@ -39,9 +39,9 @@ Im zweiten Schritt wird das RANSAC Verfahren verwendet, um aus der Menge der \gl
  als die minimal geforderte Anzahl von Unterstützungsedgels. Die zufällige Auswahl zweier \gls{edgels} um eine Linie zu
  erstellen und deren Edgelunterstützung zu ermitteln wird mehrmals wiederholt um die Linie mit der meisten
  Edgelunterstützung zu finden. Wenn eine solche dominante Linie gefunden wurde, gilt die Hypothese als bestätigt und
- die Linie als im Bild vorhanden betrachtet. Die Edgels die zur Unterstüztung der Hyptohese der Linie galten, werden
- aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle Liniensegmente gefunden wurden
- oder nicht mehr genügend Edgels vorhanden sind.
+ die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstüztung der Hyptohese der Linie galten, werden aus
+ der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle Liniensegmente gefunden wurden oder
+ nicht mehr genügend Edgels vorhanden sind.
 
 Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
 
