@@ -22,7 +22,9 @@ Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbil
 
 \subsubsection{Line Detection} % (fold)
 \label{sub:line_detection}
-Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC Verfaren eine Linienhypothese zu erstellen und zu bewerten.
+Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
+ Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC Verfahren eine
+ Linienhypothese zu erstellen und zu bewerten.
 
 Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 40$ \gls{pixel} große Regionen
  unterteilt. Jede nachfolgende Operation erfolgt innerhalb einer Region. Eine Region wird wiederum unterteilt in
@@ -59,15 +61,25 @@ Das Verfahren von \citeauthor{clarke96} liefert nur kurze Liniensegmente. Diese 
 % subsubsection quadrangle_detection (end)
 
 \begin{comment}
-	Der RANSAC Grouper wird verwendet um gerade Liniensegmente zu finden. Dazu werden zwei zufällige edgels ausgewählt und ihre kompatible Orientierung überprüft. Die Anzahl der supporting edgels wird durch die Distanz des Liniensegments und der Orientierung bestimmt. Durch wiederholung dieses Prozesses wird die dominante Linie in der Region bestimmt. Die supporting edgels werden entfernt und der Prozess wird wiederholt bis keine edgels mehr vorhanden sind oder eine maximale Anzahl von wiederholungen erreicht wurde. Durch dieses Wiederholung wird sichergestellt, daß alle dominanten Linien in einer Region erkannt werden.
+	Der RANSAC Grouper wird verwendet um gerade Liniensegmente zu finden. Dazu werden zwei zufällige edgels ausgewählt
+	 und ihre kompatible Orientierung überprüft. Die Anzahl der supporting edgels wird durch die Distanz des
+	 Liniensegments und der Orientierung bestimmt. Durch wiederholung dieses Prozesses wird die dominante Linie in der
+	 Region bestimmt. Die supporting edgels werden entfernt und der Prozess wird wiederholt bis keine edgels mehr
+	 vorhanden sind oder eine maximale Anzahl von wiederholungen erreicht wurde. Durch dieses Wiederholung wird
+	 sichergestellt, dass alle dominanten Linien in einer Region erkannt werden.
 
 	Vorteil: Der Algorithmus ist sehr schnell und lässt sich für gewünschte Liniensegmente anpassen.
-	Nachteil: Durch sein antisotropic detection verhalten diskriminiert das verfahren diagonale liniensegmente. Dies ist durch ein rechteckiges samplingrid bedingt.
+	Nachteil: Durch sein antisotropic detection verhalten diskriminiert das verfahren diagonale liniensegmente. Dies
+	 ist durch ein rechteckiges samplingrid bedingt.
 
 	Hirzer hat das Verfahren um zwei Punkte erweitert und angepasst.
-	Wird in einem RGB Bild ein Kanal untersucht und ein Edgel gefunden, werden in den restlichen zwei Kanälen an der gleichen Position nach einem Edgel gesucht. Falls in allen drei Kanälen ein Edgel gefunden wird, handelt es sich um ein Linie (schwarz/weiss) und keine Farblinie.
+	Wird in einem RGB Bild ein Kanal untersucht und ein Edgel gefunden, werden in den restlichen zwei Kanälen an der
+	 gleichen Position nach einem Edgel gesucht. Falls in allen drei Kanälen ein Edgel gefunden wird, handelt es sich
+	 um ein Linie (Schwarz/Weiß) und keine Farblinie.
 
-	Nur das erste Frame wird vollständig untersucht und die Position der gefundenen Marken notiert. In den folgenden frames wird nur in den Regionen der gefundenen Marke das Verfahren benutzt. Erst nach einer festgelegten Anzahl von frames wird wieder ein vollständiger durchlauf des Verfahrens durchgeführt.
+	Nur das erste Frame wird vollständig untersucht und die Position der gefundenen Marken notiert. In den folgenden
+	 frames wird nur in den Regionen der gefundenen Marke das Verfahren benutzt. Erst nach einer festgelegten Anzahl
+	 von frames wird wieder ein vollständiger Durchlauf des Verfahrens durchgeführt.
 \end{comment}
 
 % subsection verfahren_nach_hirzer (end)
