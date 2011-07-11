@@ -12,7 +12,10 @@
 	\label{sec:grundlagen}
 	Ein digitales Bild ist definiert durch seine Bildgröße und der Auflösung. Die Bildgröße ist in Höhe und Breite angegeben und eine entsprechende Bildmatrix kann durch die Bildspalten $u$ und Bildzeilen $v$ angegeben werden. Die Auflösung eines Bildes bezeichnet die räumliche Ausdehnung in \gls{dpi}, die in den meisten Bildverarbeitungsschritten vernachlässigt werden kann.
 
-	Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, benötigen wir ein Koordiantensystem. Bei digitalen Bildern unterscheidet sich das verwendete Koordinatensystem von einem kartesischen Koordinatensystem dadurch, dass der Ursprungspunkt bei Bildern links oben liegt. Die \(x\)-Achse verläuft von links nach rechts und die \(y\)-Achse von oben nach unten. TODO: vgl abbildung.
+Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, benötigen wir ein Koordinatensystem. Bei digitalen
+ Bildern unterscheidet sich das verwendete Koordinatensystem von einem kartesischen Koordinatensystem dadurch, dass der
+ Ursprungspunkt bei Bildern links oben liegt. Die \(x\)-Achse verläuft von links nach rechts und die \(y\)-Achse von
+ oben nach unten. TODO: vgl Abbildung.
 
 	Die Information eines \gls{pixel} ist als binärer Wert mit der Länge \(k\) gespeichert. Der Wertebereich eines \gls{pixel} umfasst \(\left[0 \dotsc 2^k\right]\), wobei der genaue Wertebereich abhängig vom eingesetzten Typ ist.
 
@@ -83,7 +86,14 @@ Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus
 	\label{fig:rgbLenna}
 \end{figure}
 
-Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Primärfarben einen Farbton und dessen Helligkeit generiert. Der RGB Farbraum kann als dreidimensionaler Würfel dargestellt werden (Abb.~\ref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und Blau dar. Normiert man den Würfel zu einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von \(\left[0 \dotsc 1.0\right]\). Innerhalb dieses Würfels kann druch Verschiebung der Koordinate jeder Farbton generiert werden. Die Grundfarben können in diesem Würfel durch die Puntke $R = \left(1,0,0\right)$, $G = \left(0,1,0\right)$ und $B = \left(0,0,1\right)$ dargestellt werden. Schwarz ($S = \left(0,0,0\right)$) und Weiß ($W = \left(1,1,1\right)$) werden auf die gleiche Weise dargestellt.
+Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Primärfarben einen Farbton und dessen
+ Helligkeit generiert. Der RGB Farbraum kann als dreidimensionaler Würfel dargestellt werden
+ (Abb.~\ref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und Blau
+ dar. Normiert man den Würfel zu einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von
+ \(\left[0 \dotsc 1.0\right]\). Innerhalb dieses Würfels kann durch Verschiebung der Koordinate jeder Farbton generiert
+ werden. Die Grundfarben können in diesem Würfel durch die Punkte $R = \left(1,0,0\right)$, $G = \left(0,1,0\right)$
+ und $B = \left(0,0,1\right)$ dargestellt werden. Schwarz ($S = \left(0,0,0\right)$) und Weiß
+ ($W = \left(1,1,1\right)$) werden auf die gleiche Weise dargestellt.
 
 \begin{figure}[!ht]
 	\centering
@@ -148,7 +158,7 @@ Durch die Trennung der Luminanz und \gls{chrominanz} ist es möglich das Signal 
 \label{sub:pixelanordnung}
 Bei \gls{pixel} gibt es unterschiedliche Modelle der Anordnung von Farbkomponenten. Man unterscheidet die Komponentenanordnung, auch planare Anordnung genannt, von der gepackten Anordnung. Der Zugriff auf die Farbinformationen ist dabei abhängig vom eingesetzten Farbraum. Im weiteren Verlauf wird die gepackte Anordnung für den RGB Farbraum erläutert. Für YCbCr sind die vorgestellten Modelle anzupassen.
 
-Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arryas mit gleicher Größe gespeichert. Ein Bild
+Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arrays mit gleicher Größe gespeichert. Ein Bild
 
 \begin{equation}
 	I = \left(I_R, I_G, I_B\right)
@@ -214,7 +224,7 @@ Im allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \eqref{
 	\label{eq:readPackedRGB}
 \end{equation}
 
-$Red()$, $Green()$ und $Blue()$ sind abhänging vom eingesetzten Format\footcite[Vgl.][S.~236--237]{burger05}.
+$Red()$, $Green()$ und $Blue()$ sind abhängig vom eingesetzten Format\footcite[Vgl.][S.~236--237]{burger05}.
 % subsection pixelanordnung (end)
 
 \subsection{Filter und Faltung} % (fold)
@@ -267,14 +277,14 @@ Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footc
 	\item den ursprünglichen Bildwert beizubehalten,\label{nix}
 	\item die Randwerte zu berechnen, indem
 	\begin{enumerate}
-		\item ausserhalb des Bildbereichs konstante Werte angenommen werden,\label{berechneKonstant}
+		\item außerhalb des Bildbereichs konstante Werte angenommen werden,\label{berechneKonstant}
 		\item die Randpixel fortgesetzt werden,\label{berechneRand}
 		\item die Bildwerte wiederholt werden.\label{berechneBild}
 	\end{enumerate}
 \end{enumerate}
 
 Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autoref{nix} der Filter an den Rändern nicht
- angewendet. Bei \autoref{berechneKonstant} kann durch die zuweisung eines konstanten Wertes, beispielsweise Schwarz,
+ angewendet. Bei \autoref{berechneKonstant} kann durch die Zuweisung eines konstanten Wertes, beispielsweise Schwarz,
  das Ergebnis verfälschen. \autoref{berechneRand} weist die geringste Verfälschung auf. Bei \autoref{berechneBild} wird
  durch die Wiederholung des Bildes implizit eine periodische Funktion betrachtet. Welche dieser Randbetrachtung
  eingesetzt wird ist abhängig von den benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert
