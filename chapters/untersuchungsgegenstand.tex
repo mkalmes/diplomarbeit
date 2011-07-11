@@ -13,7 +13,12 @@
 \subsection{Verfahren nach Hirzer} % (fold)
 \label{sub:verfahren_nach_hirzer}
 
-Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbild der pixel connectivity edge linking based algorithms entworfen und ist in drei Hauptteile aufgebaut. Zuerst werden Liniensegmente erstellt, indem \gls{edgels} auf einem Suchraster gefunden und zusammengefürht werden. Die kurzen Liniensegmente werden dann zu längeren Linien zusammengeführt. Anschliessend werden im zweiten Schritt alle gefundenen Linien erweitert um die Gesamtlänage einer Linie zu erhalten. Im letzten Schritt werden die Linien zu Vierecken verbunden. Im weiteren Verlauf werden diese Schritte als Line Detection, Line Extension und Quadrangle Detection bezeichnet.
+Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbild der \textit{pixel connectivity edge
+ linking based algorithms} entworfen und ist in drei Hauptteile aufgebaut. Zuerst werden Liniensegmente erstellt,
+ indem \gls{edgels} auf einem Suchraster gefunden und zusammengeführt werden. Die kurzen Liniensegmente werden dann zu
+ längeren Linien zusammengeführt. Anschliessend werden im zweiten Schritt alle gefundenen Linien erweitert um die
+ Gesamtlänge einer Linie zu erhalten. Im letzten Schritt werden die Linien zu Vierecken verbunden. Im weiteren Verlauf
+ werden diese Schritte als Line Detection, Line Extension und Quadrangle Detection bezeichnet.
 
 \subsubsection{Line Detection} % (fold)
 \label{sub:line_detection}
