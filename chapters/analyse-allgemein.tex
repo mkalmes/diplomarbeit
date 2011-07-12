@@ -15,7 +15,7 @@ Die in diesem Abschnitt vorgestellten Algorithmen sind sowohl in ARToolKit als a
 \input{alg/convertmonochrome}
 
 Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_m$ auf einen Puffer für das monochrome
- Signal. Der Monochromepuffer $I_m$ ist ein Array mit fester Größe, das beim initialisieren einmalig angelegt wird und
+ Signal. Der Monochrompuffer $I_m$ ist ein Array mit fester Größe, das beim initialisieren einmalig angelegt wird und
  danach wiederverwendet werden kann. In Zeile~\ref{alg:convertmonochrome-baseaddress} wird die Adresse des
  Luminanz-Kanals $Y$ ausgelesen. Die Funktionen \textproc{width} und \textproc{height} liefern die Breite und Höhe des
  Signals in Pixeln, mit denen die Länge der Daten berechnet wird. Anschließend werden die Daten in den Puffer kopiert.
