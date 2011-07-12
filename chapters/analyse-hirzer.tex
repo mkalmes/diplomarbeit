@@ -49,7 +49,7 @@ Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool
  \ref{alg:edgelpool-addedgel-checkspace-start}--\ref{alg:edgelpool-addedgel-checkspace-end} wird geprüft, ob im Array
  genügend Platz für einen weiteren Eintrag vorhanden ist. Die Größe von $N$ Einträgen richtet sich nach der in \autoref{alg:datastructure-edgelpool} festgelegten Arraygröße $N$. Wenn genügend Platz vorhanden ist, wird in Zeile
  \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgel} $e$ an die freie
- Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das hinzufügen eines \glspl{edgel} ist konstant.
+ Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das Hinzufügen eines \glspl{edgel} ist konstant.
 
 \input{alg/edgelpool-addedgel}
 
@@ -133,7 +133,7 @@ Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelp
  (Vgl. \autoref{alg:edgelpool-resetmemorypool}). Im Anschluss wird in Zeile
  \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
  als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Pointer $p$ zur weiteren Verwendung in
- $\mathit{pool}$ gespeichert. Das freigeben eines Pools erfolgt in konstanter Zeit.
+ $\mathit{pool}$ gespeichert. Das Freigeben eines Pools erfolgt in konstanter Zeit.
 
 \input{alg/edgelpool-freememorypool}
 
@@ -175,7 +175,7 @@ Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline
  den Speicherpool, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Pointer $p$ handelt und genügend
  freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
  \ref{alg:linepool-addline-add-start}--\ref{alg:linepool-addline-add-end} die Linie hinzugefügt und die Zählvariable
- inkrementiert. Das hinzufügen einer Linie ist konstant.
+ inkrementiert. Das Hinzufügen einer Linie ist konstant.
 
 \input{alg/linepool-addline}
 
@@ -191,7 +191,7 @@ Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool 
  den Speicherpool übergeben und in Zeile
  \ref{alg:linepool-resetmemorypool-validpointer-start}--\ref{alg:linepool-resetmemorypool-validpointer-end} überprüft.
  Wenn es sich um einen gültigen Pointer handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
- Zugriff handelt, erfolgt das löschen in konstanter Zeit.
+ Zugriff handelt, erfolgt das Löschen in konstanter Zeit.
 
 \input{alg/linepool-resetmemorypool}
 
@@ -200,7 +200,7 @@ Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigeg
  (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile~\ref{alg:linepool-freememorypool-checkpointer} wird
  überprüft, ob der Pointer $p$ zu dem entsprechenden Pool gehört um danach die Adresse in Zeile
  \ref{alg:linepool-freememorypool-savepointer} im Speicherpool $\mathit{pool}$ zu speichern. Auch hier erfolgt das
- freigeben des Speichers wieder in konstanter Zeit.
+ Freigeben des Speichers wieder in konstanter Zeit.
 
 \input{alg/linepool-freememorypool}
 
