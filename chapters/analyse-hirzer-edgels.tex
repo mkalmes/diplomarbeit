@@ -1,0 +1,145 @@
+\subsubsection{Edgels} % (fold)
+\label{sub:datenstruktur-edgels}
+
+Die Datenstruktur eines \glspl{edgel} besteht aus der $x$- und $y$-Koordinate und der Orientierung
+ (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} sind konstant.
+
+\input{alg/datastructure-edgel}
+
+Der Vergleich, ob \glspl{edgel} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
+ werden zwei zu vergleichende \gls{edgel} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
+ $e_1.o$ und $e_2.o$ innerhalb von $67.5^\circ$\footcite[Vgl.][S.~417]{clarke96} liegen und damit kompatibel wären.
+ Dies wird durch
+
+\begin{equation}
+	d = 2 \pi \left( \frac{ \frac{67.5}{2} }{360} \right) = 0.589
+\end{equation}
+
+überprüft. Es muss sichergestellt werden, dass die Orientierung in Bogenmaß erfolgt.
+
+\input{alg/compatibleedgel}
+
+Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
+ (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die nächste freie Position im
+ Array zu markieren. Der Speicherpool aus \autoref{alg:datastructure-poolimplementation} ist ein Array vom Typ des
+ Edgelspeichers mit der Größe $S$, dessen Adresse im Pointer $\mathit{pool}$ gespeichert wird.
+
+\input{alg/datastructure-edgelpool}
+
+\autoref{alg:edgelpool-getmemorypools} basiert auf einem einfachen Stack Allocator von
+ \citeauthor{kr}\footcite[Vgl.][S.~100--104]{kr}. Die Variable $n$ gibt die Anzahl der angeforderten Pools an. In Zeile
+ \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Pools zur Verfügung stehen und liefert im
+ Erfolgsfall die Adresse zu einem Speicher (\autoref{alg:datastructure-edgelpool}) zurück. Falls kein Pool mehr zur
+ Verfügung steht, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool} vereinfacht die Anforderung
+ eines Pools, da in den meisten Fällen nur ein Pool benötigt wird. Bei einem Aufruf kann somit auf einen Parameter
+ verzichtet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben
+ eine konstante Laufzeit.
+
+\input{alg/edgelpool-getmemorypools}
+
+\input{alg/edgelpool-getmemorypool}
+
+Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-addedgel}. Der Algorithmus benötigt
+ einen Pointer $p$ auf einen Pool und einen \gls{edgel} $e$. In Zeile
+ \ref{alg:edgelpool-addedgel-validpointer-start}--\ref{alg:edgelpool-addedgel-validpointer-end} wird geprüft, ob der
+ Pointer auf eine Adresse verweist. Falls $p$ null ist, wird der Algorithmus verlassen. In Zeile
+ \ref{alg:edgelpool-addedgel-checkspace-start}--\ref{alg:edgelpool-addedgel-checkspace-end} wird geprüft, ob im Array
+ genügend Platz für einen weiteren Eintrag vorhanden ist. Die Größe von $N$ Einträgen richtet sich nach der in \autoref{alg:datastructure-edgelpool} festgelegten Arraygröße $N$. Wenn genügend Platz vorhanden ist, wird in Zeile
+ \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgel} $e$ an die freie
+ Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das Hinzufügen eines \glspl{edgel} ist konstant.
+
+\input{alg/edgelpool-addedgel}
+
+\glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
+ Index $i$ übergeben. In Zeile
+ \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
+ sich um einen gesetzten Pointer handelt. Anschließend wird in Zeile
+ \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
+ innerhalb des gespeicherten Bereichs der \glspl{edgel} liegt. Danach wird in Zeile
+ \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \glspl{edgel} an Position $i$ zurückgegeben. Der Zugriff auf
+ einen \gls{edgel} ist konstant.
+
+\input{alg/edgelpool-getedgel}
+
+Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird
+ der Pool-Pointer $p$ und die Position $i$ des zu löschenden \glspl{edgel} übergeben. Nach der Überprüfung des Pointers
+ $p$ in Zeile~\ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und
+ der Überprüfung des zulässigen Bereichs in Zeile
+ \ref{alg:edgelpool-removeedgel-validrange-start}--\ref{alg:edgelpool-removeedgel-validrange-end}, gibt es zwei zu
+ behandelnde Fälle um einen \gls{edgel} zu löschen.
+
+\input{alg/edgelpool-removeedgel}
+
+Der Edgel liegt
+\begin{enumerate}
+	\item nicht am Ende des Arrays oder \label{removeedgel-worst}
+	\item liegt am Ende des Arrays. \label{removeedgel-best}
+\end{enumerate}
+
+Bei \autoref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert werden um auf den vorigen Wert zu verweisen
+ (Vgl. \autoref{fig:decrementcounter}). Das dekrementieren der Zählvariable $p(\mathit{count})$ ist eine Zuweisung in
+ konstanter Zeit. % TODO: Grafik -> [1][2]..[n-1][n|c] wird zu [1][2]..[n-1|c][n]
+
+Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
+ wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}). % TODO: Grafik [1][2]..[i-1][i][i+1]..[i-n]
+In Zeile \ref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
+ \glspl{edgel} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
+ verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
+
+Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprogramm geschrieben, dass die Zeit misst,
+ die benötigt wird, um Einträge zu verschieben. Anhand der Daten wurde mittels einer Regressionsanalyse untersucht, ob
+ die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2000$ Datenpunkte wurden nach dem Vorbild von
+ \textproc{time} % TODO: Referenz auf den Katalog für /usr/bin/time und man-page
+ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Aus User- und Sys-Zeit wurde die CPU-Zeit bestimmt, die zur
+ Analyse benutzt wurde. Die Kovarianz für $X = \mathit{BYTES}$ und $Y = \mathit{CPU}$ beträgt $r = 0.9937538$ und
+ $r^2 = 0.9875$. An dieser Stelle sei darauf hingewiesen, dass die Kovarianz für $X = \mathit{BYTES}$ und
+ $Y = \mathit{REAL}$ mit $r = 0.9981969$ zwar größer ist, aber nicht die tatsächlichen Operationen des Testprogramms
+ untersucht. Aus diesem Grund wurde $Y = \mathit{CPU}$ untersucht. Der Interzept beträgt $\beta_0 = -71.89\e{-06}$
+ (Abweichung von $71.98\e{-06}$) und die Steigung $\beta_1 = 4.410\e{-09}$ (Abweichung von $11.08\e{-12}$), sodass
+
+\begin{subequations}
+\begin{multline}
+	y =\\ \beta_0 + \beta_1n
+\end{multline}
+\begin{multline}
+	y =\\ -71.89\e{-06} + 4.410\e{-09}n
+\end{multline}
+\end{subequations} % TODO: Sauber formatieren
+
+Daraus ergibt sich eine Laufzeit von $\Theta(n)$. In \autoref{fig:regression-memmove} ist der Plot der Daten angegeben.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.8\textwidth]{resources/Regression-memmove.png}
+	\caption{Regressionsanalyse von $2000$ Datenpunkten.}
+	\label{fig:regression-memmove}
+\end{figure}
+
+Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz. Als
+ Parameter wird der Pointer $p$ übergeben und in Zeile
+ \ref{alg:edgelpool-resetmemorypool-validpointer-start}--\ref{alg:edgelpool-resetmemorypool-validpointer-end}
+ überprüft. Um alle Daten als gelöscht zu markieren, wird lediglich die Zählvariable in Zeile
+ \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit.
+
+\input{alg/edgelpool-resetmemorypool}
+
+Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
+ Der Pointer $p$ wird in Zeile
+ \ref{alg:edgelpool-freememorypool-validpointer-start}--\ref{alg:edgelpool-freememorypool-validpointer-end} überprüft.
+ Zeile~\ref{alg:edgelpool-freememorypool-resetmemory} werden die Daten des Pools gelöscht
+ (Vgl. \autoref{alg:edgelpool-resetmemorypool}). Im Anschluss wird in Zeile
+ \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
+ als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Pointer $p$ zur weiteren Verwendung in
+ $\mathit{pool}$ gespeichert. Das Freigeben eines Pools erfolgt in konstanter Zeit.
+
+\input{alg/edgelpool-freememorypool}
+
+Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
+ Pointer $p$ übergeben und in Zeile
+ \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der
+ Einträge wird in Zeile~\ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
+ Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit.
+
+\input{alg/edgelpool-count}
+
+% subsection datenstruktur-edgels (end)

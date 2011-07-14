@@ -1,0 +1,73 @@
+\subsubsection{Liniensegmente} % (fold)
+\label{sub:datenstruktur-liniensegmente}
+
+Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, löschen und freigeben des Speichers sind nach
+ dem Vorbild des Edgelspeichers aufgebaut. Die Datenstruktur eines Liniensegments ist in
+ \autoref{alg:datastructure-line} definiert. Eine Linie besteht aus den \glspl{edgel} $s$ und $e$, die den Start- und
+ End-Punkt der Linie darstellen. Variable $c$ speichert die Anzahl der unterstützenden Edgels der Linie. Die Lese- und
+ Schreibzugriffe auf die Datenstruktur ist konstant.
+
+\input{alg/datastructure-line}
+
+Die Datenstruktur eines Speicherpools für Linien in \autoref{alg:datastructure-linepool} besteht aus einem Array
+ $\mathit{data}$ mit der festen Größe $N$ und einer Zählvariablen $\mathit{count}$.
+
+\input{alg/datastructure-linepool}
+
+Der Speicherpool für Linien in \autoref{alg:datastructure-linepool-implementation} besteht wiederum aus einem Array
+ $\mathit{data}$ mit der Anzahl $S$ der zur Verfügung stehenden Speicherpools. Der Pointer von $\mathit{data}$ wird in
+ der Variablen $\mathit{pool}$ gespeichert. Der Zugriff auf die Datenstruktur erfolgt in konstanter Zeit.
+
+Mehrere Speicherpools können mit \autoref{alg:linepool-getmemorypools} geholt werden und mit
+ \autoref{alg:linepool-getmemorypool} wird ein Speicherpool angefordert. Der Aufbau entspricht dem des Speicherpool für
+ \glspl{edgel} (Vgl. \autoref{alg:edgelpool-getmemorypools} und \autoref{alg:edgelpool-getmemorypool}). Der Zugriff
+ erfolgt in konstanter Zeit.
+
+\input{alg/linepool-getmemorypools}
+
+\input{alg/linepool-getmemorypool}
+
+Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline} verwendet. Es wird ein Pointer $p$ auf
+ den Speicherpool, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Pointer $p$ handelt und genügend
+ freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
+ \ref{alg:linepool-addline-add-start}--\ref{alg:linepool-addline-add-end} die Linie hinzugefügt und die Zählvariable
+ inkrementiert. Das Hinzufügen einer Linie ist konstant.
+
+\input{alg/linepool-addline}
+
+Zum auslesen einer Linie aus dem Speicherpool, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
+ Pointer $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Pool ausgelesen werden soll. In Zeile
+ \ref{alg:linepool-getline-validrange-start} wird geprüft, ob der Index sich innerhalb der Grenzen der gespeicherten
+ Linien befindet. Wenn dies der Fall ist, wird in Zeile~\ref{alg:linepool-getline-returnline} die Linie in konstanter
+ Zeit zurückgegeben.
+
+\input{alg/linepool-getline}
+
+Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool gelöscht. Dazu wird der Pointer $p$ auf
+ den Speicherpool übergeben und in Zeile
+ \ref{alg:linepool-resetmemorypool-validpointer-start}--\ref{alg:linepool-resetmemorypool-validpointer-end} überprüft.
+ Wenn es sich um einen gültigen Pointer handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
+ Zugriff handelt, erfolgt das Löschen in konstanter Zeit.
+
+\input{alg/linepool-resetmemorypool}
+
+Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigegeben werden. Dazu wird der Pointer $p$
+ auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetmemorypool}
+ (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile~\ref{alg:linepool-freememorypool-checkpointer} wird
+ überprüft, ob der Pointer $p$ zu dem entsprechenden Pool gehört um danach die Adresse in Zeile
+ \ref{alg:linepool-freememorypool-savepointer} im Speicherpool $\mathit{pool}$ zu speichern. Auch hier erfolgt das
+ Freigeben des Speichers wieder in konstanter Zeit.
+
+\input{alg/linepool-freememorypool}
+
+Die Anzahl der Einträge in einem Pool werden durch \autoref{alg:linepool-count} bestimmt, indem die Zählvariable
+ $\mathit{count}$ zurückgegeben wird. Der Zugriff auf die Variable erfolgt in konstanter Zeit.
+
+\input{alg/linepool-count}
+
+Im Verfahren nach \citeauthor{clarke96} gibt es keinen Grund Linien aus dem Speicherpool zu löschen. Darum kann auf
+ einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel} verzichtet werden.
+
+Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
+
+% subsection datenstruktur-liniensegmente (end)
