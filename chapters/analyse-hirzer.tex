@@ -4,6 +4,9 @@
 \subsection{Datenstrukturen} % (fold)
 \label{sub:datenstrukturen}
 
+\subsubsection{Edgels} % (fold)
+\label{sub:datenstruktur-edgels}
+
 Die Datenstruktur eines \glspl{edgel} besteht aus der $x$- und $y$-Koordinate und der Orientierung
  (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} sind konstant.
 
@@ -145,6 +148,11 @@ Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-c
 
 \input{alg/edgelpool-count}
 
+% subsection datenstruktur-edgels (end)
+
+\subsubsection{Liniensegmente} % (fold)
+\label{sub:datenstruktur-liniensegmente}
+
 Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, löschen und freigeben des Speichers sind nach
  dem Vorbild des Edgelspeichers aufgebaut. Die Datenstruktur eines Liniensegments ist in
  \autoref{alg:datastructure-line} definiert. Eine Linie besteht aus den \glspl{edgel} $s$ und $e$, die den Start- und
@@ -213,6 +221,8 @@ Im Verfahren nach \citeauthor{clarke96} gibt es keinen Grund Linien aus dem Spei
  einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel} verzichtet werden.
 
 Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
+
+% subsection datenstruktur-liniensegmente (end)
 
 % subsection datenstrukturen (end)
 
