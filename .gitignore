@@ -15,4 +15,7 @@
 *.toc
 main-blx.bib
 main.pdf
+main.acn
+main.acr
+main.alg
 resources/
