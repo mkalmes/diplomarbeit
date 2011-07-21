@@ -49,11 +49,24 @@ Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
 
 \input{alg/linedetection-clarke}
 
-Das Verfahren von \citeauthor{clarke96} liefert nur kurze Liniensegmente. Diese Segmente müssen noch zusammengeführt werden. \citeauthor{hirzer08} beschreibt das Verfahren \dots
+\citeauthor{hirzer08} hat das Verfahren von \citeauthor{clarke96} abgewandelt, um es zur Erkennung einer bitonalen
+ Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt eines monochromen Bildsignals, ein farbiges Bildsignal
+ und untersucht zuerst einen der drei Farbkanäle. Wenn ein \gls{edgel} in einem Kanal gefunden wird, werden die
+ verbleibenden Kanäle untersucht, um sicherzustellen, dass auch hier ein \gls{edgel} vorliegt. Ist der Gradient in
+ allen drei Kanälen höher als der festgelegte Schwellwert, handelt es sich um einen Übergang  von Schwarz nach Weiß.
+ Ist dies nicht der Fall, handelt es sich um einen farbigen Übergang und ist somit zur Erkennung einer Marke
+ uninteressant. Da ein monochromes Signal wie in \autoref{sub:bildtypen} beschrieben nur ein Kanal besitzt, kann hier
+ diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \glspl{edgel}
+ führt\footcite[Vgl.][S.~6--7]{hirzer08}.
+
 % subsubsection line_detection (end)
 
 \subsubsection{Line Extension} % (fold)
 \label{sub:line_extension}
+
+Das Verfahren von \citeauthor{clarke96} liefert nur kurze Liniensegmente. Diese Segmente müssen noch zusammengeführt
+ werden. \citeauthor{hirzer08} beschreibt das Verfahren \dots
+
 % subsubsection line_extension (end)
 
 \subsubsection{Quadrangle Detection} % (fold)
