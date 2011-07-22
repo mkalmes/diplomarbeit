@@ -59,8 +59,10 @@ Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
  diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \glspl{edgel}
  führt\footcite[Vgl.][S.~6--7]{hirzer08}.
 
-Das Verfahren von \citeauthor{clarke96} liefert nur kurze Liniensegmente. Diese Segmente müssen noch zusammengeführt
- werden. \citeauthor{hirzer08} beschreibt das Verfahren \dots
+Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur kurze Liniensegmente. Um eine Kante
+ entlang einer Marke zu erkennen, müssen die kurzen Liniensegmente zusammengeführt werden. Dazu werden alle
+ Liniensegmente miteinander verglichen um jede Kombinattionsmöglichkeit zu testen. Ob zwei Liniensegmente zu einer
+ Linie zusammengeführt werden können, ist von drei Kriterien abhängig.
 
 % subsubsection line_detection (end)
 
