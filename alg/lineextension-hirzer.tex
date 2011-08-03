@@ -3,5 +3,10 @@
 \label{alg:lineextension-hirzer}
 \begin{algorithmic}[1]
 	\Require Linien
+	\State $c \gets$ Anzahl der Einträge in Linien
+	\For{$i \gets 0$, $c$}
+		\State Erweitere das Ende von Linie $i$
+		\State Erweitere den Anfang von Linie $i$
+	\EndFor
 \end{algorithmic}
 \end{algorithm}
