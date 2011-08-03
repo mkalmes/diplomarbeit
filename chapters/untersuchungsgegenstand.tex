@@ -92,17 +92,17 @@ Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerh
 \subsubsection{Line Extension} % (fold)
 \label{sub:line_extension}
 
-Nach der Anwendung von Line Detection erhalten wir als Ergebnis nur kurze Liniensegmente. Diese kurzen Segmente
- repräsentieren aber nicht eine tatsächliche vorhandene Kante im Bildsignal. In den meisten Fällen fehlt am Anfang oder
- Ende eines Segments ein Stück. Mit Line Extension wird versucht die fehlenden Stücke am Anfang und am Ende eines
- Segments zu erweitern, um damit eine gerade Linie abzubilden.
+Nach der Anwendung von Line Detection erhalten wir als Ergebnis Linien. Diese Linien repräsentieren aber nicht eine
+ tatsächliche vorhandene Kante im Bildsignal. In den meisten Fällen fehlt am Anfang oder
+ Ende einer Linie ein Stück. Mit Line Extension wird versucht die fehlenden Stücke am Anfang und am Ende einer Linie zu
+ erweitern, um damit eine vollständige Linie abzubilden.
 
-Um eine Linie zu erweitern, wird jedes Liniensegment \gls{pixel} für \gls{pixel} untersucht. Dabei wird an einem Ende
- ein \gls{pixel} weitergerückt und die Orientierung dieses \gls{pixel} mit der Orientierung des Liniensegments
- verglichen. Falls die Orientierung kompatibel ist, wird der Endpunkt des Segments durch das hinzugefügte \gls{pixel}
- ersetzt. Das Verfahren wird solange wiederholt, bis die Orientierung nicht mehr übereinstimmt. Das bedeutet, dass sich
- der Gradient zu stark verändert hat und dadurch das Ende einer Kante gefunden wurde. Somit ist eine Seite des Segments
- erweitert und das Verfahren wird für das andere Ende des Segments wiederholt.
+Um Linien zu erweitern, wird jede Linie \gls{pixel} für \gls{pixel} untersucht. Dabei wird an einem Ende der Linie
+ ein \gls{pixel} weitergerückt und die Orientierung dieses \gls{pixel} mit der Orientierung der Linie verglichen. Falls
+ die Orientierung kompatibel ist, wird der Endpunkt der Linie durch das hinzugefügte \gls{pixel} ersetzt. Das Verfahren
+ wird solange wiederholt, bis die Orientierung nicht mehr übereinstimmt. Das bedeutet, dass sich der Gradient zu stark
+ verändert hat und dadurch das Ende einer Kante gefunden wurde. Somit ist eine Seite der Linie erweitert und das
+ Verfahren wird für das andere Ende der Linie wiederholt.
 
 Zusätzlich wird überprüft, ob über das Ende der erweiterten Linie hinaus ein heller \gls{pixel} liegt. Wenn dem so ist,
  eignet sich diese Linie zur Erkennung von Eckpunkten und somit zur Erkennung von Marken. Sollte sich über das Ende der
