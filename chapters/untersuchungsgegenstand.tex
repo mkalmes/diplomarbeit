@@ -59,16 +59,19 @@ Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
  diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \glspl{edgel}
  führt\footcite[Vgl.][S.~6--7]{hirzer08}.
 
+\input{alg/linemerging-hirzer}
+
 Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur kurze Liniensegmente. Um eine Kante
- entlang einer Marke zu erkennen, müssen die kurzen Liniensegmente zusammengeführt werden. Dazu werden alle
- Liniensegmente miteinander verglichen um jede Kombinattionsmöglichkeit zu testen. Ob zwei Liniensegmente zu einer
- Linie zusammengeführt werden können, ist von drei Kriterien abhängig. Zuerst müssen zwei Liniensegmente eine
- kompatible Orientierung aufweisen, die nur geringfügig abweichen darf um als Ergebnis eine gerade Linien zu erhalten.
- Als zweites Kriterium muss eine Verbindungslinie zwischen den Liniensegmenten ebenfalls eine kompatible Orientierung
- aufweisen. Dadurch wird sichergestellt, dass keine Liniensegmente zusammengeführt werden, die zwar eine kompatible
- Orientierung besitzen aber parallel zueinander liegen. Als letztes Kriterium wird der Gradient der Verbindungslinie
- Punkt für Punkt untersucht. Dieses Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man dies
- Unterscheidung vernachlässigen, würden mehrere Kanten unterschiedlicher Marken zusammengeführt (Vgl. \autoref{fig:}).
+ entlang einer Marke zu erkennen, müssen die kurzen Liniensegmente zusammengeführt werden
+ (Vgl. \autoref{alg:linemerging-hirzer}). Dazu werden alle Liniensegmente miteinander verglichen um jede
+ Kombinattionsmöglichkeit zu testen. Ob zwei Liniensegmente zu einer Linie zusammengeführt werden können, ist von drei
+ Kriterien abhängig. Zuerst müssen zwei Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig
+ abweichen darf um als Ergebnis eine gerade Linien zu erhalten. Als zweites Kriterium muss eine Verbindungslinie
+ zwischen den Liniensegmenten ebenfalls eine kompatible Orientierung aufweisen. Dadurch wird sichergestellt, dass keine
+ Liniensegmente zusammengeführt werden, die zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen.
+ Als letztes Kriterium wird der Gradient der Verbindungslinie Punkt für Punkt untersucht. Dieses Kriterium dient dazu
+ nebeneinanderliegende Marken zu unterscheiden. Würde man dies Unterscheidung vernachlässigen, würden mehrere Kanten
+ unterschiedlicher Marken zusammengeführt (Vgl. \autoref{fig:}).
 
 \citeauthor{hirzer08} verwendet keinen Schwellwert um einen minimalen oder maximalen Abstand zwischen zwei
  Liniensegmenten festzulegen. \citeauthor{hirzer08} begründet dies Entscheidung damit, dass bei einem zu kleinen

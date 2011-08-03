@@ -1,0 +1,28 @@
+\begin{algorithm}[ht]
+\caption{Line Merging nach \citeauthor{hirzer08}}
+\label{alg:linemerging-hirzer}
+\begin{algorithmic}[1]
+	\Require Segmente
+	\State $P \gets \infty$
+	\For{$i \gets 0$, Einträge in Segmente}
+		\For{$j \gets 0$, Einträge in Segmente}
+			\If{Segment $i$ und Segment $j$ kompatibel sind}
+				\If{Verbindungslinie kompatibel mit Segment $i$ ist}
+					\If{\State Verbindungslinie Pixel für Pixel den gleichen Gradient hat}
+						\State $P \gets$ Segment $i$ und $j$
+					\EndIf
+				\EndIf
+			\EndIf
+			\State $j \gets j + 1$
+		\EndFor
+		\State Sortiere $P$ aufsteigend anhand der Distanz
+		\For{$k \gets 0$, Einträge in $P$}
+			\State $i \gets$ verbinde Segment $i$ und Segment $j$
+			\State Entferne $j$
+			\State $i \gets -1$
+			\Comment Beginne am Anfang
+		\EndFor
+		\State $i \gets i + 1$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}
