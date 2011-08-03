@@ -110,6 +110,31 @@ Zusätzlich wird überprüft, ob über das Ende der erweiterten Linie hinaus ein
 
 \subsubsection{Quadrangle Detection} % (fold)
 \label{sub:quadrangle_detection}
+
+Um aus den gefundenen Linien eine quadratische Marke zu erkennen, werden Eckpunkte gesucht, die durch Überkreuzung der
+ Linien entstehen. Dies wird durch Quadrangle Detection erreicht indem alle Linienkombinationen untersucht werden um
+ vier Eckpunkte zu finden.
+
+Der Algorithmus vergleicht alle Linienkombinationen auf drei Kriterien. Zuerst dürfen zwei Linien nicht parallel
+ zueinander liegen, da sonst keine quadratische Marke gefunden werden kann. Danach wird als zweites Kriterium der
+ Abstand der Linienenden untersucht. Bleibt der Abstand unter einem festgelegten Schwellwert, wird das Verfahren
+ fortgesetzt. Zuletzt wird die Orientierung der beiden Linien untersucht. Eine quadratische Marke besteht aus einem
+ schwarzen Rahmen auf weißem Untergund und wird dadurch von den Linien eingeschlossen (vgl.~\autoref{Definition}).
+ Somit muss die Orientierung der Linien sich um $90^\circ$ unterscheiden. Wenn alle drei Kriterien erfüllt sind, wird
+ der Überschneidungspunkt der Linien als Eckpunkt der Marke gespeichert und das Verfahren mit der zweiten Linien
+ rekursiv wiederholt bis vier Eckpunkte gefunden wurden. Falls weniger als vier Eckpunkte gefunden wurden, wird das
+ Verfahren am anderen Ende der ersten Linie wiederholt. Dadurch wird sichergestellt, dass die Eckpunkte durch eine
+ Kette von Linien verbunden sind. Idealerweise wird eine geschlossene Kette mit vier Eckpunkten gefunden.
+
+Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt und somit eine Marke erkannt. Wurden
+ weniger als vier Eckpunkte gefunden, kann das Quadrat wiederhergestellt werden. Mit drei Eckpunkten ist es möglich den
+ fehlenden Eckpunkt zu berechnen, indem die beiden Linien an der Lücke überkreuzt werden. Laut Hirzer ist das Ergebnis in
+ den meisten Fällen akurat\footcite[Vgl.][S.15]{hirzer08}. Falls nur zwei Eckpunkte gefunden wurden, werden die
+ Linienenden an der Lücke zusammengeschlossen. Das Ergebnis variert je nach Qualität der vorrausgegangen Line
+ Extension. Im Falle einer guten Linienerweiterung ist das Ergebnis genau. Doch im Falle einer schlechten Erweiterung
+ ist das Ergebnis ungenau (vgl.~\autoref{fig:}). Wenn nur ein Eckpunkt gefunden wurde, ist eine Wiederherstellung der
+ Marke nicht möglich und die Linien werden gelöscht.
+
 % subsubsection quadrangle_detection (end)
 
 \begin{comment}
