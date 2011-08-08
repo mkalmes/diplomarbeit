@@ -92,10 +92,12 @@ Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerh
 \subsubsection{Line Extension} % (fold)
 \label{sub:line_extension}
 
+\input{alg/lineextension-hirzer}
+
 Nach der Anwendung von Line Detection erhalten wir als Ergebnis Linien. Diese Linien repräsentieren aber nicht eine
- tatsächliche vorhandene Kante im Bildsignal. In den meisten Fällen fehlt am Anfang oder
- Ende einer Linie ein Stück. Mit Line Extension wird versucht die fehlenden Stücke am Anfang und am Ende einer Linie zu
- erweitern, um damit eine vollständige Linie abzubilden.
+ tatsächliche vorhandene Kante im Bildsignal. In den meisten Fällen fehlt am Anfang oder Ende einer Linie ein Stück.
+ Mit Line Extension wird versucht die fehlenden Stücke am Anfang und am Ende einer Linie zu erweitern, um damit eine
+ vollständige Linie abzubilden (Vgl. \autoref{alg:lineextension-hirzer}).
 
 Um Linien zu erweitern, wird jede Linie \gls{pixel} für \gls{pixel} untersucht. Dabei wird an einem Ende der Linie
  ein \gls{pixel} weitergerückt und die Orientierung dieses \gls{pixel} mit der Orientierung der Linie verglichen. Falls
