@@ -1,0 +1,22 @@
+\begin{algorithm}[ht]
+\caption{Quadrangle Detection nach \citeauthor{hirzer08}}
+\label{alg:quadrangledetection-hirzer}
+\begin{algorithmic}[1]
+	\Require Linien, Startlinie Linienketten
+	\For{$i \gets 0$, Anzahl der Einträge von Linien}
+		\If{Startlinie und $i$ sind nicht parallel}
+			\If{Linienenden liegen nahe beieinander}
+				\If{Prüfe Linineorientierung von Startlinie und $i$}
+					\State Linienketten $\gets$ Linie $i$
+					\If{Linienketten $= 4$}
+						\State \textbf{return}
+					\EndIf
+					\State \textbf{quadrangledetection(Linien, $i$, Linienketten)}
+					\State \textbf{return}
+				\EndIf
+			\EndIf
+		\EndIf
+		\State $i \gets i + 1$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}
