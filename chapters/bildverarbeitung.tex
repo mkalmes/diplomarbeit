@@ -37,9 +37,8 @@ Ein digitales Bild ist eine Ansammlung numerischer Werte, die in einem Array ges
 
 \begin{figure}
 	\centering
-	\def\svgwidth{.5\columnwidth}
 	\input{resources/Bildmatrix.pdf_tex}
-	\caption{Bildmatrix}
+	\caption{Digitales Bild in Matrixdarstellung.}
 	\label{fig:bildmatrix}
 \end{figure}
 
@@ -78,11 +77,27 @@ Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=.2\textwidth]{resources/Lenna.pdf}
-	\includegraphics[width=.2\textwidth]{resources/Lenna_R.pdf}
-	\includegraphics[width=.2\textwidth]{resources/Lenna_G.pdf}
-	\includegraphics[width=.2\textwidth]{resources/Lenna_B.pdf}
-	\caption{RGB Farbraum Beispiel}
+	\subfigure[]{
+		\label{fig:rgbLenna-Farbe}
+		\includegraphics[width=.2\textwidth]{resources/Lenna.pdf}
+	}
+	\subfigure[]{
+		\label{fig:rgbLenna-Rot}
+		\includegraphics[width=.2\textwidth]{resources/Lenna_R.pdf}
+	}
+	\subfigure[]{
+		\label{fig:rgbLenna-Gruen}
+		\includegraphics[width=.2\textwidth]{resources/Lenna_G.pdf}
+	}
+	\subfigure[]{
+		\label{fig:rgbLenna-Blau}
+		\includegraphics[width=.2\textwidth]{resources/Lenna_B.pdf}
+	}
+	\caption{
+		Ein farbiges Bild \subref{fig:rgbLenna-Farbe} wird im RGB Farbraum in seine Komponenten Rot
+		 \subref{fig:rgbLenna-Rot}, Grün \subref{fig:rgbLenna-Gruen} und Blau \subref{fig:rgbLenna-Blau} aufgeteilt.
+		Von \cite{lenna}.
+	}
 	\label{fig:rgbLenna}
 \end{figure}
 
@@ -126,11 +141,27 @@ Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (\autoref{fig:yuv
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=.2\textwidth]{resources/Lenna.pdf}
-	\includegraphics[width=.2\textwidth]{resources/Lenna_Y.pdf}
-	\includegraphics[width=.2\textwidth]{resources/Lenna_U.pdf}
-	\includegraphics[width=.2\textwidth]{resources/Lenna_V.pdf}
-	\caption{YUV Farbraum Beispiel}
+	\subfigure[]{
+		\label{fig:yuvLenna-Farbe}
+		\includegraphics[width=.2\textwidth]{resources/Lenna.pdf}
+	}
+	\subfigure[]{
+		\label{fig:yuvLenna-Y}
+		\includegraphics[width=.2\textwidth]{resources/Lenna_Y.pdf}
+	}
+	\subfigure[]{
+		\label{fig:yuvLenna-U}
+		\includegraphics[width=.2\textwidth]{resources/Lenna_U.pdf}
+	}
+	\subfigure[]{
+		\label{fig:yuvLenna-V}
+		\includegraphics[width=.2\textwidth]{resources/Lenna_V.pdf}
+	}
+	\caption{
+		Im YUV Farbraum wird ein Bild \subref{fig:yuvLenna-Farbe} in Luminanz $Y$ \subref{fig:yuvLenna-Y},
+		Chroma $U$ \subref{fig:yuvLenna-U} und Chroma $V$ \subref{fig:yuvLenna-Y} aufgeteilt. Von
+		 \cite{lenna}.
+	}
 	\label{fig:yuvLenna}
 \end{figure}
 
