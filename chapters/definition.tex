@@ -4,8 +4,44 @@
 	Definiere Begriffe der Augmented Reality und Bildverarbeitung, die dem Leser nicht geläufig sind. Denke dabei an Prof. Klocke als Leser ohne besonderen Kenntnisstand in der AR/Bildverarbeitung.
 \end{comment}
 
-Beim Fiducial Marker Tracking werden künstliche Marken zur Erkennung und Verfolgung von realen Objekten eingesetzt. Häufig werden für diese Marken quadratische schwarze Rahmen verwendet die innerhalb des Rahmens Schriftzeichen, Bilder oder 2D Codes enthalten. Diese Marken sind einfach herzustellen und können mit geringem Aufwand an Objekte angebracht werden.
+\subsubsection{Bitonale Marken}
+\label{sub:bitonalemarken}
+Bei Markenbasierten \gls{AR}-Verfahren werden bitonale Marken zur Erkennung und Verfolgung von realen Objekten
+ eingesetzt. Eine Marke besteht aus einem schwarzen quadratischen Rahmen auf weißem Untergrund und trägt in der Mitte
+ Informationen zur Identifizerung. ARToolKit verwendet simple Muster oder Schriftzeichen zur Identifzierung, wie in
+ \autoref{fig:marke-artoolkit} gezeigt. ARTag hingegen verwendet eine binär kodierte Zahl als Identifizierungsmerkmal,
+ die als Anordnung von $6 \times 6$ \glspl{pixel} dargestellt wird (s.~\autoref{fig:marke-artag}). ARToolKitPlus, der
+ Nachfolger von ARToolKit nutzt ein ähnliches Verfahren wie ARTag\footcite[Vgl.][S.~142]{wagner07b} und unterscheidet
+ sich in der Rahmenbreite (s.~\autoref{fig:marke-artoolkitplus}).
 
-Diese bitonale Marken haben den Vorteil, dass sie Robust gegen Helligkeitsveränderung sind und die Entscheidung eines Pixels auf eine Schwellwert-Entscheidung reduziert werden kann. Marken für \gls{AR} müssen in einem großen Blickfeld erkannt werden können, was wiederum bei industriellen Anwendung nicht der Fall ist, da hier Marken den größten Teil des Bildes einnehmen können.
+% TODO: Bilder einfügen!
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:marke-artoolkit}
+		\includegraphics[scale=1]{resources/Marker-ART.pdf}
+	}
+	\subfigure[]{
+		\label{fig:marke-artag}
+		\includegraphics[scale=1]{resources/Marker-ARTag.pdf}
+	}
+	\subfigure[]{
+		\label{fig:marke-artoolkitplus}
+		\includegraphics[scale=1]{resources/Marker-ART+.pdf}
+	}
+	\caption{
+		Verschiedene bitonale Marken.
+		ARToolKit \subref{fig:marke-artoolkit}, ARTag \subref{fig:marke-artag} und ARToolKitPlus \subref{fig:marke-artag}.
+	}
+	\label{fig:bitonale-marken}
+\end{figure}
+
+\begin{comment}
+	(wagner/schmalstieg ARToolKitPlus fpr Pose Tracking on Mobile Devices S.4)
+
+	Beim Fiducial Marker Tracking werden künstliche Marken zur Erkennung und Verfolgung von realen Objekten eingesetzt. Häufig werden für diese Marken quadratische schwarze Rahmen verwendet die innerhalb des Rahmens Schriftzeichen, Bilder oder 2D Codes enthalten. Diese Marken sind einfach herzustellen und können mit geringem Aufwand an Objekte angebracht werden.
+
+	Diese bitonale Marken haben den Vorteil, dass sie Robust gegen Helligkeitsveränderung sind und die Entscheidung eines Pixels auf eine Schwellwert-Entscheidung reduziert werden kann. Marken für \gls{AR} müssen in einem großen Blickfeld erkannt werden können, was wiederum bei industriellen Anwendung nicht der Fall ist, da hier Marken den größten Teil des Bildes einnehmen können.
+\end{comment}
 
 % section definition (end)
