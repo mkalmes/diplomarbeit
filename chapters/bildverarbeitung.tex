@@ -281,9 +281,16 @@ Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine 
 
 Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird der neue Pixelwert $I'(u,v)$ berechnet. Die Größe der
  Filterregion bestimmt die Anzahl der Pixel aus $I$, die zur Berechnung des neuen Pixelwerts $I'(u,v)$ verwendet
- werden. Üblicherweise werden $3 \times 3$ oder $5 \times 5$ Filter verwendet, aber auch größere Filter mit $21 \times
- 21$ Pixeln sind möglich. Anhand der Schreibweise der Filter erkennt man, das es sich bei den Filtern um Matrizen
- handelt.
+ werden (Vgl.~\autoref{fig:region-filter}). Üblicherweise werden $3 \times 3$ oder $5 \times 5$ Filter verwendet, aber
+ auch größere Filter mit $21 \times 21$ Pixeln sind möglich. Anhand der Schreibweise der Filter erkennt man, das es
+ sich bei den Filtern um Matrizen handelt.
+
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Region-Filter.pdf_tex}
+	\caption{Anwendung eines Filters. Aus der Region $R_{u,v}$ wird der neue Wert $I'(u,v)$ berechnet.}
+	\label{fig:region-filter}
+\end{figure}
 
 Bei einer Filtermatrix wird ein eigenes Koordinatensystem verwendet, dessen Ursprung in der Mitte der Matrix liegt.
  Aufgrund dieses Koordinatensystem sind die Koordinaten sowohl positiv als auch negativ. Bei einer $3 \times 3$
