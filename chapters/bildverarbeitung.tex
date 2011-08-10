@@ -257,8 +257,27 @@ $Red()$, $Green()$ und $Blue()$ sind abhängig vom eingesetzten Format\footcite[
 \subsection{Filter und Faltung} % (fold)
 \label{sub:filter}
 Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine mathematische Abbildung in ein
- Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen, operieren Filter auf Regionen um zum Beispiel
- Bilder zu glätten oder zu schärfen.
+ Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen operieren Filter auf Regionen um, zum Beispiel,
+ Bilder zu glätten oder zu schärfen (Vgl.~\autoref{fig:filterbeispiel}).
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:filter-original}
+		\includegraphics[scale=1]{resources/Filter-Original.pdf}
+	}
+	\subfigure[]{
+		\label{fig:filter-verwischen}
+		\includegraphics[scale=1]{resources/Filter-Verwischen.pdf}
+	}
+	\subfigure[]{
+		\label{fig:filter-schaerfen}
+		\includegraphics[scale=1]{resources/Filter-Schaerfen.pdf}
+	}
+	\caption{Das orignial Bild \subref{fig:filter-original} wurde in
+	 \subref{fig:filter-verwischen} verwischt und in \subref{fig:filter-schaerfen} geschärft.}
+	\label{fig:filterbeispiel}
+\end{figure}
 
 Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird der neue Pixelwert $I'(u,v)$ berechnet. Die Größe der
  Filterregion bestimmt die Anzahl der Pixel aus $I$, die zur Berechnung des neuen Pixelwerts $I'(u,v)$ verwendet
