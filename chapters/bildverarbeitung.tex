@@ -332,9 +332,44 @@ Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footc
 Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autoref{nix} der Filter an den Rändern nicht
  angewendet. Bei \autoref{berechneKonstant} kann durch die Zuweisung eines konstanten Wertes, beispielsweise Schwarz,
  das Ergebnis verfälschen. \autoref{berechneRand} weist die geringste Verfälschung auf. Bei \autoref{berechneBild} wird
- durch die Wiederholung des Bildes implizit eine periodische Funktion betrachtet. Welche dieser Randbetrachtung
- eingesetzt wird ist abhängig von den benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert
- betrachtet werden.
+ durch die Wiederholung des Bildes implizit eine periodische Funktion betrachtet. Die möglichen Randbehandlungen sind
+ in \autoref{fig:randbeispiel} illustriert. Welche dieser Randbetrachtung eingesetzt wird ist abhängig von den
+ benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert betrachtet werden.
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:randbeispiel-original}
+		\includegraphics[scale=1]{resources/Rand-Original.pdf}
+	}
+	\subfigure[]{
+		\label{fig:randbeispiel-1}
+		\includegraphics[scale=1]{resources/Rand-1.pdf}
+	}
+	\subfigure[]{
+		\label{fig:randbeispiel-2}
+		\includegraphics[scale=1]{resources/Rand-2.pdf}
+	}
+	\subfigure[]{
+		\label{fig:randbeispiel-3a}
+		\includegraphics[scale=1]{resources/Rand-3a.pdf}
+	}
+	\subfigure[]{
+		\label{fig:randbeispiel-3b}
+		\includegraphics[scale=1]{resources/Rand-3b.pdf}
+	}
+	\subfigure[]{
+		\label{fig:randbeispiel-3c}
+		\includegraphics[scale=1]{resources/Rand-3c.pdf}
+	}
+	\caption{Filter und Randbehandlung. Das Originalbild \subref{fig:randbeispiel-original} wird je nach eingesetzen
+	 Verfahren unterschiedlich behandelt. Bei \subref{fig:randbeispiel-1} werden die Ränder nicht betrachtet und ein
+	 konstanter Wert zugewiesen (hier schwarz dargestellt).	Die Originalwerte des Eingangsbilds werden bei
+	 \subref{fig:randbeispiel-2} beibehalten. In \subref{fig:randbeispiel-3a} werden ausserhalb des Bildes konstante
+	 Werte verwendet (hier schwarz dargestellt). Die Randpixel werden bei \subref{fig:randbeispiel-3b} fortgesetzt,
+	 während bei \subref{fig:randbeispiel-3c} das Eingangsbild an den Rändern wiederholt wird.}
+	\label{fig:randbeispiel}
+\end{figure}
 
 In der digitalen Bildverarbeitung basieren Filter auf der mathematischen Operation der Faltung
 \footcite[Vgl.][S.~101--104]{burger05}, bei der für zwei Funktionen ein dritte Funktion erzeugt wird. Die diskrete
