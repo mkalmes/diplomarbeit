@@ -71,7 +71,23 @@ Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur ku
  Liniensegmente zusammengeführt werden, die zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen.
  Als letztes Kriterium wird der Gradient der Verbindungslinie Punkt für Punkt untersucht. Dieses Kriterium dient dazu
  nebeneinanderliegende Marken zu unterscheiden. Würde man dies Unterscheidung vernachlässigen, würden mehrere Kanten
- unterschiedlicher Marken zusammengeführt (Vgl. \autoref{fig:}).
+ unterschiedlicher Marken zusammengeführt (Vgl.~\autoref{fig:linemerging-kriterium3}).
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:linemerging-1}
+		\includegraphics[scale=1]{resources/Linemerging-1.pdf}
+	}
+	\subfigure[]{
+		\label{fig:linemerging-2}
+		\includegraphics[scale=1]{resources/Linemerging-2.pdf}
+	}
+	\caption{Überprüfung des Gradienten. Wird der Gradient der Verbindungslinie nicht untersucht, werden Liniensegmente
+	 verbunden, die zu unterschiedlichen Marken gehören, wie in \subref{fig:linemerging-1} dargestellt. In
+	 \subref{fig:linemerging-2} wurde der Gradient der Verbindungslinie untersucht und zwei Linien erkannt.}
+	\label{fig:linemerging-kriterium3}
+\end{figure}
 
 \citeauthor{hirzer08} verwendet keinen Schwellwert um einen minimalen oder maximalen Abstand zwischen zwei
  Liniensegmenten festzulegen. \citeauthor{hirzer08} begründet dies Entscheidung damit, dass bei einem zu kleinen
