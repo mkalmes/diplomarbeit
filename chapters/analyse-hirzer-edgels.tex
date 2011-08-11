@@ -127,18 +127,18 @@ Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprog
  $X = \mathit{BYTES}$ und $Y = \mathit{REAL}$ mit $r = 0.9981969$ zwar größer ist, aber nicht die tatsächlichen
  Operationen des Testprogramms untersucht. Aus diesem Grund wurde $Y = \mathit{CPU}$ untersucht. Der Interzept beträgt
  $\beta_0 = -71.89\e{-06}$ (Abweichung von $71.98\e{-06}$) und die Steigung $\beta_1 = 4.410\e{-09}$ (Abweichung von
- $11.08\e{-12}$), sodass
+ $11.08\e{-12}$). Daraus ergibt sich eine Laufzeit von $T(n) =\Theta(n)$ (Vgl.~\autoref{eq:analyse-removeedgel-worst}).
+ In \autoref{fig:regression-memmove} ist der Plot der Daten angegeben.
 
-\begin{subequations}
-\begin{multline}
-	y =\\ \beta_0 + \beta_1n
-\end{multline}
-\begin{multline}
-	y =\\ -71.89\e{-06} + 4.410\e{-09}n
-\end{multline}
-\end{subequations} % TODO: Sauber formatieren
-
-Daraus ergibt sich eine Laufzeit von $\Theta(n)$. In \autoref{fig:regression-memmove} ist der Plot der Daten angegeben.
+\begin{equation}
+	\label{eq:analyse-removeedgel-worst}
+	\begin{split}
+		y& = \beta_0 + \beta_1n\\
+		 & = -71.89\e{-06} + 4.410\e{-09}n\\
+		T(n)& = -71.89\e{-06} + 4.410\e{-09}n\\
+		 & = \Theta(n)
+	\end{split}
+\end{equation}
 
 \begin{figure}[!ht]
 	\centering
