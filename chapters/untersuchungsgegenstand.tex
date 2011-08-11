@@ -156,8 +156,25 @@ Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt
  den meisten Fällen akurat\footcite[Vgl.][S.15]{hirzer08}. Falls nur zwei Eckpunkte gefunden wurden, werden die
  Linienenden an der Lücke zusammengeschlossen. Das Ergebnis variert je nach Qualität der vorrausgegangen Line
  Extension. Im Falle einer guten Linienerweiterung ist das Ergebnis genau. Doch im Falle einer schlechten Erweiterung
- ist das Ergebnis ungenau (vgl.~\autoref{fig:}). Wenn nur ein Eckpunkt gefunden wurde, ist eine Wiederherstellung der
- Marke nicht möglich und die Linien werden gelöscht.
+ ist das Ergebnis ungenau (Vgl.~\autoref{fig:quadrangledetection}). Wenn nur ein Eckpunkt gefunden wurde, ist eine
+ Wiederherstellung der Marke nicht möglich und die Linien werden gelöscht.
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\includegraphics[scale=1]{resources/QuadrangleDetection-Good.pdf}
+		\label{fig:quadrangledetection-good}
+	}
+	\subfigure[]{
+		\includegraphics[scale=1]{resources/QuadrangleDetection-Bad.pdf}
+		\label{fig:quadrangledetection-bad}
+	}
+	\caption{Wiederherstellung der Marke mit zwei Eckpunkten (grün dargestellt).
+	 \subref{fig:quadrangledetection-good} Qualität der Linien (Rot) ist gut um dadurch eine Erkennung der Marke zu
+	 ermöglichen. \subref{fig:quadrangledetection-bad} Die rechte Linie ist deutlich kürzer als die linke Linie. Eine
+	 Verbindungslinie zwischen den beiden Enden liefert eine schlechte Repräsentation der Marke.}
+	\label{fig:quadrangledetection}
+\end{figure}
 
 % subsubsection quadrangle_detection (end)
 
