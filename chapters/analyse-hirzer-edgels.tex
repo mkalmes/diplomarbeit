@@ -120,14 +120,14 @@ In Zeile \ref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{siz
 
 Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprogramm geschrieben, dass die Zeit misst,
  die benötigt wird, um Einträge zu verschieben. Anhand der Daten wurde mittels einer Regressionsanalyse untersucht, ob
- die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2000$ Datenpunkte wurden nach dem Vorbild von
- \textproc{time} % TODO: Referenz auf den Katalog für /usr/bin/time und man-page
-ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Aus User- und Sys-Zeit wurde die CPU-Zeit bestimmt, die zur
- Analyse benutzt wurde. Die Kovarianz für $X = \mathit{BYTES}$ und $Y = \mathit{CPU}$ beträgt $r = 0.9937538$ und
- $r^2 = 0.9875$. An dieser Stelle sei darauf hingewiesen, dass die Kovarianz für $X = \mathit{BYTES}$ und
- $Y = \mathit{REAL}$ mit $r = 0.9981969$ zwar größer ist, aber nicht die tatsächlichen Operationen des Testprogramms
- untersucht. Aus diesem Grund wurde $Y = \mathit{CPU}$ untersucht. Der Interzept beträgt $\beta_0 = -71.89\e{-06}$
- (Abweichung von $71.98\e{-06}$) und die Steigung $\beta_1 = 4.410\e{-09}$ (Abweichung von $11.08\e{-12}$), sodass
+ die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2000$ Datenpunkte wurden nach dem Vorbild
+ von \textproc{time}\footcite{time-1} ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Aus User- und Sys-Zeit wurde
+ die CPU-Zeit bestimmt, die zur Analyse benutzt wurde. Die Kovarianz für $X = \mathit{BYTES}$ und $Y = \mathit{CPU}$
+ beträgt $r = 0.9937538$ und $r^2 = 0.9875$. An dieser Stelle sei darauf hingewiesen, dass die Kovarianz für
+ $X = \mathit{BYTES}$ und $Y = \mathit{REAL}$ mit $r = 0.9981969$ zwar größer ist, aber nicht die tatsächlichen
+ Operationen des Testprogramms untersucht. Aus diesem Grund wurde $Y = \mathit{CPU}$ untersucht. Der Interzept beträgt
+ $\beta_0 = -71.89\e{-06}$ (Abweichung von $71.98\e{-06}$) und die Steigung $\beta_1 = 4.410\e{-09}$ (Abweichung von
+ $11.08\e{-12}$), sodass
 
 \begin{subequations}
 \begin{multline}
