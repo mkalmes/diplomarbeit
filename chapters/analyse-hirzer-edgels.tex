@@ -80,6 +80,22 @@ Bei \autoref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert wer
  (Vgl. \autoref{fig:decrementcounter}). Das dekrementieren der Zählvariable $p(\mathit{count})$ ist eine Zuweisung in
  konstanter Zeit. % TODO: Grafik -> [1][2]..[n-1][n|c] wird zu [1][2]..[n-1|c][n]
 
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\input{resources/Memory-Decrement-Before.pdf_tex}
+		\label{fig:decrementcounter-before}
+	}
+	\subfigure[]{
+		\input{resources/Memory-Decrement-After.pdf_tex}
+		\label{fig:decrementcounter-after}
+	}
+	\caption{Dekrementieren von $\mathit{count}$. In \subref{fig:decrementcounter-before} soll Position $i$ gelöscht
+	 werden. $c$ verweist auf die nächste freie Speicherstelle. In \subref{fig:decrementcounter-after} wird $c$
+	 dekrementiert und verweist auf die neue freie Speicherstelle.}
+	\label{fig:decrementcounter}
+\end{figure}
+
 Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
  wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}). % TODO: Grafik [1][2]..[i-1][i][i+1]..[i-n]
 In Zeile \ref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
