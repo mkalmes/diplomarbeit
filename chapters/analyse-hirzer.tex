@@ -36,45 +36,46 @@ Der \autoref{alg:linedetection-analyze} ist der zentrale Algorithmus von \citeau
  sind in \autoref{eq:linedetection-analyze1} aufgeführt. Um die Gleichung zu vereinfachen führe ich in
  \autoref{eq:linedetection-analyze2} $n = \tfrac{h}{40}$ und $k = \tfrac{w}{40}$ ein. Sowohl bei worst-case als auch
  bei best-case werden die Summen immer vollständig durchlaufen. Damit kann die Gleichung zu
- \autoref{eq:linedetection-analyze3} vereinfacht werden, was eine Laufzeit von $\Theta(nk)$ ergibt.
+ \autoref{eq:linedetection-analyze3} vereinfacht werden. Durch \autoref{eq:linedetection-analyze4} ergibt die Laufzeit
+ $T(I) = \Theta(nk)$ (Vgl.~\autoref{eq:linedetection-analyze5}).
 
 \begin{subequations}
-\label{eq:linedetection-analyze}
-\begin{multline}
-	T(I) = c_1
-	+ c_2
-	+ c_3 \left(\frac{h}{40} + 1\right)
-	+ c_4 \sum \limits_{y = 0}^{\frac{h}{40}} t_y \left(\frac{w}{40} + 1 \right)
-	+ c_5 \sum \limits_{y = 0}^{\frac{h}{40}} \sum \limits_{x = 0}^{\frac{w}{40}} t_y t_x\\
-	+ c_6 \sum \limits_{y = 0}^{\frac{h}{40}} \sum \limits_{x = 0}^{\frac{w}{40}} t_y t_x
-	+ c_7 \sum \limits_{y = 0}^{\frac{h}{40}} \sum \limits_{x = 0}^{\frac{w}{40}} t_y t_x
-	+ c_9 \sum \limits_{y = 0}^{\frac{h}{40}} t_y
-	\label{eq:linedetection-analyze1}
-\end{multline}
-\begin{multline}
-	T(I) = c_1
-	+ c_2
-	+ c_3 \left(n + 1\right)
-	+ c_4 \sum \limits_{y = 0}^{n} t_y \left(k + 1 \right)
-	+ c_5 \sum \limits_{y = 0}^{n} \sum \limits_{x = 0}^{k} t_y t_x\\
-	+ c_6 \sum \limits_{y = 0}^{n} \sum \limits_{x = 0}^{k} t_y t_x
-	+ c_7 \sum \limits_{y = 0}^{n} \sum \limits_{x = 0}^{k} t_y t_x
-	+ c_9 \sum \limits_{y = 0}^{n} t_y
-	\label{eq:linedetection-analyze2}
-\end{multline}
-\begin{multline}
-	T(I) =
-	c_1
-	+ c_2
-	+ c_3 \left(n + 1\right)
-	+ c_4 \left[n \left(k + 1 \right)\right]
-	+ c_5 n k
-	+ c_6 n k
-	+ c_7 n k
-	+ c_9 n\\
-	= c_1 + c_2 + c_3 + \left(c_3 + c_4 + c_9\right) n + \left(c_4 + c_5 + c_6 + c_7\right) n k
-	\label{eq:linedetection-analyze3}
-\end{multline}
+\begin{align}
+\label{eq:linedetection-analyze1}
+T(I)& =
+c_1
++ c_2
++ c_3 \left(\frac{h}{40} + 1\right)
++ c_4 \sum \limits_{y = 0}^{\frac{h}{40}} t_y \left(\frac{w}{40} + 1 \right)
++ c_5 \sum \limits_{y = 0}^{\frac{h}{40}} \sum \limits_{x = 0}^{\frac{w}{40}} t_y t_x\\
+& \quad + c_6 \sum \limits_{y = 0}^{\frac{h}{40}} \sum \limits_{x = 0}^{\frac{w}{40}} t_y t_x
++ c_7 \sum \limits_{y = 0}^{\frac{h}{40}} \sum \limits_{x = 0}^{\frac{w}{40}} t_y t_x
++ c_9 \sum \limits_{y = 0}^{\frac{h}{40}} t_y \nonumber \\
+\label{eq:linedetection-analyze2}
+T(I)& =
+c_1
++ c_2
++ c_3 \left(n + 1\right)
++ c_4 \sum \limits_{y = 0}^{n} t_y \left(k + 1 \right)
++ c_5 \sum \limits_{y = 0}^{n} \sum \limits_{x = 0}^{k} t_y t_x\\
+& \quad + c_6 \sum \limits_{y = 0}^{n} \sum \limits_{x = 0}^{k} t_y t_x
++ c_7 \sum \limits_{y = 0}^{n} \sum \limits_{x = 0}^{k} t_y t_x
++ c_9 \sum \limits_{y = 0}^{n} t_y \nonumber \\
+\label{eq:linedetection-analyze3}
+T(I)& =
+c_1
++ c_2
++ c_3 \left(n + 1\right)
++ c_4 \left[n \left(k + 1 \right)\right]
++ c_5 n k
++ c_6 n k
++ c_7 n k
++ c_9 n\\
+\label{eq:linedetection-analyze4}
+T(I)& = c_1 + c_2 + c_3 + \left(c_3 + c_4 + c_9\right) n + \left(c_4 + c_5 + c_6 + c_7\right) n k\\
+\label{eq:linedetection-analyze5}
+T(I)& = \Theta(nk)
+\end{align}
 \end{subequations}
 
 Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal}) benötigt das monochrome Bildsignal $I_m$,
