@@ -97,7 +97,22 @@ Bei \autoref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert wer
 \end{figure}
 
 Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
- wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}). % TODO: Grafik [1][2]..[i-1][i][i+1]..[i-n]
+ wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}).
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\input{resources/Memory-Move-Before.pdf_tex}
+		\label{fig:memmove-before}
+	}
+	\subfigure[]{
+		\input{resources/Memory-Decrement-After.pdf_tex}
+		\label{fig:memmove-after}
+	}
+	\caption{\ldots}
+	\label{fig:memmove}
+\end{figure}
+
 In Zeile \ref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
  \glspl{edgel} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
  verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
