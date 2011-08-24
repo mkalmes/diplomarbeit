@@ -33,6 +33,15 @@ ARToolKitPlus erkennt Marken, indem ein Bildsignal zuerst in ein Binärbild gewa
 \subsubsection{Fiducial Detection} % (fold)
 \label{sub:fiducial_detection}
 
+Bei Fiducial Detection wird das Bildsignal von links nach rechts und von oben nach unten untersucht. Um eine Kante in
+ einem Bild zu erkennen, verwendet ARToolKitPlus eine einfache Schwellwertanalyse die \gls{pixel} unter einem
+ Schwellwert als dunkel und über einem Schwellwert als hell betrachtet. Folgt nach einem weißen \gls{pixel} ein
+ schwarzer \gls{pixel}, wird dieser \gls{pixel} als möglicher Punkt eines Markenrahmens betrachtet. Der Algorithmus
+ folgt diesem Punkt entweder bis zum Ursprung oder bis zum Bildrand. Alle besuchten \gls{pixel} werden dabei makiert,
+ um ein mehrfaches durchlaufen zu vermeiden. Wenn der Algorithmus eine geschlossene Gruppe von Pixeln gefunden
+ hat, wird die Gruppe zur weiteren Verarbeitung gespeichert. Falls es sich um eine offene Gruppe von Pixeln
+ handelt, wird die Gruppe verworfen, da sie sich nicht zur Erkennung eignet.
+
 % subsubsection fiducial_detection (end)
 
 
