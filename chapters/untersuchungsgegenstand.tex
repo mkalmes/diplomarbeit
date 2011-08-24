@@ -10,6 +10,26 @@
 	* Welche Kriterien müssen erfüllt sein (monochrom, rgb eingabe)?
 \end{comment}
 
+\subsection{ARToolKitPlus} % (fold)
+\label{sub:artoolkitplus}
+
+ARToolKitPlus ist die Weiterentwicklung von ARToolKit von \citeauthor{wagner07b}. ARToolKitPlus verwendet zur
+Identifizierung von Marken eine \textit{Runtime Tracking Pipeline} bestehend aus fünf Stufen.
+
+\begin{enumerate}
+	\item Fiducial Detection \label{fiducialdetection}
+	\item Rectangle Fitting \label{rectanglefitting}
+	\item Pattern Checking
+	\item Lens Undistortion
+	\item Pose Estimation
+\end{enumerate}
+
+ARToolKitPlus erkennt Marken, indem ein Bildsignal zuerst in ein Binärbild gewandelt wird um danach zusammenhängende
+ Bildregionen aufzufinden. Diese Regionen werden isoliert betrachtet und daraufhin untersucht, ob es sich dabei um ein
+ Rechteck handelt. Dazu wird \autoref{fiducialdetection} und \autoref{rectanglefitting} aus der
+ \textit{Runtime Tracking Pipeline} verwendet.
+
+
 \subsection{Verfahren nach Hirzer} % (fold)
 \label{sub:verfahren_nach_hirzer}
 
