@@ -44,6 +44,7 @@ Bei Fiducial Detection wird das Bildsignal von links nach rechts und von oben na
 
 \begin{comment}
 	TODO: Erwähne Labeling/Bildregion erkennen aus Burger
+	TODO: arGetContour gehört auch noch dazu (8er Nachbarschaft)
 \end{comment}
 
 % subsubsection fiducial_detection (end)
@@ -55,6 +56,18 @@ Bei Fiducial Detection wird das Bildsignal von links nach rechts und von oben na
 In diesem Schritt wird eine Gruppe untersucht, ob es sich um ein Rechteck, und somit eine Marke, handelt.
  \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier fast geraden Linien, die durch
  Überschneidung vier Eckpunkte bilden\footcite[Vgl.][S.~42]{wagner07a}.
+
+\begin{comment}
+	- Eckpunkte entlang der Region finden
+	 - Abbruch: keine ecken mehr oder mehr als 4 ecken
+	- Nur exakt 4 ecken sind ein rechteck
+
+	Eckpunkte finden:
+	- Wähle ersten Pixel aus und berechne die Distanz aller anderen Pixel
+	- der Punkt mit der größten Distanz ist ein erster Eckpunkt
+	- Untersuche alle Pixel zwischen dem ersten Pixel und ersten Eckpunkt, Pixel mit größtem Abstand ist ein weiterer Eckpunkt
+	- rekursiv wiederholen, für linke seite/rechte seite
+\end{comment}
 
 % subsubsection rectangle_fitting (end)
 
