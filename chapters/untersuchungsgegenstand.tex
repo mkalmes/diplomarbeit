@@ -42,6 +42,34 @@ Bei Fiducial Detection wird das Bildsignal von links nach rechts und von oben na
  hat, wird die Gruppe zur weiteren Verarbeitung gespeichert. Falls es sich um eine offene Gruppe von Pixeln
  handelt, wird die Gruppe verworfen, da sie sich nicht zur Erkennung eignet\footcite[Vgl.][S.~41--42]{wagner07a}.
 
+In ARToolKitPlus wird ein Eingangssignal auf das Vorhandensein einer bitonalen Marke untersucht. Durch die Definition
+ einer bitonalen Marke (Vgl.~\autoref{sub:bitonalemarken}) muss das Verfahren einen dunklen Bereich auf hellem
+ Hintergrund entdecken. ARToolKitPlus verwendet dazu ein Schwellwertverfahren. Das Bildsignal wird dabei zeilenweise
+ von links oben nach rechts unten \gls{pixel} für \gls{pixel} untersucht. Wenn der Wert eines \glspl{pixel} unterhalb
+ eines festgelegten Schwellwerts bleibt, wird dieser \gls{pixel} als dunkel betrachtet. Andernfalls, wenn der Wert
+ größer als der Schwellwert ist, handelt es sich um einen hellen \gls{pixel}. Durch diese Schwellwertanalyse wird ein
+ Binärbild erstellt, das im nächsten Schritt des Fiducial Detection weiter verarbeitet wird.
+
+Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln in einem Binärbild, die es zu finden
+ gilt. Um Bildregionen zu erkennen werden zusammenhängende \gls{pixel} makiert, was auch als \textit{region labeling}
+ bekannt ist\footcite[Vgl.][S.~196]{burger05}. Zur Makierung von \gls{pixel} werden im einfachsten Fall numerische
+ Werte verwendet:
+
+\begin{equation*}
+	I(u,v) = \begin{cases}
+	0 & \textrm{Hintergrund}\\
+	1 & \textrm{Vordergrund}\\
+	2,3,\ldots,n & \textrm{Regionenmakierung}
+	\end{cases}
+\end{equation*}
+
+Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird das Binärbild zeilenweise von oben
+ nach unten untersucht. Dabei angrenzende \gls{pixel} werden ebenfalls untersucht. ARToolKitPlus verwendet dazu eine
+ 8er-Nachbarschaftsbeziehung. Das bedeutet, dass für ein \gls{pixel} an Position $(u,v)$ die vier Nachbarn $(u-1,v)$,
+ $(u-1,v+1)$, $(u,v+1)$ und $(u+1,v+1)$ untersucht werden (Vgl.~\autoref{fig:}). Wird bei der Untersuchung ein schwarzer
+ \gls{pixel} gefunden, wird ihm entweder eine neue vorläufig Makierung zur Identifizierung zugewiesen oder, falls ein
+ Nachbarpixel bereits eine Makierung besitzt, die Makierung des Nachbarpixels übernommen.
+
 \begin{comment}
 	TODO: Erwähne Labeling/Bildregion erkennen aus Burger
 	TODO: arGetContour gehört auch noch dazu (8er Nachbarschaft)
