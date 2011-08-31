@@ -57,6 +57,12 @@ In diesem Schritt wird eine Gruppe untersucht, ob es sich um ein Rechteck, und s
  \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier fast geraden Linien, die durch
  Überschneidung vier Eckpunkte bilden\footcite[Vgl.][S.~42]{wagner07a}.
 
+Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Das
+ \gls{pixel} mit dem grössten Abstand ist eine erste Ecke. Anschliessend wird eine Linie zwischen dem Startpunkt und
+ des ersten Eckpunktes definiert, um den Abstand aller Pixel zu dieser Geraden zu berechnen. Dadurch findet das
+ Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines \gls{pixel} größer als ein festgelegter
+ Schwellwert ist.
+
 \begin{comment}
 	- Eckpunkte entlang der Region finden
 	 - Abbruch: keine ecken mehr oder mehr als 4 ecken
