@@ -1,0 +1,30 @@
+\begin{algorithm}[ht]
+\caption{Kollisionen auflösen}
+\label{alg:resolve-label-collision}
+\begin{algorithmic}[1]
+	\Require $I_b,L,C$
+	\State $L = \{2,3,\ldots,n\}$ sind die vorläufigen Markierungen
+	\State $R \gets [\{2\},\{3\},\ldots,\{n\}]$, sodass $R_i = {i}$ für alle $\{i\} \in L$
+	\For{alle Kollisionen $(a,b)$ in $C$}
+	\label{resolve-label-collsion-partition-start}
+		\State $R_a \gets$ die Menge mit Markierung $a$
+		\State $R_b \gets$ die Menge mit Markierung $b$
+		\If{$R_a \neq R_b$}
+		\label{resolve-label-collsion-set-start}
+			\State $R_a \gets R_a \cup R_b$
+			\State $R_b \gets \{\}$
+		\EndIf
+		\label{resolve-label-collsion-set-end}
+	\EndFor
+	\label{resolve-label-collsion-partition-end}
+	\For{alle Pixel $(u,v)$ in $I_b$}
+	\label{resolve-label-collsion-relabel-start}
+		\If{$I_b(u,v) > 1$}
+			\State Suche in $R$ die Menge $R_i$ die Markierung $I_b(u,v)$ enthält
+			\State Ersetze Markierung in $I_b(u,v)$ mit $\textrm{min}(R_i)$
+			\label{resolve-label-collsion-set-new-label}
+		\EndIf
+	\EndFor
+	\label{resolve-label-collsion-relabel-end}
+\end{algorithmic}
+\end{algorithm}
