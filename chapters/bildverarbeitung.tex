@@ -491,6 +491,30 @@ Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundp
 \subsubsection{Auflösung von Kollisionen} % (fold)
 \label{sec:auflösung_von_kollisionen}
 
+In diesem Schritt müssen nun die gespeicherten Kollisionen der Markierungen aufgelöst werden, damit eine
+ zusammenhängende Bildregion nur durch eine Markierung repräsentiert wird. \citeauthor{burger05} beschreiben diese
+ Aufgabe  als nicht trivial, da kollidierende Regionen auch durch weitere Region zusammenhängen
+ können\footcite[Vgl.][S.~205]{burger05} (Vgl.~\autoref{fig:}).
+
+Die Menge der im letzten Schritt verwendeten vorläufigen Makierungen wird verwendet, um die Menge der Kollisionen
+ zu vereinen. Dazu wird eine Kollision der Markierung von $a$ und $b$ zu einer Menge zusammengeführt. Das bedeutet,
+ dass alle \gls{pixel} mit Markierung $b$ zu $a$ gehören. Danach wird das vorläufig markierte Binärbild erneut
+ durchlaufen. Jede vorläufige Makierung wird nun mit der Menge der neuen Markierung verglichen und eine eindeutige
+ Markierung zugewiesen.
+
+Betrachten wir \autoref{alg:resolve-label-collision} an folgendem Beispiel: In Zeile
+ \ref{resolve-label-collsion-partition-start}--\ref{resolve-label-collsion-partition-end} wird die Menge $L$ der
+ vorläufigen Markierungen aufgeteilt und Kollisionen aufgelöst. Nehmen wir an, dass wir eine Kollision $C_i = (2,3)$
+ auflösen wollen, wird die Mengen $R_2 = \{2\}$ und $R_3 = \{3\}$  zu $R_2 = \{2,3\}$ vereint
+ (Zeile \ref{resolve-label-collsion-set-start}--\ref{resolve-label-collsion-set-end}). Die Menge $R_3$ ist danach leer.
+ Nun werden in Zeile \ref{resolve-label-collsion-relabel-start}--\ref{resolve-label-collsion-relabel-end} alle
+ Makierungen untersucht. Wird dabei eine Makierung an Position $(u,v)$ gefunden, die zur Menge $R_2 = \{2,3\}$ gehört,
+ wird der kleinste Wert von $R_2$ an Position $(u,v)$ geschrieben (Zeile \ref{resolve-label-collsion-set-new-label}).
+
+\input{alg/resolve-label-collision}
+
+Nach diesem letzten Schritt sind alle zusammenhängende Regionen in einem Binärbild eindeutig gekennzeichnet und können nun mit anderen Verfahren weiterverarbeitet werden um, beispielsweise, die Form einer Region zu erkennen.
+
 % subsubsectionsection auflösung_von_kollisionen (end)
 
 % subsection regionen_in_binärbilder (end)
