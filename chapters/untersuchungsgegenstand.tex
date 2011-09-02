@@ -33,47 +33,33 @@ ARToolKitPlus erkennt Marken, indem in einem Binärbild Kanten gesucht werden um
 \subsubsection{Fiducial Detection} % (fold)
 \label{sub:fiducial_detection}
 
-Bei Fiducial Detection wird das Bildsignal von links nach rechts und von oben nach unten untersucht. Um eine Kante in
- einem Bild zu erkennen, verwendet ARToolKitPlus eine einfache Schwellwertanalyse die \gls{pixel} unter einem
- Schwellwert als dunkel und über einem Schwellwert als hell betrachtet. Folgt nach einem weißen \gls{pixel} ein
- schwarzer \gls{pixel}, wird dieser \gls{pixel} als möglicher Punkt eines Markenrahmens betrachtet. Der Algorithmus
- folgt diesem Punkt entweder bis zum Ursprung oder bis zum Bildrand. Alle besuchten \gls{pixel} werden dabei makiert,
- um ein mehrfaches durchlaufen zu vermeiden. Wenn der Algorithmus eine geschlossene Gruppe von Pixeln gefunden
- hat, wird die Gruppe zur weiteren Verarbeitung gespeichert. Falls es sich um eine offene Gruppe von Pixeln
- handelt, wird die Gruppe verworfen, da sie sich nicht zur Erkennung eignet\footcite[Vgl.][S.~41--42]{wagner07a}.
-
-In ARToolKitPlus wird ein Eingangssignal auf das Vorhandensein einer bitonalen Marke untersucht. Durch die Definition
- einer bitonalen Marke (Vgl.~\autoref{sub:bitonalemarken}) muss das Verfahren einen dunklen Bereich auf hellem
- Hintergrund entdecken. ARToolKitPlus verwendet dazu ein Schwellwertverfahren. Das Bildsignal wird dabei zeilenweise
- von links oben nach rechts unten \gls{pixel} für \gls{pixel} untersucht. Wenn der Wert eines \glspl{pixel} unterhalb
- eines festgelegten Schwellwerts bleibt, wird dieser \gls{pixel} als dunkel betrachtet. Andernfalls, wenn der Wert
- größer als der Schwellwert ist, handelt es sich um einen hellen \gls{pixel}. Durch diese Schwellwertanalyse wird ein
- Binärbild erstellt, das im nächsten Schritt der Fiducial Detection weiter verarbeitet wird.
+Fiducial Detection sorgt mit zwei Verfahren für die Eingrenzung der Bilddaten auf Bereiche in denen eine Marke sein könnte. Dazu müssen zuerst zusammenhängende Bildregionen identifiziert werden, um im Anschluss die Umrisse der Regionen zu berechnen.
 
 Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln in einem Binärbild, die es zu finden
- gilt. Um Bildregionen zu erkennen werden zusammenhängende \gls{pixel} makiert, was auch als \textit{region labeling}
- bekannt ist\footcite[Vgl.][S.~196]{burger05}. Zur Makierung von \gls{pixel} werden im einfachsten Fall numerische
- Werte verwendet:
+ gilt. ARToolKitPlus benutzt zur Erkennung von zusammenhängenden Bildregionen eine abgewandelte Form der sequentiellen
+ Regionenmarkierung (Vgl. \autoref{sec:regionen_in_binärbilder}). Im Unterschied zum bereits vorgestellten Verfahren,
+ integriert ARToolKitPlus die Erstellung eines Binärbild, durch eine Schwellwertanalyse, in das Verfahren der
+ Regionenmakierung. Dazu wird das Bildsignal zeilenweise von links oben nach rechts unten \gls{pixel} für \gls{pixel}
+ untersucht. Wenn der Wert eines \gls{pixel} dabei über einem Schwellwert liegt, handelt es sich um einen
+ Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um einen
+ Vordergrundpixel.
+
+Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und wird an Position $(u,v)$ als $0$ gespeichert. Da ARToolKitPlus ein Binärbild während der Regionenmarkierung erstellt, wird auf eine expliziete Speicherung eines Vordergrundpixel verzichetet. Somit verwendet ARToolKitPlus folgende numerischen Werte zur Markierung:
 
 \begin{equation*}
 	I(u,v) = \begin{cases}
 	0 & \textrm{Hintergrund}\\
-	1 & \textrm{Vordergrund}\\
-	2,3,\ldots,n & \textrm{Regionenmakierung}
+	1,2\ldots,n & \textrm{Regionenmakierung}
 	\end{cases}
 \end{equation*}
 
-Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird das Binärbild zeilenweise von oben
- nach unten untersucht. Dabei angrenzende \gls{pixel} werden ebenfalls untersucht. ARToolKitPlus verwendet dazu eine
- 8er-Nachbarschaftsbeziehung. Das bedeutet, dass für ein \gls{pixel} an Position $(u,v)$ die vier Nachbarn $(u-1,v)$,
- $(u-1,v+1)$, $(u,v+1)$ und $(u+1,v+1)$ untersucht werden (Vgl.~\autoref{fig:}). Wird bei der Untersuchung ein schwarzer
- \gls{pixel} gefunden, wird ihm entweder eine neue vorläufig Makierung zur Identifizierung zugewiesen oder, falls ein
- Nachbarpixel bereits eine Makierung besitzt, die Makierung des Nachbarpixels übernommen.
-
-\begin{comment}
-	TODO: Erwähne Labeling/Bildregion erkennen aus Burger
-	TODO: arGetContour gehört auch noch dazu (8er Nachbarschaft)
-\end{comment}
+Bei einem Vordergrundpixel wird die Beziehung des \gls{pixel} zu seinen Nachbarn durch eine 8er-Nachbarschaft
+ untersucht. Bei der Zuweisung einer Markierung unterscheidet sich ARToolKitPlus von dem Verfahren in
+ \autoref{sec:regionen_in_binärbilder}. Eine Kollision der Markierung durch unterschiedliche Markierungen der Nachbarn
+ wird direkt verarbeite. Dazu werden die numerischen Werte der Makierungen verglichen und alle größeren Werte durch die
+ Markierung mit kleinerem Wert überschrieben. Dadurch müssen Kollisionen nicht in einem zusätzlichen Schritt aufgelöst
+ werden. Dabei ist zu erwähnen, dass die Markierungen im Bildspeicher nicht ersetzt werden. ARToolKitPlus speichert die
+ Information der Markierungen in einer eigenen Liste.
 
 % subsubsection fiducial_detection (end)
 
