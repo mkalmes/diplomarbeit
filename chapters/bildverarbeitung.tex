@@ -478,7 +478,8 @@ Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wi
  die Makierungen miteinander verglichen werden. Wenn alle Nachbarn die gleiche Makierung besitzen wird sie für Position
  $(u,v)$ übernommen. Falls es sich aber um verschiedene Makierungen handelt, spricht man von einer Kollision der
  Makierungen. Eine Kollision bedeutet, dass eine zusammenhängende Regionen durch zwei unterschiedliche Makierungen
- dargestellt wird (Vgl.~\autoref{fig:}). Nach \citeauthor{burger05} werden diese Kollisionen in einer dynamischen
+ dargestellt wird (Vgl.~\autoref{fig:}). Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn
+ zugewiesen und die Kollision wird vermerkt. Nach \citeauthor{burger05} werden diese Kollisionen in einer dynamischen
  Datenstruktur gespeichert und zu einem späteren Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
 
 % subsubsectionsection vorläufige_makierung (end)
