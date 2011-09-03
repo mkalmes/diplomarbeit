@@ -72,15 +72,20 @@ Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, v
  Flächeninhalts der Region und den Koordinaten des Zentrums. Diese Daten werden mithilfe der Liste der Markierungen
  generiert und das Verfahren in \autoref{sec:} erläutert.
 
-\begin{comment}
-	TODO: arGetContour gehört auch noch dazu (8er Nachbarschaft)
-	Wenn der Algorithmus eine geschlossene Gruppe von Pixeln gefunden
-	 hat, wird die Gruppe zur weiteren Verarbeitung gespeichert. Falls es sich um eine offene Gruppe von Pixeln
-	 handelt, wird die Gruppe verworfen, da sie sich nicht zur Erkennung eignet\footcite[Vgl.][S.~41--42]{wagner07a}.
-\end{comment}
+Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt. ARToolKitPlus verwendet dazu die Liste
+ der Markierungen und das markierte Bild. Um die Kontur einer Region zu ermitteln, muss eine Region auf bestimmte
+ Merkmale hin untersucht werden. Dazu wird für jede gefundene Regionenmakierung der Flächeninhalt der Region
+ untersucht. Falls die Fläche einer Region zu klein oder zu groß zur Analyse ist, wird sie verworfen. Anschliessend
+ werden die Start- und Endkoordinaten der Region untersucht. Liegen diese Koordinaten am Rand des Bildsignals eignen
+ sie sich nicht zur Erkennung und die Region wird ebenfalls verworfen. Wenn eine Region diese Überprüfung bestanden
+ hat, wird der erste Pixel der Region als Startpunkt gewählt. Mithilfe einer 8er-Nachbarschaft werden die angrenzenden
+ Markierungen untersucht und verfolgt. Dieses Verfahren wird solange wiederholt, bis es eine geschlossene Kontur zurück
+ zum Startpunkt finden konnte. Hat das Verfahren eine Markierung bis zum Bildrand untersucht ohne eine geschlossene
+ Kontur zu finden, wird die Region verworfen, da sie sich nicht zur Erkennung
+ eignet\footcite[Vgl.][S.~41--42]{wagner07a}. Liegt eine geschlossene Kontur vor, ist das Verfahren des Fiducial
+ Detection beendet und die Kontur wird zur weiteren Verarbeitung an Rectangle Fitting übergeben.
 
 % subsubsection fiducial_detection (end)
-
 
 \subsubsection{Rectangle Fitting} % (fold)
 \label{sub:rectangle_fitting}
@@ -110,7 +115,6 @@ Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle an
 % subsubsection rectangle_fitting (end)
 
 % subsection artoolkitplus (end)
-
 
 \subsection{Verfahren nach Hirzer} % (fold)
 \label{sub:verfahren_nach_hirzer}
