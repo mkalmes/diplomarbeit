@@ -90,27 +90,21 @@ Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt.
 \subsubsection{Rectangle Fitting} % (fold)
 \label{sub:rectangle_fitting}
 
-In diesem Schritt wird eine Gruppe untersucht, ob es sich um ein Rechteck, und somit eine Marke, handelt.
+In diesem Schritt wird eine geschlossene Kontur untersucht, ob es sich um ein Rechteck handelt.
  \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier fast geraden Linien, die durch
  Überschneidung vier Eckpunkte bilden\footcite[Vgl.][S.~42]{wagner07a}.
 
-Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Das
- \gls{pixel} mit dem grössten Abstand ist eine erste Ecke. Anschliessend wird eine Linie zwischen dem Startpunkt und
- des ersten Eckpunktes definiert, um den Abstand aller Pixel zu dieser Geraden zu berechnen. Dadurch findet das
+Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Der
+ \gls{pixel} mit dem grössten Abstand zum Startpunkt ist eine erste Ecke. Anschliessend wird eine Linie zwischen dem
+ Startpunkt und des ersten Eckpunktes definiert. Diese Linie trennt die Kontur in eine linke und eine rechte Hälfte.
+ Für jeden \gls{pixel} der Kontur einer dieser Hälfte wird der Abstand zur Linie berechnet. Dadurch findet das
  Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines \gls{pixel} größer als ein festgelegter
- Schwellwert ist.
+ Schwellwert ist. \autoref{fig:} illustriert das vorgestellte Verfahren.
 
-\begin{comment}
-	- Eckpunkte entlang der Region finden
-	 - Abbruch: keine ecken mehr oder mehr als 4 ecken
-	- Nur exakt 4 ecken sind ein rechteck
-
-	Eckpunkte finden:
-	- Wähle ersten Pixel aus und berechne die Distanz aller anderen Pixel
-	- der Punkt mit der größten Distanz ist ein erster Eckpunkt
-	- Untersuche alle Pixel zwischen dem ersten Pixel und ersten Eckpunkt, Pixel mit größtem Abstand ist ein weiterer Eckpunkt
-	- rekursiv wiederholen, für linke seite/rechte seite
-\end{comment}
+Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab falls mehr als vier Ecken gefunden wurden. Im Falle,
+ dass Rectangle Fitting alle Konturpixel untersucht hat und dabei weniger als vier Ecken gefunden hat, handelt es sich
+ bei der Kontur nicht um ein Rechteck und die Kontur kann verworfen werden. Nur wenn exakt vier Eckpunkte gefunden
+ wurden, handelt es sich bei der Kontur um ein Rechteck, und somit eine Marke.
 
 % subsubsection rectangle_fitting (end)
 
