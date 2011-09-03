@@ -507,7 +507,32 @@ Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wi
 
 Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundpixeln wurde eine vorläufige Markierung
  zugeteilt. Dabei wurden auftretende Kollisionen der Markierungen gespeichert. Der Ablauf des ersten Schritts ist in
- \autoref{fig:} dargestellt.
+ \autoref{fig:markierung} dargestellt.
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:markierung-binaer}
+		\input{resources/Binaerbild.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:markierung-1}
+		\input{resources/Regionenmarkierung-1.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:markierung-2}
+		\input{resources/Regionenmarkierung-2.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:markierung-3}
+		\input{resources/Regionenmarkierung-3.pdf_tex}
+	}
+	\caption{Vorläufige Regionenmarkierung. Ein Binärbild \subref{fig:markierung-binaer} wird zeilenweise von
+	 oben nach unten durchlaufen. Eine 8er-Nachbarschaft vergleicht die angrenzenden Pixel \subref{fig:markierung-1}.
+	 Eine Kollision zwischen zwei Markierungen wird regestriert und der kleinere Wert zugewiesen bis das Binärbild
+	 vollständig verarbeitet wurde \subref{fig:markierung-2}--\subref{fig:markierung-3}.}
+	\label{fig:markierung}
+\end{figure}
 
 % subsubsectionsection vorläufige_makierung (end)
 
@@ -517,7 +542,7 @@ Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundp
 In diesem Schritt müssen nun die gespeicherten Kollisionen der Markierungen aufgelöst werden, damit eine
  zusammenhängende Bildregion nur durch eine Markierung repräsentiert wird. \citeauthor{burger05} beschreiben diese
  Aufgabe  als nicht trivial, da kollidierende Regionen auch durch weitere Region zusammenhängen
- können\footcite[Vgl.][S.~205]{burger05} (Vgl.~\autoref{fig:}).
+ können\footcite[Vgl.][S.~205]{burger05} (Vgl.~\autoref{fig:markierung-3}).
 
 Die Menge der im letzten Schritt verwendeten vorläufigen Makierungen wird verwendet, um die Menge der Kollisionen
  zu vereinen. Dazu wird eine Kollision der Markierung von $a$ und $b$ zu einer Menge zusammengeführt. Das bedeutet,
