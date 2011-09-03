@@ -494,9 +494,16 @@ Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wi
  die Makierungen miteinander verglichen werden. Wenn alle Nachbarn die gleiche Makierung besitzen wird sie für Position
  $(u,v)$ übernommen. Falls es sich aber um verschiedene Makierungen handelt, spricht man von einer Kollision der
  Makierungen. Eine Kollision bedeutet, dass eine zusammenhängende Regionen durch zwei unterschiedliche Makierungen
- dargestellt wird (Vgl.~\autoref{fig:}). Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn
+ dargestellt wird (Vgl.~\autoref{fig:kollision}). Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn
  zugewiesen und die Kollision wird vermerkt. Nach \citeauthor{burger05} werden diese Kollisionen in einer dynamischen
  Datenstruktur gespeichert und zu einem späteren Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
+
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Kollision.pdf_tex}
+	\caption{Beispiel einer Kollision zwischen Markierung $2$ und Markierung $3$.}
+	\label{fig:kollision}
+\end{figure}
 
 Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundpixeln wurde eine vorläufige Markierung
  zugeteilt. Dabei wurden auftretende Kollisionen der Markierungen gespeichert. Der Ablauf des ersten Schritts ist in
