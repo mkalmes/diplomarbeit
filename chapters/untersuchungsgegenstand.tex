@@ -14,7 +14,7 @@
 \label{sub:artoolkitplus}
 
 ARToolKitPlus ist die Weiterentwicklung von ARToolKit von \citeauthor{wagner07b}. ARToolKitPlus verwendet zur
-Identifizierung von Marken eine \textit{Runtime Tracking Pipeline} bestehend aus den fünf Stufen:
+Identifizierung von Marken eine \textit{Runtime Tracking Pipeline} bestehend aus den fünf Stufen
 
 \begin{enumerate}
 	\item Fiducial Detection, \label{fiducialdetection}
@@ -56,21 +56,21 @@ Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und 
 Bei einem Vordergrundpixel wird die Beziehung des \gls{pixel} zu seinen Nachbarn durch eine 8er-Nachbarschaft
  untersucht. Bei der Zuweisung einer Markierung unterscheidet sich ARToolKitPlus von dem Verfahren in
  \autoref{sec:regionen_in_binärbilder}. Eine Kollision der Markierung durch unterschiedliche Markierungen der Nachbarn
- wird direkt verarbeite. Dazu werden die numerischen Werte der Makierungen verglichen und alle größeren Werte durch die
- Markierung mit kleinerem Wert überschrieben. Dadurch müssen Kollisionen nicht in einem zusätzlichen Schritt aufgelöst
- werden. Dabei ist zu erwähnen, dass die Markierungen im Bildspeicher nicht ersetzt werden. ARToolKitPlus speichert die
- Information der Markierungen in einer eigenen Liste (Vgl. \autoref{fig:}).
+ wird direkt verarbeitet. Dazu werden die numerischen Werte der Makierungen verglichen und alle größeren Werte durch
+ die Markierung mit kleinerem Wert überschrieben. Dadurch müssen Kollisionen nicht in einem zusätzlichen Schritt
+ aufgelöst werden. Dabei ist zu erwähnen, dass die Markierungen im Bildspeicher nicht ersetzt werden. ARToolKitPlus
+ speichert die Information der Markierungen in einer eigenen Liste.
 
 Nachdem das Eingangssignal vollständig markiert wurde, enthält die Liste mit Markierungen duch aufgetretene Kollisionen
  keine fortlaufenden Werte. Um eine Liste mit fortlaufenden Markierungswerten zu erhalten, wird die Liste für jede
- Markierung durchlaufen. Dabei wird unterschieden, ob der aktuelle Wert der Laufvariable entspricht, falls dem so ist,
+ Markierung durchlaufen. Dabei wird untersucht, ob der aktuelle Wert der Laufvariable entspricht. Falls dem so ist,
  wird die Laufvarible in der Liste gespeichert. Andernfalls wird der vorherige Wert der List an die aktuelle Position
  geschrieben. \autoref{fig:} verdeutlicht diesen Vorgang.
 
 Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, verwendet ARToolKitPlus dazu eine eigene
  Speicherbereich. Eine Region besteht in ARToolKitPlus aus der Markierung, der Start- und Endposition der Region, des
  Flächeninhalts der Region und den Koordinaten des Zentrums. Diese Daten werden mithilfe der Liste der Markierungen
- generiert und das Verfahren in \autoref{sec:} erläutert.
+ generiert und das Verfahren in \autoref{sec:artoolkitplus} erläutert.
 
 Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt. ARToolKitPlus verwendet dazu die Liste
  der Markierungen und das markierte Bild. Um die Kontur einer Region zu ermitteln, muss eine Region auf bestimmte
