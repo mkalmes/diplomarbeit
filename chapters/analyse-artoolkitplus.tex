@@ -4,6 +4,34 @@
 \subsection{Datenstrukturen} % (fold)
 \label{sec:datenstrukturen}
 
+ARToolKitPlus speichert die Informationen einer Marke in zwei einfachen Datenstrukturen. Informationen zur
+ Identifizierung einer Marke werden in \textproc{MarkerInfo} gespeichert (\autoref{alg:datastructure-markerinfo}) und
+ Informationen zur Erkennung einer Marke werden in \textproc{MarkerInfo2} gespeichert
+ (\autoref{alg:datastructure-markerinfo2}). Da \textproc{MarkerInfo} zur Identifizierung einer Marke verwendet wird,
+ werde ich diese Datenstruktur nur zur Vollständigkeit erwähnen. Das Identifikationsmerkmal $\mathit{id}$ wird in
+ \autoref{alg:calc} als Rückgabewert verwendet.
+
+\input{alg/analyse-artplus/datastructure-markerinfo}
+
+\subsubsection{MakerInfo2} % (fold)
+\label{sec:makerinfo2}
+
+Die Variable $\mathit{area}$ speichert den Flächeninhalt einer Marke, während $\mathit{pos}[2]$ die Position des
+ Zentrums der Marke enthält. $\mathit{coord\_num}$ enthält die Anzahl der gefundenen Konturpixel, die in
+ $\mathit{x\_coord}$ als X-Koordinate und in $\mathit{y\_coord}$ als Y-Koordinate gespeichert sind. Die konstante Größe
+ $\mathit{AR\_CHAIN\_MAX}$ des Speichers für die Koordinaten wird zur Laufzeit nicht verändert. ARToolKitPlus erlaubt
+ maximal $10000$ Einträge für Koordinaten pro Marke. Die Eckpunkte einer Marke sind in $\mathit{x\_coord}$ und
+ $\mathit{y\_coord}$ enthalten und werden durch einen Index in $\mathit{vertex}$ referenziert. Hierbei ist zu beachten,
+ dass $\mathit{vertex}$ fünf Einträge speichert, wobei der erste und letzte Eintrag auf die gleiche Koordinate
+ verweisen. Dadurch kann bei der Grafikprogrammierung mit OpenGL sehr einfach ein Rahmen um eine Marke gezeichnet
+ werden.
+
+\input{alg/analyse-artplus/datastructure-markerinfo2}
+
+Der Zugriff auf die Variablen der Datenstruktur, sowohl lesend als auch schreibend, ist konstant.
+
+% subsubsection makerinfo2 (end)
+
 % subsection datenstrukturen (end)
 
 \subsection{Fiducial Detection} % (fold)
