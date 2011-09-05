@@ -1,0 +1,24 @@
+\begin{algorithm}[ht]
+\caption{\textproc{calc}}
+\label{alg:calc}
+\begin{algorithmic}[1]
+	\Require $I, \mathit{thresh}$
+	\State $\mathit{marker\_info} \gets \infty$
+	\label{alg:calc-init-start}
+	\State $\mathit{marker\_num} \gets \infty$
+	\label{alg:calc-init-end}
+	\If{$I == 0$}
+	\label{alg:calc-check-image-start}
+		\State \textbf{return} $0$
+	\EndIf
+	\label{alg:calc-check-image-end}
+	\If{\Call{arDetectMarker}{$I,\mathit{thresh},\mathit{marker\_info},\mathit{marker\_num}$} $<0$}
+	\label{alg:calc-start-detection-start}
+		\State \textbf{return} $-1$
+	\EndIf
+	\label{alg:calc-start-detection-end}
+	\State \ldots \Comment{Weitere Anweisungen zur Identifikation einer Marke.}
+	\State \textbf{return} $\mathit{marker\_info}.\mathit{id}$
+	\label{alg:calc-identified-marker}
+\end{algorithmic}
+\end{algorithm}
