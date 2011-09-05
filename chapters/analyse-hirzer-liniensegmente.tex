@@ -7,12 +7,12 @@ Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, lösche
  End-Punkt der Linie darstellen. Variable $c$ speichert die Anzahl der unterstützenden Edgels der Linie. Die Lese- und
  Schreibzugriffe auf die Datenstruktur ist konstant.
 
-\input{alg/datastructure-line}
+\input{alg/analyse-hirzer/datastructure-line}
 
 Die Datenstruktur eines Speicherpools für Linien in \autoref{alg:datastructure-linepool} besteht aus einem Array
  $\mathit{data}$ mit der festen Größe $N$ und einer Zählvariablen $\mathit{count}$.
 
-\input{alg/datastructure-linepool}
+\input{alg/analyse-hirzer/datastructure-linepool}
 
 Der Speicherpool für Linien in \autoref{alg:datastructure-linepool-implementation} besteht wiederum aus einem Array
  $\mathit{data}$ mit der Anzahl $S$ der zur Verfügung stehenden Speicherpools. Der Pointer von $\mathit{data}$ wird in
@@ -23,9 +23,9 @@ Mehrere Speicherpools können mit \autoref{alg:linepool-getmemorypools} geholt w
  \glspl{edgel} (Vgl. \autoref{alg:edgelpool-getmemorypools} und \autoref{alg:edgelpool-getmemorypool}). Der Zugriff
  erfolgt in konstanter Zeit.
 
-\input{alg/linepool-getmemorypools}
+\input{alg/analyse-hirzer/linepool-getmemorypools}
 
-\input{alg/linepool-getmemorypool}
+\input{alg/analyse-hirzer/linepool-getmemorypool}
 
 Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline} verwendet. Es wird ein Pointer $p$ auf
  den Speicherpool, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Pointer $p$ handelt und genügend
@@ -33,7 +33,7 @@ Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline
  \ref{alg:linepool-addline-add-start}--\ref{alg:linepool-addline-add-end} die Linie hinzugefügt und die Zählvariable
  inkrementiert. Das Hinzufügen einer Linie ist konstant.
 
-\input{alg/linepool-addline}
+\input{alg/analyse-hirzer/linepool-addline}
 
 Zum auslesen einer Linie aus dem Speicherpool, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
  Pointer $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Pool ausgelesen werden soll. In Zeile
@@ -41,7 +41,7 @@ Zum auslesen einer Linie aus dem Speicherpool, wird \autoref{alg:linepool-getlin
  Linien befindet. Wenn dies der Fall ist, wird in Zeile~\ref{alg:linepool-getline-returnline} die Linie in konstanter
  Zeit zurückgegeben.
 
-\input{alg/linepool-getline}
+\input{alg/analyse-hirzer/linepool-getline}
 
 Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool gelöscht. Dazu wird der Pointer $p$ auf
  den Speicherpool übergeben und in Zeile
@@ -49,7 +49,7 @@ Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool 
  Wenn es sich um einen gültigen Pointer handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
  Zugriff handelt, erfolgt das Löschen in konstanter Zeit.
 
-\input{alg/linepool-resetmemorypool}
+\input{alg/analyse-hirzer/linepool-resetmemorypool}
 
 Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigegeben werden. Dazu wird der Pointer $p$
  auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetmemorypool}
@@ -58,12 +58,12 @@ Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigeg
  \ref{alg:linepool-freememorypool-savepointer} im Speicherpool $\mathit{pool}$ zu speichern. Auch hier erfolgt das
  Freigeben des Speichers wieder in konstanter Zeit.
 
-\input{alg/linepool-freememorypool}
+\input{alg/analyse-hirzer/linepool-freememorypool}
 
 Die Anzahl der Einträge in einem Pool werden durch \autoref{alg:linepool-count} bestimmt, indem die Zählvariable
  $\mathit{count}$ zurückgegeben wird. Der Zugriff auf die Variable erfolgt in konstanter Zeit.
 
-\input{alg/linepool-count}
+\input{alg/analyse-hirzer/linepool-count}
 
 Im Verfahren nach \citeauthor{clarke96} gibt es keinen Grund Linien aus dem Speicherpool zu löschen. Darum kann auf
  einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel} verzichtet werden.
