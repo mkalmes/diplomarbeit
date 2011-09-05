@@ -432,4 +432,139 @@ Bei der Berechnung von $I * H_{xy}$ entspricht dies $3 \cdot 3 = 9$ Multiplikati
 
 % subsection filter (end)
 
+\subsection{Regionen in Binärbilder} % (fold)
+\label{sec:regionen_in_binärbilder}
+
+Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur zwei Werte, die wir auch als Vordergrund
+ und Hintergrund bezeichnen können. Das Interesse bei einem Binärbild gilt dementsprechend den Informationen im
+ Vordergrund. Eine zusammenhängende Struktur von Vordergrundpixeln wird als Bildregion bezeichnet. Um diese
+ Bildregionen in einem Binärbild zu erkennen, werden zusammenhängende \gls{pixel} makiert, was auch als
+ \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Makierung von \gls{pixel} werden folgende
+ numerischen Werte verwendet:
+
+\begin{equation*}
+	I(u,v) = \begin{cases}
+	0 & \textrm{Hintergrund}\\
+	1 & \textrm{Vordergrund}\\
+	2,3,\ldots,n & \textrm{Regionenmakierung}
+	\end{cases}
+\end{equation*}
+
+Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird ein Binärbild in zwei Schrittten
+ untersucht. Im ersten Schritt werden im Binärbild vorläufige Markierungen für Regionen gespeichert und im zweiten
+ Schritt werden mehrfache Makierungen für eine Region aufgelöst.
+
+\subsubsection{Vorläufige Makierung} % (fold)
+\label{sec:vorläufige_makierung}
+
+Zuerst muss das Binärbild zeilenweise von oben nach unten auf das Vorhandensein von Vordergrundpixel untersucht werden.
+Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nachbarschaftsbeziehung, ebenfalls
+ untersucht. Zwei gebräuchliche Definitonen von Nachbarschaftsbeziehungen sind zum einen die 4er-Nachbarschaft und zum
+ anderen die 8er-Nachbarschaft. Für ein \gls{pixel} $I(u,v)$ werden bei der 4er-Nachbarschaft die beiden angrenzenden
+ \gls{pixel} $I(u-1,v)$ und $I(u,v+1)$ untersucht. Bei der 8er-Nachbarschaft werden die vier Nachbarn $I(u-1,v)$,
+ $I(u-1,v+1)$, $I(u,v+1)$ und $I(u+1,v+1)$ untersucht. Beide Nachbarschaftsbeziehungen sind in
+ \autoref{fig:nachbarschaft} abgebildet.
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:4er-nachbarschaft}
+		\input{resources/4er-Nachbarschaft.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:8er-nachbarschaft}
+		\input{resources/8er-Nachbarschaft.pdf_tex}
+	}
+	\caption{Nachbarschaftsbeziehung. \subref{fig:4er-nachbarschaft} 4er-Nachbarschaft mit $N_1 = I(u-1,v)$ und
+	 $N_2 = I(u,v+1)$. \subref{fig:8er-nachbarschaft} 8er-Nachbarschaft mit $N_1 = I(u-1,v)$, $N_2 = I(u-1,v+1)$,
+	 $N_3 = (u,v+1)$ und $N_4 = I(u+1,v+1)$.}
+	\label{fig:nachbarschaft}
+\end{figure}
+
+Die Zuweisung einer Markierung für einen \gls{pixel} ist davon abhängig ob
+
+\begin{enumerate}
+	\item alle Nachbarn Hintergrundpixel sind, \label{labeling-all-background}
+	\item genau ein Nachbar hat eine Makierung hat oder \label{labeling-one-neighbour}
+	\item mehrere Nachbarn eine Makierung haben. \label{labeling-many-neighbours}
+\end{enumerate}
+
+Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wird eine Makierung an Position $(u,v)$
+ geschrieben. Bei \autoref{labeling-one-neighbour} wird die Makierung des Nachbarn übernommen. Im letzten Fall müssen
+ die Makierungen miteinander verglichen werden. Wenn alle Nachbarn die gleiche Makierung besitzen wird sie für Position
+ $(u,v)$ übernommen. Falls es sich aber um verschiedene Makierungen handelt, spricht man von einer Kollision der
+ Makierungen. Eine Kollision bedeutet, dass eine zusammenhängende Regionen durch zwei unterschiedliche Makierungen
+ dargestellt wird (Vgl.~\autoref{fig:kollision}). Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn
+ zugewiesen und die Kollision wird vermerkt. Nach \citeauthor{burger05} werden diese Kollisionen in einer dynamischen
+ Datenstruktur gespeichert und zu einem späteren Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
+
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Kollision.pdf_tex}
+	\caption{Beispiel einer Kollision zwischen Markierung $2$ und Markierung $3$.}
+	\label{fig:kollision}
+\end{figure}
+
+Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundpixeln wurde eine vorläufige Markierung
+ zugeteilt. Dabei wurden auftretende Kollisionen der Markierungen gespeichert. Der Ablauf des ersten Schritts ist in
+ \autoref{fig:markierung} dargestellt.
+
+\begin{figure}[!ht]
+	\centering
+	\subfigure[]{
+		\label{fig:markierung-binaer}
+		\input{resources/Binaerbild.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:markierung-1}
+		\input{resources/Regionenmarkierung-1.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:markierung-2}
+		\input{resources/Regionenmarkierung-2.pdf_tex}
+	}
+	\subfigure[]{
+		\label{fig:markierung-3}
+		\input{resources/Regionenmarkierung-3.pdf_tex}
+	}
+	\caption{Vorläufige Regionenmarkierung. Ein Binärbild \subref{fig:markierung-binaer} wird zeilenweise von
+	 oben nach unten durchlaufen. Eine 8er-Nachbarschaft vergleicht die angrenzenden Pixel \subref{fig:markierung-1}.
+	 Eine Kollision zwischen zwei Markierungen wird regestriert und der kleinere Wert zugewiesen bis das Binärbild
+	 vollständig verarbeitet wurde \subref{fig:markierung-2}--\subref{fig:markierung-3}.}
+	\label{fig:markierung}
+\end{figure}
+
+% subsubsectionsection vorläufige_makierung (end)
+
+\subsubsection{Auflösung von Kollisionen} % (fold)
+\label{sec:auflösung_von_kollisionen}
+
+In diesem Schritt müssen nun die gespeicherten Kollisionen der Markierungen aufgelöst werden, damit eine
+ zusammenhängende Bildregion nur durch eine Markierung repräsentiert wird. \citeauthor{burger05} beschreiben diese
+ Aufgabe  als nicht trivial, da kollidierende Regionen auch durch weitere Region zusammenhängen
+ können\footcite[Vgl.][S.~205]{burger05} (Vgl.~\autoref{fig:markierung-3}).
+
+Die Menge der im letzten Schritt verwendeten vorläufigen Makierungen wird verwendet, um die Menge der Kollisionen
+ zu vereinen. Dazu wird eine Kollision der Markierung von $a$ und $b$ zu einer Menge zusammengeführt. Das bedeutet,
+ dass alle \gls{pixel} mit Markierung $b$ zu $a$ gehören. Danach wird das vorläufig markierte Binärbild erneut
+ durchlaufen. Jede vorläufige Makierung wird nun mit der Menge der neuen Markierung verglichen und eine eindeutige
+ Markierung zugewiesen.
+
+Betrachten wir \autoref{alg:resolve-label-collision} an folgendem Beispiel: In Zeile
+ \ref{resolve-label-collsion-partition-start}--\ref{resolve-label-collsion-partition-end} wird die Menge $L$ der
+ vorläufigen Markierungen aufgeteilt und Kollisionen aufgelöst. Nehmen wir an, dass wir eine Kollision $C_i = (2,3)$
+ auflösen wollen, wird die Mengen $R_2 = \{2\}$ und $R_3 = \{3\}$  zu $R_2 = \{2,3\}$ vereint
+ (Zeile \ref{resolve-label-collsion-set-start}--\ref{resolve-label-collsion-set-end}). Die Menge $R_3$ ist danach leer.
+ Nun werden in Zeile \ref{resolve-label-collsion-relabel-start}--\ref{resolve-label-collsion-relabel-end} alle
+ Makierungen untersucht. Wird dabei eine Makierung an Position $(u,v)$ gefunden, die zur Menge $R_2 = \{2,3\}$ gehört,
+ wird der kleinste Wert von $R_2$ an Position $(u,v)$ geschrieben (Zeile \ref{resolve-label-collsion-set-new-label}).
+
+\input{alg/resolve-label-collision}
+
+Nach diesem letzten Schritt sind alle zusammenhängende Regionen in einem Binärbild eindeutig gekennzeichnet und können nun mit anderen Verfahren weiterverarbeitet werden um, beispielsweise, die Form einer Region zu erkennen.
+
+% subsubsectionsection auflösung_von_kollisionen (end)
+
+% subsection regionen_in_binärbilder (end)
+
 % section bildverarbeitung (end)
