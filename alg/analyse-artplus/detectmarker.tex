@@ -1,0 +1,28 @@
+\begin{algorithm}[ht]
+\caption{}
+\label{alg:detectmarker}
+\begin{algorithmic}[1]
+	\Require $I,\mathit{thresh},\mathit{marker\_info},\mathit{marker\_num}$
+	\State $I_l \gets$ \textproc{NULL}
+	\label{alg:detectmarker-init-start}
+	\State $\mathit{label\_num},\mathit{area},\mathit{clip},\mathit{label\_ref},\mathit{pos} \gets \infty$
+	\label{alg:detectmarker-init-end}
+	\State \Call{autoThreshold.reset}{}
+	\State \Call{checkImageBuffer}{}
+	\State $\mathit{marker\_num} \gets 0$
+	% AR_AREA_MAX (100000) und AR_AREA_MIN (70) sind defines
+	% wmarker_num globale variable
+	\State $I_l \gets$ \textproc{arDetectMarker2}$\left(
+	\begin{aligned}
+			& I,\mathit{thresh},\mathit{label\_ref},\mathit{area},\mathit{pos},\mathit{clip},\\
+			& \mathit{AR\_AREA\_MAX}, \mathit{AR\_AREA\_MIN},\\
+			& 1.0, \mathit{wmarker\_num}
+	\end{aligned}\right)$
+	\label{alg:detectmarker-call-method}
+	\If{$I_l$}
+		\label{alg:detectmarker-found-rectangle}
+		\State \ldots \Comment{Weitere Anweisungen zur Identifikation einer Marke.}
+	\EndIf
+	\State \ldots \Comment{Weitere Anweisungen zur Identifikation einer Marke.}
+\end{algorithmic}
+\end{algorithm}
