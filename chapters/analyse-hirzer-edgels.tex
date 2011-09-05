@@ -4,7 +4,7 @@
 Die Datenstruktur eines \glspl{edgel} besteht aus der $x$- und $y$-Koordinate und der Orientierung
  (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} sind konstant.
 
-\input{alg/datastructure-edgel}
+\input{alg/analyse-hirzer/datastructure-edgel}
 
 Der Vergleich, ob \glspl{edgel} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
  werden zwei zu vergleichende \gls{edgel} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
@@ -17,14 +17,14 @@ Der Vergleich, ob \glspl{edgel} kompatibel sind, wird mit \autoref{alg:compatibl
 
 überprüft. Es muss sichergestellt werden, dass die Orientierung in Bogenmaß erfolgt.
 
-\input{alg/compatibleedgel}
+\input{alg/analyse-hirzer/compatibleedgel}
 
 Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
  (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die nächste freie Position im
  Array zu markieren. Der Speicherpool aus \autoref{alg:datastructure-poolimplementation} ist ein Array vom Typ des
  Edgelspeichers mit der Größe $S$, dessen Adresse im Pointer $\mathit{pool}$ gespeichert wird.
 
-\input{alg/datastructure-edgelpool}
+\input{alg/analyse-hirzer/datastructure-edgelpool}
 
 \autoref{alg:edgelpool-getmemorypools} basiert auf einem einfachen Stack Allocator von
  \citeauthor{kr}\footcite[Vgl.][S.~100--104]{kr}. Die Variable $n$ gibt die Anzahl der angeforderten Pools an. In Zeile
@@ -35,9 +35,9 @@ Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array v
  verzichtet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben
  eine konstante Laufzeit.
 
-\input{alg/edgelpool-getmemorypools}
+\input{alg/analyse-hirzer/edgelpool-getmemorypools}
 
-\input{alg/edgelpool-getmemorypool}
+\input{alg/analyse-hirzer/edgelpool-getmemorypool}
 
 Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-addedgel}. Der Algorithmus benötigt
  einen Pointer $p$ auf einen Pool und einen \gls{edgel} $e$. In Zeile
@@ -48,7 +48,7 @@ Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool
  \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgel} $e$ an die freie
  Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das Hinzufügen eines \glspl{edgel} ist konstant.
 
-\input{alg/edgelpool-addedgel}
+\input{alg/analyse-hirzer/edgelpool-addedgel}
 
 \glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
  Index $i$ übergeben. In Zeile
@@ -59,7 +59,7 @@ Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool
  \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \glspl{edgel} an Position $i$ zurückgegeben. Der Zugriff auf
  einen \gls{edgel} ist konstant.
 
-\input{alg/edgelpool-getedgel}
+\input{alg/analyse-hirzer/edgelpool-getedgel}
 
 Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird
  der Pool-Pointer $p$ und die Position $i$ des zu löschenden \glspl{edgel} übergeben. Nach der Überprüfung des Pointers
@@ -68,7 +68,7 @@ Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edg
  \ref{alg:edgelpool-removeedgel-validrange-start}--\ref{alg:edgelpool-removeedgel-validrange-end}, gibt es zwei zu
  behandelnde Fälle um einen \gls{edgel} zu löschen.
 
-\input{alg/edgelpool-removeedgel}
+\input{alg/analyse-hirzer/edgelpool-removeedgel}
 
 Der Edgel liegt
 \begin{enumerate}
@@ -154,7 +154,7 @@ Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpo
  überprüft. Um alle Daten als gelöscht zu markieren, wird lediglich die Zählvariable in Zeile
  \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit.
 
-\input{alg/edgelpool-resetmemorypool}
+\input{alg/analyse-hirzer/edgelpool-resetmemorypool}
 
 Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
  Der Pointer $p$ wird in Zeile
@@ -165,7 +165,7 @@ Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelp
  als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Pointer $p$ zur weiteren Verwendung in
  $\mathit{pool}$ gespeichert. Das Freigeben eines Pools erfolgt in konstanter Zeit.
 
-\input{alg/edgelpool-freememorypool}
+\input{alg/analyse-hirzer/edgelpool-freememorypool}
 
 Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
  Pointer $p$ übergeben und in Zeile
@@ -173,6 +173,6 @@ Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-c
  Einträge wird in Zeile~\ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
  Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit.
 
-\input{alg/edgelpool-count}
+\input{alg/analyse-hirzer/edgelpool-count}
 
 % subsection datenstruktur-edgels (end)
