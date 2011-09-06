@@ -32,6 +32,19 @@ Der Zugriff auf die Variablen der Datenstruktur, sowohl lesend als auch schreibe
 
 % subsubsection makerinfo2 (end)
 
+\subsubsection{Automatischer Schwellwert} % (fold)
+\label{sec:automatischer_schwellwert}
+
+Die automatische Schwellwertanalyse von ARToolKitPlus wird durch \autoref{alg:autothresholdreset} vor ihrer Verwendung
+ auf bekannte Startwerte gesetzt. Dabei wird in Zeile \ref{alg:autothresholdreset-minLum} die globale Variable
+ $\mathit{minLum}$ gesetzt und in Zeile \ref{alg:autothresholdreset-maxLum} die globale Variable $\mathit{maxLum}$
+ gesetzt. Die statischen Größen $\mathit{MINLUM0}$ und $\mathit{MAXLUM0}$ geben dabei die Werte an. Die Laufzeit von
+ \autoref{alg:autothresholdreset} ist konstant.
+
+\input{alg/analyse-artplus/autothresholdreset}
+
+% subsubsection automatischer_schwellwert (end)
+
 % subsection datenstrukturen (end)
 
 \subsection{Fiducial Detection} % (fold)
