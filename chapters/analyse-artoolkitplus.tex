@@ -134,7 +134,7 @@ In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf sein
  $\mathit{marker\_info2}$ die Koordinaten der Eckpunkte der Marke gespeichert und das Verfahren beendet.
  \autoref{alg:detectmarker} verarbeitet die Anweisungen in konstanter Zeit.
 
-Die Methode \textproc{arLabeling} (\autoref{alg:}--\autoref{alg:}) wird zur Markierung der Regionen in
+Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:}) wird zur Markierung der Regionen in
  einem Bildsignal $I$ verwendet. Wie in \autoref{sub:fiducial_detection} beschrieben, verzichet ARToolKitPlus beim
  Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der Verarbeitung durch eine
  Schwellwertanalyse untersucht. \textproc{arLabeling} kann in drei Abschnitte unterteilt werden
@@ -147,6 +147,20 @@ Die Methode \textproc{arLabeling} (\autoref{alg:}--\autoref{alg:}) wird zur Mark
 \end{enumerate}
 
 \input{alg/analyse-artplus/arlabeling-overview}
+
+\autoref{label-init} ist in \autoref{alg:arlabeling-init1} aufgeführt. In Zeile
+ \ref{alg:arlabeling-init1-local-start}--\ref{alg:arlabeling-init1-local-end} werden die lokalen Variablen deklariert,
+ deren Bedeutung bei ihrem ersten Auftreten erklärt werden. Speicheradressen werden in Zeile
+ \ref{alg:arlabeling-init1-address-start}--\ref{alg:arlabeling-init1-address-end} initialisiert. Der
+ Schwellwertparameter wird verdreifacht und in lokal gespeichert (Zeile \ref{alg:arlabeling-init1-threshold}). Die
+ Schwellwertanalyse in \autoref{alg:} benutzt einen dreifachen Wert als Optimierung
+ (Vgl. S.~\autoref{sub:}). Zum Schluss wird in Zeile
+ \ref{alg:arlabeling-init1-size-start}--\ref{alg:arlabeling-init1-size-end} die Größe des Bildsignals festgelegt. Die
+ Variablen $\mathit{arImXsize}$ und $\mathit{arImYsize}$ enthalten die die Breite und Höhe des Bildsignals $I$. Das
+ halbieren der Bildhöhe und -breite ist ebenfalls eine Optimierung. Da auf alle Variablen und Adressen direkt
+ zugegriffen wird, ist die Laufzeit des Algorithmus konstant.
+
+\input{alg/analyse-artplus/arlabeling-init1}
 
 % subsection fiducial_detection (end)
 
