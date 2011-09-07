@@ -162,6 +162,33 @@ Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:
 
 \input{alg/analyse-artplus/arlabeling-init1}
 
+Die Initialisierung von \textproc{arLabeling} wird in \autoref{alg:arlabeling-init2} fortgesetzt. $\mathit{pnt1}$ wird
+ in Zeile \ref{alg:arlabeling-init2-address1-start} auf die erste Speicherstelle der ersten Zeile des Regionenbildes
+ gesetzt. $\mathit{pnt2}$ erhält in Zeile \ref{alg:arlabeling-init2-address1-end} die erste Speicherstelle der
+ letzten Zeile des Regionenbildes. In der Schleife in Zeile
+ \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabeling-init2-loop1-end} wird über die Breite des Regionenbildes
+ iteriert, um die erste und die letzte Zeile des Regionenbildes zu löschen. Dazu wird an den Adressen von
+ $\mathit{pnt1}$ und $\mathit{pnt2}$ der Wert $0$ gespeichert. Danach werden die Adressen von $\mathit{pnt1}$ und
+ $\mathit{pnt2}$ inkrementiert. In Zeile \ref{alg:arlabeling-init2-inc-1} wird die Laufvariable $i$ inkrementiert.
+
+\input{alg/analyse-artplus/arlabeling-init2}
+
+In Zeile \ref{alg:arlabeling-init2-address2-start}--\ref{alg:arlabeling-init2-address2-end} werden die Adressen
+ von $\mathit{pnt1}$ und $\mathit{pnt2}$ erneut festgelegt. $\mathit{pnt1}$ wird die erste Speicherstelle des
+ Regionenbildes zugewiesen. In $\mathit{pnt2}$ wird die Adresse der ersten Speicherstelle der letzten Zeile hinterlegt.
+ In der Schleife von Zeile \ref{alg:arlabeling-init2-loop2-start}--\ref{alg:arlabeling-init2-loop2-end} wird die erste
+ und letzte Spalte des Regionenbildes gelöscht, indem der Wert $0$ an die Speicherstelle von $\mathit{pnt1}$ und
+ $\mathit{pnt2}$ geschrieben wird
+ (Zeile \ref{alg:arlabeling-init2-clearfirstrow}--\ref{alg:arlabeling-init2-clearlastrow}). Im Anschluss daran werden
+ die Adressen $\mathit{pnt1}$ und $\mathit{pnt2}$, sowie die Laufvariable $i$, inkrementiert.
+
+In Zeile \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{wk\_max}$ mit dem Wert $0$
+ initialisiert. Danach wird die Adresse der Startposition des Regionenbildes in $\mathit{pnt2}$ gespeichert. Dabei ist
+ zu beachten, dass die Adresse auf den zweiten \gls{pixel} der zweiten Zeile verweist. $\mathit{pnt}$ wird daraufhin die
+ Adresse des Bildsignals $I$ zugewiesen. Der Adresse von $I$ ist der vierte \gls{pixel} der zweiten Zeile. Die
+ Variable $\mathit{poff}$ ist der Adressabstand der \gls{pixel} in $I$ und dient der Adressierung des nächsten
+ \glspl{pixel}. $\mathit{poff}$ wird in der letzten Zeile von \autoref{alg:arlabeling-init2} gesetzt.
+
 % subsection fiducial_detection (end)
 
 \subsection{Rectangle Fitting} % (fold)
