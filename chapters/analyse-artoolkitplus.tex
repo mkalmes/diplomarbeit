@@ -189,6 +189,75 @@ In Zeile \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{
  Variable $\mathit{poff}$ ist der Adressabstand der \gls{pixel} in $I$ und dient der Adressierung des nächsten
  \glspl{pixel}. $\mathit{poff}$ wird in der letzten Zeile von \autoref{alg:arlabeling-init2} gesetzt.
 
+Die Kosten des Algorithmus sind in \autoref{alg:arlabeling-init2} angegeben und in \autoref{eq:analyse-arlabeling} aufgeführt. Die Laufzeit des Algorithmus ist abhängig von der Breite $\mathit{lxsize}$ des Regionenbildes und beträgt $\Theta{(\mathit{lxsize})}$.
+
+\begin{equation}
+	\label{eq:analyse-arlabeling}
+	\begin{split}
+		T(I) = &
+		c_1
+		+ c_2
+		+ c_3 \left(\mathit{lxsize} + 1\right)\\
+		& + c_4 \sum_{i=1}^{\mathit{lxsize}} 1
+		+ c_5 \sum_{i=1}^{\mathit{lxsize}} 1
+		+ c_6 \sum_{i=1}^{\mathit{lxsize}} 1
+		+ c_7 \sum_{i=1}^{\mathit{lxsize}} 1
+		+ c_8 \sum_{i=1}^{\mathit{lxsize}} 1\\
+		& + c_9
+		+ c_{10}
+		+ c_{11} \left(\mathit{lysize} + 1\right)\\
+		& + c_{12} \sum_{i=1}^{\mathit{lysize}} 1
+		+ c_{13} \sum_{i=1}^{\mathit{lysize}} 1
+		+ c_{14} \sum_{i=1}^{\mathit{lysize}} 1
+		+ c_{15} \sum_{i=1}^{\mathit{lysize}} 1
+		+ c_{16} \sum_{i=1}^{\mathit{lysize}} 1\\
+		& + c_{17}
+		+ c_{18}
+		+ c_{19}
+		+ c_{20}\\
+		T(I) = &
+		c_1
+		+ c_2
+		+ c_3
+		+ \left(c_3 \mathit{lxsize}\right)\\
+		& + c_4 \left[ \mathit{lxsize} \left(1\right) \right]
+		+ c_5 \left[ \mathit{lxsize} \left(1\right) \right]
+		+ c_6 \left[ \mathit{lxsize} \left(1\right) \right]
+		+ c_7 \left[ \mathit{lxsize} \left(1\right) \right]
+		+ c_8 \left[ \mathit{lxsize} \left(1\right) \right]\\
+		& + c_9
+		+ c_{10}
+		+ c_{11}
+		+ c_{11} \left[ \mathit{lysize} \left(1\right) \right]\\
+		& + c_{12} \left[ \mathit{lysize} \left(1\right) \right]
+		+ c_{13} \left[ \mathit{lysize} \left(1\right) \right]
+		+ c_{14} \left[ \mathit{lysize} \left(1\right) \right]
+		+ c_{15} \left[ \mathit{lysize} \left(1\right) \right]
+		+ c_{16} \left[ \mathit{lysize} \left(1\right) \right]\\
+		& + c_{17}
+		+ c_{18}
+		+ c_{19}
+		+ c_{20}\\
+		T(I) = &
+		c_1
+		+ c_2
+		+ c_3
+		+ \left( c_3 + c_4 + c_5 + c_6 + c_7 + c_8 \right) \mathit{lxsize}\\
+		& + c_9
+		+ c_{10}
+		+ c_{11}
+		+ \left( c_{11} + c_{12} + c_{13} + c_{14} + c_{15} + c_{16} \right) \mathit{lysize}\\
+		& + c_{17}
+		+ c_{18}
+		+ c_{19}
+		+ c_{20}\\
+		T(I) = &
+		\mathit{lxsize} + \mathit{lysize}\\
+		T(I) = &
+		\Theta\left( \mathit{lxsize} \right)
+	\end{split}
+\end{equation}
+
 % subsection fiducial_detection (end)
 
 \subsection{Rectangle Fitting} % (fold)
