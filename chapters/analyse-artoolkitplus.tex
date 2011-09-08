@@ -156,7 +156,7 @@ Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:
  Schwellwertanalyse in \autoref{alg:} benutzt einen dreifachen Wert als Optimierung
  (Vgl. S.~\autoref{sub:}). Zum Schluss wird in Zeile
  \ref{alg:arlabeling-init1-size-start}--\ref{alg:arlabeling-init1-size-end} die Größe des Bildsignals festgelegt. Die
- Variablen $\mathit{arImXsize}$ und $\mathit{arImYsize}$ enthalten die die Breite und Höhe des Bildsignals $I$. Das
+ Variablen $\mathit{arImXsize}$ und $\mathit{arImYsize}$ enthalten die Breite und Höhe des Bildsignals $I$. Das
  halbieren der Bildhöhe und -breite ist ebenfalls eine Optimierung. Da auf alle Variablen und Adressen direkt
  zugegriffen wird, ist die Laufzeit des Algorithmus konstant.
 
@@ -189,7 +189,9 @@ In Zeile \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{
  Variable $\mathit{poff}$ ist der Adressabstand der \gls{pixel} in $I$ und dient der Adressierung des nächsten
  \glspl{pixel}. $\mathit{poff}$ wird in der letzten Zeile von \autoref{alg:arlabeling-init2} gesetzt.
 
-Die Kosten des Algorithmus sind in \autoref{alg:arlabeling-init2} angegeben und in \autoref{eq:analyse-arlabeling} aufgeführt. Die Laufzeit des Algorithmus ist abhängig von der Breite $\mathit{lxsize}$ des Regionenbildes und beträgt $\Theta{(\mathit{lxsize})}$.
+Die Kosten des Algorithmus sind in \autoref{alg:arlabeling-init2} angegeben und in \autoref{eq:analyse-arlabeling}
+ aufgeführt. Da die Breite $\mathit{lxsize}$ des Regionenbildes größer ist als die Höhe $\mathit{lysize}$, ist die
+ Laufzeit des Algorithmus abhängig von $\mathit{lxsize}$ und beträgt somit $\Theta{(\mathit{lxsize})}$.
 
 \begin{equation}
 	\label{eq:analyse-arlabeling}
