@@ -18,9 +18,9 @@ ARToolKitPlus speichert die Informationen einer Marke in zwei einfachen Datenstr
 
 Die Variable $\mathit{area}$ speichert den Flächeninhalt einer Marke, während $\mathit{pos}[2]$ die Position des
  Zentrums der Marke enthält. $\mathit{coord\_num}$ enthält die Anzahl der gefundenen Konturpixel, die in
- $\mathit{x\_coord}$ als X-Koordinate und in $\mathit{y\_coord}$ als Y-Koordinate gespeichert sind. Die konstante Größe
- $\mathit{AR\_CHAIN\_MAX}$ des Speichers für die Koordinaten wird zur Laufzeit nicht verändert. ARToolKitPlus erlaubt
- maximal $10000$ Einträge für Koordinaten pro Marke. Die Eckpunkte einer Marke sind in $\mathit{x\_coord}$ und
+ $\mathit{x\_coord}$ als $x$-Koordinate und in $\mathit{y\_coord}$ als $y$-Koordinate gespeichert sind. Die konstante
+ Größe $\mathit{AR\_CHAIN\_MAX}$ des Speichers für die Koordinaten wird zur Laufzeit nicht verändert. ARToolKitPlus
+ erlaubt maximal $10000$ Einträge für Koordinaten pro Marke. Die Eckpunkte einer Marke sind in $\mathit{x\_coord}$ und
  $\mathit{y\_coord}$ enthalten und werden durch einen Index in $\mathit{vertex}$ referenziert. Hierbei ist zu beachten,
  dass $\mathit{vertex}$ fünf Einträge speichert, wobei der erste und letzte Eintrag auf die gleiche Koordinate
  verweisen. Dadurch kann bei der Grafikprogrammierung mit OpenGL sehr einfach ein Rahmen um eine Marke gezeichnet
