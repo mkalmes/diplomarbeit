@@ -1,0 +1,36 @@
+% Fall 2: *(pnt1+1) > 0
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (8er-Nachbarschaft: 2. Fall, $N_4$ und $N_1$)}
+\label{alg:arlabeling-neighbour-case2-2}
+\begin{algorithmic}[1]
+	\State \Comment $N_4$ und $N_1$ haben eine Markierung.
+	\State $m \gets \mathit{work}\left[\left(\mathit{pnt1} + 1\right) - 1\right]$ \Cost{$c_{1}$}{$1$}
+	\State $n \gets \mathit{work}\left[\left(\mathit{pnt1} - 1\right) - 1\right]$ \Cost{$c_{2}$}{$1$}
+
+	\If{$m > n$} \Cost{$c_{3}$}{$1$}
+		\State $\mathit{pnt2} \gets n$ \Cost{$c_{4}$}{$1$}
+		\State $\mathit{wk} \gets \left(\mathit{work}\left[0\right]\right)$ \Cost{$c_{5}$}{$1$}
+		\For{$k \gets 0$ \textbf{to} $k < \mathit{wk\_max}$} \Cost{$c_{6}$}{$\mathit{wk\_max} + 1$}
+			\If{$\mathit{wk} == m$} \Cost{$c_{7}$}{$\mathit{wk\_max}$}
+				\State $\mathit{wk} \gets n$ \Cost{$c_{8}$}{$\mathit{wk\_max}$}
+			\EndIf
+			\State Inkrementiere $\mathit{wk}$ \Cost{$c_{9}$}{$\mathit{wk\_max}$}
+			\State $k \gets k + 1$ \Cost{$c_{9}$}{$\mathit{wk\_max}$}
+		\EndFor
+
+	\ElsIf{$ m < n$}
+		\State $\mathit{pnt2} \gets m$
+		\State $\mathit{wk} \gets \left(\mathit{work}\left[0\right]\right)$
+		\For{$k \gets 0$ \textbf{to} $k < \mathit{wk\_max}$}
+			\If{$\mathit{wk} == n$}
+				\State $\mathit{wk} \gets m$
+			\EndIf
+			\State Inkrementiere $\mathit{wk}$
+			\State $k \gets k + 1$
+		\EndFor
+
+	\Else
+		\State $\mathit{pnt2} \gets m$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

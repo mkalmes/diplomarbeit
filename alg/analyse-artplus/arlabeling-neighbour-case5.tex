@@ -1,0 +1,30 @@
+% Fall 5: else
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (8er-Nachbarschaft: 5. Fall)}
+\label{alg:arlabeling-neighbour-case5}
+\begin{algorithmic}[1]
+	\algrestore{brk-case4}
+	\Else
+		\State $\mathit{wk\_max} \gets \mathit{wk\_max} + 1$
+		\label{alg:arlabeling-neighbour-case5-incwk_max}
+		\If{$\mathit{wk\_max} > \mathit{WORK\_SIZE}$}
+			\State{\textbf{return} $0$}
+		\EndIf
+		\State $\mathit{pnt2} \gets \mathit{wk\_max}$
+		\label{alg:arlabeling-neighbour-case5-save-uv}
+		\State $\mathit{work}\left[\mathit{wk\_max} - 1\right] \gets \mathit{wk\_max}$
+		\State $\mathit{wmax\_idx} \gets \left(\mathit{wk\_max} - 1\right) \cdot 7$
+		\label{alg:arlabeling-neighbour-case5-offset}
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 0 \right] \gets 1$
+		\label{alg:arlabeling-neighbour-case5-offset-0}
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 1 \right] \gets i$
+		\label{alg:arlabeling-neighbour-case5-offset-1}
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 2 \right] \gets j$
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 3 \right] \gets i$
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 4 \right] \gets i$
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 5 \right] \gets j$
+		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 6 \right] \gets j$
+		\label{alg:arlabeling-neighbour-case5-offset-6}
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

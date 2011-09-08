@@ -1,0 +1,23 @@
+% Fall 2: *(pnt1+1) > 0
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (8er-Nachbarschaft: 2. Fall)}
+\label{alg:arlabeling-neighbour-case2}
+\begin{algorithmic}[1]
+	\algrestore{brk-case1}
+
+	\ElsIf{$\left(\mathit{pnt1} + 1\right) > 0$}
+		\If{$\left(\mathit{pnt1} - 1\right) > 0$} \Comment Ist in $N_2$ eine Markierung?
+		\label{alg:arlabeling-neighbour-case2-n2}
+			\State \ldots
+
+		\ElsIf{$\left(\mathit{pnt2} - 1\right) > 0$} \Comment Ist in $N_1$ eine Markierung?
+		\label{alg:arlabeling-neighbour-case2-n1}
+			\State \ldots
+
+		\Else \Comment Nur $N_4$ hat eine Markierung.
+		\label{alg:arlabeling-neighbour-case2-4}
+			\State \ldots
+		\EndIf
+		\algstore{brk-case2}
+\end{algorithmic}
+\end{algorithm}
