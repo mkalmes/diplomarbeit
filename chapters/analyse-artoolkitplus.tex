@@ -153,8 +153,8 @@ Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:
  deren Bedeutung bei ihrem ersten Auftreten erklärt werden. Speicheradressen werden in Zeile
  \ref{alg:arlabeling-init1-address-start}--\ref{alg:arlabeling-init1-address-end} initialisiert. Der
  Schwellwertparameter wird verdreifacht und in lokal gespeichert (Zeile \ref{alg:arlabeling-init1-threshold}). Die
- Schwellwertanalyse in \autoref{alg:} benutzt einen dreifachen Wert als Optimierung
- (Vgl. S.~\autoref{sub:}). Zum Schluss wird in Zeile
+ Schwellwertanalyse in \autoref{alg:arlabeling-regionlabeling} benutzt einen dreifachen Wert als Optimierung
+ (Vgl. S.~\pageref{sub:arlabel-threshold}). Zum Schluss wird in Zeile
  \ref{alg:arlabeling-init1-size-start}--\ref{alg:arlabeling-init1-size-end} die Größe des Bildsignals festgelegt. Die
  Variablen $\mathit{arImXsize}$ und $\mathit{arImYsize}$ enthalten die Breite und Höhe des Bildsignals $I$. Das
  halbieren der Bildhöhe und -breite ist ebenfalls eine Optimierung. Da auf alle Variablen und Adressen direkt
@@ -259,6 +259,38 @@ Die Kosten des Algorithmus sind in \autoref{alg:arlabeling-init2} angegeben und 
 		\Theta\left( \mathit{lxsize} \right)
 	\end{split}
 \end{equation}
+
+\autoref{label-region} von \autoref{alg:arlabeling-overview} ist für die Regionenmarkierung und das Auflösen von
+ Kollisionen verantwortlich. Eine Übersich des Verfahrens ist in \autoref{alg:arlabeling-regionlabeling} dargestellt.
+ \textproc{arLabeling} untersucht das Bildsignal $I$ zeilenweise von links oben nach rechts unten. Durch eine
+ Schwellwertanalyse wird entschieden, ob ein \gls{pixel} an Position $I(u,v)$ ein Vordergrund- oder Hintergrundpixel
+ ist. Die Regionenmarkierung wird dann in $\mathit{l\_image}$ gespeichert. Das Verfahren wird solange wiederholt, bis
+ das Bildsignal $I$ vollständig prozessiert wurde und zusammenhängende Bildregionen in $\mathit{l\_image}$ markiert
+ sind. Die Variable $\mathit{pnt}$ enthält die Adresse des zu untersuchenden \gls{pixel} aus $I$. Die nächste freie
+ Speicherstelle in $\mathit{l\_image}$ ist in $\mathit{pnt2}$ hinterlegt.
+
+\input{alg/analyse-artplus/arlabeling-regionlabeling}
+
+In den beiden Schleifen in Zeile
+ \ref{alg:arlabeling-regionlabeling-loop1-start}--\ref{alg:arlabeling-regionlabeling-loop1-end} und Zeile
+ \ref{alg:arlabeling-regionlabeling-loop2-start}--\ref{alg:arlabeling-regionlabeling-loop2-end} wird das Bildsignal
+ zeilenweise, von oben links nach unten rechts, verarbeitet. Das Inkrementieren der Variablen in Zeile
+ \ref{alg:arlabeling-regionlabeling-inc1-start}--\ref{alg:arlabeling-regionlabeling-inc1-end} und Zeile
+ \ref{alg:arlabeling-regionlabeling-inc2-start}--\ref{alg:arlabeling-regionlabeling-inc2-end} sorgt dafür, dass nur die
+ Hälfte der \gls{pixel} prozessiert werden.
+
+Die Schwellwertanalyse wird in Zeile
+ \ref{alg:arlabeling-regionlabeling-threshold-start}--\ref{alg:arlabeling-regionlabeling-threshold-end} durchgeführt.
+ Dazu wird in Zeile \ref{alg:arlabeling-regionlabeling-calcblack} die RGB-Komponente des Bildsignals $I$ ausgelesen und
+ addiert. Normalerweise würde man an dieser Stelle den Schwellwert mit jeder Komponente $R$, $G$ und $B$ einzeln
+ vergleichen. Die Verdreifachung des Schwellwerts in \autoref{alg:arlabeling-init1} und die Addition der
+ RGB-Komponenten ermöglichen hingegen eine Schwellwertanalyse mit nur einem Vergleich.\label{sub:arlabel-threshold}
+
+In Zeile \ref{alg:arlabeling-regionlabeling-isblack?}--\ref{alg:arlabeling-regionlabeling-threshold-end} wird
+ untersucht, ob ein Vordergrundpixel gefunden wurde. Falls nicht, wird in das Regionenbild $\mathit{l\_image}$ eine $0$
+ geschrieben. Wenn die Schwellertanalyse ein Vordergrundpixel bestimmt hat, müssen in Zeile
+ \ref{alg:arlabeling-regionlabeling-black} die Nachbarn des Vordergrundpixels mit einer 8er-Nachbarschaft untersucht
+ werden.
 
 % subsection fiducial_detection (end)
 
