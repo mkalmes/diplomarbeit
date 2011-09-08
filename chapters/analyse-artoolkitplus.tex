@@ -290,7 +290,60 @@ In Zeile \ref{alg:arlabeling-regionlabeling-isblack?}--\ref{alg:arlabeling-regio
  untersucht, ob ein Vordergrundpixel gefunden wurde. Falls nicht, wird in das Regionenbild $\mathit{l\_image}$ eine $0$
  geschrieben. Wenn die Schwellertanalyse ein Vordergrundpixel bestimmt hat, müssen in Zeile
  \ref{alg:arlabeling-regionlabeling-black} die Nachbarn des Vordergrundpixels mit einer 8er-Nachbarschaft untersucht
- werden.
+ werden (Vgl. \autoref{alg:arlabeling-neighbour}).
+
+\input{alg/analyse-artplus/arlabeling-neighbour}
+
+Die Nachbarschafsuntersuchung in ARToolKitPlus untersucht die vier Nachbarn der Markierung an Position $I(u,v)$. Wie in
+ \autoref{sec:vorläufige_makierung} bereits beschrieben, ist eine Regionenmarkierung davon abhängig ob alle Nachbarn
+ Hintergrundpixel sind, genau ein Nachbar eine Markierung hat oder mehrere Nachbarn eine Markierung haben. Die Fälle
+ 1, 3 und 4 in \autoref{alg:arlabeling-neighbour} untersuchen, ob genau ein Nachbar eine Markierung hat. Bei Fall 5 sind
+ alle Nachbarn Hintergrundpixel. Nur bei Fall 2 können  mehrere Nachbarn eine Markierung haben. In Zeile
+ \ref{alg:arlabeling-neighbour-n3} wird der Variablen $\mathit{pnt1}$ der Nachbar $N_3 = (u,v+1)$ zugewiesen. Die
+ Nachbarn sind in \autoref{fig:analyse-nachbarschaftsbeziehung} illustriert.
+
+\begin{figure}[!ht]
+	\centering
+	\label{fig:8er-nachbarschaft}
+	\input{resources/8er-Nachbarschaft.pdf_tex}
+	\caption{8er-Nachbarschaft mit $N_1 = I(u-1,v)$, $N_2 = I(u-1,v+1)$, $N_3 = (u,v+1)$ und $N_4 = I(u+1,v+1)$.}
+	\label{fig:analyse-nachbarschaftsbeziehung}
+\end{figure}
+
+\paragraph{1. Fall:} % (fold)
+\label{par:fall_1_}
+Wir wissen durch \autoref{alg:arlabeling-regionlabeling}, dass $I(u,v)$ ein Vordergrundpixel ist, dem wir an dieser
+ Stelle eine Markierung zuweisen wollen. Im ersten Fall wird die Markierung $N_3$ untersucht. Wenn $N_3$ ein
+ Vordergrundpixel ist kann die Markierung für $I(u,v)$ übernommen werden. Falls es sich bei den Nachbarn
+ $N_1 = I(u-1,v)$, $N_2 = I(u-1,v+1)$ und $N_4 = I(u+1,v+1)$ um Vordergrundpixel handelt, haben sie die gleiche
+ Markierung wie $N_3$ und müssen nicht weiter untersucht werden.
+% paragraph fall_1_ (end)
+
+\paragraph{2. Fall:} % (fold)
+\label{par:fall_2_}
+Beim zweiten Fall wird die Markierung $N_4$ betrachtet. Da $N_3$ keine Markierung aufweist, können nur $N_1$ und $N_2$
+ Markierungen haben. Da die Markierungen nur durch $I(u,v)$ verbunden sind, kann es sich hier um eine Kollision
+ handeln, die durch \autoref{alg:} besonders behandelt wird.
+% paragraph fall_2_ (end)
+
+\paragraph{3. Fall:} % (fold)
+\label{par:fall_3_}
+Beim dritten Fall wird die Markierung $N_2$ untersucht und wir wissen, dass $N_3$ und $N_4$ keine Markierungen haben
+ können. Demnach kann es nur den Nachbarn $N_2$ geben, dessen Markierung an $I(u,v)$ weitergereicht wird. Falls $N_1$
+ ebenfalls ein Vordergrundpixel ist, handelt es sich um die gleiche Markierung wie in $N_2$, da beide Vordergrundpixel
+ direkt miteinander verbunden sind.
+% paragraph fall_3_ (end)
+
+\paragraph{4. Fall:} % (fold)
+\label{par:fall_4_}
+Der vierte Fall untersucht den letzten, und einzigen, Nachbarn $N_1$. Alle anderen Nachbarn sind keine Vordergrundpixel
+ und es besteht keine Kollision. Die Markierung von $N_1$ wird für $I(u,v)$ übernommen.
+% paragraph fall_4_ (end)
+
+\paragraph{5. Fall:} % (fold)
+\label{par:fall_5_}
+Im letzten Fall sind alle Nachbarn Hintergrundpixel und $I(u,v)$ wird eine neue Markierung zugewiesen.
+% paragraph fall_5_ (end)
 
 % subsection fiducial_detection (end)
 
