@@ -134,10 +134,10 @@ In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf sein
  $\mathit{marker\_info2}$ die Koordinaten der Eckpunkte der Marke gespeichert und das Verfahren beendet.
  \autoref{alg:detectmarker} verarbeitet die Anweisungen in konstanter Zeit.
 
-Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:}) wird zur Markierung der Regionen in
- einem Bildsignal $I$ verwendet. Wie in \autoref{sub:fiducial_detection} beschrieben, verzichet ARToolKitPlus beim
- Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der Verarbeitung durch eine
- Schwellwertanalyse untersucht. \textproc{arLabeling} kann in drei Abschnitte unterteilt werden
+Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:arlabeling-neighbour-case5}) wird zur
+ Markierung der Regionen in einem Bildsignal $I$ verwendet. Wie in \autoref{sub:fiducial_detection} beschrieben,
+ verzichet ARToolKitPlus beim Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der
+ Verarbeitung durch eine Schwellwertanalyse untersucht. \textproc{arLabeling} kann in drei Abschnitte unterteilt werden
  (Vgl. \autoref{alg:arlabeling-overview}):
 
 \begin{enumerate}
