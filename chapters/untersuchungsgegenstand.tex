@@ -147,7 +147,7 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
 
 Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
 
-\input{alg/linedetection-clarke}
+\input{alg/untersuchungsdesign/linedetection-clarke}
 
 \citeauthor{hirzer08} hat das Verfahren von \citeauthor{clarke96} abgewandelt, um es zur Erkennung einer bitonalen
  Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt eines monochromen Bildsignals, ein farbiges Bildsignal
@@ -159,7 +159,7 @@ Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
  diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \glspl{edgel}
  führt\footcite[Vgl.][S.~6--7]{hirzer08}.
 
-\input{alg/linemerging-hirzer}
+\input{alg/untersuchungsdesign/linemerging-hirzer}
 
 Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur kurze Liniensegmente. Um eine Kante
  entlang einer Marke zu erkennen, müssen die kurzen Liniensegmente zusammengeführt werden
@@ -209,7 +209,7 @@ Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerh
 \subsubsection{Line Extension} % (fold)
 \label{sub:line_extension}
 
-\input{alg/lineextension-hirzer}
+\input{alg/untersuchungsdesign/lineextension-hirzer}
 
 Die aus der Line Detection resultierenden Linien repräsentieren keine tatsächlich vorhandenen Kanten im Bildsignal. In
  den meisten Fällen fehlt am Anfang oder Ende einer Linie ein Stück. Mit Line Extension wird versucht diese fehlenden
@@ -236,7 +236,7 @@ Um aus den gefundenen Linien eine quadratische Marke zu erkennen, werden Eckpunk
  Linien entstehen. Dies wird durch Quadrangle Detection erreicht indem alle Linienkombinationen untersucht werden um
  vier Eckpunkte zu finden.
 
-\input{alg/quadrangledetection-hirzer}
+\input{alg/untersuchungsdesign/quadrangledetection-hirzer}
 
 \autoref{alg:quadrangledetection-hirzer} vergleicht alle Linienkombinationen auf drei Kriterien. Zuerst dürfen zwei
  Linien nicht parallel zueinander liegen, da sonst keine quadratische Marke gefunden werden kann. Danach wird als

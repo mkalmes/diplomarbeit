@@ -20,7 +20,7 @@ Der Algorithmus von \citeauthor{clarke96} ist in \autoref{alg:linedetection-anal
  \ref{alg:linedetection-analyze-start} bis \ref{alg:linedetection-analyze-end} unterteilt das Signal in Regionen der
  Größe $40 \times 40$ \gls{pixel}, indem die Koordinate der oberen linken Ecke berechnet wird.
 
-\input{alg/linedetection-analyze}
+\input{alg/analyse-hirzer/linedetection-analyze}
 
 In \citeauthor{clarke96} ist keine Angabe zu den Abmessungen der untersuchten Signale angegeben. Auch der Grund warum
  eine Region $40 \times 40$ \gls{pixel} groß sein muss, fehlt. Zur Analyse der Videosignale verwendeten
@@ -83,7 +83,7 @@ Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal}) be
  Höhe der Region ist durch $\mathit{rw}$ und $\mathit{rh}$ angegeben. Die Abmessung des Bildsignals werden als $w$ und
  $h$ bezeichnet. Der Pointer $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet.
 
-\input{alg/findedgels}
+\input{alg/analyse-hirzer/findedgels}
 
 Zeile~\ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend} ist für den Aufbau der
  horizontalen Scanlines verantwortlich. Die Überprüfung sorgt dafür, dass die Scanlines bis zum Ende der Region im
@@ -128,7 +128,7 @@ $\left( \begin{smallmatrix}
 \end{smallmatrix} \right)$
 berechnet um den Gradienten zu bestimmen.
 
-\input{alg/derivativeofgauss.tex}
+\input{alg/analyse-hirzer/derivativeofgauss}
 
 Durch die Multiplikation mit $\tfrac{1}{16}$ wird sichergestellt, dass der maximale Wert
 
@@ -172,7 +172,7 @@ In \autoref{alg:sobel} wird, wie in \autoref{alg:derivativeofgauss-horizontal}, 
  \glspl{edgel} bestimmt. Als Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$,
  sowie die Position des \glspl{edgel} ($x,y$) benötigt.
 
-\input{alg/sobel}
+\input{alg/analyse-hirzer/sobel}
 
 In Zeile~\ref{alg:sobel-readstart}--\ref{alg:sobel-readend} werden die Pixelwerte ausgelesen und den Variablen
  zugewiesen. In Zeile~\ref{alg:sobel-convolutestart}--\ref{alg:sobel-convoluteend} erfolgt die Faltung mit dem
@@ -210,7 +210,7 @@ wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orienti
  $-\pi < v \leq \pi$. $\arctan$ in \autoref{eq:orientation} kann in C durch \textproc{atan2} zur Berechnung verwendet
  werden. Die Laufzeit von \autoref{alg:sobel} ist konstant.
 
-\input{alg/findlinesegments}
+\input{alg/analyse-hirzer/findlinesegments}
 
 % subsection linienerkennung_nach_clarke96 (end)
 
