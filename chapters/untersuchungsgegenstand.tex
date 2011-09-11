@@ -24,7 +24,7 @@ Identifizierung von Marken eine \textit{Runtime Tracking Pipeline} bestehend aus
 	\item Pose Estimation.
 \end{enumerate}
 
-ARToolKitPlus erkennt Marken, indem in einem Binärbild Kanten gesucht werden um daraus zusammenhängende Bildregionen
+ARToolKitPlus erkennt Marken, indem in einem Binärbild Kanten gesucht werden, um daraus zusammenhängende Bildregionen
  zu erstellen. Diese Regionen werden isoliert betrachtet und daraufhin untersucht, ob es sich dabei um ein Rechteck
  handelt. Dazu wird \autoref{fiducialdetection} und \autoref{rectanglefitting} aus der
  \textit{Runtime Tracking Pipeline} verwendet.
@@ -75,7 +75,7 @@ Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, v
 Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt. ARToolKitPlus verwendet dazu die Liste
  der Markierungen und das markierte Bild. Um die Kontur einer Region zu ermitteln, muss eine Region auf bestimmte
  Merkmale hin untersucht werden. Dazu wird für jede gefundene Regionenmakierung der Flächeninhalt der Region
- untersucht. Falls die Fläche einer Region zu klein oder zu groß zur Analyse ist, wird sie verworfen. Anschliessend
+ untersucht. Falls die Fläche einer Region zu klein oder zu groß zur Analyse ist, wird sie verworfen. Anschließend
  werden die Start- und Endkoordinaten der Region untersucht. Liegen diese Koordinaten am Rand des Bildsignals eignen
  sie sich nicht zur Erkennung und die Region wird ebenfalls verworfen. Wenn eine Region diese Überprüfung bestanden
  hat, wird der erste Pixel der Region als Startpunkt gewählt. Mithilfe einer 8er-Nachbarschaft werden die angrenzenden
@@ -90,8 +90,8 @@ Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt.
 \subsubsection{Rectangle Fitting} % (fold)
 \label{sub:rectangle_fitting}
 
-In diesem Schritt wird eine geschlossene Kontur untersucht, ob es sich um ein Rechteck handelt.
- \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier fast geraden Linien, die durch
+In diesem Schritt wird untersucht, ob es sich bei einer geschlossenen Kontur um ein Rechteck handelt.
+ \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier annährend geraden Linien, die durch
  Überschneidung vier Eckpunkte bilden\footcite[Vgl.][S.~42]{wagner07a}.
 
 Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Der
@@ -123,7 +123,7 @@ Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbil
 \subsubsection{Line Detection} % (fold)
 \label{sub:line_detection}
 Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
- Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC Verfahren eine
+ Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC-Verfahren eine
  Linienhypothese zu erstellen und zu bewerten.
 
 Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 40$ \gls{pixel} große Regionen
@@ -133,10 +133,10 @@ Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 4
  Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgel} betrachtet und seine Orientierung
  berechnet.
 
-Im zweiten Schritt wird das RANSAC Verfahren verwendet, um aus der Menge der \glspl{edgel} Liniensegmente zu bestimmen.
+Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \glspl{edgel} Liniensegmente zu bestimmen.
  Eine Linienhypothese wird durch die zufällige Auswahl zweier \glspl{edgel} erstellt, deren Orientierung innerhalb
- eines Grenzwert liegen müssen. Ein \gls{edgel} dient als Startpunkt und das andere \gls{edgel} als Endpunkt der Linie.
- Im Anschluss wird die Anzahl der \glspl{edgel} betrachtet, die in der Nähe dieser Linie liegen und eine kompatible
+ eines Grenzwertes liegen müssen. Ein \gls{edgel} dient als Startpunkt und das andere als Endpunkt der Linie. Im
+ Anschluss wird die Anzahl der \glspl{edgel} betrachtet, die in der Nähe dieser Linie liegen und eine kompatible
  Orientierung mit der Linie aufweisen. Diese \glspl{edgel} unterstützen die Hypothese einer Linie im Bildsignal, wenn
  die Anzahl größer ist als die minimal geforderte Anzahl von Unterstützungsedgels. Die zufällige Auswahl zweier
  \glspl{edgel} um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln wird mehrmals wiederholt um die
@@ -165,13 +165,14 @@ Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur ku
  entlang einer Marke zu erkennen, müssen die kurzen Liniensegmente zusammengeführt werden
  (Vgl. \autoref{alg:linemerging-hirzer}). Dazu werden alle Liniensegmente miteinander verglichen um jede
  Kombinationsmöglichkeit zu testen. Ob zwei Liniensegmente zu einer Linie zusammengeführt werden können, ist von drei
- Kriterien abhängig. Zuerst müssen zwei Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig
+ Kriterien abhängig: Zuerst müssen zwei Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig
  abweichen darf um als Ergebnis eine gerade Linien zu erhalten. Als zweites Kriterium muss eine Verbindungslinie
  zwischen den Liniensegmenten ebenfalls eine kompatible Orientierung aufweisen. Dadurch wird sichergestellt, dass keine
  Liniensegmente zusammengeführt werden, die zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen.
- Als letztes Kriterium wird der Gradient der Verbindungslinie Punkt für Punkt untersucht. Dieses Kriterium dient dazu
- nebeneinanderliegende Marken zu unterscheiden. Würde man dies Unterscheidung vernachlässigen, würden mehrere Kanten
- unterschiedlicher Marken zusammengeführt (Vgl.~\autoref{fig:linemerging-kriterium3}).
+ Als letztes Kriterium muss die Orientierung des Gradienten für alle Punkte der Verbindunslinie kompatible mit der
+ Linienorientierung sein. Dieses Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man dies
+ Unterscheidung vernachlässigen, würden mehrere Kanten unterschiedlicher Marken zusammengeführt
+ (Vgl.~\autoref{fig:linemerging-kriterium3}).
 
 \begin{figure}[!ht]
 	\centering
@@ -194,12 +195,12 @@ Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur ku
  Schwellwert Liniensegmente, die zu weit auseinander liegen, nicht zusammengeführt werden, obwohl sie zusammengehören.
  Wird der Abstand des Schwellwerts aber zu groß gewählt, werden Liniensegmente zusammengeführt, die nicht
  zusammengehören. Um auf einen Distanzschwellwert verzichten zu können, werden die Liniensegmente sortiert, so dass
- Liniensegmente mit kurzen Verbindungslinien zuerst zusammengeführt werden. Dadurch kann sichergestellt werden, dass
+ diejenigen mit kurzen Verbindungslinien zuerst zusammengeführt werden. Dadurch kann sichergestellt werden, dass
  Liniensegmente zusammengeführt werden die nah beieinander liegen.
 
 Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerhalb einer Region um alle kurzen
- Liniensegmente zu verbinden. Nachdem innerhalb aller Regionen Liniensegmente zusammengeführt wurden, wird der Vorgang
- auf dem gesamten Bildsignal wiederholt um größere Liniensegmente zu vereinen. Dadurch müssen nicht alle
+ Liniensegmente zu verbinden. Nachdem innerhalb aller Regionen diese zusammengeführt wurden, wird der Vorgang auf dem
+ gesamten Bildsignal wiederholt um größere Liniensegmente zu vereinen. Dadurch müssen nicht alle
  Liniensegmente-Kombinationen im gesamten Bildsignal verglichen werden, was die Laufzeit
  reduziert\footcite[Vgl.][S.~10]{hirzer08}.
 
@@ -210,10 +211,9 @@ Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerh
 
 \input{alg/untersuchungsdesign/lineextension-hirzer}
 
-Nach der Anwendung von Line Detection erhalten wir als Ergebnis Linien. Diese Linien repräsentieren aber nicht eine
- tatsächliche vorhandene Kante im Bildsignal. In den meisten Fällen fehlt am Anfang oder Ende einer Linie ein Stück.
- Mit Line Extension wird versucht die fehlenden Stücke am Anfang und am Ende einer Linie zu erweitern, um damit eine
- vollständige Linie abzubilden (Vgl. \autoref{alg:lineextension-hirzer}).
+Die aus der Line Detection resultierenden Linien repräsentieren keine tatsächlich vorhandenen Kanten im Bildsignal. In
+ den meisten Fällen fehlt am Anfang oder Ende einer Linie ein Stück. Mit Line Extension wird versucht diese fehlenden
+ Stücke zu erweitern, um damit eine vollständige Linie abzubilden (Vgl. \autoref{alg:lineextension-hirzer}).
 
 Um Linien zu erweitern, wird jede Linie \gls{pixel} für \gls{pixel} untersucht. Dabei wird an einem Ende der Linie
  ein \gls{pixel} weitergerückt und die Orientierung dieses \gls{pixel} mit der Orientierung der Linie verglichen. Falls
@@ -251,13 +251,13 @@ Um aus den gefundenen Linien eine quadratische Marke zu erkennen, werden Eckpunk
  Kette mit vier Eckpunkten gefunden.
 
 Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt und somit eine Marke erkannt. Wurden
- weniger als vier Eckpunkte gefunden, kann das Quadrat wiederhergestellt werden. Mit drei Eckpunkten ist es möglich den
- fehlenden Eckpunkt zu berechnen, indem die beiden Linien an der Lücke überkreuzt werden. Laut Hirzer ist das Ergebnis in
- den meisten Fällen akurat\footcite[Vgl.][S.15]{hirzer08}. Falls nur zwei Eckpunkte gefunden wurden, werden die
- Linienenden an der Lücke zusammengeschlossen. Das Ergebnis variert je nach Qualität der vorrausgegangen Line
- Extension. Im Falle einer guten Linienerweiterung ist das Ergebnis genau. Doch im Falle einer schlechten Erweiterung
- ist das Ergebnis ungenau (Vgl.~\autoref{fig:quadrangledetection}). Wenn nur ein Eckpunkt gefunden wurde, ist eine
- Wiederherstellung der Marke nicht möglich und die Linien werden gelöscht.
+ weniger als vier Eckpunkte gefunden, kann das Quadrat wie folgt wiederhergestellt werden: Mit drei Eckpunkten ist es
+ möglich den fehlenden Eckpunkt zu berechnen, indem die beiden Linien an der Lücke überkreuzt werden. Laut Hirzer ist
+ das Ergebnis in den meisten Fällen akurat\footcite[Vgl.][S.15]{hirzer08}. Falls nur zwei Eckpunkte gefunden wurden,
+ werden die Linienenden an der Lücke zusammengeschlossen. Das Ergebnis variert je nach Qualität der vorrausgegangen
+ Line Extension. Je besser die Linienerweiterung ist, desto genauer ist das Ergebnis
+ (Vgl.~\autoref{fig:quadrangledetection}). Wenn nur ein Eckpunkt gefunden wurde, ist eine Wiederherstellung der Marke
+ nicht möglich und die Linien werden gelöscht.
 
 \begin{figure}[!ht]
 	\centering
