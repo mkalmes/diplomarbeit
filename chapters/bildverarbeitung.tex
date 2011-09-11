@@ -27,7 +27,7 @@ Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, benötigen wir e
 	% section grundlagen (end)
 \end{comment}
 
-Bevor ich mich den \gls{AR}-Verfahren widme, möchte ich die grundlegenden Aspekte der Digitalen Bildverarbeitung benennen, die in den nachfolgenden Kapiteln benötigt werden. Dabei werde ich keinen kompletten Überblick über Digitale Bildverarbeitung vermitteln, sondern nur Bereiche besprechen die für die Untersuchung der \gls{AR} berücksichtigt werden müssen.
+Bevor ich mich den \gls{AR}-Verfahren widme, möchte ich die grundlegenden Aspekte der digitalen Bildverarbeitung benennen, die in den nachfolgenden Kapiteln benötigt werden. Dabei werde ich keinen kompletten Überblick über Digitale Bildverarbeitung vermitteln, sondern nur Bereiche besprechen die für die Untersuchung der \gls{AR} berücksichtigt werden müssen.
 
 
 \subsection{Grundlagen} % (fold)
@@ -54,11 +54,15 @@ Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, bedienen wir uns
 \subsection{Bildtypen} % (fold)
 \label{sub:bildtypen}
 
-Der Wert eines \gls{pixel} ist als binärer Wert der Länge $k$ angegeben. Darüber hinaus bestimmt der verwendete Bildtyp über die weiteren Informationen eines \gls{pixel}.
+Der Wert eines \gls{pixel} ist als binärer Wert der Länge $k$ angegeben. Darüber hinaus bestimmt der verwendete Bildtyp
+ über die weiteren Informationen eines \gls{pixel}.
 
-Monochrome Bilder, die im allgemeinen Sprachgebrauch als Schwarz/Weiß Bilder bezeichnet werden, besitzen nur eine Komponente, die als Luminanz oder auch Intensität bezeichnet wird. Die Information des \gls{pixel} wird im Allgemeinen mit 8 Bit kodiert, sodass sich ein Wertebereich von $2^8 = \left[0\dotsc255\right]$ ergibt.
+Monochrome Bilder, die im allgemeinen Sprachgebrauch als Schwarzweiß-Bilder bezeichnet werden, besitzen nur eine
+ Komponente, die als Luminanz oder auch Intensität bezeichnet wird. Die Information des \gls{pixel} wird im Allgemeinen
+ mit 8 Bit kodiert, so dass sich ein Wertebereich von $2^8 = \left[0\dotsc255\right]$ ergibt.
 
-Binäre Bilder sind eine spezielle Form der monochromen Bilder. In binären Bildern werden nur Schwarz/Weiß Werte gespeichert. Die Information kann dadurch in nur einem Bit, mit $0$ für Schwarz und $1$ für Weiß, gespeichert werden.
+Binäre Bilder sind eine spezielle Form der monochromen Bilder. In binären Bildern werden nur Schwarzweiß-Werte
+ gespeichert. Die Information kann dadurch in nur einem Bit, mit $0$ für Schwarz und $1$ für Weiß, gespeichert werden.
 
 Farbbilder speichern im Unterschied zu monochromen Bildern mehr Informationen in einem \gls{pixel} ab. Der Aufbau der
 Informationen von Farbbildern ist abhängig von dem eingesetzten Farbraum, der in \autoref{sub:farbräume} erläutert
@@ -66,14 +70,22 @@ wird. In den meisten Fällen wird die Information eines Farbbildes in drei Kompo
 jeweils 8 Bit, kodiert. Somit besteht ein Pixel aus \(3 \cdot 8 = 24\) Bits mit einem Wertebereich von
 \(\left[0 \dotsc 255\right]\) pro Farbkomponente.
 
-Der Aufbau der Farbinformationen ist abhängig von der Anordnung, die in \autoref{sub:pixelanordnung} genauer definiert wird.
+Der Aufbau der Farbinformationen ist abhängig von der Anordnung, die in \autoref{sub:pixelanordnung} genauer definiert
+ wird.
 
 % subsection bildtypen (end)
 
 \subsection{Farbräume} % (fold)
 \label{sub:farbräume}
 
-Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus roten, grünen und blauen Komponenten besteht (\autoref{fig:rgbLenna}).
+Bei digitaler Bildverarbeitung gibt es unterschiedliche Farbräume für verschiedene Einsatzgebiete. Für diese
+ Untersuchung werde ich den RGB-Farbraum, sowie YUV und YCbCr, vorstellen.
+
+\subsubsection{RGB} % (fold)
+\label{sec:rgb}
+
+Der RGB-Farbraum ist in in der digitalen Bildverarbeitung der am häufigsten eingesetzte Farbraum und besteht aus roten,
+ grünen und blauen Komponenten (\autoref{fig:rgbLenna}).
 
 \begin{figure}[!ht]
 	\centering
@@ -93,7 +105,7 @@ Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus
 		\label{fig:rgbLenna-Blau}
 		\includegraphics[width=.2\textwidth]{resources/Lenna_B.pdf}
 	}
-	\caption{Ein farbiges Bild \subref{fig:rgbLenna-Farbe} wird im RGB Farbraum in seine Komponenten Rot
+	\caption{Ein farbiges Bild \subref{fig:rgbLenna-Farbe} wird im RGB-Farbraum in seine Komponenten Rot
 		 \subref{fig:rgbLenna-Rot}, Grün \subref{fig:rgbLenna-Gruen} und Blau \subref{fig:rgbLenna-Blau} aufgeteilt.
 		Von \cite{lenna}.
 	}
@@ -101,9 +113,9 @@ Bei Digitaler Bildverarbeitung wird häufig der RGB Farbraum eingesetzt, der aus
 \end{figure}
 
 Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Primärfarben einen Farbton und dessen
- Helligkeit generiert. Der RGB Farbraum kann als dreidimensionaler Würfel dargestellt werden
- (\autoref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und Blau
- dar. Normiert man den Würfel zu einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von
+ Helligkeit generiert\footcite[Vgl.][S.~233]{burger05}. Der RGB Farbraum kann als dreidimensionaler Würfel dargestellt
+ werden (\autoref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und
+ Blau dar. Normiert man den Würfel zu einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von
  \(\left[0 \dotsc 1.0\right]\). Innerhalb dieses Würfels kann durch Verschiebung der Koordinate jeder Farbton generiert
  werden. Die Grundfarben können in diesem Würfel durch die Punkte $R = \left(1,0,0\right)$, $G = \left(0,1,0\right)$
  und $B = \left(0,0,1\right)$ dargestellt werden. Schwarz ($S = \left(0,0,0\right)$) und Weiß
@@ -113,7 +125,7 @@ Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Pri
 	\centering
 	\def\svgwidth{.2\columnwidth}
 	\input{resources/RGBWuerfel.pdf_tex}
-	\caption{RGB Farbwürfel}
+	\caption{RGB-Farbwürfel}
 	\label{fig:rgbWuerfel}
 \end{figure}
 
@@ -128,10 +140,15 @@ Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Pri
 	weiß & 1.0 & 1.0 & 1.0 \\
 	grau & 0.5 & 0.5 & 0.5 \\
 	\end{tabular}
-	\caption{RGB Werte}
+	\caption{RGB-Werte}
  	\label{tbl:rgbwerte}
 	\end{center}
 \end{table}
+
+% subsubsection rgb (end)
+
+\subsubsection{YUV und YCbCr} % (fold)
+\label{sec:yuv_und_ycbcr}
 
 YUV und YCbCr sind standardisierte Formate zur Aufnahme, Darstellung und Übertragung von Bildern im Fehrnsehbereich und
 stellen andere Farbräume dar. YUV findet Verwendung bei analogen PAL und NTSC Systemen während YCbCr bei digitalen
@@ -156,7 +173,7 @@ Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (\autoref{fig:yuv
 		\label{fig:yuvLenna-V}
 		\includegraphics[width=.2\textwidth]{resources/Lenna_V.pdf}
 	}
-	\caption{Im YUV Farbraum wird ein Bild \subref{fig:yuvLenna-Farbe} in Luminanz $Y$ \subref{fig:yuvLenna-Y},
+	\caption{Im YUV-Farbraum wird ein Bild \subref{fig:yuvLenna-Farbe} in Luminanz $Y$ \subref{fig:yuvLenna-Y},
 		Chroma $U$ \subref{fig:yuvLenna-U} und Chroma $V$ \subref{fig:yuvLenna-Y} aufgeteilt. Von
 		 \cite{lenna}.
 	}
@@ -177,15 +194,24 @@ Die Chromakomponente $V$ definiert die Differenz von Luminanz $Y$ und dem Rotant
 	\label{eq:vchroma}
 \end{equation}
 
-Die Chromakomponenten $Cb$ und $Cr$ von YCbCr sind, wie bei YUV, Differenzwerte des Blau- und Rotanteil und der Luminanz. Der Unterschied zwischen YUV und YCbCr besteht in der unterschiedlichen Berechnung der \gls{chrominanz} und ist in \citeauthor{burger05}\footcite[][S.265--266]{burger05} beschrieben.
+Die Chromakomponenten $Cb$ und $Cr$ von YCbCr sind, wie bei YUV, Differenzwerte des Blau- und Rotanteil und der
+ Luminanz. Der Unterschied zwischen YUV und YCbCr besteht in der unterschiedlichen Berechnung der \gls{chrominanz} und
+ ist in \citeauthor{burger05}\footcite[][S.265--266]{burger05} beschrieben.
 
-Durch die Trennung der Luminanz und \gls{chrominanz} ist es möglich das Signal auf Schwarz/Weiß Fernsehern zu nutzen, indem nur die Luminanzkomponente berücksichtigt wird. Bei Farbfernsehern werden die zusätzlichen Chromakomponenten verwendet.
+Durch die Trennung der Luminanz und \gls{chrominanz} ist es möglich das Signal auf Schwarzweiß-Fernsehern zu nutzen,
+ indem nur die Luminanzkomponente berücksichtigt wird. Bei Farbfernsehern werden zusätzlich die Chromakomponenten
+ verwendet.
+
+% subsubsection yuv_und_ycbcr (end)
 
 % subsection farbräume (end)
 
-\subsection{Pixel Anordnung} % (fold)
+\subsection{Pixel-Anordnung} % (fold)
 \label{sub:pixelanordnung}
-Bei \gls{pixel} gibt es unterschiedliche Modelle der Anordnung von Farbkomponenten. Man unterscheidet die Komponentenanordnung, auch planare Anordnung genannt, von der gepackten Anordnung. Der Zugriff auf die Farbinformationen ist dabei abhängig vom eingesetzten Farbraum. Im weiteren Verlauf wird die gepackte Anordnung für den RGB Farbraum erläutert. Für YCbCr sind die vorgestellten Modelle anzupassen.
+Bei Pixeln gibt es unterschiedliche Modelle der Anordnung von Farbkomponenten. Man unterscheidet die
+ Komponentenanordnung, auch planare Anordnung genannt, von der gepackten Anordnung. Der Zugriff auf die
+ Farbinformationen ist dabei abhängig vom eingesetzten Farbraum. Im weiteren Verlauf wird die gepackte Anordnung für den
+ RGB Farbraum erläutert. Für YCbCr sind die vorgestellten Modelle anzupassen.
 
 Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arrays mit gleicher Größe gespeichert. Ein Bild
 
@@ -194,7 +220,9 @@ Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arrays 
 	\label{eq:planarImage}
 \end{equation}
 
-besteht aus den den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (\autoref{fig:planareAnordnung}). Der Zugriff auf ein \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in \citeauthor{burger05}\footcite[Vgl.][S.~235--236]{burger05} beschrieben. Der Zugriff erfolgt durch
+besteht aus den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (\autoref{fig:planareAnordnung}). Der Zugriff auf ein
+ \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in
+ \citeauthor{burger05}\footcite[Vgl.][S.~235--236]{burger05} beschrieben. Der Zugriff erfolgt durch
 
 \begin{equation}
 	\begin{pmatrix}
@@ -234,7 +262,7 @@ definiert.
 	\label{fig:gepackteAnordnung}
 \end{figure}
 
-Im allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \eqref{eq:readPackedRGB} zugegriffen.
+Im Allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \autoref{eq:readPackedRGB} zugegriffen.
 
 \begin{equation}
 	\begin{pmatrix}
@@ -257,7 +285,7 @@ $Red()$, $Green()$ und $Blue()$ sind abhängig vom eingesetzten Format\footcite[
 \subsection{Filter und Faltung} % (fold)
 \label{sub:filter}
 Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine mathematische Abbildung in ein
- Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen operieren Filter auf Regionen um, zum Beispiel,
+ Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen operieren Filter auf Regionen, um zum Beispiel
  Bilder zu glätten oder zu schärfen (Vgl.~\autoref{fig:filterbeispiel}).
 
 \begin{figure}[!ht]
@@ -323,7 +351,9 @@ berechnet werden. Für Filter mit einer anderen Größe als $3 \times 3$, lautet
 
 wobei $\mathbb{R}$ die Größe des Filters angibt\footcite[Vgl.][S.~92--93]{burger05}.
 
-Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footcite[Vgl.][S.~113]{burger05}, da der Filter $H$ an den Bildrändern über die definierte Bildmenge hinausragt. Um dieses Problem zu umgehen, gibt es die Möglichkeit
+Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footcite[Vgl.][S.~113]{burger05}, da der
+ Filter $H$ an den Bildrändern über die definierte Bildmenge hinausragt. Um dieses Problem zu umgehen, gibt es die
+ Möglichkeit
 
 \begin{enumerate}
 	\item am Randbereich einen konstanten Wert zuzuweisen,\label{konstant}
@@ -337,10 +367,10 @@ Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footc
 \end{enumerate}
 
 Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autoref{nix} der Filter an den Rändern nicht
- angewendet. Bei \autoref{berechneKonstant} kann durch die Zuweisung eines konstanten Wertes, beispielsweise Schwarz,
- das Ergebnis verfälschen. \autoref{berechneRand} weist die geringste Verfälschung auf. Bei \autoref{berechneBild} wird
- durch die Wiederholung des Bildes implizit eine periodische Funktion betrachtet. Die möglichen Randbehandlungen sind
- in \autoref{fig:randbeispiel} illustriert. Welche dieser Randbetrachtung eingesetzt wird ist abhängig von den
+ angewendet. Bei \autoref{berechneKonstant} kann die Zuweisung eines konstanten Wertes, beispielsweise Schwarz, das
+ Ergebnis verfälschen. \autoref{berechneRand} weist die geringste Verfälschung auf. Bei \autoref{berechneBild} wird
+ durch die Wiederholung des Bildes eine periodische Funktion betrachtet. Die möglichen Randbehandlungen sind in
+ \autoref{fig:randbeispiel} illustriert. Welche dieser Randbetrachtung eingesetzt wird ist abhängig von den
  benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert betrachtet werden.
 
 \begin{figure}[!ht]
@@ -450,7 +480,7 @@ Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur 
 	\end{cases}
 \end{equation*}
 
-Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird ein Binärbild in zwei Schrittten
+Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird ein Binärbild in zwei Schritten
  untersucht. Im ersten Schritt werden im Binärbild vorläufige Markierungen für Regionen gespeichert und im zweiten
  Schritt werden mehrfache Makierungen für eine Region aufgelöst.
 
@@ -529,7 +559,7 @@ Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundp
 	}
 	\caption{Vorläufige Regionenmarkierung. Ein Binärbild \subref{fig:markierung-binaer} wird zeilenweise von
 	 oben nach unten durchlaufen. Eine 8er-Nachbarschaft vergleicht die angrenzenden Pixel \subref{fig:markierung-1}.
-	 Eine Kollision zwischen zwei Markierungen wird regestriert und der kleinere Wert zugewiesen bis das Binärbild
+	 Eine Kollision zwischen zwei Markierungen wird registriert und der kleinere Wert zugewiesen bis das Binärbild
 	 vollständig verarbeitet wurde \subref{fig:markierung-2}--\subref{fig:markierung-3}.}
 	\label{fig:markierung}
 \end{figure}
@@ -561,7 +591,8 @@ Betrachten wir \autoref{alg:resolve-label-collision} an folgendem Beispiel: In Z
 
 \input{alg/resolve-label-collision}
 
-Nach diesem letzten Schritt sind alle zusammenhängende Regionen in einem Binärbild eindeutig gekennzeichnet und können nun mit anderen Verfahren weiterverarbeitet werden um, beispielsweise, die Form einer Region zu erkennen.
+Nach diesem letzten Schritt sind alle zusammenhängende Regionen in einem Binärbild eindeutig gekennzeichnet und können
+ nun mit anderen Verfahren weiterverarbeitet werden, um beispielsweise die Form einer Region zu erkennen.
 
 % subsubsectionsection auflösung_von_kollisionen (end)
 
