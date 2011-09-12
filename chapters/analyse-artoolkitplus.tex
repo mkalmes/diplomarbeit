@@ -134,7 +134,7 @@ In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf sein
  $\mathit{marker\_info2}$ die Koordinaten der Eckpunkte der Marke gespeichert und das Verfahren beendet.
  \autoref{alg:detectmarker} verarbeitet die Anweisungen in konstanter Zeit.
 
-Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:arlabeling-neighbour-case5}) wird zur
+Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:arlabeling-calcregiondata}) wird zur
  Markierung der Regionen in einem Bildsignal $I$ verwendet. Wie in \autoref{sub:fiducial_detection} beschrieben,
  verzichet ARToolKitPlus beim Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der
  Verarbeitung durch eine Schwellwertanalyse untersucht. \textproc{arLabeling} kann in drei Abschnitte unterteilt werden
@@ -461,7 +461,52 @@ In Zeile \ref{alg:sortlabels-j} wird $j$ als Variable für die aktuelle Markieru
  \ref{alg:sortlabels-inci} wird die Laufvariable $i$ um $1$ erhöht und in Zeile \ref{alg:sortlabels-incwk} die Adresse
  von $\mathit{work}$ inkrementiert. Das Beispiel in \autoref{fig:} illustriert das Verfahren.
 
+Das Verfahren in \autoref{alg:arlabeling-initlabelmemory} initialisiert den Speicher zur Berechnung des Flächeninhalts
+ einer Region und den Speicher der Koordinaten des Mittelpunkts einer Region. Dazu wird in Zeile
+ \ref{alg:arlabeling-initlabelmemory-label-start}--\ref{alg:arlabeling-initlabelmemory-label-end} der größte
+ Markierungswert aus $\mathit{work}$ in $\mathit{wlabel\_num}$ und $\mathit{label\_num}$ gespeichert. Falls in der
+ Überprüfung in Zeile
+ \ref{alg:arlabeling-initlabelmemory-islabel-start}--\ref{alg:arlabeling-initlabelmemory-islabel-end}
+ $\mathit{label\_num}$ keine Markierung enthält, wird das Verfahren abgebrochen und das Regionenbild $\mathit{l\_image}$
+ zurückgegeben. Andernfalls wird in Zeile
+ \ref{alg:arlabeling-initlabelmemory-initwarea-start}--\ref{alg:arlabeling-initlabelmemory-initwarea-end} der Speicher
+ des Flächeinhalts $\mathit{warea}$ mit dem Wert $0$ initialisiert, indem über die Größe des Speichers iteriert wird.
+ Der Speicher zur Berechnung des Mittelpunkts der Regionen wird in Zeile
+ \ref{alg:arlabeling-initlabelmemory-initwpos-start}--\ref{alg:arlabeling-initlabelmemory-initwpos-end} nach dem
+ gleichen Prinzip initialisiert.
+
+\input{alg/analyse-artplus/arlabeling-initlabelmemory}
+
+In \autoref{alg:arlabeling-calcregiondata} werden die Daten aller Regionenmarkierungen aufbereitet. Das Verfahren
+ berechnet den Flächeninhalt, den Mittelpunkt und die Start- und Endkoordinaten für alle Regionen.
+
+\input{alg/analyse-artplus/arlabeling-calcregiondata}
+
+Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arlabeling-calcregiondata-wclip-end} der
+ Speicher der Start- und Endkoordinaten initialisiert, indem über die Menge der Regionen itertiert wird und die
+ Initialwerte, $\mathit{lxsize}$ und $0$ für die Startkoordiante und $\mathit{lysize}$ und $0$ für die Endkoordinate,
+ gespeichert werden. In Zeile
+ \ref{alg:arlabeling-calcregiondata-work-start}--\ref{alg:arlabeling-calcregiondata-work-end} werden die Werte aus
+ $\mathit{work2}$ aufbereitet, indem über die Anzahl der Regionen iteriert wird. In Zeile
+ \ref{alg:arlabeling-calcregiondata-label} wird die Regionemarkierung ausgelesen und in $j$ gespeichert. Danach wird
+ die Anzahl der Vordergrundpixel für Region $j$ aus $\mathit{work2}$ ausgelesen und in $\mathit{warea}$ gespeichert. In
+ Zeile \ref{alg:arlabeling-calcregiondata-sumx}--\ref{alg:arlabeling-calcregiondata-sumy} werden die summierten $x$- und
+ $y$-Koordinaten aus $\mathit{work2}$ ausgelsen und in $\mathit{wpos}$ gespeichert. Die Überprüfung des $x$-Werts in
+ Zeile \ref{alg:arlabeling-calcregiondata-startx-start}--\ref{alg:arlabeling-calcregiondata-startx-end} sorgt dafür,
+ dass die Startkoordinate soweit links wie möglich beginnt. Der $y$-Wert der Startkoordinate wird in Zeile
+ \ref{alg:arlabeling-calcregiondata-starty-start}--\ref{alg:arlabeling-calcregiondata-starty-end} überprüft. Bei dieser
+ Überprüfung soll der $y$-Wert soweit oben wie möglich liegen. Zeile
+ \ref{alg:arlabeling-calcregiondata-endcoord-start}--\ref{alg:arlabeling-calcregiondata-endcoord-end} wiederholen das
+ Verfahren für den $x$- und $y$-Wert der Endkoordinate. Danach wird in Zeile
+ \ref{alg:arlabeling-calcregiondata-pos-start}--\ref{alg:arlabeling-calcregiondata-pos-end} die Position
+ des Mittelpunkts einer Region berechnet, indem die aufsummierten Koordinaten einer Region durch die Anzahl der
+ Vordergrundpixel in $\mathit{warea}$ geteilt wird. Zuletzt werden die lokalen Variablen in den Übergabeparametern
+ gespeichert und das Regionenbild $\mathit{l\_image}$ an die aufrufende Methode zurückgegeben. An dieser Stelle ist
+ \autoref{alg:arlabeling-overview} beendet.
+
 % subsection fiducial_detection (end)
+
+\clearpage
 
 \subsection{Rectangle Fitting} % (fold)
 \label{sec:rectangle_fitting}
