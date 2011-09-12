@@ -504,6 +504,99 @@ Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arl
  gespeichert und das Regionenbild $\mathit{l\_image}$ an die aufrufende Methode zurückgegeben. An dieser Stelle ist
  \autoref{alg:arlabeling-overview} beendet.
 
+Das zweite Verfahren der Fiducial Detection ermittelt aus der Regionenmarkierung eine Kontur mit den Verfahren
+ \autoref{alg:argetcontour-1}--\autoref{alg:argetcontour-3}. In \autoref{alg:argetcontour-1} werden die Variablen in
+ Zeile \ref{alg:argetcontour-1-initvar-start}--\ref{alg:argetcontour-1-initvar-end} initialisiert.
+
+\input{alg/analyse-artplus/argetcontour-1}
+
+Die 8er-Nachbarschaft zur Verfolgung einer Kontur wird in Zeile
+ \ref{alg:argetcontour-1-initvar-start}--\ref{alg:argetcontour-1-initvar-neighbour} initialisiert. Die Bildbreite und
+ Bildhöhe werden in Zeile \ref{alg:argetcontour-1-initsizex}--\ref{alg:argetcontour-1-initvar-end} in $\mathit{xsize}$
+ und $\mathit{ysize}$ gespeichert. Danach wird in Zeile \ref{alg:argetcontour-1-offset} ein Adressabstand berechnet um
+ den Startpunkt der ersten Regionenmarkierung in $\mathit{l\_image}$ in $\mathit{p1}$ zu speichern (Zeile
+ \ref{alg:argetcontour-1-p1}). In der Schleife in Zeile
+ \ref{alg:argetcontour-1-loop-start}--\ref{alg:argetcontour-1-loop-end} wird der Startpunkt der Region gesucht. Dazu
+ wird in Zeile \ref{alg:argetcontour-1-haslabel-start}--\ref{alg:argetcontour-1-haslabel-end} geprüft, ob an der
+ Adresse $\mathit{p1}$ eine Regionenmarkierung gespeichert ist und ob der Wert der Regionenmarkierung in
+ $\mathit{label\_ref}$ mit der Markierung in $\mathit{label}$ übereinstimmt. Falls die Werte übereinstimmen, werden die
+ Koordinaten in Zeile \ref{alg:argetcontour-1-savex}--\ref{alg:argetcontour-1-savey} in den Variablen $\mathit{sx}$ und
+ $\mathit{sy}$ gespeichert und die Schleife wird abgebrochen. Ansonsten wird in Zeile
+ \ref{alg:argetcontour-1-inci}--\ref{alg:argetcontour-1-incp1} die Laufvariable $i$ um $1$ erhöht und die Adresse
+ $\mathit{p1}$ inkrementiert.
+
+\autoref{alg:argetcontour-2} verfolgt nun die Kontur der Region. Dazu wird zuerst in der Datenstruktur
+ $\mathit{marker\_infoTWO}$ die Anzahl der Koordinaten initialisiert und die $x$- und $y$-Werte der ersten
+ Regionenmarkierung gespeichert (Zeile
+ \ref{alg:argetcontour-2-markerinit-start}--\ref{alg:argetcontour-2-markerinit-end}). Danach wird die Orientiertung der
+ 8er-Nachbarschaft in Zeile \ref{alg:argetcontour-2-orientation} festgelegt.
+
+\input{alg/analyse-artplus/argetcontour-2}
+
+Die Kontur wird in der Schleife in Zeile
+ \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} verfolgt. Zuerst muss der
+ Adressabstand der letzten Regionenmarkierung in $\mathit{l\_image}$ berechnet werden (Zeile
+ \ref{alg:argetcontour-2-offset-start}--\ref{alg:argetcontour-2-offset-end}). Danach wird die Adresse der
+ Regionenmarkierung in $\mathit{p1}$ hinterlegt (Zeile \ref{alg:argetcontour-2-address}). In Zeile
+ \ref{alg:argetcontour-2-nextorientation} wird die Orientierung der 8er-Nachbarschaft auf die nächste zu untersuchende
+ Richtung gedreht. Das drehen der 8er-Nachbarschaft erfolgt, indem von der letzten Position einer Kontur im
+ Uhrzeigersinn auf den nächsten Nachbarn weitergerückt wird (Vgl. \autoref{fig:}).
+
+In Zeile \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} wird in der Schleife
+ die Nachbarn im Uhrzeigersinn untersucht. Dazu wird mit Hilfe der 8er-Nachbarschaft in Zeile
+ \ref{alg:argetcontour-2-offset} ein Adressabstand berechnet. Durch die Überprüfung einer Regionenmarkierung an der
+ Adresse von $\mathit{p1}$ in Zeile \ref{alg:argetcontour-2-haslabel-start}--\ref{alg:argetcontour-2-haslabel-end} wird
+ entschieden, ob die Schleife von Zeile
+ \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} abgebrochen wird weil eine
+ Markierung gefunden wurde, oder ob ein weiterer Nachbar untersucht werden muss. Falls ein weiterer Nachbar untersucht
+ werden muss, wird in Zeile \ref{alg:argetcontour-2-incdir} die Position der 8er-Nachbarschaft um eine Position
+ verschoben und in Zeile \ref{alg:argetcontour-2-inci} die Laufvariable $i$ erhöht. Falls alle Nachbarn der
+ Regionenmarkierung untersucht worden sind ohne eine weiter Markierung zu finden, wird das Verfahren in Zeile
+ \ref{alg:argetcontour-2-hasnolabel-start}--\ref{alg:argetcontour-2-hasnolabel-end} mit einem Fehlerwert abgebrochen.
+
+Wenn eine weitere Markierung in Zeile
+ \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} gefunden und die Schleife
+ abgebrochen wurde, wird in Zeile \ref{alg:argetcontour-2-savex}--\ref{alg:argetcontour-2-savey} die Markierung
+ gespeichert. Dazu wird die $x$- und $y$-Koordinate der letzten Markierung ausgelesen und die Richtung der
+ 8er-Nachbarschaft addiert. Danach wird in Zeile
+ \ref{alg:argetcontour-2-iscontourclosed-start}--\ref{alg:argetcontour-2-iscontourclosed-end} überprüft, ob die
+ gespeicherte Markierung mit den Anfangskoordinaten übereinstimmt und es sich somit um eine geschlossene Kontur
+ handelt. Falls das Verfahren eine geschlossene Kontur gefunden hat, wird die Schleife von Zeile
+ \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} abgebrochen. Falls es sich nicht
+ um eine geschlossene Kontur handelt, wird die Kontur weiterverfolgt. In Zeile \ref{alg:argetcontour-2-inccoordnum}
+ wird die Anzahl der Koordinaten in $\mathit{marker\_infoTWO}$ erhöht. Bevor die Kontur weiterverfolgt wird, wird in
+ Zeile \ref{alg:argetcontour-2-ismaxchainreached-start}--\ref{alg:argetcontour-2-ismaxchainreached-end} überprüft, ob
+ die Anzahl der Koordinaten einer festgelegten Größe entspricht. Falls dem so ist, wird das Verfahren mit einem
+ Fehlerwert in Zeile \ref{alg:argetcontour-2-error} abgebrochen. Dadurch wird sichergestellt, dass die Schleife in
+ Zeile \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} auch bei einer nicht
+ geschlossenen Kontur terminiert.
+
+In \autoref{alg:argetcontour-3} wird, nachdem eine geschlossene Kontur vorliegt, die Koordinate mit dem größten Abstand
+ zum Startpunkt der Region gesucht (Zeile
+ \ref{alg:argetcontour-3-finddmax-start}--\ref{alg:argetcontour-3-finddmax-end}).
+
+\input{alg/analyse-artplus/argetcontour-3}
+
+Dazu wird in Zeile \ref{alg:argetcontour-3-initdmax} die Variable $\mathit{dmax}$ initialisiert. Danach wird in Zeile
+ \ref{alg:argetcontour-3-calcdistance-start}--\ref{alg:argetcontour-3-calcdistance-end} der Abstand zwischen dem
+ aktuellen Punkt $i$ und der Koordinaten $\mathit{sx}$ und $\mathit{sy}$ berechnet. Falls der Abstandswert größer als
+ $\mathit{dmax}$ ist (Zeile \ref{alg:argetcontour-3-isdmaxbigger}), wird der Abstandswert in $\mathit{dmax}$
+ gespeichert (Zeile \ref{alg:argetcontour-3-savedmax}) und die Position $i$ in $\mathit{v1}$ hinterlegt.
+
+Nachdem die Schleife in Zeile \ref{alg:argetcontour-3-calcdistance-start}--\ref{alg:argetcontour-3-calcdistance-end}
+ beendet ist, ist der größte Abstand in $\mathit{dmax}$ gespeichert und die Position der Koordinate in $\mathit{v1}$
+ gespeichert. Nun wird in Zeile \ref{alg:argetcontour-3-dividev1-start}--\ref{alg:argetcontour-3-dividev1-end} von der
+ ersten Position bis zur Position $\mathit{v1}$ alle Koordinaten in einer temporären Liste gespeichert. In Zeile
+ \ref{alg:argetcontour-3-dividecoordnum-start}--\ref{alg:argetcontour-3-dividecoordnum-end} werden alle Koordinaten ab
+ Position $\mathit{v1}$ an den Anfang von $\mathit{marker\_infoTWO}$ verschoben. Die temporär gespeicherten Koordinaten
+ werden in Zeile \ref{alg:argetcontour-3-merge-start}--\ref{alg:argetcontour-3-merge-end} an das Ende von
+ $\mathit{marker\_infoTWO}$ angehängt.
+
+Zum Schluss wird in Zeile \ref{alg:argetcontour-3-savev1-start}--\ref{alg:argetcontour-3-savev1-end} die Koordinaten
+ des Punktes mit dem größten Abstandswert an die letzte Stelle von marker\_infoTWO kopiert, so dass die Koordinaten am
+ Anfang und am Ende gespeichert sind. Die Anzahl der gespeicherten Koordinaten wird in Zeile
+ \ref{alg:argetcontour-3-inccoordnum} erhöht und die Konturverfolgung beendet.
+
 % subsection fiducial_detection (end)
 
 \clearpage
