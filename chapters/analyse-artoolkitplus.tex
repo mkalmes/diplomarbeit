@@ -432,6 +432,35 @@ In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numeri
 
 % paragraph fall_5_ (end)
 
+Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die numerischen Werte der Regionen. In
+ $\mathit{work2}$ ist für jede Region die Anzahl der Vordergrundpixel, die summierten $x$- und $y$-Koordinaten aller
+ Vordergrundpixel, sowie die $x$- und $y$-Koordinate für den ersten und letzten Vordergrundpixel, hinterlegt. Das
+ Regionenbild ist in $\mathit{l\_image}$ gespeichert. Die erfassten Daten müssen nun in Schritt \ref{label-cleaning} von
+ \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte
+ in $\mathit{work}$ sortiert.
+
+Die aufsteigenden Markierungswerte in $\mathit{work}$ sind duch Kollisionen in
+ \autoref{alg:arlabeling-neighbour-case2-1} durch kleinere Werte ersetzt worden. Dadurch ist eine Lücke im Interval
+ $\left[1,2,3..n\right]$ der numerischen Werte entstanden. Diese Lücken werden durch \autoref{alg:sortlabels}
+ entfernt, um wieder ein aufsteigendes Interval zu erhalten.
+
+\input{alg/analyse-artplus/arlabeling-sortlabels}
+
+In Zeile \ref{alg:sortlabels-j} wird $j$ als Variable für die aktuelle Markierung initialisiert. In Zeile
+ \ref{alg:sortlabels-address} wird die Adresse der ersten Markierung aus $\mathit{work}$ in $\mathit{wk}$ gespeichert.
+ Die Schleife in Zeile \ref{alg:sortlabels-loop-start}--\ref{alg:sortlabels-loop-end} überprüft, ob die numerischen
+ Werte ohne Lücken durch Kollisionen gespeichert sind. Dazu wird jeder Eintrag in $\mathit{work}$ mit der Laufvariable
+ $i$ verglichen. Falls keine Kollisionen vorliegen, werden die Werte in $\mathit{work}$ immer mit $i$ übereinstimmen,
+ da keine Lücken im Intervall vorhanden sind. In Zeile \ref{alg:sortlabels-savelabel} wird dann der Wert aus $j$ an die
+ aktuelle Position von $\mathit{work}$ geschrieben und $j$ danach inkrementiert. Bei einer Kollision stimmt der Wert in
+ $\mathit{work}$ nicht mit $i$ überein
+ (Zeile \ref{alg:sortlabels-collision-start}--\ref{alg:sortlabels-collision-end}). In diesem Fall wird der Wert an der
+ aktuellen Position von $\mathit{work}$ ausgelesen und dekrementiert. Dieser Wert wird als Index verwendet um den Wert
+ des zuletzt zugewiesenen Markierungswert an die aktuelle Position von $\mathit{work}$ zu schreiben. Da die Variable
+ $j$ in diesem Fall nicht inkrementiert wird, enthält sie den nächsten Wert des Markierungsintervals. In Zeile
+ \ref{alg:sortlabels-inci} wird die Laufvariable $i$ um $1$ erhöht und in Zeile \ref{alg:sortlabels-incwk} die Adresse
+ von $\mathit{work}$ inkrementiert. Das Beispiel in \autoref{fig:} illustriert das Verfahren.
+
 % subsection fiducial_detection (end)
 
 \subsection{Rectangle Fitting} % (fold)
