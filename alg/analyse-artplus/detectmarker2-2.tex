@@ -1,0 +1,71 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arDetectMarker2} (Fortsetzung)}
+\label{alg:detectmarker2-2}
+\begin{algorithmic}[1]
+	\algrestore{brk-detectmarker2-init}
+	% marker_num2 = 0;
+	\State $\mathit{marker\_num2} \gets 0$
+	\label{alg:detectmarker2-2-markernum2}
+	% for(i=0; i<label_num; i++ ) {
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
+	\label{alg:detectmarker2-2-loop-start}
+	%     if( warea[i] < area_min || warea[i] > area_max ) continue;
+		\If{$\mathit{warea}[i] < \mathit{area\_min} \lor \mathit{warea}[i] > \mathit{area\_max}$}
+		\label{alg:detectmarker2-2-area-start}
+			\State \textbf{continue}
+		\EndIf
+		\label{alg:detectmarker2-2-area-end}
+	%     if( wclip[i*4+0] == 1 || wclip[i*4+1] == xsize-2 ) continue;
+		\If{$\mathit{wclip}[i \cdot 4 + 0] == 1 \lor \mathit{wclip}[i \cdot 4 + 1] == \mathit{xsize} - 2$}
+		\label{alg:detectmarker2-2-checkx-start}
+			\State \textbf{continue}
+			\label{alg:detectmarker2-2-checkx-continue}
+		\EndIf
+		\label{alg:detectmarker2-2-checkx-end}
+	%     if( wclip[i*4+2] == 1 || wclip[i*4+3] == ysize-2 ) continue;
+		\If{$\mathit{wclip}[i \cdot 4 + 2] == 1 \lor \mathit{wclip}[i \cdot 4 + 3] == \mathit{ysize} - 2$}
+		\label{alg:detectmarker2-2-checky-start}
+			\State \textbf{continue}
+		\EndIf
+		\label{alg:detectmarker2-2-checky-end}
+	% 
+	%     ret = arGetContour( limage, label_ref, i+1,
+	%                         &(wclip[i*4]), &(marker_infoTWO[marker_num2]));
+		\State $\mathit{ret} \gets$ \textproc{arGetContour}$\left(
+		\begin{aligned}
+			& \mathit{limage}, \mathit{label\_ref}, i + 1,\\
+			& \mathit{wclip}[i \cdot 4], \mathit{marker\_infoTWO}[\mathit{marker\_num2}]
+		\end{aligned}\right)$
+		\label{alg:detectmarker2-2-callcontour}
+	%     if( ret < 0 ) continue;
+		\State \ldots
+	% 	\If{$\mathit{ret} < 0$}
+	% 		\State \textbf{continue}
+	% 	\EndIf
+	% % 
+	% %     ret = check_square( warea[i], &(marker_infoTWO[marker_num2]), factor );
+	% 	\State $\mathit{ret} \gets$ \Call{checkSquare}{$\mathit{warea}[i],\mathit{marker\_infoTWO}[\mathit{marker\_num2}], \mathit{factor}$}
+	% %     if( ret < 0 ) continue;
+	% 	\If{$\mathit{ret} < 0$}
+	% 		\State \textbf{continue}
+	% 	\EndIf
+	% %     marker_infoTWO[marker_num2].area   = warea[i];
+	% %     marker_infoTWO[marker_num2].pos[0] = wpos[i*2+0];
+	% %     marker_infoTWO[marker_num2].pos[1] = wpos[i*2+1];
+	% %     marker_num2++;
+	% 	\State $\mathit{marker\_infoTWO}[marker\_num2].area \gets \mathit{warea}[i]$
+	% 	\State $\mathit{marker\_infoTWO}[marker\_num2].pos[0] \gets \mathit{wpos}[i \cdot 2 + 0]$
+	% 	\State $\mathit{marker\_infoTWO}[marker\_num2].pos[1] \gets \mathit{wpos}[i \cdot 2 + 1]$
+	% 	\State $\mathit{marker\_num2} \gets \mathit{marker\_num2} + 1$
+	% %     if(marker_num2==MAX_IMAGE_PATTERNS)
+	% % 		break;
+	% 	\If{$\mathit{marker\_num2} == \mathit{MAX\_IMAGE\_PATTERNS}$}
+	% 		\State \textbf{break}
+	% 	\EndIf
+	% % }
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:detectmarker2-2-loop-end}
+	% \algstore{brk-detectmarker2-process}
+\end{algorithmic}
+\end{algorithm}
