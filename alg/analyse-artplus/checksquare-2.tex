@@ -1,0 +1,25 @@
+\begin{algorithm}[ht]
+\caption{\textproc{checkSquare} (Fortsetzung)}
+\label{alg:checksquare-2}
+\begin{algorithmic}[1]
+	\algrestore{brk-checksquare-1-init}
+	\State $\mathit{sx} \gets \mathit{marker\_infoTWO \to x\_coord}[0]$
+	\label{alg:checksquare-2-x}
+	\State $\mathit{sy} \gets \mathit{marker\_infoTWO \to y\_coord}[0]$
+	\label{alg:checksquare-2-y}
+	\For{$i \gets 1$ \textbf{to} $\mathit{marker\_infoTWO \to coord\_num} - 1$}
+	\label{alg:checksquare-2-loop-start}
+		\State $a \gets \mathit{marker\_infoTWO \to x\_coord}[i] - \mathit{sx}$
+		\State $b \gets \mathit{marker\_infoTWO \to y\_coord}[i] - \mathit{sy}$
+		\State $d \gets \left(a \cdot a\right) + \left(b \cdot b\right)$
+		\If{$d > \mathit{dmax}$}
+		\label{alg:checksquare-2-isdbigger}
+			\State $\mathit{dmax} \gets d$
+			\State $\mathit{v1} \gets i$
+		\EndIf
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:checksquare-2-loop-end}
+	\algstore{brk-checksquare-2-distance}
+\end{algorithmic}
+\end{algorithm}

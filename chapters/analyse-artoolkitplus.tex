@@ -151,6 +151,117 @@ In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf sein
 \subsection{Rectangle Fitting} % (fold)
 \label{sec:rectangle_fitting}
 
+In der Rectangle Fitting Phase wird überprüft, ob eine Kontur ein Rechteck ist. Dazu wird in Rectangle Fitting die
+ Methode \textproc{checkSquare} verwendet (\autoref{alg:checksquare-1}--\autoref{alg:checksquare-7}). Das Verfahren
+ benötigt als Eingabeparameter die Fläche der Region ($\mathit{area}$), die Datenstruktur $\mathit{marker\_infoTwo}$
+ mit Informationen der Region und Kontur und einen Faktor ($\mathit{factor}$) zur Berechnung eines Distanzschwellwerts.
+
+\input{alg/analyse-artplus/checksquare-1}
+
+Die lokalen Variablen werden in \autoref{alg:checksquare-1} initialisiert und ihre Bedeutung bei der ersten Verwendung erläutert.
+
+\input{alg/analyse-artplus/checksquare-2}
+
+In \autoref{alg:checksquare-2} wird der größte Abstand von dem Punkt $(\mathit{sx},\mathit{sy})$ für alle anderen
+ Konturpunkte berechnet. In Zeile \ref{alg:checksquare-2-x}--\ref{alg:checksquare-2-y} wird aus der Koordinatenliste
+ von $\mathit{marker\_infoTWO}$ die $x$-Koordinate in $\mathit{sx}$ und die $y$-Koordinate in $\mathit{sy}$
+ gespeichert. In \textproc{arGetContour} (\autoref{alg:argetcontour-3}) wurde an der ersten Position von
+ $\mathit{marker\_infoTWO}$ eine Koordinate mit dem größten Abstand zum Anfang der Kontur gespeichert, die hier als
+ Startpunkt der Rechteckerkennung dient. In der Schleife in Zeile
+ \ref{alg:checksquare-2-loop-start}--\ref{alg:checksquare-2-loop-end} wird für alle Konturpunkte in
+ $\mathit{marker\_infoTWO}$ der Abstand $d$ berechnet. Wenn der Abstand $d$ größer als $\mathit{dmax}$ ist (Zeile
+ \ref{alg:checksquare-2-isdbigger}), wird $\mathit{dmax}$ mit dem neuen Abstandswert $d$ überschrieben und der Index
+ $i$ in $\mathit{v1}$ notiert. Am Ende von \autoref{alg:checksquare-2} enthält $\mathit{v1}$ den Index der Koordinaten
+ mit dem größten Abstand zum Punkt $(\mathit{sx},\mathit{sy})$ und ist der Index zu einem Eckpunkt der Kontur. Die
+ Menge der Konturpixel in $\mathit{marker\_infoTWO}$ wird mit $\mathit{v1}$ in \autoref{alg:checksquare-3} geteilt und
+ die Teilmengen einzeln untersucht.
+
+\input{alg/analyse-artplus/checksquare-3}
+
+Bevor die Konturpixel untersucht werden, wird in Zeile \ref{alg:checksquare-3-thresh} der Distanzschwellwert
+ $\mathit{thresh}$ mit Hilfe der Fläche der Region und $\mathit{factor}$ erstellt. Danach wird die Anzahl der Vektoren
+ $\mathit{vnum}$ initialisiert und der Index zum Punkt $(\mathit{sx}, \mathit{sy})$ in der Liste der Vektoren
+ ($\mathit{vertex}$) gespeichert. $wvnum1$ und $wvnum2$ speichern die Anzahl der gefundenen Eckpunkte und werden in
+ Zeile \ref{alg:checksquare-3-wvnum1}--\ref{alg:checksquare-3-wvnum2} initialisiert. In Zeile
+ \ref{alg:checksquare-3-getvertex1} wird die Methode \textproc{getVertex} aufgerufen, die einen Eckpunkt in der Menge
+ der Konturpixel zwischen Position $0$ und $\mathit{v1}$ in $\mathit{marker\_infoTWO}$ finden soll. Danach wird
+ \textproc{getVertex} in Zeile \ref{alg:checksquare-3-getvertex2} aufgerufen, um einen Eckpunkt in der Menge zwischen
+ $\mathit{v1}$ und dem letzten Eintrag in $\mathit{marker\_infoTWO}$ zu finden. Die Methode \textproc{getVertex} wird
+ am Ende des Abschnitts beschrieben.
+
+Die Ergebnisse aus \autoref{alg:checksquare-3} können in drei Fälle kategorisiert werden. Entweder wurde
+
+\begin{enumerate}
+	\item ein Eckpunkt in jeder Teilmenge gefunden, \label{enum:checksquare-case1}
+	\item in der ersten Teilmenge mehr als ein Eckpunkt gefunden oder \label{enum:checksquare-case2}
+	\item in der zweiten Teilmenge mehr als ein Eckpunkt gefunden. \label{enum:checksquare-case3}
+\end{enumerate}
+
+Jeder dieser Fälle wird in \autoref{alg:checksquare-4}--\autoref{alg:checksquare-6} untersucht.
+
+\paragraph{1. Fall:} % (fold)
+\label{par:1_fall}
+
+Das Verfahren \autoref{alg:checksquare-4} behandelt den Fall, dass die Methode \textproc{getVertex} jeweils einen
+ Eckpunkt für jede Teilmenge gefunden hat. Somit sind in diesem Fall die Indizes der beiden Eckpunkte $\mathit{wv1}$
+ und $\mathit{wv2}$ bekannt. Der Index $\mathit{v1}$ eines Eckpunktes wurde in \autoref{alg:checksquare-2} berechnet.
+ Die Indizes werden in Zeile \ref{alg:checksquare-4-save-start}--\ref{alg:checksquare-4-save-end} in die Liste der
+ Vektoren gespeichert.
+
+\input{alg/analyse-artplus/checksquare-4}
+
+% paragraph  (end)
+
+\paragraph{2. Fall} % (fold)
+\label{par:2_fall}
+
+In diesem Fall wurde in der ersten Teilmenge mehr als ein Eckpunkt gefunden und in der zweiten Teilmenge kein Eckpunkt.
+ \autoref{alg:checksquare-5} versucht in diesem Fall die Eckpunkte zu korrigieren. Dazu wird ein neuer Index
+ $\mathit{v2}$ in Zeile \ref{alg:checksquare-5-v2} generiert, indem der Index $\mathit{v1}$ verwendet wird. Danach wird
+ die Anzahl der Eckpunkte in Zeile \ref{alg:checksquare-5-delwvnum1}--\ref{alg:checksquare-5-delwvnum2} gelöscht. In
+ Zeile \ref{alg:checksquare-5-vertex1-start}--\ref{alg:checksquare-5-vertex1-end} wird mit \textproc{getVertex} die
+ erste Teilmenge von $0$--$\mathit{v2}$ untersucht, und in Zeile
+ \ref{alg:checksquare-5-vertex2-start}--\ref{alg:checksquare-5-vertex2-end} die zweite Teilmenge von
+ $\mathit{v2}$--$\mathit{v1}$. Danach wird in Zeile \ref{alg:checksquare-5-hascorners} überprüft, ob ein Eckpunkt in
+ jeder Teilmenge gefunden wurde. Falls dem so ist, werden die Indizes in Zeile
+ \ref{alg:checksquare-5-save-start}--\ref{alg:checksquare-5-save-end} in die Liste der Vektoren geschrieben. Andernfalls
+ handelt es sich bei der Kontur nicht um ein Rechteck und das Verfahren wird in Zeile \ref{alg:checksquare-5-error}
+ abgebrochen.
+
+\input{alg/analyse-artplus/checksquare-5}
+
+% paragraph 2_fall (end)
+
+\paragraph{3. Fall} % (fold)
+\label{par:3_fall}
+
+Der dritte Fall bedeutet, dass in der ersten Teilmenge kein Eckpunkt und in der zweiten Teilmenge mehr als ein Eckpunkt
+ gefunden wurde. Das Verfahren \autoref{alg:checksquare-6} ähnelt dem Verfahren \autoref{alg:checksquare-5} (2. Fall).
+ Auch hier wird ein neuer Index $\mathit{v2}$ erstellt (Zeile \ref{alg:checksquare-6-v2}). In diesem Fall wird der
+ Index $\mathit{v2}$ erstellt, indem der Index $\mathit{v1}$ und die Anzahl der gespeicherten Konturpunkte verwendet
+ werden. Der Rest des Verfahrens entspricht dem Verfahren \autoref{alg:checksquare-5}. Lediglich der Aufruf von
+ \textproc{getVertex} in Zeile \ref{alg:checksquare-6-vertex1} und Zeile \ref{alg:checksquare-6-vertex2} verwendet
+ andere Teilmengen der Konturpunkte aus $\mathit{marker\_infoTWO}$.
+
+\input{alg/analyse-artplus/checksquare-6}
+
+% paragraph 3_fall (end)
+
+Wenn \autoref{alg:checksquare-4}--\autoref{alg:checksquare-6} erfolgreich waren, und Eckpunkte in die Liste der
+ Vektoren schreiben konnten, wird mit \autoref{alg:checksquare-7} die Daten in $\mathit{marker\_infoTWO}$ gespeichert.
+
+\input{alg/analyse-artplus/checksquare-7}
+
+In Zeile \ref{alg:checksquare-7-savesxsy} wird der Punkt $(\mathit{sx},\mathit{sy})$ als erster Index in die Liste der
+ Vektoren von $\mathit{marker\_infoTWO}$ gespeichert. Je nachdem welcher der drei Fälle behandelt wurde, werden die
+ Indizes $\mathit{v1}$, $\mathit{wv1}$ und $\mathit{wv2}$ in Zeile
+ \ref{alg:checksquare-7-save1}--\ref{alg:checksquare-7-save3} gespeichert. Die Indizes sind danach im Uhrzeigersinn in
+ $\mathit{marker\_infoTWO}$ hinterlegt\footcite[Vgl.][S.~44]{wagner07a}. In Zeile \ref{alg:checksquare-7-savelast} wird
+ der letzte Index aus $\mathit{marker\_infoTWO}$ in die Liste der Vektoren geschrieben. Da der erste und der letzte
+ Index identisch ist (Vgl. \autoref{alg:argetcontour-3}), sind die Eckpunkte so angeordnet, dass sie grafisch einfach
+ dargestellt werden können, indem mit nur einer Linie, vom Startpunkt aus über jeden Eckpunkt zurück zum Startpunkt,
+ ein Rahmen gezeichnet wird.
+
 % subsection rectangle_fitting (end)
 
 % section artoolkitplus (end)
