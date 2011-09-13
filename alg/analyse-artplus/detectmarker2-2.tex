@@ -37,35 +37,9 @@
 			& \mathit{wclip}[i \cdot 4], \mathit{marker\_infoTWO}[\mathit{marker\_num2}]
 		\end{aligned}\right)$
 		\label{alg:detectmarker2-2-callcontour}
-	%     if( ret < 0 ) continue;
 		\State \ldots
-	% 	\If{$\mathit{ret} < 0$}
-	% 		\State \textbf{continue}
-	% 	\EndIf
-	% % 
-	% %     ret = check_square( warea[i], &(marker_infoTWO[marker_num2]), factor );
-	% 	\State $\mathit{ret} \gets$ \Call{checkSquare}{$\mathit{warea}[i],\mathit{marker\_infoTWO}[\mathit{marker\_num2}], \mathit{factor}$}
-	% %     if( ret < 0 ) continue;
-	% 	\If{$\mathit{ret} < 0$}
-	% 		\State \textbf{continue}
-	% 	\EndIf
-	% %     marker_infoTWO[marker_num2].area   = warea[i];
-	% %     marker_infoTWO[marker_num2].pos[0] = wpos[i*2+0];
-	% %     marker_infoTWO[marker_num2].pos[1] = wpos[i*2+1];
-	% %     marker_num2++;
-	% 	\State $\mathit{marker\_infoTWO}[marker\_num2].area \gets \mathit{warea}[i]$
-	% 	\State $\mathit{marker\_infoTWO}[marker\_num2].pos[0] \gets \mathit{wpos}[i \cdot 2 + 0]$
-	% 	\State $\mathit{marker\_infoTWO}[marker\_num2].pos[1] \gets \mathit{wpos}[i \cdot 2 + 1]$
-	% 	\State $\mathit{marker\_num2} \gets \mathit{marker\_num2} + 1$
-	% %     if(marker_num2==MAX_IMAGE_PATTERNS)
-	% % 		break;
-	% 	\If{$\mathit{marker\_num2} == \mathit{MAX\_IMAGE\_PATTERNS}$}
-	% 		\State \textbf{break}
-	% 	\EndIf
-	% % }
 		\State $i \gets i + 1$
 	\EndFor
 	\label{alg:detectmarker2-2-loop-end}
-	% \algstore{brk-detectmarker2-process}
 \end{algorithmic}
 \end{algorithm}
