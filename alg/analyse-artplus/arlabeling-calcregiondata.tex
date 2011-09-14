@@ -1,5 +1,5 @@
 \begin{algorithm}[ht]
-\caption{Berechne Regionendaten}
+\caption{\textproc{arLabeling} (Berechne Regionendaten)}
 \label{alg:arlabeling-calcregiondata}
 \begin{algorithmic}[1]
     % for(i = 0; i < *label_num; i++) {
@@ -43,20 +43,20 @@
 		\label{alg:arlabeling-calcregiondata-startx-end}
 
 		\If{$\mathit{wclip}\left[i \cdot 4 + 1\right] < \mathit{work2}\left[i \cdot 7 + 4\right]$}
-		\label{alg:arlabeling-calcregiondata-starty-start}
+		\label{alg:arlabeling-calcregiondata-endx-start}
 			\State $\mathit{wclip}\left[i \cdot 4 + 1\right] \gets \mathit{work2}\left[i \cdot 7 + 4\right]$
 		\EndIf
-		\label{alg:arlabeling-calcregiondata-starty-end}
+		\label{alg:arlabeling-calcregiondata-endx-end}
 
 		\If{$\mathit{wclip}\left[i \cdot 4 + 2\right] > \mathit{work2}\left[i \cdot 7 + 5\right]$}
-		\label{alg:arlabeling-calcregiondata-endcoord-start}
+		\label{alg:arlabeling-calcregiondata-y-start}
 			\State $\mathit{wclip}\left[i \cdot 4 + 2\right] \gets \mathit{work2}\left[i \cdot 7 + 5\right]$
 		\EndIf
 
 		\If{$\mathit{wclip}\left[i \cdot 4 + 3\right] < \mathit{work2}\left[i \cdot 7 + 6\right]$}
 			\State $\mathit{wclip}\left[i \cdot 4 + 3\right] \gets \mathit{work2}\left[i \cdot 7 + 6\right]$
 		\EndIf
-		\label{alg:arlabeling-calcregiondata-endcoord-end}
+		\label{alg:arlabeling-calcregiondata-y-end}
 
 		\State $i \gets i + 1$
 	\EndFor

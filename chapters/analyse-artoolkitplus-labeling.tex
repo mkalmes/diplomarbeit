@@ -360,14 +360,14 @@ Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arl
  Zeile \ref{alg:arlabeling-calcregiondata-sumx}--\ref{alg:arlabeling-calcregiondata-sumy} werden die summierten $x$- und
  $y$-Koordinaten aus $\mathit{work2}$ ausgelsen und in $\mathit{wpos}$ gespeichert. Die Überprüfung des $x$-Werts in
  Zeile \ref{alg:arlabeling-calcregiondata-startx-start}--\ref{alg:arlabeling-calcregiondata-startx-end} sorgt dafür,
- dass die Startkoordinate soweit links wie möglich beginnt. Der $y$-Wert der Startkoordinate wird in Zeile
- \ref{alg:arlabeling-calcregiondata-starty-start}--\ref{alg:arlabeling-calcregiondata-starty-end} überprüft. Bei dieser
- Überprüfung soll der $y$-Wert soweit oben wie möglich liegen. Zeile
- \ref{alg:arlabeling-calcregiondata-endcoord-start}--\ref{alg:arlabeling-calcregiondata-endcoord-end} wiederholen das
- Verfahren für den $x$- und $y$-Wert der Endkoordinate. Danach wird in Zeile
- \ref{alg:arlabeling-calcregiondata-pos-start}--\ref{alg:arlabeling-calcregiondata-pos-end} die Position
- des Mittelpunkts einer Region berechnet, indem die aufsummierten Koordinaten einer Region durch die Anzahl der
- Vordergrundpixel in $\mathit{warea}$ geteilt wird. Zuletzt werden die lokalen Variablen in den Übergabeparametern
+ dass die Startkoordinate soweit links wie möglich beginnt. Der $x$-Wert der Endkoordinate wird in Zeile
+ \ref{alg:arlabeling-calcregiondata-endx-start}--\ref{alg:arlabeling-calcregiondata-endx-end} überprüft. Bei dieser
+ Überprüfung soll der $x$-Wert der Endkoordinate soweit rechts wie möglich liegen. Zeile
+ \ref{alg:arlabeling-calcregiondata-y-start}--\ref{alg:arlabeling-calcregiondata-y-end} wiederholen das Verfahren für
+ den $y$-Wert der Start- und Endkoordinate. Danach wird in Zeile
+ \ref{alg:arlabeling-calcregiondata-pos-start}--\ref{alg:arlabeling-calcregiondata-pos-end} die Position des
+ Mittelpunkts einer Region berechnet, indem die aufsummierten Koordinaten einer Region durch die Anzahl der
+  Vordergrundpixel in $\mathit{warea}$ geteilt wird. Zuletzt werden die lokalen Variablen in den Übergabeparametern
  gespeichert und das Regionenbild $\mathit{l\_image}$ an die aufrufende Methode zurückgegeben. An dieser Stelle ist
  \autoref{alg:arlabeling-overview} beendet.
 
