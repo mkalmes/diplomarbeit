@@ -1,0 +1,31 @@
+\begin{algorithm}[ht]
+\caption{\textproc{getVertex} (Abstand Punkt-Gerade)}
+\label{alg:getvertex-1}
+\begin{algorithmic}[1]
+	\Require $\mathit{x\_coord}[], \mathit{y\_coord}[], \mathit{st}, \mathit{ed}, \mathit{thresh}, \mathit{vertex}[], \mathit{vnum}$
+	\State $d \gets \infty$
+	\label{alg:getvertex-1-init-start}
+	\State $\mathit{dmax} \gets \infty$
+	\State $i \gets \infty$
+	\State $\mathit{v1} \gets 0$
+	\label{alg:getvertex-1-init-end}
+	\State $a \gets \mathit{y\_coord}[ed] - \mathit{y\_coord}[st]$
+	\label{alg:getvertex-1-line-start}
+	\State $b \gets \mathit{x\_coord}[st] - \mathit{x\_coord}[ed]$
+	\State $c \gets \left(\mathit{x\_coord}[ed] \cdot \mathit{y\_coord}[st]\right) - \left(\mathit{y\_coord}[ed] \cdot \mathit{x\_coord}[st]\right)$
+	\label{alg:getvertex-1-line-end}
+	\State $\mathit{dmax} \gets 0$
+	\For{$\mathit{i} \gets \mathit{st} + 1$ \textbf{to} $i < \mathit{ed}$}
+	\label{alg:getvertex-1-loop-start}
+		\State $d \gets \left(a \cdot \mathit{x\_coord}[i]\right) + \left(b \cdot \mathit{y\_coord}[i]\right) + c$
+		\If{$d \cdot d > \mathit{dmax}$}
+			\State $\mathit{dmax} \gets d \cdot d$
+			\label{alg:getvertex-1-savedmax}
+			\State $\mathit{v1} \gets i$
+		\EndIf
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:getvertex-1-loop-end}
+	\algstore{brk-getvertex1-distance}
+\end{algorithmic}
+\end{algorithm}

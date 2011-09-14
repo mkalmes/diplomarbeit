@@ -262,6 +262,48 @@ In Zeile \ref{alg:checksquare-7-savesxsy} wird der Punkt $(\mathit{sx},\mathit{s
  dargestellt werden können, indem mit nur einer Linie, vom Startpunkt aus über jeden Eckpunkt zurück zum Startpunkt,
  ein Rahmen gezeichnet wird.
 
+\textproc{getvertex} (\autoref{alg:getvertex-1}--\autoref{alg:getvertex-2}) sucht in der Menge der Koordinaten den
+ Punkt, der von der Linie zwischen der Start- und Endkoordinate am weitesten entfernt liegt. Dazu benötigt
+ \autoref{alg:getvertex-1} die Liste der $x$- und $y$-Koordinaten, den Startpunkt $\mathit{st}$ und Endpunkt
+ $\mathit{ed}$, sowie den Schwellwert zur Überprüfung der Distanz. In der Liste $\mathit{vertex}$ werden die Indizes
+ der Koordinaten gespeichert. Die Variable $\mathit{vnum}$ enthält die Anzahl der gefundenen Eckpunkte.
+
+\input{alg/analyse-artplus/getvertex-1}
+
+In Zeile \ref{alg:getvertex-1-init-start}--\ref{alg:getvertex-1-init-end} werden die lokalen Variablen initialisiert.
+ Die Variable $a$, $b$ und $c$ werden in Zeile \ref{alg:getvertex-1-line-start}--\ref{alg:getvertex-1-line-end}
+ initialisiert und werden zur Berechnung des Abstand zwischen Punkt $i$ und der Geraden $(\mathit{st},\mathit{ed})$
+ verwendet. Dazu wird in der Schleife in Zeile \ref{alg:getvertex-1-loop-start}--\ref{alg:getvertex-1-loop-end} jede
+ Koordinate $i$ in die Geradengleichung \autoref{eq:punktgeradenabstand} eingesetzt, um den Abstand des Punktes zur
+ Geraden zu berechnen.
+
+\begin{equation}
+	\label{eq:punktgeradenabstand}
+	d = \frac{\mathit{ax} + \mathit{by} + c}{\sqrt{(a^2 + b^2)}}
+\end{equation}
+
+Wenn der Abstand größer als $\mathit{dmax}$ ist, wird $d$ in Zeile \ref{alg:getvertex-1-savedmax} in $\mathit{dmax}$
+ gespeichert und die Position $i$ in $\mathit{v1}$ hinterlegt. Somit ist am Ende von \autoref{alg:getvertex-1} die
+ Position $i$ des Punktes mit dem größten Abstand zur Linie gespeichert.
+
+In \autoref{alg:getvertex-2} wird in Zeile \ref{alg:getvertex-2-isdmaxgreater} der Abstand mit dem Distanzschwellwert
+ verglichen. Nur wenn der Abstand größer als der Distanzschwellwert ist, wird das Verfahren fortgesetzt. Ansonsten ist
+ das Verfahren in Zeile \ref{alg:getvertex-2-done} beendet.
+
+\input{alg/analyse-artplus/getvertex-2}
+
+In Zeile \ref{alg:getvertex-2-recursiv1} wird die Methode \textproc{getVertex} rekursiv aufgerufen, um die Teilmenge
+ von der Startposition $\mathit{st}$ bis zur Position $\mathit{v1}$ zu untersuchen. Da \textproc{getVertex} pro
+ Teilmenge nur den größten Abstand als Eckpunkt betrachet, kann durch den rekursiven Aufruf für eine kleinere Menge von
+ Koordinaten ein weitere Eckpunkt gefunden werden, solange der Abstand größer als der Distanzschwellert ist.
+
+In Zeile \ref{alg:getvertex-2-isvnumgreater} wird überprüft, ob nicht mehr als fünf Eckpunkte gefunden wurde. Falls
+ mehr als fünf Eckpunkte gefunden wurden, wird das Verfahren in Zeile \ref{alg:getvertex-2-error} mit einem Fehlerwert
+ beendet. Falls jedoch weniger als fünf Eckpunkte gefunden wurden, wird der Index $\mathit{v1}$ in der Liste
+ $\mathit{vertex}$ gespeichert und die Anzahl der gefundenen Eckpunkte erhöht. Danach wird \textproc{getVertex} für die
+ zweite Teilmenge, von der Position $\mathit{v1}$ bis zum Endpunkt $\mathit{ed}$, in Zeile
+ \ref{alg:getvertex-2-recursiv2-start}--\ref{alg:getvertex-2-recursiv2-end} rekursiv aufgerufen.
+
 % subsection rectangle_fitting (end)
 
 % section artoolkitplus (end)
