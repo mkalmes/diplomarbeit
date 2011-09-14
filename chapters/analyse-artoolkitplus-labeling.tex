@@ -19,13 +19,13 @@ Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:
  \ref{alg:arlabeling-init1-local-start}--\ref{alg:arlabeling-init1-local-end} werden die lokalen Variablen deklariert,
  deren Bedeutung bei ihrem ersten Auftreten erklärt werden. Speicheradressen werden in Zeile
  \ref{alg:arlabeling-init1-address-start}--\ref{alg:arlabeling-init1-address-end} initialisiert. Der
- Schwellwertparameter wird verdreifacht und in lokal gespeichert (Zeile \ref{alg:arlabeling-init1-threshold}). Die
+ Schwellwertparameter wird verdreifacht und lokal gespeichert (Zeile \ref{alg:arlabeling-init1-threshold}). Die
  Schwellwertanalyse in \autoref{alg:arlabeling-regionlabeling} benutzt einen dreifachen Wert als Optimierung
  (Vgl. S.~\pageref{sub:arlabel-threshold}). Zum Schluss wird in Zeile
  \ref{alg:arlabeling-init1-size-start}--\ref{alg:arlabeling-init1-size-end} die Größe des Bildsignals festgelegt. Die
  Variablen $\mathit{arImXsize}$ und $\mathit{arImYsize}$ enthalten die Breite und Höhe des Bildsignals $I$. Das
- halbieren der Bildhöhe und -breite ist ebenfalls eine Optimierung. Da auf alle Variablen und Adressen direkt
- zugegriffen wird, ist die Laufzeit des Algorithmus konstant.
+ halbieren der Bildhöhe und -breite ist ebenfalls eine Optimierung (Vgl. \autoref{sec:vorgehen}). Da auf alle Variablen
+ und Adressen direkt zugegriffen wird, ist die Laufzeit des Algorithmus konstant.
 
 \input{alg/analyse-artplus/arlabeling-init1}
 
@@ -47,7 +47,8 @@ In Zeile \ref{alg:arlabeling-init2-address2-start}--\ref{alg:arlabeling-init2-ad
  und letzte Spalte des Regionenbildes gelöscht, indem der Wert $0$ an die Speicherstelle von $\mathit{pnt1}$ und
  $\mathit{pnt2}$ geschrieben wird
  (Zeile \ref{alg:arlabeling-init2-clearfirstrow}--\ref{alg:arlabeling-init2-clearlastrow}). Im Anschluss daran werden
- die Adressen $\mathit{pnt1}$ und $\mathit{pnt2}$, sowie die Laufvariable $i$, inkrementiert.
+ die Adressen $\mathit{pnt1}$ und $\mathit{pnt2}$ auf die nächste Position der Bildspalte inkrementiert, indem die
+ Breite $\mathit{lxsize}$ auf die Adressen addiert wird. Danach wird $i$ inkrementiert.
 
 In Zeile \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{wk\_max}$ mit dem Wert $0$
  initialisiert. Danach wird die Adresse der Startposition des Regionenbildes in $\mathit{pnt2}$ gespeichert. Dabei ist
@@ -124,7 +125,7 @@ In den beiden Schleifen in Zeile
  zeilenweise, von oben links nach unten rechts, verarbeitet. Das Inkrementieren der Variablen in Zeile
  \ref{alg:arlabeling-regionlabeling-inc1-start}--\ref{alg:arlabeling-regionlabeling-inc1-end} und Zeile
  \ref{alg:arlabeling-regionlabeling-inc2-start}--\ref{alg:arlabeling-regionlabeling-inc2-end} sorgt dafür, dass nur die
- Hälfte der \gls{pixel} prozessiert werden.
+ Hälfte der \gls{pixel} prozessiert werden (Vgl. \autoref{sec:vorgehen}).
 
 Die Schwellwertanalyse wird in Zeile
  \ref{alg:arlabeling-regionlabeling-threshold-start}--\ref{alg:arlabeling-regionlabeling-threshold-end} durchgeführt.
@@ -174,8 +175,8 @@ In Zeile \ref{alg:arlabeling-neighbour-case1-save-label} wird die Markierung von
  Adressabstands benutzt, um die Werte für die Region an die richtige Stelle zu schreiben. An der Position $0$ von
  $\mathit{work2}$ (Zeile \ref{alg:arlabeling-neighbour-case1-inc-region}) wird die Anzahl der Vordergrundpixel der
  Region erhöht. Position 1 und Position 2 von $\mathit{work2}$ enthalten die akummulierten Werte von $i$ und $j$ für
- die u- und v-Koordinaten aller Vordergrundpixel der Region. An Position 6 von $\mathit{work2}$ in Zeile
- \ref{alg:arlabeling-neighbour-case1-save-j} wird die y-Koordinate gespeichert. Alle Anweisungen in
+ die $x$- und $y$-Koordinaten aller Vordergrundpixel der Region. An Position 6 von $\mathit{work2}$ in Zeile
+ \ref{alg:arlabeling-neighbour-case1-save-j} wird die $y$-Koordinate gespeichert. Alle Anweisungen in
  \autoref{alg:arlabeling-neighbour-case1} werden in konstanter Zeit ausgeführt.
 
 % paragraph fall_1_ (end)
@@ -269,7 +270,7 @@ Im letzten Fall sind alle Nachbarn Hintergrundpixel und $\mathit{l\_image}$ wird
 In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numerische Markierungswert erhöht. Falls der
  Wert in $\mathit{wk\_max}$ größer als ein festgelegter Wert ist, wird das Verfahren abgebrochen, da zuviele Regionen
  im Bildsignal $I$ vorkommen. Die Markierung wird in Zeile \ref{alg:arlabeling-neighbour-case5-save-uv} in
- $\mathit{l\_image}$ gespeichert. Danach wird die der Wert der Markierung in die Liste der Markierungen $\mathit{work}$
+ $\mathit{l\_image}$ gespeichert. Danach wird der Wert der Markierung in die Liste der Markierungen $\mathit{work}$
  eingetragen. Der Adressabstand für die Region mit der Markierung $\mathit{wk\_max}$ wird in Zeile
  \ref{alg:arlabeling-neighbour-case5-offset} berechnet. Anschliessend wird die neue Region in $\mathit{work2}$
  gespeichert. Der erste Vordergrundpixel wird in Zeile \ref{alg:arlabeling-neighbour-case5-offset-0} an Position $0$
@@ -349,6 +350,6 @@ Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arl
  Mittelpunkts einer Region berechnet, indem die aufsummierten Koordinaten einer Region durch die Anzahl der
   Vordergrundpixel in $\mathit{warea}$ geteilt wird. Zuletzt werden die lokalen Variablen in den Übergabeparametern
  gespeichert und das Regionenbild $\mathit{l\_image}$ an die aufrufende Methode zurückgegeben. An dieser Stelle ist
- \autoref{alg:arlabeling-overview} beendet.
+ \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) abgeschlossen.
 
 % subsubsection regionenmarkierung (end)
