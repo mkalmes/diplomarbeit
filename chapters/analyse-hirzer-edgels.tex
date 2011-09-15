@@ -1,23 +1,28 @@
 \subsubsection{Edgels} % (fold)
 \label{sub:datenstruktur-edgels}
 
-Die Datenstruktur eines \glspl{edgel} besteht aus der $x$- und $y$-Koordinate und der Orientierung
- (Vgl. \autoref{alg:datastructure-edgel}). Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} sind konstant.
+Die Datenstruktur eines \glspl{edgel} besteht aus den beiden Variablen $\mathit{coordinate}$ und $\mathit{slope}$
+ (\autoref{alg:datastructure-edgel}). Beide Variablen sind vom Datentyp \textproc{vector} (Vgl.
+ \autoref{alg:vector}), so dass Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} konstant sind.
 
 \input{alg/analyse-hirzer/datastructure-edgel}
 
-Der Vergleich, ob \glspl{edgel} kompatibel sind, wird mit \autoref{alg:compatibleedgel} bewerkstelligt. Als Parameter
- werden zwei zu vergleichende \gls{edgel} $e_1$ und $e_2$ übergeben. In Zeile~$6$ und $13$ wird sichergestellt, dass
- $e_1.o$ und $e_2.o$ innerhalb von $67.5^\circ$\footcite[Vgl.][S.~417]{clarke96} liegen und damit kompatibel wären.
- Dies wird durch
+Wie in \autoref{sub:line_detection} beschrieben, muss im Verfahren von \citeauthor{hirzer08} die Orientierung von zwei
+ \glspl{edgel} überprüft werden, was mit \autoref{alg:edgeliscompatible} bewerkstelligt wird. Als Parameter werden
+ zwei zu vergleichende \gls{edgel} $\mathit{left}$ und $\mathit{right}$ übergeben.
+
+\input{alg/analyse-hirzer/datastructure-edgeliscompatible}
+
+Mithilfe von \autoref{alg:vectordotproduct} kann die Orientierung der beiden \gls{edgel} überprüft werden. Zwei
+ \gls{edgel} sind dann kompatibel, wenn der Winkel zwischen den Vektoren nicht größer als $67.5^\circ$
+ ist\footcite[Vgl.][S.~417]{clarke96}. Dies wird durch \autoref{eq:edgeliscompatible} in
+ \autoref{alg:edgeliscompatible} sichergestellt. Es ist dabei darauf zu achten, dass die Berechnung in Bogenmaß
+ erfolgt.
 
 \begin{equation}
-	d = 2 \pi \left( \frac{ \frac{67.5}{2} }{360} \right) = 0.589
+	\label{eq:edgeliscompatible}
+	\cos \left(67.5\right) \approx 0.38
 \end{equation}
-
-überprüft. Es muss sichergestellt werden, dass die Orientierung in Bogenmaß erfolgt.
-
-\input{alg/analyse-hirzer/compatibleedgel}
 
 Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
  (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die nächste freie Position im
