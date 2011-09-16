@@ -1,0 +1,34 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{edgelPosition}}
+\label{alg:edgelpool-edgelposition}
+\begin{algorithmic}[1]
+	\Require $p,e$
+	\If{$\lnot p$}
+	\label{alg:edgelpool-edgelposition-validpointer-start}
+		\State \textbf{return} $- 1$
+	\EndIf
+	\label{alg:edgelpool-edgelposition-validpointer-end}
+	\State $n \gets p(\mathit{count})$
+	\label{alg:edgelpool-edgelposition-count}
+	\State $ \mathit{slopex} \gets \mathit{e.slope.x}$
+	\label{alg:edgelpool-edgelposition-e-start}
+	\State $ \mathit{slopey} \gets \mathit{e.slope.y}$
+	\State $ x \gets \mathit{e.coordinate.x}$
+	\State $ y \gets \mathit{e.coordinate.y}$
+	\label{alg:edgelpool-edgelposition-e-end}
+	\For{$i \gets 0$ \textbf{to} $i < n$}
+	\label{alg:edgelpool-edgelposition-search-start}
+		\State $c \gets p(\mathit{data}[i])$
+		\If{$\mathit{slopex} == \mathit{c.slope.x} \land \mathit{slopey} == \mathit{c.slope.y} \land x == \mathit{c.coordinate.x} \land y == \mathit{c.coordinate.y}$}
+		\label{alg:edgelpool-edgelposition-isequal-start}
+			\State \textbf{return} $i$
+			\label{alg:edgelpool-edgelposition-returni}
+		\EndIf
+		\label{alg:edgelpool-edgelposition-isequal-end}
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:edgelpool-edgelposition-search-end}
+	\State \textbf{return} $- 1$
+	\label{alg:edgelpool-edgelposition-returnerror}
+\end{algorithmic}
+\end{algorithm}

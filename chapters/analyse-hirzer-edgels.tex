@@ -56,6 +56,24 @@ Um \glspl{edgel} in einem Block zu speichern, verwende ich \autoref{alg:edgelpoo
 
 \input{alg/analyse-hirzer/datastructure-edgelpool-addedgel}
 
+Die Position eines \glspl{edgel} kann mit \autoref{alg:edgelpool-edgelposition} gesucht werden. Dazu wird der Zeiger
+ $p$ auf den Speicherblock und das zu suchende \gls{edgel} übergeben. In Zeile
+ \ref{alg:edgelpool-edgelposition-validpointer-start}--\ref{alg:edgelpool-edgelposition-validpointer-end} wird
+ überprüft, ob der Zeiger $p$ auf einen gültigen Speicherblock verweist. In Zeile
+ \ref{alg:edgelpool-edgelposition-count} wird die Anzahl der eingetragenen \gls{edgel} ausgelesen. In Zeile
+ \ref{alg:edgelpool-edgelposition-e-start}--\ref{alg:edgelpool-edgelposition-e-end} werden die Daten des \gls{edgel}
+ ausgelesen. Die Suche des \gls{edgel} erfolgt in Zeile
+ \ref{alg:edgelpool-edgelposition-search-start}--\ref{alg:edgelpool-edgelposition-search-end}. Dazu wird in Zeile
+ \ref{alg:edgelpool-edgelposition-isequal-start}--\ref{alg:edgelpool-edgelposition-isequal-end} ein \gls{edgel} an der
+ aktuellen Position $i$ mit den lokalen Variablen untersucht. Stimmen die Werte überein, wird die Position $i$
+ zurückgegeben (Zeile \ref{alg:edgelpool-edgelposition-returni}). Andernfalls wird $i$ inkrementiert und die Suche
+ fortgesetzt. Wenn das \gls{edgel} nicht im Speicherblock hinterlegt ist, wird in Zeile
+ \ref{alg:edgelpool-edgelposition-returnerror} ein Fehlerwert zurückgegeben. Die Laufzeit des Algorithmus ist im besten
+ Fall konstant, wenn das zu suchende \gls{edgel} an der ersten Position gespeichert ist. Im schlimmsten Fall, wenn ein
+ \gls{edgel} nicht gefunden wird, beträgt die Laufzeit $\Theta{(n)}$ für $n = \text{Anzahl der \gls{edgel}}$.
+
+\input{alg/analyse-hirzer/datastructure-edgelpool-edgelposition}
+
 \glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Zeiger $p$ auf den Speicherblock
  und der Index $i$ übergeben. In Zeile
  \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
