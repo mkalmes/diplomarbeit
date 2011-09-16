@@ -54,21 +54,21 @@ Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherblock
  Wenn es sich um einen gültigen Zeiger handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
  Zugriff handelt, erfolgt das Löschen in konstanter Zeit.
 
-\input{alg/analyse-hirzer/datastructure-linesegmentpool-resetmemorypool.tex}
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-resetmemorypool}
 
-Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigegeben werden. Dazu wird der Pointer $p$
- auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetmemorypool}
- (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile~\ref{alg:linepool-freememorypool-checkpointer} wird
- überprüft, ob der Pointer $p$ zu dem entsprechenden Pool gehört um danach die Adresse in Zeile
- \ref{alg:linepool-freememorypool-savepointer} im Speicherpool $\mathit{pool}$ zu speichern. Auch hier erfolgt das
- Freigeben des Speichers wieder in konstanter Zeit.
+Durch \autoref{alg:linepool-freememorypool} kann ein Speicherblock wieder freigegeben werden. Dazu wird der Zeiger $p$
+ auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetMemoryPool}
+ (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile \ref{alg:linepool-freememorypool-checkpointer} wird
+ überprüft, ob der Zeiger $p$ zu dem entsprechenden Block gehört, um danach die Adresse in Zeile
+ \ref{alg:linepool-freememorypool-savepointer} in $\mathit{pool}$ zu speichern. Auch hier erfolgt das Freigeben des
+ Speichers wieder in konstanter Zeit.
 
-\input{alg/analyse-hirzer/linepool-freememorypool}
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-freememorypool}
 
 Die Anzahl der Einträge in einem Pool werden durch \autoref{alg:linepool-count} bestimmt, indem die Zählvariable
  $\mathit{count}$ zurückgegeben wird. Der Zugriff auf die Variable erfolgt in konstanter Zeit.
 
-\input{alg/analyse-hirzer/linepool-count}
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-count}
 
 Im Verfahren nach \citeauthor{clarke96} gibt es keinen Grund Linien aus dem Speicherpool zu löschen. Darum kann auf
  einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel} verzichtet werden.
