@@ -32,13 +32,13 @@ Mehrere Speicherblöcke können mit \autoref{alg:linepool-getmemorypools} angefo
 
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getmemorypool}
 
-Um eine Linie dem Speicherpool hinzuzufügen, wird \autoref{alg:linepool-addline} verwendet. Es wird ein Pointer $p$ auf
- den Speicherpool, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Pointer $p$ handelt und genügend
- freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
- \ref{alg:linepool-addline-add-start}--\ref{alg:linepool-addline-add-end} die Linie hinzugefügt und die Zählvariable
- inkrementiert. Das Hinzufügen einer Linie ist konstant.
+Um eine Linie zu einem Speicherblock hinzuzufügen, wird \autoref{alg:linesegmentpool-addline} verwendet. Es wird ein Zeiger
+ $p$ auf den Speicherblock, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Zeiger $p$ handelt, und
+ genügend freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
+ \ref{alg:linesegmentpool-addline-add-start}--\ref{alg:linesegmentpool-addline-add-end} die Linie hinzugefügt und die
+ Zählvariable inkrementiert. Das Hinzufügen einer Linie ist konstant.
 
-\input{alg/analyse-hirzer/linepool-addline}
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-addlinesegment}
 
 Zum auslesen einer Linie aus dem Speicherpool, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
  Pointer $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Pool ausgelesen werden soll. In Zeile
