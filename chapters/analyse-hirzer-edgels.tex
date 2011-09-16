@@ -13,9 +13,9 @@ Wie in \autoref{sub:line_detection} beschrieben, muss im Verfahren von \citeauth
 
 \input{alg/analyse-hirzer/datastructure-edgeliscompatible}
 
-Mithilfe von \autoref{alg:vectordotproduct} kann die Orientierung der beiden \gls{edgel} überprüft werden. Zwei
- \gls{edgel} sind dann kompatibel, wenn der Winkel zwischen den Vektoren nicht größer als $67.5^\circ$
- ist\footcite[Vgl.][S.~417]{clarke96}. Dies wird durch \autoref{eq:edgeliscompatible} in
+Mithilfe von \textproc{dotProduct} (\autoref{alg:vectordotproduct}) kann die Orientierung der beiden \gls{edgel}
+ überprüft werden. Zwei \gls{edgel} sind dann kompatibel, wenn der Winkel zwischen den Vektoren nicht größer als
+ $67.5^\circ$ ist\footcite[Vgl.][S.~417]{clarke96}. Dies wird durch \autoref{eq:edgeliscompatible} in
  \autoref{alg:edgeliscompatible} sichergestellt. Es ist dabei darauf zu achten, dass die Berechnung in Bogenmaß
  erfolgt.
 
@@ -26,23 +26,23 @@ Mithilfe von \autoref{alg:vectordotproduct} kann die Orientierung der beiden \gl
 
 Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
  (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die nächste freie Position im
- Array zu markieren. Der Speicherpool aus \autoref{alg:datastructure-poolimplementation} ist ein Array vom Typ des
- Edgelspeichers mit der Größe $S$, dessen Adresse im Pointer $\mathit{pool}$ gespeichert wird.
+ Array zu markieren. Der Speichervorrat aus \autoref{alg:datastructure-poolimplementation} ist ein Array vom Typ
+ \textproc{edgelPool} mit der Größe $S$, dessen Adresse im Zeiger $\mathit{pool}$ gespeichert wird.
 
 \input{alg/analyse-hirzer/datastructure-edgelpool}
 
 \autoref{alg:edgelpool-getmemorypools} basiert auf einem einfachen Stack Allocator von
- \citeauthor{kr}\footcite[Vgl.][S.~100--104]{kr}. Die Variable $n$ gibt die Anzahl der angeforderten Pools an. In Zeile
- \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Pools zur Verfügung stehen und liefert im
- Erfolgsfall die Adresse zu einem Speicher (\autoref{alg:datastructure-edgelpool}) zurück. Falls kein Pool mehr zur
- Verfügung steht, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool} vereinfacht die Anforderung
- eines Pools, da in den meisten Fällen nur ein Pool benötigt wird. Bei einem Aufruf kann somit auf einen Parameter
- verzichtet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben
- eine konstante Laufzeit.
+ \citeauthor{kr}\footcite[Vgl.][S.~100--104]{kr}. Die Variable $n$ gibt die Anzahl der angeforderten Blöcke aus dem
+ Speichervorrat an. In Zeile \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Blöcke zur
+ Verfügung stehen und liefert im Erfolgsfall die Adresse zu einem Block (\autoref{alg:datastructure-edgelpool}) zurück.
+ Falls keine Blöcke mehr zur Verfügung stehen, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool}
+ vereinfacht die Anforderung von Speicherblöcken, da in den meisten Fällen nur ein Block benötigt wird. Bei einem
+ Aufruf kann somit auf einen Parameter verzichtet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch
+ \autoref{alg:edgelpool-getmemorypool} haben eine konstante Laufzeit.
 
-\input{alg/analyse-hirzer/edgelpool-getmemorypools}
+\input{alg/analyse-hirzer/datastructure-edgelpool-getmemorypools}
 
-\input{alg/analyse-hirzer/edgelpool-getmemorypool}
+\input{alg/analyse-hirzer/datastructure-edgelpool-getmemorypool}
 
 Um \glspl{edgel} in einem Pool zu speichern, verwende ich \autoref{alg:edgelpool-addedgel}. Der Algorithmus benötigt
  einen Pointer $p$ auf einen Pool und einen \gls{edgel} $e$. In Zeile
