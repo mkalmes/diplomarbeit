@@ -48,13 +48,13 @@ Zum auslesen einer Linie aus dem Speicherblock, wird \autoref{alg:linepool-getli
 
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getlinesegment}
 
-Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool gelöscht. Dazu wird der Pointer $p$ auf
- den Speicherpool übergeben und in Zeile
+Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherblock gelöscht. Dazu wird der Zeiger $p$ auf
+ den Speicherblock übergeben und in Zeile
  \ref{alg:linepool-resetmemorypool-validpointer-start}--\ref{alg:linepool-resetmemorypool-validpointer-end} überprüft.
- Wenn es sich um einen gültigen Pointer handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
+ Wenn es sich um einen gültigen Zeiger handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
  Zugriff handelt, erfolgt das Löschen in konstanter Zeit.
 
-\input{alg/analyse-hirzer/linepool-resetmemorypool}
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-resetmemorypool.tex}
 
 Durch \autoref{alg:linepool-freememorypool} kann ein Speicherpool wieder freigegeben werden. Dazu wird der Pointer $p$
  auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetmemorypool}
