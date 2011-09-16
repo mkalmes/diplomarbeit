@@ -174,31 +174,31 @@ Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprog
 	\label{fig:regression-memmove}
 \end{figure}
 
-Um einen Pool für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz. Als
- Parameter wird der Pointer $p$ übergeben und in Zeile
+Um einen Speicherblock für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz.
+ Als Parameter wird der Zeiger $p$ übergeben und in Zeile
  \ref{alg:edgelpool-resetmemorypool-validpointer-start}--\ref{alg:edgelpool-resetmemorypool-validpointer-end}
  überprüft. Um alle Daten als gelöscht zu markieren, wird lediglich die Zählvariable in Zeile
  \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit.
 
-\input{alg/analyse-hirzer/edgelpool-resetmemorypool}
+\input{alg/analyse-hirzer/datastructure-edgelpool-resetmemorypool}
 
-Wenn ein Speicherpool nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
- Der Pointer $p$ wird in Zeile
+Wenn ein Speicherblock nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
+ Der Zeiger $p$ wird in Zeile
  \ref{alg:edgelpool-freememorypool-validpointer-start}--\ref{alg:edgelpool-freememorypool-validpointer-end} überprüft.
- Zeile~\ref{alg:edgelpool-freememorypool-resetmemory} werden die Daten des Pools gelöscht
+ In Zeile \ref{alg:edgelpool-freememorypool-resetmemory} werden die Daten des Blocks als gelöscht markiert.
  (Vgl. \autoref{alg:edgelpool-resetmemorypool}). Im Anschluss wird in Zeile
  \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
- als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Pointer $p$ zur weiteren Verwendung in
- $\mathit{pool}$ gespeichert. Das Freigeben eines Pools erfolgt in konstanter Zeit.
+ als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Zeiger $p$ zur weiteren Verwendung in
+ $\mathit{pool}$ gespeichert. Das Freigeben eines Speicherblocks erfolgt in konstanter Zeit.
 
-\input{alg/analyse-hirzer/edgelpool-freememorypool}
+\input{alg/analyse-hirzer/datastructure-edgelpool-freememorypool}
 
-Die Anzahl der \glspl{edgel} in einem Pool werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter wird
- Pointer $p$ übergeben und in Zeile
+Die Anzahl der \glspl{edgel} in einem Speicherblock werden durch \autoref{alg:edgelpool-count} ermittelt. Als Parameter
+ wird der Zeiger $p$ übergeben und in Zeile
  \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der
- Einträge wird in Zeile~\ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
+ Einträge wird in Zeile \ref{alg:edgelpool-count-counter} über die Zählvariable $p(\mathit{count})$ ermittelt. Der
  Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit.
 
-\input{alg/analyse-hirzer/edgelpool-count}
+\input{alg/analyse-hirzer/datastructure-edgelpool-count}
 
 % subsection datenstruktur-edgels (end)

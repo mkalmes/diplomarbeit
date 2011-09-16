@@ -1,14 +1,14 @@
-\begin{algorithm}[ht]
-\caption{Speicher des Edgelpool freigeben}
+\begin{algorithm}[!ht]
+\caption{\textproc{freeMemoryPool}}
 \label{alg:edgelpool-freememorypool}
 \begin{algorithmic}[1]
 	\Require $p$
-	\If{$!p$}
+	\If{$\lnot p$}
 	\label{alg:edgelpool-freememorypool-validpointer-start}
 		\State \textbf{return}
 	\EndIf
 	\label{alg:edgelpool-freememorypool-validpointer-end}
-	\State \Call{resetmemorypool}{$p$}
+	\State \Call{resetMemoryPool}{$p$}
 	\label{alg:edgelpool-freememorypool-resetmemory}
 	\If{$p \geq \mathit{data} \land p \leq \mathit{data} + S$}
 	\label{alg:edgelpool-freememorypool-checkpointer}
