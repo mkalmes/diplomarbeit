@@ -1,14 +1,14 @@
 \begin{algorithm}[ht]
-\caption{Edgel hinzufügen}
+\caption{\textproc{addEdgel}}
 \label{alg:edgelpool-addedgel}
 \begin{algorithmic}[1]
 	\Require $p,e$
-	\If{$!p$}
+	\If{$\lnot p$}
 	\label{alg:edgelpool-addedgel-validpointer-start}
 		\State \textbf{return}
 	\EndIf
 	\label{alg:edgelpool-addedgel-validpointer-end}
-	\If{$!p(\mathit{count}) < N$}
+	\If{$\lnot \left(p(\mathit{count}) < N\right)$}
 	\label{alg:edgelpool-addedgel-checkspace-start}
 		\State \textbf{return} \Comment Speicher voll
 	\EndIf
