@@ -56,16 +56,16 @@ Um \glspl{edgel} in einem Block zu speichern, verwende ich \autoref{alg:edgelpoo
 
 \input{alg/analyse-hirzer/datastructure-edgelpool-addedgel}
 
-\glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Pointer $p$ auf den Pool und der
- Index $i$ übergeben. In Zeile
+\glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} gelesen. Dazu wird der Zeiger $p$ auf den Speicherblock
+ und der Index $i$ übergeben. In Zeile
  \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
- sich um einen gesetzten Pointer handelt. Anschließend wird in Zeile
+ sich um einen gesetzten Zeiger handelt. Anschließend wird in Zeile
  \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
  innerhalb des gespeicherten Bereichs der \glspl{edgel} liegt. Danach wird in Zeile
  \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \glspl{edgel} an Position $i$ zurückgegeben. Der Zugriff auf
  einen \gls{edgel} ist konstant.
 
-\input{alg/analyse-hirzer/edgelpool-getedgel}
+\input{alg/analyse-hirzer/datastructure-edgelpool-getedgel}
 
 Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird
  der Pool-Pointer $p$ und die Position $i$ des zu löschenden \glspl{edgel} übergeben. Nach der Überprüfung des Pointers
