@@ -1,0 +1,11 @@
+\begin{algorithm}[ht]
+\caption{\textproc{addEdgel}}
+\label{alg:linesegmentaddedgel}
+\begin{algorithmic}[1]
+	\Require $l, e, \mathit{pos}$
+	\If{$\mathit{pos} > \mathit{MAXEDGELS} - 1$}
+		\State \textbf{return}
+	\EndIf
+	\State $l(support[\mathit{pos}]) \gets e$
+\end{algorithmic}
+\end{algorithm}
