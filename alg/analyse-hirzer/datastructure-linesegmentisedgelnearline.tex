@@ -1,0 +1,20 @@
+\begin{algorithm}[ht]
+\caption{\textproc{isEdgelNearLine}}
+\label{alg:isedgelnearline}
+\begin{algorithmic}[1]
+	\Require $l,e$
+	\If{$\lnot$ \Call{isCompatible}{$\mathit{l.start,e}$}}
+		\State \textbf{return FALSE} 
+	\EndIf
+	\State $a \gets \mathit{l.end.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\State $b \gets \mathit{l.end.coordinate.y} - \mathit{l.start.coordinate.y}$
+	\State $c \gets$ \Call{sqrtf}{$(a \cdot a)+(b \cdot b)$}
+	\State $\mathit{AB1} \gets \mathit{l.end.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\State $\mathit{AC2} \gets \mathit{e.coordinate.y} - \mathit{l.start.coordinate.y}$
+	\State $\mathit{AC1} \gets \mathit{e.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\State $\mathit{AB2} \gets \mathit{l.end.coordinate.y} - \mathit{l.start.coordinate.y}$
+	\State $\mathit{crossproduct} \gets (\mathit{AB1} \cdot \mathit{AC2}) - (\mathit{AC1} \cdot \mathit{AB2})$
+	\State $\mathit{distance} \gets$ \Call{ABS}{$\mathit{crossproduct}/c$}
+	\State \textbf{return} $\mathit{distance} < 0.75$
+\end{algorithmic}
+\end{algorithm}
