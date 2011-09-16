@@ -1,15 +1,15 @@
 \begin{algorithm}[ht]
-\caption{Linie auslesen}
+\caption{\textproc{getLineSegment}}
 \label{alg:linepool-getline}
 \begin{algorithmic}[1]
 	\Require $p,i$
-	\If{$!p$}
+	\If{$\lnot p$}
 	\label{alg:linepool-getline-validpointer-start}
 		\State \textbf{return}
 	\EndIf
 	\label{alg:linepool-getline-validpointer-end}
 	\State $c \gets p(\mathit{count})$
-	\If{$! c > i$}
+	\If{$\lnot \left(c > i\right)$}
 	\label{alg:linepool-getline-validrange-start}
 		\State \textbf{return}
 	\EndIf

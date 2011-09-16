@@ -40,13 +40,13 @@ Um eine Linie zu einem Speicherblock hinzuzufügen, wird \autoref{alg:linesegmen
 
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-addlinesegment}
 
-Zum auslesen einer Linie aus dem Speicherpool, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
- Pointer $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Pool ausgelesen werden soll. In Zeile
+Zum auslesen einer Linie aus dem Speicherblock, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
+ Zeiger $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Block ausgelesen werden soll. In Zeile
  \ref{alg:linepool-getline-validrange-start} wird geprüft, ob der Index sich innerhalb der Grenzen der gespeicherten
- Linien befindet. Wenn dies der Fall ist, wird in Zeile~\ref{alg:linepool-getline-returnline} die Linie in konstanter
+ Linien befindet. Wenn dies der Fall ist, wird in Zeile \ref{alg:linepool-getline-returnline} die Linie in konstanter
  Zeit zurückgegeben.
 
-\input{alg/analyse-hirzer/linepool-getline}
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-getlinesegment}
 
 Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherpool gelöscht. Dazu wird der Pointer $p$ auf
  den Speicherpool übergeben und in Zeile
