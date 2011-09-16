@@ -1,0 +1,20 @@
+\begin{algorithm}[ht]
+\caption{\textproc{removeEdgel}}
+\label{alg:edgelpool-removeedgel}
+\begin{algorithmic}[1]
+	\Require $p,e$
+	\State $\mathit{position} \gets$ \Call{edgelPosition}{$p,e$}
+	\label{alg:edgelpool-removeedgel-position}
+	\If{$\mathit{position} < 0$}
+		\State \textbf{return}
+		\label{alg:edgelpool-removeedgel-error}
+	\EndIf
+	\State $c \gets p(\mathit{count})$
+	\If{$c > \mathit{position} + 1$}
+	\label{alg:edgelpool-removeedgel-isvalid}
+		\State \Call{memmove}{$p(\mathit{data}[\mathit{position}]), p(\mathit{data}[\mathit{position} + 1]), \left(c - \mathit{position} + 1\right) \cdot \textproc{sizeof}(e)$}
+		\label{alg:edgelpool-removeedgel-memmove}
+	\EndIf
+	\State $p(\mathit{count}) \gets p(\mathit{count}) - 1$
+\end{algorithmic}
+\end{algorithm}

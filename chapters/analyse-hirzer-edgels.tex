@@ -86,15 +86,16 @@ Die Position eines \glspl{edgel} kann mit \autoref{alg:edgelpool-edgelposition} 
 \input{alg/analyse-hirzer/datastructure-edgelpool-getedgel}
 
 Damit \glspl{edgel} aus dem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet. Es wird
- der Pool-Pointer $p$ und die Position $i$ des zu löschenden \glspl{edgel} übergeben. Nach der Überprüfung des Pointers
- $p$ in Zeile~\ref{alg:edgelpool-removeedgel-validpointer-start}--\ref{alg:edgelpool-removeedgel-validpointer-end} und
- der Überprüfung des zulässigen Bereichs in Zeile
- \ref{alg:edgelpool-removeedgel-validrange-start}--\ref{alg:edgelpool-removeedgel-validrange-end}, gibt es zwei zu
- behandelnde Fälle um einen \gls{edgel} zu löschen.
+ der Zeiger $p$ auf einen Speicherblock und das zu löschenden \glspl{edgel} übergeben. In Zeile
+ \ref{alg:edgelpool-removeedgel-position} wird mit \textproc{edgelPosition} (\autoref{alg:edgelpool-edgelposition}) die
+ Position des \gls{edgel} gesucht. Falls das \gls{edgel} nicht gefunden wurde, wird in Zeile
+ \ref{alg:edgelpool-removeedgel-error} das Verfahren abgebrochen. Wenn das \gls{edgel} innerhalb des zulässigen
+ Speicherbereichs liegt (Zeile \ref{alg:edgelpool-removeedgel-isvalid}), gibt es zwei zu behandelnde Fälle um ein
+ \gls{edgel} zu löschen.
 
-\input{alg/analyse-hirzer/edgelpool-removeedgel}
+\input{alg/analyse-hirzer/datastructure-edgelpool-removeedgel}
 
-Der Edgel liegt
+Der \gls{edgel} liegt
 \begin{enumerate}
 	\item nicht am Ende des Arrays oder \label{removeedgel-worst}
 	\item liegt am Ende des Arrays. \label{removeedgel-best}
@@ -120,8 +121,9 @@ Bei \autoref{removeedgel-best} muss lediglich $\mathit{count}$ dekrementiert wer
 	\label{fig:decrementcounter}
 \end{figure}
 
-Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und der Wertebereich von $[i+1 \dotsc i-n]$
- wird an die Position $i$ verschoben (Vgl. \autoref{fig:memmove}).
+Bei \autoref{removeedgel-worst} wird das Array an der Position $\mathit{position}$ geteilt und der Wertebereich von
+ $[\mathit{position}+1 \dotsc \mathit{position}-n]$ wird an die Position $\mathit{position}$ verschoben
+ (Vgl. \autoref{fig:memmove}).
 
 \begin{figure}[!ht]
 	\centering
@@ -139,8 +141,8 @@ Bei \autoref{removeedgel-worst} wird das Array an der Position $i$ geteilt und d
 \end{figure}
 
 In Zeile \ref{alg:edgelpool-removeedgel-memmove} gibt die Funktion \textproc{sizeof}($e$) die Speichergröße eines
- \glspl{edgel} an, welche zum verschieben der Daten notwendig ist. Mit $c - (i + 1)$ wird die Anzahl der zu
- verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
+ \glspl{edgel} an, welche zum verschieben der Daten notwendig ist. Mit $c - \mathit{position} + 1$ wird die Anzahl der
+ zu verschiebenden Einträge ermittelt. Im worst-case werden $N-1$ Einträge an Position $0$ des Arrays verschoben.
 
 Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprogramm geschrieben, dass die Zeit misst,
  die benötigt wird, um Einträge zu verschieben. Anhand der Daten wurde mittels einer Regressionsanalyse untersucht, ob
