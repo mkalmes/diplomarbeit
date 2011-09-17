@@ -52,39 +52,36 @@ T(I)& = \Theta(nk)
 \end{align}
 \end{subequations}
 
-Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal}) benötigt das monochrome Bildsignal $I_m$,
- sowie die Position der oberen linken Ecke der Region, die durch oben $t$ und links $l$ definiert ist. Die Breite und
- Höhe der Region ist durch $\mathit{rw}$ und $\mathit{rh}$ angegeben. Die Abmessung des Bildsignals werden als $w$ und
- $h$ bezeichnet. Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet.
+Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal} und \autoref{alg:findedgels-vertical})
+ benötigt das monochrome Bildsignal $I_m$, sowie die Position der oberen linken Ecke der Region, die durch oben $t$ und
+ links $l$ definiert ist. Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet.
 
 \input{alg/analyse-hirzer/findedgels}
 
-Zeile~\ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend} ist für den Aufbau der
+Zeile \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend} ist für den Aufbau der
  horizontalen Scanlines verantwortlich. Die Überprüfung sorgt dafür, dass die Scanlines bis zum Ende der Region im
  Abstand von $5$ Pixeln untersucht werden. Nach der Initialisierung der Variablen wird in der Schleife von
  Zeile~\ref{alg:findedgels-horizontal-loopstart}--\ref{alg:findedgels-horizontal-loopend} jeder Pixel auf der Scanline
- untersucht. Zuerst wird in Zeile~\ref{alg:findedgels-horizontal-convolute} die Faltung mit einem Gauß-Kernel
- vorgenommen (Vgl. \autoref{alg:derivativeofgauss-horizontal}, S.~\pageref{alg:derivativeofgauss-horizontal}). Der Test
- in Zeile~\ref{alg:findedgels-horizontal-foundedgel} überprüft anschließend das Ergebnis der Faltung. Wenn der
+ untersucht. Zuerst wird in Zeile \ref{alg:findedgels-horizontal-convolute} die Faltung mit einem Gauß-Kernel
+ vorgenommen (Vgl. \autoref{alg:derivativeofgauss-horizontal}, S. \pageref{alg:derivativeofgauss-horizontal}). Der Test
+ in Zeile \ref{alg:findedgels-horizontal-foundedgel} überprüft anschließend das Ergebnis der Faltung. Wenn der
  Schwellwert nicht überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergebnis wird auf
  $0$ gesetzt. Wird der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergebnis wird in den
- Bedingungen von Zeile~\ref{alg:findedgels-horizontal-maxima} weiter untersucht, ob es sich um ein lokales Maximum
+ Bedingungen von Zeile \ref{alg:findedgels-horizontal-maxima} weiter untersucht, ob es sich um ein lokales Maximum
  handelt. Ein lokales Maximum bedeutet, dass ein Edgel einen größeren Gradienten besitzt als seine beiden Nachbarn.
 
-Die Bedingung in Zeile~\ref{alg:findedgels-horizontal-maxima} wird bei der ersten Überprüfung immer fehlschlagen.
+Die Bedingung in Zeile \ref{alg:findedgels-horizontal-maxima} wird bei der ersten Überprüfung immer fehlschlagen.
  Dadurch wird sichergestellt, dass kein Maximum an den Rändern existiert, da hier nicht genügend Nachbarn vorhanden sind
- um eine verlässliche Aussage zu treffen. Zeile~\ref{alg:findedgels-horizontal-copy-prev1} und
- Zeile~\ref{alg:findedgels-horizontal-copy-edgel} kopieren die Werte für den nächsten Durchlauf. Durch das kopieren der
+ um eine verlässliche Aussage zu treffen. Zeile \ref{alg:findedgels-horizontal-copy-prev1} und
+ Zeile \ref{alg:findedgels-horizontal-copy-edgel} kopieren die Werte für den nächsten Durchlauf. Durch das kopieren der
  Werte werden die Nachbarn für den nächsten Durchlauf um eine Position weiterverschoben. Nur bei einem lokalen Maximum
- wird die Position des Edgels gespeichert, und seine Orientierung (Vlg. \autoref{alg:sobel},
- S.~\pageref{alg:sobel}) berechnet. Der Edgel wird in (einer Liste|einem Memorypool) zu weiteren Verarbeitung
- gespeichert.
-
-Sind alle Pixel auf einer Scanline untersucht, wird in Zeile~\ref{alg:findedgels-horizontal-increment} die nächste
- Scanline ausgewählt. Das Verfahren wird solange wiederholt, bis alle Scanlines innerhalb der Region untersucht wurden.
-
-\autoref{alg:findedgels-vertical} untersucht die vertikalen Scanlines in Zeile
- \ref{alg:findedgels-vertical-scanlinestart}--\ref{alg:findedgels-vertical-scanlineend} analog zu
+ (Zeile \ref{alg:findedgels-horizontal-maxima}--\ref{alg:findedgels-horizontal-maxima-end}) wird die Position des
+ Edgels gespeichert (Vgl. \autoref{alg:vectorsetcoordinate}), und seine Orientierung
+ (Vlg. \autoref{alg:sobel}, S. \pageref{alg:sobel}) berechnet. Der Edgel wird mit \autoref{alg:edgelpool-addedgel} in
+ einem Speicherblock zu weiteren Verarbeitung gespeichert. Sind alle Pixel auf einer Scanline untersucht, wird in Zeile
+ \ref{alg:findedgels-horizontal-increment} die nächste Scanline ausgewählt. Das Verfahren wird solange wiederholt, bis
+ alle Scanlines innerhalb der Region untersucht wurden. \autoref{alg:findedgels-vertical} untersucht die vertikalen
+ Scanlines in Zeile \ref{alg:findedgels-vertical-scanlinestart}--\ref{alg:findedgels-vertical-scanlineend} analog zu
  \autoref{alg:findedgels-horizontal} Zeile
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 
