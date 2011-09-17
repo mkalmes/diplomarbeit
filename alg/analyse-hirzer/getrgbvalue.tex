@@ -1,0 +1,26 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{getRGBValue}}
+\label{alg:getrgbvalue}
+\begin{algorithmic}[1]
+	\Require $I,x,y,\mathit{color},w,h$
+	\If{$x < 0$}
+	\label{alg:getpixel-startcheck}
+		\State $x \gets 0$
+	\EndIf
+	\If{$y < 0$}
+		\State $y \gets 0$
+	\EndIf
+	\If{$x \geq w$}
+		\State $x \gets w - 1$
+	\EndIf
+	\If{$y \geq h$}
+		\State $y \gets h -1$
+	\EndIf
+	% const unsigned int offset = (x + (y * width)) * (sizeof(unsigned char) * 4);
+	\State $\mathit{offset} \gets (x + (y \cdot w)) \cdot \left(\textproc{sizeof}(\mathit{char}) \cdot 4\right)$
+	% const unsigned char *address	= colorBuffer + offset;
+	\State $\mathit{address} \gets I + \mathit{offset}$
+	% return *(address + color);
+	\State \textbf{return} $\mathit{address} + \mathit{color}$
+\end{algorithmic}
+\end{algorithm}
