@@ -1,0 +1,25 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Fortsetzung 2. Teil)}
+\label{alg:findlinesegments6}
+\begin{algorithmic}[1]
+	\algrestore{brk-findlinesegments5-if}
+	\Else
+		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
+			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
+			\If{$\mathit{edgel.coordinate} > \mathit{start}$}
+				\State $\mathit{start} \gets \mathit{edgel.coordinate}$
+				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
+			\EndIf
+			\If{$\mathit{edgel.coordinate} < end$}
+				\State $\mathit{end} \gets \mathit{edgel.coordinate.x}$
+				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
+			\EndIf
+			\State $\mathit{k} \gets k + 1$
+		\EndFor
+	\EndIf
+	\algstore{brk-findlinesegments6-else}
+\end{algorithmic}
+\end{algorithm}

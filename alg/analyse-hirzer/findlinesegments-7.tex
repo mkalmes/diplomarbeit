@@ -1,0 +1,27 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Fortsetzung 2. Teil)}
+\label{alg:findlinesegments7}
+\begin{algorithmic}[1]
+	\algrestore{brk-findlinesegments6-else}
+	\State $\mathit{magnitude} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
+	\State $\mathit{angle} \gets$ \Call{dotProduct}{$\mathit{magnitude},\mathit{orientation}$}
+	\If{$\mathit{angle} < 0$}
+		\State $\mathit{newEnd} \gets \mathit{presentLine.start}$
+		\State $\mathit{presentLine.start} \gets \mathit{presentLine.end}$
+		\State $\mathit{presentLine.end} \gets \mathit{newEnd}$
+	\EndIf
+	\State $\mathit{mathit} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
+	\State \Call{normalized}{$\mathit{magnitude}$}
+	\State $\mathit{presentLine.slope} \gets \mathit{magnitude}$
+	\State \Call{addLineSegment}{$L,\mathit{presentLine}$}
+	\State $\mathit{supportCount} \gets \mathit{presentLine.supportCount}$
+	\For{$i \gets 0$ \textbf{0} $i < \mathit{supportCount}$}
+		\State $\mathit{remove} \gets \mathit{presentLine.support}[i]$
+		\State \Call{removeEdgel}{$E,\mathit{remove}$}
+		\State $i \gets i + 1$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}

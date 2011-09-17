@@ -1,0 +1,18 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Fortsetzung 1. Teil)}
+\label{alg:findlinesegments3}
+\begin{algorithmic}[1]
+	\algrestore{brk-findlinesegments2-init}
+	\DO
+		\State $\mathit{first} \gets$ \Call{rand} $ \% \mathit{numberOfEdgels}$
+		\State $\mathit{last} \gets$ \Call{rand} $ \% \mathit{numberOfEdgels}$
+		\State $\mathit{start} \gets$ \Call{getEdgel}{$E,\mathit{first}$}
+		\State $\mathit{end} \gets$ \Call{getEdgel}{$E,\mathit{last}$}
+		\State $\mathit{iterator} \gets \mathit{iterator} + 1$
+	\WHILE{$(\mathit{first} == \mathit{last} \lor \lnot \textproc{isCompatible}(\mathit{start},\mathit{end})) \land \mathit{iterator} < \mathit{maxIteration}$}
+	\algstore{brk-findlinesegments3-dowhile}
+\end{algorithmic}
+\end{algorithm}

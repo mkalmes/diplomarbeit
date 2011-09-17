@@ -1,0 +1,31 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Fortsetzung 1. Teil)}
+\label{alg:findlinesegments4}
+\begin{algorithmic}[1]
+	\algrestore{brk-findlinesegments3-dowhile}
+	\If{$\mathit{iterator} < \mathit{maxIteration}$}
+		\State $\mathit{segment} \gets \infty$
+		\State $\mathit{segment.start} \gets \mathit{start}$
+		\State $\mathit{segment.end} \gets \mathit{end}$
+		\State $\mathit{segment.slope} \gets \mathit{start.slope}$
+		\State $\mathit{segment.supportCount} \gets 0$
+		\State $\mathit{segment.remove} \gets$ \textbf{FALSE}
+		\State $\mathit{segment.startCorner} \gets$ \textbf{FALSE}
+		\State $\mathit{segment.endCorner} \gets$ \textbf{FALSE}
+		\For{$j \gets 0$ \textbf{to} $j < \mathit{numberOfEdgels}$}
+			\State $\mathit{supportEdgel} \gets$ \Call{getEdgel}{$E,j$}
+			\If{\Call{isEdgelNearLine}{$\mathit{segment}, \mathit{supportEdgel}$}}
+				\State \Call{addEdgel}{$\mathit{segment},\mathit{supportCount},\mathit{segment.supportCount}$}
+				\State $\mathit{segment.supportCount} \gets \mathit{segment.supportCount} + 1$
+			\EndIf
+			\State $j \gets j + 1$
+		\EndFor
+		\If{$\mathit{segment.supportCount} > \mathit{presentLine.supportCount}$}
+			\State $\mathit{presentLine} \gets \mathit{segment}$
+		\EndIf
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

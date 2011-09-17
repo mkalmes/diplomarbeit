@@ -1,0 +1,26 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Fortsetzung 2. Teil)}
+\label{alg:findlinesegments5}
+\begin{algorithmic}[1]
+	\State $\mathit{start} \gets 0$
+	\State $\mathit{end} \gets \infty$
+	\State $\mathit{slope} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.start.coordinate},\mathit{presentLine.end.coordinate}$}
+	\If{$\mathit{slope.x} \leq \mathit{slope.y}$}
+		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
+			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
+			\If{$\mathit{edgel.coordinate} > start$}
+				\State $\mathit{start} \gets \mathit{edgel.coordinate.y}$
+				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
+			\EndIf
+			\If{$\mathit{edgel.coordinate.y} < \mathit{end}$}
+				\State $\mathit{end} \gets \mathit{edgel.coordinate.y}$
+				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
+			\EndIf
+			\State $k \gets k + 1$
+		\EndFor
+	\algstore{brk-findlinesegments5-if}
+\end{algorithmic}
+\end{algorithm}

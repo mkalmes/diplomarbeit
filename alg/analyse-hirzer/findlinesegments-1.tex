@@ -1,0 +1,23 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments}}
+\label{alg:findlinesegments1}
+\begin{algorithmic}[1]
+	\Require $E, L$
+	\State $\mathit{presentLine} \gets \infty$
+	\State $\mathit{edgelsInRegion} \gets 0$
+	\DO
+		\State $\mathit{presentLine.supportCount} \gets 0$
+		\For{$i \gets 0$ \textbf{to} $i < 25$}
+			\State \ldots \Comment 1. Teil
+			\State $i \gets i + 1$
+		\EndFor
+		\If{$\mathit{presentLine.supportCount} > \mathit{minEdgels}$}
+			\State \ldots \Comment 2. Teil
+		\EndIf
+		\State $\mathit{edgelsInRegion} \gets$ \Call{getEdgelCount}{$E$}
+	\WHILE{$\mathit{presentLine.supportCount} > \mathit{minEdgels} \land \mathit{edgelsInRegion} > \mathit{minEdgels}$}
+\end{algorithmic}
+\end{algorithm}
