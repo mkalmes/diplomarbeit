@@ -64,7 +64,7 @@ T(I)& = \Theta(nk)
 Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal}) benötigt das monochrome Bildsignal $I_m$,
  sowie die Position der oberen linken Ecke der Region, die durch oben $t$ und links $l$ definiert ist. Die Breite und
  Höhe der Region ist durch $\mathit{rw}$ und $\mathit{rh}$ angegeben. Die Abmessung des Bildsignals werden als $w$ und
- $h$ bezeichnet. Der Pointer $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet.
+ $h$ bezeichnet. Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet.
 
 \input{alg/analyse-hirzer/findedgels}
 
@@ -101,7 +101,7 @@ Sind alle Pixel auf einer Scanline untersucht, wird in Zeile~\ref{alg:findedgels
 $\left( \begin{smallmatrix}
 -3& -5& 0& 5& 3
 \end{smallmatrix} \right)$
- auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Pointer des monochromen
+ auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Zeiger des monochromen
  Bildsignals $I_m$, die Position des Pixels ($x$ und $y$), sowie die Breite $w$ und Höhe $h$ von $I_m$. In Zeile
  \ref{alg:derivativeofgauss-horizontal-readstart}--\ref{alg:derivativeofgauss-horizontal-readend} werden durch die
  Funktion \textproc{getpixel} (Vgl. \autoref{alg:getpixel}, S. \pageref{alg:getpixel}) die benötigten Pixelwerte

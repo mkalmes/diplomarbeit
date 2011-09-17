@@ -14,7 +14,7 @@ Die in diesem Abschnitt vorgestellten Algorithmen sind sowohl in ARToolKit als a
 
 \input{alg/convertmonochrome}
 
-Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_m$ auf einen Puffer für das monochrome
+Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Zeiger $I_m$ auf einen Puffer für das monochrome
  Signal. Der Monochrompuffer $I_m$ ist ein Array mit fester Größe, das beim initialisieren einmalig angelegt wird und
  danach wiederverwendet werden kann. In Zeile~\ref{alg:convertmonochrome-baseaddress} wird die Adresse des
  Luminanz-Kanals $Y$ ausgelesen. Die Funktionen \textproc{width} und \textproc{height} liefern die Breite und Höhe des
@@ -23,7 +23,7 @@ Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Pointer $I_
  dir nicht bekannt sind. baseaddress, width und height greifen evtl. auf metadaten zurück und wären damit ein einfacher
  lookup mit $\Theta(1)$. Dann wäre nur noch memcpy zu bestimmen, was im schlimmsten Fall $\Theta(n)$ wäre.)
 
-Um auf \gls{pixel} zugreifen zu können, verwende ich \autoref{alg:getpixel}. Es wird der Puffer $I_m$ als Pointer
+Um auf \gls{pixel} zugreifen zu können, verwende ich \autoref{alg:getpixel}. Es wird der Puffer $I_m$ als Zeiger
  übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$ entsprechen der Breite und Höhe von
  $I_m$. Zeile~\ref{alg:getpixel-startcheck} bis Zeile~\ref{alg:getpixel-stopcheck} sorgen dafür, dass keine Werte
  außerhalb des Puffers gelesen werden können. Dies ist für die Randbehandlung bei Faltungsoperationen
