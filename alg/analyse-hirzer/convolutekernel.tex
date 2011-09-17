@@ -1,33 +1,30 @@
-\begin{algorithm}[ht]
-\caption{Faltung mit Gauß-Kernel (horizontale Scanline)}
-\label{alg:derivativeofgauss-horizontal}
+\begin{algorithm}[!ht]
+\caption{\textproc{convoluteKernelX} (horizontale Scanline)}
+\label{alg:convolutekernel-horizontal}
 \begin{algorithmic}[1]
 	\Require $I_m,x,y,w,h$
-	\Ensure $-127.5 \leq value \leq 127.5$
 	\State $p_1 \gets$ \Call{getpixel}{$I_m, x - 2, y, w, h$}
-	\label{alg:derivativeofgauss-horizontal-readstart}
+	\label{alg:convolutekernel-horizontal-readstart}
 	\State $p_2 \gets$ \Call{getpixel}{$I_m, x - 1, y, w, h$}
 	% \State $p_3 \gets$ \Call{getpixel}{$I_m, x, y, w, h$}
 	\State $p_4 \gets$ \Call{getpixel}{$I_m, x + 1, y, w, h$}
 	\State $p_5 \gets$ \Call{getpixel}{$I_m, x + 2, y, w, h$}
-	\label{alg:derivativeofgauss-horizontal-readend}
+	\label{alg:convolutekernel-horizontal-readend}
 	\State $v \gets 0$
 	\State $v \gets v + \left( -3 \cdot p_1 \right)$
 	\State $v \gets v + \left( -5 \cdot p_2 \right)$
 	% \State $v \gets v + \left( 0 \cdot p_3 \right)$
 	\State $v \gets v + \left( 5 \cdot p_4 \right)$
 	\State $v \gets v + \left( 3 \cdot p_5 \right)$
-	\State $v \gets v \cdot \frac{1}{16}$
 	\State \textbf{return} $v$
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[ht]
-\caption{Faltung mit Gauß-Kernel (vertikale Scanline)}
-\label{alg:derivativeofgauss-vertical}
+\begin{algorithm}[!ht]
+\caption{\textproc{convoluteKernelY} (vertikale Scanline)}
+\label{alg:convolutekernel-vertical}
 \begin{algorithmic}[1]
 	\Require $I_m,x,y,w,h$
-	\Ensure $-127.5 \leq value \leq 127.5$
 	\State $p_1 \gets$ \Call{getpixel}{$I_m, x, y - 2, w, h$}
 	\State $p_2 \gets$ \Call{getpixel}{$I_m, x, y - 1, w, h$}
 	% \State $p_3 \gets$ \Call{getpixel}{$I_m, x, y, w, h$}
@@ -39,7 +36,6 @@
 	% \State $v \gets v + \left( 0 \cdot p_3 \right)$
 	\State $v \gets v + \left( 5 \cdot p_4 \right)$
 	\State $v \gets v + \left( 3 \cdot p_5 \right)$
-	\State $v \gets v \cdot \frac{1}{16}$
 	\State \textbf{return} $v$
 \end{algorithmic}
 \end{algorithm}

@@ -63,7 +63,7 @@ Zeile \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizon
  Abstand von $5$ Pixeln untersucht werden. Nach der Initialisierung der Variablen wird in der Schleife von
  Zeile~\ref{alg:findedgels-horizontal-loopstart}--\ref{alg:findedgels-horizontal-loopend} jeder Pixel auf der Scanline
  untersucht. Zuerst wird in Zeile \ref{alg:findedgels-horizontal-convolute} die Faltung mit einem Gauß-Kernel
- vorgenommen (Vgl. \autoref{alg:derivativeofgauss-horizontal}, S. \pageref{alg:derivativeofgauss-horizontal}). Der Test
+ vorgenommen (Vgl. \autoref{alg:convolutekernel-horizontal}, S. \pageref{alg:convolutekernel-horizontal}). Der Test
  in Zeile \ref{alg:findedgels-horizontal-foundedgel} überprüft anschließend das Ergebnis der Faltung. Wenn der
  Schwellwert nicht überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergebnis wird auf
  $0$ gesetzt. Wird der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergebnis wird in den
@@ -85,13 +85,13 @@ Die Bedingung in Zeile \ref{alg:findedgels-horizontal-maxima} wird bei der erste
  \autoref{alg:findedgels-horizontal} Zeile
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 
-\autoref{alg:derivativeofgauss-horizontal} und \autoref{alg:derivativeofgauss-vertical} berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
+\autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical} berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
 -3& -5& 0& 5& 3
 \end{smallmatrix} \right)$
  auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Zeiger des monochromen
  Bildsignals $I_m$, die Position des Pixels ($x$ und $y$), sowie die Breite $w$ und Höhe $h$ von $I_m$. In Zeile
- \ref{alg:derivativeofgauss-horizontal-readstart}--\ref{alg:derivativeofgauss-horizontal-readend} werden durch die
+ \ref{alg:convolutekernel-horizontal-readstart}--\ref{alg:convolutekernel-horizontal-readend} werden durch die
  Funktion \textproc{getpixel} (Vgl. \autoref{alg:getpixel}, S. \pageref{alg:getpixel}) die benötigten Pixelwerte
  ausgelesen und den Variablen zugewiesen. Im Anschluss werden die Werte mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
@@ -99,47 +99,14 @@ $\left( \begin{smallmatrix}
 \end{smallmatrix} \right)$
 berechnet um den Gradienten zu bestimmen.
 
-\input{alg/analyse-hirzer/derivativeofgauss}
+\input{alg/analyse-hirzer/convolutekernel}
 
-Durch die Multiplikation mit $\tfrac{1}{16}$ wird sichergestellt, dass der maximale Wert
+Bei genauer Betrachtung von \autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical}
+ fällt auf, dass der Wert $p_3$ in der Berechnung nicht vorkommt. Dies ist darauf zurückzuführen, dass der Gauß-Kernel
+ an der dritten Stelle mit $0$ definiert ist. Somit kann die Multiplikation vernachlässigt werden. Die Laufzeit von
+ \autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical} ist konstant.
 
-\begin{equation}
-	\frac{1}{16}
-	\cdot
-	\begin{pmatrix}
-		-3& -5& 0& 5& 3
-	\end{pmatrix}
-	\cdot
-	\begin{pmatrix}
-		0& 0& 0& 255& 255
-	\end{pmatrix}
-	= 127.5
-\end{equation}
-
-und der minimale Wert
-
-\begin{equation}
-	\frac{1}{16}
-	\cdot
-	\begin{pmatrix}
-		-3& -5& 0& 5& 3
-	\end{pmatrix}
-	\cdot
-	\begin{pmatrix}
-		255& 255& 0& 0& 0
-	\end{pmatrix}
-	= -127.5
-\end{equation}
-
-für ein monochromes Bild eingehalten werden.
-
-Bei genauer Betrachtung von \autoref{alg:derivativeofgauss-horizontal} und \autoref{alg:derivativeofgauss-vertical}
- fällt auf, dass der Wert $p_3$ in der Berechnung nicht [mit einfließt|vorkommt]. Dies ist darauf zurückzuführen, dass bei der
- Multiplikation des Gauß-Kernels an der dritten Stelle des Filter mit $0$ definiert ist. Eine Multiplikation mit $0$
- ergibt immer $0$ und kann somit vernachlässigt werden. Die Laufzeit von \autoref{alg:derivativeofgauss-horizontal} und
- \autoref{alg:derivativeofgauss-vertical} ist konstant.
-
-In \autoref{alg:sobel} wird, wie in \autoref{alg:derivativeofgauss-horizontal}, mittels Faltung die Orientierung eines
+In \autoref{alg:sobel} wird, wie in \autoref{alg:convolutekernel-horizontal}, mittels Faltung die Orientierung eines
  \glspl{edgel} bestimmt. Als Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$,
  sowie die Position des \glspl{edgel} ($x,y$) benötigt.
 
