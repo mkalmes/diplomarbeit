@@ -106,14 +106,15 @@ Bei genauer Betrachtung von \autoref{alg:convolutekernel-horizontal} und \autore
  an der dritten Stelle mit $0$ definiert ist. Somit kann die Multiplikation vernachlässigt werden. Die Laufzeit von
  \autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical} ist konstant.
 
-In \autoref{alg:sobel} wird, wie in \autoref{alg:convolutekernel-horizontal}, mittels Faltung die Orientierung eines
- \glspl{edgel} bestimmt. Als Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$,
- sowie die Position des \glspl{edgel} ($x,y$) benötigt.
+In \autoref{alg:gradientintensity} wird mittels Faltung die Orientierung eines \glspl{edgel} bestimmt. Als
+ Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$, sowie die Position des
+ \glspl{edgel} ($x,y$) benötigt.
 
-\input{alg/analyse-hirzer/sobel}
+\input{alg/analyse-hirzer/gradientintensity}
 
-In Zeile~\ref{alg:sobel-readstart}--\ref{alg:sobel-readend} werden die Pixelwerte ausgelesen und den Variablen
- zugewiesen. In Zeile~\ref{alg:sobel-convolutestart}--\ref{alg:sobel-convoluteend} erfolgt die Faltung mit dem
+In Zeile \ref{alg:gradientintensity-readstart}--\ref{alg:gradientintensity-readend} werden die Pixelwerte ausgelesen
+ und den Variablen zugewiesen. In
+ Zeile\ref{alg:gradientintensity-convolutestart}--\ref{alg:gradientintensity-convoluteend} erfolgt die Faltung mit dem
  Sobel-Operator\footcite[Vgl.][S.~120--123]{burger05}, dessen Filter
 
 \begin{subequations}
@@ -135,7 +136,7 @@ In Zeile~\ref{alg:sobel-readstart}--\ref{alg:sobel-readend} werden die Pixelwert
 \end{align}
 \end{subequations}
 
-den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:derivativeofgauss-horizontal} werden Multiplikationen von
+den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:convolutekernel-horizontal} werden Multiplikationen von
  $0$-Werten des Filters vernachlässigt. Mit
 
 \begin{equation}
@@ -143,9 +144,9 @@ den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:derivativeofgauss-
 	\Phi(x,y) = \arctan{\left(\tfrac{G_y}{G_x}\right)}
 \end{equation}
 
-wird die Orientierung in Zeile \autoref{alg:sobel-arctan} berechnet. Die Orientierung unterscheidet sich um $180^\circ$
- wenn anstatt von Weiß nach Schwarz ein Verlauf von Schwarz nach Weiß erfolgt. Das Ergebnis liegt im Bereich
- $-\pi < v \leq \pi$. $\arctan$ in \autoref{eq:orientation} kann in C durch \textproc{atan2} zur Berechnung verwendet
- werden. Die Laufzeit von \autoref{alg:sobel} ist konstant.
+kann die Orientierung berechnet werden. $G_x$ und $G_y$ werden mit \autoref{alg:vectorsetcoordinate} als
+ \textproc{vector} gespeichert und normalisiert
+ (Zeile \ref{alg:gradientintensity-vector-start}--\ref{alg:gradientintensity-vector-end}). Die Laufzeit von
+ \autoref{alg:gradientintensity} ist konstant.
 
 \input{alg/analyse-hirzer/findlinesegments}
