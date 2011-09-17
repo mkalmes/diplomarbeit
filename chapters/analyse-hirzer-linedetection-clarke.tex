@@ -77,11 +77,12 @@ Die Bedingung in Zeile \ref{alg:findedgels-horizontal-maxima} wird bei der erste
  Werte werden die Nachbarn für den nächsten Durchlauf um eine Position weiterverschoben. Nur bei einem lokalen Maximum
  (Zeile \ref{alg:findedgels-horizontal-maxima}--\ref{alg:findedgels-horizontal-maxima-end}) wird die Position des
  Edgels gespeichert (Vgl. \autoref{alg:vectorsetcoordinate}), und seine Orientierung
- (Vlg. \autoref{alg:sobel}, S. \pageref{alg:sobel}) berechnet. Der Edgel wird mit \autoref{alg:edgelpool-addedgel} in
- einem Speicherblock zu weiteren Verarbeitung gespeichert. Sind alle Pixel auf einer Scanline untersucht, wird in Zeile
- \ref{alg:findedgels-horizontal-increment} die nächste Scanline ausgewählt. Das Verfahren wird solange wiederholt, bis
- alle Scanlines innerhalb der Region untersucht wurden. \autoref{alg:findedgels-vertical} untersucht die vertikalen
- Scanlines in Zeile \ref{alg:findedgels-vertical-scanlinestart}--\ref{alg:findedgels-vertical-scanlineend} analog zu
+ (Vlg. \autoref{alg:gradientintensity}, S. \pageref{alg:gradientintensity}) berechnet. Der Edgel wird mit
+ \autoref{alg:edgelpool-addedgel} in einem Speicherblock zu weiteren Verarbeitung gespeichert. Sind alle Pixel auf
+ einer Scanline untersucht, wird in Zeile \ref{alg:findedgels-horizontal-increment} die nächste Scanline ausgewählt.
+ Das Verfahren wird solange wiederholt, bis alle Scanlines innerhalb der Region untersucht wurden.
+ \autoref{alg:findedgels-vertical} untersucht die vertikalen Scanlines in Zeile
+ \ref{alg:findedgels-vertical-scanlinestart}--\ref{alg:findedgels-vertical-scanlineend} analog zu
  \autoref{alg:findedgels-horizontal} Zeile
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 
