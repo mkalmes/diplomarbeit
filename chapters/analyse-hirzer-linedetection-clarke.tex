@@ -1,21 +1,17 @@
-Der Algorithmus von \citeauthor{clarke96} ist in \autoref{alg:linedetection-analyze} aufgeführt. Zuerst wird die Breite
+Der Algorithmus von \citeauthor{clarke96} ist in \autoref{alg:linedetection-clarke} aufgeführt. Zuerst wird die Breite
  $w$ und Höhe $h$ des Signals $I_m$ festgehalten. Die doppelte For-Schleife in Zeile
- \ref{alg:linedetection-analyze-start} bis \ref{alg:linedetection-analyze-end} unterteilt das Signal in Regionen der
+ \ref{alg:linedetection-clarke-start} bis \ref{alg:linedetection-clarke-end} unterteilt das Signal in Regionen der
  Größe $40 \times 40$ \gls{pixel}, indem die Koordinate der oberen linken Ecke berechnet wird.
 
-\input{alg/analyse-hirzer/linedetection-analyze}
+\input{alg/analyse-hirzer/linedetection-clarke}
 
-In \citeauthor{clarke96} ist keine Angabe zu den Abmessungen der untersuchten Signale angegeben. Auch der Grund warum
- eine Region $40 \times 40$ \gls{pixel} groß sein muss, fehlt. Zur Analyse der Videosignale verwendeten
- \citeauthor{clarke96} einen Framegrabber 2000 der eine Auflösung von 640x480px schafft. Betrachtet man
+In \citeauthor{clarke96} ist keine Angabe zu den Abmessungen der untersuchten Signale angegeben. Betrachtet man
+ $640 \bmod 40 = 0$ und $480 \bmod 40 = 0$ ist ersichtlich, dass die Größe der Region und der Aufteilung des
+ Bildsignals in Zusammenhang steht.
 
-$640 mod 40 = 0$ und $480 mod 40 = 0$
-
-ist ersichtlich, dass die Größe der Region in der Aufteilung des Bildsignals in Zusammenhang steht.
-
-Der \autoref{alg:linedetection-analyze} ist der zentrale Algorithmus von \citeauthor{clarke96}. Der Algorithmus
+\autoref{alg:linedetection-clarke} ist der zentrale Algorithmus von \citeauthor{clarke96}. Der Algorithmus
  ist verantwortlich für die Unterteilung des Bildsignals in Regionen von jeweils $40 \times 40$ \gls{pixel}
- (Vgl. Zeile~\ref{alg:linedetection-analyze-start}--\ref{alg:linedetection-analyze-end}). Die Kosten des Algorithmus
+ (Vgl. Zeile \ref{alg:linedetection-clarke-start}--\ref{alg:linedetection-clarke-end}). Die Kosten des Algorithmus
  sind in \autoref{eq:linedetection-analyze1} aufgeführt. Um die Gleichung zu vereinfachen führe ich in
  \autoref{eq:linedetection-analyze2} $n = \tfrac{h}{40}$ und $k = \tfrac{w}{40}$ ein. Sowohl bei worst-case als auch
  bei best-case werden die Summen immer vollständig durchlaufen. Damit kann die Gleichung zu

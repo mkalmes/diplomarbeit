@@ -1,19 +1,22 @@
 \begin{algorithm}[ht]
-\caption{Line Detection}
-\label{alg:linedetection-analyze}
+\caption{\textproc{lineDetection}}
+\label{alg:linedetection-clarke}
 	\begin{algorithmic}[1]
 		\Require $I_m$
 		\State $w \gets$ \Call{width}{$I_m$} \Cost{$c_1$}{$1$}
 		\State $h \gets$ \Call{height}{$I_m$} \Cost{$c_2$}{$1$}
 		\For{$y \gets 0$ \textbf{to} $y < h$} \Cost{$c_3$}{$\tfrac{h}{40} + 1$}
-		\label{alg:linedetection-analyze-start}
+		\label{alg:linedetection-clarke-start}
 			\For{$x \gets 0$ \textbf{to} $x < w$} \Cost{$c_4$}{$\sum_{y=0}^{\tfrac{h}{40}} \left(\tfrac{w}{40} + 1\right)$}
 				\State \Call{findedgels}{$I_m,E,x,y,40,40,w,h$} \Cost{$c_5$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
 				\State \Call{findlinesegments}{$E,L$} \Cost{$c_6$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\State \ldots \Comment{Speichern der Liniensegmente zur weiteren Verarbeitung}
+				\State \Call{resetMemoryPool}{$E$}
+				\State \Call{resetMemoryPool}{$L$}
 				\State $ x \gets x + 40$ \Cost{$c_7$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
 			\EndFor
 			\State $y \gets y + 40$ \Cost{$c_9$}{$\sum_{y = 0}^{\frac{h}{40}} t_y$}
 		\EndFor
-		\label{alg:linedetection-analyze-end}
+		\label{alg:linedetection-clarke-end}
 	\end{algorithmic}
 \end{algorithm}
