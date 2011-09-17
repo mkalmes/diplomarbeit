@@ -1,0 +1,32 @@
+\begin{algorithm}[ht]
+\caption{\textproc{findEdgels} (Hirzer)}
+\label{alg:findedgelshirzer-1}
+	\begin{algorithmic}[1]
+		\Require $I, E,\mathit{left},\mathit{top}$
+		\For{$y \gets \mathit{top}$ \textbf{to} $y < \mathit{top} + \mathit{regionSize}$}
+			\State $\mathit{prev1} \gets 0$
+			\State $\mathit{prev2} \gets 0$
+			\For{$x \gets \mathit{left}$ \textbf{to} $x < \mathit{left} + \mathit{regionSize}$}
+				\State $\mathit{currentEdgel} \gets$ \Call{convoluteKernelX}{$I,x,y,\mathit{blue},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\State $\mathit{red} \gets$ \Call{convoluteKernelX}{$I,x,y,\mathit{red},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\State $\mathit{green} \gets$ \Call{convoluteKernelX}{$I,x,y,\mathit{green},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\If{$\mathit{currentEdgel} > \mathit{threshold} \land \mathit{red} > \mathit{threshold} \land \mathit{green} > \mathit{threshold}$}
+				\Comment Möglicherweise ein Edgel
+				\Else
+					\State $\mathit{currentEdgel} \gets 0$
+				\EndIf
+				\If{$\mathit{prev1} > 0 \land \mathit{prev2} > \mathit{prev1} \land \mathit{prev1} > \mathit{currentEdgel}$}
+					\State $\mathit{edgel} \gets \infty$
+					\State \Call{vectorSetCoordinate}{$\mathit{edgel},x - 1,y$}
+					\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth}, \mathit{imageHeight}, x - 1,y$}
+					\State \Call{addEdgel}{$E,\mathit{edgel}$}
+				\EndIf
+				\State $\mathit{prev2} \gets \mathit{prev1}$
+				\State $\mathit{prev1} \gets \mathit{currentEdgel}$
+				\State $x \gets x + 1$
+			\EndFor
+			\State $y \gets y + 5$
+		\EndFor
+		\algstore{brk-findedgels-x}
+	\end{algorithmic}
+\end{algorithm}
