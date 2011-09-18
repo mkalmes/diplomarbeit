@@ -123,8 +123,8 @@ Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbil
 \subsubsection{Line Detection} % (fold)
 \label{sub:line_detection}
 Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
- Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC-Verfahren eine
- Linienhypothese zu erstellen und zu bewerten.
+ Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC-Verfahren
+ (\textit{Random Sample Consensus}) eine Linienhypothese zu erstellen und zu bewerten.
 
 Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 40$ \gls{pixel} große Regionen
  unterteilt. Jede nachfolgende Operation erfolgt innerhalb einer Region. Eine Region wird wiederum unterteilt in
@@ -139,13 +139,13 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
  Anschluss wird die Anzahl der \glspl{edgel} betrachtet, die in der Nähe dieser Linie liegen und eine kompatible
  Orientierung mit der Linie aufweisen. Diese \glspl{edgel} unterstützen die Hypothese einer Linie im Bildsignal, wenn
  die Anzahl größer ist als die minimal geforderte Anzahl von Unterstützungsedgels. Die zufällige Auswahl zweier
- \glspl{edgel} um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln wird mehrmals wiederholt um die
+ \glspl{edgel}, um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln, wird mehrmals wiederholt, um die
  Linie mit der meisten Edgelunterstützung zu finden. Wenn eine solche dominante Linie gefunden wurde, gilt die
  Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstüztung der Hypothese
  der Linie galten, werden aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle
  Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind.
 
-Das Verfahren ist in \autoref{alg:linedetection-clarke} dargestellt.
+Das Verfahren ist in \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:} illustriert.
 
 \input{alg/untersuchungsdesign/linedetection-clarke}
 
