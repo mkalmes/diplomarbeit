@@ -150,4 +150,24 @@ kann die Orientierung berechnet werden. $G_x$ und $G_y$ werden mit \autoref{alg:
  (Zeile \ref{alg:gradientintensity-vector-start}--\ref{alg:gradientintensity-vector-end}). Die Laufzeit von
  \autoref{alg:gradientintensity} ist konstant.
 
-\input{alg/analyse-hirzer/findlinesegments}
+Um aus den gefundenen \glspl{edgel} Liniensegmente zu erzeugen, wird \autoref{alg:findlinesegments1} verwendet. Das
+ Verfahren benötigt den Speicherblock $E$, in dem die \glspl{edgel} vorliegen, und den Speicherblock $L$, der zur
+ Speicherung der gefundenen Liniensegmente dient.
+
+\input{alg/analyse-hirzer/findlinesegments-1}
+
+In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init-end} wird die Variable
+ $\mathit{presentLine}$ initialisiert. Diese Variable enthält das aktuell zu untersuchende Liniensegment im Verfahren.
+ Die Zählvariable $\mathit{edgelsInRegion}$ wird mit $0$ initialisiert und speichert die Anzahl der \gls{edgel} in
+ einer Region. In der Schleife von Zeile \ref{alg:findlinesegments1-loop-start} bis Zeile
+ \ref{alg:findlinesegments1-loop-end} wird das RANSAC-Verfahren wiederholt, solange das zu untersuchende Liniensegment
+ genügend Unterstützung durch \gls{edgel} besitzt und genügend \gls{edgel} in der Region vorhanden sind. Die Anzahl der
+ unterstützenden \gls{edgel} wird in Zeile \ref{alg:findlinesegments1-clearsupport} für jeden Durchlauf gelöscht.
+ Danach wird in Zeile \ref{alg:findlinesegments1-line-start}--\ref{alg:findlinesegments1-line-end} ein zufälliges
+ Liniensegment in der Region erstellt und untersucht
+ (Vgl. \autoref{alg:findlinesegments2}--\autoref{alg:findlinesegments4}). Die Erstellung eines Liniensegments wird
+ mehrmahls wiederholt, um das Liniensegment mit den meisten Unterstützungsedgels zu finden. In Zeile
+ \ref{alg:findlinesegments1-hasenoughsupport} wird die Anzahl der der unterstützenden \gls{edgel} mit der Anzahl der
+ benötigten \gls{edgel} verglichen. Nur wenn genügend \gls{edgel} das Liniensegment unterstützen, wird in
+ \autoref{alg:findlinesegments5}--\autoref{alg:findlinesegments7} das Verfahren fortgesetzt und die
+ Unterstützungsedgels aus dem Speicherblock $E$ entfernt.

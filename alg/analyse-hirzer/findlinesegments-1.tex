@@ -7,17 +7,25 @@
 \begin{algorithmic}[1]
 	\Require $E, L$
 	\State $\mathit{presentLine} \gets \infty$
+	\label{alg:findlinesegments1-init-start}
 	\State $\mathit{edgelsInRegion} \gets 0$
+	\label{alg:findlinesegments1-init-end}
 	\DO
+	\label{alg:findlinesegments1-loop-start}
 		\State $\mathit{presentLine.supportCount} \gets 0$
+		\label{alg:findlinesegments1-clearsupport}
 		\For{$i \gets 0$ \textbf{to} $i < 25$}
-			\State \ldots \Comment 1. Teil
+		\label{alg:findlinesegments1-line-start}
+			\State \ldots \Comment Suche dominantes Liniensegment
 			\State $i \gets i + 1$
 		\EndFor
+		\label{alg:findlinesegments1-line-end}
 		\If{$\mathit{presentLine.supportCount} > \mathit{minEdgels}$}
-			\State \ldots \Comment 2. Teil
+		\label{alg:findlinesegments1-hasenoughsupport}
+			\State \ldots \Comment Entferne Unterstützungsedgels
 		\EndIf
 		\State $\mathit{edgelsInRegion} \gets$ \Call{getEdgelCount}{$E$}
 	\WHILE{$\mathit{presentLine.supportCount} > \mathit{minEdgels} \land \mathit{edgelsInRegion} > \mathit{minEdgels}$}
+	\label{alg:findlinesegments1-loop-end}
 \end{algorithmic}
 \end{algorithm}
