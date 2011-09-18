@@ -171,3 +171,11 @@ In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init
  benötigten \gls{edgel} verglichen. Nur wenn genügend \gls{edgel} das Liniensegment unterstützen, wird in
  \autoref{alg:findlinesegments5}--\autoref{alg:findlinesegments7} das Verfahren fortgesetzt und die
  Unterstützungsedgels aus dem Speicherblock $E$ entfernt.
+
+In \autoref{alg:findlinesegments2} wird die Initialisierung der Variablen vorgenommen, die zur Erstellung eines
+ Liniensegments benötigt werden. Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{edgel}
+ benutzt. Die Variable $\mathit{maxIteration}$ gibt die maximale Anzahl der Interationen an, die $\mathit{iterator}$
+ durchlaufen kann. $\mathit{first}$ ist der Startedgel und $\mathit{last}$ der Endedgel des Liniensegments. In
+ $\mathit{numberOfEdgels}$ wird die Anzahl der \gls{edgel} in $E$ gespeichert.
+
+\input{alg/analyse-hirzer/findlinesegments-2}
