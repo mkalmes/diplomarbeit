@@ -157,7 +157,7 @@ Um aus den gefundenen \glspl{edgel} Liniensegmente zu erzeugen, wird \autoref{al
 \input{alg/analyse-hirzer/findlinesegments-1}
 
 In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init-end} wird die Variable
- $\mathit{presentLine}$ initialisiert. Diese Variable enthält das aktuell zu untersuchende Liniensegment im Verfahren.
+ $\mathit{presentLine}$ initialisiert. Diese Variable enthält das zu speichernde Liniensegment im Verfahren.
  Die Zählvariable $\mathit{edgelsInRegion}$ wird mit $0$ initialisiert und speichert die Anzahl der \gls{edgel} in
  einer Region. In der Schleife von Zeile \ref{alg:findlinesegments1-loop-start} bis Zeile
  \ref{alg:findlinesegments1-loop-end} wird das RANSAC-Verfahren wiederholt, solange das zu untersuchende Liniensegment
@@ -179,3 +179,40 @@ In \autoref{alg:findlinesegments2} wird die Initialisierung der Variablen vorgen
  $\mathit{numberOfEdgels}$ wird die Anzahl der \gls{edgel} in $E$ gespeichert.
 
 \input{alg/analyse-hirzer/findlinesegments-2}
+
+Die Auswahl eines Liniensegments erfolgt mit \autoref{alg:findlinesegments3}. Zeile
+ \ref{alg:findlinesegments3-loop-start}--\ref{alg:findlinesegments3-loop-end} ist dafür verantwortlich, solange nach
+ einem Liniensegment zu suchen, bis der erste und letzte \gls{edgel} sich unterscheiden oder ihre Orientierung
+ zueinander kompatibel ist. Als letzte Bedingung muss die Anzahl der Iterationen unterhalb des festgelegten
+ Schwellwerts $\mathit{maxIteration}$ bleiben.
+
+\input{alg/analyse-hirzer/findlinesegments-3}
+
+In Zeile \ref{alg:findlinesegments3-first} und Zeile \ref{alg:findlinesegments3-last} werden zufällig zwei Indizes aus
+ der Menge der vorhandenen \gls{edgel} errechnet. Diese werden in Zeile
+ \ref{alg:findlinesegments3-start}--\ref{alg:findlinesegments3-end} verwendet, um die beiden \gls{edgel}
+ $\mathit{start}$ und $\mathit{end}$ auszuwählen. Der Iterator wird anschliessend in Zeile
+ \ref{alg:findlinesegments3-inc} inkrementiert.
+
+Wenn in \autoref{alg:findlinesegments3} ein Liniensegment erstellt wurde, werden in \autoref{alg:findlinesegments4} die
+ \gls{edgel} zur unterstüztung der Hypothese hinzugefügt. Dazu wird in Zeile \ref{alg:findlinesegments4-isbelowmax}
+ überprüft, ob die maximale Anzahl der Iterationen nicht überschritten wurde. Falls dem so ist wird
+ \autoref{alg:findlinesegments4} nicht weiter ausgeführt. Andernfalls wird in Zeile
+ \ref{alg:findlinesegments4-init-start}--\ref{alg:findlinesegments4-init-end} die Variable $\mathit{segment}$ zur
+ Speicherung des Liniensegments vorbereitet und der Start- und Endedgel, sowie die Orientierung zugewiesen. Die Anzahl
+ der Unterstützungedgels beträgt zu diesem Zeitpunkt noch $0$.
+
+\input{alg/analyse-hirzer/findlinesegments-4}
+
+In der Schleife in Zeile \ref{alg:findlinesegments4-loop-start}--\ref{alg:findlinesegments4-loop-end} werden die
+ \gls{edgel} gezählt, die die Linienhypothese unterstützen. Dazu wird in Zeile \ref{alg:findlinesegments4-edgel} ein
+ \gls{edgel} ausgewählt und in Zeile \ref{alg:findlinesegments4-isedgelnearline} untersucht, ob der Abstand zur Linie
+ klein genug ist. Wenn nicht, wird in Zeile \ref{alg:findlinesegments4-inc} die Laufvariable $j$ inkrementiert und das
+ nächste \gls{edgel} ausgewählt. Wenn ein \gls{edgel} nahe genug an dem Liniensegment liegt, wird es in Zeile
+ \ref{alg:findlinesegments4-addedgel} dem Liniensegment hinzugefügt und die Anzahl der Unterstützungsedgel wird in
+ Zeile \ref{alg:findlinesegments4-count} erhöht. Nachdem alle \gls{edgel} untersucht wurden, wird in Zeile
+ \ref{alg:findlinesegments4-hasmoresupport} überprüft, ob die Anzahl der \gls{edgel} des Liniensegments
+ $\mathit{segment}$ größer ist als die Anzahl der \gls{edgel} in $\mathit{presentLine}$. Im Falle, dass
+ $\mathit{segment}$ mehr Unterstützungsedgel besitzt, wird das Liniensegment in $\mathit{presentLine}$ gespeichert.
+ Dadurch wird durch die Wiederholung in \autoref{alg:findlinesegments1} sichergestellt, dass das Liniensegment mit der
+ größten Unterstützung ausgewählt wird.

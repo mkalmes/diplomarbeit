@@ -2,12 +2,14 @@
    {\textbf{do}}
    [1]{\textbf{while} #1}
 \begin{algorithm}[ht]
-\caption{\textproc{findLineSegments} (Fortsetzung 1. Teil)}
+\caption{\textproc{findLineSegments} (Unterstützungsedgel bestimmen)}
 \label{alg:findlinesegments4}
 \begin{algorithmic}[1]
 	\algrestore{brk-findlinesegments3-dowhile}
 	\If{$\mathit{iterator} < \mathit{maxIteration}$}
+	\label{alg:findlinesegments4-isbelowmax}
 		\State $\mathit{segment} \gets \infty$
+		\label{alg:findlinesegments4-init-start}
 		\State $\mathit{segment.start} \gets \mathit{start}$
 		\State $\mathit{segment.end} \gets \mathit{end}$
 		\State $\mathit{segment.slope} \gets \mathit{start.slope}$
@@ -15,15 +17,24 @@
 		\State $\mathit{segment.remove} \gets$ \textbf{FALSE}
 		\State $\mathit{segment.startCorner} \gets$ \textbf{FALSE}
 		\State $\mathit{segment.endCorner} \gets$ \textbf{FALSE}
+		\label{alg:findlinesegments4-init-end}
 		\For{$j \gets 0$ \textbf{to} $j < \mathit{numberOfEdgels}$}
+		\label{alg:findlinesegments4-loop-start}
 			\State $\mathit{supportEdgel} \gets$ \Call{getEdgel}{$E,j$}
+			\label{alg:findlinesegments4-edgel}
 			\If{\Call{isEdgelNearLine}{$\mathit{segment}, \mathit{supportEdgel}$}}
+			\label{alg:findlinesegments4-isedgelnearline}
 				\State \Call{addEdgel}{$\mathit{segment},\mathit{supportCount},\mathit{segment.supportCount}$}
+				\label{alg:findlinesegments4-addedgel}
 				\State $\mathit{segment.supportCount} \gets \mathit{segment.supportCount} + 1$
+				\label{alg:findlinesegments4-count}
 			\EndIf
 			\State $j \gets j + 1$
+			\label{alg:findlinesegments4-inc}
 		\EndFor
+		\label{alg:findlinesegments4-loop-end}
 		\If{$\mathit{segment.supportCount} > \mathit{presentLine.supportCount}$}
+		\label{alg:findlinesegments4-hasmoresupport}
 			\State $\mathit{presentLine} \gets \mathit{segment}$
 		\EndIf
 	\EndIf
