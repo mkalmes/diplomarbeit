@@ -2,16 +2,24 @@
    {\textbf{do}}
    [1]{\textbf{while} #1}
 \begin{algorithm}[ht]
-\caption{\textproc{findLineSegments} (Fortsetzung 2. Teil)}
+\caption{\textproc{findLineSegments} (Neuer Start- und Endpunkt für y)}
 \label{alg:findlinesegments5}
 \begin{algorithmic}[1]
 	\State $\mathit{start} \gets 0$
+	\label{alg:findlinesegments5-start}
 	\State $\mathit{end} \gets \infty$
+	\label{alg:findlinesegments5-end}
 	\State $\mathit{slope} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.start.coordinate},\mathit{presentLine.end.coordinate}$}
-	\If{$\mathit{slope.x} \leq \mathit{slope.y}$}
+	\label{alg:findlinesegments5-slope-start}
+	\State $\mathit{ortho.x} \gets - \mathit{presentLine.start.slope.y}$
+	\State $\mathit{ortho.y} \gets \mathit{presentLine.start.slope.x}$
+	\label{alg:findlinesegments5-slope-end}
+	\If{\Call{abs}{$\mathit{slope.x}$} $\leq$ \Call{abs}{$\mathit{slope.y}$}}
+	\label{alg:findlinesegments5-isxsmaller}
 		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
+		\label{alg:findlinesegments5-newstart-start}
 			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
-			\If{$\mathit{edgel.coordinate} > start$}
+			\If{$\mathit{edgel.coordinate.y} > start$}
 				\State $\mathit{start} \gets \mathit{edgel.coordinate.y}$
 				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
 			\EndIf
@@ -21,6 +29,7 @@
 			\EndIf
 			\State $k \gets k + 1$
 		\EndFor
+		\label{alg:findlinesegments5-newstart-end}
 	\algstore{brk-findlinesegments5-if}
 \end{algorithmic}
 \end{algorithm}
