@@ -4,7 +4,7 @@
 \begin{algorithmic}[1]
 	\Require $I,x,y,\mathit{color},w,h$
 	\If{$x < 0$}
-	\label{alg:getpixel-startcheck}
+	\label{alg:getrgbvalue-sanity-start}
 		\State $x \gets 0$
 	\EndIf
 	\If{$y < 0$}
@@ -16,11 +16,15 @@
 	\If{$y \geq h$}
 		\State $y \gets h -1$
 	\EndIf
+	\label{alg:getrgbvalue-sanity-end}
 	% const unsigned int offset = (x + (y * width)) * (sizeof(unsigned char) * 4);
 	\State $\mathit{offset} \gets (x + (y \cdot w)) \cdot \left(\textproc{sizeof}(\mathit{char}) \cdot 4\right)$
+	\label{alg:getrgbvalue-offset}
 	% const unsigned char *address	= colorBuffer + offset;
 	\State $\mathit{address} \gets I + \mathit{offset}$
+	\label{alg:getrgbvalue-address}
 	% return *(address + color);
 	\State \textbf{return} $\mathit{address} + \mathit{color}$
+	\label{alg:getrgbvalue-returncolor}
 \end{algorithmic}
 \end{algorithm}

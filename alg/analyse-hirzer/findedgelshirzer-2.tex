@@ -8,8 +8,10 @@
 			\State $\mathit{prev2} \gets 0$
 			\For{$y \gets \mathit{top}$ \textbf{to} $y < \mathit{top} + \mathit{regionSize}$}
 				\State $\mathit{currentEdgel} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{blue},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\label{alg:findedgelshirzer-2-color-start}
 				\State $\mathit{red} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{red},\mathit{imageWidth}, \mathit{imageHeight}$}
 				\State $\mathit{green} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{green},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\label{alg:findedgelshirzer-2-color-end}
 				\If{$\mathit{currentEdgel} > \mathit{threshold} \land \mathit{red} > \mathit{threshold} \land \mathit{green} > \mathit{threshold}$}
 				\Comment Edgel gefunden
 				\Else

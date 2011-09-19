@@ -1,0 +1,42 @@
+Das Verfahren zur Linienerkennung nach \citeauthor{hirzer08} basiert, wie in \autoref{sub:line_detection} bereits
+ erwähnt, auf dem Verfahren von \citeauthor{clarke96}. \citeauthor{hirzer08} verwendet in seinem Verfahren anstatt
+ eines monochromen Bildsignals ein RGB-Signal. Dadurch ändern sich einige Algorithmen geringfügig und werden im
+ folgenden Abschnitt erläutert.
+
+Das Verfahren in \autoref{alg:linedetection-hirzer} unterscheidet sich von \autoref{alg:linedetection-clarke}, dass
+ anstatt dem monochromen Signal $I_m$ das RGB-Signal $I$ verwendet wird. Dadurch verändern sich auch die Verfahren
+ \textproc{findEdgels} und \textproc{findLineSegments}.
+
+\input{alg/analyse-hirzer/linedetection-hirzer}
+
+In dem Verfahren zur Erstellung von \gls{edgel} in \autoref{alg:findedgelshirzer-1}--\autoref{alg:findedgelshirzer-2}
+ wird im Gegensatz zu \autoref{alg:findedgels-horizontal} die Faltung für alle drei Farbkanäle durchgeführt (Vgl. Zeile
+ \ref{alg:findedgelshirzer-1-color-start}--\ref{alg:findedgelshirzer-1-color-end} in \autoref{alg:findedgelshirzer-1}
+ und Zeile \ref{alg:findedgelshirzer-2-color-start}--\ref{alg:findedgelshirzer-2-color-end} in
+ \autoref{alg:findedgelshirzer-2}).
+
+\input{alg/analyse-hirzer/findedgelshirzer-1}
+\input{alg/analyse-hirzer/findedgelshirzer-2}
+
+Betrachtet man die Methode \textproc{convoluteKernelX} und \textproc{convoluteKernelY} stellt man fest, dass hier eine
+ Angabe zum Farbkanal erfolgt. In \autoref{alg:convolutekernelhirzer-horizontal} und
+ \autoref{alg:convolutekernelhirzer-vertical} wird durch den Aufruf der Methode \textproc{getRGBValue} ein bestimmter
+ Farbkanal betrachtet.
+
+\input{alg/analyse-hirzer/convolutekernelhirzer}
+
+Auch das Verfahren \textproc{gradientIntensity} in \autoref{alg:gradientintensityhirzer} verwendet die Methode
+ \textproc{getRGBValue}.
+
+\input{alg/analyse-hirzer/gradientIntensityhirzer}
+
+\textproc{getRGBValue} dient dem auslesen eines \gls{pixel} für einen angegeben Farbkanal. In \autoref{alg:getrgbvalue} ist das Verfahren beschrieben.
+
+\input{alg/analyse-hirzer/getrgbvalue}
+
+Das Verfahren benötigt das RGB-Signal $I$, die Position des \gls{pixel} ($x$, $y$), den Farbkanal, sowie die Breite $w$
+ und Höhe $h$ von $I$. In den Zeilen \ref{alg:getrgbvalue-sanity-start}--\ref{alg:getrgbvalue-sanity-end} wird
+ sichergestellt, dass kein \gls{pixel} ausserhalb der Bildgrenzen gelesen werden können. In Zeile
+ \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des \gls{pixel} wird in
+ Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
+ \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben.

@@ -17,8 +17,8 @@
 	\State $p_{y_5} \gets$ \Call{getRGBValue}{$I, x + 1, y    ,\mathit{green}, w, h$}
 	\State $p_{y_6} \gets$ \Call{getRGBValue}{$I, x + 1, y + 1,\mathit{green}, w, h$}
 	\label{alg:gradientintensityhirzer-readend}
-	\State $g_x \gets 0$
-	\State $g_y \gets 0$
+	% \State $g_x \gets 0$
+	% \State $g_y \gets 0$
 	\State $g_x \gets g_x + p_{x_1}$
 	\label{alg:gradientintensityhirzer-convolutestart}
 	\State $g_x \gets g_x + \left(p_{x_2} \cdot 2\right)$
