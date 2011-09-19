@@ -1,0 +1,18 @@
+\begin{algorithm}[ht]
+\caption{\textproc{lineDetection} nach Hirzer}
+\label{alg:linedetection-hirzer}
+	\begin{algorithmic}[1]
+		\Require $I$
+		\For{$y \gets 0$ \textbf{to} $y < \mathit{imageHeight}$}
+			\For{$x \gets 0$ \textbf{to} $x < \mathit{imageWidth}$}
+				\State \Call{findEdgels}{$I,E,x,y$}
+				\State \Call{findLineSegments}{$E,L$}
+				\State \ldots \Comment Speichern der Liniensegmente zur weiteren Verarbeitung
+				\State \Call{resetMemoryPool}{$E$}
+				\State \Call{resetMemoryPool}{$L$}
+				\State $ x \gets x + 40$
+			\EndFor
+			\State $y \gets y + 40$
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
