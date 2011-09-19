@@ -1,0 +1,17 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{removeLine}}
+\label{alg:distancepool-removeline}
+\begin{algorithmic}[1]
+	\Require $p,i$
+	\If{$\lnot p$}
+		\State \textbf{return}
+	\EndIf
+	\State $c \gets p(\mathit{count})$
+	\If{$i < 0 \lor i > c$}
+		\State \textbf{return}
+	\EndIf
+	\If{$c > i + 1$}
+		\State \Call{memmove}{$p(\mathit{data}[\mathit{i}]), p(\mathit{data}[\mathit{i} + 1]), \left(c - \mathit{i} + 1\right) \cdot \textproc{sizeof}(d)$}
+	\EndIf
+\end{algorithmic}
+\end{algorithm}
