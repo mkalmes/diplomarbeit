@@ -1,0 +1,23 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Kompatible Liniensegmente suchen)}
+\label{alg:mergelines3}
+\begin{algorithmic}[1]
+	\algrestore{brk-mergelines2}
+		\If{$\mathit{lineOrientation} > 0.99 \land \mathit{connectionOrientation} > 0.99$}
+			\State $\mathit{cLine} \gets \infty$
+			\State $\mathit{cLine.start} \gets \mathit{start.end}$
+			\State $\mathit{cLine.end} \gets \mathit{tmp.start}$
+			\State $\mathit{cLine.slope} \gets \mathit{start.slope}$
+			\If{$\lnot$ \Call{isConnectionLineBridged}{$cLine, I$}}
+				\State $\mathit{connectionLine} \gets$ \Call{vectorSubtract}{$\mathit{tmp.start.coordinate},\mathit{start.end.coordinate}$}
+				\State $\mathit{squaredLength} \gets$ \Call{squaredLengt}{$\mathit{connectionLine}$}
+				\State $\mathit{distance} \gets \infty$
+				\State $\mathit{distance.distance} \gets \mathit{squaredLength}$
+				\State $\mathit{distance.index} \gets j$
+				\State \Call{distanceAddToPool}{$\mathit{distancepool}, \mathit{distance}$}
+			\EndIf
+		\EndIf
+		\State $j \gets j + 1$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}

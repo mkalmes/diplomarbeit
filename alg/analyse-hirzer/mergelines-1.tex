@@ -1,0 +1,18 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Überblick)}
+\label{alg:mergelines1}
+\begin{algorithmic}[1]
+	\Require $L$
+	\State $\mathit{distancepool} \gets \infty$
+	\For{$i \gets 0$ \textbf{to} $i <$ \Call{getLineCount}}
+		\State \Call{freeDistancePool}{$\mathit{distancepool}$}
+		\State $\mathit{start} \gets$ \Call{getLineSegment}{$L,i$}
+		\State \ldots \Comment Suche zwei kompatible Liniensegmente
+		\If{$\lnot$ \Call{getDistanceCount}{$\mathit{distancepool}$}}
+			\State \Call{continue}{}
+		\EndIf
+		\State \ldots \Comment Verbinde Liniensegmente mit kurzem Abstand zuerst
+		\State $i \gets i + 1$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}

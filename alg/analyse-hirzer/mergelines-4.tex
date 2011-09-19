@@ -1,0 +1,17 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Liniensegmente verbinden)}
+\label{alg:mergelines4}
+\begin{algorithmic}[1]
+	\State $\mathit{numberOfDistances} \gets$ \Call{getDistanceCount}{$\mathit{distancepool}$}
+	\State \Call{qsort}{$\mathit{distancepool}, \mathit{numberOfDistances}, \mathit{size},$ \textproc{distanceCompare}} \Comment man-page qsort
+		\For{$k \gets 0$ \textbf{to} $k < \mathit{numberOfDistances}$}
+			\State $j \gets \mathit{distancepool.data}[k]\mathit{.index}$
+			\State $\mathit{startpoint} \gets \mathit{start.end.coordinate}$
+			\State $\mathit{endpoint} \gets$ \Call{getLineSegment}{$L,j$}$\mathit{.start.coordinate}$
+			\State $\mathit{lineLength} \gets$ \Call{vectorSubtract}{$\mathit{endpoint},\mathit{startpoint}$}
+			\State $\mathit{lineSlope} \gets$ \Call{vectorSubtract}{$\mathit{endpoint},\mathit{startpoint}$}
+			\State $\mathit{length} \gets$ \Call{getLength}{$\mathit{lineLength}$}
+			\State $\mathit{lineSlope} \gets$ \Call{normalized}{$\mathit{lineSlope}$}
+			\algstore{mergelines4}
+\end{algorithmic}
+\end{algorithm}

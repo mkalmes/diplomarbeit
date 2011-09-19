@@ -1,0 +1,19 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Liniensegmente verbinden)}
+\label{alg:mergelines5}
+\begin{algorithmic}[1]
+	\algrestore{mergelines4}
+	\If{\Call{extendLine}{$\mathit{startpoint},\mathit{lineSlope},\mathit{start.end.slope},\mathit{endpoint},\mathit{length},I$}}
+		\State $\mathit{pool \to data}[i]\mathit{.end} \gets \mathit{pool \to data}[j]\mathit{.end}$
+		\State $\mathit{newLineSlope} \gets$ \Call{subtract}{$\mathit{pool \to data}[i]\mathit{.end.coordinate},\mathit{pool \to data}[i]\mathit{.start.coordinate}$}
+		\State $\mathit{newLineSlope} \gets$ \Call{normalized}{$\mathit{newLineSlope}$}
+		\State $\mathit{pool \to data}[i]\mathit{.slope} \gets \mathit{newLineSlope}$
+		\State $\mathit{pool \to data}[j]\mathit{.remove} \gets$ \textbf{true}
+	\Else
+		\State \textbf{break}
+	\EndIf
+	\State $k \gets k + 1$
+	\EndFor
+	\algstore{brk-mergelines5}
+\end{algorithmic}
+\end{algorithm}

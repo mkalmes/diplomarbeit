@@ -1,0 +1,19 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Liniensegmente löschen)}
+\label{alg:mergelines6}
+\begin{algorithmic}[1]
+	\algrestore{brk-mergelines5}
+	\State $\mathit{merged} \gets$ \textbf{false}
+	\For{$j \gets 0$ \textbf{to} $j <$ \Call{getLineCount}{$L$}}
+		\If{$\mathit{pool \to data}[j]\mathit{.remove} ==$ \textbf{true}}
+			\State \Call{removeLine}{$L,j$}
+			\State $j \gets j - 1$
+			\State $\mathit{merged} \gets$ \textbf{true}
+		\EndIf
+		\State $j \gets j + 1$
+	\EndFor
+	\If{$\mathit{merged}$}
+		\State $ i \gets -1$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

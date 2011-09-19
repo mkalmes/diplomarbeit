@@ -1,0 +1,16 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Kompatible Liniensegmente suchen)}
+\label{alg:mergelines2}
+\begin{algorithmic}[1]
+	\For{$j \gets 0$ \textbf{to} $j <$ \Call{getLineCount}{$L$}}
+		\If{$i == j$}
+			\State \Call{continue}{}
+		\EndIf
+		\State $\mathit{tmp} \gets$ \Call{getLineSegment}{$L,j$}
+		\State $\mathit{lineOrientation} \gets$ \Call{dotProduct}{$\mathit{tmp.slope}, \mathit{start.slope}$}
+		\State $\mathit{connectionLine} \gets$ \Call{vectorSubtract}{$\mathit{tmp.end.coordinate}, \mathit{start.start.coordinate}$}
+		\State \Call{normalized}{$\mathit{connectionLine}$}
+		\State $\mathit{connectionOrientation} \gets$ \Call{dotProduct}{$\mathit{connectionLine}, \mathit{start.slope}$}
+	\algstore{brk-mergelines2}
+\end{algorithmic}
+\end{algorithm}
