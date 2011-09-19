@@ -1,4 +1,4 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{gradientIntensity}}
 \label{alg:gradientintensity}
 \begin{algorithmic}[1]
@@ -17,8 +17,8 @@
 	\State $p_{y_5} \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
 	\State $p_{y_6} \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
 	\label{alg:gradientintensity-readend}
-	\State $g_x \gets 0$
-	\State $g_y \gets 0$
+	% \State $g_x \gets 0$
+	% \State $g_y \gets 0$
 	\State $g_x \gets g_x + p_{x_1}$
 	\label{alg:gradientintensity-convolutestart}
 	\State $g_x \gets g_x + \left(p_{x_2} \cdot 2\right)$
