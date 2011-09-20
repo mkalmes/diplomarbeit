@@ -1,0 +1,21 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{isConnectionLineBridged}}
+\label{alg:isconnectionlinebridged}
+\begin{algorithmic}[1]
+	\Require $\mathit{connectionLine},I$
+	\State $\mathit{lineLength} \gets$ \Call{vectorSubtract}{$\mathit{connectionLine.end.coordinate},\mathit{connectionLine.start.coordinate}$}
+	\State $\mathit{length} \gets$ \Call{getLength}{$\mathit{lineLength}$}
+	\State $\mathit{point} \gets \mathit{connectionLine.start.coordinate}$
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{length}$}
+		\State $\mathit{point} \gets$ \Call{vectorAddition}{$\mathit{point},\mathit{connectionLine.slope}$}
+		\State $\mathit{orientationEdgel}$
+		\State $\mathit{orientationEdgel.slope} \gets$ \Call{gradientIntensity}{$I,\mathit{imageWidth},\mathit{imageHeight}, \mathit{point.x}, \mathit{point.y}$}
+		\If{\Call{isCompatible}{$\mathit{orientationEdgel},\mathit{connectionLine.start}$}}
+			\State \textbf{continue}
+		\EndIf
+		\State \textbf{return true}
+		\State $i \gets i + 1$
+	\EndFor
+	\State \textbf{return false}
+\end{algorithmic}
+\end{algorithm}
