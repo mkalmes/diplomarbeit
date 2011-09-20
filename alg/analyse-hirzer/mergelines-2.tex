@@ -3,14 +3,20 @@
 \label{alg:mergelines2}
 \begin{algorithmic}[1]
 	\For{$j \gets 0$ \textbf{to} $j <$ \Call{getLineCount}{$L$}}
+	\label{alg:mergelines2-loop-start}
 		\If{$i == j$}
+		\label{alg:mergelines2-ignore-start}
 			\State \Call{continue}{}
 		\EndIf
+		\label{alg:mergelines2-ignore-end}
 		\State $\mathit{tmp} \gets$ \Call{getLineSegment}{$L,j$}
+		\label{alg:mergelines2-j}
 		\State $\mathit{lineOrientation} \gets$ \Call{dotProduct}{$\mathit{tmp.slope}, \mathit{start.slope}$}
+		\label{alg:mergelines2-orientation-start}
 		\State $\mathit{connectionLine} \gets$ \Call{vectorSubtract}{$\mathit{tmp.end.coordinate}, \mathit{start.start.coordinate}$}
 		\State \Call{normalized}{$\mathit{connectionLine}$}
 		\State $\mathit{connectionOrientation} \gets$ \Call{dotProduct}{$\mathit{connectionLine}, \mathit{start.slope}$}
+		\label{alg:mergelines2-orientation-end}
 	\algstore{brk-mergelines2}
 \end{algorithmic}
 \end{algorithm}

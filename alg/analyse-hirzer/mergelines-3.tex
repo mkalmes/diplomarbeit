@@ -4,20 +4,27 @@
 \begin{algorithmic}[1]
 	\algrestore{brk-mergelines2}
 		\If{$\mathit{lineOrientation} > 0.99 \land \mathit{connectionOrientation} > 0.99$}
+		\label{alg:mergelines3-isorientationcompatible}
 			\State $\mathit{cLine} \gets \infty$
+			\label{alg:mergelines3-cline-start}
 			\State $\mathit{cLine.start} \gets \mathit{start.end}$
 			\State $\mathit{cLine.end} \gets \mathit{tmp.start}$
 			\State $\mathit{cLine.slope} \gets \mathit{start.slope}$
+			\label{alg:mergelines3-cline-end}
 			\If{$\lnot$ \Call{isConnectionLineBridged}{$cLine, I$}}
+			\label{alg:mergelines3-isbridged}
 				\State $\mathit{connectionLine} \gets$ \Call{vectorSubtract}{$\mathit{tmp.start.coordinate},\mathit{start.end.coordinate}$}
+				\label{alg:mergelines3-save-start}
 				\State $\mathit{squaredLength} \gets$ \Call{squaredLengt}{$\mathit{connectionLine}$}
 				\State $\mathit{distance} \gets \infty$
 				\State $\mathit{distance.distance} \gets \mathit{squaredLength}$
 				\State $\mathit{distance.index} \gets j$
 				\State \Call{distanceAddToPool}{$\mathit{distancepool}, \mathit{distance}$}
+				\label{alg:mergelines3-save-end}
 			\EndIf
 		\EndIf
 		\State $j \gets j + 1$
 	\EndFor
+	\label{alg:mergelines3-loop-end}
 \end{algorithmic}
 \end{algorithm}

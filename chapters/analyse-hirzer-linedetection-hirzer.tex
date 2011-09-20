@@ -40,3 +40,43 @@ Das Verfahren benötigt das RGB-Signal $I$, die Position des \gls{pixel} ($x$, $
  \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des \gls{pixel} wird in
  Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
  \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben.
+
+Das Verfahren von \citeauthor{clarke96} (\autoref{sub:linienerkennung_nach_clarke96}) liefert als Ergebnis nur kurze
+ Liniensegmente, die zur Erkennung einer Marke ungeeignet sind. Im Verfahren von \citeauthor{hirzer08} werden kurze
+ Liniensegmente zusammengeführt. Dazu dient das Verfahren \textproc{mergeLines}, dass in \autoref{alg:mergelines1}
+ vorgestellt wird.
+
+\input{alg/analyse-hirzer/mergelines-1}
+
+In der Schleife von Zeile \ref{alg:mergelines1-loop-start}--\ref{alg:mergelines1-loop-end} werden alle Liniensegmente
+ untersucht. In Zeile \ref{alg:mergelines1-distancepool} wird zuerst ein Speicherbereich für Distanzwerte der Linien
+ initialisiert. Für jeden Lauf der Schleife wird in Zeile \ref{alg:mergelines1-cleardistancepool} der Speicherbereich
+ der Distanzwerte gelöscht. Danach wird in Zeile \ref{alg:mergelines1-getline} ein Liniensegment an Position $i$
+ ausgewählt. Dieses Liniensegment wird in \autoref{alg:mergelines2}--\autoref{alg:mergelines3} untersucht, um ein
+ zweites, kompatibles, Liniensegment zu finden. In Zeile
+ \ref{alg:mergelines1-hasdistance-start}--\ref{alg:mergelines1-hasdistance-end} wird die Anzahl der Distanzwerte
+ untersucht. Wenn keine Einträge in \textproc{distancepool} vorhanden sind, wird die Verarbeitung mit einem neuen
+ Durchlauf der Schleife fortgesetzt. Andernfalls werden in Zeile \ref{alg:mergelines1-mergelines} mit
+ \autoref{alg:mergelines4}--\autoref{alg:mergelines6} komaptible Liniensegmente zusammengeführt.
+
+In \autoref{alg:mergelines2} wird in der Schleife \ref{alg:mergelines2-loop-start}--\ref{alg:mergelines3-loop-end} ein
+ zweites Liniensegment gesucht, das kompatibel mit dem ersten Liniensegment ist.
+
+\input{alg/analyse-hirzer/mergelines-2}
+
+In Zeile \ref{alg:mergelines2-ignore-start}--\ref{alg:mergelines2-ignore-end} werden Liniensegmente an der gleichen
+ Position ignoriert und die Schleife mit einem neuen Lauf wiederholt. Danach wird in Zeile \ref{alg:mergelines2-j} ein
+ Liniensegment an Position $j$ ausgewählt. In Zeile
+ \ref{alg:mergelines2-orientation-start}--\ref{alg:mergelines2-orientation-end} wird die Orientierung der beiden
+ Liniensegmente und die Orientierung der Verbindungslinie berechnet.
+
+In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
+ die sowohl für die Lininesegmente, als auch für die Verbindungsline, nur geringfügig abweichen darf. Wenn die
+ Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cline-start}--\ref{alg:mergelines3-cline-end} die
+ Verbindungslinie in \textproc{cLine} gespeichert. In Zeile \ref{alg:mergelines3-isbridged} wird anschließend die
+ Orientierung der Verbindungslinie Punkt für Punkt untersucht (Vgl. \autoref{sub:line_detection}). Wenn der Gradient
+ der Verbindungslinie sich nicht verändert hat, wird in Zeile
+ \ref{alg:mergelines3-save-start}--\ref{alg:mergelines3-save-end} die Länge zum Quadrat und die Position der
+ Verbindungsline in \textproc{distancepool} gespeichert.
+
+\input{alg/analyse-hirzer/mergelines-3}

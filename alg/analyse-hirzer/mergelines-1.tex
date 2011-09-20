@@ -4,15 +4,23 @@
 \begin{algorithmic}[1]
 	\Require $L$
 	\State $\mathit{distancepool} \gets \infty$
+	\label{alg:mergelines1-distancepool}
 	\For{$i \gets 0$ \textbf{to} $i <$ \Call{getLineCount}}
+	\label{alg:mergelines1-loop-start}
 		\State \Call{freeDistancePool}{$\mathit{distancepool}$}
+		\label{alg:mergelines1-cleardistancepool}
 		\State $\mathit{start} \gets$ \Call{getLineSegment}{$L,i$}
+		\label{alg:mergelines1-getline}
 		\State \ldots \Comment Suche zwei kompatible Liniensegmente
 		\If{$\lnot$ \Call{getDistanceCount}{$\mathit{distancepool}$}}
+		\label{alg:mergelines1-hasdistance-start}
 			\State \Call{continue}{}
 		\EndIf
+		\label{alg:mergelines1-hasdistance-end}
 		\State \ldots \Comment Verbinde Liniensegmente mit kurzem Abstand zuerst
+		\label{alg:mergelines1-mergelines}
 		\State $i \gets i + 1$
 	\EndFor
+	\label{alg:mergelines1-loop-end}
 \end{algorithmic}
 \end{algorithm}
