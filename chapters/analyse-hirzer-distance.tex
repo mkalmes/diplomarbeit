@@ -1,0 +1,26 @@
+\subsubsection{Distanz} % (fold)
+\label{sub:distanz}
+
+Die Datenstruktur \textproc{distance} dient zur Speicherung der Länge von Liniensegmenten und der Speicherung eines
+ Index, um eine Linie in einem Speicherblock anzusprechen (\autoref{alg:distance}).
+
+\input{alg/analyse-hirzer/datastructure-distance}
+
+Wie bei \gls{edgel} oder Liniensegmenten, kann \textproc{distance} in einem Speicherbereich hinterlegt werden und ist in
+ \autoref{alg:datastructure-distancepool} dargestellt. Auch bei diesem Verfahren wird ein Array mit festert Größe $N$
+ und einer Zählvariable verwendet. Im Gegensatz zu den anderen Speicherbereichen wird bei \textproc{distance} auf einen
+ Speichervorrat verzichtet. Die Verwaltung eines Speichervorrat kann aber manuel erfolgen.
+
+\input{alg/analyse-hirzer/datastructure-distancepool}
+
+Mit \autoref{alg:distancepool-adddistance} und \autoref{alg:distancepool-removeline} können Distanzwerte dem
+ Speicherbereich hinzugefügt und entfernt werden. Durch \autoref{alg:distancepool-distancecount} kann die Anzahl der
+ gespeicherten Distanzwerte ausgelesen werden. \textproc{freePool} (\autoref{alg:distancepool-freepool}) löscht den
+ Speicherbereich.
+
+\input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
+\input{alg/analyse-hirzer/datastructure-distancepool-removeline}
+\input{alg/analyse-hirzer/datastructure-distancepool-distancecount}
+\input{alg/analyse-hirzer/datastructure-distancepool-freepool}
+
+% subsubsection distanz (end)
