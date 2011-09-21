@@ -80,3 +80,19 @@ In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3
  Verbindungsline in \textproc{distancepool} gespeichert.
 
 \input{alg/analyse-hirzer/mergelines-3}
+
+\textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungsline $\mathit{connectionLine}$ und das
+ Bildsignal $I$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
+
+\input{alg/analyse-hirzer/isconnectionlinebridged}
+
+In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionlinebridged-length-end} wird die Länge
+ der Verbindungslinie berechnet und der Startpunkt festgelegt. In der Schleife in Zeile
+ \ref{alg:isconnectionlinebridged-loop-start}--\ref{alg:isconnectionlinebridged-loop-end} wird jeder Punkt auf der
+ Linie untersucht. In Zeile \ref{alg:isconnectionlinebridged-gradient} wird der Gradient an der Position $i$  der
+ Verbindungslinie berechent. Wenn der Gradient in Zeile \ref{alg:isconnectionlinebridged-iscompatible} mit dem Gradient
+ der Linie kompatibel ist, wird die Schleife fortgesetzt. Andernfalls, wenn die Orientierung des Punktes und der Linie
+ nicht kompatibel sind, wird in Zeile \ref{alg:isconnectionlinebridged-bridged} das Verfahren abgebrochen. Wenn jeder
+ Punkt auf der Verbindungslinie kompatibel zur Verbindungslinie ist, wird die Schleife in Zeile
+ \ref{alg:isconnectionlinebridged-loop-start}--\ref{alg:isconnectionlinebridged-loop-end} vollständig durchlaufen und
+ das Verfahren in Zeile \ref{alg:isconnectionlinebridged-notbridged} beendet.

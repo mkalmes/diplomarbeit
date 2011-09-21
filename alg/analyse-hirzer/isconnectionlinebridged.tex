@@ -4,18 +4,26 @@
 \begin{algorithmic}[1]
 	\Require $\mathit{connectionLine},I$
 	\State $\mathit{lineLength} \gets$ \Call{vectorSubtract}{$\mathit{connectionLine.end.coordinate},\mathit{connectionLine.start.coordinate}$}
+	\label{alg:isconnectionlinebridged-length-start}
 	\State $\mathit{length} \gets$ \Call{getLength}{$\mathit{lineLength}$}
 	\State $\mathit{point} \gets \mathit{connectionLine.start.coordinate}$
+	\label{alg:isconnectionlinebridged-length-end}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{length}$}
+	\label{alg:isconnectionlinebridged-loop-start}
 		\State $\mathit{point} \gets$ \Call{vectorAddition}{$\mathit{point},\mathit{connectionLine.slope}$}
 		\State $\mathit{orientationEdgel}$
 		\State $\mathit{orientationEdgel.slope} \gets$ \Call{gradientIntensity}{$I,\mathit{imageWidth},\mathit{imageHeight}, \mathit{point.x}, \mathit{point.y}$}
+		\label{alg:isconnectionlinebridged-gradient}
 		\If{\Call{isCompatible}{$\mathit{orientationEdgel},\mathit{connectionLine.start}$}}
+		\label{alg:isconnectionlinebridged-iscompatible}
 			\State \textbf{continue}
 		\EndIf
 		\State \textbf{return true}
+		\label{alg:isconnectionlinebridged-bridged}
 		\State $i \gets i + 1$
 	\EndFor
+	\label{alg:isconnectionlinebridged-loop-end}
 	\State \textbf{return false}
+	\label{alg:isconnectionlinebridged-notbridged}
 \end{algorithmic}
 \end{algorithm}
