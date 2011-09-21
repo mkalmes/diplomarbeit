@@ -1,0 +1,26 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{extendLine}}
+\label{alg:extendline1}
+\begin{algorithmic}[1]
+	\Require $\mathit{start}, \mathit{slope}, \mathit{gradient}, \mathit{end}, \mathit{maxLength}, I$
+	\State $\mathit{normal.x} \gets \mathit{slope.y}$
+	\label{alg:extendline1-ortho-start}
+	\State $\mathit{normal.y} \gets - \mathit{slope.x}$
+	\label{alg:extendline1-ortho-end}
+	\State $\mathit{merge} \gets$ \textbf{true}
+	\label{alg:extendline1-boolean}
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{maxLength}$}
+	\label{alg:extendline1-loop-start}
+		\State $\mathit{start} \gets$ \Call{vectorAddition}{$\mathit{start},\mathit{slope}$}
+		\label{alg:extendline1-next}
+		\State $x \gets$ \Call{convoluteKernelX}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},\mathit{imageWidth},\mathit{imageHeight}$}
+		\State $y \gets$ \Call{convoluteKernelY}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},\mathit{imageWidth},\mathit{imageHeight}$}
+		\If{$x < \mathit{threshold}/2 \land y < \mathit{threshold}/2$}
+		\label{alg:extendline1-threshold}
+			\State $\mathit{merge} \gets$ \textbf{false}
+			\label{alg:extendline1-break}
+			\State \textbf{break}
+		\EndIf
+		\algstore{alg:extendline1-first}
+\end{algorithmic}
+\end{algorithm}

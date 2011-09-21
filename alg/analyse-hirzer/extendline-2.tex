@@ -1,0 +1,37 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{extendLine} (Fortsetzung)}
+\label{alg:extendline2}
+\begin{algorithmic}[1]
+	\algrestore{alg:extendline1-first}
+	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight}, \mathit{start.x}, \mathit{start.y}$}
+	\label{alg:extendline2-orientation-start}
+	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
+	\label{alg:extendline2-orientation-end}
+	\If{$\mathit{tmp} > 0.38$}
+	\label{alg:extendline2-iscompatible}
+		\State \textbf{continue}
+	\EndIf
+	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight}, \mathit{start.x} + \mathit{normal.x}, \mathit{start.y} + normal.y$}
+	\label{alg:extendline2-pointabove}
+	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
+	\If{$\mathit{tmp} > 0.38$}
+		\State \textbf{continue}
+	\EndIf
+	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight}, \mathit{start.x} - \mathit{normal.x}, \mathit{start.y} - normal.y$}
+	\label{alg:extendline2-pointbelow}
+	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
+	\If{$\mathit{tmp} > 0.38$}
+		\State \textbf{continue}
+	\EndIf
+	\State $\mathit{merge} \gets$ \textbf{false}
+	\label{alg:extendline2-false}
+	\State \textbf{break}
+	\State $i \gets i + 1$
+	\EndFor
+	\label{alg:extendline2-loop-end}
+	\State $\mathit{end} \gets$ \Call{vectorSubtract}{$\mathit{start},\mathit{slope}$}
+	\label{alg:extendline2-endofline}
+	\State \textbf{return} $\mathit{merge}$
+	\label{alg:extendline2-return}
+\end{algorithmic}
+\end{algorithm}
