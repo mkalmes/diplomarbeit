@@ -5,15 +5,22 @@
 	\algrestore{brk-mergelines5}
 	\State $\mathit{merged} \gets$ \textbf{false}
 	\For{$j \gets 0$ \textbf{to} $j <$ \Call{getLineCount}{$L$}}
+	\label{alg:mergelines6-del-start}
 		\If{$\mathit{pool \to data}[j]\mathit{.remove} ==$ \textbf{true}}
+		\label{alg:mergelines6-shouldremove}
 			\State \Call{removeLine}{$L,j$}
+			\label{alg:mergelines6-remove}
 			\State $j \gets j - 1$
 			\State $\mathit{merged} \gets$ \textbf{true}
+			\label{alg:mergelines6-merged}
 		\EndIf
 		\State $j \gets j + 1$
 	\EndFor
+	\label{alg:mergelines6-del-end}
 	\If{$\mathit{merged}$}
+	\label{alg:mergelines6-wasmerged-start}
 		\State $ i \gets -1$
 	\EndIf
+	\label{alg:mergelines6-wasmerged-end}
 \end{algorithmic}
 \end{algorithm}
