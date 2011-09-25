@@ -12,3 +12,31 @@ In der Schleife in Zeile \ref{alg:extendlinesinpool-loop-start}--\ref{alg:extend
  verwendet, um die Linie soweit wie möglich zu erweitern. Danach wird die Orientierung der Linie in Zeile
  \ref{alg:extendlinesinpool-slopex-invert}--\ref{alg:extendlinesinpool-slopey-invert} umgekehrt und in Zeile
  \ref{alg:extendlinesinpool-extend-start} der Anfang der Linie erweitert.
+
+Ob eine erweiterte Linie zur Markenerkennung geeignet ist, wird dadurch bestimmt, ob über das Linienende hinaus ein
+ heller Pixel liegt. Dazu wird das Verfahren $\mathit{findLinesWithCornersInLinePool}$ verwedent
+ (\autoref{alg:findlineswithcornersinlinepool1}--\autoref{alg:findlineswithcornersinlinepool2}).
+
+\input{alg/analyse-hirzer/findlineswithcornersinlinepool1}
+\input{alg/analyse-hirzer/findlineswithcornersinlinepool2}
+
+Das Verfahren untersucht alle Linien in Speicherblock $L$ und speichert Linien, die sich zur Erkennung eignen, in Block
+ $C$. Zu Beginn des Verfahrens wird in Zeile \ref{alg:findlineswithcornersinlinepool1-clear} der Speicherblock $C$
+ gelöscht. Danach werden die lokalen Variablen initialisiert. Die Bildbreite und -höhe wird in Variable $w$ und $h$
+ hinterlegt. Die Anzahl der Linien in $L$ wird in Variable $n$ gespeichert. In der Schleife in Zeile
+ \ref{alg:findlineswithcornersinlinepool1-loop-start}--\ref{alg:findlineswithcornersinlinepool2-loop-end} wird jede
+ Linie untersucht, indem in Zeile \ref{alg:findlineswithcornersinlinepool1-line} eine Linie an Position $i$ zuerst in
+ $l$ gespeichert wird. Danach wird die Richtung der Linie in Zeile \ref{alg:findlineswithcornersinlinepool1-dx} und
+ \ref{alg:findlineswithcornersinlinepool1-dy} verlängert. Die Variable $dx$ und $dy$ sind dienen als Abstand der
+ Linienenden. In Zeile \ref{alg:findlineswithcornersinlinepool1-x}--\ref{alg:findlineswithcornersinlinepool1-y} wird
+ die Position vor dem Startpunkt der Linie berechent. Danach werden die Farbkomponenten an dieser Position ausgelesen.
+
+In Zeile \ref{alg:findlineswithcornersinlinepool2-iswhite-start} wird dann jeder Farbwert mit einem Schwellwert
+ verglichen, um festzustellen ob an der Position ein heller gls{pixel} vorliegt. Falls dem so ist, eignet sich die
+ Startposition zur Erkennung einer Linie. In Zeile
+ \ref{alg:findlineswithcornersinlinepool2-lineend-start}--\ref{alg:findlineswithcornersinlinepool2-lineend-end} wird
+ dann für das Linienende die Koordinate und die Farbkomponenten an dieser Position berechnet. In Zeile
+ \ref{alg:findlineswithcornersinlinepool2-iswhite-end} werden dann die Farbwerte am Linienende untersucht. Zuletzt wird
+ in Zeile \ref{alg:findlineswithcornersinlinepool2-hascorner} untersucht, ob der Startpunkt oder der Endpunkt zur
+ Markenerkennung geeignet ist. Wenn die Untersuchung positiv ausfällt, wird in Zeile
+ \ref{alg:findlineswithcornersinlinepool2-addline} die Linie $l$ in den Speicherblock $C$ hinterlegt.

@@ -1,0 +1,28 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{findLinesWithCornersInLinePool}}
+\label{alg:findlineswithcornersinlinepool1}
+\begin{algorithmic}[1]
+	\Require $L,C$
+	\State \Call{resetMemoryPool}{$C$}
+	\label{alg:findlineswithcornersinlinepool1-clear}
+	\State $w \gets \mathit{imageWidth}$ 
+	\State $h \gets \mathit{imageHeight}$
+	\State $n \gets$ \Call{getLineCount}{L}
+	\For{$i \gets 0$ \textbf{to} $i < n$}
+	\label{alg:findlineswithcornersinlinepool1-loop-start}
+		\State $l \gets \mathit{pool \to data}[i]$
+		\label{alg:findlineswithcornersinlinepool1-line}
+		\State $\mathit{dx} \gets l\mathit{.slope.x} \cdot 4$
+		\label{alg:findlineswithcornersinlinepool1-dx}
+		\State $\mathit{dy} \gets l\mathit{.slope.y} \cdot 4$
+		\label{alg:findlineswithcornersinlinepool1-dy}
+		\State $x \gets l\mathit{.start.coordinate.x} - dx$
+		\label{alg:findlineswithcornersinlinepool1-x}
+		\State $y \gets l\mathit{.start.coordinate.y} - dy$
+		\label{alg:findlineswithcornersinlinepool1-y}
+		\State $r \gets$ \Call{getRGBValue}{$I,x,y,red,w,h$}
+		\State $g \gets$ \Call{getRGBValue}{$I,x,y,green,w,h$}
+		\State $b \gets$ \Call{getRGBValue}{$I,x,y,blue,w,h$}
+	\algstore{brk-findlineswithcornersinlinepool1}
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,30 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{findLinesWithCornersInLinePool} (Fortsetzung)}
+\label{alg:findlineswithcornersinlinepool2}
+\begin{algorithmic}[1]
+	\algrestore{brk-findlineswithcornersinlinepool1}
+		\If{$r > 10 \land g > 10 \land b > 10$}
+		\label{alg:findlineswithcornersinlinepool2-iswhite-start}
+			\State $l\mathit{.startCorner} \gets$ \textbf{true}
+		\EndIf
+		\State $x \gets l\mathit{.end.coordinate.x} + dx$
+		\label{alg:findlineswithcornersinlinepool2-lineend-start}
+		\State $y \gets l\mathit{.end.coordinate.y} + dy$
+		\State $r \gets$ \Call{getRGBValue}{$I,x,y,red,w,h$}
+		\State $g \gets$ \Call{getRGBValue}{$I,x,y,green,w,h$}
+		\State $b \gets$ \Call{getRGBValue}{$I,x,y,blue,w,h$}
+		\label{alg:findlineswithcornersinlinepool2-lineend-end}
+		\If{$r > 10 \land g > 10 \land b > 10$}
+		\label{alg:findlineswithcornersinlinepool2-iswhite-end}
+			\State $l\mathit{.endCorner} \gets$ \textbf{true}
+		\EndIf
+		\If{$l\mathit{.startCorner} \lor l\mathit{.endCorner}$}
+		\label{alg:findlineswithcornersinlinepool2-hascorner}
+			\State \Call{addLineSegment}{$C,l$}
+			\label{alg:findlineswithcornersinlinepool2-addline}
+		\EndIf
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:findlineswithcornersinlinepool2-loop-end}
+\end{algorithmic}
+\end{algorithm}
