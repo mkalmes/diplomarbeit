@@ -8,14 +8,21 @@
 				\State \Call{findEdgels}{$I,E,x,y$}
 				\State \Call{findLineSegments}{$E,L$}
 				\State \Call{mergeLines}{$L$}
-				\State \ldots \Comment Speichern der Liniensegmente zur weiteren Verarbeitung
+				\State $n \gets$ \Call{getLineCount}{$L$}
+				\For{$i \gets 0$ \textbf{to} $i < n$}
+					\State \Call{addLineSegment}{$M,$\textproc{getLineSegment}$(L,i)$}
+					\State $i \gets i + 1$
+				\EndFor
 				\State \Call{resetMemoryPool}{$E$}
 				\State \Call{resetMemoryPool}{$L$}
 				\State $ x \gets x + 40$
 			\EndFor
 			\State $y \gets y + 40$
 		\EndFor
-		\State \Call{mergeLines}{$L$}
-		\State \Call{extendLinesInPool}{$L$}
+		\State \Call{mergeLines}{$M$}
+		\State \Call{extendLinesInPool}{$M$}
+		\label{alg:linedetection-hirzerextending-extend}
+		\State \Call{findLinesWithCornersInPool}{$M,L$}
+		\label{alg:linedetection-hirzerextending-corner}
 	\end{algorithmic}
 \end{algorithm}

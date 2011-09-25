@@ -40,3 +40,12 @@ In Zeile \ref{alg:findlineswithcornersinlinepool2-iswhite-start} wird dann jeder
  in Zeile \ref{alg:findlineswithcornersinlinepool2-hascorner} untersucht, ob der Startpunkt oder der Endpunkt zur
  Markenerkennung geeignet ist. Wenn die Untersuchung positiv ausfällt, wird in Zeile
  \ref{alg:findlineswithcornersinlinepool2-addline} die Linie $l$ in den Speicherblock $C$ hinterlegt.
+
+Das Verfahren der Linienerweiterung wird in \textproc{lineDetection} integriert und ist in
+ \autoref{alg:linedetection-hirzerextending} dargestellt.
+
+\input{alg/analyse-hirzer/linedetection-hirzer-extending}
+
+In Zeile \ref{alg:linedetection-hirzerextending-extend} werden zuerst die Linien in $M$ erweitert. Im Anschluß daran
+ werden in Zeile \ref{alg:linedetection-hirzerextending-corner} die Linien auf ihre Tauglichkeit zur Markenerkennung
+ untersucht. Alle Linien die zur Erkennung geeignet sind, werden in Speicherblock $L$ gespeichert.
