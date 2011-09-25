@@ -3,35 +3,22 @@
 \label{alg:extendlinesinpool}
 \begin{algorithmic}[1]
 	\Require $L$
-	% const int lineCount = MKLineSegmentGetLineCount(pool);
 	\State $\mathit{lineCount} \gets$ \Call{getLineCount}{$L$}
-	% for (int i = 0; i < lineCount; i++) {
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{lineCount}$}
+	\label{alg:extendlinesinpool-loop-start}
 		\State $l \gets \mathit{L \to data}[i]$
-	% 	vector_t slope = pool->data[i].slope;
+		\label{alg:extendlinesinpool-line}
 		\State $\mathit{slope} \gets \mathit{l.slope}$
-	% 	MKDetectorHirzerExtendLine(pool->data[i].end.coordinate,
-	% 							   slope,
-	% 							   pool->data[i].end.slope,
-	% 							   &pool->data[i].end.coordinate,
-	% 							   999,
-	% 							   colorBuffer);
+		\label{alg:extendlinesinpool-slope}
 		\State \Call{extendLine}{$\mathit{l.end.coordinate}, \mathit{slope}, \mathit{l.end.slope}, \mathit{l.end.coordinate},999,I$}
-	% 
-	% 	slope.x *= -1;
-	% 	slope.y *= -1;
 		\State $\mathit{slope.x} \gets \mathit{slope.x} \cdot - 1$
+		\label{alg:extendlinesinpool-slopex-invert}
 		\State $\mathit{slope.y} \gets \mathit{slope.y} \cdot - 1$
-	% 
-	% 	MKDetectorHirzerExtendLine(pool->data[i].start.coordinate,
-	% 							   slope,
-	% 							   pool->data[i].end.slope,
-	% 							   &pool->data[i].start.coordinate,
-	% 							   999,
-	% 							   colorBuffer);
+		\label{alg:extendlinesinpool-slopey-invert}
 		\State \Call{extendLine}{$\mathit{l.start.coordinate}, \mathit{slope}, \mathit{l.end.slope}, \mathit{l.start.coordinate},999,I$}
-	% }
+		\label{alg:extendlinesinpool-extend-start}
 		\State $i \gets i + 1$
 	\EndFor
+	\label{alg:extendlinesinpool-loop-end}
 \end{algorithmic}
 \end{algorithm}
