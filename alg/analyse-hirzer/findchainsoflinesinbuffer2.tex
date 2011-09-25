@@ -1,0 +1,18 @@
+\begin{algorithm}[ht]
+\caption{\textproc{findChainOfLines} (Fortsetzung)}
+\label{alg:findchainoflines2}
+\begin{algorithmic}[1]
+	\algrestore{brk-findchainoflines1}
+		\If{$\mathit{fromStart}$}
+			\State $\mathit{endpoint} \gets L\mathit{\to data}[i]\mathit{.end.coordinate}$
+		\Else
+			\State $\mathit{endpoint} \gets L\mathit{\to data}[i]\mathit{.start.coordinate}$
+		\EndIf
+		\State $\mathit{distance} \gets$ \Call{vectorSubtract}{$\mathit{startPoint},\mathit{endpoint}$}
+		\State $\mathit{squaredLength} \gets$ \Call{getSquaredLength}{$\mathit{distance}$}
+		\If{$\mathit{squaredLength} > 16$}
+			\State \textbf{continue}
+		\EndIf
+	\algstore{brk-findchainoflines2}
+\end{algorithmic}
+\end{algorithm}

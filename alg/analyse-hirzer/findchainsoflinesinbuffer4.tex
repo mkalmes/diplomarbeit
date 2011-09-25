@@ -1,0 +1,17 @@
+\begin{algorithm}[ht]
+\caption{\textproc{findChainOfLines} (Fortsetzung)}
+\label{alg:findchainoflines4}
+\begin{algorithmic}[1]
+	\algrestore{brk-findchainoflines3}
+		\If{$\lnot \mathit{fromStart}$}
+			\State \Call{addLine}{$C,chainSegment$}
+		\EndIf
+		\State \Call{findChainOfLines}{$B,\mathit{chainSegment},\mathit{fromStart},\mathit{chainLength},C$}
+		\If{$\mathit{fromStart}$}
+			\State \Call{addLine}{$C,\mathit{chainSegment}$}
+		\EndIf
+		\State \textbf{return}
+		\State $i \gets i + 1$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}

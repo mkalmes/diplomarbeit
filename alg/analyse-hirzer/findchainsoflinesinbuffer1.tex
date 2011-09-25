@@ -1,0 +1,17 @@
+\begin{algorithm}[ht]
+\caption{\textproc{findChainOfLines}}
+\label{alg:findchainoflines1}
+\begin{algorithmic}[1]
+	\Require $B,\mathit{start},\mathit{fromStart},\mathit{chainLength},C$
+	\If{$\mathit{fromStart}$}
+		\State $\mathit{startPoint} \gets \mathit{start \to start.coordinate}$
+	\Else
+		\State $\mathit{startPoint} \gets \mathit{start \to end.coordinate}$
+	\EndIf
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{B \to count}$}
+		\If{\Call{isOrientationCompatible}{$\mathit{start},\mathit{B \to data}[i]$}}
+			\State \textbf{continue}
+		\EndIf
+		\algstore{brk-findchainoflines1}
+\end{algorithmic}
+\end{algorithm}
