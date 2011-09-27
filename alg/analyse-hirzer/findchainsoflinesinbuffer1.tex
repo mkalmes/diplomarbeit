@@ -4,13 +4,18 @@
 \begin{algorithmic}[1]
 	\Require $B,\mathit{start},\mathit{fromStart},\mathit{chainLength},C$
 	\If{$\mathit{fromStart}$}
+	\label{alg:findchainoflines1-fromstart}
 		\State $\mathit{startPoint} \gets \mathit{start \to start.coordinate}$
 	\Else
 		\State $\mathit{startPoint} \gets \mathit{start \to end.coordinate}$
 	\EndIf
+	\label{alg:findchainoflines1-fromend}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{B \to count}$}
+	\label{alg:findchainoflines1-loop-start}
 		\If{\Call{isOrientationCompatible}{$\mathit{start},\mathit{B \to data}[i]$}}
+		\label{alg:findchainoflines1-iscompatible}
 			\State \textbf{continue}
+			\label{alg:findchainoflines1-parallel}
 		\EndIf
 		\algstore{brk-findchainoflines1}
 \end{algorithmic}

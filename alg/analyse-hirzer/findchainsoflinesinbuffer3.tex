@@ -3,16 +3,23 @@
 \label{alg:findchainoflines3}
 \begin{algorithmic}[1]
 	\algrestore{brk-findchainoflines2}
-		\State $\mathit{test} \gets (\mathit{start \to slope.x} \cdot L\mathit{\to data}[i]\mathit{.slope.y})$
-		\State $\mathit{test} \gets \mathit{test} - (\mathit{start \to slope.y} \cdot L\mathit{\to data}[i]\mathit{.slope.x})$
+		\State $\mathit{test} \gets (\mathit{start \to slope.x} \cdot B\mathit{\to data}[i]\mathit{.slope.y})$
+		\label{alg:findchainoflines3-vectorproduct-start}
+		\State $\mathit{test} \gets \mathit{test} - (\mathit{start \to slope.y} \cdot B\mathit{\to data}[i]\mathit{.slope.x})$
+		\label{alg:findchainoflines3-vectorproduct-end}
 		\If{$(\mathit{fromStart} \land \mathit{test} \leq 0) \lor (\lnot \mathit{fromStart} \land \mathit{test} \geq 0)$}
+		\label{alg:findchainoflines3-checkorientation}
 			\State \textbf{continue}
 		\EndIf
 		\State $\mathit{chainLength} \gets \mathit{chainLength} + 1$
-		\State $\mathit{chainSegment} \gets L\mathit{\to data}[i]$
-		\State \Call{removeLine}{$L,i$}
+		\label{alg:findchainoflines3-incchain}
+		\State $\mathit{chainSegment} \gets B\mathit{\to data}[i]$
+		\State \Call{removeLine}{$B,i$}
+		\label{alg:findchainoflines3-removeline}
 		\If{$\mathit{chainLength} == 4$}
+		\label{alg:findchainoflines3-has4lines}
 			\State \Call{addLine}{$C,\mathit{chainSegment}$}
+			\label{alg:findchainoflines3-saveline}
 			\State \textbf{return}
 		\EndIf
 	\algstore{brk-findchainoflines3}

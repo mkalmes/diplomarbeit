@@ -5,13 +5,17 @@
 	\algrestore{brk-findchainoflines3}
 		\If{$\lnot \mathit{fromStart}$}
 			\State \Call{addLine}{$C,chainSegment$}
+			\label{alg:findchainoflines4-savelineifnotfromstart}
 		\EndIf
 		\State \Call{findChainOfLines}{$B,\mathit{chainSegment},\mathit{fromStart},\mathit{chainLength},C$}
+		\label{alg:findchainoflines4-callmethod}
 		\If{$\mathit{fromStart}$}
+		\label{alg:findchainoflines4-isfromstart}
 			\State \Call{addLine}{$C,\mathit{chainSegment}$}
 		\EndIf
 		\State \textbf{return}
 		\State $i \gets i + 1$
 	\EndFor
+	\label{alg:findchainoflines4-loop-end}
 \end{algorithmic}
 \end{algorithm}
