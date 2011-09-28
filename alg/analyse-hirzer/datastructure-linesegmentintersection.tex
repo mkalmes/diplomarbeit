@@ -1,38 +1,27 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{intersection}}
 \label{alg:linesegmenintersection}
 \begin{algorithmic}[1]
 	\Require $\mathit{left}, \mathit{right}$
 	\State $\mathit{intersection} \gets \infty$
-	% const float x1 = left.start.coordinate.x;
-	% const float y1 = left.start.coordinate.y;
-	% const float x2 = left.end.coordinate.x;
-	% const float y2 = left.end.coordinate.y;
 	\State $\mathit{x1} \gets \mathit{left.start.coordinate.x}$
+	\label{alg:linesegmenintersection-var-start}
 	\State $\mathit{y1} \gets \mathit{left.start.coordinate.y}$
 	\State $\mathit{x2} \gets \mathit{left.end.coordinate.x}$
 	\State $\mathit{y2} \gets \mathit{left.end.coordinate.y}$
-	% const float x3 = right.start.coordinate.x;
-	% const float y3 = right.start.coordinate.y;
-	% const float x4 = right.end.coordinate.x;
-	% const float y4 = right.end.coordinate.y;
 	\State $\mathit{x3} \gets \mathit{right.start.coordinate.x}$
 	\State $\mathit{y3} \gets \mathit{right.start.coordinate.y}$
 	\State $\mathit{x4} \gets \mathit{right.end.coordinate.x}$
 	\State $\mathit{y4} \gets \mathit{right.end.coordinate.y}$
-	% const float numerator	= ((x4 - x3) * (y1 - y3)) - ((y4 - y3) * (x1 - x3));
+	\label{alg:linesegmenintersection-var-end}
 	\State $\mathit{numerator} \gets ((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y1} - \mathit{y3})) - ((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x1} - \mathit{x3}))$
-	% const float denumerator	= ((y4 - y3) * (x2 - x1)) - ((x4 - x3) * (y2 - y1));
+	\label{alg:linesegmenintersection-intersect-start}
 	\State $\mathit{denumerator} \gets ((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x2} - \mathit{x1})) - ((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y2} - \mathit{y1}))$
-	% const float u_a			= numerator / denumerator;
 	\State $\mathit{u\_a} \gets \mathit{numerator} / \mathit{denumerator}$
-	% 
-	% intersection.x = x1 + u_a * (x2 - x1);
-	% intersection.y = y1 + u_a * (y2 - y1);
 	\State $\mathit{intersection.x} \gets \mathit{x1} + \mathit{u\_a} \cdot (\mathit{x2} - \mathit{x1})$
 	\State $\mathit{intersection.y} \gets \mathit{y1} + \mathit{u\_a} \cdot (\mathit{y2} - \mathit{y1})$
-	% 
-	% return intersection;
+	\label{alg:linesegmenintersection-intersect-end}
 	\State \textbf{return} $\mathit{intersection}$
+	\label{alg:linesegmenintersection-return}
 \end{algorithmic}
 \end{algorithm}

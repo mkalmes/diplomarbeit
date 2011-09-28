@@ -23,6 +23,15 @@ Die Methode \textproc{isOrientationCompatible} untersucht, ob zwei Liniensegment
 
 \input{alg/analyse-hirzer/datastructure-linesegmentisorientationcompatible}
 
+Mit \textproc{intersection} wird der Schnittpunkt zweier Linien berechnet. Dazu benötigt das Verfahren
+ \autoref{alg:linesegmenintersection} eine linke und eine rechte Linie. In Zeile
+ \ref{alg:linesegmenintersection-var-start}--\ref{alg:linesegmenintersection-var-end} werden die Punkte der
+ Linienkoordinaten in lokalen Variablen gespeichert. Danach wird in Zeile
+ \ref{alg:linesegmenintersection-intersect-start}--\ref{alg:linesegmenintersection-intersect-end} der Schnittpunkt der
+ beiden Linie berechnet und in Zeile \ref{alg:linesegmenintersection-return} an die aufrufende Methode zurückgegeben.
+
+\input{alg/analyse-hirzer/datastructure-linesegmentintersection}
+
 Die Datenstruktur eines Speichervorrats für Linien in \autoref{alg:datastructure-linesegmentpool} besteht aus einem
  Array $\mathit{data}$ mit der festen Größe $N$ und einer Zählvariablen $\mathit{count}$.
 
