@@ -14,6 +14,15 @@ Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, lösche
 
 \input{alg/analyse-hirzer/datastructure-linesegment}
 
+Die Methode \textproc{isOrientationCompatible} untersucht, ob zwei Liniensegmente $\mathit{left}$ und $\mathit{right}$
+ fast parallel zueinander stehen (\autoref{alg:linesegmentisorientationcompatible}). Dazu wird mithilfe von
+ \textproc{dotProduct} die Orientierung berechnet. Wenn die Orientierung im Bereich von (0.92,1] liegt, wird als
+ Ergebnis wahr zurückgeliefert. Das bedeutet, dass die Orientierung der Linien im Bereich von $0^\circ$ bis
+ $\sim 23^\circ$ liegt und die Linien als parallel betrachtet werden. Ansonsten wird als Ergebnis falsch
+ zurückgegeben, was bedeutet, dass die Linien nicht parallel sind.
+
+\input{alg/analyse-hirzer/datastructure-linesegmentisorientationcompatible}
+
 Die Datenstruktur eines Speichervorrats für Linien in \autoref{alg:datastructure-linesegmentpool} besteht aus einem
  Array $\mathit{data}$ mit der festen Größe $N$ und einer Zählvariablen $\mathit{count}$.
 
