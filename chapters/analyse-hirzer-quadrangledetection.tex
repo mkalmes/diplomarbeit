@@ -21,9 +21,9 @@ In Zeile \ref{alg:findchainoflines1-fromstart}--\ref{alg:findchainoflines1-frome
 In Zeile \ref{alg:findchainoflines2-endpointend}--\ref{alg:findchainoflines2-endpointstart} wird nun der Endpunkt der
  Linie $i$ festgelegt. Wie beim Startpunkt auch, ist der Endpunkt von der Variablen $\mathit{fromStart}$ abhängig. In
  Zeile \ref{alg:findchainoflines2-distance} und Zeile \ref{alg:findchainoflines2-length} wird dann der Abstand der
- Linienenden von $\mathit{start}$ und $i$ berechnet. Wenn der Abstand zu groß ist
- (Zeile \ref{alg:findchainoflines2-toofar}), wird mit der nächsten Linie die Untersuchung wiederholt. Andernfalls wird
- das Verfahren in \autoref{alg:findchainoflines3} fortgesetzt.
+ Linienenden von $\mathit{start}$ und $i$ berechnet. Wenn der Abstand zu groß ist, wird mit der nächsten Linie die
+ Untersuchung wiederholt (Zeile \ref{alg:findchainoflines2-toofar}). Andernfalls wird das Verfahren in
+ \autoref{alg:findchainoflines3} fortgesetzt.
 
 \input{alg/analyse-hirzer/findchainsoflinesinbuffer3}
 
@@ -48,6 +48,6 @@ In Zeile \ref{alg:findchainoflines3-vectorproduct-start}--\ref{alg:findchainofli
 \input{alg/analyse-hirzer/findchainsoflinesinbuffer4}
 
 Danach wird in Zeile \ref{alg:findchainoflines4-callmethod} $\mathit{findChainsOfLines}$ rekursiv aufgerufen, um
- weitere passende Linine zur Markenerkennung zu identifizieren. Abschliessend wird in Zeile
+ weitere passende Linien zur Markenerkennung zu identifizieren. Abschliessend wird in Zeile
  \ref{alg:findchainoflines4-isfromstart} überprüft, ob $\mathit{fromStart}$ wahr ist, was dazu führt, dass die Linie in
  $\mathit{chainSegment}$ dem Speicherblock $C$ hinzugefügt wird. Danach wird die Ausführung abgebrochen.
