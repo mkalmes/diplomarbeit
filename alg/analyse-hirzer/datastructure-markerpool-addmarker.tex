@@ -1,0 +1,16 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{addMarker}}
+\label{alg:markerpool-addmarker}
+\begin{algorithmic}[1]
+	\Require $p,m$
+	\If{$\lnot p$}
+		\State \textbf{return}
+	\EndIf
+	\If{$\lnot \left(p(\mathit{count}) < N\right)$}
+		\State \textbf{return} \Comment Speicher voll
+	\EndIf
+	\State $c \gets p(\mathit{count})$
+	\State $p(\mathit{data}[c]) \gets m$
+	\State $p(\mathit{count}) \gets c + 1$
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,40 @@
+\subsubsection{Marken} % (fold)
+\label{sub:marken}
+
+Die Datenstruktur $\mathit{marker}$, der Aufbau des Speicherblocks und die Operationen zum hinzufügen und freigeben von
+ Daten ist, wie bei der Datenstruktur der Liniensegmente auch, nach dem Vorbild des Edgelspeichers aufgebaut. Die
+ Datenstruktur in \autoref{alg:marker} verwendet vier Variablen vom Typ \textproc{vector}, um die Eckpunkte einer Marke
+ zu speichern.
+
+\input{alg/analyse-hirzer/datastructure-marker}
+
+Die Datenstruktur des Speichervorrats (\autoref{alg:datastructure-markerpool}) und des Speicherblocks
+ (\autoref{alg:datastructure-markerpoolimpl}) verwenden eine festgelegte Anzahl von Einträgen zum speichern der
+ Einträge.
+
+\input{alg/analyse-hirzer/datastructure-markerpool}
+
+Mit \textproc{getMemoryPools} (\autoref{alg:markerpool-getmemorypools}) und \textproc{getMemoryPool}
+ (\autoref{alg:markerpool-getmemorypool}) werden Speicherblöcke angefordert.
+
+\input{alg/analyse-hirzer/datastructure-markerpool-getmemorypools}
+\input{alg/analyse-hirzer/datastructure-markerpool-getmemorypool}
+
+Um die Einträge in einem Speicherblock zu löschen, wird \autoref{alg:markerpool-resetmemorypool} verwendet.
+
+\input{alg/analyse-hirzer/datastructure-markerpool-resetmemorypool}
+
+Mit \textproc{freeMemoryPool} (\autoref{alg:markerpool-freememorypool}) kann der Speicherblock an den Vorrat
+ zurückgegeben werden.
+
+\input{alg/analyse-hirzer/datastructure-markerpool-freememorypool}
+
+Die Anzahl der gespeicherten Marken in einem Speicherblock können mit \autoref{alg:markerpool-count} ermittelt werden.
+
+\input{alg/analyse-hirzer/datastructure-markerpool-count}
+
+Um eine Marke zu einem Speicherblock hinzuzufügen, wird \autoref{alg:markerpool-addmarker} verwendet.
+
+\input{alg/analyse-hirzer/datastructure-markerpool-addmarker}
+
+% subsubsection marken (end)

@@ -1,0 +1,14 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{freeMemoryPool}}
+\label{alg:markerpool-freememorypool}
+\begin{algorithmic}[1]
+	\Require $p$
+	\If{$\lnot p$}
+		\State \textbf{return}
+	\EndIf
+	\State \Call{resetMemoryPool}{$p$}
+	\If{$p \geq \mathit{data} \land p \leq \mathit{data} + S$}
+		\State $\mathit{pool} \gets p$
+	\EndIf
+\end{algorithmic}
+\end{algorithm}
