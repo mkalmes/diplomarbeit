@@ -1,0 +1,32 @@
+\begin{algorithm}[ht]
+\caption{\textproc{reconstructCorners}}
+\label{alg:reconstructcorners}
+\begin{algorithmic}[1]
+	\Require $C$
+	\State $\mathit{marker} \gets \infty$
+	\State $\mathit{c1} \gets$ \Call{intersection}{$C\mathit{\to data}[0],C\mathit{\to data}[1]$}
+	\label{alg:reconstructcorners-c1}
+	\State $\mathit{c2} \gets$ \Call{intersection}{$C\mathit{\to data}[1],C\mathit{\to data}[2]$}
+	\label{alg:reconstructcorners-c2}
+	\State $\mathit{c3} \gets \infty$
+	\State $\mathit{c4} \gets \infty$
+	\If{\Call{getLineCount}{$C$}$ == 4$}
+	\label{alg:reconstructcorners-4lines-start}
+		\State $\mathit{c3} \gets$ \Call{intersection}{$C\mathit{\to data}[2],C\mathit{\to data}[3]$}
+		\State $\mathit{c4} \gets$ \Call{intersection}{$C\mathit{\to data}[3],C\mathit{\to data}[0]$}
+	\label{alg:reconstructcorners-4lines-end}
+	\Else
+	\label{alg:reconstructcorners-else-start}
+		\State $\mathit{c3} \gets C\mathit{\to data}[2]\mathit{.end.coordinate}$
+		\State $\mathit{c4} \gets C\mathit{\to data}[0]\mathit{.start.coordinate}$
+	\EndIf
+	\label{alg:reconstructcorners-else-end}
+	\State $\mathit{marker.c1} \gets \mathit{c1}$
+	\label{alg:reconstructcorners-return-start}
+	\State $\mathit{marker.c2} \gets \mathit{c2}$
+	\State $\mathit{marker.c3} \gets \mathit{c3}$
+	\State $\mathit{marker.c4} \gets \mathit{c4}$
+	\State \textbf{return} $\mathit{marker}$
+	\label{alg:reconstructcorners-return-end}
+\end{algorithmic}
+\end{algorithm}

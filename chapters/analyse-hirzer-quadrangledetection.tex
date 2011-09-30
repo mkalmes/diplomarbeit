@@ -75,3 +75,18 @@ Dazu werden alle Linien in der Schleife von Zeile
  wird in Zeile \ref{alg:linedetection-hirzerquaddetection-marker} die Marke $\mathit{marker}$ dem Speicherblock $Q$
  hinzugefügt. Das Verfahren wird solange wiederholt, bis keine Linie mehr im Speicherblock vorhanden ist. Danach sind
  erkannte Marken in Speicherblock $Q$ hinterlegt.
+
+Mit \textproc{reconstructCorners} (\autoref{alg:reconstructcorners}) werden die Eckpunkte einer Marke aufbereitet. Dazu
+ benötigt das Verfahren den Speicherblock $C$, mit den Linien der Marke.
+
+\input{alg/analyse-hirzer/reconstructcorners}
+
+In Zeile \ref{alg:reconstructcorners-c1} wird der erste Eckpunkt erstellt, indem der Schnittpunkt der Linien an
+ Position $1$ und Position $2$ ermittelt wird. Für den zweiten Eckpunkt in Zeile \ref{alg:reconstructcorners-c2} werden
+ die Linien $2$ und $3$ verwendet. Wenn exakt vier Linien gefunden wurden, werden die Eckpunkte für $\mathit{c3}$ und
+ $\mathit{c4}$ durch den Schnittpunkt der Linien ermittelt (Zeile
+ \ref{alg:reconstructcorners-4lines-start}--\ref{alg:reconstructcorners-4lines-end}). Ansonsten werden die Eckpunkte in
+ Zeile \ref{alg:reconstructcorners-else-start}--\ref{alg:reconstructcorners-else-end} nur durch die Linienenden
+ dargestellt werden, was möglicherweise zu ungenauen Ergebnissen führt (Vgl. \autoref{sub:quadrangle_detection}). In
+ Zeile \ref{alg:reconstructcorners-return-start}--\ref{alg:reconstructcorners-return-end} werden die Eckpunkte in
+ $\mathit{marker}$ gespeichert und als Ergebnis an die aufrufende Methode zurückgeliefert.
