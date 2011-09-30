@@ -152,9 +152,28 @@ In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf sein
 \label{sec:rectangle_fitting}
 
 In der Rectangle Fitting Phase wird überprüft, ob eine Kontur ein Rechteck ist. Dazu wird in Rectangle Fitting die
- Methode \textproc{checkSquare} verwendet (\autoref{alg:checksquare-1}--\autoref{alg:checksquare-7}). Das Verfahren
- benötigt als Eingabeparameter die Fläche der Region ($\mathit{area}$), die Datenstruktur $\mathit{marker\_infoTwo}$
- mit Informationen der Region und Kontur und einen Faktor ($\mathit{factor}$) zur Berechnung eines Distanzschwellwerts.
+ Methode \textproc{checkSquare} verwendet (\autoref{alg:checksquare-1}--\autoref{alg:checksquare-7}). Doch zuerst
+ müssen die Schritte zum Aufruf der Methode in \textproc{arDetectMarker2} erläutert werden
+ (\autoref{alg:detectmarker2-3}).
+
+\input{alg/analyse-artplus/detectmarker2-3}
+
+Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis in $\mathit{ret}$ gespeichtert und
+ anschließend in Zeile \ref{alg:detectmarker2-3-retvalue} geprüft, ob \textproc{arGetContour} nicht mit einem
+ Fehlerwert beendet wurde. Sonst wird in Zeile \ref{alg:detectmarker2-3-continue} die nächste Iteration der Schleife
+ eingeleitet. Danach wird in Zeile \ref{alg:detectmarker2-3-checksquare} die Methode \textproc{checkSquare} aufgerufen.
+ Auch hier wird der Rückgabewert überprüft, um im Fehlerfall einen neuen Durchlauf der Schleife in Zeile
+ \ref{alg:detectmarker2-3-continue2} einzuleiten. Wenn \textproc{checkSquare} erfolgreich beendet wurde, wird in Zeile
+ \ref{alg:detectmarker2-3-save-start}--\ref{alg:detectmarker2-3-save-end} der Flächeninhalt und die Position des
+ Zentrums der Marke aktualisiert, und die Anzahl der gefundenen Marken wird erhöht. In Zeile
+ \ref{alg:detectmarker2-3-maxpatterns} wird die Anzahl der gefundenen Marken mit einem festgelegten Wert verglichen, der
+ die maximale Anzahl gleichzeitiger Marken festlegt. Wenn die Werte übereinstimmen, wird die Schleife von Zeile
+ \ref{alg:detectmarker2-3-loop-start} bis Zeile \ref{alg:detectmarker2-3-loop-end} abgebrochen. Andernfalls wird die
+ Laufvariable $i$ erhöht und ein neuer Schleifendurchgang begonnen.
+
+Das Verfahren \textproc{checksquare} benötigt als Eingabeparameter die Fläche der Region ($\mathit{area}$), die
+ Datenstruktur $\mathit{marker\_infoTwo}$ mit Informationen der Region und Kontur und einen Faktor ($\mathit{factor}$)
+ zur Berechnung eines Distanzschwellwerts.
 
 \input{alg/analyse-artplus/checksquare-1}
 
@@ -304,7 +323,47 @@ In Zeile \ref{alg:getvertex-2-isvnumgreater} wird überprüft, ob nicht mehr als
  zweite Teilmenge, von der Position $\mathit{v1}$ bis zum Endpunkt $\mathit{ed}$, in Zeile
  \ref{alg:getvertex-2-recursiv2-start}--\ref{alg:getvertex-2-recursiv2-end} rekursiv aufgerufen.
 
+Nachdem \textproc{arGetCountour} abgeschlossen ist, wird in \textproc{arDetectMarker2} die Marke mit der größten Fläche
+ gesucht. Dazu wird in \autoref{alg:detectmarker2-4} in der Schleife von Zeile \ref{alg:detectmarker2-4-loop1-start}
+ bis Zeile \ref{alg:detectmarker2-4-loop1-end} jede Marke mit allen anderen Marken in der Schleife von Zeile
+ \ref{alg:detectmarker2-4-loop2-start}--\ref{alg:detectmarker2-4-loop2-end} verglichen.
+
+\input{alg/analyse-artplus/detectmarker2-4}
+
+In Zeile \ref{alg:detectmarker2-4-length} wird die quadratische Länge des Abstands zwischen dem Mittelpunkt der beiden
+ Marken berechnet. Anschließend wird die Anzahl der Konturpixel in $\mathit{area}$ der Marke $i$ und $j$ verglichen.
+ Wenn $i$ größer als $j$ ist, wird in Zeile \ref{alg:detectmarker2-4-di} der Abstand $d$ mit $\frac{\mathit{area}}{4}$
+ von Marke $i$ verglichen. Wenn der Abstand kleiner ist, wird die Anzahl der Konturpixel der Marke $j$ auf $0$ gesetzt.
+ Falls jedoch die Anzahl der Konturpixel von Marke $j$ größer sein sollte als die von $i$, wird in Zeile
+ \ref{alg:detectmarker2-4-dj} der Abstand $d$ mit $\frac{\mathit{area}}{4}$ von Marke $j$ verglichen. Ist der Abstand
+ kleiner, wird die Anzahl von Marke $i$ auf $0$ gesetzt.
+
+In \autoref{alg:detectmarker2-5} werden nun alle Marken gelöscht, deren Variable $\mathit{area}$ in
+ \autoref{alg:detectmarker2-4} auf $0$ gesetzt worden sind. Dazu werden alle Marken in Zeile
+ \ref{alg:detectmarker2-5-loop-start}--\ref{alg:detectmarker2-5-loop-end} untersucht. Wenn die Überprüfung in Zeile
+ \ref{alg:detectmarker2-5-shoulddelete} eine zu löschende Marke findet, wird in der Schleife von Zeile
+ \ref{alg:detectmarker2-5-move-start} bis Zeile \ref{alg:detectmarker2-5-move-end} alle nachfolgende Marken um eine
+ Position verschoben. Danach wird in Zeile \ref{alg:detectmarker2-5-decrease} die Anzahl der Marken verringert.
+
+\input{alg/analyse-artplus/detectmarker2-5}
+
+In \autoref{sub:regionenmarkierung} wurde zur Optimierung des Verfahrens nur ein Teil des Bildsignals analysiert.
+ Dadurch sind Daten entstanden, die nicht mit den tatsächlichen Daten im Bildsignal übereinstimmen.
+ \autoref{alg:detectmarker2-6} sorgt dafür, dass diese Daten wieder aufbereitet werden.
+
+\input{alg/analyse-artplus/detectmarker2-6}
+
+In Zeile \ref{alg:detectmarker2-6-address} wird die Adresse der ersten Speicherstelle der Markeninformationen in der
+ Variable $\mathit{pm}$ hinterlegt. In der Schleife in Zeile
+ \ref{alg:detectmarker2-6-loop-start}--\ref{alg:detectmarker2-6-loop-end} werden nun alle verbliebenen Marken
+ aufbereitet. Dazu wird in Zeile \ref{alg:detectmarker2-6-area} bis Zeile \ref{alg:detectmarker2-6-pos} die Anzahl der
+ Konturpixel erhöht und die Koordinaten des Zentrums der Marke korrigiert. Danach wird in der Schleife von Zeile
+ \ref{alg:detectmarker2-6-coord-start}--\ref{alg:detectmarker2-6-coord-end} die Koordinaten aller Konturpixel
+ korrigiert. Anschließend wird in Zeile \ref{alg:detectmarker2-6-incpm} die Adresse inkrementiert und das Verfahren mit
+ der nächsten Marke wiederholt. Abschließend wird die Anzahl der Marken in $\mathit{marker\_num}$ gespeichert und die
+ Speicheradresse der ersten Markeninformation an \textproc{arDetectMarker} (\autoref{alg:detectmarker},
+ S.~\pageref{alg:detectmarker}) zurückgegeben.
+
 % subsection rectangle_fitting (end)
 
 % section artoolkitplus (end)
-

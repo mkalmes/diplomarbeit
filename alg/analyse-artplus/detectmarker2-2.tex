@@ -3,34 +3,26 @@
 \label{alg:detectmarker2-2}
 \begin{algorithmic}[1]
 	\algrestore{brk-detectmarker2-init}
-	% marker_num2 = 0;
 	\State $\mathit{marker\_num2} \gets 0$
 	\label{alg:detectmarker2-2-markernum2}
-	% for(i=0; i<label_num; i++ ) {
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
 	\label{alg:detectmarker2-2-loop-start}
-	%     if( warea[i] < area_min || warea[i] > area_max ) continue;
 		\If{$\mathit{warea}[i] < \mathit{area\_min} \lor \mathit{warea}[i] > \mathit{area\_max}$}
 		\label{alg:detectmarker2-2-area-start}
 			\State \textbf{continue}
 		\EndIf
 		\label{alg:detectmarker2-2-area-end}
-	%     if( wclip[i*4+0] == 1 || wclip[i*4+1] == xsize-2 ) continue;
 		\If{$\mathit{wclip}[i \cdot 4 + 0] == 1 \lor \mathit{wclip}[i \cdot 4 + 1] == \mathit{xsize} - 2$}
 		\label{alg:detectmarker2-2-checkx-start}
 			\State \textbf{continue}
 			\label{alg:detectmarker2-2-checkx-continue}
 		\EndIf
 		\label{alg:detectmarker2-2-checkx-end}
-	%     if( wclip[i*4+2] == 1 || wclip[i*4+3] == ysize-2 ) continue;
 		\If{$\mathit{wclip}[i \cdot 4 + 2] == 1 \lor \mathit{wclip}[i \cdot 4 + 3] == \mathit{ysize} - 2$}
 		\label{alg:detectmarker2-2-checky-start}
 			\State \textbf{continue}
 		\EndIf
 		\label{alg:detectmarker2-2-checky-end}
-	% 
-	%     ret = arGetContour( limage, label_ref, i+1,
-	%                         &(wclip[i*4]), &(marker_infoTWO[marker_num2]));
 		\State $\mathit{ret} \gets$ \textproc{arGetContour}$\left(
 		\begin{aligned}
 			& \mathit{limage}, \mathit{label\_ref}, i + 1,\\
