@@ -14,7 +14,7 @@ Die Variablen $\mathit{marker\_info}$ und $\mathit{marker\_num}$ werden in Zeile
  Datenstruktur \textproc{MarkerInfo} (Vgl. \autoref{alg:datastructure-markerinfo}), die der Identifikation einer Marke
  dient. In Zeile \ref{alg:calc-check-image-start}--\ref{alg:calc-check-image-end} wird überprüft, ob das Bildsignal
  nicht $0$ ist und es sich somit um einen gesetzten Zeiger auf einen Speicherbereich handelt. Falls dies nicht der Fall
- ist, wird das Verfahren abgebrochen und ein Fehlerwert von $0$ zurückgeliefert. Anschliessend wird in Zeile
+ ist, wird das Verfahren abgebrochen und ein Fehlerwert von $0$ zurückgeliefert. Anschließend wird in Zeile
  \ref{alg:calc-start-detection-start}--\ref{alg:calc-start-detection-end} die Methode \textproc{arDetectMarker}
  aufgerufen und ihr Rückgabewert überprüft. Falls während der Ausführung von \textproc{arDetectMarker} einen Fehler
  aufgetreten ist, wird die weitere Verarbeitung gestoppt und ein Fehlerwert von $-1$ zurückgegeben. Wenn
@@ -128,7 +128,7 @@ In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf sein
  Regionenmarkierung erfolgreich gesetzt wurde. Andernfalls wird die Untersuchung für das aktuelle Bildsignal $I$
  beendet. Nur wenn die Regionenmarkierung erfolgreich war, wird in Zeile \ref{alg:detectmarker-call-method} die Methode
  \textproc{arDetectMarker2} aufgerufen. Der Rückgabewert von \textproc{arDetectMarker2} wird in der Membervariable
- $\mathit{marker\_info2}$ gespeichert. Es wird anschliessend in Zeile
+ $\mathit{marker\_info2}$ gespeichert. Es wird anschließend in Zeile
  \ref{alg:detectmarker-check-marker-start}--\ref{alg:detectmarker-check-marker-end} geprüft, ob der Zeiger von
  $\mathit{marker\_info2}$ auf einen gültigen Speicherbereich verweist. Falls die Überprüfung erfolgreich war, sind in
  $\mathit{marker\_info2}$ die Koordinaten der Eckpunkte der Marke gespeichert und das Verfahren beendet.
