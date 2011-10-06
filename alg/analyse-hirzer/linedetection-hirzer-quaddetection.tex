@@ -28,7 +28,7 @@
 		\DO
 		\label{alg:linedetection-hirzerquaddetection-do}
 			\State \Call{resetMemoryPool}{$C$}
-			\State $\mathit{chain} \gets L\mathit{\to data}[0]$
+			\State $\mathit{chain} \gets \mathit{L.data}[0]$
 			\State \Call{removeLine}{$L,0$}
 			\label{alg:linedetection-hirzerquaddetection-removeline}
 			\State $\mathit{length} \gets 1$

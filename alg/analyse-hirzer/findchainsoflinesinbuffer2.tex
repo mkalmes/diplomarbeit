@@ -5,9 +5,9 @@
 	\algrestore{brk-findchainoflines1}
 		\If{$\mathit{fromStart}$}
 		\label{alg:findchainoflines2-endpointend}
-			\State $\mathit{endpoint} \gets B\mathit{\to data}[i]\mathit{.end.coordinate}$
+			\State $\mathit{endpoint} \gets \mathit{B.data}[i]\mathit{.end.coordinate}$
 		\Else
-			\State $\mathit{endpoint} \gets B\mathit{\to data}[i]\mathit{.start.coordinate}$
+			\State $\mathit{endpoint} \gets \mathit{B.data}[i]\mathit{.start.coordinate}$
 		\EndIf
 		\label{alg:findchainoflines2-endpointstart}
 		\State $\mathit{distance} \gets$ \Call{vectorSubtract}{$\mathit{startPoint},\mathit{endpoint}$}

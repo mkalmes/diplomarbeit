@@ -5,12 +5,12 @@
 	\algrestore{mergelines4}
 	\If{\Call{extendLine}{$\mathit{startpoint},\mathit{lineSlope},\mathit{start.end.slope},\mathit{endpoint},\mathit{length},I$}}
 	\label{alg:mergelines5-extendline}
-		\State $\mathit{pool \to data}[i]\mathit{.end} \gets \mathit{pool \to data}[j]\mathit{.end}$
+		\State $\mathit{pool.data}[i]\mathit{.end} \gets \mathit{pool.data}[j]\mathit{.end}$
 		\label{alg:mergelines5-merge-start}
-		\State $\mathit{newLineSlope} \gets$ \Call{subtract}{$\mathit{pool \to data}[i]\mathit{.end.coordinate},\mathit{pool \to data}[i]\mathit{.start.coordinate}$}
+		\State $\mathit{newLineSlope} \gets$ \Call{subtract}{$\mathit{pool.data}[i]\mathit{.end.coordinate},\mathit{pool.data}[i]\mathit{.start.coordinate}$}
 		\State $\mathit{newLineSlope} \gets$ \Call{normalized}{$\mathit{newLineSlope}$}
-		\State $\mathit{pool \to data}[i]\mathit{.slope} \gets \mathit{newLineSlope}$
-		\State $\mathit{pool \to data}[j]\mathit{.remove} \gets$ \textbf{true}
+		\State $\mathit{pool.data}[i]\mathit{.slope} \gets \mathit{newLineSlope}$
+		\State $\mathit{pool.data}[j]\mathit{.remove} \gets$ \textbf{true}
 		\label{alg:mergelines5-merge-end}
 	\Else
 		\State \textbf{break}
