@@ -11,7 +11,7 @@
 	\label{alg:extendline1-boolean}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{maxLength}$}
 	\label{alg:extendline1-loop-start}
-		\State $\mathit{start} \gets$ \Call{vectorAddition}{$\mathit{start},\mathit{slope}$}
+		\State $\mathit{start} \gets$ \Call{vectorAdd}{$\mathit{start},\mathit{slope}$}
 		\label{alg:extendline1-next}
 		\State $x \gets$ \Call{convoluteKernelX}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},\mathit{imageWidth},\mathit{imageHeight}$}
 		\State $y \gets$ \Call{convoluteKernelY}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},\mathit{imageWidth},\mathit{imageHeight}$}
