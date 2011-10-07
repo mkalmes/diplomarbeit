@@ -1,4 +1,4 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{getEdgel}}
 \label{alg:edgelpool-getedgel}
 \begin{algorithmic}[1]
@@ -8,13 +8,13 @@
 		\State \textbf{return}
 	\EndIf
 	\label{alg:edgelpool-getedgel-validpointer-end}
-	\State $c \gets p(\mathit{count})$
+	\State $c \gets \mathit{p.count}$
 	\If{$\lnot \left(c > i\right)$}
 	\label{alg:edgelpool-getedgel-validrange-start}
 		\State \textbf{return}
 	\EndIf
 	\label{alg:edgelpool-getedgel-validrange-end}
-	\State \textbf{return} $p(\mathit{data}[i])$
+	\State \textbf{return} $\mathit{p.data}[i]$
 	\label{alg:edgelpool-getedgel-returnedgel}
 \end{algorithmic}
 \end{algorithm}

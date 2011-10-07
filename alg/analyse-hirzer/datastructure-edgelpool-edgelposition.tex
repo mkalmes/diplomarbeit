@@ -8,18 +8,19 @@
 		\State \textbf{return} $- 1$
 	\EndIf
 	\label{alg:edgelpool-edgelposition-validpointer-end}
-	\State $n \gets p(\mathit{count})$
+	\State $n \gets \mathit{p.count}$
 	\label{alg:edgelpool-edgelposition-count}
-	\State $ \mathit{slopex} \gets \mathit{e.slope.x}$
+	\State $ \mathit{sx} \gets \mathit{e.slope.x}$
 	\label{alg:edgelpool-edgelposition-e-start}
-	\State $ \mathit{slopey} \gets \mathit{e.slope.y}$
+	\State $ \mathit{sy} \gets \mathit{e.slope.y}$
 	\State $ x \gets \mathit{e.coordinate.x}$
 	\State $ y \gets \mathit{e.coordinate.y}$
 	\label{alg:edgelpool-edgelposition-e-end}
 	\For{$i \gets 0$ \textbf{to} $i < n$}
 	\label{alg:edgelpool-edgelposition-search-start}
-		\State $c \gets p(\mathit{data}[i])$
-		\If{$\mathit{slopex} == \mathit{c.slope.x} \land \mathit{slopey} == \mathit{c.slope.y} \land x == \mathit{c.coordinate.x} \land y == \mathit{c.coordinate.y}$}
+		\State $c \gets \mathit{p.data}[i]$
+		\If{$\mathit{sx} = \mathit{c.slope.x} \land \mathit{sy} = \mathit{c.slope.y} \land x =
+		 \mathit{c.coordinate.x} \land y = \mathit{c.coordinate.y}$}
 		\label{alg:edgelpool-edgelposition-isequal-start}
 			\State \textbf{return} $i$
 			\label{alg:edgelpool-edgelposition-returni}
