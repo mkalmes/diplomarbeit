@@ -1,0 +1,44 @@
+\begin{algorithm}[!ht]
+	\caption{\textproc{findEdgels} (Fortsetzung der Analyse)}
+	\label{alg:findedgels-vertical-analyse}
+	\begin{algorithmic}[1]
+	\algrestore{brk-findedgelsanalyse}
+		\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
+		\Cost{$c_{17}$}{$\tfrac{m}{5} + 1$}
+			\State $p_1 \gets 0$
+			\Cost{$c_{18}$}{$\sum_{x=0}^{\tfrac{m}{5}} 1$}
+			\State $p_2 \gets 0$
+			\Cost{$c_{19}$}{$\sum_{x=0}^{\tfrac{m}{5}} 1$}
+			\For{$y \gets t$ \textbf{to} $y < t + \mathit{regionSize}$}
+			\Cost{$c_{20}$}{$\sum_{x=0}^{\tfrac{m}{5}} (n + 1)$}
+				\State Gradient bestimmen
+				\Cost{$c_{21}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} \Theta(1)$}
+				\If{$currentEdgel > threshold$}
+				\Cost{$c_{22}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+				\Else
+					\State $currentEdgel \gets 0$
+					\Cost{$c_{23}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+				\EndIf
+				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
+				\Cost{$c_{24}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+					\State $edgel \gets \infty$
+					\Cost{$c_{25}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+					\State Koordinaten speichern
+					\Cost{$c_{26}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} \Theta(1)$}
+					\State Orientierung berechnen
+					\Cost{$c_{27}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} \Theta(1)$}
+					\State \Call{addEdgel}{$E,\mathit{edgel}$}
+					\Cost{$c_{28}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} \Theta(1)$}
+				\EndIf
+				\State $p_2 \gets p_1$
+				\Cost{$c_{29}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+				\State $p_1 \gets currentEdgel$
+				\Cost{$c_{30}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+				\State $y \gets y + 1$
+				\Cost{$c_{31}$}{$\sum_{x=0}^{\tfrac{m}{5}} \sum_{y=0}^{m} 1$}
+			\EndFor
+			\State $x \gets x + 5$
+			\Cost{$c_{32}$}{$\sum_{x=0}^{\tfrac{m}{5}} 1$}
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
