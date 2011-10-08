@@ -6,12 +6,15 @@
 	\If{$\lnot p$}
 		\State \textbf{return}
 	\EndIf
-	\State $c \gets p(\mathit{count})$
+	\State $c \gets \mathit{p.count}$
 	\If{$i < 0 \lor i > c$}
+	\label{alg:distancepool-isvalid-start}
 		\State \textbf{return}
 	\EndIf
+	\label{alg:distancepool-isvalid-end}
 	\If{$c > i + 1$}
-		\State \Call{memmove}{$p(\mathit{data}[\mathit{i}]), p(\mathit{data}[\mathit{i} + 1]), \left(c - \mathit{i} + 1\right) \cdot \textproc{sizeof}(d)$}
+		\State \Call{memmove}{$\mathit{p.data}[\mathit{i}], \mathit{p.data}[\mathit{i} + 1], \left(c - \mathit{i}
+		 + 1\right) \cdot \textproc{sizeof}(d)$}
 	\EndIf
 \end{algorithmic}
 \end{algorithm}
