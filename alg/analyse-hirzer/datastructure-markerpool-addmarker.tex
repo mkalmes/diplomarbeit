@@ -6,11 +6,11 @@
 	\If{$\lnot p$}
 		\State \textbf{return}
 	\EndIf
-	\If{$\lnot \left(p(\mathit{count}) < N\right)$}
+	\If{$\lnot \left(\mathit{p.count} < N\right)$}
 		\State \textbf{return} \Comment Speicher voll
 	\EndIf
-	\State $c \gets p(\mathit{count})$
-	\State $p(\mathit{data}[c]) \gets m$
-	\State $p(\mathit{count}) \gets c + 1$
+	\State $c \gets \mathit{p.count}$
+	\State $\mathit{p.data}[c] \gets m$
+	\State $\mathit{p.count} \gets c + 1$
 \end{algorithmic}
 \end{algorithm}

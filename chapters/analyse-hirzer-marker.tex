@@ -1,40 +1,38 @@
 \subsubsection{Marken} % (fold)
 \label{sub:marken}
 
-Die Datenstruktur $\mathit{marker}$, der Aufbau des Speicherblocks und die Operationen zum hinzufügen und freigeben von
+Die Datenstruktur \textproc{marker}, der Aufbau des Speicherblocks und die Operationen zum hinzufügen und freigeben von
  Daten ist, wie bei der Datenstruktur der Liniensegmente auch, nach dem Vorbild des Edgelspeichers aufgebaut. Die
  Datenstruktur in \autoref{alg:marker} verwendet vier Variablen vom Typ \textproc{vector}, um die Eckpunkte einer Marke
  zu speichern.
-
 \input{alg/analyse-hirzer/datastructure-marker}
 
-Die Datenstruktur des Speichervorrats (\autoref{alg:datastructure-markerpool}) und des Speicherblocks
- (\autoref{alg:datastructure-markerpoolimpl}) verwenden eine festgelegte Anzahl von Einträgen zum speichern der
- Einträge.
-
+Die Datenstruktur des Speichervorrats (\autoref{alg:datastructure-markerpool})
 \input{alg/analyse-hirzer/datastructure-markerpool}
+und des Speicherblocks (\autoref{alg:datastructure-markerpoolimpl}) verwenden eine festgelegte Anzahl von Einträgen zum
+\input{alg/analyse-hirzer/datastructure-markerpoolimpl}
+speichern der Einträge.
 
-Mit \textproc{getMemoryPools} (\autoref{alg:markerpool-getmemorypools}) und \textproc{getMemoryPool}
- (\autoref{alg:markerpool-getmemorypool}) werden Speicherblöcke angefordert.
-
+Mit \textproc{getMemoryPools} (\autoref{alg:markerpool-getmemorypools})
 \input{alg/analyse-hirzer/datastructure-markerpool-getmemorypools}
+und \textproc{getMemoryPool} (\autoref{alg:markerpool-getmemorypool})
 \input{alg/analyse-hirzer/datastructure-markerpool-getmemorypool}
+werden Speicherblöcke in konstanter Zeit angefordert.
 
-Um die Einträge in einem Speicherblock zu löschen, wird \autoref{alg:markerpool-resetmemorypool} verwendet.
-
+Um die Einträge in einem Speicherblock zu löschen, wird \autoref{alg:markerpool-resetmemorypool} verwendet. Die
+ Laufzeit ist dabei konstant.
 \input{alg/analyse-hirzer/datastructure-markerpool-resetmemorypool}
 
 Mit \textproc{freeMemoryPool} (\autoref{alg:markerpool-freememorypool}) kann der Speicherblock an den Vorrat
- zurückgegeben werden.
-
+ zurückgegeben werden. Auch hier ist die Laufzeit konstant.
 \input{alg/analyse-hirzer/datastructure-markerpool-freememorypool}
 
 Die Anzahl der gespeicherten Marken in einem Speicherblock können mit \autoref{alg:markerpool-count} ermittelt werden.
-
+ Durch den direkten Zugriff auf die Zählvariable ist die Laufzeit konstant.
 \input{alg/analyse-hirzer/datastructure-markerpool-count}
 
-Um eine Marke zu einem Speicherblock hinzuzufügen, wird \autoref{alg:markerpool-addmarker} verwendet.
-
+Um eine Marke zu einem Speicherblock hinzuzufügen, wird \autoref{alg:markerpool-addmarker} verwendet. Auch hier wird durch den direkten Zugriff auf die Variablen eine konstante Laufzeit erreicht.
 \input{alg/analyse-hirzer/datastructure-markerpool-addmarker}
 
+Alle Methoden der Datenstruktur \textproc{marker} haben eine konstante Laufzeit $T(n)=\Theta(1)$.
 % subsubsection marken (end)
