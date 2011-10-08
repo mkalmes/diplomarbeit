@@ -1,4 +1,4 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{addLineSegment}}
 \label{alg:linesegmentpool-addline}
 \begin{algorithmic}[1]
@@ -8,15 +8,15 @@
 		\State \textbf{return}
 	\EndIf
 	\label{alg:linesegmentpool-addline-validpointer-end}
-	\If{$\lnot \left(p(\mathit{count}) < N\right)$}
+	\If{$\lnot \left(\mathit{p.count} < N\right)$}
 	\label{alg:linepool-addline-checkspace-start}
 		\State \textbf{return} \Comment Speicher voll
 	\EndIf
 	\label{alg:linesegmentpool-addline-checkspace-end}
-	\State $c \gets p(\mathit{count})$
+	\State $c \gets \mathit{p.count}$
 	\label{alg:linesegmentpool-addline-add-start}
-	\State $p(\mathit{data}[c]) \gets l$
-	\State $p(\mathit{count}) \gets c + 1$
+	\State $\mathit{p.data}[c] \gets l$
+	\State $\mathit{p.count} \gets c + 1$
 	\label{alg:linesegmentpool-addline-add-end}
 \end{algorithmic}
 \end{algorithm}

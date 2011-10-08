@@ -1,20 +1,27 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{isEdgelNearLine}}
 \label{alg:isedgelnearline}
 \begin{algorithmic}[1]
 	\Require $l,e$
 	\If{$\lnot$ \Call{isCompatible}{$\mathit{l.start,e}$}}
-		\State \textbf{return FALSE} 
+	\label{alg:isedgelnearline-iscompatible}
+		\State \textbf{return FALSE}
+		\label{alg:isedgelnearline-notcompatible}
 	\EndIf
 	\State $a \gets \mathit{l.end.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\label{alg:isedgelnearline-distance-start}
 	\State $b \gets \mathit{l.end.coordinate.y} - \mathit{l.start.coordinate.y}$
-	\State $c \gets$ \Call{sqrtf}{$(a \cdot a)+(b \cdot b)$}
+	\State $c \gets$ \Call{sqrt}{$(a \cdot a)+(b \cdot b)$}
+	\label{alg:isedgelnearline-distance-end}
 	\State $\mathit{AB1} \gets \mathit{l.end.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\label{alg:isedgelnearline-pointline-start}
 	\State $\mathit{AC2} \gets \mathit{e.coordinate.y} - \mathit{l.start.coordinate.y}$
 	\State $\mathit{AC1} \gets \mathit{e.coordinate.x} - \mathit{l.start.coordinate.x}$
 	\State $\mathit{AB2} \gets \mathit{l.end.coordinate.y} - \mathit{l.start.coordinate.y}$
 	\State $\mathit{crossproduct} \gets (\mathit{AB1} \cdot \mathit{AC2}) - (\mathit{AC1} \cdot \mathit{AB2})$
 	\State $\mathit{distance} \gets$ \Call{ABS}{$\mathit{crossproduct}/c$}
+	\label{alg:isedgelnearline-pointline-end}
 	\State \textbf{return} $\mathit{distance} < 0.75$
+	\label{alg:isedgelnearline-return}
 \end{algorithmic}
 \end{algorithm}

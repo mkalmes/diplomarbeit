@@ -1,4 +1,4 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{getLineSegment}}
 \label{alg:linepool-getline}
 \begin{algorithmic}[1]
@@ -8,13 +8,13 @@
 		\State \textbf{return}
 	\EndIf
 	\label{alg:linepool-getline-validpointer-end}
-	\State $c \gets p(\mathit{count})$
+	\State $c \gets \mathit{p.count}$
 	\If{$\lnot \left(c > i\right)$}
 	\label{alg:linepool-getline-validrange-start}
 		\State \textbf{return}
 	\EndIf
 	\label{alg:linepool-getline-validrange-end}
-	\State \textbf{return} $p(\mathit{data}[i])$
+	\State \textbf{return} $\mathit{p.data}[i]$
 	\label{alg:linepool-getline-returnline}
 \end{algorithmic}
 \end{algorithm}

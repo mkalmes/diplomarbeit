@@ -14,9 +14,11 @@
 	\State $\mathit{x4} \gets \mathit{right.end.coordinate.x}$
 	\State $\mathit{y4} \gets \mathit{right.end.coordinate.y}$
 	\label{alg:linesegmenintersection-var-end}
-	\State $\mathit{numerator} \gets ((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y1} - \mathit{y3})) - ((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x1} - \mathit{x3}))$
+	\State $\mathit{numerator} \gets \bigl((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y1} - \mathit{y3})\bigr)
+	 - \bigl((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x1} - \mathit{x3})\bigr)$
 	\label{alg:linesegmenintersection-intersect-start}
-	\State $\mathit{denumerator} \gets ((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x2} - \mathit{x1})) - ((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y2} - \mathit{y1}))$
+	\State $\mathit{denumerator} \gets \bigl((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x2} - \mathit{x1})\bigr)
+	 - \bigl((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y2} - \mathit{y1})\bigr)$
 	\State $\mathit{u\_a} \gets \mathit{numerator} / \mathit{denumerator}$
 	\State $\mathit{intersection.x} \gets \mathit{x1} + \mathit{u\_a} \cdot (\mathit{x2} - \mathit{x1})$
 	\State $\mathit{intersection.y} \gets \mathit{y1} + \mathit{u\_a} \cdot (\mathit{y2} - \mathit{y1})$

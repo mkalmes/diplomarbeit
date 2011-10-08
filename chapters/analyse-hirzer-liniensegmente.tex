@@ -3,94 +3,105 @@
 
 Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, löschen und freigeben des Speichers sind nach
  dem Vorbild des Edgelspeichers aufgebaut. Die Datenstruktur eines Liniensegments ist in
- \autoref{alg:datastructure-linesegment} definiert. Eine Linie besteht aus den \glspl{edgel} $\mathit{start}$ und
- $\mathit{end}$, die den Start- und Endpunkt der Linie darstellen. Die Variable $\mathit{slope}$ enthält die
- Orientierung des Liniensegments, während die Variable $\mathit{supportCount}$ die Anzahl der unterstützenden
- \glspl{edgel} der Linie speichert. $\mathit{remove}$, $\mathit{startCorner}$ und $\mathit{endCorner}$ sind boolesche
- Variablen. $\mathit{remove}$ dient im späteren Verlauf zur Erkennung, ob ein Liniensegment gelöscht werden muss,
- während $\mathit{startCorner}$ und $\mathit{endCorner}$ benutzt werden, ob eine Linie einen Eckpunkt am Anfang oder
- Ende besitzt. Die letzte Variable $\mathit{support}$ dient zur Speicherung von \glspl{edgel}, die eine Linienhypothese
- unterstützen. Die Lese- und Schreibzugriffe auf die Datenstruktur ist konstant.
-
+ \autoref{alg:datastructure-linesegment} definiert.
 \input{alg/analyse-hirzer/datastructure-linesegment}
+Eine Linie besteht aus den \glspl{edgel} $\mathit{start}$ und $\mathit{end}$, die den Start- und Endpunkt der Linie
+ darstellen. Die Variable $\mathit{slope}$ enthält die Orientierung des Liniensegments, während die Variable
+ $\mathit{supportCount}$ die Anzahl der unterstützenden \glspl{edgel} der Linie speichert. $\mathit{remove}$,
+ $\mathit{startCorner}$ und $\mathit{endCorner}$ sind boolesche Variablen. $\mathit{remove}$ dient im späteren Verlauf
+ zur Erkennung, ob ein Liniensegment gelöscht werden muss. Wenn eine Linie einen Eckpunkt am Anfang oder am Ende
+ besitzt, wird dies in den Variablen $\mathit{startCorner}$ und $\mathit{endCorner}$ festgehalten.Die letzte Variable
+ $\mathit{support}$ dient zur Speicherung von \glspl{edgel}, die eine Linienhypothese unterstützen. Die Lese- und
+ Schreibzugriffe auf die Datenstruktur ist konstant.
 
 Die Methode \textproc{isOrientationCompatible} untersucht, ob zwei Liniensegmente $\mathit{left}$ und $\mathit{right}$
- fast parallel zueinander stehen (\autoref{alg:linesegmentisorientationcompatible}). Dazu wird mithilfe von
- \textproc{dotProduct} die Orientierung berechnet. Wenn die Orientierung im Bereich von (0.92,1] liegt, wird als
- Ergebnis wahr zurückgeliefert. Das bedeutet, dass die Orientierung der Linien im Bereich von $0^\circ$ bis
- $\sim 23^\circ$ liegt und die Linien als parallel betrachtet werden. Ansonsten wird als Ergebnis falsch
- zurückgegeben, was bedeutet, dass die Linien nicht parallel sind.
-
+ fast parallel zueinander stehen (\autoref{alg:linesegmentisorientationcompatible}).
 \input{alg/analyse-hirzer/datastructure-linesegmentisorientationcompatible}
+Dazu wird mithilfe von \textproc{dotProduct} die Orientierung berechnet. Wenn die Orientierung im Bereich von
+ $(0.92,1]$ liegt, wird als Ergebnis wahr zurückgeliefert. Das bedeutet, dass die Orientierung der Linien im Bereich
+ von $0^\circ$ bis $\sim 23^\circ$ liegt und die Linien als parallel betrachtet werden. Ansonsten wird als Ergebnis
+ falsch zurückgegeben, was bedeutet, dass die Linien nicht parallel sind. Die Laufzeit von
+ \autoref{alg:linesegmentisorientationcompatible} ist konstant.
 
-Mit \textproc{intersection} wird der Schnittpunkt zweier Linien berechnet. Dazu benötigt das Verfahren
- \autoref{alg:linesegmenintersection} eine linke und eine rechte Linie. In Zeile
- \ref{alg:linesegmenintersection-var-start}--\ref{alg:linesegmenintersection-var-end} werden die Punkte der
+Mit \autoref{alg:isedgelnearline} wird der Abstand eines \gls{edgel} zu einem Liniensegment berechnet.
+\input{alg/analyse-hirzer/datastructure-linesegmentisedgelnearline}
+Das Verfahren benötigt dazu ein Liniensegment $l$ und ein \gls{edgel} $e$. In Zeile
+ \ref{alg:isedgelnearline-iscompatible} wird überprüft, ob die Orientierung des \gls{edgel} kompatibel mit der
+ Orientierung des Liniensegments ist. Wenn dies der Fall ist, wird das Verfahren fortgesetz. Andrenfalls wird das
+ Verfahren in Zeile \ref{alg:isedgelnearline-notcompatible} abgebrochen. In Zeile
+ \ref{alg:isedgelnearline-distance-start}--\ref{alg:isedgelnearline-distance-end} wird die Länge des Abstands der
+ Endpunkte der Linie berechnet und in lokalen Variablen gespeichert. Im Anschluß wird in Zeile
+ \ref{alg:isedgelnearline-pointline-start}--\ref{alg:isedgelnearline-pointline-end} der Abstand des \gls{edgel} zur
+ Linie berechnet. Das Präprozessor Makro \textproc{ABS} berechnet den absoluten Betrag der Distanz in konstanter Zeit
+ (Vgl. \autoref{alg:abs}).
+\input{alg/analyse-hirzer/abs}
+In Zeile \ref{alg:isedgelnearline-return} wird als Rückgabewert, abhängig vom Vergleich der Distanz, wahr oder falsch
+ zurückgegebn. Bleibt der Abstand des \gls{edgel} zur Linie unter $0.75$ wird wahr and die aufrufende Methode
+ zurückgeben. Ansonsten, wenn der Abstand größer ist, wird falsch zurückgegeben. Die Laufzeit von
+ \autoref{alg:isedgelnearline} ist konstant.
+
+Mit \textproc{intersection} wird der Schnittpunkt zweier Linien berechnet. Dazu benötigt das Verfahren in
+ \autoref{alg:linesegmenintersection} eine linke und eine rechte Linie.
+\input{alg/analyse-hirzer/datastructure-linesegmentintersection}
+ In Zeile \ref{alg:linesegmenintersection-var-start}--\ref{alg:linesegmenintersection-var-end} werden die Punkte der
  Linienkoordinaten in lokalen Variablen gespeichert. Danach wird in Zeile
  \ref{alg:linesegmenintersection-intersect-start}--\ref{alg:linesegmenintersection-intersect-end} der Schnittpunkt der
  beiden Linie berechnet und in Zeile \ref{alg:linesegmenintersection-return} an die aufrufende Methode zurückgegeben.
-
-\input{alg/analyse-hirzer/datastructure-linesegmentintersection}
+ Die Berechnung des Schnittpunktes zweier Linien erfolgt in konstanter Zeit.
 
 Die Datenstruktur eines Speichervorrats für Linien in \autoref{alg:datastructure-linesegmentpool} besteht aus einem
  Array $\mathit{data}$ mit der festen Größe $N$ und einer Zählvariablen $\mathit{count}$.
-
 \input{alg/analyse-hirzer/datastructure-linesegmentpool}
-
-Der Speichervorrat für Linien in \autoref{alg:datastructure-linesegmentpool-implementation} besteht wiederum aus einem
- Array $\mathit{data}$ mit der Anzahl $S$ der zur Verfügung stehenden Speicherblöcke. Der Zeiger von $\mathit{data}$
- wird in der Variablen $\mathit{pool}$ gespeichert. Der Zugriff auf die Datenstruktur erfolgt in konstanter Zeit.
+Der Speichervorrat für Linien in \autoref{alg:datastructure-linesegmentpoolimplementation} besteht wiederum aus einem
+ Array $\mathit{data}$ mit der Anzahl $S$ der zur Verfügung stehenden Speicherblöcke.
+\input{alg/analyse-hirzer/datastructure-linesegmentpoolimpl}
+Der Zeiger von $\mathit{data}$ wird in der Variablen $\mathit{pool}$ gespeichert. Der Zugriff auf die Datenstruktur
+ erfolgt in konstanter Zeit.
 
 Mehrere Speicherblöcke können mit \autoref{alg:linepool-getmemorypools} angefordert werden und mit
- \autoref{alg:linepool-getmemorypool} wird ein Speicherblock angefordert. Der Aufbau der Verfahren entspricht den
- Verfahren des Speichervorrats für \glspl{edgel} (Vgl. \autoref{alg:edgelpool-getmemorypools} und
- \autoref{alg:edgelpool-getmemorypool}). Der Zugriff erfolgt in konstanter Zeit.
-
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getmemorypools}
-
+ \autoref{alg:linepool-getmemorypool} wird ein Speicherblock angefordert.
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getmemorypool}
+Der Aufbau der Verfahren entspricht den Verfahren des Speichervorrats für \glspl{edgel}
+ (Vgl. \autoref{alg:edgelpool-getmemorypools} und \autoref{alg:edgelpool-getmemorypool}). Der Zugriff erfolgt in
+ konstanter Zeit.
 
-Um eine Linie zu einem Speicherblock hinzuzufügen, wird \autoref{alg:linesegmentpool-addline} verwendet. Es wird ein Zeiger
- $p$ auf den Speicherblock, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Zeiger $p$ handelt, und
- genügend freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
+Um eine Linie zu einem Speicherblock hinzuzufügen, wird \autoref{alg:linesegmentpool-addline} verwendet.
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-addlinesegment}
+Es wird ein Zeiger $p$ auf den Speicherblock, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Zeiger $p$
+ handelt, und genügend freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
  \ref{alg:linesegmentpool-addline-add-start}--\ref{alg:linesegmentpool-addline-add-end} die Linie hinzugefügt und die
  Zählvariable inkrementiert. Das Hinzufügen einer Linie ist konstant.
 
-\input{alg/analyse-hirzer/datastructure-linesegmentpool-addlinesegment}
-
-Zum auslesen einer Linie aus dem Speicherblock, wird \autoref{alg:linepool-getline} verwendet. Als Parameter werden ein
- Zeiger $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Block ausgelesen werden soll. In Zeile
- \ref{alg:linepool-getline-validrange-start} wird geprüft, ob der Index sich innerhalb der Grenzen der gespeicherten
- Linien befindet. Wenn dies der Fall ist, wird in Zeile \ref{alg:linepool-getline-returnline} die Linie in konstanter
- Zeit zurückgegeben.
-
+Zum auslesen einer Linie aus dem Speicherblock, wird \autoref{alg:linepool-getline} verwendet.
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getlinesegment}
+Als Parameter werden ein Zeiger $p$ und ein Index $i$ übergeben. Der Index gibt an, welche Linie aus dem Block
+ ausgelesen werden soll. In Zeile \ref{alg:linepool-getline-validrange-start} wird geprüft, ob der Index sich innerhalb
+ der Grenzen der gespeicherten Linien befindet. Wenn dies der Fall ist, wird in Zeile
+ \ref{alg:linepool-getline-returnline} die Linie in konstanter Zeit zurückgegeben.
 
-Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherblock gelöscht. Dazu wird der Zeiger $p$ auf
- den Speicherblock übergeben und in Zeile
+Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherblock gelöscht.
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-resetmemorypool}
+Dazu wird der Zeiger $p$ auf den Speicherblock übergeben und in Zeile
  \ref{alg:linepool-resetmemorypool-validpointer-start}--\ref{alg:linepool-resetmemorypool-validpointer-end} überprüft.
  Wenn es sich um einen gültigen Zeiger handelt, wird die Zählvariable auf $0$ gesetzt. Da es sich um einen direkten
  Zugriff handelt, erfolgt das Löschen in konstanter Zeit.
 
-\input{alg/analyse-hirzer/datastructure-linesegmentpool-resetmemorypool}
-
-Durch \autoref{alg:linepool-freememorypool} kann ein Speicherblock wieder freigegeben werden. Dazu wird der Zeiger $p$
- auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetMemoryPool}
+Durch \autoref{alg:linepool-freememorypool} kann ein Speicherblock wieder freigegeben werden.
+\input{alg/analyse-hirzer/datastructure-linesegmentpool-freememorypool}
+Dazu wird der Zeiger $p$ auf Gültigkeit geprüft. Danach wird der Speicher durch \textproc{resetMemoryPool}
  (\autoref{alg:linepool-resetmemorypool}) gelöscht. In Zeile \ref{alg:linepool-freememorypool-checkpointer} wird
  überprüft, ob der Zeiger $p$ zu dem entsprechenden Block gehört, um danach die Adresse in Zeile
  \ref{alg:linepool-freememorypool-savepointer} in $\mathit{pool}$ zu speichern. Auch hier erfolgt das Freigeben des
  Speichers wieder in konstanter Zeit.
 
-\input{alg/analyse-hirzer/datastructure-linesegmentpool-freememorypool}
-
 Die Anzahl der Einträge in einem Pool werden durch \autoref{alg:linepool-count} bestimmt, indem die Zählvariable
- $\mathit{count}$ zurückgegeben wird. Der Zugriff auf die Variable erfolgt in konstanter Zeit.
-
+ $\mathit{count}$ zurückgegeben wird.
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-count}
+Der Zugriff auf die Variable erfolgt in konstanter Zeit.
 
 Im Verfahren nach \citeauthor{clarke96} werden Liniensegmente nicht aus dem Speicherpool gelöscht. Darum kann auf
- einen Algorithmus wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel} verzichtet werden.
-
-Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
+ einen Algorithmus zum löschen der Einträge, wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel}, verzichtet
+ werden. Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
 
 % subsection datenstruktur-liniensegmente (end)
