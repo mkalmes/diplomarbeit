@@ -40,36 +40,3 @@
 	\algstore{brkfindedgels}
 	\end{algorithmic}
 \end{algorithm}
-
-\begin{algorithm}[ht]
-	\caption{\textproc{findEdgels} (Vertikale Scanlines)}
-	\label{alg:findedgels-vertical}
-	\begin{algorithmic}[1]
-	\algrestore{brkfindedgels}
-		\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
-		\label{alg:findedgels-vertical-scanlinestart}
-			\State $p_1 \gets 0$
-			\State $p_2 \gets 0$
-			\For{$y \gets t$ \textbf{to} $y < t + \mathit{regionSize}$}
-				\State $currentEdgel \gets$ \Call{convoluteKernelY}{$I_m,x,y,\mathit{imageWidth},\mathit{imageHeight}$}
-				\If{$currentEdgel > threshold$}
-					\Comment Möglicherweise ein Egdel
-				\Else
-					\State $currentEdgel \gets 0$
-				\EndIf
-				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
-					\Comment $p_1$ ist lokales Maximum
-					\State $edgel \gets \infty$
-					\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}
-					\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth}, \mathit{imageHeight}, x,y - 1$}
-					\State \Call{addEdgel}{$E,\mathit{edgel}$}
-				\EndIf
-				\State $p_2 \gets p_1$
-				\State $p_1 \gets currentEdgel$
-				\State $y \gets y + 1$
-			\EndFor
-			\State $x \gets x + 5$
-		\EndFor
-		\label{alg:findedgels-vertical-scanlineend}
-	\end{algorithmic}
-\end{algorithm}
