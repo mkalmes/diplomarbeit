@@ -12,16 +12,21 @@ Auch bei diesem Verfahren wird ein Array mit festert Größe $N$ und einer Zähl
  anderen Speicherbereichen wird bei \textproc{distance} auf einen Speichervorrat verzichtet. Die Verwaltung eines
  Speichervorrat wird manuel durchgeführt.
 
+% Mit \autoref{alg:distancepool-adddistance}
+% \input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
+%  und \autoref{alg:distancepool-removedistance}
+% \input{alg/analyse-hirzer/datastructure-distancepool-removeline}
+%  können Distanzwerte dem Speicherbereich hinzugefügt und entfernt werden. Die Laufzeit zum hinzufügen ist dabei
+%  konstant. Bei \autoref{alg:distancepool-removedistance} ist im besten Fall der Index $i$ ausserhalb des Bereichs der
+%  gespeicherten Daten (Zeile \ref{alg:distancepool-isvalid-start}--\ref{alg:distancepool-isvalid-end}), und die Laufzeit
+%  somit $T_{best}=\Theta(1)$. Im schlechtesten Fall müssen mit \textproc{memmove} $n-1$ Einträge an Position $0$
+%  verschoben werden. Die Laufzeit beträgt dann
+%  $T_{worst}=\Theta(n)$ (Vgl. \autoref{sub:datenstruktur-edgels}, S. \pageref{sub:datenstruktur-edgels-memmove}).
+
 Mit \autoref{alg:distancepool-adddistance}
 \input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
- und \autoref{alg:distancepool-removeline}
-\input{alg/analyse-hirzer/datastructure-distancepool-removeline}
- können Distanzwerte dem Speicherbereich hinzugefügt und entfernt werden. Die Laufzeit zum hinzufügen ist dabei
- konstant. Bei \autoref{alg:distancepool-removeline} ist im besten Fall der Index $i$ ausserhalb des Bereichs der
- gespeicherten Daten (Zeile \ref{alg:distancepool-isvalid-start}--\ref{alg:distancepool-isvalid-end}), und die Laufzeit
- somit $T_{best}=\Theta(1)$. Im schlechtesten Fall müssen mit \textproc{memmove} $n-1$ Einträge an Position $0$
- verschoben werden. Die Laufzeit beträgt dann
- $T_{worst}=\Theta(n)$ (Vgl. \autoref{sub:datenstruktur-edgels}, S. \pageref{sub:datenstruktur-edgels-memmove}).
+können Distanzwerte dem Speicherbereich hinzugefügt werden. Die Laufzeit zum hinzufügen ist dabei
+ konstant.
 
 Durch \autoref{alg:distancepool-distancecount}
 \input{alg/analyse-hirzer/datastructure-distancepool-distancecount}
