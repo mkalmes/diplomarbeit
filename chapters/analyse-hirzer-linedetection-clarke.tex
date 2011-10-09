@@ -196,9 +196,7 @@ kann die Orientierung berechnet werden. $G_x$ und $G_y$ werden mit \autoref{alg:
 Um aus den gefundenen \glspl{edgel} Liniensegmente zu erzeugen, wird \autoref{alg:findlinesegments1} verwendet. Das
  Verfahren benötigt den Speicherblock $E$, in dem die \glspl{edgel} vorliegen, und den Speicherblock $L$, der zur
  Speicherung der gefundenen Liniensegmente dient.
-
 \input{alg/analyse-hirzer/findlinesegments-1}
-
 In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init-end} wird die Variable
  $\mathit{presentLine}$ initialisiert. Diese Variable enthält das zu speichernde Liniensegment im Verfahren.
  Die Zählvariable $\mathit{edgelsInRegion}$ wird mit $0$ initialisiert und speichert die Anzahl der \gls{edgel} in
@@ -216,12 +214,12 @@ In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init
  Unterstützungsedgels aus dem Speicherblock $E$ entfernt.
 
 In \autoref{alg:findlinesegments2} wird die Initialisierung der Variablen vorgenommen, die zur Erstellung eines
- Liniensegments benötigt werden. Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{edgel}
- benutzt. Die Variable $\mathit{maxIteration}$ gibt die maximale Anzahl der Interationen an, die $\mathit{iterator}$
- durchlaufen kann. $\mathit{first}$ ist der Startedgel und $\mathit{last}$ der Endedgel des Liniensegments. In
- $\mathit{numberOfEdgels}$ wird die Anzahl der \gls{edgel} in $E$ gespeichert.
-
+ Liniensegments benötigt werden.
 \input{alg/analyse-hirzer/findlinesegments-2}
+Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{edgel} benutzt. $\mathit{first}$ ist der
+ Startedgel und $\mathit{last}$ der Endedgel des Liniensegments. Die Variable $\mathit{maxIteration}$ gibt die maximale
+ Anzahl der Interationen an, die $\mathit{iterator}$ durchlaufen kann. In $\mathit{numberOfEdgels}$ wird die Anzahl der
+ \gls{edgel} in $E$ gespeichert. Die Laufzeit der Initialisierung ist konstant.
 
 Die Auswahl eines Liniensegments erfolgt mit \autoref{alg:findlinesegments3}. Zeile
  \ref{alg:findlinesegments3-loop-start}--\ref{alg:findlinesegments3-loop-end} ist dafür verantwortlich, solange nach
