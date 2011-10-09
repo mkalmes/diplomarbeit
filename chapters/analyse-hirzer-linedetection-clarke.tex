@@ -106,11 +106,34 @@ Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet. Zeil
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend}.
 \input{alg/analyse-hirzer/findedgelsclarke2}
 
+In \autoref{alg:findedgels-horizontal-analyse} und \autoref{alg:findedgels-vertical-analyse} sind die Kosten von
+ \textproc{findEdgels} aufgeführt.
 \input{alg/analyse-hirzer/findedgelsclarke3}
+Die bereits vorgestellten Methoden \textproc{vectorSetCoordinate} (\autoref{alg:vectorsetcoordinate}) und
+ \textproc{addEdgel} (\autoref{alg:edgelpool-addedgel}) haben eine konstante Laufzeit. Die Methoden
+ \textproc{convoluteKernelX}, \textproc{convoluteKernelY} und \textproc{gradientIntensity} haben ebenfalls eine
+ konstante Laufzeit, die zu einem späteren Zeitpunkt bewiesen wird.  Die Laufzeit von
+ \autoref{alg:findedgels-horizontal-analyse} lässt sich wie in \autoref{eq:findedgels1} zusammenfassen.
 \input{eq/hirzer/findedgels1}
+Der Algorithmus ist von den Variablen $t$, $l$ und $\mathit{regionSize}$ abhängig. Der Bereich
+ $[t,t+\mathit{regionSize})$ und $[l,l+\mathit{regionSize})$ wird in der Analyse als $[t,t+\mathit{regionSize}) = n$
+ und $[l,l+\mathit{regionSize}) = m$ bezeichnet. Durch Umformung in \autoref{eq:findedgels2} werden die Konstanten
+ isoliert, was zu einer Laufzeit von $T(n,m) = \Theta(\tfrac{nm}{5})$ für \autoref{alg:findedgels-horizontal-analyse}
+ führt (\autoref{eq:findedgels3}). Die Kosten für \textproc{findEdgels} zur Untersuchung der vertikalen Scanline sind in
+ \autoref{alg:findedgels-vertical-analyse} aufgeführt und entsprechen den Kosten von
+ \autoref{alg:findedgels-horizontal-analyse}.
 \input{alg/analyse-hirzer/findedgelsclarke4}
+Die Kosten des Algorithmus sind in \autoref{eq:findedgels4} aufgeführt und durch Umformung in \autoref{eq:findedgels5}
+ werden die Konstanten isoliert.
 \input{eq/hirzer/findedgels2}
+Dies führt zu einer Laufzeit von $T(n,m) = \Theta(\tfrac{nm}{5})$ für \autoref{alg:findedgels-vertical-analyse}
+ (\autoref{eq:findedgels6}).
+Um die Laufzeit von \textproc{findEdgels} zu bestimmen, werden die Laufzeiten von
+ \autoref{alg:findedgels-horizontal-analyse} und \autoref{alg:findedgels-vertical-analyse} in \autoref{eq:findedgels7}
+ zusammengefasst.
 \input{eq/hirzer/findedgels3}
+Durch Umformung in \autoref{eq:findedgels8} kann die Laufzeit des Algorithmus in \autoref{eq:findedgels9} ermittelt
+ werden. Die Laufzeit von \textproc{findEdgels} entspricht demnach $T(n,m) = \Theta(\tfrac{nm}{5})$.
 
 \autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical} berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
