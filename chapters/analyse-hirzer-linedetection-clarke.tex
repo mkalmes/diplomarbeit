@@ -224,16 +224,31 @@ Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{e
 Die Auswahl eines Liniensegments erfolgt mit \autoref{alg:findlinesegments3}. Zeile
  \ref{alg:findlinesegments3-loop-start}--\ref{alg:findlinesegments3-loop-end} ist dafür verantwortlich, solange nach
  einem Liniensegment zu suchen, bis der erste und letzte \gls{edgel} sich unterscheiden oder ihre Orientierung
- zueinander kompatibel ist. Als letzte Bedingung muss die Anzahl der Iterationen unterhalb des festgelegten
- Schwellwerts $\mathit{maxIteration}$ bleiben.
-
+ zueinander kompatibel ist.
 \input{alg/analyse-hirzer/findlinesegments-3}
-
-In Zeile \ref{alg:findlinesegments3-first} und Zeile \ref{alg:findlinesegments3-last} werden zufällig zwei Indizes aus
- der Menge der vorhandenen \gls{edgel} errechnet. Diese werden in Zeile
+Als letzte Bedingung muss die Anzahl der Iterationen unterhalb des festgelegten Schwellwerts $\mathit{maxIteration}$
+ bleiben. In Zeile \ref{alg:findlinesegments3-first} und Zeile \ref{alg:findlinesegments3-last} werden zufällig zwei
+ Indizes aus der Menge der vorhandenen \gls{edgel} errechnet. Diese werden in Zeile
  \ref{alg:findlinesegments3-start}--\ref{alg:findlinesegments3-end} verwendet, um die beiden \gls{edgel}
  $\mathit{start}$ und $\mathit{end}$ auszuwählen. Der Iterator wird anschliessend in Zeile
  \ref{alg:findlinesegments3-inc} inkrementiert.
+
+Die Laufzeit der Funktion \textproc{rand} wurde durch eine Regressionsanalyse mit $300$ Testdaten ermittelt. Wenn diese
+ Daten in der grafischen Darstellung in \autoref{fig:regression-rand} betrachtet werden, ist ersichtlicht, dass keine
+ lineare Abhängigkeit besteht.
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Regression-rand.pdf_tex}
+	\caption{Regressionsanalyse von \textproc{rand} mit $300$ Datenpunkte. Der Mittelwert der Daten ist als grüne Linie
+	 eingezeichnet und der Median der Daten als rote Linie.}
+	\label{fig:regression-rand}
+\end{figure}
+Dies auch dadurch begründet, dass \textproc{rand} keine Eingabedaten benötigt\footcite[Vgl.][]{rand}. Somit entspricht
+ die Laufzeit von \textproc{rand} $T(n) = \Theta(1)$ und ist demnach konstant. Die Laufzeit von \textproc{getEdgel}
+ (\autoref{alg:edgelpool-getedgel}) ist ebenfalls konstant. Die Laufzeit von \autoref{alg:findlinesegments3} ist somit
+ abhängig von der Anzahl der Wiederholungen in Zeile \ref{alg:findlinesegments3-loop-end}. Im schlimmsten Fall wird
+ \autoref{alg:findlinesegments3} $n = \mathit{maxIteration} = 64$ mal ausgeführt. Die Laufzeit ist dann
+ $T_{worst} = \Theta(n)$.
 
 Wenn in \autoref{alg:findlinesegments3} ein Liniensegment erstellt wurde, werden in \autoref{alg:findlinesegments4} die
  \gls{edgel} zur unterstüztung der Hypothese hinzugefügt. Dazu wird in Zeile \ref{alg:findlinesegments4-isbelowmax}
