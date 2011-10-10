@@ -2,26 +2,34 @@
    {\textbf{do}}
    [1]{\textbf{while} #1}
 \begin{algorithm}[ht]
-\caption{\textproc{findLineSegments} (Neuer Start- und Endpunkt für x)}
+\caption{\textproc{findLineSegments} (Neuer Start- und Endpunkt für y)}
 \label{alg:findlinesegments6}
 \begin{algorithmic}[1]
-	\algrestore{brk-findlinesegments5-if}
-	\Else
+	\State $\mathit{start} \gets 0$
+	\label{alg:findlinesegments6-start}
+	\State $\mathit{end} \gets \infty$
+	\label{alg:findlinesegments6-end}
+	\State $\mathit{slope} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.start.coordinate},\mathit{presentLine.end.coordinate}$}
+	\label{alg:findlinesegments6-slope-start}
+	\State $\mathit{ortho.x} \gets - \mathit{presentLine.start.slope.y}$
+	\State $\mathit{ortho.y} \gets \mathit{presentLine.start.slope.x}$
+	\label{alg:findlinesegments6-slope-end}
+	\If{\Call{abs}{$\mathit{slope.x}$} $\leq$ \Call{abs}{$\mathit{slope.y}$}}
+	\label{alg:findlinesegments6-isxsmaller}
 		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
 		\label{alg:findlinesegments6-newstart-start}
 			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
-			\If{$\mathit{edgel.coordinate.x} > \mathit{start}$}
-				\State $\mathit{start} \gets \mathit{edgel.coordinate.x}$
+			\If{$\mathit{edgel.coordinate.y} > start$}
+				\State $\mathit{start} \gets \mathit{edgel.coordinate.y}$
 				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
 			\EndIf
-			\If{$\mathit{edgel.coordinate.x} < end$}
-				\State $\mathit{end} \gets \mathit{edgel.coordinate.x}$
+			\If{$\mathit{edgel.coordinate.y} < \mathit{end}$}
+				\State $\mathit{end} \gets \mathit{edgel.coordinate.y}$
 				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
 			\EndIf
-			\State $\mathit{k} \gets k + 1$
+			\State $k \gets k + 1$
 		\EndFor
 		\label{alg:findlinesegments6-newstart-end}
-	\EndIf
-	\algstore{brk-findlinesegments6-else}
+	\algstore{brk-findlinesegments6-if}
 \end{algorithmic}
 \end{algorithm}

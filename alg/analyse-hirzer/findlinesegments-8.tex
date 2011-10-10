@@ -1,0 +1,34 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[!hb]
+\caption{\textproc{findLineSegments} (Unterstützungsedgel entfernen)}
+\label{alg:findlinesegments8}
+\begin{algorithmic}[1]
+	\algrestore{brk-findlinesegments7-else}
+	\State $\mathit{m} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
+	\State $\mathit{angle} \gets$ \Call{dotProduct}{$\mathit{m},\mathit{ortho}$}
+	\If{$\mathit{angle} < 0$}
+		\State $\mathit{newEnd} \gets \mathit{presentLine.start}$
+		\label{alg:findlinesegments8-newstart-start}
+		\State $\mathit{presentLine.start} \gets \mathit{presentLine.end}$
+		\State $\mathit{presentLine.end} \gets \mathit{newEnd}$
+		\label{alg:findlinesegments8-newstart-end}
+	\EndIf
+	\State $\mathit{m} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
+	\label{alg:findlinesegments8-save-start}
+	\State \Call{normalized}{$\mathit{m}$}
+	\State $\mathit{presentLine.slope} \gets \mathit{m}$
+	\label{alg:findlinesegments8-save-end}
+	\State \Call{addLineSegment}{$L,\mathit{presentLine}$}
+	\label{alg:findlinesegments8-addtomempool}
+	\State $\mathit{supportCount} \gets \mathit{presentLine.supportCount}$
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{supportCount}$}
+	\label{alg:findlinesegments8-removeedgel-start}
+		\State $\mathit{remove} \gets \mathit{presentLine.support}[i]$
+		\State \Call{removeEdgel}{$E,\mathit{remove}$}
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:findlinesegments7-removeedgel-end}
+\end{algorithmic}
+\end{algorithm}

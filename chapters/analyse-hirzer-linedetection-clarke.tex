@@ -248,64 +248,68 @@ Dies ist auch dadurch begründet, dass \textproc{rand} keine Eingabedaten benöt
  \textproc{getEdgel} (\autoref{alg:edgelpool-getedgel}) ist ebenfalls konstant. Die Laufzeit von
  \autoref{alg:findlinesegments3} ist somit abhängig von der Anzahl der Wiederholungen in Zeile
  \ref{alg:findlinesegments3-loop-end}. Im besten Fall werden bei der ersten Iteration zwei \gls{edgel} gefunden, deren
- Orientierung kompatibel ist. Dann ist die Laufzeit $T_{best} = \Theta(1)$. Im schlimmsten Fall wird
+ Orientierung kompatibel ist. Dann ist die Laufzeit $T_{best}(n) = \Theta(1)$. Im schlimmsten Fall wird
  \autoref{alg:findlinesegments3} $n = \mathit{maxIteration} = 64$ mal ausgeführt. Die Laufzeit ist dann
  $T_{worst} = \Theta(n)$.
 
 Wenn in \autoref{alg:findlinesegments3} ein Liniensegment erstellt wurde, werden in \autoref{alg:findlinesegments4} die
- \gls{edgel} zur unterstüztung der Hypothese hinzugefügt. Dazu wird in Zeile \ref{alg:findlinesegments4-isbelowmax}
- überprüft, ob die maximale Anzahl der Iterationen nicht überschritten wurde. Falls dem so ist wird
- \autoref{alg:findlinesegments4} nicht weiter ausgeführt. Andernfalls wird in Zeile
+ \gls{edgel} zur unterstüztung der Hypothese hinzugefügt.
+\input{alg/analyse-hirzer/findlinesegments-4}
+Dazu wird in Zeile \ref{alg:findlinesegments4-isbelowmax} überprüft, ob die maximale Anzahl der Iterationen nicht
+ überschritten wurde. Falls dem so ist wird \autoref{alg:findlinesegments4} nicht weiter ausgeführt und die Laufzeit
+ wäre $T_{best}(n) = \Theta(1)$. Andernfalls wird in Zeile
  \ref{alg:findlinesegments4-init-start}--\ref{alg:findlinesegments4-init-end} die Variable $\mathit{segment}$ zur
  Speicherung des Liniensegments vorbereitet und der Start- und Endedgel, sowie die Orientierung zugewiesen. Die Anzahl
- der Unterstützungedgels beträgt zu diesem Zeitpunkt noch $0$.
-
-\input{alg/analyse-hirzer/findlinesegments-4}
-
-In der Schleife in Zeile \ref{alg:findlinesegments4-loop-start}--\ref{alg:findlinesegments4-loop-end} werden die
- \gls{edgel} gezählt, die die Linienhypothese unterstützen. Dazu wird in Zeile \ref{alg:findlinesegments4-edgel} ein
- \gls{edgel} ausgewählt und in Zeile \ref{alg:findlinesegments4-isedgelnearline} untersucht, ob der Abstand zur Linie
- klein genug ist. Wenn nicht, wird in Zeile \ref{alg:findlinesegments4-inc} die Laufvariable $j$ inkrementiert und das
- nächste \gls{edgel} ausgewählt. Wenn ein \gls{edgel} nahe genug an dem Liniensegment liegt, wird es in Zeile
+ der Unterstützungedgels beträgt zu diesem Zeitpunkt noch $0$. In der Schleife in Zeile
+ \ref{alg:findlinesegments4-loop-start}--\ref{alg:findlinesegments4-loop-end} werden die \gls{edgel} gezählt, die die
+ Linienhypothese unterstützen. Dazu wird in Zeile \ref{alg:findlinesegments4-edgel} ein \gls{edgel} ausgewählt und in
+ Zeile \ref{alg:findlinesegments4-isedgelnearline} untersucht, ob der Abstand zur Linie klein genug ist. Wenn nicht,
+ wird in Zeile \ref{alg:findlinesegments4-inc} die Laufvariable $j$ inkrementiert und das nächste \gls{edgel}
+ ausgewählt. Wenn ein \gls{edgel} nahe genug an dem Liniensegment liegt, wird es in Zeile
  \ref{alg:findlinesegments4-addedgel} dem Liniensegment hinzugefügt und die Anzahl der Unterstützungsedgel wird in
  Zeile \ref{alg:findlinesegments4-count} erhöht. Nachdem alle \gls{edgel} untersucht wurden, wird in Zeile
  \ref{alg:findlinesegments4-hasmoresupport} überprüft, ob die Anzahl der \gls{edgel} des Liniensegments
  $\mathit{segment}$ größer ist als die Anzahl der \gls{edgel} in $\mathit{presentLine}$. Im Falle, dass
  $\mathit{segment}$ mehr Unterstützungsedgel besitzt, wird das Liniensegment in $\mathit{presentLine}$ gespeichert.
  Durch die Wiederholung in \autoref{alg:findlinesegments1} wird sichergestellt, dass das Liniensegment mit der
- größten Unterstützung ausgewählt wird.
-
-Nachdem ein Liniensegment mit genügend Unterstützung ausgewählt wurde, kann mit \autoref{alg:findlinesegments5} die
- Start- und Endposition des Liniensegments bestimmt werden. Da ein Liniensegment aus zwei zufällig ausgewählten
- \glspl{edgel} besteht, können diese \gls{edgel} und die tatsächlichen Start- und Endpunkte voneinander abweichen
- (Vgl. \autoref{fig:})
-
+ größten Unterstützung ausgewählt wird. Die Kosten von \autoref{alg:findlinesegments4} sind in
+ \autoref{alg:findlinesegments5} aufgeführt.
 \input{alg/analyse-hirzer/findlinesegments-5}
+Die Methoden \textproc{getEdgel} (\autoref{alg:edgelpool-getedgel}), \textproc{isEdgelNearLine}
+ (\autoref{alg:isedgelnearline}) und \textproc{addEdgel} (\autoref{alg:linesegmentaddedgel}) haben eine konstante
+ Laufzeit. Somit lassen sich die Kosten zu \autoref{eq:findlinesegments1} zusammenfassen.
+\input{eq/hirzer/findlinesegments1}
+Durch Umformung in \autoref{eq:findlinesegments2} erhalten wir eine Laufzeit von $T_{worst}(n) = \Theta(n)$
+ (\autoref{eq:findlinesegments3}).
 
-In Zeile \ref{alg:findlinesegments5-start}--\ref{alg:findlinesegments5-end} wird dazu die Variable $\mathit{start}$ mit
- einem kleinen Wert, und die Variable $\mathit{end}$ mit einem großen Wert, initialisiert. Die Steigung des
- Liniensegments und die Orhogonale werden in Zeile
- \ref{alg:findlinesegments5-slope-start}--\ref{alg:findlinesegments5-slope-end} berechnet. In Zeile
- \ref{alg:findlinesegments5-isxsmaller} wird geprüft, ob der Absolutwert der Steigung an Punkt $x$ kleiner ist als der
- Punkt $y$. Falls dem so ist, wird in Zeile
- \ref{alg:findlinesegments5-newstart-start}--\ref{alg:findlinesegments5-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $y$-Koordinate aller Unterstützungsedgels des Liniensegments verglichen werden. Andernfalls wird in
- \autoref{alg:findlinesegments6} in Zeile
- \ref{alg:findlinesegments6-newstart-start}--\ref{alg:findlinesegments6-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $x$-Koordiante aller \glspl{edgel} des Liniensegments untersucht und verglichen werden. Am Ende von
- \autoref{alg:findlinesegments6} ist in $\mathit{presentLine}$ ein neuer Start- und Endpunkt gespeichert.
-
+Nachdem ein Liniensegment mit genügend Unterstützung ausgewählt wurde, kann mit \autoref{alg:findlinesegments6} die
+ Start- und Endposition des Liniensegments bestimmt werden.
 \input{alg/analyse-hirzer/findlinesegments-6}
+Da ein Liniensegment aus zwei zufällig ausgewählten \glspl{edgel} besteht, können diese \gls{edgel} und die
+ tatsächlichen Start- und Endpunkte voneinander abweichen (Vgl. \autoref{fig:}) In Zeile
+ \ref{alg:findlinesegments6-start}--\ref{alg:findlinesegments6-end} wird dazu die Variable $\mathit{start}$ mit einem
+ kleinen Wert, und die Variable $\mathit{end}$ mit einem großen Wert, initialisiert. Die Steigung des Liniensegments
+ und die Orhogonale werden in Zeile \ref{alg:findlinesegments6-slope-start}--\ref{alg:findlinesegments6-slope-end}
+ berechnet. In Zeile \ref{alg:findlinesegments6-isxsmaller} wird geprüft, ob der Absolutwert der Steigung an Punkt $x$
+ kleiner ist als der Punkt $y$. Falls dem so ist, wird in Zeile
+ \ref{alg:findlinesegments6-newstart-start}--\ref{alg:findlinesegments6-newstart-end} ein neuer Start- und Endpunkt
+ gesucht, indem die $y$-Koordinate aller Unterstützungsedgels des Liniensegments verglichen werden. Andernfalls wird in
+ \autoref{alg:findlinesegments7} in Zeile
+ \ref{alg:findlinesegments7-newstart-start}--\ref{alg:findlinesegments7-newstart-end} ein neuer Start- und Endpunkt
+ gesucht, indem die $x$-Koordiante aller \glspl{edgel} des Liniensegments untersucht und verglichen werden. Am Ende von
+ \autoref{alg:findlinesegments7} ist in $\mathit{presentLine}$ ein neuer Start- und Endpunkt gespeichert.
 
-In \autoref{alg:findlinesegments7} wird nun geprüft, ob der Start- und Endpunkt vertauscht ist. Dazu wird der Winkel
+\input{alg/analyse-hirzer/findlinesegments-7}
+
+In \autoref{alg:findlinesegments8} wird nun geprüft, ob der Start- und Endpunkt vertauscht ist. Dazu wird der Winkel
  zwischen dem Liniensegment und seiner Orthogonalen gebildet. Wenn der Winkel kleiner als $0$ ist, werden Start- und
- Endpunkt in Zeile \ref{alg:findlinesegments7-newstart-start}--\ref{alg:findlinesegments7-newstart-end} getauscht. Im
- Anschluss daran, wird in Zeile \ref{alg:findlinesegments7-save-start}--\ref{alg:findlinesegments7-save-end} die
+ Endpunkt in Zeile \ref{alg:findlinesegments8-newstart-start}--\ref{alg:findlinesegments8-newstart-end} getauscht. Im
+ Anschluss daran, wird in Zeile \ref{alg:findlinesegments8-save-start}--\ref{alg:findlinesegments8-save-end} die
  Orientierung des Liniensegments berechnet und gespeichert. Danach wird das Liniensegment in Zeile
- \ref{alg:findlinesegments7-addtomempool} in den Speicherblock $L$ hinterlegt. Jetzt müssen alle Unterstützungsedgel
- des Liniensegments in Zeile \ref{alg:findlinesegments7-removeedgel-start}--\ref{alg:findlinesegments7-removeedgel-end}
+ \ref{alg:findlinesegments8-addtomempool} in den Speicherblock $L$ hinterlegt. Jetzt müssen alle Unterstützungsedgel
+ des Liniensegments in Zeile \ref{alg:findlinesegments8-removeedgel-start}--\ref{alg:findlinesegments8-removeedgel-end}
  aus dem Speicherblock $E$ entfernt werden. Das entfernen der Unterstützungsedgel bewirkt, dass entweder das
  RANSAC-Verfahren wiederholt werden kann ohne die gleichen \gls{edgel} erneut zu betrachten, oder, wenn nicht mehr
  genügend \gls{edgel} in der Region vorhanden sind, das Verfahren abzubrechen und die Linienerkennung zu beenden.
 
-\input{alg/analyse-hirzer/findlinesegments-7}
+\input{alg/analyse-hirzer/findlinesegments-8}

@@ -1,34 +1,27 @@
 \algblockdefx[DOWHILE]{DO}{WHILE}
    {\textbf{do}}
    [1]{\textbf{while} #1}
-\begin{algorithm}[!hb]
-\caption{\textproc{findLineSegments} (Unterstützungsedgel entfernen)}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Neuer Start- und Endpunkt für x)}
 \label{alg:findlinesegments7}
 \begin{algorithmic}[1]
-	\algrestore{brk-findlinesegments6-else}
-	\State $\mathit{m} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
-	\State $\mathit{angle} \gets$ \Call{dotProduct}{$\mathit{m},\mathit{ortho}$}
-	\If{$\mathit{angle} < 0$}
-		\State $\mathit{newEnd} \gets \mathit{presentLine.start}$
+	\algrestore{brk-findlinesegments6-if}
+	\Else
+		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
 		\label{alg:findlinesegments7-newstart-start}
-		\State $\mathit{presentLine.start} \gets \mathit{presentLine.end}$
-		\State $\mathit{presentLine.end} \gets \mathit{newEnd}$
+			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
+			\If{$\mathit{edgel.coordinate.x} > \mathit{start}$}
+				\State $\mathit{start} \gets \mathit{edgel.coordinate.x}$
+				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
+			\EndIf
+			\If{$\mathit{edgel.coordinate.x} < end$}
+				\State $\mathit{end} \gets \mathit{edgel.coordinate.x}$
+				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
+			\EndIf
+			\State $\mathit{k} \gets k + 1$
+		\EndFor
 		\label{alg:findlinesegments7-newstart-end}
 	\EndIf
-	\State $\mathit{m} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
-	\label{alg:findlinesegments7-save-start}
-	\State \Call{normalized}{$\mathit{m}$}
-	\State $\mathit{presentLine.slope} \gets \mathit{m}$
-	\label{alg:findlinesegments7-save-end}
-	\State \Call{addLineSegment}{$L,\mathit{presentLine}$}
-	\label{alg:findlinesegments7-addtomempool}
-	\State $\mathit{supportCount} \gets \mathit{presentLine.supportCount}$
-	\For{$i \gets 0$ \textbf{to} $i < \mathit{supportCount}$}
-	\label{alg:findlinesegments7-removeedgel-start}
-		\State $\mathit{remove} \gets \mathit{presentLine.support}[i]$
-		\State \Call{removeEdgel}{$E,\mathit{remove}$}
-		\State $i \gets i + 1$
-	\EndFor
-	\label{alg:findlinesegments7-removeedgel-end}
+	\algstore{brk-findlinesegments7-else}
 \end{algorithmic}
 \end{algorithm}

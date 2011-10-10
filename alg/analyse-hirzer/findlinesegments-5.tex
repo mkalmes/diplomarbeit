@@ -2,34 +2,34 @@
    {\textbf{do}}
    [1]{\textbf{while} #1}
 \begin{algorithm}[ht]
-\caption{\textproc{findLineSegments} (Neuer Start- und Endpunkt für y)}
+\caption{\textproc{findLineSegments} (Analyse)}
 \label{alg:findlinesegments5}
 \begin{algorithmic}[1]
-	\State $\mathit{start} \gets 0$
-	\label{alg:findlinesegments5-start}
-	\State $\mathit{end} \gets \infty$
-	\label{alg:findlinesegments5-end}
-	\State $\mathit{slope} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.start.coordinate},\mathit{presentLine.end.coordinate}$}
-	\label{alg:findlinesegments5-slope-start}
-	\State $\mathit{ortho.x} \gets - \mathit{presentLine.start.slope.y}$
-	\State $\mathit{ortho.y} \gets \mathit{presentLine.start.slope.x}$
-	\label{alg:findlinesegments5-slope-end}
-	\If{\Call{abs}{$\mathit{slope.x}$} $\leq$ \Call{abs}{$\mathit{slope.y}$}}
-	\label{alg:findlinesegments5-isxsmaller}
-		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
-		\label{alg:findlinesegments5-newstart-start}
-			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
-			\If{$\mathit{edgel.coordinate.y} > start$}
-				\State $\mathit{start} \gets \mathit{edgel.coordinate.y}$
-				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
+	\If{$\mathit{iterator} < \mathit{maxIteration}$}
+	\Cost{$c_{1}$}{$1$}
+		\State Initialisierung lokaler Variablen
+		\Cost{$c_{2}$}{$1$}
+		\For{alle \gls{edgel} in $E$}
+		\Cost{$c_{3}$}{$n$}
+			\State $\mathit{supportEdgel} \gets$ \Call{getEdgel}{$E,j$}
+			\Cost{$c_{4}$}{$\sum_{j=0}^{n - 1} \Theta(1)$}
+			\If{\gls{edgel} liegt nahe am Liniensegment}
+			\Cost{$c_{5}$}{$\sum_{j=0}^{n - 1} \Theta(1)$}
+				\State \gls{edgel} zum Segment hinzufügen
+				\Cost{$c_{6}$}{$\sum_{j=0}^{n - 1} \Theta(1)$}
+				\State $\mathit{segment.supportCount} \gets \mathit{segment.supportCount} + 1$
+				\Cost{$c_{7}$}{$\sum_{j=0}^{n - 1}1$}
 			\EndIf
-			\If{$\mathit{edgel.coordinate.y} < \mathit{end}$}
-				\State $\mathit{end} \gets \mathit{edgel.coordinate.y}$
-				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
-			\EndIf
-			\State $k \gets k + 1$
+			\State $j \gets j + 1$
+			\Cost{$c_{8}$}{$\sum_{j=0}^{n - 1}1$}
 		\EndFor
-		\label{alg:findlinesegments5-newstart-end}
-	\algstore{brk-findlinesegments5-if}
+		\label{alg:findlinesegments5-loop-end}
+		\If{$\mathit{segment.supportCount} > \mathit{presentLine.supportCount}$}
+		\Cost{$c_{9}$}{$1$}
+		\label{alg:findlinesegments5-hasmoresupport}
+			\State $\mathit{presentLine} \gets \mathit{segment}$
+			\Cost{$c_{10}$}{$1$}
+		\EndIf
+	\EndIf
 \end{algorithmic}
 \end{algorithm}
