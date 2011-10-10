@@ -133,11 +133,13 @@ Um die Laufzeit der Funktion \textproc{memmove} zu bestimmen, wurde ein Testprog
 \label{sub:datenstruktur-edgels-memmove}
  die benötigt wird, um Einträge zu verschieben. Anhand der Daten wurde mittels einer Regressionsanalyse untersucht, ob
  die gemessenen Daten einen linearen Zusammenhang aufweisen. Die erfassten $2200$ Datenpunkte wurden nach dem Vorbild
- von \textproc{time}\footcite{time-1} ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Aus User- und Sys-Zeit wurde
- die CPU-Zeit bestimmt, die zur Analyse benutzt wurde. Die Kovarianz für $X = \mathit{BYTES}$ und $Y = \mathit{CPU}$
- beträgt $r = 0.9754288$ und $r^2 = 0.9515$. Der Interzept beträgt $\beta_0 = -37.77\e{-06}$ (Abweichung von
- $58.55\e{-06}$) und die Steigung $\beta_1 = 5.885\e{-09}$ (Abweichung von $28.35\e{-12}$). Daraus ergibt sich eine
- Laufzeit von $T(n) =\Theta(n)$ (Vgl.~\autoref{eq:analyse-removeedgel-worst}).
+ von \textproc{time}\footcite{time-1} ermittelt um Real-, User- und Sys-Zeit zu bestimmen. Dabei wurde ein Bereich von
+ $4$ Byte bis $8388608$ Byte $= 8$ MByte als Eingabe für \textproc{memmove} verwendet. Aus User- und Sys-Zeit wurde
+ die CPU-Zeit bestimmt, die zur Analyse benutzt wurde. Der Korrelationskoeffizient für $X = \mathit{BYTES}$ und
+ $Y = \mathit{CPU}$ beträgt $r = 0.9754288$ und das Bestimmungsmaß $r^2 = 0.9515$. Der Interzept beträgt
+ $\beta_0 = -37.77\e{-06}$ (Abweichung von $58.55\e{-06}$) und die Steigung $\beta_1 = 5.885\e{-09}$
+ (Abweichung von $28.35\e{-12}$). Daraus ergibt sich eine Laufzeit von $T(n) =\Theta(n)$
+ (Vgl.~\autoref{eq:analyse-removeedgel-worst}).
 \begin{equation}
 	\label{eq:analyse-removeedgel-worst}
 	\begin{split}
@@ -155,12 +157,23 @@ In \autoref{fig:regression-memmove} sind die Daten grafisch dargestellt.
 	 $95\%$ und $99\%$ für die vorhergesagten Werte enthalten.}
 	\label{fig:regression-memmove}
 \end{figure}
-Im besten Fall wird der zu löschende \gls{edgel} nicht gefunden. Somit wird nur Zeile
- \ref{alg:edgelpool-removeedgel-position}--\ref{alg:edgelpool-removeedgel-best-end} von
- \autoref{alg:edgelpool-removeedgel} ausgeführt und beträgt demnach $T_{best} = \Theta(n)$. Im schlechtesten Fall
- liegt der zu löschende \gls{edgel} am Anfang des Speicherblocks. Die Laufzeit errechnet sich dann aus der Zeit, die
- benötigt wird, um die Position eines \gls{edgel} am Anfang eines Speicherblocks zu finden, und mit \textproc{memmove}
- den Speicherbereich zu verschieben. Daraus ergibt sich die Laufzeit $T_{worst} = \Theta(1) + \Theta(n) = \Theta(n)$.
+
+In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und somit der Speicher, begrenzt
+ (Vgl. \autoref{alg:datastructure-edgelpool}). In der Implementierung des Verfahrens nach \citeauthor{hirzer08} werden
+ maximal $N = 8192$ \gls{edgel} gespeichert. Die Regressionsanalyse wurde mit einer Eingabemenge von $4$ \gls{edgel}
+ bis $8192$ \gls{edgel} wiederholt. Dies entspricht einer Speichergröße von $64$ Byte bis $131072$ Byte. Der
+ Korrelationskoeffizient $r = 0.1332313$ und das Bestimmungsmaß $r^2 = 0.01775$ zeigen, dass eine lineare Abhängigkeit
+ in diesem Bereich unwahrscheinlich ist. Wie in \autoref{fig:regression-memmove2} zusehen ist, sind Mittelwert und
+ Median parallel zur $x$-Achse. Somit ist die Laufzeit von \textproc{memmove}, für die Untersuchung des Verfahrens nach
+ Hirzer mit maximal $8192$ Einträgen, konstant.
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Regression-memmove2.pdf_tex}
+	\caption{Regressionsanalyse mit $1200$ Datenpunkten. Der Mittelwert ist als grüne Linie eingezeichnet und der
+	 Median als rote Linie.}
+	\label{fig:regression-memmove2}
+\end{figure}
+Im besten Fall wird die Position eines \gls{edgel} am Anfang eines Speicherblocks gefunden und mit \textproc{memmove} der Speicherbereich verschoben. Daraus ergibt sich eine Laufzeit von $T_{best}(n) = \Theta(1) + \Theta(1) = \Theta(2)$ und ist somit konstant. Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} nicht gefunden. Dadurch wird Zeile \ref{alg:edgelpool-removeedgel-position}--\ref{alg:edgelpool-removeedgel-best-end} vollständig durchlaufen und die Laufzeit beträgt $T_{worst}(n) = \Theta(n)$.
 
 Um einen Speicherblock für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz.
 \input{alg/analyse-hirzer/datastructure-edgelpool-resetmemorypool}
