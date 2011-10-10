@@ -4,8 +4,11 @@
 \begin{algorithmic}[1]
 	\Require $l, e, \mathit{pos}$
 	\If{$\mathit{pos} > \mathit{MAXEDGELS} - 1$}
+	\label{alg:linesegmentaddedgel-hasvalidrange}
 		\State \textbf{return}
+		\label{alg:linesegmentaddedgel-notvalidrange}
 	\EndIf
-	\State $l(support[\mathit{pos}]) \gets e$
+	\State $\mathit{l.support}[\mathit{pos}] \gets e$
+	\label{alg:linesegmentaddedgel-storeedgel}
 \end{algorithmic}
 \end{algorithm}

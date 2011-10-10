@@ -14,6 +14,16 @@ Eine Linie besteht aus den \glspl{edgel} $\mathit{start}$ und $\mathit{end}$, di
  $\mathit{support}$ dient zur Speicherung von \glspl{edgel}, die eine Linienhypothese unterstützen. Die Lese- und
  Schreibzugriffe auf die Datenstruktur ist konstant.
 
+Mit \autoref{alg:linesegmentaddedgel} wird ein Unterstüzungsedgel zu einem Liniensegment hinzugefügt. Das Verfahren
+ benötigt dazu das Liniensegment $l$, den \gls{edgel} $e$ und die Position $\mathit{pos}$, an die der \gls{edgel}
+ gespeichert wird.
+\input{alg/analyse-hirzer/datastructure-linesegmentaddedgel}
+In Zeile \ref{alg:linesegmentaddedgel-hasvalidrange} wird überprüft, ob genügend Speicherplatz für ein \gls{edgel} zur
+ Verfügung steht. Falls dem nicht so ist, wird in Zeile \ref{alg:linesegmentaddedgel-notvalidrange} das Verfahren
+ beendet. Andernfalls, wenn genügend Speicherplatz vorhanden ist, wird in Zeile
+ \ref{alg:linesegmentaddedgel-storeedgel} der \gls{edgel} im Liniensegment gespeichert. Die Laufzeit des Verfahrens ist
+ konstant.
+
 Die Methode \textproc{isOrientationCompatible} untersucht, ob zwei Liniensegmente $\mathit{left}$ und $\mathit{right}$
  fast parallel zueinander stehen (\autoref{alg:linesegmentisorientationcompatible}).
 \input{alg/analyse-hirzer/datastructure-linesegmentisorientationcompatible}
