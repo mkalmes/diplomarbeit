@@ -1,15 +1,17 @@
 \begin{subequations}
 \begin{align}
 \label{eq:findedgels4}
-T(n,m)& =
-c_{17} \cdot (\frac{m}{5} + 1) + (c_{18} + c_{19} + c_{32}) \cdot \sum_{x=0}^{\frac{m}{5}} 1
- + c_{20} \cdot \sum_{x=0}^{\frac{m}{5}} (n+1) \\
+T(n)& =
+c_{17} \cdot (\frac{n}{5} + 1) + (c_{18} + c_{19} + c_{32}) \cdot \sum_{x=0}^{\frac{n}{5}} 1
+ + c_{20} \cdot \sum_{x=0}^{\frac{n}{5}} (n+1) \\
 & \quad + (c_{21} + c_{22} + c_{23} + c_{24} + c_{25} + c_{26} + c_{27} + c_{28} + c_{29} + c_{30} + c_{31})
- \cdot \sum_{x=0}^{\frac{m}{5}} \sum_{y=0}^{n} 1 \nonumber \\
+ \cdot \sum_{x=0}^{\frac{n}{5}} \sum_{y=0}^{n} 1 \nonumber \\
 \label{eq:findedgels5}
-T(n,m)& = c_{17} + (c_{17} + c_{18} + c_{19} + c_{20} + c_{32}) \cdot \frac{m}{5} + (c_{20} + \ldots + c_{31})
-\cdot (\frac{m}{5} \cdot n) \\
+T(n)& = c_{17} + (c_{17} + c_{18} + c_{19} + c_{20} + c_{32}) \cdot \frac{n}{5} + (c_{20} + \ldots + c_{31})
+\cdot (\frac{n}{5} \cdot n) \\
 \label{eq:findedgels6}
-T(n,m)& = \frac{m \cdot n}{5}
+T(n)& = \frac{1}{5}n^2 \\
+\label{eq:findedgels4-end}
+T(n)& = n^2
 \end{align}
 \end{subequations}

@@ -115,25 +115,22 @@ Die bereits vorgestellten Methoden \textproc{vectorSetCoordinate} (\autoref{alg:
  konstante Laufzeit, die zu einem späteren Zeitpunkt bewiesen wird.  Die Laufzeit von
  \autoref{alg:findedgels-horizontal-analyse} lässt sich wie in \autoref{eq:findedgels1} zusammenfassen.
 \input{eq/hirzer/findedgels1}
-Der Algorithmus ist von den Variablen $t$, $l$ und $\mathit{regionSize}$ abhängig. Der Bereich
- $[t,t+\mathit{regionSize})$ und $[l,l+\mathit{regionSize})$ wird in der Analyse als $[t,t+\mathit{regionSize}) = n$
- und $[l,l+\mathit{regionSize}) = m$ bezeichnet. Durch Umformung in \autoref{eq:findedgels2} werden die Konstanten
- isoliert, was zu einer Laufzeit von $T(n,m) = \Theta(\tfrac{nm}{5})$ für \autoref{alg:findedgels-horizontal-analyse}
- führt (\autoref{eq:findedgels3}). Die Kosten für \textproc{findEdgels} zur Untersuchung der vertikalen Scanline sind in
- \autoref{alg:findedgels-vertical-analyse} aufgeführt und entsprechen den Kosten von
+Der Algorithmus ist von der Eingabgröße $n = \mathit{regionSize} = 40$ abhängig. Durch Umformung in \autoref{eq:findedgels2} werden die Konstanten isoliert, was zu einer Laufzeit von $T(n) = \Theta(n^2)$ für \autoref{alg:findedgels-horizontal-analyse}
+ führt (\autoref{eq:findedgels1-end}). Die Kosten für \textproc{findEdgels} zur Untersuchung der vertikalen Scanline
+ sind in \autoref{alg:findedgels-vertical-analyse} aufgeführt und entsprechen den Kosten von
  \autoref{alg:findedgels-horizontal-analyse}.
 \input{alg/analyse-hirzer/findedgelsclarke4}
 Die Kosten des Algorithmus sind in \autoref{eq:findedgels4} aufgeführt und durch Umformung in \autoref{eq:findedgels5}
  werden die Konstanten isoliert.
 \input{eq/hirzer/findedgels2}
-Dies führt zu einer Laufzeit von $T(n,m) = \Theta(\tfrac{nm}{5})$ für \autoref{alg:findedgels-vertical-analyse}
- (\autoref{eq:findedgels6}).
+Dies führt zu einer Laufzeit von $T(n) = \Theta(n^2)$ für \autoref{alg:findedgels-vertical-analyse}
+ (\autoref{eq:findedgels4-end}).
 Um die Laufzeit von \textproc{findEdgels} zu bestimmen, werden die Laufzeiten von
  \autoref{alg:findedgels-horizontal-analyse} und \autoref{alg:findedgels-vertical-analyse} in \autoref{eq:findedgels7}
  zusammengefasst.
 \input{eq/hirzer/findedgels3}
 Durch Umformung in \autoref{eq:findedgels8} kann die Laufzeit des Algorithmus in \autoref{eq:findedgels9} ermittelt
- werden. Die Laufzeit von \textproc{findEdgels} entspricht demnach $T(n,m) = \Theta(\tfrac{nm}{5})$.
+ werden. Die Laufzeit von \textproc{findEdgels} entspricht demnach $T(n) = \Theta(n^2)$.
 
 \autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical} berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
@@ -384,3 +381,8 @@ In \autoref{eq:findlinesegments21}--\autoref{eq:findlinesegments24} werden die K
  niedriger Ordnung in \autoref{eq:findlinesegments26}, auf $T_{worst}=\Theta(n^2)$ bestimmt werden
  (\autoref{eq:findlinesegments27}).
 \input{eq/hirzer/findlinesegments8}
+
+\input{alg/analyse-hirzer/linedetection-clarke2}
+Die Eingabemenge zur Analyse der Laufzeit von \autoref{alg:linedetection-clarke} entspricht
+ $n = I_m = \mathit{imageWidth} \cdot \mathit{imageHeight}$. Die Eingabemenge für \textproc{findEdgels} ist $n$ für  Laufzeit beträgt $T(regionSize) = \Theta(regionSize^2)$. Es werden $\tfrac{2}{5}regionSize^2$ Pixel untersucht, sodass \textproc{findEdgels} maximal $\tfrac{1}{5}(regionSize^2 - 2)$ \gls{edgel} finden kann (Bedingung in Zeile \ref{} horizontal und Zeile \ref{} vertikal). Die Laufzeit von \textproc{findLineSegments} beträgt $T(n) = \Theta(n^2)$ für $n = $ Anzahl der \gls{edgel}. Somit beträgt die Laufzeit in der Untersuchung $T\bigl(\tfrac{1}{5}(regionSize^2 - 2)\bigr) = \Theta\bigl(\tfrac{1}{25}(regionSize^2 - 2)^2\bigr)$ Die Kosten sind in \autoref{} aufgeführt, wobei $\mathit{regionSize}$ durch $r$ zur besseren Lesbarkeit ersetzt wurde.
+\input{eq/hirzer/linedetection-clarke}

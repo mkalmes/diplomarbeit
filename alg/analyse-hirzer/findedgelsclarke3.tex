@@ -10,32 +10,32 @@
 			\State $p_2 \gets 0$
 			\Cost{$c_3$}{$\sum_{y=0}^{\tfrac{n}{5}} 1$}
 			\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
-			\Cost{$c_4$}{$\sum_{y=0}^{\tfrac{n}{5}} (m + 1)$}
+			\Cost{$c_4$}{$\sum_{y=0}^{\tfrac{n}{5}} (n + 1)$}
 				\State Gradienten bestimmen
-				\Cost{$c_5$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} \Theta(1)$}
+				\Cost{$c_5$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} \Theta(1)$}
 				\If{$\mathit{currentEdgel} > \mathit{threshold}$}
-				\Cost{$c_6$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+				\Cost{$c_6$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 				\Else
 					\State $\mathit{currentEdgel} \gets 0$
-					\Cost{$c_7$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+					\Cost{$c_7$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 				\EndIf
 				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > \mathit{currentEdgel}$}
-				\Cost{$c_8$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+				\Cost{$c_8$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 					\State $\mathit{edgel} \gets \infty$
-					\Cost{$c_9$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+					\Cost{$c_9$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 					\State Koordinaten speichern
-					\Cost{$c_{10}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} \Theta(1)$}
+					\Cost{$c_{10}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} \Theta(1)$}
 					\State Orientierung berechnen
-					\Cost{$c_{11}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} \Theta(1)$}
+					\Cost{$c_{11}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} \Theta(1)$}
 					\State \Call{addEdgel}{$E,\mathit{edgel}$}
-					\Cost{$c_{12}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} \Theta(1)$}
+					\Cost{$c_{12}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} \Theta(1)$}
 				\EndIf
 				\State $p_2 \gets p_1$
-				\Cost{$c_{13}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+				\Cost{$c_{13}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 				\State $p_1 \gets currentEdgel$
-				\Cost{$c_{14}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+				\Cost{$c_{14}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 				\State $x \gets x + 1$
-				\Cost{$c_{15}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{m} 1$}
+				\Cost{$c_{15}$}{$\sum_{y=0}^{\tfrac{n}{5}} \sum_{x=0}^{n} 1$}
 			\EndFor
 			\State $y \gets y + 5$
 			\Cost{$c_{16}$}{$\sum_{y=0}^{\tfrac{n}{5}} 1$}

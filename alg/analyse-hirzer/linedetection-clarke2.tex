@@ -1,0 +1,26 @@
+r\begin{algorithm}[!ht]
+\caption{\textproc{lineDetection} (Analyse)}
+\label{alg:linedetection-clarke-analyse}
+	\begin{algorithmic}[1]
+		\Require $I_m$
+		\For{$y \gets 0$ \textbf{to} $y < \mathit{imageHeight}$}
+		\Cost{$c_1$}{$\tfrac{1}{2}\tfrac{n}{r} + 1$}
+			\For{$x \gets 0$ \textbf{to} $x < \mathit{imageWidth}$}
+			\Cost{$c_2$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}}
+			\left(\tfrac{1}{2}\tfrac{n}{r} + 1\right)$}
+				\State \Call{findEdgels}{$I_m,E,x,y$}
+				\Cost{$c_3$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}} \sum_{x=0}^{\tfrac{1}{2}\tfrac{n}{r}} \Theta(r^2)$}
+				\State \Call{findLineSegments}{$E,L$}
+				\Cost{$c_4$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}} \sum_{x=0}^{\tfrac{1}{2}\tfrac{n}{r}} \Theta\bigl(\tfrac{1}{25}(r^2 - 2)^2\bigr)$}
+				\State \Call{resetMemoryPool}{$E$}
+				\Cost{$c_5$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}} \sum_{x=0}^{\tfrac{1}{2}\tfrac{n}{r}} \Theta(1)$}
+				\State \Call{resetMemoryPool}{$L$}
+				\Cost{$c_6$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}} \sum_{x=0}^{\tfrac{1}{2}\tfrac{n}{r}} \Theta(1)$}
+				\State $ x \gets x + \mathit{r}$
+				\Cost{$c_7$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}} \sum_{x=0}^{\tfrac{1}{2}\tfrac{n}{r}} 1$}
+			\EndFor
+			\State $y \gets y + \mathit{r}$
+			\Cost{$c_8$}{$\sum_{y=0}^{\tfrac{1}{2}\tfrac{n}{r}} 1$}
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
