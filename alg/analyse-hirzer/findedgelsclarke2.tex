@@ -15,6 +15,7 @@
 					\State $currentEdgel \gets 0$
 				\EndIf
 				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
+				\label{alg:findedgels-vertical-maxima}
 					\Comment $p_1$ ist lokales Maximum
 					\State $edgel \gets \infty$
 					\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}

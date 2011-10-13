@@ -2,17 +2,23 @@
 \label{eq:linedetection-clarke}
 \begin{align}
 \label{eq:linedetection-clarke-1}
-T(n)& = c_{1} (\tfrac{n}{2r} + 1) + c_{2} \sum_{y=0}^{\tfrac{n}{2r}}
- \left(\tfrac{n}{2r} + 1\right) + c_3 \sum_{y=0}^{\tfrac{n}{2r}}
- \sum_{x=0}^{\tfrac{n}{2r}} r^2 + c_4 \sum_{y=0}^{\tfrac{n}{2r}}
- \sum_{x=0}^{\tfrac{n}{2r}} \tfrac{1}{25}(r^2 - 2)^2 \\
-& \quad + (c_{5} + c_{6} + c_{7}) \sum_{y=0}^{\tfrac{n}{2r}} \sum_{x=0}^{\tfrac{n}{2r}} 1
-+ c_8 \sum_{y=0}^{\tfrac{n}{2r}} 1 \nonumber \\
+T(n)& = c_{1} (\frac{n}{2r} + 1) + c_{2} \sum_{y=0}^{\frac{n}{2r}}
+ \left(\frac{n}{2r} + 1\right) + c_3 \sum_{y=0}^{\frac{n}{2r}}
+ \sum_{x=0}^{\frac{n}{2r}} (\frac{2 r^2}{5})^2 \\
+& \quad + c_4 \sum_{y=0}^{\frac{n}{2r}} \sum_{x=0}^{\frac{n}{2r}} \frac{1}{25}(r - 2)^2 r^2
+ + (c_{5} + c_{6} + c_{7}) \sum_{y=0}^{\frac{n}{2r}} \sum_{x=0}^{\frac{n}{2r}} 1
++ c_8 \sum_{y=0}^{\frac{n}{2r}} 1 \nonumber \\
 \label{eq:linedetection-clarke-2}
-T(n)& = (c_{1} + c_{8}) (\tfrac{n}{2r} + 1) + c_{3} r^2 (\tfrac{n}{2r} + 1)^2
-+ c_{4} \tfrac{1}{25} (r^2 - 2)^2 (\tfrac{n}{2r} + 1)^2 \\
-& \quad + (c_{2} + c_{5} + c_{6} + c_{7}) (\tfrac{n}{2r} + 1)^2 \nonumber \\
-\label{eq:linedetection-clarke-2}
-T(n)& = r^2(\tfrac{n}{2r} + 1)^2 + (r^2 - 2)^2 (\tfrac{n}{2r} + 1)^2 + (\tfrac{n}{2r} + 1)^2 + \tfrac{n}{2r} + 1
+T(n)& = (c_{1} + c_{8}) (\frac{n}{2r} + 1) + c_{3} \frac{4}{25} r^2 (\frac{n}{2r} + 1)^2
++ c_{4} \frac{1}{25} (r - 2)^2 r^2 (\frac{n}{2r} + 1)^2 \\
+& \quad + (c_{2} + c_{5} + c_{6} + c_{7}) (\frac{n}{2r} + 1)^2 \nonumber \\
+\label{eq:linedetection-clarke-3}
+T(n)& = (r - 2)^2 r^2 (\frac{n}{2r} + 1)^2 + r^2 (\frac{n}{2r} + 1)^2 + (\frac{n}{2r} + 1)^2 + \frac{n}{2r} + 1 \\
+\label{eq:linedetection-clarke-4}
+T(n)& = 2312001 (\frac{1}{80} n + 1)^2 + \frac{1}{80} n + 1 \\
+\label{eq:linedetection-clarke-5}
+T(n)& = n^2+ n\\
+\label{eq:linedetection-clarke-6}
+T(n)& = n^2
 \end{align}
 \end{subequations}
