@@ -1,4 +1,4 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{findEdgels} (Fortsetzung)}
 \label{alg:findedgelshirzer-2}
 	\begin{algorithmic}[1]
@@ -7,20 +7,26 @@
 			\State $\mathit{prev1} \gets 0$
 			\State $\mathit{prev2} \gets 0$
 			\For{$y \gets \mathit{top}$ \textbf{to} $y < \mathit{top} + \mathit{regionSize}$}
-				\State $\mathit{currentEdgel} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{blue},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\State $\mathit{currentEdgel} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{blue},\mathit{imageWidth},
+				 \mathit{imageHeight}$}
 				\label{alg:findedgelshirzer-2-color-start}
-				\State $\mathit{red} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{red},\mathit{imageWidth}, \mathit{imageHeight}$}
-				\State $\mathit{green} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{green},\mathit{imageWidth}, \mathit{imageHeight}$}
+				\State $\mathit{red} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{red},\mathit{imageWidth},
+				 \mathit{imageHeight}$}
+				\State $\mathit{green} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{green},\mathit{imageWidth},
+				 \mathit{imageHeight}$}
 				\label{alg:findedgelshirzer-2-color-end}
-				\If{$\mathit{currentEdgel} > \mathit{threshold} \land \mathit{red} > \mathit{threshold} \land \mathit{green} > \mathit{threshold}$}
+				\If{$\mathit{currentEdgel} > \mathit{threshold} \land \mathit{red} > \mathit{threshold} \land
+				 \mathit{green} > \mathit{threshold}$}
 				\Comment Edgel gefunden
 				\Else
 					\State $\mathit{currentEdgel} \gets 0$
 				\EndIf
-				\If{$\mathit{prev1} > 0 \land \mathit{prev2} > \mathit{prev1} \land \mathit{prev1} > \mathit{currentEdgel}$}
+				\If{$\mathit{prev1} > 0 \land \mathit{prev2} > \mathit{prev1} \land \mathit{prev1} >
+				 \mathit{currentEdgel}$}
 				\State $\mathit{edgel} \gets \infty$
 				\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}
-				\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth}, \mathit{imageHeight}, x,y - 1$}
+				\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth},
+				 \mathit{imageHeight}, x,y - 1$}
 				\State \Call{addEdgel}{$E,\mathit{edgel}$}
 				\EndIf
 				\State $\mathit{prev2} \gets \mathit{prev1}$
