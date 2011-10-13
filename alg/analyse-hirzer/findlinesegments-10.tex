@@ -1,0 +1,50 @@
+\algblockdefx[DOWHILE]{DO}{WHILE}
+   {\textbf{do}}
+   [1]{\textbf{while} #1}
+\begin{algorithm}[ht]
+\caption{\textproc{findLineSegments} (Analyse im schlechtesten Fall)}
+\label{alg:findlinesegments10}
+\begin{algorithmic}[1]
+	\Require $E, L$
+	\State $\mathit{presentLine} \gets \infty$
+	\Cost{$c_{1}$}{$1$}
+	\State $\mathit{edgelsInRegion} \gets 0$
+	\Cost{$c_{2}$}{$1$}
+	\DO
+	\label{alg:findlinesegments10-do}
+		\State $\mathit{presentLine.supportCount} \gets 0$
+		\Cost{$c_{3}$}{$\sum_{j=1}^{m}1$}
+		\For{$i \gets 0$ \textbf{to} $i < 25$}
+		\Cost{$c_{4}$}{$\sum_{j=1}^{{m}} 25 + 1$}
+			\State \autoref{alg:findlinesegments2}
+			\Cost{$c_{5}$}{$\sum_{j=1}^{m}\sum_{i=0}^{25}1$}
+			\State \autoref{alg:findlinesegments3}
+			\Cost{$c_{6}$}{$\sum_{j=1}^{m}\sum_{i=0}^{25}64$}
+			\State \autoref{alg:findlinesegments4}
+			\Cost{$c_{7}$}{$\sum_{j=1}^{m}\sum_{i=0}^{25}n$}
+			\State $i \gets i + 1$
+			\Cost{$c_{8}$}{$\sum_{j=1}^{m}\sum_{i=0}^{25}1$}
+		\EndFor
+		\If{$\mathit{presentLine.supportCount} > \mathit{minEdgels}$}
+		\label{alg:findlinesegments10-hasmoresupport}
+		\Cost{$c_{9}$}{$\sum_{j=1}^{m}1$}
+		\label{alg:findlinesegments10-remove-start}
+			\State \autoref{alg:findlinesegments6}
+			\Cost{$c_{10}$}{$\sum_{j=1}^{m}j$}
+			\State \autoref{alg:findlinesegments7}
+			\Cost{$c_{11}$}{$\sum_{j=1}^{m}j$}
+			\State \autoref{alg:findlinesegments8}
+			\Cost{$c_{12}$}{$\sum_{j=1}^{m}jn$}
+		\EndIf
+		\label{alg:findlinesegments10-remove-end}
+		\State $\mathit{edgelsInRegion} \gets$ \Call{getEdgelCount}{$E$}
+		\Cost{$c_{13}$}{$\sum_{j=1}^{m}1$}
+	\WHILE{$\left(
+	\begin{aligned}
+		& \quad \mathit{presentLine.supportCount} > \mathit{minEdgels}\\
+		& \land \mathit{edgelsInRegion} > \mathit{minEdgels}
+	\end{aligned}\right)$}
+	\Cost{$c_{14}$}{$m$}
+	\label{alg:findlinesegments10-while}
+\end{algorithmic}
+\end{algorithm}

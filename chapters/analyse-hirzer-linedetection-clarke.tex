@@ -210,7 +210,7 @@ In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init
  mehrmahls wiederholt, um das Liniensegment mit den meisten Unterstützungsedgels zu finden. In Zeile
  \ref{alg:findlinesegments1-hasenoughsupport} wird die Anzahl der der unterstützenden \gls{edgel} mit der Anzahl der
  benötigten \gls{edgel} verglichen. Nur wenn genügend \gls{edgel} das Liniensegment unterstützen, wird in
- \autoref{alg:findlinesegments5}--\autoref{alg:findlinesegments7} das Verfahren fortgesetzt und die
+ \autoref{alg:findlinesegments6}--\autoref{alg:findlinesegments8} das Verfahren fortgesetzt und die
  Unterstützungsedgels aus dem Speicherblock $E$ entfernt.
 
 In \autoref{alg:findlinesegments2} wird die Initialisierung der Variablen vorgenommen, die zur Erstellung eines
@@ -249,8 +249,8 @@ Dies ist auch dadurch begründet, dass \textproc{rand} keine Eingabedaten benöt
  \autoref{alg:findlinesegments3} ist somit abhängig von der Anzahl der Wiederholungen in Zeile
  \ref{alg:findlinesegments3-loop-end}. Im besten Fall werden bei der ersten Iteration zwei \gls{edgel} gefunden, deren
  Orientierung kompatibel ist. Dann ist die Laufzeit $T_{best}(n) = \Theta(1)$. Im schlimmsten Fall wird
- \autoref{alg:findlinesegments3} $n = \mathit{maxIteration} = 64$ mal ausgeführt. Die Laufzeit ist dann
- $T_{worst} = \Theta(n)$.
+ \autoref{alg:findlinesegments3} $\mathit{maxIteration} = 64$ mal ausgeführt. Die Laufzeit ist dann
+ $T_{worst} (n) = \Theta(64)$.
 
 Wenn in \autoref{alg:findlinesegments3} ein Liniensegment erstellt wurde, werden in \autoref{alg:findlinesegments4} die
  \gls{edgel} zur unterstüztung der Hypothese hinzugefügt.
@@ -293,23 +293,94 @@ Da ein Liniensegment aus zwei zufällig ausgewählten \glspl{edgel} besteht, kö
  berechnet. In Zeile \ref{alg:findlinesegments6-isxsmaller} wird geprüft, ob der Absolutwert der Steigung an Punkt $x$
  kleiner ist als der Punkt $y$. Falls dem so ist, wird in Zeile
  \ref{alg:findlinesegments6-newstart-start}--\ref{alg:findlinesegments6-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $y$-Koordinate aller Unterstützungsedgels des Liniensegments verglichen werden. Andernfalls wird in
- \autoref{alg:findlinesegments7} in Zeile
+ gesucht, indem die $y$-Koordinate aller Unterstützungsedgels des Liniensegments verglichen werden. Die Kosten von
+ \textproc{findLineSegments} sind in \autoref{alg:findlinesegments6} aufgelistet. Die Laufzeit des Algorithmus ist
+ abhängig von $[k=0,\mathit{presentLine.supportCount}) = n$ und beträgt demnach $T(n) = \Theta(n)$
+ (Vgl. \autoref{eq:findlinesegments-startendy}).
+\input{eq/hirzer/findlinesegments2}
+Wenn in \autoref{alg:findlinesegments6} in Zeile \ref{alg:findlinesegments6-isxsmaller} der Absolutwert der Steigung an
+ Punkt $x$ größer ist als an Punkt $y$, wird in \autoref{alg:findlinesegments7} in Zeile
  \ref{alg:findlinesegments7-newstart-start}--\ref{alg:findlinesegments7-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $x$-Koordiante aller \glspl{edgel} des Liniensegments untersucht und verglichen werden. Am Ende von
- \autoref{alg:findlinesegments7} ist in $\mathit{presentLine}$ ein neuer Start- und Endpunkt gespeichert.
-
+ gesucht, indem die $x$-Koordiante aller \glspl{edgel} des Liniensegments untersucht und verglichen werden.
 \input{alg/analyse-hirzer/findlinesegments-7}
+Am Ende von \autoref{alg:findlinesegments7} ist in $\mathit{presentLine}$ ein neuer Start- und Endpunkt gespeichert.
+ Auch hier ist die Laufzeit des Algorithmus abhängig von $[k=0,\mathit{presentLine.supportCount}) = n$ und die Laufzeit
+ von \autoref{alg:findlinesegments7} somit $T(n) = \Theta(n)$ (Vgl. \autoref{eq:findlinesegments-startendx}).
+\input{eq/hirzer/findlinesegments3}
+Somit kann die Laufzeit von \autoref{alg:findlinesegments6} und \autoref{alg:findlinesegments7} in
+ \autoref{eq:findlinesegments-all} zu $T(n) = \Theta(n)$ zusammengefasst werden.
+\input{eq/hirzer/findlinesegments4}
 
 In \autoref{alg:findlinesegments8} wird nun geprüft, ob der Start- und Endpunkt vertauscht ist. Dazu wird der Winkel
- zwischen dem Liniensegment und seiner Orthogonalen gebildet. Wenn der Winkel kleiner als $0$ ist, werden Start- und
- Endpunkt in Zeile \ref{alg:findlinesegments8-newstart-start}--\ref{alg:findlinesegments8-newstart-end} getauscht. Im
- Anschluss daran, wird in Zeile \ref{alg:findlinesegments8-save-start}--\ref{alg:findlinesegments8-save-end} die
- Orientierung des Liniensegments berechnet und gespeichert. Danach wird das Liniensegment in Zeile
+ zwischen dem Liniensegment und seiner Orthogonalen gebildet.
+\input{alg/analyse-hirzer/findlinesegments-8}
+Wenn der Winkel kleiner als $0$ ist, werden Start- und Endpunkt in Zeile
+ \ref{alg:findlinesegments8-newstart-start}--\ref{alg:findlinesegments8-newstart-end} getauscht. Im Anschluss daran,
+ wird in Zeile \ref{alg:findlinesegments8-save-start}--\ref{alg:findlinesegments8-save-end} die Orientierung des
+ Liniensegments berechnet und gespeichert. Danach wird das Liniensegment in Zeile
  \ref{alg:findlinesegments8-addtomempool} in den Speicherblock $L$ hinterlegt. Jetzt müssen alle Unterstützungsedgel
  des Liniensegments in Zeile \ref{alg:findlinesegments8-removeedgel-start}--\ref{alg:findlinesegments8-removeedgel-end}
  aus dem Speicherblock $E$ entfernt werden. Das entfernen der Unterstützungsedgel bewirkt, dass entweder das
  RANSAC-Verfahren wiederholt werden kann ohne die gleichen \gls{edgel} erneut zu betrachten, oder, wenn nicht mehr
- genügend \gls{edgel} in der Region vorhanden sind, das Verfahren abzubrechen und die Linienerkennung zu beenden.
+ genügend \gls{edgel} in der Region vorhanden sind, das Verfahren abzubrechen und die Linienerkennung zu beenden. Die
+ Laufzeit von \autoref{alg:findlinesegments8} ist abhängig von dem Bereich $[i = 0,\mathit{supportCount}) = n$. Die
+ Kosten lassen sich zu \autoref{eq:findlinesegments12} zusammen fassen. Die Methoden \textproc{vectorSubtract},
+ \textproc{dotProduct}, \textproc{normalized} und \textproc{addLineSegment} haben eine konstante Laufzeit.
+ \textproc{removeEdgel} hat eine Laufzeit von $T_{worst}(m)=\Theta(m)$, wenn der zu löschende \gls{edgel} am Ende des
+ Speicherblocks liegt.
+\input{eq/hirzer/findlinesegments5}
+Durch Umformung der Gleichung in \autoref{eq:findlinesegments13} und \autoref{eq:findlinesegments14} wird eine Laufzeit
+ von $T_{worst}(n)=\Theta(nm)$ ermittelt.
 
-\input{alg/analyse-hirzer/findlinesegments-8}
+Die Laufzeit des RANSAC Verfahrens (\autoref{alg:findlinesegments1}) ist abhängig von der Anzahl der \gls{edgel} in
+ Speicherblock $E$. Für die Analyse des Algorithmus in \autoref{alg:findlinesegments9} wird $n = $ Anzahl der
+ \gls{edgel} verwendet.
+\input{alg/analyse-hirzer/findlinesegments-9}
+Die Methoden \textproc{vectorSubtract}, \textproc{dotProduct}, \textproc{normalized} und \textproc{addLineSegment}
+ haben eine konstante Laufzeit. Die Abbruchbedingung der Schleife ist in Zeile \ref{alg:findlinesegments9-break} von
+ \autoref{alg:findlinesegments9} angegeben. Sie besagt, dass die Anzahl der gefundenen Unterstützungsedgel größer sein
+ muss als eine festgelegte Mindestanzahl. Zur Untersuchung wird die Mindestanzahl $\mathit{minEdgels} = 0$ festgelegt.
+ Somit wird das Verfahren beendet, wenn ein Liniensegment keine Unterstüztungsedgel enthält. Im besten Fall wird das
+ Verfahren in \autoref{alg:findlinesegments9} Zeile
+ \ref{alg:findlinesegments9-loop-start}--\ref{alg:findlinesegments9-loop-end} ausführen und ein Liniensegment ohne
+ Unterstützungsedgel finden. Dadurch wird die Überprüfung in Zeile \ref{alg:findlinesegments9-failure} einmalig
+ ausgeführt und danach in Zeile \ref{alg:findlinesegments9-edgels} die Anzahl der \gls{edgel} in die lokale Variable
+ schreiben. In Zeile \ref{alg:findlinesegments9-break} wird nach einmaliger Überprüfung das Verfahren beendet. Die
+ Kosten des Verfahrens sind in \autoref{eq:findlinesegments16} aufgelistet.
+\input{eq/hirzer/findlinesegments6}
+Die Laufzeit beträgt, nach der Umformung und Isolierung der Konstanten in \autoref{eq:findlinesegments17} und
+ \autoref{eq:findlinesegments18}, $T_{best}(n) = n$ (Vgl. \autoref{eq:findlinesegments19}).
+
+Für die Untersuchung des schlechtesten Falls (\autoref{alg:findlinesegments10}), muss die Anzahl der Wiederholungen der
+ Schleife in Zeile \ref{alg:findlinesegments10-do}--\ref{alg:findlinesegments10-while} ermittelt werden.
+\input{alg/analyse-hirzer/findlinesegments-10}
+Zeile \ref{alg:findlinesegments10-hasmoresupport} überprüft, ob ein neues Liniensegment eine größere Anzahl von
+ Unterstützungsedgel besitzt, als ein bereits gefundenes Liniensegment. Bei der ersten Iteratition der Schleife muss
+ ein Liniensegment mit einem Unterstützungsedgel gefunden werden. Danach wird der Unterstützungsedgel und der Start-
+ und Endedgel des Liniensegments von \autoref{alg:findlinesegments8} in Zeile
+ \ref{alg:findlinesegments8-removeedgel-start}--\ref{alg:findlinesegments8-removeedgel-end} gelöscht. Bei der zweiten
+ Iteration müssen mindestens zwei Unterstützungsedgel für ein Liniensegment gefunden werden. Danach werden vier
+ \gls{edgel} entfernt. Somit kann durch
+\begin{equation}
+\label{eq:linesegments-nedgels}
+\sum_{i=1}^{m} i + 2 = n
+\end{equation}
+die Anzahl $n$ der \gls{edgel} bestimmt werden, die für $m$ Iterationen benötigt werden. Durch Umformung von \autoref{eq:linesegments-nedgels} zu
+\begin{equation}
+\label{eq:linesegments-miteration}
+m = \left\lfloor\frac{1}{2}(\sqrt{8n+25} - 5)\right\rfloor
+\end{equation}
+lässt sich die maximale Anzahl $m$ der Wiederholung ermitteln, die mit $n$ \gls{edgel} möglich sind. Die Laufzeit von
+ \autoref{alg:findlinesegments6} und \autoref{alg:findlinesegments7} sind abhängig von dem Bereich
+ $[k=0,supportCount)$. Dies entspricht $\sum_{j=1}^{m}j$ für $m$-Wiederholungen.  Die Laufzeit von
+ \autoref{alg:findlinesegments8} ist, wie \autoref{alg:findlinesegments6} und \autoref{alg:findlinesegments7}, von dem
+ Bereich $[k=0,supportCount)$ abhängig. Zusätzlich muss ein zu löschendes \gls{edgel} in der Menge $n$ gesucht werden.
+ Die Kosten der Algorithmen sind zur Analyse des schlechtesten Falls in \autoref{alg:findlinesegments10} und
+ \autoref{eq:findlinesegments20} aufgeführt.
+\input{eq/hirzer/findlinesegments7}
+In \autoref{eq:findlinesegments21}--\autoref{eq:findlinesegments24} werden die Konstanten isoliert und Werte niedriger
+ Ordnung vernachlässigt. Durch Substitution von \autoref{eq:linesegments-miteration} in \autoref{eq:findlinesegments24}
+ zu \autoref{eq:findlinesegments25} kann die Laufzeit, durch Isolierung der Konstanten und Eliminierung von Werten
+ niedriger Ordnung in \autoref{eq:findlinesegments26}, auf $T_{worst}=\Theta(n^2)$ bestimmt werden
+ (\autoref{eq:findlinesegments27}).
+\input{eq/hirzer/findlinesegments8}

@@ -8,17 +8,26 @@
 	\algrestore{brk-findlinesegments6-if}
 	\Else
 		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
+		\Cost{$c_{16}$}{$n$}
 		\label{alg:findlinesegments7-newstart-start}
 			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
+			\Cost{$c_{17}$}{$\sum_{k=0}^{n-1}1$}
 			\If{$\mathit{edgel.coordinate.x} > \mathit{start}$}
+			\Cost{$c_{18}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{start} \gets \mathit{edgel.coordinate.x}$
+				\Cost{$c_{19}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
+				\Cost{$c_{20}$}{$\sum_{k=0}^{n-1}1$}
 			\EndIf
 			\If{$\mathit{edgel.coordinate.x} < end$}
+			\Cost{$c_{21}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{end} \gets \mathit{edgel.coordinate.x}$
+				\Cost{$c_{22}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
+				\Cost{$c_{23}$}{$\sum_{k=0}^{n-1}1$}
 			\EndIf
 			\State $\mathit{k} \gets k + 1$
+			\Cost{$c_{24}$}{$\sum_{k=0}^{n-1}1$}
 		\EndFor
 		\label{alg:findlinesegments7-newstart-end}
 	\EndIf

@@ -1,0 +1,16 @@
+\begin{subequations}
+\label{eq:findlinesegments-best}
+\begin{align}
+\label{eq:findlinesegments16}
+T_{best}(n)& = (c_{1} + c_{2} + c_{3} + c_{9} + c_{13} + c_{14}) \cdot 1 + c_{4} \cdot (25 + 1) + (c_{5} + c_{8})
+ \cdot \sum_{i=0}^{25} 1\\
+& \quad + c_{6} \cdot \sum_{i=0}^{25} \cdot 64 + c_{7} \cdot \sum_{i=0}^{25} n \nonumber \\
+\label{eq:findlinesegments17}
+T_{best}(n)& = (c_{1} + c_{2} + c_{3} + c_{4} + c_{9} + c_{13} + c_{14}) \cdot 1 + (c_{4} + c_{5} + c_{8}) \cdot 25 \\
+& \quad + c_{6} \cdot (25 \cdot 64) + c_{7} \cdot (25 \cdot n) \nonumber \\
+\label{eq:findlinesegments18}
+T_{best}(n)& = 1 + 25 + (25 \cdot 64) + 25 \cdot n\\
+\label{eq:findlinesegments19}
+T_{best}(n)& = n
+\end{align}
+\end{subequations}

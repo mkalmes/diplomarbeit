@@ -1,0 +1,23 @@
+\begin{subequations}
+\label{eq:findlinesegments-worst}
+\begin{align}
+\label{eq:findlinesegments20}
+T_{worst}(n)& = (c_{1} + c_{2}) \cdot 1 + (c_{3} + c_{9} + c_{13}) \cdot \sum_{j=1}^{m}1 + c_{4} \cdot \sum_{j=1}^{m}
+ (25 + 1) \\
+& \quad + (c_{5} + c_{8}) \cdot \sum_{j=1}^{m} \sum_{i=0}^{25} 1 + c_{6} \cdot \sum_{j=1}^{m} \sum_{i=0}^{25} 64 +
+ c_{7} \cdot \sum_{j=1}^{m} \sum_{i=0}^{25} n \nonumber \\
+& \quad + (c_{10} + c_{11})\cdot \sum_{j=1}^{m}j + c_{12} \cdot \sum_{j=1}^{m} j \cdot n + c_{14} \cdot m \nonumber \\
+\label{eq:findlinesegments21}
+T_{worst}(n)& = (c_{1} + c_{2}) \cdot 1 + (c_{3} + c_{4} + c_{9} + c_{13} + c_{14}) \cdot m \\
+& \quad + (c_{4} + c_{5} + c_{8}) \cdot (25 \cdot m) + c_{6} \cdot \bigl(25 \cdot (64 \cdot m)\bigr) + c_{7} \cdot \bigl(25 \cdot (m \cdot
+ n)\bigr) \nonumber \\
+& \quad + (c_{10} + c_{11}) \cdot \bigl(\frac{1}{2} \cdot m \cdot (m + 1)\bigr) + c_{12} \cdot \bigl(\frac{1}{2} \cdot m \cdot (m + 1) \cdot n\bigr) \nonumber \\
+\label{eq:findlinesegments22}
+T_{worst}(n)& = 1 + m + 25 \cdot m + 25 \cdot (64 \cdot m) + 25 \cdot (m \cdot n) \\
+& \quad + \frac{1}{2} \cdot m \cdot (m + 1) + \frac{1}{2} \cdot m \cdot (m + 1) \cdot n \nonumber \\
+\label{eq:findlinesegments23}
+T_{worst}(n)& = 4 \cdot m + m \cdot n + m^2 + m^2 \cdot n \\
+\label{eq:findlinesegments24}
+T_{worst}(n)& = m^2 + m^2 \cdot n
+\end{align}
+\end{subequations}

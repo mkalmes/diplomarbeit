@@ -6,29 +6,52 @@
 \label{alg:findlinesegments8}
 \begin{algorithmic}[1]
 	\algrestore{brk-findlinesegments7-else}
-	\State $\mathit{m} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
+	\State $\mathit{m} \gets$ \textproc{vectorSubtract}$\left(
+	\begin{aligned}
+		&\mathit{presentLine.end.coordinate},\\
+		&\mathit{presentLine.start.coordinate}
+	\end{aligned}\right)$
+	\Cost{$c_{25}$}{$\Theta(1)$}
 	\State $\mathit{angle} \gets$ \Call{dotProduct}{$\mathit{m},\mathit{ortho}$}
+	\Cost{$c_{26}$}{$\Theta(1)$}
 	\If{$\mathit{angle} < 0$}
+	\Cost{$c_{27}$}{$1$}
 		\State $\mathit{newEnd} \gets \mathit{presentLine.start}$
+		\Cost{$c_{28}$}{$1$}
 		\label{alg:findlinesegments8-newstart-start}
 		\State $\mathit{presentLine.start} \gets \mathit{presentLine.end}$
+		\Cost{$c_{29}$}{$1$}
 		\State $\mathit{presentLine.end} \gets \mathit{newEnd}$
+		\Cost{$c_{30}$}{$1$}
 		\label{alg:findlinesegments8-newstart-end}
 	\EndIf
-	\State $\mathit{m} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.end.coordinate},\mathit{presentLine.start.coordinate}$}
+	\State $\mathit{m} \gets$ \textproc{vectorSubtract}$\left(
+	\begin{aligned}
+		&\mathit{presentLine.end.coordinate},\\
+		&\mathit{presentLine.start.coordinate}
+	\end{aligned}\right)$
+	\Cost{$c_{31}$}{$\Theta(1)$}
 	\label{alg:findlinesegments8-save-start}
 	\State \Call{normalized}{$\mathit{m}$}
+	\Cost{$c_{32}$}{$\Theta(1)$}
 	\State $\mathit{presentLine.slope} \gets \mathit{m}$
+	\Cost{$c_{33}$}{$1$}
 	\label{alg:findlinesegments8-save-end}
 	\State \Call{addLineSegment}{$L,\mathit{presentLine}$}
+	\Cost{$c_{34}$}{$\Theta(1)$}
 	\label{alg:findlinesegments8-addtomempool}
 	\State $\mathit{supportCount} \gets \mathit{presentLine.supportCount}$
+	\Cost{$c_{35}$}{$1$}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{supportCount}$}
+	\Cost{$c_{36}$}{$n$}
 	\label{alg:findlinesegments8-removeedgel-start}
 		\State $\mathit{remove} \gets \mathit{presentLine.support}[i]$
+		\Cost{$c_{37}$}{$\sum_{i=0}^{n-1}1$}
 		\State \Call{removeEdgel}{$E,\mathit{remove}$}
+		\Cost{$c_{38}$}{$\sum_{i=0}^{n-1}\Theta(m)$}
 		\State $i \gets i + 1$
+		\Cost{$c_{39}$}{$\sum_{i=0}^{n-1}1$}
 	\EndFor
-	\label{alg:findlinesegments7-removeedgel-end}
+	\label{alg:findlinesegments8-removeedgel-end}
 \end{algorithmic}
 \end{algorithm}

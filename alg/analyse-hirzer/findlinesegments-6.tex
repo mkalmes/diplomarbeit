@@ -6,28 +6,47 @@
 \label{alg:findlinesegments6}
 \begin{algorithmic}[1]
 	\State $\mathit{start} \gets 0$
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:findlinesegments6-start}
 	\State $\mathit{end} \gets \infty$
+	\Cost{$c_{2}$}{$1$}
 	\label{alg:findlinesegments6-end}
-	\State $\mathit{slope} \gets$ \Call{vectorSubtract}{$\mathit{presentLine.start.coordinate},\mathit{presentLine.end.coordinate}$}
+	\State $\mathit{slope} \gets$ \textproc{vectorSubtract}$\left(
+	\begin{aligned}
+		&\mathit{presentLine.start.coordinate},\\
+		&\mathit{presentLine.end.coordinate}
+	\end{aligned}\right)$
+	\Cost{$c_{3}$}{$1$}
 	\label{alg:findlinesegments6-slope-start}
 	\State $\mathit{ortho.x} \gets - \mathit{presentLine.start.slope.y}$
+	\Cost{$c_{4}$}{$1$}
 	\State $\mathit{ortho.y} \gets \mathit{presentLine.start.slope.x}$
+	\Cost{$c_{5}$}{$1$}
 	\label{alg:findlinesegments6-slope-end}
 	\If{\Call{abs}{$\mathit{slope.x}$} $\leq$ \Call{abs}{$\mathit{slope.y}$}}
+	\Cost{$c_{6}$}{$1$}
 	\label{alg:findlinesegments6-isxsmaller}
 		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
+		\Cost{$c_{7}$}{$n$}
 		\label{alg:findlinesegments6-newstart-start}
 			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
+			\Cost{$c_{8}$}{$\sum_{k=0}^{n-1}1$}
 			\If{$\mathit{edgel.coordinate.y} > start$}
+			\Cost{$c_{9}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{start} \gets \mathit{edgel.coordinate.y}$
+				\Cost{$c_{10}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
+				\Cost{$c_{11}$}{$\sum_{k=0}^{n-1}1$}
 			\EndIf
 			\If{$\mathit{edgel.coordinate.y} < \mathit{end}$}
+			\Cost{$c_{12}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{end} \gets \mathit{edgel.coordinate.y}$
+				\Cost{$c_{13}$}{$\sum_{k=0}^{n-1}1$}
 				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
+				\Cost{$c_{14}$}{$\sum_{k=0}^{n-1}1$}
 			\EndIf
 			\State $k \gets k + 1$
+			\Cost{$c_{15}$}{$\sum_{k=0}^{n-1}1$}
 		\EndFor
 		\label{alg:findlinesegments6-newstart-end}
 	\algstore{brk-findlinesegments6-if}
