@@ -3,11 +3,10 @@ Das Verfahren zur Linienerkennung nach \citeauthor{hirzer08} basiert, wie in \au
  eines monochromen Bildsignals ein RGB-Signal. Dadurch ändern sich einige Algorithmen geringfügig und werden im
  folgenden Abschnitt erläutert.
 
-Das Verfahren in \autoref{alg:linedetection-hirzer} unterscheidet sich von \autoref{alg:linedetection-clarke}, dass
- anstatt dem monochromen Signal $I_m$ das RGB-Signal $I$ verwendet wird. Dadurch verändern sich auch die Verfahren
+Das Verfahren in \autoref{alg:linedetection-hirzer} unterscheidet sich von \autoref{alg:linedetection-clarke}, indem
+ anstatt einem monochromen Signal $I_m$ ein RGB-Signal $I$ verwendet wird. Dadurch verändern sich auch die Verfahren
  \textproc{findEdgels} und \textproc{findLineSegments}.
 \input{alg/analyse-hirzer/linedetection-hirzer}
-
 In dem Verfahren zur Erstellung von \gls{edgel} in \autoref{alg:findedgelshirzer-1}--\autoref{alg:findedgelshirzer-2}
 \input{alg/analyse-hirzer/findedgelshirzer-1}
 wird im Gegensatz zu \autoref{alg:findedgels-horizontal} die Faltung für alle drei Farbkanäle durchgeführt (Vgl. Zeile
@@ -15,37 +14,34 @@ wird im Gegensatz zu \autoref{alg:findedgels-horizontal} die Faltung für alle d
  und Zeile \ref{alg:findedgelshirzer-2-color-start}--\ref{alg:findedgelshirzer-2-color-end} in
  \autoref{alg:findedgelshirzer-2}).
 \input{alg/analyse-hirzer/findedgelshirzer-2}
-
 Betrachtet man die Methode \textproc{convoluteKernelX} und \textproc{convoluteKernelY} stellt man fest, dass hier eine
  Angabe zum Farbkanal erfolgt. In \autoref{alg:convolutekernelhirzer-horizontal} und
 \input{alg/analyse-hirzer/convolutekernelhirzerx}
  \autoref{alg:convolutekernelhirzer-vertical} wird durch den Aufruf der Methode \textproc{getRGBValue} ein bestimmter
  Farbkanal betrachtet.
 \input{alg/analyse-hirzer/convolutekernelhirzery}
-
 Auch das Verfahren \textproc{gradientIntensity} in \autoref{alg:gradientintensityhirzer} verwendet die Methode
  \textproc{getRGBValue}.
-
 \input{alg/analyse-hirzer/gradientIntensityhirzer}
 
 \textproc{getRGBValue} dient dem auslesen eines \gls{pixel} für einen angegeben Farbkanal. In \autoref{alg:getrgbvalue} ist das Verfahren beschrieben.
-
 \input{alg/analyse-hirzer/getrgbvalue}
-
 Das Verfahren benötigt das RGB-Signal $I$, die Position des \gls{pixel} ($x$, $y$), den Farbkanal, sowie die Breite $w$
  und Höhe $h$ von $I$. In den Zeilen \ref{alg:getrgbvalue-sanity-start}--\ref{alg:getrgbvalue-sanity-end} wird
  sichergestellt, dass kein \gls{pixel} ausserhalb der Bildgrenzen gelesen werden können. In Zeile
  \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des \gls{pixel} wird in
  Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
- \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben.
+ \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeit des
+ Verfahrens ist konstant. Da \textproc{getRGBValue}, wie \textproc{getPixel} (\autoref{alg:getpixel}), eine konstante
+ Laufzeit hat, ändern sich die Laufzeiten der betroffenen Methoden nicht.
+
+\clearpage
 
 Das Verfahren von \citeauthor{clarke96} (\autoref{sub:linienerkennung_nach_clarke96}) liefert als Ergebnis nur kurze
  Liniensegmente, die zur Erkennung einer Marke ungeeignet sind. Im Verfahren von \citeauthor{hirzer08} werden kurze
  Liniensegmente zusammengeführt. Dazu dient das Verfahren \textproc{mergeLines}, dass in \autoref{alg:mergelines1}
  vorgestellt wird.
-
 \input{alg/analyse-hirzer/mergelines-1}
-
 In der Schleife von Zeile \ref{alg:mergelines1-loop-start}--\ref{alg:mergelines1-loop-end} werden alle Liniensegmente
  untersucht. In Zeile \ref{alg:mergelines1-distancepool} wird zuerst ein Speicherbereich für Distanzwerte der Linien
  initialisiert. Für jeden Lauf der Schleife wird in Zeile \ref{alg:mergelines1-cleardistancepool} der Speicherbereich
@@ -59,31 +55,25 @@ In der Schleife von Zeile \ref{alg:mergelines1-loop-start}--\ref{alg:mergelines1
 
 In \autoref{alg:mergelines2} wird in der Schleife \ref{alg:mergelines2-loop-start}--\ref{alg:mergelines3-loop-end} ein
  zweites Liniensegment gesucht, das kompatibel mit dem ersten Liniensegment ist.
-
 \input{alg/analyse-hirzer/mergelines-2}
-
 In Zeile \ref{alg:mergelines2-ignore-start}--\ref{alg:mergelines2-ignore-end} werden Liniensegmente an der gleichen
  Position ignoriert und die Schleife mit einem neuen Lauf wiederholt. Danach wird in Zeile \ref{alg:mergelines2-j} ein
  Liniensegment an Position $j$ ausgewählt. In Zeile
  \ref{alg:mergelines2-orientation-start}--\ref{alg:mergelines2-orientation-end} wird die Orientierung der beiden
- Liniensegmente und die Orientierung der Verbindungslinie berechnet.
-
-In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
- die sowohl für die Lininesegmente, als auch für die Verbindungsline, nur geringfügig abweichen darf. Wenn die
- Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cline-start}--\ref{alg:mergelines3-cline-end} die
- Verbindungslinie in \textproc{cLine} gespeichert. In Zeile \ref{alg:mergelines3-isbridged} wird anschließend die
+ Liniensegmente und die Orientierung der Verbindungslinie berechnet. In Zeile
+ \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
+ die sowohl für die Lininesegmente, als auch für die Verbindungsline, nur geringfügig abweichen darf.
+\input{alg/analyse-hirzer/mergelines-3}
+Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cline-start}--\ref{alg:mergelines3-cline-end}
+ die Verbindungslinie in \textproc{cLine} gespeichert. In Zeile \ref{alg:mergelines3-isbridged} wird anschließend die
  Orientierung der Verbindungslinie Punkt für Punkt untersucht (Vgl. \autoref{sub:line_detection}). Wenn der Gradient
  der Verbindungslinie sich nicht verändert hat, wird in Zeile
  \ref{alg:mergelines3-save-start}--\ref{alg:mergelines3-save-end} die Länge zum Quadrat und die Position der
  Verbindungsline in \textproc{distancepool} gespeichert.
 
-\input{alg/analyse-hirzer/mergelines-3}
-
 \textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungsline $\mathit{connectionLine}$ und das
  Bildsignal $I$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
-
 \input{alg/analyse-hirzer/isconnectionlinebridged}
-
 In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionlinebridged-length-end} wird die Länge
  der Verbindungslinie berechnet und der Startpunkt festgelegt. In der Schleife in Zeile
  \ref{alg:isconnectionlinebridged-loop-start}--\ref{alg:isconnectionlinebridged-loop-end} wird jeder Punkt auf der
@@ -97,27 +87,20 @@ In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionli
 
 Nachdem in \autoref{alg:mergelines2}--\autoref{alg:mergelines3} kompatible Liniensegmente ermittelt wurden, kann mit
  \autoref{alg:mergelines4} und \autoref{alg:mergelines5} die Liniensegmente verbunden werden.
-
 \input{alg/analyse-hirzer/mergelines-4}
-
 In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden die Liniensegmente anhand ihrers
  Abstands aufsteigend sortiert. Dazu wird die Funktion \textproc{qsort} verwendet\footcite{qsort}. Die Funktion
  \textproc{distanceCompare} wird von \textproc{qsort} zum sortieren verwendent (Vgl. \autoref{alg:distancecompare}).
-
 \input{alg/analyse-hirzer/datastructure-distancecompare}
-
-\textproc{distanceCompare} benötigt zwei Distanzwerte $a$ und $b$ deren Länge subtrahiert und als Ergebnis zurückgegebn wird.
-
-In Zeile \ref{alg:mergelines4-loop-start}--\ref{alg:mergelines5-loop-end} von \autoref{alg:mergelines4} und
+\textproc{distanceCompare} benötigt zwei Distanzwerte $a$ und $b$ deren Länge subtrahiert und als Ergebnis zurückgegebn
+ wird. In Zeile \ref{alg:mergelines4-loop-start}--\ref{alg:mergelines5-loop-end} von \autoref{alg:mergelines4} und
  \autoref{alg:mergelines5} werden die Liniensegmente vorbereitet. Dazu wird aus dem sortiereten Speicherblock
  $\mathit{distancepool}$ der Index des Liniensegments ausgelesen und gespeichert. Die Start- und Endedgel, sowie die
  Länge der Linie und ihre Orientierung werden berechnet
  (Zeile \ref{alg:mergelines4-merge-start}--\ref{alg:mergelines4-merge-end}).
-
 \input{alg/analyse-hirzer/mergelines-5}
-
 In Zeile \ref{alg:mergelines5-extendline} wird mit der Methode \textproc{extendLine} überprüft, ob sich die Linie
- erweitern lässt (Vgl. \autoref{}). Falls dem so ist, wird in Zeile
+ erweitern lässt (Vgl. \autoref{alg:extendline1}). Falls dem so ist, wird in Zeile
  \ref{alg:mergelines5-merge-start}--\ref{alg:mergelines5-merge-end} der Linie an Position $i$ der neue Endpunkt der
  Linie an Position $j$ zugewiesen. Danach wird die Orientierung der Linie berechnet und das Liniensegment an Position
  $j$ zum löschen markiert. Wenn sich eine Linie nicht durch \textproc{extendLine} erweitern lässt, wird die Schleife
