@@ -1,0 +1,21 @@
+% Fall 3: *(pnt1-1) > 0
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (8er-Nachbarschaft: 3. Fall)}
+\label{alg:arlabeling-neighbour-case3}
+\begin{algorithmic}[1]
+	\algrestore{brk-case2}
+	\ElsIf{$\left(\mathit{pnt1} - 1\right) > 0$}
+		\State $\mathit{pnt2} \gets \left(\mathit{pnt1} - 1\right)$
+		\State $\mathit{pnt2\_index} \gets \left(\mathit{pnt2} - 1\right) \cdot 7$
+		\label{alg:arlabeling-neighbour-case3-offset}
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 0\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 0\right] + 1$
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 1\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 1\right] + i$
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 2\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 2\right] + j$
+		\If{$\mathit{work2}\left[\mathit{pnt2\_index} + 4\right] < i$}
+			\State $\mathit{work2}\left[\mathit{pnt2\_index} + 4\right] \gets i$
+			\label{alg:arlabeling-neighbour-case3-newi}
+		\EndIf
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 6\right] \gets j$
+		\algstore{brk-case3}
+\end{algorithmic}
+\end{algorithm}

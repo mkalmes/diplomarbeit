@@ -1,0 +1,36 @@
+\begin{algorithm}[ht]
+\caption{\textproc{checkSquare} (Fortsetzung)}
+\label{alg:checksquare-6}
+\begin{algorithmic}[1]
+	\algrestore{brk-checksquare-5-case2}
+	\ElsIf{$\mathit{wvnum1} == 0 \land \mathit{wvnum2} > 1$}
+		\State $\mathit{v2} \gets (\mathit{v1} + \mathit{marker\_infoTWO \to coord\_num} - 1) / 2$
+		\label{alg:checksquare-6-v2}
+		\State $\mathit{wvnum1} \gets 0$
+		\State $\mathit{wvnum2} \gets 0$
+		\State $x \gets \mathit{marker\_infoTWO \to x\_coord}$
+		\State $y \gets \mathit{marker\_infoTWO \to y\_coord}$
+		\If{\Call{getVertex}{$x, y, \mathit{v1}, \mathit{v2}, \mathit{thresh}, \mathit{wv1}, \mathit{wvnum1}$} $< 0$}
+		\label{alg:checksquare-6-vertex1}
+			\State \textbf{return}$(-1)$
+		\EndIf
+		\State $x \gets \mathit{marker\_infoTWO \to x\_coord}$
+		\State $y \gets \mathit{marker\_infoTWO \to y\_coord}$
+		\State $\mathit{num} \gets \mathit{marker\_infoTWO \to coord\_num} - 1$
+		\If{\Call{getVertex}{$x, y, \mathit{v2}, \mathit{num}, \mathit{thresh}, \mathit{wv2}, \mathit{wvnum2}$} $< 0$}
+		\label{alg:checksquare-6-vertex2}
+			\State \textbf{return}$(-1)$
+		\EndIf
+		\If{$\mathit{wvnum1} == 1 \land \mathit{wvnum2} == 1$}
+			\State $\mathit{vertex}[1] \gets \mathit{v1}$
+			\State $\mathit{vertex}[2] \gets \mathit{wv1}[0]$
+			\State $\mathit{vertex}[3] \gets \mathit{wv2}[0]$
+		\Else
+			\State \textbf{return}$(-1)$
+		\EndIf
+	\Else
+		\State \textbf{return}$(-1)$
+	\EndIf
+	\algstore{brk-checksquare-6-case3}
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,21 @@
+% Fall 2: *(pnt1+1) > 0
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (8er-Nachbarschaft: 2. Fall, $N_4$)}
+\label{alg:arlabeling-neighbour-case2-3}
+\begin{algorithmic}[1]
+	\State \Comment Nur $N_4$ hat eine Markierung.
+	\State $\mathit{pnt2} \gets \left(\mathit{pnt1} + 1\right)$
+	\label{alg:arlabeling-neighbour-case2-3-n4}
+	\State $\mathit{pnt2\_index} \gets \left(\left(\mathit{pnt2}\right) - 1\right) \cdot 7$
+	\State $\mathit{work2}\left[\mathit{pnt2\_index} + 0\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 0\right] + 1$
+	\label{alg:arlabeling-neighbour-case2-3-incregion}
+	\State $\mathit{work2}\left[\mathit{pnt2\_index} + 1\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 1\right] + i$
+	\State $\mathit{work2}\left[\mathit{pnt2\_index} + 2\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 2\right] + j$
+	\If{$\mathit{work2}\left[\mathit{pnt2\_index} + 3\right] > i$}
+	\label{alg:arlabeling-neighbour-case2-3-isismaller}
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 3\right] \gets i$
+		\label{alg:arlabeling-neighbour-case2-3-newi}
+	\EndIf
+	\State $\mathit{work2}\left[\mathit{pnt2\_index} + 6\right] \gets j$
+\end{algorithmic}
+\end{algorithm}

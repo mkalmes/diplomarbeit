@@ -1,0 +1,9 @@
+\begin{algorithm}[ht]
+\caption{\textproc{artkpAlloc}}
+\label{alg:artkpalloc}
+\begin{algorithmic}[1]
+	\Require $\mathit{size}$
+	\State $\mathit{rawMemory} \gets \mathit{size} \cdot$ \Call{sizeof}{$\mathit{short}$}
+	\State \textbf{return} \Call{malloc}{$\mathit{rawMemory}$}
+\end{algorithmic}
+\end{algorithm}

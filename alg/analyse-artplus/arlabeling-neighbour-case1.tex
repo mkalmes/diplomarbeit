@@ -1,0 +1,20 @@
+% Fall 1: *pnt1 > 0
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (8er-Nachbarschaft: 1. Fall)}
+\label{alg:arlabeling-neighbour-case1}
+\begin{algorithmic}[1]
+
+	\If{$\mathit{pnt1} > 0$}
+		\State $\mathit{pnt2} \gets \mathit{pnt1}$
+		\label{alg:arlabeling-neighbour-case1-save-label}
+		\State $\mathit{pnt2\_index} \gets \left(\mathit{pnt2} - 1\right) \cdot 7$
+		\label{alg:arlabeling-neighbour-case1-calc-offset}
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 0\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 0\right] + 1$
+		\label{alg:arlabeling-neighbour-case1-inc-region}
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 1\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 1\right] + i$
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 2\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 2\right] + j$
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 6\right] \gets j$
+		\label{alg:arlabeling-neighbour-case1-save-j}
+		\algstore{brk-case1}
+\end{algorithmic}
+\end{algorithm}

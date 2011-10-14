@@ -1,0 +1,31 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (Regionenspeicher initialisieren)}
+\label{alg:arlabeling-initlabelmemory}
+\begin{algorithmic}[1]
+	\State $\mathit{wlabel\_num} \gets j - 1$
+	\label{alg:arlabeling-initlabelmemory-label-start}
+	\State $\mathit{label\_num} \gets j - 1$
+	\label{alg:arlabeling-initlabelmemory-label-end}
+	\If{$\mathit{label\_num} == 0$}
+	\label{alg:arlabeling-initlabelmemory-islabel-start}
+		\State \textbf{return} $\mathit{l\_image}$
+	\EndIf
+	\label{alg:arlabeling-initlabelmemory-islabel-end}
+	\State $\mathit{size} \gets \mathit{label\_num} \cdot$ \Call{sizeof}{$int$}
+	\label{alg:arlabeling-initlabelmemory-initwarea-start}
+	\For{$\mathit{size} > 0$}
+		\State $\mathit{warea} \gets 0$
+		\State Inkrementiere $\mathit{warea}$
+		\State $\mathit{size} \gets \mathit{size} - 1$
+	\EndFor
+	\label{alg:arlabeling-initlabelmemory-initwarea-end}
+	\State $\mathit{size} \gets \mathit{label\_num} \cdot 2 \cdot$ \Call{sizeof}{$float$}
+	\label{alg:arlabeling-initlabelmemory-initwpos-start}
+	\For{$\mathit{size} > 0$}
+		\State $\mathit{wpos} \gets 0$
+		\State Inkrementiere $\mathit{wpos}$
+		\State $\mathit{size} \gets \mathit{size} - 1$
+	\EndFor
+	\label{alg:arlabeling-initlabelmemory-initwpos-end}
+\end{algorithmic}
+\end{algorithm}

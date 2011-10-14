@@ -1,0 +1,38 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arDetectMarker}}
+\label{alg:detectmarker}
+\begin{algorithmic}[1]
+	\Require $I,\mathit{thresh},\mathit{marker\_info},\mathit{marker\_num}$
+	\State $I_l \gets$ \textproc{NULL}
+	\label{alg:detectmarker-init-start}
+	\State $\mathit{label\_num},\mathit{area},\mathit{clip},\mathit{label\_ref},\mathit{pos} \gets \infty$
+	\label{alg:detectmarker-init-end}
+	\State \Call{autoThreshold.reset}{}
+	\label{alg:detectmarker-call-autothreshold}
+	\State \Call{checkImageBuffer}{}
+	\label{alg:detectmarker-call-imagebuffer}
+	\State $\mathit{marker\_num} \gets 0$
+	\State $I_l \gets$ \Call{arLabeling}{$I,\mathit{thresh},\mathit{label\_num},\mathit{area},\mathit{pos},\mathit{clip},\mathit{label\_ref}$}
+	\label{alg:detectmarker-call-labeling}
+	% AR_AREA_MAX (100000) und AR_AREA_MIN (70) sind defines
+	% wmarker_num globale variable
+	\If{$I_l$}
+	\label{alg:detectmarker-check-il-start}
+		\State $\mathit{marker\_info2} \gets$ \textproc{arDetectMarker2}$\left(
+		\begin{aligned}
+				& I_l,\mathit{thresh},\mathit{label\_ref},\mathit{area},\mathit{pos},\mathit{clip},\\
+				& \mathit{AR\_AREA\_MAX},\\
+				& \mathit{AR\_AREA\_MIN},\\
+				& 1.0, \mathit{wmarker\_num}
+		\end{aligned}\right)$
+		\label{alg:detectmarker-call-method}
+		\If{$\mathit{marker\_info2}$}
+		\label{alg:detectmarker-check-marker-start}
+			\State \ldots \Comment{Weitere Anweisungen zur Identifikation einer Marke.}
+		\EndIf
+		\label{alg:detectmarker-check-marker-end}
+	\EndIf
+	\label{alg:detectmarker-check-il-end}
+	\State \ldots \Comment{Weitere Anweisungen zur Identifikation einer Marke.}
+\end{algorithmic}
+\end{algorithm}

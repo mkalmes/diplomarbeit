@@ -1,0 +1,29 @@
+\begin{algorithm}[ht]
+\caption{\textproc{getVertex} (Fortsetzung)}
+\label{alg:getvertex-2}
+\begin{algorithmic}[1]
+	\algrestore{brk-getvertex1-distance}
+	\If{$\mathit{dmax}/\left((a \cdot a) + (b \cdot b)\right) > \mathit{thresh}$}
+	\label{alg:getvertex-2-isdmaxgreater}
+			\If{\Call{getVertex}{$\mathit{x\_coord}, \mathit{y\_coord}, \mathit{st}, \mathit{v1}, \mathit{thresh}, \mathit{vertex}, \mathit{vnum}$} $< 0$}
+			\label{alg:getvertex-2-recursiv1}
+				\State \textbf{return}$(-1)$
+			\EndIf
+			\If{$\mathit{vnum} > 5$}
+			\label{alg:getvertex-2-isvnumgreater}
+				\State \textbf{return}$(-1)$
+				\label{alg:getvertex-2-error}
+			\EndIf
+			\State $\mathit{vertex}[\mathit{vnum}] \gets \mathit{v1}$
+			\State $\mathit{vnum} \gets \mathit{vnum} + 1$
+			\If{\Call{getVertex}{$\mathit{x\_coord}, \mathit{y\_coord}, \mathit{v1}, \mathit{ed}, \mathit{thresh},
+			 \mathit{vertex}, \mathit{vnum}$} $< 0$}
+			\label{alg:getvertex-2-recursiv2-start}
+				\State \textbf{return}$(-1)$
+			\EndIf
+			\label{alg:getvertex-2-recursiv2-end}
+	\EndIf
+	\State \textbf{return} $0$
+	\label{alg:getvertex-2-done}
+\end{algorithmic}
+\end{algorithm}

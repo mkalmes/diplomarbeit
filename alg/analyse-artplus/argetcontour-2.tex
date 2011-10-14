@@ -1,0 +1,96 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arGetContour} (Verfolge Kontur)}
+\label{alg:argetcontour-2}
+\begin{algorithmic}[1]
+	\algrestore{brk-argetcontour-init}
+	% marker_infoTWO->coord_num = 1;
+	% marker_infoTWO->x_coord[0] = sx;
+	% marker_infoTWO->y_coord[0] = sy;
+	\State $\mathit{marker\_infoTWO \to coord\_num} \gets 1$
+	\label{alg:argetcontour-2-markerinit-start}
+	\State $\mathit{marker\_infoTWO \to xcoord}\left[0\right] \gets \mathit{sx}$
+	\State $\mathit{marker\_infoTWO \to ycoord}\left[0\right] \gets \mathit{sy}$
+	\label{alg:argetcontour-2-markerinit-end}
+	% dir = 5;
+	\State $\mathit{dir} \gets 5$
+	\label{alg:argetcontour-2-orientation}
+	% for(;;) {
+	\For{\textbf{true}}
+	\label{alg:argetcontour-2-contourloop-start}
+	%     p1 = &(limage[marker_infoTWO->y_coord[marker_infoTWO->coord_num-1] * xsize
+	%                 + marker_infoTWO->x_coord[marker_infoTWO->coord_num-1]]);
+		\State $\mathit{tmp\_coord\_num} \gets \mathit{marker\_infoTWO \to coord\_num} - 1$
+		\label{alg:argetcontour-2-offset-start}
+		\State $\mathit{offset} \gets \mathit{marker\_infoTWO \to y\_coord}\left[\mathit{tmp\_coord\_num}\right] \cdot
+		 \mathit{xsize}$
+		\State $\mathit{offset} \gets \mathit{offset} + \mathit{marker\_infoTWO \to
+		 x\_coord}\left[\mathit{tmp\_coord\_num}\right]$
+		\label{alg:argetcontour-2-offset-end}
+		\State $\mathit{p1} \gets \mathit{l\_image}[\mathit{offset}]$
+		\label{alg:argetcontour-2-address}
+	%     dir = (dir+5)%8;
+		\State $\mathit{dir} \gets \left(\mathit{dir} + 5\right)\mod 8$
+		\label{alg:argetcontour-2-nextorientation}
+	%     for(i=0;i<8;i++) {
+	%         if( p1[ydir[dir]*xsize+xdir[dir]] > 0 ) break;
+	%         dir = (dir+1)%8;
+	%     }
+		\For{$i \gets 0$ \textbf{to} $i < 8$}
+		\label{alg:argetcontour-2-neighbourloop-start}
+			\State $\mathit{offset} \gets \mathit{ydir}\left[dir\right] \cdot \mathit{xsize} +
+			 \mathit{xdir}\left[\mathit{dir}\right]$
+			\label{alg:argetcontour-2-offset}
+			\If{$\mathit{p1}\left[\mathit{offset}\right] > 0$}
+			\label{alg:argetcontour-2-haslabel-start}
+				\State \textbf{break}
+			\EndIf
+			\label{alg:argetcontour-2-haslabel-end}
+			\State $\mathit{dir} \gets \left(\mathit{dir} + 1\right)\mod 8$
+			\label{alg:argetcontour-2-incdir}
+			\State $i \gets i + 1$
+			\label{alg:argetcontour-2-inci}
+		\EndFor
+		\label{alg:argetcontour-2-neighbourloop-end}
+		% if( i == 8 ) {
+		%             printf("??? 2\n"); return(-1);
+		%         }
+		\If{$i == 8$}
+		\label{alg:argetcontour-2-hasnolabel-start}
+			\State \textbf{return}$(-1)$
+		\EndIf
+		\label{alg:argetcontour-2-hasnolabel-end}
+	%     marker_infoTWO->x_coord[marker_infoTWO->coord_num]
+	%         = marker_infoTWO->x_coord[marker_infoTWO->coord_num-1] + xdir[dir];
+		\State $\mathit{mkx} \gets \mathit{marker\_infoTWO \to x\_coord}\left[\mathit{marker\_infoTwo \to coord\_num}\right]$
+		\label{alg:argetcontour-2-savex}
+		\State $\mathit{mkx} \gets \mathit{marker\_infoTWO \to x\_coord}\left[\mathit{marker\_infoTwo \to coord\_num} - 1\right] + \mathit{xdir}\left[\mathit{dir}\right]$
+	%     marker_infoTWO->y_coord[marker_infoTWO->coord_num]
+	%         = marker_infoTWO->y_coord[marker_infoTWO->coord_num-1] + ydir[dir];
+		\State $\mathit{mky} \gets \mathit{marker\_infoTWO \to y\_coord}\left[\mathit{marker\_infoTwo \to coord\_num}\right]$
+		\State $\mathit{mky} \gets \mathit{marker\_infoTWO \to y\_coord}\left[\mathit{marker\_infoTwo \to coord\_num} - 1\right] + \mathit{ydir}\left[\mathit{dir}\right]$
+		\label{alg:argetcontour-2-savey}
+	%     if( marker_infoTWO->x_coord[marker_infoTWO->coord_num] == sx
+	%      && marker_infoTWO->y_coord[marker_infoTWO->coord_num] == sy ) break;
+		\If{$\mathit{mkx} == sx \land \mathit{mky} == sy$}
+		\label{alg:argetcontour-2-iscontourclosed-start}
+			\State \textbf{break}
+		\EndIf
+		\label{alg:argetcontour-2-iscontourclosed-end}
+	%     marker_infoTWO->coord_num++;
+		\State $\mathit{marker\_infoTWO \to coord\_num} \gets \mathit{marker\_infoTWO \to coord\_num} + 1$
+		\label{alg:argetcontour-2-inccoordnum}
+		% if( marker_infoTWO->coord_num == AR_CHAIN_MAX-1 ) {
+		%             printf("??? 3\n"); return(-1);
+		%         }
+		\If{$\mathit{marker\_infoTWO \to coord\_num} == \mathit{AR\_CHAIN\_MAX} - 1}$
+		\label{alg:argetcontour-2-ismaxchainreached-start}
+			\State \textbf{return}$(-1)$
+			\label{alg:argetcontour-2-error}
+		\EndIf
+		\label{alg:argetcontour-2-ismaxchainreached-end}
+	% }
+	\EndFor
+	\label{alg:argetcontour-2-contourloop-end}
+	\algstore{brk-argetcontour-contour}
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,40 @@
+\begin{algorithm}[ht]
+\caption{\textproc{checkSquare} (Fortsetzung)}
+\label{alg:checksquare-5}
+\begin{algorithmic}[1]
+	\algrestore{brk-checksquare-4-case1}
+	\ElsIf{$\mathit{wvnum1} > 1 \land \mathit{wvnum2} == 0$}
+		\State $\mathit{v2} \gets \mathit{v1} / 2$
+		\label{alg:checksquare-5-v2}
+		\State $\mathit{wvnum1} \gets 0$
+		\label{alg:checksquare-5-delwvnum1}
+		\State $\mathit{wvnum2} \gets 0$
+		\label{alg:checksquare-5-delwvnum2}
+		\State $x \gets \mathit{marker\_infoTWO \to x\_coord}$
+		\State $y \gets \mathit{marker\_infoTWO \to y\_coord}$
+		\If{\Call{getVertex}{$x, y, 0, \mathit{v2}, \mathit{thresh}, \mathit{wv1}, \mathit{wvnum1}$} $< 0$}
+		\label{alg:checksquare-5-vertex1-start}
+			\State \textbf{return}$(-1)$
+		\EndIf
+		\label{alg:checksquare-5-vertex1-end}
+		\State $x \gets \mathit{marker\_infoTWO \to x\_coord}$
+		\State $y \gets \mathit{marker\_infoTWO \to y\_coord}$
+		\If{\Call{getVertex}{$x, y, \mathit{v2}, \mathit{v1}, \mathit{thresh}, \mathit{wv2}, \mathit{wvnum2}$} $< 0$}
+		\label{alg:checksquare-5-vertex2-start}
+			\State \textbf{return}$(-1)$
+		\EndIf
+		\label{alg:checksquare-5-vertex2-end}
+		\If{$\mathit{wvnum1} == 1 \land \mathit{wvnum2} == 1$}
+		\label{alg:checksquare-5-hascorners}
+			\State $\mathit{vertex}[1] = \mathit{wv1}[0]$
+			\label{alg:checksquare-5-save-start}
+			\State $\mathit{vertex}[2] = \mathit{wv2}[0]$
+			\State $\mathit{vertex}[3] = \mathit{v1}$
+			\label{alg:checksquare-5-save-end}
+		\Else
+			\State \textbf{return}$(-1)$
+			\label{alg:checksquare-5-error}
+		\EndIf
+	\algstore{brk-checksquare-5-case2}
+\end{algorithmic}
+\end{algorithm}

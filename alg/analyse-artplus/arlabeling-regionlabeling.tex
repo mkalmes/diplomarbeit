@@ -1,0 +1,44 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (Regionenmarkierung)}
+\label{alg:arlabeling-regionlabeling}
+\begin{algorithmic}[1]
+	\For{$j \gets 1$ \textbf{to} $\mathit{lysize} - 1$}
+	\label{alg:arlabeling-regionlabeling-loop1-start}
+
+		\For{$i \gets 1$ \textbf{to} $\mathit{lxsize} - 1$}
+		\label{alg:arlabeling-regionlabeling-loop2-start}
+
+			\State $\mathit{coorTresh} \gets \mathit{tresh}$
+			\label{alg:arlabeling-regionlabeling-threshold-start}
+			\State $\mathit{isBlack} \gets \texttt{FALSE}$
+			\State $\mathit{isBlack} \gets \left( \left(\mathit{pnt} + 0\right) + \left(\mathit{pnt} + 1\right) + \left(\mathit{pnt} + 2\right) \leq \mathit{coorTresh} \right)$
+			\label{alg:arlabeling-regionlabeling-calcblack}
+
+			\If{$\mathit{isBlack}$}
+			\label{alg:arlabeling-regionlabeling-isblack?}
+				\State Untersuche 8er-Nachbarschaft
+				\label{alg:arlabeling-regionlabeling-black}
+			\Else
+				\State $\mathit{pnt2} \gets 0$
+				\label{alg:arlabeling-regionlabeling-notblack}
+			\EndIf
+			\label{alg:arlabeling-regionlabeling-threshold-end}
+
+			\State $i \gets i + 1$
+			\label{alg:arlabeling-regionlabeling-inc1-start}
+			\State $\mathit{pnt} \gets \mathit{pnt} + \mathit{poff}$
+			\State Inkrementiere $\mathit{pnt2}$
+			\label{alg:arlabeling-regionlabeling-inc1-end}
+		\EndFor
+		\label{alg:arlabeling-regionlabeling-loop2-end}
+
+		\State $\mathit{pnt} \gets \mathit{pnt} + \mathit{arImXsize} \cdot \mathit{pixelSize}$
+		\label{alg:arlabeling-regionlabeling-inc2-start}
+		\State $j \gets j + 1$
+		\State $\mathit{pnt} \gets \mathit{pnt} + \mathit{poff} \cdot 2$
+		\State $\mathit{pnt2} \gets \mathit{pnt2} + 2$
+		\label{alg:arlabeling-regionlabeling-inc2-end}
+	\EndFor
+	\label{alg:arlabeling-regionlabeling-loop1-end}
+\end{algorithmic}
+\end{algorithm}

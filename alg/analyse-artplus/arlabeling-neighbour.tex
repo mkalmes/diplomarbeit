@@ -1,0 +1,19 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (Untersuchung der 8er-Nachbarschaft)}
+\label{alg:arlabeling-neighbour}
+\begin{algorithmic}[1]
+	\State $\mathit{pnt1} \gets \mathit{pnt2}[-\mathit{lxsize}]$ \Comment Adresse zuweisen
+	\label{alg:arlabeling-neighbour-n3}
+	\If{$\mathit{pnt1} > 0$}
+		\State \ldots \Comment 1. Fall
+	\ElsIf{$\left(\mathit{pnt1} + 1\right) > 0$}
+		\State \ldots \Comment 2. Fall
+	\ElsIf{$\left(\mathit{pnt1} - 1\right) > 0$}
+		\State \ldots \Comment 3. Fall
+	\ElsIf{$\left(\mathit{pnt2} - 1\right) > 0$}
+		\State \ldots \Comment 4. Fall
+	\Else
+		\State \ldots \Comment 5. Fall
+	\EndIf
+\end{algorithmic}
+\end{algorithm}

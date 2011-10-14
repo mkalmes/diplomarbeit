@@ -1,0 +1,17 @@
+\begin{algorithm}[ht]
+\caption{\textproc{checkSquare} (Fortsetzung)}
+\label{alg:checksquare-7}
+\begin{algorithmic}[1]
+	\algrestore{brk-checksquare-6-case3}
+	\State $\mathit{marker\_infoTWO \to vertex}[0] \gets \mathit{vertex}[0]$
+	\label{alg:checksquare-7-savesxsy}
+	\State $\mathit{marker\_infoTWO \to vertex}[1] \gets \mathit{vertex}[1]$
+	\label{alg:checksquare-7-save1}
+	\State $\mathit{marker\_infoTWO \to vertex}[2] \gets \mathit{vertex}[2]$
+	\State $\mathit{marker\_infoTWO \to vertex}[3] \gets \mathit{vertex}[3]$
+	\label{alg:checksquare-7-save3}
+	\State $\mathit{marker\_infoTWO \to vertex}[4] \gets \mathit{marker\_infoTWO \to coord\_num} - 1$
+	\label{alg:checksquare-7-savelast}
+	\State \textbf{return} $0$
+\end{algorithmic}
+\end{algorithm}

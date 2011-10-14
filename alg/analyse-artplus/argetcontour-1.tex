@@ -1,0 +1,63 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arGetContour} (Initialisierung)}
+\label{alg:argetcontour-1}
+\begin{algorithmic}[1]
+	\Require $\mathit{limage},\mathit{label\_ref},\mathit{label},\mathit{wclip}\left[4\right],\mathit{marker\_infoTWO}$ 
+	% static const int      xdir[8] = { 0, 1, 1, 1, 0,-1,-1,-1};
+	% static const int      ydir[8] = {-1,-1, 0, 1, 1, 1, 0,-1};
+	\State $\mathit{xdir} \gets \left[0, 1, 1, 1, 0,-1,-1,-1\right]$
+	\label{alg:argetcontour-1-initvar-start}
+	\State $\mathit{ydir} \gets \left[-1,-1, 0, 1, 1, 1, 0,-1\right]$
+	\label{alg:argetcontour-1-initvar-neighbour}
+	% ARInt16         *p1;
+	% int             xsize, ysize;
+	% int             sx, sy, dir;
+	% int             dmax, d, v1 = 0;
+	% int             i, j;
+	\State $\mathit{p1} \gets \infty$
+	\State $\mathit{sx} \gets \infty$
+	\State $\mathit{sy} \gets \infty$
+	\State $\mathit{dir} \gets \infty$
+	\State $\mathit{dmax} \gets \infty$
+	\State $d \gets \infty$
+	\State $\mathit{v1} \gets 0$
+	\State $i \gets \infty$
+	\State $j \gets \infty$
+	%     xsize = arImXsize / 2;
+	%     ysize = arImYsize / 2;
+	\State $\mathit{xsize} \gets \mathit{arImXsize} / 2$
+	\label{alg:argetcontour-1-initsizex}
+	\State $\mathit{ysize} \gets \mathit{arImYsize} / 2$
+	\label{alg:argetcontour-1-initvar-end}
+	% j = clip[2];
+	% p1 = &(limage[j*xsize+clip[0]]);
+	\State $j \gets \mathit{clip}\left[2\right]$
+	\State $\mathit{offset} \gets j \cdot \mathit{xsize} + \mathit{clip}\left[0\right]$
+	\label{alg:argetcontour-1-offset}
+	\State $\mathit{p1} \gets \mathit{limage}\left[\mathit{offset}\right]$
+	\label{alg:argetcontour-1-p1}
+	% for( i = clip[0]; i <= clip[1]; i++, p1++ ) {
+	%     if( *p1 > 0 && label_ref[(*p1)-1] == label ) {
+	%         sx = i; sy = j; break;
+	%     }
+	% }
+	\For{$i \gets \mathit{clip}\left[0\right]$ \textbf{to} $i \leq \mathit{clip}\left[1\right]$}
+	\label{alg:argetcontour-1-loop-start}
+		\If{$\mathit{p1} > 0 \land \mathit{label\_ref}\left[\mathit{p1 - 1}\right] == \mathit{label}$}
+		\label{alg:argetcontour-1-haslabel-start}
+			\State $\mathit{sx} \gets i$
+			\label{alg:argetcontour-1-savex}
+			\State $\mathit{sy} \gets j$
+			\label{alg:argetcontour-1-savey}
+			\State \textbf{break}
+		\EndIf
+		\label{alg:argetcontour-1-haslabel-end}
+		\State $i \gets i + 1$
+		\label{alg:argetcontour-1-inci}
+		\State Inkrementiere $\mathit{p1}$
+		\label{alg:argetcontour-1-incp1}
+	\EndFor
+	\label{alg:argetcontour-1-loop-end}
+	\algstore{brk-argetcontour-init}
+\end{algorithmic}
+\end{algorithm}

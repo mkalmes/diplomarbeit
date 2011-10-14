@@ -1,0 +1,34 @@
+\begin{algorithm}[htb]
+\caption{\textproc{arLabeling} (Initialisierung)}
+\label{alg:arlabeling-init1}
+\begin{algorithmic}[1]
+	\Require $I,\mathit{thresh},\mathit{label\_num},\mathit{area},\mathit{pos},\mathit{clip},\mathit{label\_ref}$
+
+	\State $\mathit{pnt}, \mathit{pnt1}, \mathit{pnt2} \gets \infty$
+	\label{alg:arlabeling-init1-local-start}
+	\State $\mathit{wk}, \mathit{wk\_max}, m, n, i, j, k \gets \infty$
+	\State $\mathit{lxsize}	\mathit{lysize}, \mathit{poff}, \mathit{l\_image} \gets \infty$
+	\State $\mathit{work}, \mathit{work2}, \mathit{wlabel\_num} \gets \infty$
+	\State $\mathit{warea}, \mathit{wclip}, \mathit{wpos} \gets \infty$
+	\label{alg:arlabeling-init1-local-end}
+
+	\State $\mathit{l\_image} \gets \mathit{l\_imageL}[0]$
+	\label{alg:arlabeling-init1-address-start}
+	\State $\mathit{work} \gets \mathit{workL}[0]$
+	\State $\mathit{work2} \gets \mathit{work2L}[0]$
+	\State $\mathit{wlabel\_num} \gets \mathit{wlabel\_numL}$
+	\State $\mathit{warea} \gets \mathit{wareaL}[0]$
+	\State $\mathit{wclip} \gets \mathit{wclipL}[0]$
+	\State $\mathit{wpos} \gets \mathit{wposL}[0]$
+	\label{alg:arlabeling-init1-address-end}
+
+	\State $\mathit{thresh} \gets \mathit{thresh} \cdot 3$
+	\label{alg:arlabeling-init1-threshold}
+	\State $\mathit{lxsize} \gets \mathit{arImXsize}/2 $
+	\label{alg:arlabeling-init1-size-start}
+	\State $\mathit{lysize} \gets \mathit{arImYsize}/2 $
+	\label{alg:arlabeling-init1-size-end}
+
+	\algstore{brk-arkabelinginit}
+\end{algorithmic}
+\end{algorithm}

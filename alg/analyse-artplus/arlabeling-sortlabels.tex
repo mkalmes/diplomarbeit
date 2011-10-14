@@ -1,0 +1,27 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (Sortiere Markierungen)}
+\label{alg:sortlabels}
+\begin{algorithmic}[1]
+	\State $j \gets 1$
+	\label{alg:sortlabels-j}
+	\State $\mathit{wk} \gets \mathit{work}\left[0\right]$
+	\label{alg:sortlabels-address}
+	\For{$i \gets 1$ \textbf{to} $i \leq \mathit{wk\_max}$}
+	\label{alg:sortlabels-loop-start}
+		\If{$\mathit{wk} == i$}
+			\State $\mathit{wk} \gets j$
+			\State $j \gets j + 1$
+			\label{alg:sortlabels-savelabel}
+		\Else
+		\label{alg:sortlabels-collision-start}
+			\State $\mathit{wk} \gets \mathit{work}\left[\mathit{wk} - 1\right]$ \Comment Letzten Markierungswert $\mathit{work}$ zuweisen.
+		\EndIf
+		\label{alg:sortlabels-collision-end}
+		\State $i \gets i + 1$
+		\label{alg:sortlabels-inci}
+		\State Inkrementiere $\mathit{wk}$
+		\label{alg:sortlabels-incwk}
+	\EndFor
+	\label{alg:sortlabels-loop-end}
+\end{algorithmic}
+\end{algorithm}

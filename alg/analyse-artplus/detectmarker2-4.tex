@@ -1,0 +1,33 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arDetectMarker2} (Größte Marke)}
+\label{alg:detectmarker2-4}
+\begin{algorithmic}[1]
+	\algrestore{brk-detectmarker2-process}
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{marker\_num2}$}
+	\label{alg:detectmarker2-4-loop1-start}
+		\For{$j \gets i + 1$ \textbf{to} $j < \mathit{marker\_num2}$}
+		\label{alg:detectmarker2-4-loop2-start}
+			\State $a \gets \mathit{marker\_infoTWO}[i].pos[0] - \mathit{marker\_infoTWO}[j].pos[0]$
+			\State $b \gets \mathit{marker\_infoTWO}[i].pos[1] - \mathit{marker\_infoTWO}[j].pos[1]$
+			\State $d \gets \left(a \cdot a\right) + \left(b \cdot b\right)$
+			\label{alg:detectmarker2-4-length}
+			\If{$\mathit{marker\_infoTWO}[i].area > \mathit{marker\_infoTWO}[j].area$}
+				\If{$d < \mathit{marker\_infoTWO}[i].area / 4$}
+				\label{alg:detectmarker2-4-di}
+					\State $\mathit{marker\_infoTWO}[j].area \gets 0$
+				\EndIf
+			\Else
+				\If{$d < \mathit{marker\_infoTWO}[j].area / 4$}
+				\label{alg:detectmarker2-4-dj}
+					\State $\mathit{marker\_infoTWO}[i].area \gets 0$
+				\EndIf
+			\EndIf
+		\State $j \gets j + 1$
+		\EndFor
+		\label{alg:detectmarker2-4-loop2-end}
+	\State $i \gets i + 1$
+	\EndFor
+	\label{alg:detectmarker2-4-loop1-end}
+	\algstore{brk-detectmarker2-sort}
+\end{algorithmic}
+\end{algorithm}

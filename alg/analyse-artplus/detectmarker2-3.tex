@@ -1,0 +1,40 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arDetectMarker2} (Rechtecküberprüfung)}
+\label{alg:detectmarker2-3}
+\begin{algorithmic}[1]
+	\State $\mathit{marker\_num2} \gets 0$
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
+	\label{alg:detectmarker2-3-loop-start}
+		\State \ldots
+		\State $\mathit{ret} \gets$ \textproc{arGetContour}$\left(
+		\begin{aligned}
+			& \mathit{limage}, \mathit{label\_ref}, i + 1,\\
+			& \mathit{wclip}[i \cdot 4], \mathit{marker\_infoTWO}[\mathit{marker\_num2}]
+		\end{aligned}\right)$
+		\If{$\mathit{ret} < 0$}
+		\label{alg:detectmarker2-3-retvalue}
+			\State \textbf{continue}
+			\label{alg:detectmarker2-3-continue}
+		\EndIf
+		\State $\mathit{ret} \gets$ \Call{checkSquare}{$\mathit{warea}[i],\mathit{marker\_infoTWO}[\mathit{marker\_num2}], \mathit{factor}$}
+		\label{alg:detectmarker2-3-checksquare}
+		\If{$\mathit{ret} < 0$}
+			\State \textbf{continue}
+			\label{alg:detectmarker2-3-continue2}
+		\EndIf
+		\State $\mathit{marker\_infoTWO}[marker\_num2].area \gets \mathit{warea}[i]$
+		\label{alg:detectmarker2-3-save-start}
+		\State $\mathit{marker\_infoTWO}[marker\_num2].pos[0] \gets \mathit{wpos}[i \cdot 2 + 0]$
+		\State $\mathit{marker\_infoTWO}[marker\_num2].pos[1] \gets \mathit{wpos}[i \cdot 2 + 1]$
+		\State $\mathit{marker\_num2} \gets \mathit{marker\_num2} + 1$
+		\label{alg:detectmarker2-3-save-end}
+		\If{$\mathit{marker\_num2} == \mathit{MAX\_IMAGE\_PATTERNS}$}
+		\label{alg:detectmarker2-3-maxpatterns}
+			\State \textbf{break}
+		\EndIf
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:detectmarker2-3-loop-end}
+	\algstore{brk-detectmarker2-process}
+\end{algorithmic}
+\end{algorithm}

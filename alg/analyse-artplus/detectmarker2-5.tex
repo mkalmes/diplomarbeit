@@ -1,0 +1,24 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arDetectMarker2} (Lösche Marken)}
+\label{alg:detectmarker2-5}
+\begin{algorithmic}[1]
+	\algrestore{brk-detectmarker2-sort}
+	\For{$i \gets 0$ \textbf{to} $\mathit{marker\_num2}$}
+	\label{alg:detectmarker2-5-loop-start}
+		\If{$\mathit{marker\_infoTWO}[i].area == 0$}
+		\label{alg:detectmarker2-5-shoulddelete}
+			\For{$j \gets i + 1$ \textbf{to} $\mathit{marker\_num2}$}
+			\label{alg:detectmarker2-5-move-start}
+				\State $\mathit{marker\_infoTWO}[j - 1] \gets \mathit{marker\_infoTWO}[j]$
+				\State $j \gets j + 1$
+			\EndFor
+			\label{alg:detectmarker2-5-move-end}
+			\State $\mathit{marker\_num2} \gets \mathit{marker\_num2} - 1$
+			\label{alg:detectmarker2-5-decrease}
+		\EndIf
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:detectmarker2-5-loop-end}
+	\algstore{brk-detectmarker2-decrease}
+\end{algorithmic}
+\end{algorithm}

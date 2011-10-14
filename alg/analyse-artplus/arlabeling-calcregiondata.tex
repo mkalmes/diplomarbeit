@@ -1,0 +1,86 @@
+\begin{algorithm}[ht]
+\caption{\textproc{arLabeling} (Berechne Regionendaten)}
+\label{alg:arlabeling-calcregiondata}
+\begin{algorithmic}[1]
+    % for(i = 0; i < *label_num; i++) {
+    %     wclip[i*4+0] = lxsize;
+    %     wclip[i*4+1] = 0;
+    %     wclip[i*4+2] = lysize;
+    %     wclip[i*4+3] = 0;
+    % }
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
+	\label{alg:arlabeling-calcregiondata-wclip-start}
+		\State $\mathit{wclip}\left[i \cdot 4 + 0\right] \gets \mathit{lxsize}$
+		\State $\mathit{wclip}\left[i \cdot 4 + 1\right] \gets 0$
+		\State $\mathit{wclip}\left[i \cdot 4 + 2\right] \gets \mathit{lysize}$
+		\State $\mathit{wclip}\left[i \cdot 4 + 3\right] \gets 0$
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:arlabeling-calcregiondata-wclip-end}
+    % for(i = 0; i < wk_max; i++) {
+    %     j = work[i] - 1;
+    %     warea[j]    += work2[i*7+0];
+    %     wpos[j*2+0] += work2[i*7+1];
+    %     wpos[j*2+1] += work2[i*7+2];
+    %     if( wclip[j*4+0] > work2[i*7+3] ) wclip[j*4+0] = work2[i*7+3];
+    %     if( wclip[j*4+1] < work2[i*7+4] ) wclip[j*4+1] = work2[i*7+4];
+    %     if( wclip[j*4+2] > work2[i*7+5] ) wclip[j*4+2] = work2[i*7+5];
+    %     if( wclip[j*4+3] < work2[i*7+6] ) wclip[j*4+3] = work2[i*7+6];
+    % }
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{wk\_max}$}
+	\label{alg:arlabeling-calcregiondata-work-start}
+		\State $j \gets \mathit{work}\left[i\right] - 1$
+		\label{alg:arlabeling-calcregiondata-label}
+		\State $\mathit{warea}\left[j\right] \gets \mathit{warea}\left[j\right] + \mathit{work2}\left[i \cdot 7 + 0\right]$
+		\State $\mathit{wpos}\left[j \cdot 2 + 0\right] \gets \mathit{wpos}\left[j \cdot 2 + 0\right] + \mathit{work2}\left[i \cdot 7 + 1\right]$
+		\label{alg:arlabeling-calcregiondata-sumx}
+		\State $\mathit{wpos}\left[j \cdot 2 + 1\right] \gets \mathit{wpos}\left[j \cdot 2 + 1\right] + \mathit{work2}\left[i \cdot 7 + 2\right]$
+		\label{alg:arlabeling-calcregiondata-sumy}
+		\If{$\mathit{wclip}\left[i \cdot 4 + 0\right] > \mathit{work2}\left[i \cdot 7 + 3\right]$}
+		\label{alg:arlabeling-calcregiondata-startx-start}
+			\State $\mathit{wclip}\left[i \cdot 4 + 0\right] \gets \mathit{work2}\left[i \cdot 7 + 3\right]$
+		\EndIf
+		\label{alg:arlabeling-calcregiondata-startx-end}
+
+		\If{$\mathit{wclip}\left[i \cdot 4 + 1\right] < \mathit{work2}\left[i \cdot 7 + 4\right]$}
+		\label{alg:arlabeling-calcregiondata-endx-start}
+			\State $\mathit{wclip}\left[i \cdot 4 + 1\right] \gets \mathit{work2}\left[i \cdot 7 + 4\right]$
+		\EndIf
+		\label{alg:arlabeling-calcregiondata-endx-end}
+
+		\If{$\mathit{wclip}\left[i \cdot 4 + 2\right] > \mathit{work2}\left[i \cdot 7 + 5\right]$}
+		\label{alg:arlabeling-calcregiondata-y-start}
+			\State $\mathit{wclip}\left[i \cdot 4 + 2\right] \gets \mathit{work2}\left[i \cdot 7 + 5\right]$
+		\EndIf
+
+		\If{$\mathit{wclip}\left[i \cdot 4 + 3\right] < \mathit{work2}\left[i \cdot 7 + 6\right]$}
+			\State $\mathit{wclip}\left[i \cdot 4 + 3\right] \gets \mathit{work2}\left[i \cdot 7 + 6\right]$
+		\EndIf
+		\label{alg:arlabeling-calcregiondata-y-end}
+
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:arlabeling-calcregiondata-work-end}
+    % for( i = 0; i < *label_num; i++ ) {
+    %     wpos[i*2+0] /= warea[i];
+    %     wpos[i*2+1] /= warea[i];
+    % }
+	\For{$i \gets 0$ \textbf{to} $\mathit{label\_num}$}
+	\label{alg:arlabeling-calcregiondata-pos-start}
+		\State $\mathit{wpos}\left[i \cdot 2 + 0\right] \gets \mathit{wpos}\left[i \cdot 2 + 0\right] / \mathit{warea}\left[i\right]$
+		\State $\mathit{wpos}\left[i \cdot 2 + 1\right] \gets \mathit{wpos}\left[i \cdot 2 + 1\right] / \mathit{warea}\left[i\right]$
+		\State $i \gets i + 1$
+	\EndFor
+	\label{alg:arlabeling-calcregiondata-pos-end}
+	% *label_ref = work;
+	% *area      = warea;
+	% *pos       = wpos;
+	% *clip      = wclip;
+	% return( l_image );
+	\State $\mathit{label\_ref} \gets \mathit{work}$
+	\State $\mathit{area} \gets \mathit{warea}$
+	\State $\mathit{pos} \gets \mathit{wpos}$
+	\State $\mathit{clip} \gets \mathit{wclip}$
+	\State \textbf{return} $\mathit{l\_image}$
+\end{algorithmic}
+\end{algorithm}

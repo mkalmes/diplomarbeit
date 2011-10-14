@@ -1,0 +1,22 @@
+\begin{algorithm}[ht]
+\caption{\textproc{checkImageBuffer}}
+\label{alg:checkimagebuffer}
+\begin{algorithmic}[1]
+	\State $\mathit{newSize} \gets \mathit{screenWidth} \cdot \mathit{screenHeight}$
+	\label{alg:checkimagebuffer-size}
+	\If{$\mathit{newSize} == \mathit{l\_imageL\_size}$}
+	\label{alg:checkimagebuffer-checksize-start}
+		\State \textbf{return}
+	\EndIf
+	\label{alg:checkimagebuffer-checksize-end}
+	\If{$\mathit{l\_imageL}$}
+	\label{alg:checkimagebuffer-checkmem-start}
+		\State \Call{artkpFree}{$\mathit{l\_imageL}$}
+	\EndIf
+	\label{alg:checkimagebuffer-checkmem-end}
+	\State $\mathit{l\_imageL\_size} \gets \mathit{newSize}$
+	\label{alg:checkimagebuffer-sizeglobal}
+	\State $\mathit{l\_imageL} \gets$ \Call{artkpAlloc}{$\mathit{newSize}$}
+	\label{alg:checkimagebuffer-newmem}
+\end{algorithmic}
+\end{algorithm}

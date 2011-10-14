@@ -1,0 +1,16 @@
+\begin{algorithm}[ht]
+\caption{\textproc{artkpFree}}
+\label{alg:artkpfree}
+\begin{algorithmic}[1]
+	\Require $\mathit{rawMemory}$
+	\If{$\neg\mathit{rawMemory}$}
+	\label{alg:artkpfree-checkmem-start}
+		\State \textbf{return}
+	\EndIf
+	\label{alg:artkpfree-checkmem-end}
+	\State \Call{free}{$\mathit{rawMemory}$}
+	\label{alg:artkpfree-deletemem-start}
+	\State $\mathit{rawMemory} \gets \mathit{NULL}$
+	\label{alg:artkpfree-deletemem-end}
+\end{algorithmic}
+\end{algorithm}
