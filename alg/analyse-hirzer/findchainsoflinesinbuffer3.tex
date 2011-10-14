@@ -16,7 +16,7 @@
 		\State $\mathit{chainSegment} \gets \mathit{B.data}[i]$
 		\State \Call{removeLine}{$B,i$}
 		\label{alg:findchainoflines3-removeline}
-		\If{$\mathit{chainLength} == 4$}
+		\If{$\mathit{chainLength} = 4$}
 		\label{alg:findchainoflines3-has4lines}
 			\State \Call{addLine}{$C,\mathit{chainSegment}$}
 			\label{alg:findchainoflines3-saveline}

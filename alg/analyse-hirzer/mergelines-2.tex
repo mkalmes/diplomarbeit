@@ -4,16 +4,21 @@
 \begin{algorithmic}[1]
 	\For{$j \gets 0$ \textbf{to} $j <$ \Call{getLineCount}{$L$}}
 	\label{alg:mergelines2-loop-start}
-		\If{$i == j$}
+		\If{$i = j$}
 		\label{alg:mergelines2-ignore-start}
-			\State \Call{continue}{}
+			\State \textbf{continue}
 		\EndIf
 		\label{alg:mergelines2-ignore-end}
 		\State $\mathit{tmp} \gets$ \Call{getLineSegment}{$L,j$}
 		\label{alg:mergelines2-j}
 		\State $\mathit{lineOrientation} \gets$ \Call{dotProduct}{$\mathit{tmp.slope}, \mathit{start.slope}$}
 		\label{alg:mergelines2-orientation-start}
-		\State $\mathit{connectionLine} \gets$ \Call{vectorSubtract}{$\mathit{tmp.end.coordinate}, \mathit{start.start.coordinate}$}
+		\State $\mathit{connectionLine} \gets$ \textproc{vectorSubtract}
+		$\left(
+		\begin{aligned}
+			& \mathit{tmp.end.coordinate},\\
+			& \mathit{start.start.coordinate}
+		\end{aligned}\right)$
 		\State \Call{normalized}{$\mathit{connectionLine}$}
 		\State $\mathit{connectionOrientation} \gets$ \Call{dotProduct}{$\mathit{connectionLine}, \mathit{start.slope}$}
 		\label{alg:mergelines2-orientation-end}

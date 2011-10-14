@@ -7,8 +7,12 @@
 			\State $\mathit{prev1} \gets 0$
 			\State $\mathit{prev2} \gets 0$
 			\For{$y \gets \mathit{top}$ \textbf{to} $y < \mathit{top} + \mathit{regionSize}$}
-				\State $\mathit{currentEdgel} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{blue},\mathit{imageWidth},
-				 \mathit{imageHeight}$}
+				\State $\mathit{currentEdgel} \gets$ \textproc{convoluteKernelY}
+				$\left(
+				\begin{aligned}
+					& I,x,y,\mathit{blue},\\
+					& \mathit{imageWidth},\mathit{imageHeight}
+				\end{aligned}\right)$
 				\label{alg:findedgelshirzer-2-color-start}
 				\State $\mathit{red} \gets$ \Call{convoluteKernelY}{$I,x,y,\mathit{red},\mathit{imageWidth},
 				 \mathit{imageHeight}$}
@@ -17,7 +21,7 @@
 				\label{alg:findedgelshirzer-2-color-end}
 				\If{$\mathit{currentEdgel} > \mathit{threshold} \land \mathit{red} > \mathit{threshold} \land
 				 \mathit{green} > \mathit{threshold}$}
-				\Comment Edgel gefunden
+					\State Möglicherweise ein Edgel
 				\Else
 					\State $\mathit{currentEdgel} \gets 0$
 				\EndIf
@@ -25,8 +29,12 @@
 				 \mathit{currentEdgel}$}
 				\State $\mathit{edgel} \gets \infty$
 				\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}
-				\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth},
-				 \mathit{imageHeight}, x,y - 1$}
+				\State $\mathit{edgel.slope} \gets$ \textproc{gradientIntensity}
+					$\left(
+					\begin{aligned}
+						& I_m, \mathit{imageWidth},\\
+						& \mathit{imageHeight}, x,y - 1
+					\end{aligned}\right)$
 				\State \Call{addEdgel}{$E,\mathit{edgel}$}
 				\EndIf
 				\State $\mathit{prev2} \gets \mathit{prev1}$

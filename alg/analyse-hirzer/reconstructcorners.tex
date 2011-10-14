@@ -8,9 +8,8 @@
 	\label{alg:reconstructcorners-c1}
 	\State $\mathit{c2} \gets$ \Call{intersection}{$\mathit{C.data}[1],\mathit{C.data}[2]$}
 	\label{alg:reconstructcorners-c2}
-	\State $\mathit{c3} \gets \infty$
-	\State $\mathit{c4} \gets \infty$
-	\If{\Call{getLineCount}{$C$}$ == 4$}
+	\State $\mathit{c3},\mathit{c4} \gets \infty$
+	\If{\Call{getLineCount}{$C$}$ = 4$}
 	\label{alg:reconstructcorners-4lines-start}
 		\State $\mathit{c3} \gets$ \Call{intersection}{$\mathit{C.data}[2],\mathit{C.data}[3]$}
 		\State $\mathit{c4} \gets$ \Call{intersection}{$\mathit{C.data}[3],\mathit{C.data}[0]$}

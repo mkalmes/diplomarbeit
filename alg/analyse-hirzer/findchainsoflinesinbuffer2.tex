@@ -12,7 +12,7 @@
 		\label{alg:findchainoflines2-endpointstart}
 		\State $\mathit{distance} \gets$ \Call{vectorSubtract}{$\mathit{startPoint},\mathit{endpoint}$}
 		\label{alg:findchainoflines2-distance}
-		\State $\mathit{squaredLength} \gets$ \Call{getSquaredLength}{$\mathit{distance}$}
+		\State $\mathit{squaredLength} \gets$ \Call{squaredLength}{$\mathit{distance}$}
 		\label{alg:findchainoflines2-length}
 		\If{$\mathit{squaredLength} > 16$}
 			\State \textbf{continue}

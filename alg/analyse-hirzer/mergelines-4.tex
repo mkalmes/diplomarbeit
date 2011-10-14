@@ -4,7 +4,7 @@
 \begin{algorithmic}[1]
 	\State $\mathit{numberOfDistances} \gets$ \Call{getDistanceCount}{$\mathit{distancepool}$}
 	\label{alg:mergelines4-sort-start}
-	\State \Call{qsort}{$\mathit{distancepool}, \mathit{numberOfDistances}, \mathit{size},$ \textproc{distanceCompare}} \Comment man-page qsort
+	\State \Call{qsort}{$\mathit{distancepool}, \mathit{numberOfDistances}, \mathit{size},$ \textproc{distanceCompare}}
 	\label{alg:mergelines4-sort-end}
 		\For{$k \gets 0$ \textbf{to} $k < \mathit{numberOfDistances}$}
 		\label{alg:mergelines4-loop-start}
@@ -14,7 +14,7 @@
 			\State $\mathit{endpoint} \gets$ \Call{getLineSegment}{$L,j$}$\mathit{.start.coordinate}$
 			\State $\mathit{lineLength} \gets$ \Call{vectorSubtract}{$\mathit{endpoint},\mathit{startpoint}$}
 			\State $\mathit{lineSlope} \gets$ \Call{vectorSubtract}{$\mathit{endpoint},\mathit{startpoint}$}
-			\State $\mathit{length} \gets$ \Call{getLength}{$\mathit{lineLength}$}
+			\State $\mathit{length} \gets$ \Call{length}{$\mathit{lineLength}$}
 			\State $\mathit{lineSlope} \gets$ \Call{normalized}{$\mathit{lineSlope}$}
 			\label{alg:mergelines4-merge-end}
 			\algstore{mergelines4}

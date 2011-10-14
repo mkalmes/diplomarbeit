@@ -13,13 +13,18 @@
 			\label{alg:mergelines3-cline-end}
 			\If{$\lnot$ \Call{isConnectionLineBridged}{$cLine, I$}}
 			\label{alg:mergelines3-isbridged}
-				\State $\mathit{connectionLine} \gets$ \Call{vectorSubtract}{$\mathit{tmp.start.coordinate},\mathit{start.end.coordinate}$}
+				\State $\mathit{connectionLine} \gets$ \textproc{vectorSubtract}
+				$\left(
+				\begin{aligned}
+					& \mathit{tmp.start.coordinate},\\
+					& \mathit{start.end.coordinate}
+				\end{aligned}\right)$
 				\label{alg:mergelines3-save-start}
 				\State $\mathit{squaredLength} \gets$ \Call{squaredLengt}{$\mathit{connectionLine}$}
 				\State $\mathit{distance} \gets \infty$
 				\State $\mathit{distance.distance} \gets \mathit{squaredLength}$
 				\State $\mathit{distance.index} \gets j$
-				\State \Call{distanceAddToPool}{$\mathit{distancepool}, \mathit{distance}$}
+				\State \Call{addDistance}{$\mathit{distancepool}, \mathit{distance}$}
 				\label{alg:mergelines3-save-end}
 			\EndIf
 		\EndIf

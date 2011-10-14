@@ -7,7 +7,12 @@
 	\label{alg:mergelines5-extendline}
 		\State $\mathit{pool.data}[i]\mathit{.end} \gets \mathit{pool.data}[j]\mathit{.end}$
 		\label{alg:mergelines5-merge-start}
-		\State $\mathit{newLineSlope} \gets$ \Call{subtract}{$\mathit{pool.data}[i]\mathit{.end.coordinate},\mathit{pool.data}[i]\mathit{.start.coordinate}$}
+		\State $\mathit{newLineSlope} \gets$ \textproc{vectorSubtract}
+		$\left(
+		\begin{aligned}
+			& \mathit{pool.data}[i]\mathit{.end.coordinate},\\
+			& \mathit{pool.data}[i]\mathit{.start.coordinate}
+		\end{aligned}\right)$
 		\State $\mathit{newLineSlope} \gets$ \Call{normalized}{$\mathit{newLineSlope}$}
 		\State $\mathit{pool.data}[i]\mathit{.slope} \gets \mathit{newLineSlope}$
 		\State $\mathit{pool.data}[j]\mathit{.remove} \gets$ \textbf{true}

@@ -11,13 +11,25 @@
 	\label{alg:extendline2-iscompatible}
 		\State \textbf{continue}
 	\EndIf
-	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight}, \mathit{start.x} + \mathit{normal.x}, \mathit{start.y} + normal.y$}
+	\State $\mathit{intensity} \gets$ \textproc{gradientIntensity}
+	$\left(
+	\begin{aligned}
+		& I, \mathit{imageWidth}, \mathit{imageHeight},\\
+		& \mathit{start.x} + \mathit{normal.x},\\
+		& \mathit{start.y} + normal.y
+	\end{aligned}\right)$
 	\label{alg:extendline2-pointabove}
 	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
 	\If{$\mathit{tmp} > 0.38$}
 		\State \textbf{continue}
 	\EndIf
-	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight}, \mathit{start.x} - \mathit{normal.x}, \mathit{start.y} - normal.y$}
+	\State $\mathit{intensity} \gets$ \textproc{gradientIntensity}
+	$\left(
+	\begin{aligned}
+		& I, \mathit{imageWidth}, \mathit{imageHeight},\\
+		& \mathit{start.x} - \mathit{normal.x},\\
+		& \mathit{start.y} - normal.y
+	\end{aligned}\right)$
 	\label{alg:extendline2-pointbelow}
 	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
 	\If{$\mathit{tmp} > 0.38$}
