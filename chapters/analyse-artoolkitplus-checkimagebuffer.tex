@@ -1,0 +1,34 @@
+\subsubsection{Bildspeicher} % (fold)
+\label{sub:artoolkitplus-bildspeicher}
+
+Die Algorithmen zur Verwaltung des Bildspeichers werden zur Vollständigkeit erwähnt, da sie einmalig vor den Verfahren
+ der Markenerkennung ausgeführt werden. Die Verfahren des Bildspeichers haben auf die Analyse keinen Einfluß.
+
+% \autoref{alg:checkimagebuffer} ist beim Initialisieren der \textit{Runtime Tracking Pipeline} für die Bereitstellung
+% des Bildspeichers zuständig.
+% In Zeile \ref{alg:checkimagebuffer-size} wird die Größe des Eingangssignals mit Hilfe der globalen Variablen errechnet.
+%  Danach wird in Zeile \ref{alg:checkimagebuffer-checksize-start}--\ref{alg:checkimagebuffer-checksize-end} die
+%  errechnete Größe mit der Größe der globalen Variable verglichen. Wenn die Größe nicht übereinstimmt, wird in Zeile
+%  \ref{alg:checkimagebuffer-checkmem-start}--\ref{alg:checkimagebuffer-checkmem-end} überprüft, ob der Speicher für ein
+%  Bild bereits gesetzt ist. Falls der Speicherbereich schon gesetzt ist, muss er mit \autoref{alg:artkpfree} gelöscht
+%  werden. In Zeile \ref{alg:checkimagebuffer-sizeglobal} wird der globalen Variable die berechnete Größe des
+%  Bildspeichers zugewiesen. Zuletzt wird der globalen Variable des Bildspeichers ein neuer Speicherbereich in Zeile
+%  \ref{alg:checkimagebuffer-newmem} zugewiesen.
+\textproc{checkImageBuffer} (\autoref{alg:checkimagebuffer}) wird beim ersten Aufruf Speicher für das Bildsignal anlegen
+ und den Algorithmus vollständig durchlaufen.
+\input{alg/analyse-artplus/checkimagebuffer}
+In allen weiteren Schritten, wenn der Bildspeicher angelegt ist, wird der Algorithmus lediglich die Größe des
+ Bildspeichers berechnen und vergleichen
+(Zeile \ref{alg:checkimagebuffer-size}--\ref{alg:checkimagebuffer-checksize-end}), was in konstanter Zeit erfolgt.
+\autoref{alg:artkpfree} überprüft in Zeile \ref{alg:artkpfree-checkmem-start}--\ref{alg:artkpfree-checkmem-end} ob der
+ Speicherbereich gültig ist.
+\input{alg/analyse-artplus/artkpfree}
+% Falls nicht wird die weitere Ausführung abgebrochen.
+Nur im Falle, dass es sich um einen gültigen Speicherbereich handelt, wird in Zeile
+ \ref{alg:artkpfree-deletemem-start}--\ref{alg:artkpfree-deletemem-end} der Speicher gelöscht und $\mathit{NULL}$
+ zugewiesen. \autoref{alg:artkpalloc} alloziert den Speicherbereich für die benötigte Größe, die in Zeile
+ \ref{alg:checkimagebuffer-size} von \autoref{alg:checkimagebuffer} berechnet wurde.
+\input{alg/analyse-artplus/artkpalloc}
+Nachdem der Speicher das erste Mal angelegt wurde, werden weder \autoref{alg:artkpfree} noch \autoref{alg:artkpalloc}
+ aufgerufen. Somit ist die Laufzeit, die zur Überprüfung der Größe des Bildspeichers verwendet wird, konstant.
+% subsubsection bildspeicher (end)

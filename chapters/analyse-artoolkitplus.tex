@@ -1,57 +1,28 @@
 \section{ARToolKitPlus} % (fold)
 \label{sec:artoolkitplus}
 
-Die \textit{Runtime Tracking Pipeline} (Vgl. \autoref{sub:artoolkitplus}, S.~\pageref{sub:artoolkitplus}) von
- ARToolKitPlus wird mit der Methode \textproc{calc} (Vgl. \autoref{alg:calc}) gestartet und benötigt das Bildsignal
- $I$, sowie den Schwellwert $\mathit{tresh}$. Die Methode \textproc{calc} dient in erster Linie als Einstiegspunkt der
- \textit{Runtime Tracking Pipeline}. Verarbeitungsschritte die nicht zur Fiducial Detection oder Rectangle
- Fitting gehören werden nicht aufgeführt.
-
+% Die \textit{Runtime Tracking Pipeline} (Vgl. \autoref{sub:artoolkitplus}, S.~\pageref{sub:artoolkitplus}) von
+%  ARToolKitPlus wird mit der Methode \textproc{calc} (Vgl. \autoref{alg:calc}) gestartet und benötigt das Bildsignal
+%  $I$, sowie den Schwellwert $\mathit{tresh}$. Die Methode \textproc{calc} dient in erster Linie als Einstiegspunkt der
+%  \textit{Runtime Tracking Pipeline}. Verarbeitungsschritte die nicht zur Fiducial Detection oder Rectangle
+%  Fitting gehören werden nicht aufgeführt.
 \input{alg/analyse-artplus/calc}
-
-Die Variablen $\mathit{marker\_info}$ und $\mathit{marker\_num}$ werden in Zeile
- \ref{alg:calc-init-start}--\ref{alg:calc-init-end} initialisiert. Bei $\mathit{marker\_info}$ handelt es sich um die
- Datenstruktur \textproc{MarkerInfo} (Vgl. \autoref{alg:datastructure-markerinfo}), die der Identifikation einer Marke
- dient. In Zeile \ref{alg:calc-check-image-start}--\ref{alg:calc-check-image-end} wird überprüft, ob das Bildsignal
- nicht $0$ ist und es sich somit um einen gesetzten Zeiger auf einen Speicherbereich handelt. Falls dies nicht der Fall
- ist, wird das Verfahren abgebrochen und ein Fehlerwert von $0$ zurückgeliefert. Anschließend wird in Zeile
- \ref{alg:calc-start-detection-start}--\ref{alg:calc-start-detection-end} die Methode \textproc{arDetectMarker}
- aufgerufen und ihr Rückgabewert überprüft. Falls während der Ausführung von \textproc{arDetectMarker} einen Fehler
- aufgetreten ist, wird die weitere Verarbeitung gestoppt und ein Fehlerwert von $-1$ zurückgegeben. Wenn
- \textproc{arDetectMarker} erfolgreich war und eine Marke identifizieren konnte, wird die Verarbeitung fortgesetzt und
- letztendlich in Zeile \ref{alg:calc-identified-marker} eine Markenidentifizierung zurückgegeben. Die Laufzeit des
- Algorithmus ist konstant.
+% Die Variablen $\mathit{marker\_info}$ und $\mathit{marker\_num}$ werden in Zeile
+%  \ref{alg:calc-init-start}--\ref{alg:calc-init-end} initialisiert. Bei $\mathit{marker\_info}$ handelt es sich um die
+%  Datenstruktur \textproc{MarkerInfo} (Vgl. \autoref{alg:datastructure-markerinfo}), die der Identifikation einer Marke
+%  dient. In Zeile \ref{alg:calc-check-image-start}--\ref{alg:calc-check-image-end} wird überprüft, ob das Bildsignal
+%  nicht $0$ ist und es sich somit um einen gesetzten Zeiger auf einen Speicherbereich handelt. Falls dies nicht der Fall
+%  ist, wird das Verfahren abgebrochen und ein Fehlerwert von $0$ zurückgeliefert. Anschließend wird in Zeile
+%  \ref{alg:calc-start-detection-start}--\ref{alg:calc-start-detection-end} die Methode \textproc{arDetectMarker}
+%  aufgerufen und ihr Rückgabewert überprüft. Falls während der Ausführung von \textproc{arDetectMarker} einen Fehler
+%  aufgetreten ist, wird die weitere Verarbeitung gestoppt und ein Fehlerwert von $-1$ zurückgegeben. Wenn
+%  \textproc{arDetectMarker} erfolgreich war und eine Marke identifizieren konnte, wird die Verarbeitung fortgesetzt und
+%  letztendlich in Zeile \ref{alg:calc-identified-marker} eine Markenidentifizierung zurückgegeben. Die Laufzeit des
+%  Algorithmus ist konstant.
 
 \subsection{Datenstrukturen} % (fold)
 \label{sec:datenstrukturen}
-
-ARToolKitPlus speichert die Informationen einer Marke in zwei einfachen Datenstrukturen. Informationen zur
- Identifizierung einer Marke werden in \textproc{MarkerInfo} gespeichert (\autoref{alg:datastructure-markerinfo}) und
- Informationen zur Erkennung einer Marke werden in \textproc{MarkerInfo2} gespeichert
- (\autoref{alg:datastructure-markerinfo2}). Da \textproc{MarkerInfo} zur Identifizierung einer Marke verwendet wird,
- werde ich diese Datenstruktur nur zur Vollständigkeit erwähnen. Das Identifikationsmerkmal $\mathit{id}$ wird in
- \autoref{alg:calc} als Rückgabewert verwendet.
-
-\input{alg/analyse-artplus/datastructure-markerinfo}
-
-\subsubsection{MakerInfo2} % (fold)
-\label{sec:makerinfo2}
-
-Die Variable $\mathit{area}$ speichert den Flächeninhalt einer Marke, während $\mathit{pos}[2]$ die Position des
- Zentrums der Marke enthält. $\mathit{coord\_num}$ enthält die Anzahl der gefundenen Konturpixel, die in
- $\mathit{x\_coord}$ als $x$-Koordinate und in $\mathit{y\_coord}$ als $y$-Koordinate gespeichert sind. Die konstante
- Größe $\mathit{AR\_CHAIN\_MAX}$ des Speichers für die Koordinaten wird zur Laufzeit nicht verändert. ARToolKitPlus
- erlaubt maximal $10000$ Einträge für Koordinaten pro Marke. Die Eckpunkte einer Marke sind in $\mathit{x\_coord}$ und
- $\mathit{y\_coord}$ enthalten und werden durch einen Index in $\mathit{vertex}$ referenziert. Hierbei ist zu beachten,
- dass $\mathit{vertex}$ fünf Einträge speichert, wobei der erste und letzte Eintrag auf die gleiche Koordinate
- verweisen. Dadurch kann bei der Grafikprogrammierung mit OpenGL sehr einfach ein Rahmen um eine Marke gezeichnet
- werden.
-
-\input{alg/analyse-artplus/datastructure-markerinfo2}
-
-Der Zugriff auf die Variablen der Datenstruktur, sowohl lesend als auch schreibend, ist konstant.
-
-% subsubsection makerinfo2 (end)
+\input{chapters/analyse-artoolkitplus-markerinfo}
 
 \subsubsection{Automatischer Schwellwert} % (fold)
 \label{sec:automatischer_schwellwert}
@@ -66,84 +37,13 @@ Die automatische Schwellwertanalyse von ARToolKitPlus wird durch \autoref{alg:au
 
 % subsubsection automatischer_schwellwert (end)
 
-\subsubsection{Bildspeicher} % (fold)
-\label{sec:bildspeicher}
-
-Die Algorithmen zur Verwaltung des Bildspeichers werden zur Vollständigkeit erwähnt. Da die folgenden Algorithmen
- einmalig vor den Verfahren der Markenerkennung ausgeführt werden, haben sie auf die Analyse keinen Einfluß.
-
-\autoref{alg:checkimagebuffer} ist beim Initialisieren der \textit{Runtime Tracking Pipeline} für die Bereitstellung
- des Bildspeichers zuständig. In Zeile \ref{alg:checkimagebuffer-size} wird die Größe des Eingangssignals mit Hilfe der
- globalen Variablen errechnet. Danach wird in Zeile
- \ref{alg:checkimagebuffer-checksize-start}--\ref{alg:checkimagebuffer-checksize-end} die errechnete Größe mit der
- Größe der globalen Variable verglichen. Wenn die Größe nicht übereinstimmt, wird in Zeile
- \ref{alg:checkimagebuffer-checkmem-start}--\ref{alg:checkimagebuffer-checkmem-end} überprüft, ob der Speicher für ein
- Bild bereits gesetzt ist. Falls der Speicherbereich schon gesetzt ist, muss er mit \autoref{alg:artkpfree} gelöscht
- werden. In Zeile \ref{alg:checkimagebuffer-sizeglobal} wird der globalen Variable die berechnete Größe des
- Bildspeichers zugewiesen. Zuletzt wird der globalen Variable des Bildspeichers ein neuer Speicherbereich in Zeile
- \ref{alg:checkimagebuffer-newmem} zugewiesen.
-
-\input{alg/analyse-artplus/checkimagebuffer}
-
-\autoref{alg:checkimagebuffer} wird beim ersten Aufruf Speicher für das Bildsignal anlegen müssen und den Algorithmus
- vollständig durchlaufen. In allen weiteren Schritten, wenn der Bildspeicher angelegt ist, wird der Algorithmus
- lediglich die Größe des Bildspeichers berechnen und vergleichen
- (Zeile \ref{alg:checkimagebuffer-size}--\ref{alg:checkimagebuffer-checksize-end}), was in konstanter Zeit erfolgt.
-
-\autoref{alg:artkpfree} überprüft in Zeile \ref{alg:artkpfree-checkmem-start}--\ref{alg:artkpfree-checkmem-end} ob der
- Speicherbereich gültig ist. Falls nicht wird die weitere Ausführung abgebrochen. Nur im Falle, dass es sich um einen
- gültigen Speicherbereich handelt, wird in Zeile \ref{alg:artkpfree-deletemem-start}--\ref{alg:artkpfree-deletemem-end}
- der Speicher gelöscht und $\mathit{NULL}$ zugewiesen.
-
-\input{alg/analyse-artplus/artkpfree}
-
-\autoref{alg:artkpalloc} alloziert den Speicherbereich für die benötigte Größe, die in Zeile
- \ref{alg:checkimagebuffer-size} von \autoref{alg:checkimagebuffer} berechnet wurde.
-
-\input{alg/analyse-artplus/artkpalloc}
-
-Nachdem der Speicher das erste Mal angelegt wurde, werden weder \autoref{alg:artkpfree} noch \autoref{alg:artkpalloc}
- aufgerufen. Somit ist die Laufzeit, die zur Überprüfung der Größe des Bildspeichers verwendet wird, konstant.
-
-% subsubsection bildspeicher (end)
+\input{chapters/analyse-artoolkitplus-checkimagebuffer}
 
 % subsection datenstrukturen (end)
 
 \subsection{Fiducial Detection} % (fold)
 \label{sec:fiducial_detection}
-
-\textproc{arDetectMarker} (Vgl. \autoref{alg:detectmarker}) wird von \textproc{calc} aufgerufen und benötigt das
- Bildsignal $I$, den Schwellwert $\mathit{tresh}$ sowie $\mathit{marker\_info}$ und $\mathit{marker\_num}$. In Zeile
- \ref{alg:detectmarker-init-start}--\ref{alg:detectmarker-init-end} werden die lokalen Variablen initialisiert. Die
- Variablen werden als Parameter für den Aufruf der Methode \textproc{arDetectMarker2} in Zeile
- \ref{alg:detectmarker-call-method} verwendet.
-
-\input{alg/analyse-artplus/detectmarker}
-
-In Zeile \ref{alg:detectmarker-call-autothreshold} wird der Schwellwert auf seine Startwerte zurückgesetzt
- (Vgl. \autoref{alg:autothresholdreset}) und der Bildspeicher in Zeile \ref{alg:detectmarker-call-imagebuffer}
- überprüft (Vgl. \autoref{alg:checkimagebuffer}). Die Regionenmarkierung $I_l$ wird durch den Rückgabewert von
- \textproc{arLabeling} in Zeile \ref{alg:detectmarker-call-labeling} gesetzt. Im Anschluss wird in Zeile
- \ref{alg:detectmarker-check-il-start}--\ref{alg:detectmarker-check-il-end} geprüft, ob der Speicher der
- Regionenmarkierung erfolgreich gesetzt wurde. Andernfalls wird die Untersuchung für das aktuelle Bildsignal $I$
- beendet. Nur wenn die Regionenmarkierung erfolgreich war, wird in Zeile \ref{alg:detectmarker-call-method} die Methode
- \textproc{arDetectMarker2} aufgerufen. Der Rückgabewert von \textproc{arDetectMarker2} wird in der Membervariable
- $\mathit{marker\_info2}$ gespeichert. Es wird anschließend in Zeile
- \ref{alg:detectmarker-check-marker-start}--\ref{alg:detectmarker-check-marker-end} geprüft, ob der Zeiger von
- $\mathit{marker\_info2}$ auf einen gültigen Speicherbereich verweist. Falls die Überprüfung erfolgreich war, sind in
- $\mathit{marker\_info2}$ die Koordinaten der Eckpunkte der Marke gespeichert und das Verfahren beendet.
- \autoref{alg:detectmarker} verarbeitet die Anweisungen in konstanter Zeit.
-
-\clearpage
-
-\input{chapters/analyse-artoolkitplus-labeling}
-
-\clearpage
-
-\input{chapters/analyse-artoolkitplus-contour}
-
-\clearpage
-
+\input{chapters/analyse-artoolkitplus-fiducial}
 % subsection fiducial_detection (end)
 
 \clearpage

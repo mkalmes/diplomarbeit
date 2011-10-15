@@ -1,44 +1,64 @@
-\begin{algorithm}[htb]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (Fortsetzung der Initialisierung)}
 \label{alg:arlabeling-init2}
 \begin{algorithmic}[1]
 	\algrestore{brk-arkabelinginit}
 
-	\State $\mathit{pnt1} \gets \mathit{l\_image}[0]$ \Cost{$c_1$}{$1$}
+	\State $\mathit{pnt1} \gets \mathit{l\_image}[0]$
+	\Cost{$c_{14}$}{$2$}
 	\label{alg:arlabeling-init2-address1-start}
-	\State $\mathit{pnt2} \gets \mathit{l\_image}[(\mathit{lysize} - 1) \cdot \mathit{lxsize}]$ \Cost{$c_2$}{$1$}
+	\State $\mathit{pnt2} \gets \mathit{l\_image}[(\mathit{lysize} - 1) \cdot \mathit{lxsize}]$
+	\Cost{$c_{15}$}{$4$}
 	\label{alg:arlabeling-init2-address1-end}
-	\For{$i \gets 1$ \textbf{to} $i < \mathit{lxsize}$} \Cost{$c_3$}{$\mathit{lxsize} + 1$}
+	\For{$i \gets 1$ \textbf{to} $i < \mathit{lxsize}$}
+	\Cost{$c_{16}$}{$(\mathit{lxsize} - 1) + 1$}
 	\label{alg:arlabeling-init2-loop1-start}
-		\State $\mathit{pnt1} \gets 0$ \Cost{$c_4$}{$\sum_{i=1}^{\mathit{lxsize}} 1$}
-		\State $\mathit{pnt2} \gets 0$ \Cost{$c_5$}{$\sum_{i=1}^{\mathit{lxsize}} 1$}
-		\State Inkrementiere ${pnt1}$ \Cost{$c_6$}{$\sum_{i=1}^{\mathit{lxsize}} 1$}
-		\State Inkrementiere ${pnt2}$ \Cost{$c_7$}{$\sum_{i=1}^{\mathit{lxsize}} 1$}
-		\State $i \gets i + 1$ \Cost{$c_8$}{$\sum_{i=1}^{\mathit{lxsize}} 1$}
+		\State $\mathit{pnt1} \gets 0$
+		\Cost{$c_{17}$}{$(\mathit{lxsize} - 1 )$}
+		\State $\mathit{pnt2} \gets 0$
+		\Cost{$c_{18}$}{$(\mathit{lxsize} - 1 )$}
+		\State Inkrementiere ${pnt1}$
+		\Cost{$c_{19}$}{$(\mathit{lxsize} - 1 )$}
+		\State Inkrementiere ${pnt2}$
+		\Cost{$c_{20}$}{$(\mathit{lxsize} - 1 )$}
+		\State $i \gets i + 1$
+		\Cost{$c_{21}$}{$(\mathit{lxsize} - 1 )$}
 		\label{alg:arlabeling-init2-inc-1}
 	\EndFor
 	\label{alg:arlabeling-init2-loop1-end}
 
-	\State $\mathit{pnt1} \gets \mathit{l\_image}[0]$ \Cost{$c_9$}{$1$}
+	\State $\mathit{pnt1} \gets \mathit{l\_image}[0]$
+	\Cost{$c_{23}$}{$2$}
 	\label{alg:arlabeling-init2-address2-start}
-	\State $\mathit{pnt2} \gets \mathit{l\_image}[\mathit{lxsize} - 1]$ \Cost{$c_{10}$}{$1$}
+	\State $\mathit{pnt2} \gets \mathit{l\_image}[\mathit{lxsize} - 1]$
+	\Cost{$c_{24}$}{$3$}
 	\label{alg:arlabeling-init2-address2-end}
-	\For{$i \gets 1$ \textbf{to} $i < \mathit{lysize}$} \Cost{$c_{11}$}{$\mathit{lysize} + 1$}
+	\For{$i \gets 1$ \textbf{to} $i < \mathit{lysize}$}
+	\Cost{$c_{25}$}{$(\mathit{lysize} - 1) + 1$}
 	\label{alg:arlabeling-init2-loop2-start}
-		\State $\mathit{pnt1} \gets 0$ \Cost{$c_{12}$}{$\sum_{i=1}^{\mathit{lysize}} 1$}
+		\State $\mathit{pnt1} \gets 0$
+		\Cost{$c_{26}$}{$\mathit{lysize} - 1$}
 		\label{alg:arlabeling-init2-clearfirstrow}
-		\State $\mathit{pnt2} \gets 0$ \Cost{$c_{13}$}{$\sum_{i=1}^{\mathit{lysize}} 1$}
+		\State $\mathit{pnt2} \gets 0$
+		\Cost{$c_{27}$}{$\mathit{lysize} - 1$}
 		\label{alg:arlabeling-init2-clearlastrow}
-		\State $\mathit{pnt1} \gets \mathit{pnt1} + \mathit{lxsize}$ \Cost{$c_{14}$}{$\sum_{i=1}^{\mathit{lysize}} 1$}
-		\State $\mathit{pnt2} \gets \mathit{pnt2} + \mathit{lxsize}$ \Cost{$c_{15}$}{$\sum_{i=1}^{\mathit{lysize}} 1$}
-		\State $i \gets i + 1$ \Cost{$c_{16}$}{$\sum_{i=1}^{\mathit{lysize}} 1$}
+		\State $\mathit{pnt1} \gets \mathit{pnt1} + \mathit{lxsize}$
+		\Cost{$c_{28}$}{$(\mathit{lysize} - 1) 2$}
+		\State $\mathit{pnt2} \gets \mathit{pnt2} + \mathit{lxsize}$
+		\Cost{$c_{29}$}{$(\mathit{lysize} - 1) 2$}
+		\State $i \gets i + 1$
+		\Cost{$c_{30}$}{$\mathit{lysize} - 1$}
 	\EndFor
 	\label{alg:arlabeling-init2-loop2-end}
 
-	\State $\mathit{wk\_max} \gets 0$ \Cost{$c_{17}$}{$1$}
+	\State $\mathit{wk\_max} \gets 0$
+	\Cost{$c_{32}$}{$1$}
 	\label{alg:arlabeling-init2-label}
-	\State $\mathit{pnt2} \gets \mathit{l\_image}[\mathit{lxsize} + 1]$ \Cost{$c_{18}$}{$1$}
-	\State $\mathit{pnt} \gets I[\left(\mathit{arImXsize} \cdot 2 + 2 \right) \cdot \mathit{pixelSize}]$ \Cost{$c_{19}$}{$1$}
-	\State $\mathit{poff} \gets \mathit{pixelSize} \cdot 2$ \Cost{$c_{20}$}{$1$}
+	\State $\mathit{pnt2} \gets \mathit{l\_image}[\mathit{lxsize} + 1]$
+	\Cost{$c_{33}$}{$3$}
+	\State $\mathit{pnt} \gets I[\left(\mathit{arImXsize} \cdot 2 + 2 \right) \cdot \mathit{pixelSize}]$
+	\Cost{$c_{34}$}{$5$}
+	\State $\mathit{poff} \gets \mathit{pixelSize} \cdot 2$
+	\Cost{$c_{35}$}{$2$}
 \end{algorithmic}
 \end{algorithm}

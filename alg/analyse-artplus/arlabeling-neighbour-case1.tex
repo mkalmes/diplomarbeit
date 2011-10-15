@@ -1,19 +1,29 @@
 % Fall 1: *pnt1 > 0
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (8er-Nachbarschaft: 1. Fall)}
 \label{alg:arlabeling-neighbour-case1}
 \begin{algorithmic}[1]
 
 	\If{$\mathit{pnt1} > 0$}
+	\Cost{$c_{1}$}{$1$}
 		\State $\mathit{pnt2} \gets \mathit{pnt1}$
+		\Cost{$c_{2}$}{$1$}
 		\label{alg:arlabeling-neighbour-case1-save-label}
 		\State $\mathit{pnt2\_index} \gets \left(\mathit{pnt2} - 1\right) \cdot 7$
+		\Cost{$c_{3}$}{$3$}
 		\label{alg:arlabeling-neighbour-case1-calc-offset}
-		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 0\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 0\right] + 1$
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 0\right] \gets
+		 \mathit{work2}\left[\mathit{pnt2\_index} + 0\right] + 1$
+		\Cost{$c_{4}$}{$6$}
 		\label{alg:arlabeling-neighbour-case1-inc-region}
-		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 1\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 1\right] + i$
-		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 2\right] \gets \mathit{work2}\left[\mathit{pnt2\_index} + 2\right] + j$
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 1\right] \gets
+		 \mathit{work2}\left[\mathit{pnt2\_index} + 1\right] + i$
+		\Cost{$c_{5}$}{$6$}
+		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 2\right] \gets
+		 \mathit{work2}\left[\mathit{pnt2\_index} + 2\right] + j$
+		\Cost{$c_{6}$}{$6$}
 		\State $\mathit{work2}\left[\mathit{pnt2\_index} + 6\right] \gets j$
+		\Cost{$c_{7}$}{$3$}
 		\label{alg:arlabeling-neighbour-case1-save-j}
 		\algstore{brk-case1}
 \end{algorithmic}

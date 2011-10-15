@@ -1,4 +1,4 @@
-\begin{algorithm}[htb]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (Initialisierung)}
 \label{alg:arlabeling-init1}
 \begin{algorithmic}[1]
@@ -6,10 +6,9 @@
 
 	\State $\mathit{pnt}, \mathit{pnt1}, \mathit{pnt2} \gets \infty$
 	\label{alg:arlabeling-init1-local-start}
-	\State $\mathit{wk}, \mathit{wk\_max}, m, n, i, j, k \gets \infty$
-	\State $\mathit{lxsize}	\mathit{lysize}, \mathit{poff}, \mathit{l\_image} \gets \infty$
-	\State $\mathit{work}, \mathit{work2}, \mathit{wlabel\_num} \gets \infty$
-	\State $\mathit{warea}, \mathit{wclip}, \mathit{wpos} \gets \infty$
+	\State $\mathit{wk}, \mathit{wk\_max}, m, n, i, j, k, \mathit{lxsize}, \mathit{lysize}, \mathit{poff} \gets \infty$
+	\State $\mathit{l\_image}, \mathit{work}, \mathit{work2}, \mathit{wlabel\_num}, \mathit{warea}, \mathit{wclip},
+	 \mathit{wpos} \gets \infty$
 	\label{alg:arlabeling-init1-local-end}
 
 	\State $\mathit{l\_image} \gets \mathit{l\_imageL}[0]$
@@ -24,9 +23,9 @@
 
 	\State $\mathit{thresh} \gets \mathit{thresh} \cdot 3$
 	\label{alg:arlabeling-init1-threshold}
-	\State $\mathit{lxsize} \gets \mathit{arImXsize}/2 $
+	\State $\mathit{lxsize} \gets \tfrac{arImXsize}{2}$
 	\label{alg:arlabeling-init1-size-start}
-	\State $\mathit{lysize} \gets \mathit{arImYsize}/2 $
+	\State $\mathit{lysize} \gets \tfrac{arImYsize}{2}$
 	\label{alg:arlabeling-init1-size-end}
 
 	\algstore{brk-arkabelinginit}

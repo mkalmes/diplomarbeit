@@ -1,10 +1,10 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{checkImageBuffer}}
 \label{alg:checkimagebuffer}
 \begin{algorithmic}[1]
 	\State $\mathit{newSize} \gets \mathit{screenWidth} \cdot \mathit{screenHeight}$
 	\label{alg:checkimagebuffer-size}
-	\If{$\mathit{newSize} == \mathit{l\_imageL\_size}$}
+	\If{$\mathit{newSize} = \mathit{l\_imageL\_size}$}
 	\label{alg:checkimagebuffer-checksize-start}
 		\State \textbf{return}
 	\EndIf

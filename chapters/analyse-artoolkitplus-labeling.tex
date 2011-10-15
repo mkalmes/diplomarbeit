@@ -6,41 +6,38 @@ Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:
  verzichet ARToolKitPlus beim Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der
  Verarbeitung durch eine Schwellwertanalyse untersucht. \textproc{arLabeling} kann in drei Abschnitte unterteilt werden
  (Vgl. \autoref{alg:arlabeling-overview}):
-
 \begin{enumerate}
 	\item Initialisierung der Variablen und des Speichers, \label{label-init}
 	\item Regionenmarkierung und Auflösen von Kollisionen und \label{label-region}
 	\item Aufbereiten der Regionenmarkierung zur Speicherung. \label{label-cleaning}
 \end{enumerate}
-
 \input{alg/analyse-artplus/arlabeling-overview}
 
-\autoref{label-init} ist in \autoref{alg:arlabeling-init1} aufgeführt. In Zeile
- \ref{alg:arlabeling-init1-local-start}--\ref{alg:arlabeling-init1-local-end} werden die lokalen Variablen deklariert,
- deren Bedeutung bei ihrem ersten Auftreten erklärt werden. Speicheradressen werden in Zeile
+\autoref{label-init} ist in \autoref{alg:arlabeling-init1} aufgeführt.
+\input{alg/analyse-artplus/arlabeling-init1}
+In Zeile \ref{alg:arlabeling-init1-local-start}--\ref{alg:arlabeling-init1-local-end} werden die lokalen Variablen
+ deklariert, deren Bedeutung bei ihrem ersten Auftreten erklärt werden. Speicheradressen werden in Zeile
  \ref{alg:arlabeling-init1-address-start}--\ref{alg:arlabeling-init1-address-end} initialisiert. Der
  Schwellwertparameter wird verdreifacht und lokal gespeichert (Zeile \ref{alg:arlabeling-init1-threshold}). Die
  Schwellwertanalyse in \autoref{alg:arlabeling-regionlabeling} benutzt einen dreifachen Wert als Optimierung
  (Vgl. S.~\pageref{sub:arlabel-threshold}). Zum Schluss wird in Zeile
- \ref{alg:arlabeling-init1-size-start}--\ref{alg:arlabeling-init1-size-end} die Größe des Bildsignals festgelegt. Die
- Variablen $\mathit{arImXsize}$ und $\mathit{arImYsize}$ enthalten die Breite und Höhe des Bildsignals $I$. Das
- halbieren der Bildhöhe und -breite ist ebenfalls eine Optimierung (Vgl. \autoref{sec:vorgehen}). Da auf alle Variablen
- und Adressen direkt zugegriffen wird, ist die Laufzeit des Algorithmus konstant.
+ \ref{alg:arlabeling-init1-size-start}--\ref{alg:arlabeling-init1-size-end} die Bildbreite durch die Konstante
+ $\mathit{arImXsize}$ und die Bildhöhe durch die Konstante $\mathit{arImYsize}$ festgelegt. Das halbieren der Bildhöhe
+ und -breite ist eine Optimierung (Vgl. \autoref{sec:vorgehen}). Das initialisieren der Variablen erfolgt in konstanter
+ Laufzeit $T(n) = 39$.
 
-\input{alg/analyse-artplus/arlabeling-init1}
-
-Die Initialisierung von \textproc{arLabeling} wird in \autoref{alg:arlabeling-init2} fortgesetzt. $\mathit{pnt1}$ wird
- in Zeile \ref{alg:arlabeling-init2-address1-start} auf die erste Speicherstelle der ersten Zeile des Regionenbildes
- gesetzt. $\mathit{pnt2}$ erhält in Zeile \ref{alg:arlabeling-init2-address1-end} die erste Speicherstelle der
- letzten Zeile des Regionenbildes. In der Schleife in Zeile
- \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabeling-init2-loop1-end} wird über die Breite des Regionenbildes
- iteriert, um die erste und die letzte Zeile des Regionenbildes zu löschen. Dazu wird an den Adressen von
- $\mathit{pnt1}$ und $\mathit{pnt2}$ der Wert $0$ gespeichert. Danach werden die Adressen von $\mathit{pnt1}$ und
- $\mathit{pnt2}$ inkrementiert. In Zeile \ref{alg:arlabeling-init2-inc-1} wird die Laufvariable $i$ inkrementiert.
-
+Die Initialisierung von \textproc{arLabeling} wird in \autoref{alg:arlabeling-init2} fortgesetzt.
 \input{alg/analyse-artplus/arlabeling-init2}
-
-In Zeile \ref{alg:arlabeling-init2-address2-start}--\ref{alg:arlabeling-init2-address2-end} werden die Adressen
+$\mathit{pnt1}$ wird in Zeile \ref{alg:arlabeling-init2-address1-start} auf die erste Speicherstelle der ersten Zeile
+ des Regionenbildes gesetzt. $\mathit{pnt2}$ erhält in Zeile \ref{alg:arlabeling-init2-address1-end} die erste
+ Speicherstelle der letzten Zeile des Regionenbildes.
+% In der Schleife in Zeile \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabeling-init2-loop1-end} wird
+%  über die Breite des Regionenbildes iteriert, um die erste und die letzte Zeile des Regionenbildes zu löschen.
+In der Schleife in Zeile \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabeling-init2-loop1-end} wird die erste
+ und die letzte Zeile des Regionenbildes gelöscht. Dazu wird an den Adressen von
+ $\mathit{pnt1}$ und $\mathit{pnt2}$ der Wert $0$ gespeichert. Danach werden die Adressen von $\mathit{pnt1}$ und
+ $\mathit{pnt2}$ inkrementiert. In Zeile \ref{alg:arlabeling-init2-inc-1} wird die Laufvariable $i$ inkrementiert. In
+ Zeile \ref{alg:arlabeling-init2-address2-start}--\ref{alg:arlabeling-init2-address2-end} werden die Adressen
  von $\mathit{pnt1}$ und $\mathit{pnt2}$ erneut festgelegt. $\mathit{pnt1}$ wird die erste Speicherstelle des
  Regionenbildes zugewiesen. In $\mathit{pnt2}$ wird die Adresse der ersten Speicherstelle der letzten Zeile hinterlegt.
  In der Schleife von Zeile \ref{alg:arlabeling-init2-loop2-start}--\ref{alg:arlabeling-init2-loop2-end} wird die erste
@@ -48,115 +45,60 @@ In Zeile \ref{alg:arlabeling-init2-address2-start}--\ref{alg:arlabeling-init2-ad
  $\mathit{pnt2}$ geschrieben wird
  (Zeile \ref{alg:arlabeling-init2-clearfirstrow}--\ref{alg:arlabeling-init2-clearlastrow}). Im Anschluss daran werden
  die Adressen $\mathit{pnt1}$ und $\mathit{pnt2}$ auf die nächste Position der Bildspalte inkrementiert, indem die
- Breite $\mathit{lxsize}$ auf die Adressen addiert wird. Danach wird $i$ inkrementiert.
-
-In Zeile \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{wk\_max}$ mit dem Wert $0$
- initialisiert. Danach wird die Adresse der Startposition des Regionenbildes in $\mathit{pnt2}$ gespeichert. Dabei ist
- zu beachten, dass die Adresse auf den zweiten \gls{pixel} der zweiten Zeile verweist. $\mathit{pnt}$ wird daraufhin die
- Adresse des Bildsignals $I$ zugewiesen. Der Adresse von $I$ ist der vierte \gls{pixel} der zweiten Zeile. Die
- Variable $\mathit{poff}$ ist der Adressabstand der \gls{pixel} in $I$ und dient der Adressierung des nächsten
- \glspl{pixel}. $\mathit{poff}$ wird in der letzten Zeile von \autoref{alg:arlabeling-init2} gesetzt.
-
-Die Kosten des Algorithmus sind in \autoref{alg:arlabeling-init2} angegeben und in \autoref{eq:analyse-arlabeling}
- aufgeführt. Da die Breite $\mathit{lxsize}$ des Regionenbildes größer ist als die Höhe $\mathit{lysize}$, ist die
- Laufzeit des Algorithmus abhängig von $\mathit{lxsize}$ und beträgt somit $\Theta{(\mathit{lxsize})}$.
-
-\begin{subequations}
-\label{eq:analyse-arlabeling}
-\begin{align}
-\label{eq:analyse-arlabeling-1}
-T(I)& = c_1 + c_2 + c_3 \left(\mathit{lxsize} + 1\right)\\
-& \quad + c_4 \sum_{i=1}^{\mathit{lxsize}} 1
-+ c_5 \sum_{i=1}^{\mathit{lxsize}} 1
-+ c_6 \sum_{i=1}^{\mathit{lxsize}} 1
-+ c_7 \sum_{i=1}^{\mathit{lxsize}} 1
-+ c_8 \sum_{i=1}^{\mathit{lxsize}} 1\nonumber \\
-& \quad + c_9
-+ c_{10}
-+ c_{11} \left(\mathit{lysize} + 1\right)\nonumber \\
-& \quad + c_{12} \sum_{i=1}^{\mathit{lysize}} 1
-+ c_{13} \sum_{i=1}^{\mathit{lysize}} 1
-+ c_{14} \sum_{i=1}^{\mathit{lysize}} 1
-+ c_{15} \sum_{i=1}^{\mathit{lysize}} 1
-+ c_{16} \sum_{i=1}^{\mathit{lysize}} 1 \nonumber \\
-& \quad + c_{17} + c_{18} + c_{19} + c_{20}\nonumber \\
-% \label{eq:analyse-arlabeling-2}
-% T(I)& = c_1 + c_2 + c_3 + \left(c_3 \mathit{lxsize}\right)\\
-% & \quad + c_4 \left[ \mathit{lxsize} \left(1\right) \right]
-% + c_5 \left[ \mathit{lxsize} \left(1\right) \right]
-% + c_6 \left[ \mathit{lxsize} \left(1\right) \right]
-% + c_7 \left[ \mathit{lxsize} \left(1\right) \right]
-% + c_8 \left[ \mathit{lxsize} \left(1\right) \right] \nonumber \\
-% & \quad + c_9
-% + c_{10}
-% + c_{11}
-% + c_{11} \left[ \mathit{lysize} \left(1\right) \right]\nonumber \\
-% & \quad + c_{12} \left[ \mathit{lysize} \left(1\right) \right]
-% + c_{13} \left[ \mathit{lysize} \left(1\right) \right]
-% + c_{14} \left[ \mathit{lysize} \left(1\right) \right]
-% + c_{15} \left[ \mathit{lysize} \left(1\right) \right]
-% + c_{16} \left[ \mathit{lysize} \left(1\right) \right]\nonumber \\
-% & \quad + c_{17} + c_{18} + c_{19} + c_{20} \nonumber \\
-\label{eq:analyse-arlabeling-3}
-T(I)& = c_1 + c_2 + c_3 + \left( c_3 + c_4 + c_5 + c_6 + c_7 + c_8 \right) \mathit{lxsize}\\
-& \quad + c_9 + c_{10} + c_{11} + \left( c_{11} + c_{12} + c_{13} + c_{14} + c_{15} + c_{16} \right) \mathit{lysize}\nonumber \\
-& \quad + c_{17} + c_{18} + c_{19} + c_{20}\nonumber\\
-\label{eq:analyse-arlabeling-4}
-T(I)& = \mathit{lxsize} + \mathit{lysize}\\
-\label{eq:analyse-arlabeling-5}
-T(I)& = \Theta\left( \mathit{lxsize} \right)
-\end{align}
-\end{subequations}
+ Breite $\mathit{lxsize}$ auf die Adressen addiert wird. Danach wird $i$ inkrementiert. In Zeile
+ \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{wk\_max}$ mit dem Wert $0$ initialisiert.
+ Danach wird die Adresse der Startposition des Regionenbildes in $\mathit{pnt2}$ gespeichert. Dabei ist zu beachten,
+ dass die Adresse auf den zweiten \gls{pixel} der zweiten Zeile verweist. $\mathit{pnt}$ wird daraufhin die Adresse des
+ Bildsignals $I$ zugewiesen. Der Adresse von $I$ ist der vierte \gls{pixel} der zweiten Zeile. Die Variable
+ $\mathit{poff}$ ist der Adressabstand der \gls{pixel} in $I$ und dient der Adressierung des nächsten \glspl{pixel}.
+ $\mathit{poff}$ wird in der letzten Zeile von \autoref{alg:arlabeling-init2} gesetzt. Die Kosten des Algorithmus sind
+ in \autoref{alg:arlabeling-init2} angegeben. Durch Umformung der Kosten von \autoref{eq:analyse-arlabeling-init-1}
+ erhalten wir die Laufzeitfunktion \autoref{eq:analyse-arlabeling-init-2}.
+\input{eq/artplus/arlabeling-init}
+Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist, für die Werte $c_{1} = 7$,
+ $c_{2} = 7$ und $n_{0} = 1$, $6\mathit{lxsize} + 1 = \Theta(lxsize)$. Für $T(\mathit{lysize}) = 8\mathit{lysize} + 9$,
+ mit den Werten $c_{1} = 17$, $c_{2} = 17$ und $n_{0} = 1$, ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
 
 \autoref{label-region} von \autoref{alg:arlabeling-overview} ist für die Regionenmarkierung und das Auflösen von
  Kollisionen verantwortlich. Eine Übersich des Verfahrens ist in \autoref{alg:arlabeling-regionlabeling} dargestellt.
+\input{alg/analyse-artplus/arlabeling-regionlabeling}
  \textproc{arLabeling} untersucht das Bildsignal $I$ zeilenweise von links oben nach rechts unten. Durch eine
  Schwellwertanalyse wird entschieden, ob ein \gls{pixel} an Position $I(u,v)$ ein Vordergrund- oder Hintergrundpixel
  ist. Die Regionenmarkierung wird dann in $\mathit{l\_image}$ gespeichert. Das Verfahren wird solange wiederholt, bis
  das Bildsignal $I$ vollständig prozessiert wurde und zusammenhängende Bildregionen in $\mathit{l\_image}$ markiert
  sind. Die Variable $\mathit{pnt}$ enthält die Adresse des zu untersuchenden \gls{pixel} aus $I$. Die nächste freie
- Speicherstelle in $\mathit{l\_image}$ ist in $\mathit{pnt2}$ hinterlegt.
-
-\input{alg/analyse-artplus/arlabeling-regionlabeling}
-
-In den beiden Schleifen in Zeile
+ Speicherstelle in $\mathit{l\_image}$ ist in $\mathit{pnt2}$ hinterlegt. In den beiden Schleifen in Zeile
  \ref{alg:arlabeling-regionlabeling-loop1-start}--\ref{alg:arlabeling-regionlabeling-loop1-end} und Zeile
  \ref{alg:arlabeling-regionlabeling-loop2-start}--\ref{alg:arlabeling-regionlabeling-loop2-end} wird das Bildsignal
  zeilenweise, von oben links nach unten rechts, verarbeitet. Das Inkrementieren der Variablen in Zeile
  \ref{alg:arlabeling-regionlabeling-inc1-start}--\ref{alg:arlabeling-regionlabeling-inc1-end} und Zeile
  \ref{alg:arlabeling-regionlabeling-inc2-start}--\ref{alg:arlabeling-regionlabeling-inc2-end} sorgt dafür, dass nur die
- Hälfte der \gls{pixel} prozessiert werden (Vgl. \autoref{sec:vorgehen}).
-
-Die Schwellwertanalyse wird in Zeile
+ Hälfte der \gls{pixel} prozessiert werden (Vgl. \autoref{sec:vorgehen}). Die Schwellwertanalyse wird in Zeile
  \ref{alg:arlabeling-regionlabeling-threshold-start}--\ref{alg:arlabeling-regionlabeling-threshold-end} durchgeführt.
  Dazu wird in Zeile \ref{alg:arlabeling-regionlabeling-calcblack} die RGB-Komponente des Bildsignals $I$ ausgelesen und
  addiert. Normalerweise würde man an dieser Stelle den Schwellwert mit jeder Komponente $R$, $G$ und $B$ einzeln
  vergleichen. Die Verdreifachung des Schwellwerts in \autoref{alg:arlabeling-init1} und die Addition der
- RGB-Komponenten ermöglichen hingegen eine Schwellwertanalyse mit nur einem Vergleich.\label{sub:arlabel-threshold}
-
-In Zeile \ref{alg:arlabeling-regionlabeling-isblack?}--\ref{alg:arlabeling-regionlabeling-threshold-end} wird
+ RGB-Komponenten ermöglichen hingegen eine Schwellwertanalyse mit nur einem Vergleich.\label{sub:arlabel-threshold} In
+ Zeile \ref{alg:arlabeling-regionlabeling-isblack?}--\ref{alg:arlabeling-regionlabeling-threshold-end} wird
  untersucht, ob ein Vordergrundpixel gefunden wurde. Falls nicht, wird in das Regionenbild $\mathit{l\_image}$ eine $0$
  geschrieben. Wenn die Schwellertanalyse ein Vordergrundpixel bestimmt hat, müssen in Zeile
  \ref{alg:arlabeling-regionlabeling-black} die Nachbarn des Vordergrundpixels mit einer 8er-Nachbarschaft untersucht
  werden (Vgl. \autoref{alg:arlabeling-neighbour}).
 
-\input{alg/analyse-artplus/arlabeling-neighbour}
-
 Die Nachbarschafsuntersuchung in ARToolKitPlus untersucht die vier Nachbarn der Markierung an Position $I(u,v)$. Wie in
  \autoref{sec:vorläufige_makierung} bereits beschrieben, ist eine Regionenmarkierung davon abhängig ob alle Nachbarn
  Hintergrundpixel sind, genau ein Nachbar eine Markierung hat oder mehrere Nachbarn eine Markierung haben. Die Fälle
- 1, 3 und 4 in \autoref{alg:arlabeling-neighbour} untersuchen, ob genau ein Nachbar eine Markierung hat. Bei Fall 5 sind
- alle Nachbarn Hintergrundpixel. Nur bei Fall 2 können  mehrere Nachbarn eine Markierung haben. In Zeile
+ 1, 3 und 4 in \autoref{alg:arlabeling-neighbour} untersuchen, ob genau ein Nachbar eine Markierung hat.
+\input{alg/analyse-artplus/arlabeling-neighbour}
+Bei Fall 5 sind alle Nachbarn Hintergrundpixel. Nur bei Fall 2 können  mehrere Nachbarn eine Markierung haben. In Zeile
  \ref{alg:arlabeling-neighbour-n3} wird der Variablen $\mathit{pnt1}$ der Nachbar $N_3 = (u,v+1)$ zugewiesen. Die
  Nachbarn sind in \autoref{fig:analyse-nachbarschaftsbeziehung} illustriert.
-
 \begin{figure}[!ht]
 	\centering
 	\input{resources/8er-Nachbarschaft.pdf_tex}
 	\caption{8er-Nachbarschaft mit $N_1 = I(u-1,v)$, $N_2 = I(u-1,v+1)$, $N_3 = (u,v+1)$ und $N_4 = I(u+1,v+1)$.}
 	\label{fig:analyse-nachbarschaftsbeziehung}
 \end{figure}
-
 \paragraph{1. Fall:} % (fold)
 \label{par:fall_1_}
 Wir wissen durch \autoref{alg:arlabeling-regionlabeling}, dass $I(u,v)$ ein Vordergrundpixel ist, dem wir an dieser
@@ -165,9 +107,7 @@ Wir wissen durch \autoref{alg:arlabeling-regionlabeling}, dass $I(u,v)$ ein Vord
  $N_1 = I(u-1,v)$, $N_2 = I(u-1,v+1)$ und $N_4 = I(u+1,v+1)$ um Vordergrundpixel handelt, haben sie die gleiche
  Markierung wie $N_3$ und müssen nicht weiter untersucht werden. Das Verfahren ist in
  \autoref{alg:arlabeling-neighbour-case1} beschrieben.
-
 \input{alg/analyse-artplus/arlabeling-neighbour-case1}
-
 In Zeile \ref{alg:arlabeling-neighbour-case1-save-label} wird die Markierung von $N_3$ übernommen und in
  $\mathit{l\_image}$ an Position $(x,y)$ gespeichert. In der Variablen $\mathit{work2}$ werden Informationen der
  Regionenmarkierung gespeichert. Dazu wird zuerst in Zeile \ref{alg:arlabeling-neighbour-case1-calc-offset} aus
@@ -176,9 +116,8 @@ In Zeile \ref{alg:arlabeling-neighbour-case1-save-label} wird die Markierung von
  $\mathit{work2}$ (Zeile \ref{alg:arlabeling-neighbour-case1-inc-region}) wird die Anzahl der Vordergrundpixel der
  Region erhöht. Position 1 und Position 2 von $\mathit{work2}$ enthalten die akummulierten Werte von $i$ und $j$ für
  die $x$- und $y$-Koordinaten aller Vordergrundpixel der Region. An Position 6 von $\mathit{work2}$ in Zeile
- \ref{alg:arlabeling-neighbour-case1-save-j} wird die $y$-Koordinate gespeichert. Alle Anweisungen in
- \autoref{alg:arlabeling-neighbour-case1} werden in konstanter Zeit ausgeführt.
-
+ \ref{alg:arlabeling-neighbour-case1-save-j} wird die $y$-Koordinate gespeichert. Die Kosten des Algorithmus sind in
+ \autoref{alg:arlabeling-neighbour-case1} angegeben. Die Laufzeitfunktion $T(n) = 26$ ist konstant.
 % paragraph fall_1_ (end)
 
 \paragraph{2. Fall:} % (fold)
@@ -187,9 +126,7 @@ Beim zweiten Fall wird die Markierung $N_4$ betrachtet. Da $N_3$ keine Markierun
  Markierungen haben. Da die Markierungen nur durch $I(u,v)$ verbunden sind, kann es sich hier um eine Kollision
  handeln, die durch \autoref{alg:arlabeling-neighbour-case2-1} oder \autoref{alg:arlabeling-neighbour-case2-2}
  besonders behandelt wird. Das Verfahren ist in \autoref{alg:arlabeling-neighbour-case2} aufgeführt.
-
 \input{alg/analyse-artplus/arlabeling-neighbour-case2}
-
 In Zeile \ref{alg:arlabeling-neighbour-case2-n2} wird überprüft, ob $N_2$ eine Markierung enthält. Falls ja, wird
  \autoref{alg:arlabeling-neighbour-case2-1} untersuchen, ob eine Kollision vorliegt und sie gegebenfalls auflösen.
  Zeile \ref{alg:arlabeling-neighbour-case2-n1} überprüft $N_1$ auf eine vorhandene Markierung und fährt mit der
