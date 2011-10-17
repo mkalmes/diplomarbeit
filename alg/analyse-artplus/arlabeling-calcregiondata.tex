@@ -1,4 +1,4 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (Berechne Regionendaten)}
 \label{alg:arlabeling-calcregiondata}
 \begin{algorithmic}[1]
@@ -9,12 +9,18 @@
     %     wclip[i*4+3] = 0;
     % }
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
+	\Cost{$c_{1}$}{$\mathit{label\_num} + 1$}
 	\label{alg:arlabeling-calcregiondata-wclip-start}
 		\State $\mathit{wclip}\left[i \cdot 4 + 0\right] \gets \mathit{lxsize}$
+		\Cost{$c_{2}$}{$\mathit{label\_num}4$}
 		\State $\mathit{wclip}\left[i \cdot 4 + 1\right] \gets 0$
+		\Cost{$c_{3}$}{$\mathit{label\_num}4$}
 		\State $\mathit{wclip}\left[i \cdot 4 + 2\right] \gets \mathit{lysize}$
+		\Cost{$c_{4}$}{$\mathit{label\_num}4$}
 		\State $\mathit{wclip}\left[i \cdot 4 + 3\right] \gets 0$
+		\Cost{$c_{5}$}{$\mathit{label\_num}4$}
 		\State $i \gets i + 1$
+		\Cost{$c_{6}$}{$\mathit{label\_num}$}
 	\EndFor
 	\label{alg:arlabeling-calcregiondata-wclip-end}
     % for(i = 0; i < wk_max; i++) {
@@ -28,48 +34,71 @@
     %     if( wclip[j*4+3] < work2[i*7+6] ) wclip[j*4+3] = work2[i*7+6];
     % }
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{wk\_max}$}
+	\Cost{$c_{8}$}{$\mathit{wk\_max} + 1$}
 	\label{alg:arlabeling-calcregiondata-work-start}
 		\State $j \gets \mathit{work}\left[i\right] - 1$
+		\Cost{$c_{9}$}{$\mathit{wk\_max}3$}
 		\label{alg:arlabeling-calcregiondata-label}
-		\State $\mathit{warea}\left[j\right] \gets \mathit{warea}\left[j\right] + \mathit{work2}\left[i \cdot 7 + 0\right]$
-		\State $\mathit{wpos}\left[j \cdot 2 + 0\right] \gets \mathit{wpos}\left[j \cdot 2 + 0\right] + \mathit{work2}\left[i \cdot 7 + 1\right]$
+		\State $\mathit{warea}\left[j\right] \gets
+		 \mathit{warea}\left[j\right] + \mathit{work2}\left[i \cdot 7 + 0\right]$
+		\Cost{$c_{10}$}{$\mathit{wk\_max}7$}
+		\State $\mathit{wpos}\left[j \cdot 2 + 0\right]
+		 \gets \mathit{wpos}\left[j \cdot 2 + 0\right] + \mathit{work2}\left[i \cdot 7 + 1\right]$
+		\Cost{$c_{11}$}{$\mathit{wk\_max}11$}
 		\label{alg:arlabeling-calcregiondata-sumx}
-		\State $\mathit{wpos}\left[j \cdot 2 + 1\right] \gets \mathit{wpos}\left[j \cdot 2 + 1\right] + \mathit{work2}\left[i \cdot 7 + 2\right]$
+		\State $\mathit{wpos}\left[j \cdot 2 + 1\right] \gets
+		 \mathit{wpos}\left[j \cdot 2 + 1\right] + \mathit{work2}\left[i \cdot 7 + 2\right]$
+		\Cost{$c_{12}$}{$\mathit{wk\_max}11$}
 		\label{alg:arlabeling-calcregiondata-sumy}
 		\If{$\mathit{wclip}\left[i \cdot 4 + 0\right] > \mathit{work2}\left[i \cdot 7 + 3\right]$}
+		\Cost{$c_{13}$}{$\mathit{wk\_max}7$}
 		\label{alg:arlabeling-calcregiondata-startx-start}
 			\State $\mathit{wclip}\left[i \cdot 4 + 0\right] \gets \mathit{work2}\left[i \cdot 7 + 3\right]$
+			\Cost{$c_{14}$}{$\mathit{wk\_max}7$}
 		\EndIf
 		\label{alg:arlabeling-calcregiondata-startx-end}
 
 		\If{$\mathit{wclip}\left[i \cdot 4 + 1\right] < \mathit{work2}\left[i \cdot 7 + 4\right]$}
+		\Cost{$c_{16}$}{$\mathit{wk\_max}7$}
 		\label{alg:arlabeling-calcregiondata-endx-start}
 			\State $\mathit{wclip}\left[i \cdot 4 + 1\right] \gets \mathit{work2}\left[i \cdot 7 + 4\right]$
+			\Cost{$c_{17}$}{$\mathit{wk\_max}7$}
 		\EndIf
 		\label{alg:arlabeling-calcregiondata-endx-end}
 
 		\If{$\mathit{wclip}\left[i \cdot 4 + 2\right] > \mathit{work2}\left[i \cdot 7 + 5\right]$}
+		\Cost{$c_{19}$}{$\mathit{wk\_max}7$}
 		\label{alg:arlabeling-calcregiondata-y-start}
 			\State $\mathit{wclip}\left[i \cdot 4 + 2\right] \gets \mathit{work2}\left[i \cdot 7 + 5\right]$
+			\Cost{$c_{20}$}{$\mathit{wk\_max}7$}
 		\EndIf
 
 		\If{$\mathit{wclip}\left[i \cdot 4 + 3\right] < \mathit{work2}\left[i \cdot 7 + 6\right]$}
+		\Cost{$c_{22}$}{$\mathit{wk\_max}7$}
 			\State $\mathit{wclip}\left[i \cdot 4 + 3\right] \gets \mathit{work2}\left[i \cdot 7 + 6\right]$
+			\Cost{$c_{23}$}{$\mathit{wk\_max}7$}
 		\EndIf
 		\label{alg:arlabeling-calcregiondata-y-end}
 
 		\State $i \gets i + 1$
+		\Cost{$c_{25}$}{$\mathit{wk\_max}1$}
 	\EndFor
 	\label{alg:arlabeling-calcregiondata-work-end}
     % for( i = 0; i < *label_num; i++ ) {
     %     wpos[i*2+0] /= warea[i];
     %     wpos[i*2+1] /= warea[i];
     % }
-	\For{$i \gets 0$ \textbf{to} $\mathit{label\_num}$}
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
+	\Cost{$c_{27}$}{$\mathit{label\_num} + 1$}
 	\label{alg:arlabeling-calcregiondata-pos-start}
-		\State $\mathit{wpos}\left[i \cdot 2 + 0\right] \gets \mathit{wpos}\left[i \cdot 2 + 0\right] / \mathit{warea}\left[i\right]$
-		\State $\mathit{wpos}\left[i \cdot 2 + 1\right] \gets \mathit{wpos}\left[i \cdot 2 + 1\right] / \mathit{warea}\left[i\right]$
+		\State $\mathit{wpos}\left[i \cdot 2 + 0\right] \gets
+		 \mathit{wpos}\left[i \cdot 2 + 0\right] / \mathit{warea}\left[i\right]$
+		\Cost{$c_{28}$}{$\mathit{label\_num}9$}
+		\State $\mathit{wpos}\left[i \cdot 2 + 1\right] \gets
+		 \mathit{wpos}\left[i \cdot 2 + 1\right] / \mathit{warea}\left[i\right]$
+		\Cost{$c_{29}$}{$\mathit{label\_num}9$}
 		\State $i \gets i + 1$
+		\Cost{$c_{30}$}{$\mathit{label\_num}1$}
 	\EndFor
 	\label{alg:arlabeling-calcregiondata-pos-end}
 	% *label_ref = work;
@@ -78,9 +107,13 @@
 	% *clip      = wclip;
 	% return( l_image );
 	\State $\mathit{label\_ref} \gets \mathit{work}$
+	\Cost{$c_{32}$}{$1$}
 	\State $\mathit{area} \gets \mathit{warea}$
+	\Cost{$c_{33}$}{$1$}
 	\State $\mathit{pos} \gets \mathit{wpos}$
+	\Cost{$c_{34}$}{$1$}
 	\State $\mathit{clip} \gets \mathit{wclip}$
+	\Cost{$c_{35}$}{$1$}
 	\State \textbf{return} $\mathit{l\_image}$
 \end{algorithmic}
 \end{algorithm}
