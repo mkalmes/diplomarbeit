@@ -256,11 +256,13 @@ In Zeile \ref{alg:sortlabels-j} wird $j$ als Variable für die aktuelle Markieru
  \ref{alg:sortlabels-inci} wird die Laufvariable $i$ um $1$ erhöht und in Zeile \ref{alg:sortlabels-incwk} die Adresse
  von $\mathit{work}$ inkrementiert. Das Beispiel in \autoref{fig:} illustriert das Verfahren. In
  \autoref{eq:analyse-arlabeling-sortlabels} ist die Laufzeitfunktion angegeben. Für $c_{1} = 4$, $c_{2} = 7$ und
- $\mathit{wk\_max} = 1$ ist die Wachstumsrate $7\mathit{wk\_max} - 3 = \Theta(\mathit{wk\_max})$.
+ $\mathit{wk\_max}_0 \geq 1$ ist die Wachstumsrate $7\mathit{wk\_max} - 3 = \Theta(\mathit{wk\_max})$.
 \input{eq/artplus/arlabeling-sortlabels}
 
 Das Verfahren in \autoref{alg:arlabeling-initlabelmemory} initialisiert den Speicher zur Berechnung des Flächeninhalts
- einer Region und den Speicher der Koordinaten des Mittelpunkts einer Region. Dazu wird in Zeile
+ einer Region und den Speicher der Koordinaten des Mittelpunkts einer Region.
+\input{alg/analyse-artplus/arlabeling-initlabelmemory}
+Dazu wird in Zeile
  \ref{alg:arlabeling-initlabelmemory-label-start}--\ref{alg:arlabeling-initlabelmemory-label-end} der größte
  Markierungswert aus $\mathit{work}$ in $\mathit{wlabel\_num}$ und $\mathit{label\_num}$ gespeichert. Falls in der
  Überprüfung in Zeile
@@ -271,9 +273,10 @@ Das Verfahren in \autoref{alg:arlabeling-initlabelmemory} initialisiert den Spei
  des Flächeinhalts $\mathit{warea}$ mit dem Wert $0$ initialisiert, indem über die Größe des Speichers iteriert wird.
  Der Speicher zur Berechnung des Mittelpunkts der Regionen wird in Zeile
  \ref{alg:arlabeling-initlabelmemory-initwpos-start}--\ref{alg:arlabeling-initlabelmemory-initwpos-end} nach dem
- gleichen Prinzip initialisiert.
-
-\input{alg/analyse-artplus/arlabeling-initlabelmemory}
+ gleichen Prinzip initialisiert. Die Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-sortlabels-initlabelmemory}
+ angegeben. Für die Werte $c_{1} = 8$, $c_{2} = 9$ und $\mathit{size}_0 \geq 12$ ist
+ $8\mathit{size} + 12 = \Theta(\mathit{size})$.
+\input{eq/artplus/arlabeling-sortlabels-initlabelmemory}
 
 In \autoref{alg:arlabeling-calcregiondata} werden die Daten aller Regionenmarkierungen aufbereitet. Das Verfahren
  berechnet den Flächeninhalt, den Mittelpunkt und die Start- und Endkoordinaten für alle Regionen.

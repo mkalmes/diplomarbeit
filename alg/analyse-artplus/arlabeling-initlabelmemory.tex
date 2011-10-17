@@ -1,30 +1,44 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (Regionenspeicher initialisieren)}
 \label{alg:arlabeling-initlabelmemory}
 \begin{algorithmic}[1]
 	\State $\mathit{wlabel\_num} \gets j - 1$
+	\Cost{$c_{1}$}{$2$}
 	\label{alg:arlabeling-initlabelmemory-label-start}
 	\State $\mathit{label\_num} \gets j - 1$
+	\Cost{$c_{2}$}{$2$}
 	\label{alg:arlabeling-initlabelmemory-label-end}
-	\If{$\mathit{label\_num} == 0$}
+	\If{$\mathit{label\_num} = 0$}
+	\Cost{$c_{3}$}{$1$}
 	\label{alg:arlabeling-initlabelmemory-islabel-start}
 		\State \textbf{return} $\mathit{l\_image}$
+		\Cost{$c_{4}$}{$1$}
 	\EndIf
 	\label{alg:arlabeling-initlabelmemory-islabel-end}
-	\State $\mathit{size} \gets \mathit{label\_num} \cdot$ \Call{sizeof}{$int$}
+	\State $\mathit{size} \gets \mathit{label\_num} \cdot {}$ \Call{sizeof}{$int$}
+	\Cost{$c_{6}$}{$2$}
 	\label{alg:arlabeling-initlabelmemory-initwarea-start}
 	\For{$\mathit{size} > 0$}
+	\Cost{$c_{7}$}{$size + 1$}
 		\State $\mathit{warea} \gets 0$
+		\Cost{$c_{8}$}{$size$}
 		\State Inkrementiere $\mathit{warea}$
+		\Cost{$c_{9}$}{$size$}
 		\State $\mathit{size} \gets \mathit{size} - 1$
+		\Cost{$c_{10}$}{$size$}
 	\EndFor
 	\label{alg:arlabeling-initlabelmemory-initwarea-end}
-	\State $\mathit{size} \gets \mathit{label\_num} \cdot 2 \cdot$ \Call{sizeof}{$float$}
+	\State $\mathit{size} \gets \mathit{label\_num} \cdot 2 \cdot {}$ \Call{sizeof}{$float$}
+	\Cost{$c_{12}$}{$3$}
 	\label{alg:arlabeling-initlabelmemory-initwpos-start}
 	\For{$\mathit{size} > 0$}
+	\Cost{$c_{13}$}{$size + 1$}
 		\State $\mathit{wpos} \gets 0$
+		\Cost{$c_{14}$}{$size$}
 		\State Inkrementiere $\mathit{wpos}$
+		\Cost{$c_{15}$}{$size$}
 		\State $\mathit{size} \gets \mathit{size} - 1$
+		\Cost{$c_{16}$}{$size$}
 	\EndFor
 	\label{alg:arlabeling-initlabelmemory-initwpos-end}
 \end{algorithmic}
