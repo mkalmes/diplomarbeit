@@ -171,7 +171,6 @@ In diesem Fall wird der Wert der Markierung von $N_4$ in $\mathit{l\_image}$ ges
  Schluss wird die Position $y$ des letzten Vordergrundpixels der Region durch den aktuellen Wert $j$ ersetzt. Die
  Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-neighbour-case2-3} angegeben. Die Wachstumsrate ist konstant.
 \input{eq/artplus/arlabeling-neighbour-case2-3}
-
 % paragraph fall_2_ (end)
 
 \paragraph{3. Fall:} % (fold)
@@ -180,17 +179,16 @@ Beim dritten Fall wird die Markierung $N_2$ untersucht und wir wissen, dass $N_3
  können. Demnach kann es nur den Nachbarn $N_2$ geben, dessen Markierung an $I(u,v)$ weitergereicht wird. Falls $N_1$
  ebenfalls ein Vordergrundpixel ist, handelt es sich um die gleiche Markierung wie in $N_2$, da beide Vordergrundpixel
  direkt miteinander verbunden sind. Das Verfahren ist in \autoref{alg:arlabeling-neighbour-case3} dargestellt.
-
 \input{alg/analyse-artplus/arlabeling-neighbour-case3}
-
 Für diesen Fall müssen nur die Daten in $\mathit{work2}$ gespeichert werden. Der Wert von $N_2$ wird im Regionenbild
  $\mathit{l\_image}$ gespeichert. Danach wird in Zeile \ref{alg:arlabeling-neighbour-case3-offset} der Adressabstand
  zur Speicherung der Daten in $\mathit{work2}$ berechnet. Danach wird die Anzahl der Vordergrundpixel der Region erhöht
  und $i$ und $j$ auf die bestehenden Werte in $\mathit{work2}$ addiert. Falls die $x$-Koordinate des letzten
  Vordergrundpixels der Region kleiner als der aktuelle Wert $i$ ist, wird die $x$-Koordinate in Zeile
  \ref{alg:arlabeling-neighbour-case3-newi} ersetzt. Zum Schluss wird die $y$-Koordinate des letzten Vordergrundpixels
- der Region mit dem Wert $j$ aktualisiert.
-
+ der Region mit dem Wert $j$ aktualisiert. Die Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-neighbour-case3}
+ angegeben. Die Wachstumsrate ist konstant.
+\input{eq/artplus/arlabeling-neighbour-case3}
 % paragraph fall_3_ (end)
 
 \paragraph{4. Fall:} % (fold)
