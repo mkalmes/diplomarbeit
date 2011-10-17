@@ -56,8 +56,9 @@ In der Schleife in Zeile \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabe
  erhalten wir die Laufzeitfunktion \autoref{eq:analyse-arlabeling-init-2}.
 \input{eq/artplus/arlabeling-init}
 Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist, für die Werte $c_{1} = 6$,
- $c_{2} = 7$ und $n_{0} = 1$, $6\mathit{lxsize} + 1 = \Theta(lxsize)$. Für $T(\mathit{lysize}) = 8\mathit{lysize} + 9$,
- mit den Werten $c_{1} = 16$, $c_{2} = 17$ und $n_{0} = 1$, ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
+ $c_{2} = 7$ und $\mathit{lxsize}_{0} \geq 1$, $6\mathit{lxsize} + 1 = \Theta(lxsize)$. Für
+ $T(\mathit{lysize}) = 8\mathit{lysize} + 9$, mit den Werten $c_{1} = 7$, $c_{2} = 9$ und $\mathit{lysize}_{0} \geq 9$,
+ ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
 
 \autoref{label-region} von \autoref{alg:arlabeling-overview} ist für die Regionenmarkierung und das Auflösen von
  Kollisionen verantwortlich. Eine Übersich des Verfahrens ist in \autoref{alg:arlabeling-regionlabeling} dargestellt.
@@ -151,8 +152,8 @@ In Zeile \ref{alg:arlabeling-neighbour-case2-1-n} wird der Wert $N_2$ in $n$ hin
  \autoref{eq:analyse-arlabeling-neighbour-case2-1-1} angegben und ist konstant. Die Laufzeitfunktion für den
  schlechtesten Fall ist in \autoref{eq:analyse-arlabeling-neighbour-case2-1-2} angegeben und durchläuft Zeile
  \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}. Für
- $T_{worst}=5 \mathit{wkmax} + 14$ und den Werten $c_{1}=18$, $c_{2}=19$ und $n_{0}=1$ ist
- $5 \mathit{wkmax} + 14 = \Theta(n)$.
+ $T_{worst}(\mathit{wk\_max})=5 \mathit{wk\_max} + 14$ und den Werten $c_{1}=5$, $c_{2}=6$ und
+ $\mathit{wk\_max}_{0} \geq 14$ ist $5 \mathit{wk\_max} + 14 = \Theta(n)$.
 \input{eq/artplus/arlabeling-neighbour-case2-1}
 
 \autoref{alg:arlabeling-neighbour-case2-2} behandelt den Fall, dass $N_4$ und $N_1$ eine Markierung aufweisen. Das Verfahren entspricht dem Verfahren in \autoref{alg:arlabeling-neighbour-case2-1}.
@@ -227,7 +228,7 @@ Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die nu
  Regionenbild ist in $\mathit{l\_image}$ gespeichert. Der schlechteste Fall der Nachbarschaftsuntersuchung ist der 2.
  Fall. Die Laufzeitfunktion (\autoref{eq:analyse-arlabeling-neighbour}) setzt sich aus den Kosten der Verzweigung in
  \autoref{alg:arlabeling-neighbour} und \autoref{alg:arlabeling-neighbour-case2}, sowie der Laufzeifunktion aus
- \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c_{1} = 28$, $c_{2} = 29$ und $\mathit{wk\_max} = 1$ ist
+ \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c_{1} = 5$, $c_{2} = 6$ und $\mathit{wk\_max}_0 \geq 24$ ist
  $5 \mathit(wk\_max) + 24 = \Theta(\mathit{wk\_max})$.
 \input{eq/artplus/arlabeling-neighbour}
 
