@@ -1,29 +1,42 @@
 % Fall 5: else
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (8er-Nachbarschaft: 5. Fall)}
 \label{alg:arlabeling-neighbour-case5}
 \begin{algorithmic}[1]
 	\algrestore{brk-case4}
 	\Else
 		\State $\mathit{wk\_max} \gets \mathit{wk\_max} + 1$
+		\Cost{$c_{36}$}{$2$}
 		\label{alg:arlabeling-neighbour-case5-incwk_max}
 		\If{$\mathit{wk\_max} > \mathit{WORK\_SIZE}$}
+		\Cost{$c_{37}$}{$1$}
 			\State{\textbf{return} $0$}
+			\Cost{$c_{38}$}{$1$}
 		\EndIf
 		\State $\mathit{pnt2} \gets \mathit{wk\_max}$
+		\Cost{$c_{40}$}{$1$}
 		\label{alg:arlabeling-neighbour-case5-save-uv}
 		\State $\mathit{work}\left[\mathit{wk\_max} - 1\right] \gets \mathit{wk\_max}$
+		\Cost{$c_{41}$}{$3$}
 		\State $\mathit{wmax\_idx} \gets \left(\mathit{wk\_max} - 1\right) \cdot 7$
+		\Cost{$c_{42}$}{$3$}
 		\label{alg:arlabeling-neighbour-case5-offset}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 0 \right] \gets 1$
+		\Cost{$c_{43}$}{$3$}
 		\label{alg:arlabeling-neighbour-case5-offset-0}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 1 \right] \gets i$
+		\Cost{$c_{44}$}{$3$}
 		\label{alg:arlabeling-neighbour-case5-offset-1}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 2 \right] \gets j$
+		\Cost{$c_{45}$}{$3$}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 3 \right] \gets i$
+		\Cost{$c_{46}$}{$3$}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 4 \right] \gets i$
+		\Cost{$c_{47}$}{$3$}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 5 \right] \gets j$
+		\Cost{$c_{48}$}{$3$}
 		\State $\mathit{work2}\left[\mathit{wmax\_idx} + 6 \right] \gets j$
+		\Cost{$c_{49}$}{$3$}
 		\label{alg:arlabeling-neighbour-case5-offset-6}
 	\EndIf
 \end{algorithmic}

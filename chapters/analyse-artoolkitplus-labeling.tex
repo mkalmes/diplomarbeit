@@ -193,22 +193,20 @@ Für diesen Fall müssen nur die Daten in $\mathit{work2}$ gespeichert werden. D
 
 \paragraph{4. Fall:} % (fold)
 \label{par:fall_4_}
-Der vierte Fall untersucht den letzten, und einzigen, Nachbarn $N_1$ (\autoref{alg:arlabeling-neighbour-case4}). Alle
- anderen Nachbarn sind keine Vordergrundpixel und es besteht keine Kollision. Die Markierung von $N_1$ wird für
- $I(u,v)$ übernommen (Zeile \ref{alg:arlabeling-neighbour-case4-n1}). Ansonsten sind
- \autoref{alg:arlabeling-neighbour-case4} und \autoref{alg:arlabeling-neighbour-case3} identisch.
-
+Der vierte Fall untersucht den letzten, und einzigen, Nachbarn $N_1$ (\autoref{alg:arlabeling-neighbour-case4}).
 \input{alg/analyse-artplus/arlabeling-neighbour-case4}
-
+Alle anderen Nachbarn sind keine Vordergrundpixel und es besteht keine Kollision. Die Markierung von $N_1$ wird für
+ $I(u,v)$ übernommen (Zeile \ref{alg:arlabeling-neighbour-case4-n1}). Ansonsten sind
+ \autoref{alg:arlabeling-neighbour-case4} und \autoref{alg:arlabeling-neighbour-case3} identisch. Die Laufzeitfunktion
+ in \autoref{eq:analyse-arlabeling-neighbour-case4} hat eine konstante Wachstumsrate.
+\input{eq/artplus/arlabeling-neighbour-case4}
 % paragraph fall_4_ (end)
 
 \paragraph{5. Fall:} % (fold)
 \label{par:fall_5_}
 Im letzten Fall sind alle Nachbarn Hintergrundpixel und $\mathit{l\_image}$ wird eine neue Markierung für $I(u,v)$
  zugewiesen (\autoref{alg:arlabeling-neighbour-case5}).
-
 \input{alg/analyse-artplus/arlabeling-neighbour-case5}
-
 In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numerische Markierungswert erhöht. Falls der
  Wert in $\mathit{wk\_max}$ größer als ein festgelegter Wert ist, wird das Verfahren abgebrochen, da zuviele Regionen
  im Bildsignal $I$ vorkommen. Die Markierung wird in Zeile \ref{alg:arlabeling-neighbour-case5-save-uv} in
@@ -218,8 +216,9 @@ In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numeri
  gespeichert. Der erste Vordergrundpixel wird in Zeile \ref{alg:arlabeling-neighbour-case5-offset-0} an Position $0$
  von $\mathit{work2}$ gespeichert. Danach werden in Zeile
  \ref{alg:arlabeling-neighbour-case5-offset-1}--\ref{alg:arlabeling-neighbour-case5-offset-1} die Position des ersten
- Vordergrundpixels gespeichert.
-
+ Vordergrundpixels gespeichert. Die Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-neighbour-case5} angegeben.
+ Die Wachstumsrate der Funktion ist konstant.
+\input{eq/artplus/arlabeling-neighbour-case5}
 % paragraph fall_5_ (end)
 
 Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die numerischen Werte der Regionen. In
