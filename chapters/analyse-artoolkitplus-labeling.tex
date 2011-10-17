@@ -55,9 +55,9 @@ In der Schleife in Zeile \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabe
  in \autoref{alg:arlabeling-init2} angegeben. Durch Umformung der Kosten von \autoref{eq:analyse-arlabeling-init-1}
  erhalten wir die Laufzeitfunktion \autoref{eq:analyse-arlabeling-init-2}.
 \input{eq/artplus/arlabeling-init}
-Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist, für die Werte $c_{1} = 7$,
+Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist, für die Werte $c_{1} = 6$,
  $c_{2} = 7$ und $n_{0} = 1$, $6\mathit{lxsize} + 1 = \Theta(lxsize)$. Für $T(\mathit{lysize}) = 8\mathit{lysize} + 9$,
- mit den Werten $c_{1} = 17$, $c_{2} = 17$ und $n_{0} = 1$, ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
+ mit den Werten $c_{1} = 16$, $c_{2} = 17$ und $n_{0} = 1$, ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
 
 \autoref{label-region} von \autoref{alg:arlabeling-overview} ist für die Regionenmarkierung und das Auflösen von
  Kollisionen verantwortlich. Eine Übersich des Verfahrens ist in \autoref{alg:arlabeling-regionlabeling} dargestellt.
@@ -134,12 +134,12 @@ In Zeile \ref{alg:arlabeling-neighbour-case2-n2} wird überprüft, ob $N_2$ eine
  eine Markierung haben, ist nur $N_4$ ein Vordergrundpixel und wird mit \autoref{alg:arlabeling-neighbour-case2-3}
  markiert.
 
-\input{alg/analyse-artplus/arlabeling-neighbour-case2-1}
-
 In \autoref{alg:arlabeling-neighbour-case2-1} wird in Zeile \ref{alg:arlabeling-neighbour-case2-1-m} der Wert der
- Markierung $N_4$ in Variable $m$ gespeichert. In Zeile \ref{alg:arlabeling-neighbour-case2-1-n} wird der Wert $N_2$
- in $n$ hinterlegt. In Zeile \ref{alg:arlabeling-neighbour-case2-mn-start}--\ref{alg:arlabeling-neighbour-case2-mn-end}
- wird überprüft, ob $m$ größer als $n$ ist. Falls dem so ist, wird der Wert $n$ in $\mathit{l\_image}$ gespeichert
+ Markierung $N_4$ in Variable $m$ gespeichert.
+\input{alg/analyse-artplus/arlabeling-neighbour-case2-1}
+In Zeile \ref{alg:arlabeling-neighbour-case2-1-n} wird der Wert $N_2$ in $n$ hinterlegt. In Zeile
+ \ref{alg:arlabeling-neighbour-case2-mn-start}--\ref{alg:arlabeling-neighbour-case2-mn-end} wird überprüft, ob $m$
+ größer als $n$ ist. Falls dem so ist, wird der Wert $n$ in $\mathit{l\_image}$ gespeichert
  (Zeile \ref{alg:arlabeling-neighbour-case2-saven}). Danach wird in Zeile \ref{alg:arlabeling-neighbour-case2-worklist}
  die Adresse der ersten Stelle der Regionenmarkierungsliste $\mathit{work}$ in $wk$ hinterlegt. In der Schleife von
  Zeile \ref{alg:arlabeling-neighbour-case2-loop-start} bis Zeile \ref{alg:arlabeling-neighbour-case2-loop-end} wird die
@@ -147,23 +147,30 @@ In \autoref{alg:arlabeling-neighbour-case2-1} wird in Zeile \ref{alg:arlabeling-
  (Zeile \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}) wird das gleiche
  Verfahren angewendet. Lediglich $m$ und $n$ werden getauscht. Wenn es sich bei $m$ und $n$ um den gleichen Wert
  handet, und somit $m$ und $n$ zur gleichen Region gehören, wird der Wert $m$ in $\mathit{l\_image}$ gespeichert
- (Zeile \ref{alg:arlabeling-neighbour-case2-savem}).
-
-\input{alg/analyse-artplus/arlabeling-neighbour-case2-2}
+ (Zeile \ref{alg:arlabeling-neighbour-case2-savem}). Die Laufzeitfunktion für den besten Fall ist in
+ \autoref{eq:analyse-arlabeling-neighbour-case2-1-1} angegben und ist konstant. Die Laufzeitfunktion für den
+ schlechtesten Fall ist in \autoref{eq:analyse-arlabeling-neighbour-case2-1-2} angegeben und durchläuft Zeile
+ \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}. Für
+ $T_{worst}=5 \mathit{wkmax} + 14$ und den Werten $c_{1}=18$, $c_{2}=19$ und $n_{0}=1$ ist
+ $5 \mathit{wkmax} + 14 = \Theta(n)$.
+\input{eq/artplus/arlabeling-neighbour-case2-1}
 
 \autoref{alg:arlabeling-neighbour-case2-2} behandelt den Fall, dass $N_4$ und $N_1$ eine Markierung aufweisen. Das Verfahren entspricht dem Verfahren in \autoref{alg:arlabeling-neighbour-case2-1}.
+\input{alg/analyse-artplus/arlabeling-neighbour-case2-2}
 
 In \autoref{alg:arlabeling-neighbour-case2-3} ist der Fall beschrieben, dass $N_4$ der einzige Nachbar des
- Vordergrundpixels $(u,v)$ ist. In diesem Fall wird der Wert der Markierung von $N_4$ in $\mathit{l\_image}$
- gespeichert (Zeile \ref{alg:arlabeling-neighbour-case2-3-n4}). Danach wird der Adressabstand berechnet, um die
- Informationen der Regionenmarkierung in $\mathit{work2}$ zu aktualisieren. Zuerst wird in Zeile
+ Vordergrundpixels $(u,v)$ ist.
+\input{alg/analyse-artplus/arlabeling-neighbour-case2-3}
+In diesem Fall wird der Wert der Markierung von $N_4$ in $\mathit{l\_image}$ gespeichert
+ (Zeile \ref{alg:arlabeling-neighbour-case2-3-n4}). Danach wird der Adressabstand berechnet, um die Informationen der
+ Regionenmarkierung in $\mathit{work2}$ zu aktualisieren. Zuerst wird in Zeile
  \ref{alg:arlabeling-neighbour-case2-3-incregion} die Anzahl der Vordergrundpixel der Region erhöht. An Position 1 und
  Position 2 von $\mathit{work2}$ werden die Werte von $i$ und $j$ aufaddiert. Falls in Zeile
  \ref{alg:arlabeling-neighbour-case2-3-isismaller} die Position $x$ des ersten Vordergrundpixels der Region größer ist,
  als der aktuelle Wert in $i$, wird die Position in Zeile \ref{alg:arlabeling-neighbour-case2-3-newi} aktualisiert. Zum
- Schluss wird die Position $y$ des letzten Vordergrundpixels der Region durch den aktuellen Wert $j$ ersetzt.
-
-\input{alg/analyse-artplus/arlabeling-neighbour-case2-3}
+ Schluss wird die Position $y$ des letzten Vordergrundpixels der Region durch den aktuellen Wert $j$ ersetzt. Die
+ Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-neighbour-case2-3} angegeben. Die Wachstumsrate ist konstant.
+\input{eq/artplus/arlabeling-neighbour-case2-3}
 
 % paragraph fall_2_ (end)
 
