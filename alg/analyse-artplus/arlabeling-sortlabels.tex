@@ -1,25 +1,35 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arLabeling} (Sortiere Markierungen)}
 \label{alg:sortlabels}
 \begin{algorithmic}[1]
 	\State $j \gets 1$
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:sortlabels-j}
 	\State $\mathit{wk} \gets \mathit{work}\left[0\right]$
+	\Cost{$c_{2}$}{$2$}
 	\label{alg:sortlabels-address}
 	\For{$i \gets 1$ \textbf{to} $i \leq \mathit{wk\_max}$}
+	\Cost{$c_{3}$}{$(\mathit{wk\_max} - 1) + 1$}
 	\label{alg:sortlabels-loop-start}
-		\If{$\mathit{wk} == i$}
+		\If{$\mathit{wk} = i$}
+		\Cost{$c_{4}$}{$\mathit{wk\_max} - 1$}
 			\State $\mathit{wk} \gets j$
+			\Cost{$c_{5}$}{$\mathit{wk\_max} - 1$}
 			\State $j \gets j + 1$
+			\Cost{$c_{6}$}{$\mathit{wk\_max} - 1$}
 			\label{alg:sortlabels-savelabel}
 		\Else
 		\label{alg:sortlabels-collision-start}
-			\State $\mathit{wk} \gets \mathit{work}\left[\mathit{wk} - 1\right]$ \Comment Letzten Markierungswert $\mathit{work}$ zuweisen.
+			\State $\mathit{wk} \gets \mathit{work}\left[\mathit{wk} - 1\right]$
+			\Cost{$c_{8}$}{$(\mathit{wk\_max} - 1)3$}
+			\Comment Letzten Markierungswert $\mathit{work}$ zuweisen.
 		\EndIf
 		\label{alg:sortlabels-collision-end}
 		\State $i \gets i + 1$
+		\Cost{$c_{10}$}{$\mathit{wk\_max} - 1$}
 		\label{alg:sortlabels-inci}
 		\State Inkrementiere $\mathit{wk}$
+		\Cost{$c_{11}$}{$\mathit{wk\_max} - 1$}
 		\label{alg:sortlabels-incwk}
 	\EndFor
 	\label{alg:sortlabels-loop-end}
