@@ -3,14 +3,19 @@
 \label{alg:arlabeling-neighbour}
 \begin{algorithmic}[1]
 	\State $\mathit{pnt1} \gets \mathit{pnt2}[-\mathit{lxsize}]$ \Comment Adresse zuweisen
+	\Cost{$c_{1}$}{$3$}
 	\label{alg:arlabeling-neighbour-n3}
 	\If{$\mathit{pnt1} > 0$}
+	\Cost{$c_{2}$}{$2$}
 		\State \ldots \Comment 1. Fall
 	\ElsIf{$\left(\mathit{pnt1} + 1\right) > 0$}
+	\Cost{$c_{4}$}{$2$}
 		\State \ldots \Comment 2. Fall
 	\ElsIf{$\left(\mathit{pnt1} - 1\right) > 0$}
+	\Cost{$c_{6}$}{$2$}
 		\State \ldots \Comment 3. Fall
 	\ElsIf{$\left(\mathit{pnt2} - 1\right) > 0$}
+	\Cost{$c_{8}$}{$2$}
 		\State \ldots \Comment 4. Fall
 	\Else
 		\State \ldots \Comment 5. Fall

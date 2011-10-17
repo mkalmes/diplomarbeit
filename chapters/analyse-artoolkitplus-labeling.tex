@@ -224,16 +224,21 @@ In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numeri
 Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die numerischen Werte der Regionen. In
  $\mathit{work2}$ ist für jede Region die Anzahl der Vordergrundpixel, die summierten $x$- und $y$-Koordinaten aller
  Vordergrundpixel, sowie die $x$- und $y$-Koordinate für den ersten und letzten Vordergrundpixel, hinterlegt. Das
- Regionenbild ist in $\mathit{l\_image}$ gespeichert. Die erfassten Daten müssen nun in Schritt \ref{label-cleaning} von
- \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte
- in $\mathit{work}$ sortiert.
+ Regionenbild ist in $\mathit{l\_image}$ gespeichert. Der schlechteste Fall der Nachbarschaftsuntersuchung ist der 2.
+ Fall. Die Laufzeitfunktion (\autoref{eq:analyse-arlabeling-neighbour}) setzt sich aus den Kosten der Verzweigung in
+ \autoref{alg:arlabeling-neighbour} und \autoref{alg:arlabeling-neighbour-case2}, sowie der Laufzeifunktion aus
+ \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c_{1} = 28$, $c_{2} = 29$ und $\mathit{wk\_max} = 1$ ist
+ $5 \mathit(wk\_max) + 24 = \Theta(\mathit{wk\_max})$.
+\input{eq/artplus/arlabeling-neighbour}
 
+Die erfassten Daten müssen nach der Regionenmarkierung in Schritt \ref{label-cleaning} von
+ \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte in
+ $\mathit{work}$ sortiert.
+\input{alg/analyse-artplus/arlabeling-sortlabels}
 Die aufsteigenden Markierungswerte in $\mathit{work}$ sind duch Kollisionen in
  \autoref{alg:arlabeling-neighbour-case2-1} durch kleinere Werte ersetzt worden. Dadurch ist eine Lücke im Interval
  $\left[1,2,3..n\right]$ der numerischen Werte entstanden. Diese Lücken werden durch \autoref{alg:sortlabels}
  entfernt, um wieder ein aufsteigendes Interval zu erhalten.
-
-\input{alg/analyse-artplus/arlabeling-sortlabels}
 
 In Zeile \ref{alg:sortlabels-j} wird $j$ als Variable für die aktuelle Markierung initialisiert. In Zeile
  \ref{alg:sortlabels-address} wird die Adresse der ersten Markierung aus $\mathit{work}$ in $\mathit{wk}$ gespeichert.
