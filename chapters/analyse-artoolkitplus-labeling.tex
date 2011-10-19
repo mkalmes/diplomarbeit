@@ -331,20 +331,23 @@ Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arl
  Mittelpunkts einer Region berechnet, indem die aufsummierten Koordinaten einer Region durch die Anzahl der
   Vordergrundpixel in $\mathit{warea}$ geteilt wird. Zuletzt werden die lokalen Variablen in den Übergabeparametern
  gespeichert und das Regionenbild $\mathit{l\_image}$ an die aufrufende Methode zurückgegeben. An dieser Stelle ist
- \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) abgeschlossen. Die Laufzeitfunktion für Zeile
+ \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) abgeschlossen.
+
+Die Laufzeitfunktion für Zeile
  \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arlabeling-calcregiondata-wclip-end} von
  \autoref{alg:arlabeling-calcregiondata} ist in \autoref{eq:analyse-arlabeling-calcregiondata-1} angegeben.
 \input{eq/artplus/arlabeling-calcregiondata-1}
- Die Wachstumsrate, für die Werte $c_{1} = 18$, $c_{2} = 19$ und $\mathit{labelnum}_0 \geq 1$, ist
+Die Wachstumsrate, für die Werte $c_{1} = 18$, $c_{2} = 19$ und $\mathit{labelnum}_0 \geq 1$, ist
  $18\mathit{labelnum} + 1 = \Theta(\mathit{labelnum})$. Die Laufzeitfunktion von Zeile
  \ref{alg:arlabeling-calcregiondata-work-start}--\ref{alg:arlabeling-calcregiondata-work-end} ist in
- \autoref{eq:analyse-arlabeling-calcregiondata-2} aufgeführt.
+ \autoref{eq:analyse-arlabeling-calcregiondata-2} aufgeführt. Für $c_{1} = 90$, $c_{2} = 91$ und
+ $\mathit{wk\_max}_0 \geq 1$ ist die Wachstumsrate $90\mathit{wk\_max} + 1 = \Theta(wk\_max)$.
 \input{eq/artplus/arlabeling-calcregiondata-2}
-Für $c_{1} = 90$, $c_{2} = 91$ und $\mathit{wk\_max}_0 \geq 1$ ist die Wachstumsrate
- $90\mathit{wk\_max} + 1 = \Theta(wk\_max)$. Die letzte Laufzeitfunktion von \autoref{alg:arlabeling-calcregiondata} ist
- in \autoref{eq:analyse-arlabeling-calcregiondata-2} angegeben.
+Die letzte Laufzeitfunktion von \autoref{alg:arlabeling-calcregiondata} ist in
+ \autoref{eq:analyse-arlabeling-calcregiondata-2} angegeben.
 \input{eq/artplus/arlabeling-calcregiondata-3}
-Die Wachstumsrate entspricht $20\mathit{labelnum} + 6 = \Theta(\mathit{labelnum})$, für $c_{1} = 20$, $c_{2} = 21$ und $\mathit{labelnum}_0 \geq 6$.
+Die Wachstumsrate entspricht $20\mathit{labelnum} + 6 = \Theta(\mathit{labelnum})$, für $c_{1} = 20$, $c_{2} = 21$ und
+ $\mathit{labelnum}_0 \geq 6$.
 
 Die Laufzeitfunktion von \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) ist in
  \autoref{eq:analyse-arlabeling-all-1} angegeben und besteht aus der Initialisierung (\autoref{alg:arlabeling-init1}
