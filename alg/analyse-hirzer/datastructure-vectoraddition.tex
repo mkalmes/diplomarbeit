@@ -4,7 +4,11 @@
 	\begin{algorithmic}[1]
 		\Require $\mathit{left}, \mathit{right}$
 		\State $\mathit{vector} \gets \infty$
-		\State \Call{vectorSetCoordinate}{$\mathit{vector},\mathit{left.x} + \mathit{right.x}, \mathit{left.y} + \mathit{right.y}$}
+		\Cost{$c_{1}$}{$1$}
+		\State \Call{vectorSetCoordinate}{$\mathit{vector},\mathit{left.x} + \mathit{right.x}, \mathit{left.y}
+		 + \mathit{right.y}$}
+		\Cost{$c_{2}$}{$6 + 4$}
 		\State \textbf{return} $\mathit{vector}$
+		\Cost{$c_{3}$}{$1$}
 	\end{algorithmic}
 \end{algorithm}

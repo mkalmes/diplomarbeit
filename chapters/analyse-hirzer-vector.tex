@@ -20,7 +20,7 @@ Auf die Variablen $x$ und $y$ der Datenstruktur kann direkt zugegriffen werden, 
  schreiben der Variablen kann auch \autoref{alg:vectorsetcoordinate} verwendet werden.
 \input{alg/analyse-hirzer/datastructure-vectorsetcoordinate}
 \textproc{vectorSetCoordinate} benötigt einen Vektor, dem die Werte $x$ und $y$ hinzugefügt werden. Der Zugriff auf die
- Datenstruktur \textproc{vector} ist konstant.
+ Datenstruktur \textproc{vector} ist konstant. Die Laufzeitfunktion ist $T(n) = 4$.
 
 \paragraph{Addition:} % (fold)
 \label{par:addition}
@@ -30,7 +30,7 @@ Die Addition von zwei Vektoren ist in \autoref{alg:vectoradd} aufgeführt.
 Das Verfahren benötigt zwei Vektoren $\mathit{left}$ und $\mathit{right}$, die addiert werden sollen. Dazu wird ein
  neuer Vektor $\mathit{vector}$ initialisiert, der mit Hilfe von \textproc{vectorSetCoordinate} die addierten Werte von
  $\mathit{left}$ und $\mathit{right}$ zugewiesen bekommt. Danach wird der Vektor an die aufrufenden Funktion
- zurückgegeben.
+ zurückgegeben. Die Laufzeitfunktion ist $T(n) = 12$.
 
 % paragraph addition (end)
 
@@ -40,7 +40,7 @@ Das Verfahren benötigt zwei Vektoren $\mathit{left}$ und $\mathit{right}$, die 
 Die Subtraktion von zwei Vektoren (\autoref{alg:vectorsubtract}) ähnelt dem Verfahren der Addition.
 \input{alg/analyse-hirzer/datastructure-vectorsubtract}
 Auch hier wird durch die Parameter $\mathit{left}$ und $\mathit{right}$ und neuer Vektor initialisiert und an die
- aufrufende Funktion zurückgeliefert.
+ aufrufende Funktion zurückgeliefert. Die Laufzeitfunktion ist ebenfalls $T(n) = 12$.
 
 % paragraph subtraktion (end)
 
@@ -50,6 +50,7 @@ Auch hier wird durch die Parameter $\mathit{left}$ und $\mathit{right}$ und neue
 Das Skalarprodukt der Vektoren $\mathit{left}$ und $\mathit{right}$ wird durch \autoref{alg:vectordotproduct} direkt
  zurückgegeben.
 \input{alg/analyse-hirzer/datastructure-vectordotproduct}
+Die Laufzeitfunktion ist $T(n) = 7$.
 
 % paragraph skalarprodukt (end)
 
@@ -57,7 +58,8 @@ Das Skalarprodukt der Vektoren $\mathit{left}$ und $\mathit{right}$ wird durch \
 \label{par:länge_eines_vektors}
 
 Die quadratische Länge eines Vektors (\autoref{alg:vectorsquaredlength}) benötigt als Parameter einen Vektor
- $\mathit{vector}$ und berechnet durch direkten Zugriff auf die Datenstruktur die quadratische Länge.
+ $\mathit{vector}$ und berechnet durch direkten Zugriff auf die Datenstruktur die quadratische Länge. Die
+ Laufzeitfunktion ist $T(n) = 7$.
 \input{alg/analyse-hirzer/datastructure-vectorsquaredlength}
 Das Verfahren \textproc{length} (\autoref{alg:vectorlength}) nutzt \autoref{alg:vectorsquaredlength} zur Berechnung der
  Länge eines Vektors.
@@ -72,7 +74,8 @@ Die Laufzeit von \autoref{alg:vectorlength} ist abhängig von der Funktion \text
 	 Mittelwert der Daten ist als grüne Linie eingezeichnet.}
 	\label{fig:regression-sqrtf}
 \end{figure}
- aufweisen. Der Median und Mittelwert liegt jeweils bei $0$. Damit ist die Laufzeit von \textproc{sqrt}, und somit von \textproc{length}, konstant.
+ aufweisen. Der Median und Mittelwert liegt jeweils bei $0$. Damit ist die Laufzeit von \textproc{sqrt}, und somit von
+ \textproc{length}, konstant. Die Laufzeitfunktion ist $T(n) = 9$.
 
 % paragraph länge_eines_vektors (end)
 
@@ -82,10 +85,12 @@ Die Laufzeit von \autoref{alg:vectorlength} ist abhängig von der Funktion \text
 Das Verfahren zum normalisieren von Vektoren ist in \autoref{alg:vectornormalized} beschrieben und benötigt als
  Parameter einen Vektor.
 \input{alg/analyse-hirzer/datastructure-vectornormalized}
-Durch \textproc{length} (\autoref{alg:vectorlength}) wird die Länge des Vektors berechnet und direkt im Parameter gespeichert. Die Laufzeit von \autoref{alg:vectornormalized} ist konstant.
+Durch \textproc{length} (\autoref{alg:vectorlength}) wird die Länge des Vektors berechnet und direkt im Parameter
+ gespeichert. Die Laufzeit von \autoref{alg:vectornormalized} ist konstant. Die Laufzeitfunktion ist $T(n) = 19$.
 
 % paragraph normalisieren_von_vektoren (end)
 
-Die vorgestellten Operationen (\autoref{alg:vectorsetcoordinate}--\autoref{alg:vectornormalized}) arbeiten in konstanter Laufzeit durch den direkten Zugriff auf die Variablen der Datenstruktur \textproc{vector}.
+Die vorgestellten Operationen (\autoref{alg:vectorsetcoordinate}--\autoref{alg:vectornormalized}) arbeiten in konstanter
+ Laufzeit durch den direkten Zugriff auf die Variablen der Datenstruktur \textproc{vector}.
 
 % subsubsection vektor (end)

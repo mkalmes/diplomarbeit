@@ -4,7 +4,10 @@
 	\begin{algorithmic}[1]
 		\Require $\mathit{vector}$
 		\State $\mathit{invertedLength} \gets 1 /$ \Call{length}{$\mathit{vector}$}
+		\Cost{$c_{1}$}{$2 + 9$}
 		\State $\mathit{vector.x} \gets \mathit{vector.x} \cdot \mathit{invertedLength}$
+		\Cost{$c_{2}$}{$4$}
 		\State $\mathit{vector.y} \gets \mathit{vector.y} \cdot \mathit{invertedLength}$
+		\Cost{$c_{3}$}{$4$}
 	\end{algorithmic}
 \end{algorithm}
