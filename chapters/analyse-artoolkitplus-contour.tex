@@ -35,9 +35,7 @@ Dazu wird in Zeile \ref{alg:detectmarker2-2-markernum2} die Variable $\mathit{ma
 \textproc{arGetContour} (\autoref{alg:argetcontour-1}--\autoref{alg:argetcontour-3}) ermittelt für eine Region eine
  Kontur. In \autoref{alg:argetcontour-1} werden die Variablen in Zeile
  \ref{alg:argetcontour-1-initvar-start}--\ref{alg:argetcontour-1-initvar-end} initialisiert.
-
 \input{alg/analyse-artplus/argetcontour-1}
-
 Die 8er-Nachbarschaft zur Verfolgung einer Kontur wird in Zeile
  \ref{alg:argetcontour-1-initvar-start}--\ref{alg:argetcontour-1-initvar-neighbour} initialisiert. Die Bildbreite und
  Bildhöhe werden in Zeile \ref{alg:argetcontour-1-initsizex}--\ref{alg:argetcontour-1-initvar-end} in $\mathit{xsize}$
@@ -51,7 +49,10 @@ Die 8er-Nachbarschaft zur Verfolgung einer Kontur wird in Zeile
  Koordinaten in Zeile \ref{alg:argetcontour-1-savex}--\ref{alg:argetcontour-1-savey} in den Variablen $\mathit{sx}$ und
  $\mathit{sy}$ gespeichert und die Schleife wird abgebrochen. Ansonsten wird in Zeile
  \ref{alg:argetcontour-1-inci}--\ref{alg:argetcontour-1-incp1} die Laufvariable $i$ um $1$ erhöht und die Adresse
- $\mathit{p1}$ inkrementiert.
+ $\mathit{p1}$ inkrementiert. Die Laufzeitfunktion ist in \autoref{eq:analyse-argetconout-init} aufgeführt.
+\input{eq/artplus/argetcontour-init}
+Die Wachstumsrate von \autoref{eq:analyse-argetconout-init-2} ist, für $c_{1} = 7$, $c_{2} = 8$ und $\mathit{xsize}_0
+ \geq 8$, $8\mathit{xsize} - 8 = \Theta(\mathit{xsize})$.
 
 \autoref{alg:argetcontour-2} verfolgt nun die Kontur der Region. Dazu wird zuerst in der Datenstruktur
  $\mathit{marker\_infoTWO}$ die Anzahl der Koordinaten initialisiert und die $x$- und $y$-Werte der ersten
