@@ -84,7 +84,15 @@ Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist,
  untersucht, ob ein Vordergrundpixel gefunden wurde. Falls nicht, wird in das Regionenbild $\mathit{l\_image}$ eine $0$
  geschrieben. Wenn die Schwellertanalyse ein Vordergrundpixel bestimmt hat, müssen in Zeile
  \ref{alg:arlabeling-regionlabeling-black} die Nachbarn des Vordergrundpixels mit einer 8er-Nachbarschaft untersucht
- werden (Vgl. \autoref{alg:arlabeling-neighbour}).
+ werden (Vgl. \autoref{alg:arlabeling-neighbour}). Die Laufzeitfunktion für den besten Fall ist in
+ \autoref{eq:analyse-arlabeling-regionlabeling-1} angegeben.
+\input{eq/artplus/arlabeling-regionlabeling-1}
+Durch Substition der Konstanten $c$ mit $1$ folgt
+ $T_{best}(\mathit{lxsize},\mathit{lysize}) = 16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
+ - 31 \cdot \mathit{lysize} + 61$. Für $c_{1} = 2$, $c_{2} = 16$, $\mathit{lxsize}_0 \geq 9$ und
+ $\mathit{lysize}_0 \geq 3$ ist $16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
+ - 31 \cdot \mathit{lysize} = \Theta(\mathit{lxsize} \cdot \mathit{lysize})$. Die Laufzeitfunktion für den schlechtesten
+ Fall wird nach Analyse der Nachbarschaftsuntersuchung angegeben.
 
 Die Nachbarschafsuntersuchung in ARToolKitPlus untersucht die vier Nachbarn der Markierung an Position $I(u,v)$. Wie in
  \autoref{sec:vorläufige_makierung} bereits beschrieben, ist eine Regionenmarkierung davon abhängig ob alle Nachbarn
@@ -232,6 +240,21 @@ Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die nu
  $5 \mathit(wk\_max) + 24 = \Theta(\mathit{wk\_max})$.
 \input{eq/artplus/arlabeling-neighbour}
 
+Nachdem die Laufzeitfunktion der einzelnen Fälle der Regionenmarkierung bekannt sind, kann die Laufzeitfunktion von
+ \textproc{arLabeling} (\autoref{alg:arlabeling-regionlabeling}) für den schlechtesten Fall untersucht werden. Die
+ Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-regionlabeling-2} angegeben.
+\input{eq/artplus/arlabeling-regionlabeling-2}
+Durch Substitution der Konstanten $c$ mit $1$ folgt $T_{worst}(\mathit{lxsize},\mathit{lysize}) = 15 \mathit{lxsize}
+ \cdot \mathit{lysize} + \mathit{lxsize} \cdot \mathit{lysize} \cdot t - 30 \mathit{lxsize} - 2 \mathit{lxsize} \cdot t
+ -30 \mathit{lysize} - 2 \mathit{lysize} \cdot t + 61 + 4t$. Die Variable $t$ steht für die Laufzeitfunktion in
+ \autoref{eq:analyse-arlabeling-neighbour}. Die Eingabemenge $\mathit{wk\_max}$ ist von $\mathit{lxsize}$ und
+ $\mathit{lysize}$ abhänging und kann nicht mehr als $8192$ Einträge enthalten. Wird $t$ durch $5 \cdot 8192 + 24$
+ substituiert, folgt die Laufzeitfunktion in \autoref{eq:analyse-arlabeling-regionlabeling-3}.
+\input{eq/artplus/arlabeling-regionlabeling-3}
+Für $c_{1} = 2$, $c_{2} = 40999$, $\mathit{lxsize}_0 \geq 5$ und $\mathit{lysize}_0 \geq 4$ ist die Wachstumsrate von
+ $40999\mathit{lxsize}\cdot\mathit{lysize} -81998\mathit{lxsize} -81998\mathit{lysize}
+ = \Theta(\mathit{lxsize}\cdot\mathit{lysize})$.
+
 Die erfassten Daten müssen nach der Regionenmarkierung in Schritt \ref{label-cleaning} von
  \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte in
  $\mathit{work}$ sortiert.
@@ -273,10 +296,17 @@ Dazu wird in Zeile
  des Flächeinhalts $\mathit{warea}$ mit dem Wert $0$ initialisiert, indem über die Größe des Speichers iteriert wird.
  Der Speicher zur Berechnung des Mittelpunkts der Regionen wird in Zeile
  \ref{alg:arlabeling-initlabelmemory-initwpos-start}--\ref{alg:arlabeling-initlabelmemory-initwpos-end} nach dem
- gleichen Prinzip initialisiert. Die Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-sortlabels-initlabelmemory}
- angegeben. Für die Werte $c_{1} = 8$, $c_{2} = 9$ und $\mathit{size}_0 \geq 12$ ist
- $8\mathit{size} + 12 = \Theta(\mathit{size})$.
-\input{eq/artplus/arlabeling-sortlabels-initlabelmemory}
+ gleichen Prinzip initialisiert. Die Laufzeitfunktion für Zeile
+ \ref{alg:arlabeling-initlabelmemory-label-start}--\ref{alg:arlabeling-initlabelmemory-initwarea-end} von
+ \autoref{alg:arlabeling-initlabelmemory} ist in \autoref{eq:analyse-arlabeling-sortlabels-initlabelmemory-1} angegeben.
+\input{eq/artplus/arlabeling-sortlabels-initlabelmemory-1}
+Für $c_{1} = 4$, $c_{2} = 12$ und $\mathit{size}_0 \geq 1$ ist die Wachstumsrate
+ $4\mathit{size} + 8 = \Theta(\mathit{size})$. Die Laufzeitfunktion für Zeile
+ \ref{alg:arlabeling-initlabelmemory-floatsize}--\ref{alg:arlabeling-initlabelmemory-initwpos-end} ist in
+ \autoref{eq:analyse-arlabeling-sortlabels-initlabelmemory-2} aufgeführt.
+\input{eq/artplus/arlabeling-sortlabels-initlabelmemory-2}
+Die Wachstumsrate ist $4\mathit{size} + 4 = \Theta(\mathit{size})$ für $c_{1} = 4$, $c_{2} = 8$ und
+ $\mathit{size}_0 \geq 1$.
 
 In \autoref{alg:arlabeling-calcregiondata} werden die Daten aller Regionenmarkierungen aufbereitet. Das Verfahren
  berechnet den Flächeninhalt, den Mittelpunkt und die Start- und Endkoordinaten für alle Regionen.
@@ -315,4 +345,37 @@ Für $c_{1} = 90$, $c_{2} = 91$ und $\mathit{wk\_max}_0 \geq 1$ ist die Wachstum
  in \autoref{eq:analyse-arlabeling-calcregiondata-2} angegeben.
 \input{eq/artplus/arlabeling-calcregiondata-3}
 Die Wachstumsrate entspricht $20\mathit{labelnum} + 6 = \Theta(\mathit{labelnum})$, für $c_{1} = 20$, $c_{2} = 21$ und $\mathit{labelnum}_0 \geq 6$.
+
+Die Laufzeitfunktion von \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) ist in
+ \autoref{eq:analyse-arlabeling-all-1} angegeben und besteht aus der Initialisierung (\autoref{alg:arlabeling-init1}
+ und \autoref{alg:arlabeling-init2}), der Regionenmarkierung
+ (\autoref{alg:arlabeling-regionlabeling}--\autoref{alg:arlabeling-neighbour-case5}) und der Aufbereitung und
+ Speicherung der Daten (\autoref{alg:sortlabels}--\autoref{alg:arlabeling-calcregiondata}).
+\input{eq/artplus/arlabeling-all-1}
+Die Eingabemenge des Algorithmus ist das Bildsignal $I$, dass aus $\mathit{lxsize} \cdot \mathit{lysize}$ besteht. Die
+ Variable $\mathit{wk\_max}$ ist auf $8192$ Einträge begrenzt. Die Menge $\mathit{size}$ bei
+ \autoref{alg:arlabeling-initlabelmemory} ist abhängig von $\mathit{labelnum}$, die bei einer Bildgröße von
+ $\mathit{lxsize} \cdot \mathit{lysize}$ maximal $\bigl\lceil\frac{\mathit{lxsize}}{2}\bigr\rceil
+ \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil$ Regionenmarkierungen anlgegen kann.
+ $\mathit{int}$ und $\mathit{float}$ sind jeweils $4$ Byte groß, sodaß
+ $\mathit{size} = \bigl\lceil\frac{\mathit{lxsize}}{2}\bigr\rceil \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil
+ \cdot 4$ und $\mathit{size}' = \bigl\lceil\frac{\mathit{lxsize}}{2}\bigr\rceil
+ \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil \cdot 2 \cdot 4$.
+Dadurch wird \autoref{eq:analyse-arlabeling-all-1} zu \autoref{eq:analyse-arlabeling-all-2} überführt.
+\input{eq/artplus/arlabeling-all-2}
+Das Wachstum der Laufzeitfunktion ist
+\begin{equation*}
+\frac{1}{2}82041\mathit{lxsize} \cdot \mathit{lysize} -81992\mathit{lxsize} -81990\mathit{lysize}
+ = \Theta(\mathit{lxsize}\cdot\mathit{lysize})
+\end{equation*}
+für
+\begin{equation*}
+c_{1} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
+ -163980\mathit{lysize}}{\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
+\end{equation*}
+\begin{equation*}
+c_{2} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
+ -163980\mathit{lysize}}{2\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
+\end{equation*}
+$\mathit{lxsize}_0 \geq 1$ und $\mathit{lysize}_0 \geq 1$.
 % subsubsection regionenmarkierung (end)
