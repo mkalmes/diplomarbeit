@@ -98,7 +98,7 @@ Danach wird die Orientiertung der 8er-Nachbarschaft in Zeile \ref{alg:argetconto
  einem Fehlerwert in Zeile \ref{alg:argetcontour-2-error} abgebrochen. Dadurch wird sichergestellt, dass die Schleife
  in Zeile \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} auch bei einer nicht
  geschlossenen Kontur terminiert. Somit wird im schlechtesten Fall die Schleife $9997$-mal wiederholt, ohne das
- Verfahren mit einem Fehlerwert zu beenden. Die Laufzeitfunktion ist in \autoref{eq:analyse-argetconout-contour},
+ Verfahren mit einem Fehlerwert zu beenden. Die Laufzeitfunktion ist in \autoref{eq:analyse-argetcontour-contour},
  für $\mathit{AR\_CHAIN\_MAX} = n$, angegeben.
 \input{eq/artplus/argetcontour-contour}
 Das Wachstum der Laufzeitfunktion ist $137n -401 = \Theta(n)$ für $c_{1} = 136$, $c_{2} = 137$ und $n_{0} \geq 401$.
@@ -106,27 +106,37 @@ Das Wachstum der Laufzeitfunktion ist $137n -401 = \Theta(n)$ für $c_{1} = 136$
 In \autoref{alg:argetcontour-3} wird, nachdem eine geschlossene Kontur vorliegt, die Koordinate mit dem größten Abstand
  zum Startpunkt der Region gesucht (Zeile
  \ref{alg:argetcontour-3-finddmax-start}--\ref{alg:argetcontour-3-finddmax-end}).
-
 \input{alg/analyse-artplus/argetcontour-3}
-
 Dazu wird in Zeile \ref{alg:argetcontour-3-initdmax} die Variable $\mathit{dmax}$ initialisiert. Danach wird in Zeile
  \ref{alg:argetcontour-3-calcdistance-start}--\ref{alg:argetcontour-3-calcdistance-end} der Abstand zwischen dem
  aktuellen Punkt $i$ und der Koordinaten $\mathit{sx}$ und $\mathit{sy}$ berechnet. Falls der Abstandswert größer als
  $\mathit{dmax}$ ist (Zeile \ref{alg:argetcontour-3-isdmaxbigger}), wird der Abstandswert in $\mathit{dmax}$
- gespeichert (Zeile \ref{alg:argetcontour-3-savedmax}) und die Position $i$ in $\mathit{v1}$ hinterlegt.
-
-Nachdem die Schleife in Zeile \ref{alg:argetcontour-3-calcdistance-start}--\ref{alg:argetcontour-3-calcdistance-end}
- beendet ist, ist der größte Abstand in $\mathit{dmax}$ gespeichert und die Position der Koordinate in $\mathit{v1}$
- gespeichert. Nun wird in Zeile \ref{alg:argetcontour-3-dividev1-start}--\ref{alg:argetcontour-3-dividev1-end} von der
- ersten Position bis zur Position $\mathit{v1}$ alle Koordinaten in einer temporären Liste gespeichert. In Zeile
+ gespeichert (Zeile \ref{alg:argetcontour-3-savedmax}) und die Position $i$ in $\mathit{v1}$ hinterlegt. Nachdem die
+ Schleife in Zeile \ref{alg:argetcontour-3-calcdistance-start}--\ref{alg:argetcontour-3-calcdistance-end} beendet ist,
+ ist der größte Abstand in $\mathit{dmax}$ gespeichert und die Position der Koordinate in $\mathit{v1}$ gespeichert.
+ Nun wird in Zeile \ref{alg:argetcontour-3-dividev1-start}--\ref{alg:argetcontour-3-dividev1-end} von der ersten
+ Position bis zur Position $\mathit{v1}$ alle Koordinaten in einer temporären Liste gespeichert. In Zeile
  \ref{alg:argetcontour-3-dividecoordnum-start}--\ref{alg:argetcontour-3-dividecoordnum-end} werden alle Koordinaten ab
  Position $\mathit{v1}$ an den Anfang von $\mathit{marker\_infoTWO}$ verschoben. Die temporär gespeicherten Koordinaten
  werden in Zeile \ref{alg:argetcontour-3-merge-start}--\ref{alg:argetcontour-3-merge-end} an das Ende von
- $\mathit{marker\_infoTWO}$ angehängt.
+ $\mathit{marker\_infoTWO}$ angehängt. Zum Schluss wird in Zeile
+ \ref{alg:argetcontour-3-savev1-start}--\ref{alg:argetcontour-3-savev1-end} die Koordinaten des Punktes mit dem größten
+ Abstandswert an die letzte Stelle von marker\_infoTWO kopiert, so dass die Koordinaten am Anfang und am Ende
+ gespeichert sind. Die Anzahl der gespeicherten Koordinaten wird in Zeile \ref{alg:argetcontour-3-inccoordnum} erhöht
+ und die Konturverfolgung beendet. $\mathit{marker\_infoTWO.coord\_num}$ ist von $\mathit{AR\_CHAIN\_MAX}$ abhängig und
+ kann maximal $\mathit{AR\_CHAIN\_MAX} - 3$ Einträge enthalten. Im schlechtesten Fall liegt der Punkt mit dem größten
+ Abstand am Ende der Liste von $\mathit{marker\_infoTWO.coord\_num}$. Für diesen Fall sind die Kosten des Verfahrens
+ in \autoref{alg:argetcontour-3} aufgelistet. Für die Kosten der Laufzeitfunktion in
+ \autoref{} ist $\mathit{AR\_CHAIN\_MAX} = n$.
+\input{eq/artplus/argetcontour-distance}
+Für $c_{1} = 67$, $c_{2} = 68$ und $n_{0} \geq 163$ ist $68n - 163 = \Theta(n)$.
 
-Zum Schluss wird in Zeile \ref{alg:argetcontour-3-savev1-start}--\ref{alg:argetcontour-3-savev1-end} die Koordinaten
- des Punktes mit dem größten Abstandswert an die letzte Stelle von marker\_infoTWO kopiert, so dass die Koordinaten am
- Anfang und am Ende gespeichert sind. Die Anzahl der gespeicherten Koordinaten wird in Zeile
- \ref{alg:argetcontour-3-inccoordnum} erhöht und die Konturverfolgung beendet.
-
+Die Laufzeitfunktion der Methode \textproc{arGetContour}, bestehend aus \autoref{alg:argetcontour-1},
+ \autoref{alg:argetcontour-2} und \autoref{alg:argetcontour-3} ist in \autoref{eq:analyse-argetcontour-all} angegeben.
+ Die dominante Eingabegröße des Verfahrens ist $\mathit{AR\_CHAIN\_MAX} = n$ (Vgl. \autoref{alg:argetcontour-2},
+ Zeile \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end}). Die Variable
+ $\mathit{xsize}$ kann durch die Breite des Bildsignals ersetzt werden und entspricht $\mathit{xsize} = \tfrac{640}{2}$.
+\input{eq/artplus/argetcontour-all}
+Die Wachstumsrate der Funktion aus \autoref{eq:analyse-argetcontour-all} ist im schlechtesten Fall
+ $205n - 3132 = \Theta(n)$, für $c_{1} = 204$, $c_{2} = 205$ und $n_{0} \geq 3132$.
 % subsubsection konturerzeugung (end)

@@ -1,13 +1,16 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arGetContour} (Finde größten Abstand zu Punkt $(sx,sy)$)}
 \label{alg:argetcontour-3}
 \begin{algorithmic}[1]
 	\algrestore{brk-argetcontour-contour}
 	% dmax = 0;
 	\State $\mathit{dmax} \gets 0$
+	\Cost{$c_{53}$}{$1$}
 	\label{alg:argetcontour-3-initdmax}
 	% for(i=1;i<marker_infoTWO->coord_num;i++) {
-	\For{$i \gets 1$ \textbf{to} $i < \mathit{marker\_infoTWO \to coord\_num}$}
+	\For{$i \gets 1$ \textbf{to} $i < \mathit{marker\_infoTWO.coord\_num}$}
+	\Cost{$c_{54}$}{$n - 2$}
+	% \Cost{$c_{54}$}{$1$}
 	\label{alg:argetcontour-3-finddmax-start}
 	%     d = (marker_infoTWO->x_coord[i]-sx)*(marker_infoTWO->x_coord[i]-sx)
 	%       + (marker_infoTWO->y_coord[i]-sy)*(marker_infoTWO->y_coord[i]-sy);
@@ -16,18 +19,25 @@
 	%         v1 = i;
 	%     }
 	% }
-		\State $a \gets (\mathit{marker\_infoTWO \to x\_coord}\left[i\right] - sx)$
+		\State $a \gets (\mathit{marker\_infoTWO.x\_coord}\left[i\right] - sx)$
+		\Cost{$c_{55}$}{$4(n-3)$}
 		\label{alg:argetcontour-3-calcdistance-start}
-		\State $b \gets (\mathit{marker\_infoTWO \to y\_coord}\left[i\right] - sy)$
+		\State $b \gets (\mathit{marker\_infoTWO.y\_coord}\left[i\right] - sy)$
+		\Cost{$c_{56}$}{$4(n-3)$}
 		\State $d \gets (a \cdot a) + (b \cdot b)$
+		\Cost{$c_{57}$}{$4(n-3)$}
 		\label{alg:argetcontour-3-calcdistance-end}
 		\If{$d > \mathit{dmax}$}
+		\Cost{$c_{58}$}{$n-3$}
 		\label{alg:argetcontour-3-isdmaxbigger}
 			\State $\mathit{dmax} \gets d$
+			\Cost{$c_{59}$}{$n-3$}
 			\label{alg:argetcontour-3-savedmax}
 			\State $\mathit{v1} \gets i$
+			\Cost{$c_{60}$}{$n-3$}
 		\EndIf
 		\State $i \gets i + 1$
+		\Cost{$c_{62}$}{$n-3$}
 	\EndFor
 	\label{alg:argetcontour-3-finddmax-end}
 	% for(i=0;i<v1;i++) {
@@ -35,34 +45,49 @@
 	%     arGetContour_wy[i] = marker_infoTWO->y_coord[i];
 	% }
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{v1}$}
+	\Cost{$c_{64}$}{$n-2$}
 	\label{alg:argetcontour-3-dividev1-start}
-		\State $\mathit{arGetContour\_wx}[i] \gets \mathit{marker\_infoTWO \to x\_coord}\left[i\right]$
-		\State $\mathit{arGetContour\_wy}[i] \gets \mathit{marker\_infoTWO \to y\_coord}\left[i\right]$
+		\State $\mathit{arGetContour\_wx}[i] \gets \mathit{marker\_infoTWO.x\_coord}\left[i\right]$
+		\Cost{$c_{65}$}{$4(n-3)$}
+		\State $\mathit{arGetContour\_wy}[i] \gets \mathit{marker\_infoTWO.y\_coord}\left[i\right]$
+		\Cost{$c_{66}$}{$4(n-3)$}
 		\State $i \gets i + 1$
+		\Cost{$c_{67}$}{$(n-3)$}
 	\EndFor
 	\label{alg:argetcontour-3-dividev1-end}
 	% for(i=v1;i<marker_infoTWO->coord_num;i++) {
-	\For{$i \gets \mathit{v1}$ \textbf{to} $i < \mathit{marker\_infoTWO \to coord\_num}$}
+	\For{$i \gets \mathit{v1}$ \textbf{to} $i < \mathit{marker\_infoTWO.coord\_num}$}
+	\Cost{$c_{69}$}{$2$}
 	\label{alg:argetcontour-3-dividecoordnum-start}
 	%     marker_infoTWO->x_coord[i-v1] = marker_infoTWO->x_coord[i];
 	%     marker_infoTWO->y_coord[i-v1] = marker_infoTWO->y_coord[i];
-		\State $\mathit{marker\_infoTWO \to x\_coord}\left[i - \mathit{v1}\right] \gets \mathit{marker\_infoTWO \to x\_coord}\left[i\right]$
-		\State $\mathit{marker\_infoTWO \to y\_coord}\left[i - \mathit{v1}\right] \gets \mathit{marker\_infoTWO \to y\_coord}\left[i\right]$
+		\State $\mathit{marker\_infoTWO.x\_coord}\left[i - \mathit{v1}\right] \gets
+		 \mathit{marker\_infoTWO.x\_coord}\left[i\right]$
+		\Cost{$c_{70}$}{$6$}
+		\State $\mathit{marker\_infoTWO.y\_coord}\left[i - \mathit{v1}\right] \gets
+		 \mathit{marker\_infoTWO.y\_coord}\left[i\right]$
+		\Cost{$c_{71}$}{$6$}
 		\State $i \gets i + 1$
+		\Cost{$c_{72}$}{$1$}
 	% }
 	\EndFor
 	\label{alg:argetcontour-3-dividecoordnum-end}
 	% for(i=0;i<v1;i++) {
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{v1}$}
+	\Cost{$c_{74}$}{$(n-2)$}
 	\label{alg:argetcontour-3-merge-start}
 	%     marker_infoTWO->x_coord[i-v1+marker_infoTWO->coord_num] = arGetContour_wx[i];
 	%     marker_infoTWO->y_coord[i-v1+marker_infoTWO->coord_num] = arGetContour_wy[i];
-		\State $num \gets \mathit{marker\_infoTWO \to coord\_num}$
-		\State $\mathit{marker\_infoTWO \to x\_coord}\left[i - \mathit{v1} + num\right] \gets
+		\State $num \gets \mathit{marker\_infoTWO.coord\_num}$
+		\Cost{$c_{75}$}{$2(n-3)$}
+		\State $\mathit{marker\_infoTWO.x\_coord}\left[i - \mathit{v1} + num\right] \gets
 		 \mathit{arGetContour\_wx}[i]$
-		\State $\mathit{marker\_infoTWO \to y\_coord}\left[i - \mathit{v1} + num\right] \gets
+		\Cost{$c_{76}$}{$6(n-3)$}
+		\State $\mathit{marker\_infoTWO.y\_coord}\left[i - \mathit{v1} + num\right] \gets
 		 \mathit{arGetContour\_wy}[i]$
+		\Cost{$c_{77}$}{$6(n-3)$}
 		\State $i \gets i + 1$
+		\Cost{$c_{78}$}{$(n-3)$}
 	% }
 	\EndFor
 	\label{alg:argetcontour-3-merge-end}
@@ -71,13 +96,18 @@
 	% marker_infoTWO->coord_num++;
 	% 
 	% return 0;
-	\State $num \gets \mathit{marker\_infoTWO \to coord\_num}$
+	\State $num \gets \mathit{marker\_infoTWO.coord\_num}$
+	\Cost{$c_{80}$}{$2$}
 	\label{alg:argetcontour-3-savev1-start}
-	\State $\mathit{marker\_infoTWO \to x\_coord}[num] \gets \mathit{marker\_infoTWO \to x\_coord}[0]$
-	\State $\mathit{marker\_infoTWO \to y\_coord}[num] \gets \mathit{marker\_infoTWO \to y\_coord}[0]$
+	\State $\mathit{marker\_infoTWO.x\_coord}[num] \gets \mathit{marker\_infoTWO.x\_coord}[0]$
+	\Cost{$c_{81}$}{$5$}
+	\State $\mathit{marker\_infoTWO.y\_coord}[num] \gets \mathit{marker\_infoTWO.y\_coord}[0]$
+	\Cost{$c_{82}$}{$5$}
 	\label{alg:argetcontour-3-savev1-end}
-	\State $\mathit{marker\_infoTWO \to coord\_num} \gets \mathit{marker\_infoTWO \to coord\_num} + 1$
+	\State $\mathit{marker\_infoTWO.coord\_num} \gets \mathit{marker\_infoTWO.coord\_num} + 1$
+	\Cost{$c_{83}$}{$4$}
 	\label{alg:argetcontour-3-inccoordnum}
 	\State \textbf{return} $0$
+	\Cost{$c_{84}$}{$1$}
 \end{algorithmic}
 \end{algorithm}
