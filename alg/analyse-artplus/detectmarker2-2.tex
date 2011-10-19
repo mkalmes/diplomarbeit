@@ -1,26 +1,34 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{arDetectMarker2} (Fortsetzung)}
 \label{alg:detectmarker2-2}
 \begin{algorithmic}[1]
 	\algrestore{brk-detectmarker2-init}
 	\State $\mathit{marker\_num2} \gets 0$
+	\Cost{$c_{10}$}{$1$}
 	\label{alg:detectmarker2-2-markernum2}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{label\_num}$}
+	\Cost{$c_{11}$}{$\mathit{label\_num} + 1$}
 	\label{alg:detectmarker2-2-loop-start}
 		\If{$\mathit{warea}[i] < \mathit{area\_min} \lor \mathit{warea}[i] > \mathit{area\_max}$}
+		\Cost{$c_{12}$}{$5\mathit{label\_num}$}
 		\label{alg:detectmarker2-2-area-start}
 			\State \textbf{continue}
+			\Cost{$c_{13}$}{$\mathit{label\_num}$}
 		\EndIf
 		\label{alg:detectmarker2-2-area-end}
 		\If{$\mathit{wclip}[i \cdot 4 + 0] == 1 \lor \mathit{wclip}[i \cdot 4 + 1] == \mathit{xsize} - 2$}
+		\Cost{$c_{15}$}{$10\mathit{label\_num}$}
 		\label{alg:detectmarker2-2-checkx-start}
 			\State \textbf{continue}
+			\Cost{$c_{16}$}{$\mathit{label\_num}$}
 			\label{alg:detectmarker2-2-checkx-continue}
 		\EndIf
 		\label{alg:detectmarker2-2-checkx-end}
 		\If{$\mathit{wclip}[i \cdot 4 + 2] == 1 \lor \mathit{wclip}[i \cdot 4 + 3] == \mathit{ysize} - 2$}
+		\Cost{$c_{18}$}{$10\mathit{label\_num}$}
 		\label{alg:detectmarker2-2-checky-start}
 			\State \textbf{continue}
+			\Cost{$c_{19}$}{$\mathit{label\_num}$}
 		\EndIf
 		\label{alg:detectmarker2-2-checky-end}
 		\State $\mathit{ret} \gets$ \textproc{arGetContour}$\left(
@@ -28,9 +36,11 @@
 			& \mathit{limage}, \mathit{label\_ref}, i + 1,\\
 			& \mathit{wclip}[i \cdot 4], \mathit{marker\_infoTWO}[\mathit{marker\_num2}]
 		\end{aligned}\right)$
+		\Cost{$c_{21}$}{$t \cdot \mathit{label\_num}$}
 		\label{alg:detectmarker2-2-callcontour}
 		\State \ldots
 		\State $i \gets i + 1$
+		\Cost{$c_{22}$}{$\mathit{label\_num}$}
 	\EndFor
 	\label{alg:detectmarker2-2-loop-end}
 \end{algorithmic}
