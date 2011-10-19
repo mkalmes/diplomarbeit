@@ -4,19 +4,26 @@
 \begin{algorithmic}[1]
 	\Require $p,e$
 	\State $\mathit{position} \gets$ \Call{edgelPosition}{$p,e$}
+	\Cost{$1$}{$21n + 18$}
 	\label{alg:edgelpool-removeedgel-position}
 	\If{$\mathit{position} < 0$}
+	\Cost{$2$}{$1$}
 		\State \textbf{return}
+		\Cost{$3$}{$1$}
 		\label{alg:edgelpool-removeedgel-error}
 	\EndIf
 	\label{alg:edgelpool-removeedgel-best-end}
 	\State $c \gets \mathit{p.count}$
+	\Cost{$5$}{$2$}
 	\If{$c > \mathit{position} + 1$}
+	\Cost{$6$}{$2$}
 	\label{alg:edgelpool-removeedgel-isvalid}
 		\State \Call{memmove}{$\mathit{p.data}[\mathit{position}], \mathit{p.data}[\mathit{position} + 1],
 		 \left(c - \mathit{position} + 1\right) \cdot \textproc{sizeof}(e)$}
+		\Cost{$7$}{$9$}
 		\label{alg:edgelpool-removeedgel-memmove}
 	\EndIf
 	\State $\mathit{p.count} \gets \mathit{p.count} - 1$
+	\Cost{$9$}{$4$}
 \end{algorithmic}
 \end{algorithm}

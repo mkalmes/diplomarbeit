@@ -14,7 +14,7 @@ Mithilfe von \textproc{dotProduct} (\autoref{alg:vectordotproduct}) kann die Ori
  überprüft werden. Zwei \gls{edgel} sind dann kompatibel, wenn der Winkel zwischen den Vektoren nicht größer als
  $67.5^\circ$ ist\footcite[Vgl.][S.~417]{clarke96}. Dies wird durch \autoref{eq:edgeliscompatible} in
  \autoref{alg:edgeliscompatible} sichergestellt. Es ist dabei darauf zu achten, dass die Berechnung in Bogenmaß
- erfolgt.
+ erfolgt. Die Laufzeitfunktion ist $T(n) = 8$.
 
 \begin{equation}
 	\label{eq:edgeliscompatible}
@@ -34,11 +34,13 @@ Der Speichervorrat aus \autoref{alg:datastructure-poolimplementation} ist ein Ar
 Die Variable $n$ gibt die Anzahl der angeforderten Blöcke aus dem Speichervorrat an. In Zeile
  \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Blöcke zur Verfügung stehen und liefert
  im Erfolgsfall die Adresse zu einem Block (\autoref{alg:datastructure-edgelpool}) zurück. Falls keine Blöcke mehr zur
- Verfügung stehen, wird $\mathit{NULL}$ zurückgegeben. \autoref{alg:edgelpool-getmemorypool}
+ Verfügung stehen, wird $\mathit{NULL}$ zurückgegeben. Die Laufzeitfunktion ist im schlechtesten Fall $T(n)=7$.
+ \autoref{alg:edgelpool-getmemorypool}
 \input{alg/analyse-hirzer/datastructure-edgelpool-getmemorypool}
  vereinfacht die Anforderung von Speicherblöcken, da in den meisten Fällen nur ein Block benötigt wird. Bei einem
- Aufruf kann somit auf einen Parameter verzichtet werden. Sowohl \autoref{alg:edgelpool-getmemorypools} als auch
- \autoref{alg:edgelpool-getmemorypool} haben eine konstante Laufzeit.
+ Aufruf kann somit auf einen Parameter verzichtet werden. Die Laufzeitfunktion ist im schlechtesten Fall $T(n)=9$.
+ Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben eine konstante
+ Laufzeit.
 
 Um \glspl{edgel} in einem Block zu speichern, wird \autoref{alg:edgelpool-addedgel} verwendet.
 \input{alg/analyse-hirzer/datastructure-edgelpool-addedgel}
@@ -49,7 +51,8 @@ Der Algorithmus benötigt einen Zeiger $p$ auf einen Speicherblock und einen \gl
  genügend Platz für einen weiteren Eintrag vorhanden ist. Die Größe von $N$ Einträgen richtet sich nach der in
  \autoref{alg:datastructure-edgelpool} festgelegten Arraygröße $N$. Wenn genügend Platz vorhanden ist, wird in Zeile
  \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgel} $e$ an die freie
- Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das Hinzufügen eines \glspl{edgel} ist konstant.
+ Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das Hinzufügen eines \glspl{edgel} ist konstant
+ und die Laufzeitfunktion entspricht im schlechtesten Fall $T(n) = 12$.
 
 Die Position eines \glspl{edgel} kann mit \autoref{alg:edgelpool-edgelposition} gesucht werden.
 \input{alg/analyse-hirzer/datastructure-edgelpool-edgelposition}
@@ -66,7 +69,9 @@ Dazu wird der Zeiger $p$ auf den Speicherblock und das zu suchende \gls{edgel} �
  fortgesetzt. Wenn das \gls{edgel} nicht im Speicherblock hinterlegt ist, wird in Zeile
  \ref{alg:edgelpool-edgelposition-returnerror} ein Fehlerwert zurückgegeben. Die Laufzeit des Algorithmus ist im besten
  Fall konstant, wenn das zu suchende \gls{edgel} an der ersten Position gespeichert ist. Im schlimmsten Fall, wenn ein
- \gls{edgel} nicht gefunden wird, beträgt die Laufzeit $T(n) = \Theta{(n)}$ für $n = \text{Anzahl der \gls{edgel}}$.
+ \gls{edgel} nicht gefunden wird, entspricht die Laufzeitfunktion $T(n) = 21n + 18 $ für
+ $n = \text{Anzahl der \gls{edgel}}$. Die Wachstumsrate ist $21n + 18 = \Theta(n)$ für $c_{1}=20$, $c_{2}=21$ und
+ $n_{0} \geq 18$.
 
 \glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} aus einem Speicherblock gelesen.
 \input{alg/analyse-hirzer/datastructure-edgelpool-getedgel}
@@ -76,7 +81,7 @@ Dazu wird der Zeiger $p$ auf den Speicherblock und der Index $i$ übergeben. In 
  \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
  innerhalb des gespeicherten Bereichs der \glspl{edgel} liegt. Danach wird in Zeile
  \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \glspl{edgel} an Position $i$ zurückgegeben. Der Zugriff auf
- einen \gls{edgel} ist konstant.
+ einen \gls{edgel} ist konstant. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 7$.
 
 Damit \glspl{edgel} aus einem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet.
 \input{alg/analyse-hirzer/datastructure-edgelpool-removeedgel}
@@ -173,14 +178,16 @@ In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und s
 	 Median als rote Linie.}
 	\label{fig:regression-memmove2}
 \end{figure}
-Im besten Fall wird die Position eines \gls{edgel} am Anfang eines Speicherblocks gefunden und mit \textproc{memmove} der Speicherbereich verschoben. Daraus ergibt sich eine Laufzeit von $T_{best}(n) = \Theta(1) + \Theta(1) = \Theta(2)$ und ist somit konstant. Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} nicht gefunden. Dadurch wird Zeile \ref{alg:edgelpool-removeedgel-position}--\ref{alg:edgelpool-removeedgel-best-end} vollständig durchlaufen und die Laufzeit beträgt $T_{worst}(n) = \Theta(n)$.
+Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} am Ende der Liste
+ gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 36$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und $n_{0} \geq 36$, $21n + 36 = \Theta(n)$
 
 Um einen Speicherblock für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz.
 \input{alg/analyse-hirzer/datastructure-edgelpool-resetmemorypool}
  Als Parameter wird der Zeiger $p$ übergeben und in Zeile
  \ref{alg:edgelpool-resetmemorypool-validpointer-start}--\ref{alg:edgelpool-resetmemorypool-validpointer-end}
  überprüft. Um alle Daten als gelöscht zu markieren, wird lediglich die Zählvariable in Zeile
- \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit.
+ \ref{alg:edgelpool-resetmemorypool-reset} auf $0$ gesetzt. Die Zuweisung erfolgt in konstanter Zeit. Die
+ Laufzeitfunktion ist im schlechtesten Fall $T(n) = 3$.
 
 Wenn ein Speicherblock nicht mehr benötigt wird, kann er mit \autoref{alg:edgelpool-freememorypool} freigegeben werden.
 \input{alg/analyse-hirzer/datastructure-edgelpool-freememorypool}
@@ -190,13 +197,15 @@ Wenn ein Speicherblock nicht mehr benötigt wird, kann er mit \autoref{alg:edgel
  (Vgl. \autoref{alg:edgelpool-resetmemorypool}). Im Anschluss wird in Zeile
  \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
  als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Zeiger $p$ zur weiteren Verwendung in
- $\mathit{pool}$ gespeichert. Das Freigeben eines Speicherblocks erfolgt in konstanter Zeit.
+ $\mathit{pool}$ gespeichert. Das Freigeben eines Speicherblocks erfolgt in konstanter Zeit. Im schlechtesten Fall ist
+ Laufzeitfunktion $T(n) = 9$.
 
 Die Anzahl der \glspl{edgel} in einem Speicherblock werden durch \autoref{alg:edgelpool-count} ermittelt.
 \input{alg/analyse-hirzer/datastructure-edgelpool-count}
 Als Parameter wird der Zeiger $p$ übergeben und in Zeile
  \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der
  Einträge wird in Zeile \ref{alg:edgelpool-count-counter} über die Zählvariable $\mathit{p.count}$ ermittelt. Der
- Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit.
+ Zugriff auf die Variable, und somit die Laufzeit des Algorithmus, erfolgt in konstanter Zeit. Die Laufzeitfunktion ist
+ im schlechtesten Fall $T(n) = 3$.
 
 % subsection datenstruktur-edgels (end)

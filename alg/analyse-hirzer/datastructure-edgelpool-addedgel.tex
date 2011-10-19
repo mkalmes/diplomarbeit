@@ -4,19 +4,26 @@
 \begin{algorithmic}[1]
 	\Require $p,e$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:edgelpool-addedgel-validpointer-start}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\label{alg:edgelpool-addedgel-validpointer-end}
 	\If{$\lnot \left(\mathit{p.count} < N\right)$}
+	\Cost{$c_{4}$}{$3$}
 	\label{alg:edgelpool-addedgel-checkspace-start}
 		\State \textbf{return} \Comment Speicher voll
+		\Cost{$c_{5}$}{$1$}
 	\EndIf
 	\label{alg:edgelpool-addedgel-checkspace-end}
 	\State $c \gets \mathit{p.count}$
+	\Cost{$c_{7}$}{$2$}
 	\label{alg:edgelpool-addedgel-add-start}
 	\State $\mathit{p.data}[c] \gets e$
+	\Cost{$c_{8}$}{$3$}
 	\State $\mathit{p.count} \gets c + 1$
+	\Cost{$c_{9}$}{$3$}
 	\label{alg:edgelpool-addedgel-add-end}
 \end{algorithmic}
 \end{algorithm}

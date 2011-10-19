@@ -4,15 +4,20 @@
 \begin{algorithmic}[1]
 	\Require $p$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:edgelpool-freememorypool-validpointer-start}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\label{alg:edgelpool-freememorypool-validpointer-end}
 	\State \Call{resetMemoryPool}{$p$}
+	\Cost{$c_{4}$}{$3$}
 	\label{alg:edgelpool-freememorypool-resetmemory}
 	\If{$p \geq \mathit{data} \land p \leq \mathit{data} + S$}
+	\Cost{$c_{5}$}{$4$}
 	\label{alg:edgelpool-freememorypool-checkpointer}
 		\State $\mathit{pool} \gets p$
+		\Cost{$c_{6}$}{$1$}
 	\EndIf
 \end{algorithmic}
 \end{algorithm}
