@@ -49,7 +49,9 @@ Die 8er-Nachbarschaft zur Verfolgung einer Kontur wird in Zeile
  Koordinaten in Zeile \ref{alg:argetcontour-1-savex}--\ref{alg:argetcontour-1-savey} in den Variablen $\mathit{sx}$ und
  $\mathit{sy}$ gespeichert und die Schleife wird abgebrochen. Ansonsten wird in Zeile
  \ref{alg:argetcontour-1-inci}--\ref{alg:argetcontour-1-incp1} die Laufvariable $i$ um $1$ erhöht und die Adresse
- $\mathit{p1}$ inkrementiert. Die Laufzeitfunktion ist in \autoref{eq:analyse-argetconout-init} aufgeführt.
+ $\mathit{p1}$ inkrementiert. Der Bereich $[\mathit{clip}[0],\mathit{clip}[1])$ hängt von $\mathit{xsize}$ ab und
+ umfasst maximal $\mathit{xsize} - 4$ Einträge (Vgl. \autoref{alg:detectmarker2-2}, Zeile
+ \ref{alg:detectmarker2-2-checkx-start}). Die Laufzeitfunktion ist in \autoref{eq:analyse-argetconout-init} aufgeführt.
 \input{eq/artplus/argetcontour-init}
 Die Wachstumsrate von \autoref{eq:analyse-argetconout-init-2} ist, für $c_{1} = 7$, $c_{2} = 8$ und $\mathit{xsize}_0
  \geq 8$, $8\mathit{xsize} - 8 = \Theta(\mathit{xsize})$.
@@ -57,22 +59,19 @@ Die Wachstumsrate von \autoref{eq:analyse-argetconout-init-2} ist, für $c_{1} =
 \autoref{alg:argetcontour-2} verfolgt nun die Kontur der Region. Dazu wird zuerst in der Datenstruktur
  $\mathit{marker\_infoTWO}$ die Anzahl der Koordinaten initialisiert und die $x$- und $y$-Werte der ersten
  Regionenmarkierung gespeichert (Zeile
- \ref{alg:argetcontour-2-markerinit-start}--\ref{alg:argetcontour-2-markerinit-end}). Danach wird die Orientiertung der
- 8er-Nachbarschaft in Zeile \ref{alg:argetcontour-2-orientation} festgelegt.
-
+ \ref{alg:argetcontour-2-markerinit-start}--\ref{alg:argetcontour-2-markerinit-end}).
 \input{alg/analyse-artplus/argetcontour-2}
-
-Die Kontur wird in der Schleife in Zeile
+Danach wird die Orientiertung der 8er-Nachbarschaft in Zeile \ref{alg:argetcontour-2-orientation} festgelegt. Die
+ Kontur wird in der Schleife in Zeile
  \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} verfolgt. Zuerst muss der
  Adressabstand der letzten Regionenmarkierung in $\mathit{l\_image}$ berechnet werden (Zeile
  \ref{alg:argetcontour-2-offset-start}--\ref{alg:argetcontour-2-offset-end}). Danach wird die Adresse der
  Regionenmarkierung in $\mathit{p1}$ hinterlegt (Zeile \ref{alg:argetcontour-2-address}). In Zeile
  \ref{alg:argetcontour-2-nextorientation} wird die Orientierung der 8er-Nachbarschaft auf die nächste zu untersuchende
  Richtung gedreht. Das drehen der 8er-Nachbarschaft erfolgt, indem von der letzten Position einer Kontur im
- Uhrzeigersinn auf den nächsten Nachbarn weitergerückt wird (Vgl. \autoref{fig:}).
-
-In Zeile \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} wird in der Schleife
- die Nachbarn im Uhrzeigersinn untersucht. Dazu wird mit Hilfe der 8er-Nachbarschaft in Zeile
+ Uhrzeigersinn auf den nächsten Nachbarn weitergerückt wird (Vgl. \autoref{fig:}). In Zeile
+ \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} wird in der Schleife die
+ Nachbarn im Uhrzeigersinn untersucht. Dazu wird mit Hilfe der 8er-Nachbarschaft in Zeile
  \ref{alg:argetcontour-2-offset} ein Adressabstand berechnet. Durch die Überprüfung einer Regionenmarkierung an der
  Adresse von $\mathit{p1}$ in Zeile \ref{alg:argetcontour-2-haslabel-start}--\ref{alg:argetcontour-2-haslabel-end} wird
  entschieden, ob die Schleife von Zeile
@@ -82,11 +81,11 @@ In Zeile \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-n
  weitergedreht und in Zeile \ref{alg:argetcontour-2-inci} die Laufvariable $i$ erhöht. Falls alle Nachbarn der
  Regionenmarkierung untersucht worden sind ohne eine weiter Markierung zu finden, wird das Verfahren in Zeile
  \ref{alg:argetcontour-2-hasnolabel-start}--\ref{alg:argetcontour-2-hasnolabel-end} mit einem Fehlerwert abgebrochen.
-
-Wenn eine weitere Markierung in Zeile
- \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} gefunden und die Schleife
- abgebrochen wurde, wird in Zeile \ref{alg:argetcontour-2-savex}--\ref{alg:argetcontour-2-savey} die Markierung
- gespeichert. Dazu wird die $x$- und $y$-Koordinate der letzten Markierung ausgelesen und die Richtung der
+ Um eine erfolgreiche Iteration zu erlangen, wird die Schleife im schlechtesten Fall $8-1$-mal wiederholt, ohne in Zeile
+ \ref{alg:argetcontour-2-hasnolabel-start} mit einem Fehlerwert beendet zu werden. Wenn eine weitere Markierung in
+ Zeile \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} gefunden und die
+ Schleife abgebrochen wurde, wird in Zeile \ref{alg:argetcontour-2-savex}--\ref{alg:argetcontour-2-savey} die
+ Markierung gespeichert. Dazu wird die $x$- und $y$-Koordinate der letzten Markierung ausgelesen und die Richtung der
  8er-Nachbarschaft addiert. Danach wird in Zeile
  \ref{alg:argetcontour-2-iscontourclosed-start}--\ref{alg:argetcontour-2-iscontourclosed-end} überprüft, ob die
  gespeicherte Markierung mit den Anfangskoordinaten übereinstimmt und es sich somit um eine geschlossene Kontur
@@ -95,10 +94,14 @@ Wenn eine weitere Markierung in Zeile
  um eine geschlossene Kontur handelt, wird die Kontur weiterverfolgt. In Zeile \ref{alg:argetcontour-2-inccoordnum}
  wird die Anzahl der Koordinaten in $\mathit{marker\_infoTWO}$ erhöht. Bevor die Kontur weiterverfolgt wird, wird in
  Zeile \ref{alg:argetcontour-2-ismaxchainreached-start}--\ref{alg:argetcontour-2-ismaxchainreached-end} überprüft, ob
- die Anzahl der Koordinaten einer festgelegten Größe entspricht. Falls dem so ist, wird das Verfahren mit einem
- Fehlerwert in Zeile \ref{alg:argetcontour-2-error} abgebrochen. Dadurch wird sichergestellt, dass die Schleife in
- Zeile \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} auch bei einer nicht
- geschlossenen Kontur terminiert.
+ die Anzahl der Koordinaten $\mathit{AR\_CHAIN\_MAX} - 1 = 9999$ entspricht. Falls dem so ist, wird das Verfahren mit
+ einem Fehlerwert in Zeile \ref{alg:argetcontour-2-error} abgebrochen. Dadurch wird sichergestellt, dass die Schleife
+ in Zeile \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end} auch bei einer nicht
+ geschlossenen Kontur terminiert. Somit wird im schlechtesten Fall die Schleife $9997$-mal wiederholt, ohne das
+ Verfahren mit einem Fehlerwert zu beenden. Die Laufzeitfunktion ist in \autoref{eq:analyse-argetconout-contour},
+ für $\mathit{AR\_CHAIN\_MAX} = n$, angegeben.
+\input{eq/artplus/argetcontour-contour}
+Das Wachstum der Laufzeitfunktion ist $137n -401 = \Theta(n)$ für $c_{1} = 136$, $c_{2} = 137$ und $n_{0} \geq 401$.
 
 In \autoref{alg:argetcontour-3} wird, nachdem eine geschlossene Kontur vorliegt, die Koordinate mit dem größten Abstand
  zum Startpunkt der Region gesucht (Zeile
