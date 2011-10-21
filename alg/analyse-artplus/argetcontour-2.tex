@@ -6,12 +6,12 @@
 	% marker_infoTWO->coord_num = 1;
 	% marker_infoTWO->x_coord[0] = sx;
 	% marker_infoTWO->y_coord[0] = sy;
-	\State $\mathit{marker\_infoTWO \to coord\_num} \gets 1$
+	\State $\mathit{marker\_infoTWO.coord\_num} \gets 1$
 	\Cost{$c_{20}$}{$2$}
 	\label{alg:argetcontour-2-markerinit-start}
-	\State $\mathit{marker\_infoTWO \to xcoord}\left[0\right] \gets \mathit{sx}$
+	\State $\mathit{marker\_infoTWO.xcoord}\left[0\right] \gets \mathit{sx}$
 	\Cost{$c_{21}$}{$3$}
-	\State $\mathit{marker\_infoTWO \to ycoord}\left[0\right] \gets \mathit{sy}$
+	\State $\mathit{marker\_infoTWO.ycoord}\left[0\right] \gets \mathit{sy}$
 	\Cost{$c_{22}$}{$3$}
 	\label{alg:argetcontour-2-markerinit-end}
 	% dir = 5;
@@ -23,14 +23,14 @@
 	\label{alg:argetcontour-2-contourloop-start}
 	%     p1 = &(limage[marker_infoTWO->y_coord[marker_infoTWO->coord_num-1] * xsize
 	%                 + marker_infoTWO->x_coord[marker_infoTWO->coord_num-1]]);
-		\State $\mathit{tmp\_coord\_num} \gets \mathit{marker\_infoTWO \to coord\_num} - 1$
+		\State $\mathit{tmp\_coord\_num} \gets \mathit{marker\_infoTWO.coord\_num} - 1$
 		\Cost{$c_{25}$}{$(n-3) \cdot 3$}
 		\label{alg:argetcontour-2-offset-start}
-		\State $\mathit{offset} \gets \mathit{marker\_infoTWO \to y\_coord}\left[\mathit{tmp\_coord\_num}\right]
+		\State $\mathit{offset} \gets \mathit{marker\_infoTWO.y\_coord}\left[\mathit{tmp\_coord\_num}\right]
 		 \cdot \mathit{xsize}$
 		\Cost{$c_{26}$}{$(n-3) \cdot 5$}
-		\State $\mathit{offset} \gets \mathit{offset} + \mathit{marker\_infoTWO \to
-		 x\_coord}\left[\mathit{tmp\_coord\_num}\right]$
+		\State $\mathit{offset} \gets \mathit{offset} +
+		 \mathit{marker\_infoTWO.x\_coord}\left[\mathit{tmp\_coord\_num}\right]$
 		\Cost{$c_{27}$}{$(n-3) \cdot 5$}
 		\label{alg:argetcontour-2-offset-end}
 		\State $\mathit{p1} \gets \mathit{l\_image}[\mathit{offset}]$

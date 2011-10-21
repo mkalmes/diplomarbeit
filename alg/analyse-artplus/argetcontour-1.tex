@@ -43,7 +43,7 @@
 	\For{$i \gets \mathit{clip}\left[0\right]$ \textbf{to} $i \leq \mathit{clip}\left[1\right]$}
 	\Cost{$c_{11}$}{$(\mathit{xsize} - 4) + 1$}
 	\label{alg:argetcontour-1-loop-start}
-		\If{$\mathit{p1} > 0 \land \mathit{label\_ref}\left[\mathit{p1 - 1}\right] == \mathit{label}$}
+		\If{$\mathit{p1} > 0 \land \mathit{label\_ref}\left[\mathit{p1 - 1}\right] = \mathit{label}$}
 		\Cost{$c_{12}$}{$5(\mathit{xsize} - 4)$}
 		\label{alg:argetcontour-1-haslabel-start}
 			\State $\mathit{sx} \gets i$

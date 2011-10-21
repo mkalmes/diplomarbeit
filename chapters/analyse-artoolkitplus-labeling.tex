@@ -89,8 +89,8 @@ Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist,
 \input{eq/artplus/arlabeling-regionlabeling-1}
 Durch Substition der Konstanten $c$ mit $1$ folgt
  $T_{best}(\mathit{lxsize},\mathit{lysize}) = 16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
- - 31 \cdot \mathit{lysize} + 61$. Für $c_{1} = 2$, $c_{2} = 16$, $\mathit{lxsize}_0 \geq 9$ und
- $\mathit{lysize}_0 \geq 3$ ist $16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
+ - 31 \cdot \mathit{lysize} + 61$. Für $c_{1} = 2$, $c_{2} = 16$, $\mathit{lxsize}_{0} = 9$ und
+ $\mathit{lysize}_{0} = 3$ ist $16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
  - 31 \cdot \mathit{lysize} = \Theta(\mathit{lxsize} \cdot \mathit{lysize})$. Die Laufzeitfunktion für den schlechtesten
  Fall wird nach Analyse der Nachbarschaftsuntersuchung angegeben.
 
@@ -236,7 +236,7 @@ Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die nu
  Regionenbild ist in $\mathit{l\_image}$ gespeichert. Der schlechteste Fall der Nachbarschaftsuntersuchung ist der 2.
  Fall. Die Laufzeitfunktion (\autoref{eq:analyse-arlabeling-neighbour}) setzt sich aus den Kosten der Verzweigung in
  \autoref{alg:arlabeling-neighbour} und \autoref{alg:arlabeling-neighbour-case2}, sowie der Laufzeifunktion aus
- \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c_{1} = 5$, $c_{2} = 6$ und $\mathit{wk\_max}_0 \geq 24$ ist
+ \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c_{1} = 5$, $c_{2} = 6$ und $\mathit{wk\_max}_{0} = 24$ ist
  $5 \mathit(wk\_max) + 24 = \Theta(\mathit{wk\_max})$.
 \input{eq/artplus/arlabeling-neighbour}
 
@@ -251,7 +251,7 @@ Durch Substitution der Konstanten $c$ mit $1$ folgt $T_{worst}(\mathit{lxsize},\
  $\mathit{lysize}$ abhänging und kann nicht mehr als $8192$ Einträge enthalten. Wird $t$ durch $5 \cdot 8192 + 24$
  substituiert, folgt die Laufzeitfunktion in \autoref{eq:analyse-arlabeling-regionlabeling-3}.
 \input{eq/artplus/arlabeling-regionlabeling-3}
-Für $c_{1} = 2$, $c_{2} = 40999$, $\mathit{lxsize}_0 \geq 5$ und $\mathit{lysize}_0 \geq 4$ ist die Wachstumsrate von
+Für $c_{1} = 2$, $c_{2} = 40999$, $\mathit{lxsize}_{0} = 5$ und $\mathit{lysize}_{0} = 4$ ist die Wachstumsrate von
  $40999\mathit{lxsize}\cdot\mathit{lysize} -81998\mathit{lxsize} -81998\mathit{lysize}
  = \Theta(\mathit{lxsize}\cdot\mathit{lysize})$.
 
@@ -279,7 +279,7 @@ In Zeile \ref{alg:sortlabels-j} wird $j$ als Variable für die aktuelle Markieru
  \ref{alg:sortlabels-inci} wird die Laufvariable $i$ um $1$ erhöht und in Zeile \ref{alg:sortlabels-incwk} die Adresse
  von $\mathit{work}$ inkrementiert. Das Beispiel in \autoref{fig:} illustriert das Verfahren. In
  \autoref{eq:analyse-arlabeling-sortlabels} ist die Laufzeitfunktion angegeben. Für $c_{1} = 4$, $c_{2} = 7$ und
- $\mathit{wk\_max}_0 \geq 1$ ist die Wachstumsrate $7\mathit{wk\_max} - 3 = \Theta(\mathit{wk\_max})$.
+ $\mathit{wk\_max}_{0} = 1$ ist die Wachstumsrate $7\mathit{wk\_max} - 3 = \Theta(\mathit{wk\_max})$.
 \input{eq/artplus/arlabeling-sortlabels}
 
 Das Verfahren in \autoref{alg:arlabeling-initlabelmemory} initialisiert den Speicher zur Berechnung des Flächeninhalts
@@ -300,13 +300,13 @@ Dazu wird in Zeile
  \ref{alg:arlabeling-initlabelmemory-label-start}--\ref{alg:arlabeling-initlabelmemory-initwarea-end} von
  \autoref{alg:arlabeling-initlabelmemory} ist in \autoref{eq:analyse-arlabeling-sortlabels-initlabelmemory-1} angegeben.
 \input{eq/artplus/arlabeling-sortlabels-initlabelmemory-1}
-Für $c_{1} = 4$, $c_{2} = 12$ und $\mathit{size}_0 \geq 1$ ist die Wachstumsrate
+Für $c_{1} = 4$, $c_{2} = 12$ und $\mathit{size}_{0} = 1$ ist die Wachstumsrate
  $4\mathit{size} + 8 = \Theta(\mathit{size})$. Die Laufzeitfunktion für Zeile
  \ref{alg:arlabeling-initlabelmemory-floatsize}--\ref{alg:arlabeling-initlabelmemory-initwpos-end} ist in
  \autoref{eq:analyse-arlabeling-sortlabels-initlabelmemory-2} aufgeführt.
 \input{eq/artplus/arlabeling-sortlabels-initlabelmemory-2}
 Die Wachstumsrate ist $4\mathit{size} + 4 = \Theta(\mathit{size})$ für $c_{1} = 4$, $c_{2} = 8$ und
- $\mathit{size}_0 \geq 1$.
+ $\mathit{size}_{0} = 1$.
 
 In \autoref{alg:arlabeling-calcregiondata} werden die Daten aller Regionenmarkierungen aufbereitet. Das Verfahren
  berechnet den Flächeninhalt, den Mittelpunkt und die Start- und Endkoordinaten für alle Regionen.
@@ -337,17 +337,17 @@ Die Laufzeitfunktion für Zeile
  \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arlabeling-calcregiondata-wclip-end} von
  \autoref{alg:arlabeling-calcregiondata} ist in \autoref{eq:analyse-arlabeling-calcregiondata-1} angegeben.
 \input{eq/artplus/arlabeling-calcregiondata-1}
-Die Wachstumsrate, für die Werte $c_{1} = 18$, $c_{2} = 19$ und $\mathit{labelnum}_0 \geq 1$, ist
+Die Wachstumsrate, für die Werte $c_{1} = 18$, $c_{2} = 19$ und $\mathit{labelnum}_{0} = 1$, ist
  $18\mathit{labelnum} + 1 = \Theta(\mathit{labelnum})$. Die Laufzeitfunktion von Zeile
  \ref{alg:arlabeling-calcregiondata-work-start}--\ref{alg:arlabeling-calcregiondata-work-end} ist in
  \autoref{eq:analyse-arlabeling-calcregiondata-2} aufgeführt. Für $c_{1} = 90$, $c_{2} = 91$ und
- $\mathit{wk\_max}_0 \geq 1$ ist die Wachstumsrate $90\mathit{wk\_max} + 1 = \Theta(wk\_max)$.
+ $\mathit{wk\_max}_{0} = 1$ ist die Wachstumsrate $90\mathit{wk\_max} + 1 = \Theta(wk\_max)$.
 \input{eq/artplus/arlabeling-calcregiondata-2}
 Die letzte Laufzeitfunktion von \autoref{alg:arlabeling-calcregiondata} ist in
  \autoref{eq:analyse-arlabeling-calcregiondata-2} angegeben.
 \input{eq/artplus/arlabeling-calcregiondata-3}
 Die Wachstumsrate entspricht $20\mathit{labelnum} + 6 = \Theta(\mathit{labelnum})$, für $c_{1} = 20$, $c_{2} = 21$ und
- $\mathit{labelnum}_0 \geq 6$.
+ $\mathit{labelnum}_{0} = 6$.
 
 Die Laufzeitfunktion von \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) ist in
  \autoref{eq:analyse-arlabeling-all-1} angegeben und besteht aus der Initialisierung (\autoref{alg:arlabeling-init1}
@@ -380,5 +380,5 @@ c_{1} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
 c_{2} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
  -163980\mathit{lysize}}{2\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
 \end{equation*}
-$\mathit{lxsize}_0 \geq 1$ und $\mathit{lysize}_0 \geq 1$.
+$\mathit{lxsize}_{0} = 1$ und $\mathit{lysize}_{0} = 1$.
 % subsubsection regionenmarkierung (end)

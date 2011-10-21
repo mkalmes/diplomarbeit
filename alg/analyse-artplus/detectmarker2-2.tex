@@ -16,7 +16,7 @@
 			\Cost{$c_{13}$}{$\mathit{label\_num}$}
 		\EndIf
 		\label{alg:detectmarker2-2-area-end}
-		\If{$\mathit{wclip}[i \cdot 4 + 0] == 1 \lor \mathit{wclip}[i \cdot 4 + 1] == \mathit{xsize} - 2$}
+		\If{$\mathit{wclip}[i \cdot 4 + 0] = 1 \lor \mathit{wclip}[i \cdot 4 + 1] = \mathit{xsize} - 2$}
 		\Cost{$c_{15}$}{$10\mathit{label\_num}$}
 		\label{alg:detectmarker2-2-checkx-start}
 			\State \textbf{continue}
@@ -24,7 +24,7 @@
 			\label{alg:detectmarker2-2-checkx-continue}
 		\EndIf
 		\label{alg:detectmarker2-2-checkx-end}
-		\If{$\mathit{wclip}[i \cdot 4 + 2] == 1 \lor \mathit{wclip}[i \cdot 4 + 3] == \mathit{ysize} - 2$}
+		\If{$\mathit{wclip}[i \cdot 4 + 2] = 1 \lor \mathit{wclip}[i \cdot 4 + 3] = \mathit{ysize} - 2$}
 		\Cost{$c_{18}$}{$10\mathit{label\_num}$}
 		\label{alg:detectmarker2-2-checky-start}
 			\State \textbf{continue}

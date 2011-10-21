@@ -7,15 +7,15 @@
 	\label{alg:detectmarker2-6-address}
 	\For{$i \gets 0$ \textbf{to} $\mathit{marker\_num2}$}
 	\label{alg:detectmarker2-6-loop-start}
-		\State $\mathit{pm \to area} \gets \mathit{pm \to area} \cdot 4$
+		\State $\mathit{pm.area} \gets \mathit{pm.area} \cdot 4$
 		\label{alg:detectmarker2-6-area}
-		\State $\mathit{pm \to pos}[0] \gets \mathit{pm \to pos}[0] \cdot 2$
-		\State $\mathit{pm \to pos}[1] \gets \mathit{pm \to pos}[1] \cdot 2$
+		\State $\mathit{pm.pos}[0] \gets \mathit{pm.pos}[0] \cdot 2$
+		\State $\mathit{pm.pos}[1] \gets \mathit{pm.pos}[1] \cdot 2$
 		\label{alg:detectmarker2-6-pos}
-		\For{$j \gets 0$ \textbf{to} $\mathit{pm \to coord\_num}$}
+		\For{$j \gets 0$ \textbf{to} $\mathit{pm.coord\_num}$}
 		\label{alg:detectmarker2-6-coord-start}
-			\State $\mathit{pm \to x\_coord}[j] \gets \mathit{pm \to x\_coord}[j] \cdot 2$
-			\State $\mathit{pm \to y\_coord}[j] \gets \mathit{pm \to y\_coord}[j] \cdot 2$
+			\State $\mathit{pm.x\_coord}[j] \gets \mathit{pm.x\_coord}[j] \cdot 2$
+			\State $\mathit{pm.y\_coord}[j] \gets \mathit{pm.y\_coord}[j] \cdot 2$
 			\State $j \gets j + 1$
 		\EndFor
 		\label{alg:detectmarker2-6-coord-end}
