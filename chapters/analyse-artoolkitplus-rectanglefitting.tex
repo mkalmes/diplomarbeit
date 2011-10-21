@@ -192,7 +192,7 @@ Die Laufzeitfunktion von \textproc{arDetectMarker2} (\autoref{alg:detectmarker2-
  $\mathit{label\_num}$ erlaubt maximal $\tfrac{\mathit{lxsize}\cdot\mathit{lysize}}{4}$ Einträge, während Variable $n$
  von $\mathit{AR\_CHAIN\_MAX} = 10000$ begrenzt ist.
 \input{eq/artplus/detectmarker2-3}
-Die Wachstumsrate von \textproc{detectmarker2} entspricht $\Theta(\mathit{label\_num}\cdot n)$.
+Die Wachstumsrate von \textproc{detectmarker2} entspricht $\Theta(\mathit{label\_num}\cdot n \log n)$.
 
 % Nachdem \textproc{arGetCountour} abgeschlossen ist, wird in \textproc{arDetectMarker2} die Marke mit der größten Fläche
 %  gesucht. Dazu wird in \autoref{alg:detectmarker2-4} in der Schleife von Zeile \ref{alg:detectmarker2-4-loop1-start}
