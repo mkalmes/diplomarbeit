@@ -14,7 +14,9 @@ Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis
  \ref{alg:detectmarker2-3-maxpatterns} wird die Anzahl der gefundenen Marken mit einem festgelegten Wert verglichen, der
  die maximale Anzahl gleichzeitiger Marken festlegt. Wenn die Werte übereinstimmen, wird die Schleife von Zeile
  \ref{alg:detectmarker2-3-loop-start} bis Zeile \ref{alg:detectmarker2-3-loop-end} abgebrochen. Andernfalls wird die
- Laufvariable $i$ erhöht und ein neuer Schleifendurchgang begonnen.
+ Laufvariable $i$ erhöht und ein neuer Schleifendurchgang begonnen. Die Laufzeitfunktion ist in
+ \autoref{eq:analyse-detectmarker2-2} angegeben.
+\input{eq/artplus/detectmarker2-2}
 
 Das Verfahren \textproc{checksquare} benötigt als Eingabeparameter die Fläche der Region ($\mathit{area}$), die
  Datenstruktur $\mathit{marker\_infoTwo}$ mit Informationen der Region und Kontur und einen Faktor ($\mathit{factor}$)
@@ -185,6 +187,12 @@ Durch Überprüfung von $T(n) = 2T(\tfrac{n}{2}) + 14n$ mit dem Master Theorem i
 \input{eq/artplus/getvertex-all-2}
 folgt $T(n) = \Theta(n \log n)$ für das Verfahren \textproc{getVertex}.
 
+Die Laufzeitfunktion von \textproc{arDetectMarker2} (\autoref{alg:detectmarker2-1}, \autoref{alg:detectmarker2-2} und
+ \autoref{alg:detectmarker2-3}) ist in \autoref{eq:analyse-detectmarker2-3} angegeben. Die Variable
+ $\mathit{label\_num}$ erlaubt maximal $\tfrac{\mathit{lxsize}\cdot\mathit{lysize}}{4}$ Einträge, während Variable $n$
+ von $\mathit{AR\_CHAIN\_MAX} = 10000$ begrenzt ist.
+\input{eq/artplus/detectmarker2-3}
+Die Wachstumsrate von \textproc{detectmarker2} entspricht $\Theta(\mathit{label\_num}\cdot n)$.
 
 % Nachdem \textproc{arGetCountour} abgeschlossen ist, wird in \textproc{arDetectMarker2} die Marke mit der größten Fläche
 %  gesucht. Dazu wird in \autoref{alg:detectmarker2-4} in der Schleife von Zeile \ref{alg:detectmarker2-4-loop1-start}
