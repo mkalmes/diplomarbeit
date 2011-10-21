@@ -1,23 +1,33 @@
-\begin{algorithm}[ht]
-\caption{\textproc{checkSquare} (Fortsetzung)}
+\begin{algorithm}[!ht]
+\caption{\textproc{checkSquare} (Größter Abstand)}
 \label{alg:checksquare-2}
 \begin{algorithmic}[1]
 	\algrestore{brk-checksquare-1-init}
-	\State $\mathit{sx} \gets \mathit{marker\_infoTWO \to x\_coord}[0]$
+	\State $\mathit{sx} \gets \mathit{marker\_infoTWO.x\_coord}[0]$
+	\Cost{$c_{5}$}{$3$}
 	\label{alg:checksquare-2-x}
-	\State $\mathit{sy} \gets \mathit{marker\_infoTWO \to y\_coord}[0]$
+	\State $\mathit{sy} \gets \mathit{marker\_infoTWO.y\_coord}[0]$
+	\Cost{$c_{6}$}{$3$}
 	\label{alg:checksquare-2-y}
-	\For{$i \gets 1$ \textbf{to} $\mathit{marker\_infoTWO \to coord\_num} - 1$}
+	\For{$i \gets 1$ \textbf{to} $\mathit{marker\_infoTWO.coord\_num} - 1$}
+	\Cost{$c_{7}$}{$n - 1$}
 	\label{alg:checksquare-2-loop-start}
-		\State $a \gets \mathit{marker\_infoTWO \to x\_coord}[i] - \mathit{sx}$
-		\State $b \gets \mathit{marker\_infoTWO \to y\_coord}[i] - \mathit{sy}$
+		\State $a \gets \mathit{marker\_infoTWO.x\_coord}[i] - \mathit{sx}$
+		\Cost{$c_{8}$}{$4(n-2)$}
+		\State $b \gets \mathit{marker\_infoTWO.y\_coord}[i] - \mathit{sy}$
+		\Cost{$c_{9}$}{$4(n-2)$}
 		\State $d \gets \left(a \cdot a\right) + \left(b \cdot b\right)$
+		\Cost{$c_{10}$}{$4(n-2)$}
 		\If{$d > \mathit{dmax}$}
+		\Cost{$c_{11}$}{$n-2$}
 		\label{alg:checksquare-2-isdbigger}
 			\State $\mathit{dmax} \gets d$
+			\Cost{$c_{12}$}{$\frac{n-2}{2}$}
 			\State $\mathit{v1} \gets i$
+			\Cost{$c_{13}$}{$\frac{n-2}{2}$}
 		\EndIf
 		\State $i \gets i + 1$
+		\Cost{$c_{15}$}{$n-2$}
 	\EndFor
 	\label{alg:checksquare-2-loop-end}
 	\algstore{brk-checksquare-2-distance}

@@ -101,7 +101,7 @@ Danach wird die Orientiertung der 8er-Nachbarschaft in Zeile \ref{alg:argetconto
  Verfahren mit einem Fehlerwert zu beenden. Die Laufzeitfunktion ist in \autoref{eq:analyse-argetcontour-contour},
  für $\mathit{AR\_CHAIN\_MAX} = n$, angegeben.
 \input{eq/artplus/argetcontour-contour}
-Das Wachstum der Laufzeitfunktion ist $137n -401 = \Theta(n)$ für $c_{1} = 136$, $c_{2} = 137$ und $n_{0} \geq 401$.
+Das Wachstum der Laufzeitfunktion ist $137n -401 = \Theta(n)$ für $c_{1} = 136$, $c_{2} = 137$ und $n_{0} = 401$.
 
 In \autoref{alg:argetcontour-3} wird, nachdem eine geschlossene Kontur vorliegt, die Koordinate mit dem größten Abstand
  zum Startpunkt der Region gesucht (Zeile
@@ -129,7 +129,7 @@ Dazu wird in Zeile \ref{alg:argetcontour-3-initdmax} die Variable $\mathit{dmax}
  in \autoref{alg:argetcontour-3} aufgelistet. Für die Kosten der Laufzeitfunktion in
  \autoref{} ist $\mathit{AR\_CHAIN\_MAX} = n$.
 \input{eq/artplus/argetcontour-distance}
-Für $c_{1} = 67$, $c_{2} = 68$ und $n_{0} \geq 163$ ist $68n - 163 = \Theta(n)$.
+Für $c_{1} = 67$, $c_{2} = 68$ und $n_{0} = 163$ ist $68n - 163 = \Theta(n)$.
 
 Die Laufzeitfunktion der Methode \textproc{arGetContour}, bestehend aus \autoref{alg:argetcontour-1},
  \autoref{alg:argetcontour-2} und \autoref{alg:argetcontour-3} ist in \autoref{eq:analyse-argetcontour-all} angegeben.
@@ -138,5 +138,5 @@ Die Laufzeitfunktion der Methode \textproc{arGetContour}, bestehend aus \autoref
  $\mathit{xsize}$ kann durch die Breite des Bildsignals ersetzt werden und entspricht $\mathit{xsize} = \tfrac{640}{2}$.
 \input{eq/artplus/argetcontour-all}
 Die Wachstumsrate der Funktion aus \autoref{eq:analyse-argetcontour-all} ist im schlechtesten Fall
- $205n - 3132 = \Theta(n)$, für $c_{1} = 204$, $c_{2} = 205$ und $n_{0} \geq 3132$.
+ $205n - 3132 = \Theta(n)$, für $c_{1} = 204$, $c_{2} = 205$ und $n_{0} = 3132$.
 % subsubsection konturerzeugung (end)

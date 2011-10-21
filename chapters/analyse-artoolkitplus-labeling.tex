@@ -56,8 +56,8 @@ In der Schleife in Zeile \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabe
  erhalten wir die Laufzeitfunktion \autoref{eq:analyse-arlabeling-init-2}.
 \input{eq/artplus/arlabeling-init}
 Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist, für die Werte $c_{1} = 6$,
- $c_{2} = 7$ und $\mathit{lxsize}_{0} \geq 1$, $6\mathit{lxsize} + 1 = \Theta(lxsize)$. Für
- $T(\mathit{lysize}) = 8\mathit{lysize} + 9$, mit den Werten $c_{1} = 7$, $c_{2} = 9$ und $\mathit{lysize}_{0} \geq 9$,
+ $c_{2} = 7$ und $\mathit{lxsize}_{0} = 1$, $6\mathit{lxsize} + 1 = \Theta(lxsize)$. Für
+ $T(\mathit{lysize}) = 8\mathit{lysize} + 9$, mit den Werten $c_{1} = 7$, $c_{2} = 9$ und $\mathit{lysize}_{0} = 9$,
  ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
 
 \autoref{label-region} von \autoref{alg:arlabeling-overview} ist für die Regionenmarkierung und das Auflösen von
@@ -161,7 +161,7 @@ In Zeile \ref{alg:arlabeling-neighbour-case2-1-n} wird der Wert $N_2$ in $n$ hin
  schlechtesten Fall ist in \autoref{eq:analyse-arlabeling-neighbour-case2-1-2} angegeben und durchläuft Zeile
  \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}. Für
  $T_{worst}(\mathit{wk\_max})=5 \mathit{wk\_max} + 14$ und den Werten $c_{1}=5$, $c_{2}=6$ und
- $\mathit{wk\_max}_{0} \geq 14$ ist $5 \mathit{wk\_max} + 14 = \Theta(n)$.
+ $\mathit{wk\_max}_{0} = 14$ ist $5 \mathit{wk\_max} + 14 = \Theta(n)$.
 \input{eq/artplus/arlabeling-neighbour-case2-1}
 
 \autoref{alg:arlabeling-neighbour-case2-2} behandelt den Fall, dass $N_4$ und $N_1$ eine Markierung aufweisen. Das Verfahren entspricht dem Verfahren in \autoref{alg:arlabeling-neighbour-case2-1}.

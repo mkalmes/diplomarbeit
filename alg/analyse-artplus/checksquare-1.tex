@@ -1,31 +1,16 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{checkSquare} (Initialisierung)}
 \label{alg:checksquare-1}
 \begin{algorithmic}[1]
 	\Require $\mathit{area}, \mathit{marker\_infoTWO}, \mathit{factor}$
-	% int             sx, sy;
-	\State $\mathit{sx} \gets \infty$
-	\State $\mathit{sy} \gets \infty$
-	% int             dmax, d, v1;
-	\State $\mathit{dmax} \gets \infty$
-	\State $\mathit{d} \gets \infty$
-	% int             vertex[10], vnum;
-	\State $\mathit{vertex}[10] \gets \infty$
-	\State $\mathit{vnum} \gets \infty$
-	% int             wv1[10], wvnum1, wv2[10], wvnum2, v2;
-	\State $\mathit{wv1}[10] \gets \infty$
-	\State $\mathit{wvnum1} \gets \infty$
-	\State $\mathit{wv2}[10] \gets \infty$
-	\State $\mathit{wvnum2} \gets \infty$
-	\State $\mathit{v2} \gets \infty$
-	% ARFloat          thresh;
-	\State $\mathit{thresh} \gets \infty$
-	% int             i;
-	\State $i \gets \infty$
-	% dmax = 0;
-	\State $\mathit{dmax} \gets 0$
-	% v1 = 0;
-	\State $\mathit{v1} \gets 0$
+	\State $\mathit{sx}, \mathit{sy}, d, \mathit{vertex}[10] \gets \infty$
+	\Cost{$c_{1}$}{$4$}
+	\State $\mathit{vnum}, \mathit{wv1}[10], \mathit{wvnum1}, \mathit{wv2}[10], \mathit{wvnum2} \gets \infty$
+	\Cost{$c_{2}$}{$5$}
+	\State $\mathit{v2}, \mathit{thresh}, i \gets \infty$
+	\Cost{$c_{3}$}{$3$}
+	\State $\mathit{dmax},\mathit{v1} \gets 0$
+	\Cost{$c_{4}$}{$2$}
 	\algstore{brk-checksquare-1-init}
 \end{algorithmic}
 \end{algorithm}

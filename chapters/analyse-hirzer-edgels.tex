@@ -71,7 +71,7 @@ Dazu wird der Zeiger $p$ auf den Speicherblock und das zu suchende \gls{edgel} �
  Fall konstant, wenn das zu suchende \gls{edgel} an der ersten Position gespeichert ist. Im schlimmsten Fall, wenn ein
  \gls{edgel} nicht gefunden wird, entspricht die Laufzeitfunktion $T(n) = 21n + 18 $ für
  $n = \text{Anzahl der \gls{edgel}}$. Die Wachstumsrate ist $21n + 18 = \Theta(n)$ für $c_{1}=20$, $c_{2}=21$ und
- $n_{0} \geq 18$.
+ $n_{0} = 18$.
 
 \glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} aus einem Speicherblock gelesen.
 \input{alg/analyse-hirzer/datastructure-edgelpool-getedgel}
@@ -179,7 +179,7 @@ In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und s
 	\label{fig:regression-memmove2}
 \end{figure}
 Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} am Ende der Liste
- gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 36$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und $n_{0} \geq 36$, $21n + 36 = \Theta(n)$
+ gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 36$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und $n_{0} = 36$, $21n + 36 = \Theta(n)$
 
 Um einen Speicherblock für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz.
 \input{alg/analyse-hirzer/datastructure-edgelpool-resetmemorypool}

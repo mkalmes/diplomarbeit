@@ -1,10 +1,8 @@
-In der Rectangle Fitting Phase wird überprüft, ob eine Kontur ein Rechteck ist. Dazu wird in Rectangle Fitting die
- Methode \textproc{checkSquare} verwendet (\autoref{alg:checksquare-1}--\autoref{alg:checksquare-7}). Doch zuerst
- müssen die Schritte zum Aufruf der Methode in \textproc{arDetectMarker2} erläutert werden
+In der Rectangle Fitting Phase wird überprüft, ob eine Kontur ein Rechteck ist. Dazu wird die Methode
+ \textproc{checkSquare} verwendet (\autoref{alg:checksquare-1}--\autoref{alg:checksquare-7}). Doch zuerst müssen die
+ Schritte zum Aufruf der Methode in \textproc{arDetectMarker2} erläutert werden
  (\autoref{alg:detectmarker2-3}).
-
 \input{alg/analyse-artplus/detectmarker2-3}
-
 Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis in $\mathit{ret}$ gespeichtert und
  anschließend in Zeile \ref{alg:detectmarker2-3-retvalue} geprüft, ob \textproc{arGetContour} nicht mit einem
  Fehlerwert beendet wurde. Sonst wird in Zeile \ref{alg:detectmarker2-3-continue} die nächste Iteration der Schleife
@@ -21,29 +19,31 @@ Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis
 Das Verfahren \textproc{checksquare} benötigt als Eingabeparameter die Fläche der Region ($\mathit{area}$), die
  Datenstruktur $\mathit{marker\_infoTwo}$ mit Informationen der Region und Kontur und einen Faktor ($\mathit{factor}$)
  zur Berechnung eines Distanzschwellwerts.
-
 \input{alg/analyse-artplus/checksquare-1}
-
-Die lokalen Variablen werden in \autoref{alg:checksquare-1} initialisiert und ihre Bedeutung bei der ersten Verwendung erläutert.
-
-\input{alg/analyse-artplus/checksquare-2}
+Die lokalen Variablen werden in \autoref{alg:checksquare-1} initialisiert und ihre Bedeutung bei der ersten Verwendung erläutert. Die Laufzeitfunktion ist $T(n) = 14$ und ist konstant.
 
 In \autoref{alg:checksquare-2} wird der größte Abstand von dem Punkt $(\mathit{sx},\mathit{sy})$ für alle anderen
  Konturpunkte berechnet. In Zeile \ref{alg:checksquare-2-x}--\ref{alg:checksquare-2-y} wird aus der Koordinatenliste
  von $\mathit{marker\_infoTWO}$ die $x$-Koordinate in $\mathit{sx}$ und die $y$-Koordinate in $\mathit{sy}$
- gespeichert. In \textproc{arGetContour} (\autoref{alg:argetcontour-3}) wurde an der ersten Position von
- $\mathit{marker\_infoTWO}$ eine Koordinate mit dem größten Abstand zum Anfang der Kontur gespeichert, die hier als
- Startpunkt der Rechteckerkennung dient. In der Schleife in Zeile
- \ref{alg:checksquare-2-loop-start}--\ref{alg:checksquare-2-loop-end} wird für alle Konturpunkte in
- $\mathit{marker\_infoTWO}$ der Abstand $d$ berechnet. Wenn der Abstand $d$ größer als $\mathit{dmax}$ ist (Zeile
- \ref{alg:checksquare-2-isdbigger}), wird $\mathit{dmax}$ mit dem neuen Abstandswert $d$ überschrieben und der Index
- $i$ in $\mathit{v1}$ notiert. Am Ende von \autoref{alg:checksquare-2} enthält $\mathit{v1}$ den Index der Koordinaten
- mit dem größten Abstand zum Punkt $(\mathit{sx},\mathit{sy})$ und ist der Index zu einem Eckpunkt der Kontur. Die
- Menge der Konturpixel in $\mathit{marker\_infoTWO}$ wird mit $\mathit{v1}$ in \autoref{alg:checksquare-3} geteilt und
- die Teilmengen einzeln untersucht.
+ gespeichert.
+\input{alg/analyse-artplus/checksquare-2}
+In \textproc{arGetContour} (\autoref{alg:argetcontour-3}) wurde an der ersten Position von $\mathit{marker\_infoTWO}$
+ eine Koordinate mit dem größten Abstand zum Anfang der Kontur gespeichert, die hier als Startpunkt der
+ Rechteckerkennung dient. In der Schleife in Zeile \ref{alg:checksquare-2-loop-start}--\ref{alg:checksquare-2-loop-end}
+ wird für alle Konturpunkte in $\mathit{marker\_infoTWO}$ der Abstand $d$ berechnet. Wenn der Abstand $d$ größer als
+ $\mathit{dmax}$ ist (Zeile \ref{alg:checksquare-2-isdbigger}), wird $\mathit{dmax}$ mit dem neuen Abstandswert $d$
+ überschrieben und der Index $i$ in $\mathit{v1}$ notiert. Im schlechtesten Fall wird die Hälfte aller Punkte
+ untersucht, um den größten Abstand zu finden.Am Ende von \autoref{alg:checksquare-2} enthält
+ $\mathit{v1}$ den Index der Koordinaten mit dem größten Abstand zum Punkt $(\mathit{sx},\mathit{sy})$ und ist der
+ Index zu einem Eckpunkt der Kontur. Die Laufzeitfunktion ist in \autoref{eq:analyse-checksquare-distance} angegeben.
+ Die Eingabemenge $\mathit{marker\_infoTWO.coord\_num}$ ist von $\mathit{AR\_CHAIN\_MAX}$ abhängig und wird in
+ \autoref{eq:analyse-checksquare-distance} durch $n$ substituiert. Die Wachstumsrate ist $16n - 25 = \Theta(n)$ für
+ $c_{1} = 15$, $c_{2} = 16$ und $n_{0} = 25$.
+\input{eq/artplus/checksquare-distance}
 
+Die Menge der Konturpixel in $\mathit{marker\_infoTWO}$ wird mit $\mathit{v1}$ in \autoref{alg:checksquare-3} geteilt
+ und die Teilmengen einzeln untersucht.
 \input{alg/analyse-artplus/checksquare-3}
-
 Bevor die Konturpixel untersucht werden, wird in Zeile \ref{alg:checksquare-3-thresh} der Distanzschwellwert
  $\mathit{thresh}$ mit Hilfe der Fläche der Region und $\mathit{factor}$ erstellt. Danach wird die Anzahl der Vektoren
  $\mathit{vnum}$ initialisiert und der Index zum Punkt $(\mathit{sx}, \mathit{sy})$ in der Liste der Vektoren
@@ -53,71 +53,68 @@ Bevor die Konturpixel untersucht werden, wird in Zeile \ref{alg:checksquare-3-th
  der Konturpixel zwischen Position $0$ und $\mathit{v1}$ in $\mathit{marker\_infoTWO}$ finden soll. Danach wird
  \textproc{getVertex} in Zeile \ref{alg:checksquare-3-getvertex2} aufgerufen, um einen Eckpunkt in der Menge zwischen
  $\mathit{v1}$ und dem letzten Eintrag in $\mathit{marker\_infoTWO}$ zu finden. Die Methode \textproc{getVertex} wird
- am Ende des Abschnitts beschrieben.
+ am Ende des Abschnitts beschrieben. Die Laufzeitfunktion ist in \autoref{eq:analyse-checksquare-vertex} angegeben.
+\input{eq/artplus/checksquare-vertex}
+Die Wachstumsrate der Funktion $20 + \Theta(\frac{n}{2} \log \frac{n}{2}) + \Theta(\frac{n}{2} \log \frac{n}{2})$ ist
+ $\Theta(n \log n)$.
 
 Die Ergebnisse aus \autoref{alg:checksquare-3} können in drei Fälle kategorisiert werden. Entweder wurde
-
 \begin{enumerate}
 	\item ein Eckpunkt in jeder Teilmenge gefunden, \label{enum:checksquare-case1}
 	\item in der ersten Teilmenge mehr als ein Eckpunkt gefunden oder \label{enum:checksquare-case2}
 	\item in der zweiten Teilmenge mehr als ein Eckpunkt gefunden. \label{enum:checksquare-case3}
 \end{enumerate}
-
 Jeder dieser Fälle wird in \autoref{alg:checksquare-4}--\autoref{alg:checksquare-6} untersucht.
 
 \paragraph{1. Fall:} % (fold)
 \label{par:1_fall}
-
 Das Verfahren \autoref{alg:checksquare-4} behandelt den Fall, dass die Methode \textproc{getVertex} jeweils einen
- Eckpunkt für jede Teilmenge gefunden hat. Somit sind in diesem Fall die Indizes der beiden Eckpunkte $\mathit{wv1}$
- und $\mathit{wv2}$ bekannt. Der Index $\mathit{v1}$ eines Eckpunktes wurde in \autoref{alg:checksquare-2} berechnet.
- Die Indizes werden in Zeile \ref{alg:checksquare-4-save-start}--\ref{alg:checksquare-4-save-end} in die Liste der
- Vektoren gespeichert.
-
+ Eckpunkt für jede Teilmenge gefunden hat.
 \input{alg/analyse-artplus/checksquare-4}
-
+Somit sind in diesem Fall die Indizes der beiden Eckpunkte $\mathit{wv1}$ und $\mathit{wv2}$ bekannt. Der Index
+ $\mathit{v1}$ eines Eckpunktes wurde in \autoref{alg:checksquare-2} berechnet. Die Indizes werden in Zeile
+ \ref{alg:checksquare-4-save-start}--\ref{alg:checksquare-4-save-end} in die Liste der Vektoren gespeichert. Die Laufzeitfunktion ist $T(n) = 11$ und somit konstant.
 % paragraph  (end)
 
-\paragraph{2. Fall} % (fold)
+\paragraph{2. Fall:} % (fold)
 \label{par:2_fall}
-
 In diesem Fall wurde in der ersten Teilmenge mehr als ein Eckpunkt gefunden und in der zweiten Teilmenge kein Eckpunkt.
- \autoref{alg:checksquare-5} versucht in diesem Fall die Eckpunkte zu korrigieren. Dazu wird ein neuer Index
- $\mathit{v2}$ in Zeile \ref{alg:checksquare-5-v2} generiert, indem der Index $\mathit{v1}$ verwendet wird. Danach wird
- die Anzahl der Eckpunkte in Zeile \ref{alg:checksquare-5-delwvnum1}--\ref{alg:checksquare-5-delwvnum2} gelöscht. In
- Zeile \ref{alg:checksquare-5-vertex1-start}--\ref{alg:checksquare-5-vertex1-end} wird mit \textproc{getVertex} die
- erste Teilmenge von $0$--$\mathit{v2}$ untersucht, und in Zeile
- \ref{alg:checksquare-5-vertex2-start}--\ref{alg:checksquare-5-vertex2-end} die zweite Teilmenge von
+ \autoref{alg:checksquare-5} versucht in diesem Fall die Eckpunkte zu korrigieren.
+\input{alg/analyse-artplus/checksquare-5}
+Dazu wird ein neuer Index $\mathit{v2}$ in Zeile \ref{alg:checksquare-5-v2} generiert, indem der Index $\mathit{v1}$
+ verwendet wird. Danach wird die Anzahl der Eckpunkte in Zeile
+ \ref{alg:checksquare-5-delwvnum1}--\ref{alg:checksquare-5-delwvnum2} gelöscht. In Zeile
+ \ref{alg:checksquare-5-vertex1-start}--\ref{alg:checksquare-5-vertex1-end} wird mit \textproc{getVertex} die erste
+ Teilmenge von $0$--$\mathit{v2}$ untersucht, und in Zeile
+  \ref{alg:checksquare-5-vertex2-start}--\ref{alg:checksquare-5-vertex2-end} die zweite Teilmenge von
  $\mathit{v2}$--$\mathit{v1}$. Danach wird in Zeile \ref{alg:checksquare-5-hascorners} überprüft, ob ein Eckpunkt in
  jeder Teilmenge gefunden wurde. Falls dem so ist, werden die Indizes in Zeile
  \ref{alg:checksquare-5-save-start}--\ref{alg:checksquare-5-save-end} in die Liste der Vektoren geschrieben. Andernfalls
  handelt es sich bei der Kontur nicht um ein Rechteck und das Verfahren wird in Zeile \ref{alg:checksquare-5-error}
- abgebrochen.
-
-\input{alg/analyse-artplus/checksquare-5}
-
+ abgebrochen. Die Laufzeitfunktion ist in \autoref{eq:analyse-checksquare-case2} angegeben. Die Wachstumsrate von
+ $\Theta(\frac{n}{4} \log \frac{n}{4}) + \Theta(\frac{n}{4} \log \frac{n}{4}) + 26$ ist $\Theta(n \log n)$.
+\input{eq/artplus/checksquare-case2}
 % paragraph 2_fall (end)
 
-\paragraph{3. Fall} % (fold)
+\paragraph{3. Fall:} % (fold)
 \label{par:3_fall}
-
 Der dritte Fall bedeutet, dass in der ersten Teilmenge kein Eckpunkt und in der zweiten Teilmenge mehr als ein Eckpunkt
- gefunden wurde. Das Verfahren \autoref{alg:checksquare-6} ähnelt dem Verfahren \autoref{alg:checksquare-5} (2. Fall).
+ gefunden wurde. Das Verfahren in \autoref{alg:checksquare-6} ähnelt dem Verfahren in \autoref{alg:checksquare-5}
+ (2. Fall).
+\input{alg/analyse-artplus/checksquare-6}
  Auch hier wird ein neuer Index $\mathit{v2}$ erstellt (Zeile \ref{alg:checksquare-6-v2}). In diesem Fall wird der
  Index $\mathit{v2}$ erstellt, indem der Index $\mathit{v1}$ und die Anzahl der gespeicherten Konturpunkte verwendet
  werden. Der Rest des Verfahrens entspricht dem Verfahren \autoref{alg:checksquare-5}. Lediglich der Aufruf von
  \textproc{getVertex} in Zeile \ref{alg:checksquare-6-vertex1} und Zeile \ref{alg:checksquare-6-vertex2} verwendet
- andere Teilmengen der Konturpunkte aus $\mathit{marker\_infoTWO}$.
-
-\input{alg/analyse-artplus/checksquare-6}
-
+ eine andere Teilmengen der Konturpunkte aus $\mathit{marker\_infoTWO}$. Die Laufzeitfunktion ist in
+ \autoref{eq:analyse-checksquare-case3} angegeben. Die Wachstumsrate von \autoref{alg:checksquare-6} ist
+ $\Theta(\tfrac{n}{4} \log \tfrac{n}{4}) + \Theta(\tfrac{n}{4} \log \tfrac{n}{4}) + 32 = \Theta(n \log n)$.
+\input{eq/artplus/checksquare-case3}
 % paragraph 3_fall (end)
 
 Wenn \autoref{alg:checksquare-4}--\autoref{alg:checksquare-6} erfolgreich waren, und Eckpunkte in die Liste der
  Vektoren schreiben konnten, wird mit \autoref{alg:checksquare-7} die Daten in $\mathit{marker\_infoTWO}$ gespeichert.
-
 \input{alg/analyse-artplus/checksquare-7}
-
 In Zeile \ref{alg:checksquare-7-savesxsy} wird der Punkt $(\mathit{sx},\mathit{sy})$ als erster Index in die Liste der
  Vektoren von $\mathit{marker\_infoTWO}$ gespeichert. Je nachdem welcher der drei Fälle behandelt wurde, werden die
  Indizes $\mathit{v1}$, $\mathit{wv1}$ und $\mathit{wv2}$ in Zeile
@@ -126,49 +123,67 @@ In Zeile \ref{alg:checksquare-7-savesxsy} wird der Punkt $(\mathit{sx},\mathit{s
  der letzte Index aus $\mathit{marker\_infoTWO}$ in die Liste der Vektoren geschrieben. Da der erste und der letzte
  Index identisch ist (Vgl. \autoref{alg:argetcontour-3}), sind die Eckpunkte so angeordnet, dass sie grafisch einfach
  dargestellt werden können, indem mit nur einer Linie, vom Startpunkt aus über jeden Eckpunkt zurück zum Startpunkt,
- ein Rahmen gezeichnet wird.
+ ein Rahmen gezeichnet wird. Die Laufzeitfunktion ist $T(n) = 22$ und somit konstant.
+
+Das Verfahren \textproc{checkSquare} besteht im schlechtesten Fall aus der Initialisierung
+ (\autoref{alg:checksquare-1}), der Distanzberechnung (\autoref{alg:checksquare-2}), Bestimmung von Eckpunkten
+ (\autoref{alg:checksquare-3}), der Untersuchung des 3. Falls (\autoref{alg:checksquare-6}) und der Speicherung der
+ Eckpunkte (\autoref{alg:checksquare-7}). Die Laufzeifunktion ist in \autoref{eq:analyse-checksquare-all} angegeben.
+\input{eq/artplus/checksquare-all}
+Die Wachstumsrate des Verfahrens ist $2\Theta(n \log n) + 16n = \Theta(n \log n)$.
 
 \textproc{getvertex} (\autoref{alg:getvertex-1}--\autoref{alg:getvertex-2}) sucht in der Menge der Koordinaten den
  Punkt, der von der Linie zwischen der Start- und Endkoordinate am weitesten entfernt liegt. Dazu benötigt
  \autoref{alg:getvertex-1} die Liste der $x$- und $y$-Koordinaten, den Startpunkt $\mathit{st}$ und Endpunkt
- $\mathit{ed}$, sowie den Schwellwert zur Überprüfung der Distanz. In der Liste $\mathit{vertex}$ werden die Indizes
- der Koordinaten gespeichert. Die Variable $\mathit{vnum}$ enthält die Anzahl der gefundenen Eckpunkte.
-
+ $\mathit{ed}$, sowie den Schwellwert zur Überprüfung der Distanz.
 \input{alg/analyse-artplus/getvertex-1}
-
-In Zeile \ref{alg:getvertex-1-init-start}--\ref{alg:getvertex-1-init-end} werden die lokalen Variablen initialisiert.
- Die Variable $a$, $b$ und $c$ werden in Zeile \ref{alg:getvertex-1-line-start}--\ref{alg:getvertex-1-line-end}
- initialisiert und werden zur Berechnung des Abstand zwischen Punkt $i$ und der Geraden $(\mathit{st},\mathit{ed})$
- verwendet. Dazu wird in der Schleife in Zeile \ref{alg:getvertex-1-loop-start}--\ref{alg:getvertex-1-loop-end} jede
- Koordinate $i$ in die Geradengleichung \autoref{eq:punktgeradenabstand} eingesetzt, um den Abstand des Punktes zur
- Geraden zu berechnen.
-
+In der Liste $\mathit{vertex}$ werden die Indizes der Koordinaten gespeichert. Die Variable $\mathit{vnum}$ enthält die
+ Anzahl der gefundenen Eckpunkte. In Zeile \ref{alg:getvertex-1-init-start}--\ref{alg:getvertex-1-init-end} werden die
+ lokalen Variablen initialisiert. Die Variable $a$, $b$ und $c$ werden in Zeile
+ \ref{alg:getvertex-1-line-start}--\ref{alg:getvertex-1-line-end} initialisiert und werden zur Berechnung des Abstand
+ zwischen Punkt $i$ und der Geraden $(\mathit{st},\mathit{ed})$ verwendet. Dazu wird in der Schleife in Zeile
+ \ref{alg:getvertex-1-loop-start}--\ref{alg:getvertex-1-loop-end} jede Koordinate $i$ in die Geradengleichung
+ \autoref{eq:punktgeradenabstand} eingesetzt, um den Abstand des Punktes zur Geraden zu berechnen.
 \begin{equation}
 	\label{eq:punktgeradenabstand}
 	d = \frac{\mathit{ax} + \mathit{by} + c}{\sqrt{(a^2 + b^2)}}
 \end{equation}
-
 Wenn der Abstand größer als $\mathit{dmax}$ ist, wird $d$ in Zeile \ref{alg:getvertex-1-savedmax} in $\mathit{dmax}$
  gespeichert und die Position $i$ in $\mathit{v1}$ hinterlegt. Somit ist am Ende von \autoref{alg:getvertex-1} die
- Position $i$ des Punktes mit dem größten Abstand zur Linie gespeichert.
+ Position $i$ des Punktes mit dem größten Abstand zur Linie gespeichert. Die Laufzeitfunktion ist in
+ \autoref{eq:analyse-getvertex-distance} aufgeführt.
+\input{eq/artplus/getvertex-distance}
+Die Eingabemenge $n$ entspricht der Anzahl der Einträge im Interval $[1,\mathit{ed}-\mathit{sd})$. Im schlechsten Fall
+ liegt der Punkt mit dem größten Abstand am Ende der Liste. Die Wachstumsrate für $c_{1} = 13$, $c_{2} = 14$ und
+ $n_{0} = 1$ ist $14n = \Theta(n)$.
 
 In \autoref{alg:getvertex-2} wird in Zeile \ref{alg:getvertex-2-isdmaxgreater} der Abstand mit dem Distanzschwellwert
- verglichen. Nur wenn der Abstand größer als der Distanzschwellwert ist, wird das Verfahren fortgesetzt. Ansonsten ist
- das Verfahren in Zeile \ref{alg:getvertex-2-done} beendet.
-
+ verglichen. Nur wenn der Abstand größer als der Distanzschwellwert ist, wird das Verfahren fortgesetzt. Zur Analyse
+ von \textproc{getVertex} (\autoref{alg:getvertex-2}) wird $\mathit{tresh} = 0$ verwendet. Somit wird das
+ Verfahren solange ausgeführt, bis der Abstand $\mathit{dmax} = 0$ ist. Dies ist dann der Fall, wenn eine Linie von
+ $\mathit{st}$ bis $\mathit{ed}$ genau über einer Kontur liegt. Das Verfahren wird dann in Zeile
+ \ref{alg:getvertex-2-done} beendet.
 \input{alg/analyse-artplus/getvertex-2}
-
-In Zeile \ref{alg:getvertex-2-recursiv1} wird die Methode \textproc{getVertex} rekursiv aufgerufen, um die Teilmenge
- von der Startposition $\mathit{st}$ bis zur Position $\mathit{v1}$ zu untersuchen. Da \textproc{getVertex} pro
- Teilmenge nur den größten Abstand als Eckpunkt betrachet, kann durch den rekursiven Aufruf für eine kleinere Menge von
- Koordinaten ein weitere Eckpunkt gefunden werden, solange der Abstand größer als der Distanzschwellert ist.
-
-In Zeile \ref{alg:getvertex-2-isvnumgreater} wird überprüft, ob nicht mehr als fünf Eckpunkte gefunden wurde. Falls
- mehr als fünf Eckpunkte gefunden wurden, wird das Verfahren in Zeile \ref{alg:getvertex-2-error} mit einem Fehlerwert
- beendet. Falls jedoch weniger als fünf Eckpunkte gefunden wurden, wird der Index $\mathit{v1}$ in der Liste
- $\mathit{vertex}$ gespeichert und die Anzahl der gefundenen Eckpunkte erhöht. Danach wird \textproc{getVertex} für die
- zweite Teilmenge, von der Position $\mathit{v1}$ bis zum Endpunkt $\mathit{ed}$, in Zeile
- \ref{alg:getvertex-2-recursiv2-start}--\ref{alg:getvertex-2-recursiv2-end} rekursiv aufgerufen.
+Für alle Fälle in denen $\mathit{dmax} > 0$ ist, wird die Eingabemenge $n$ in zwei Problemmengen geteilt. In Zeile
+ \ref{alg:getvertex-2-recursiv1} wird die Methode \textproc{getVertex} rekursiv aufgerufen, um die Teilmenge von der
+ Startposition $\mathit{st}$ bis zur Position $\mathit{v1}$ zu untersuchen. Da \textproc{getVertex} pro Teilmenge nur
+ den größten Abstand als Eckpunkt betrachet, kann durch den rekursiven Aufruf für eine kleinere Menge von Koordinaten
+ ein weitere Eckpunkt gefunden werden, solange der Abstand größer als der Distanzschwellert ist. In Zeile
+ \ref{alg:getvertex-2-isvnumgreater} wird überprüft, ob nicht mehr als fünf Eckpunkte gefunden wurde. Falls mehr als
+ fünf Eckpunkte gefunden wurden, wird das Verfahren in Zeile \ref{alg:getvertex-2-error} mit einem Fehlerwert beendet.
+ Falls jedoch weniger als fünf Eckpunkte gefunden wurden, wird der Index $\mathit{v1}$ in der Liste $\mathit{vertex}$
+ gespeichert und die Anzahl der gefundenen Eckpunkte erhöht. Danach wird \textproc{getVertex} für die zweite Teilmenge,
+ von der Position $\mathit{v1}$ bis zum Endpunkt $\mathit{ed}$, in Zeile
+  \ref{alg:getvertex-2-recursiv2-start}--\ref{alg:getvertex-2-recursiv2-end} rekursiv aufgerufen. Die Teilung des
+ Problems in Unterprobleme wird von \autoref{alg:getvertex-1} durchgeführt. Dazu gehört die Überprüfung, ob eine
+ Rekursion möglich ist (\autoref{alg:getvertex-2} Zeile \ref{alg:getvertex-2-isdmaxgreater}), und das Beenden des
+ Verfahrens (\autoref{alg:getvertex-2} Zeile \ref{alg:getvertex-2-done}). Somit ist die Laufzeitfunktion
+ $T(n) = 14n + 14$ mit der Wachstumsrate $14n = \Theta(n)$ für $c_{1} = 13$, $c_{2} = 14$ und $n_{0} = 1$. Daraus
+ folgt \autoref{eq:analyse-getvertex-all-1}.
+\input{eq/artplus/getvertex-all-1}
+Durch Überprüfung von $T(n) = 2T(\tfrac{n}{2}) + 14n$ mit dem Master Theorem in \autoref{eq:analyse-getvertex-all-2}
+\input{eq/artplus/getvertex-all-2}
+folgt $T(n) = \Theta(n \log n)$ für das Verfahren \textproc{getVertex}.
 
 Nachdem \textproc{arGetCountour} abgeschlossen ist, wird in \textproc{arDetectMarker2} die Marke mit der größten Fläche
  gesucht. Dazu wird in \autoref{alg:detectmarker2-4} in der Schleife von Zeile \ref{alg:detectmarker2-4-loop1-start}

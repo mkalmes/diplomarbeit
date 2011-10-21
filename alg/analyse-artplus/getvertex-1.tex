@@ -1,29 +1,41 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{getVertex} (Abstand Punkt-Gerade)}
 \label{alg:getvertex-1}
 \begin{algorithmic}[1]
-	\Require $\mathit{x\_coord}[], \mathit{y\_coord}[], \mathit{st}, \mathit{ed}, \mathit{thresh}, \mathit{vertex}[], \mathit{vnum}$
-	\State $d \gets \infty$
+	\Require $\mathit{x\_coord}[], \mathit{y\_coord}[], \mathit{st}, \mathit{ed}, \mathit{thresh}, \mathit{vertex}[],
+	 \mathit{vnum}$
+	\State $d, \mathit{dmax}, i \gets \infty$
+	\Cost{$c_{1}$}{$3$}
 	\label{alg:getvertex-1-init-start}
-	\State $\mathit{dmax} \gets \infty$
-	\State $i \gets \infty$
 	\State $\mathit{v1} \gets 0$
+	\Cost{$c_{2}$}{$1$}
 	\label{alg:getvertex-1-init-end}
 	\State $a \gets \mathit{y\_coord}[ed] - \mathit{y\_coord}[st]$
+	\Cost{$c_{3}$}{$4$}
 	\label{alg:getvertex-1-line-start}
 	\State $b \gets \mathit{x\_coord}[st] - \mathit{x\_coord}[ed]$
-	\State $c \gets \left(\mathit{x\_coord}[ed] \cdot \mathit{y\_coord}[st]\right) - \left(\mathit{y\_coord}[ed] \cdot \mathit{x\_coord}[st]\right)$
+	\Cost{$c_{4}$}{$4$}
+	\State $c \gets \left(\mathit{x\_coord}[ed] \cdot \mathit{y\_coord}[st]\right) - \left(\mathit{y\_coord}[ed] \cdot
+	 \mathit{x\_coord}[st]\right)$
+	\Cost{$c_{5}$}{$8$}
 	\label{alg:getvertex-1-line-end}
 	\State $\mathit{dmax} \gets 0$
+	\Cost{$c_{6}$}{$1$}
 	\For{$\mathit{i} \gets \mathit{st} + 1$ \textbf{to} $i < \mathit{ed}$}
+	\Cost{$c_{7}$}{$n$}
 	\label{alg:getvertex-1-loop-start}
 		\State $d \gets \left(a \cdot \mathit{x\_coord}[i]\right) + \left(b \cdot \mathit{y\_coord}[i]\right) + c$
+		\Cost{$c_{8}$}{$7(n - 1)$}
 		\If{$d \cdot d > \mathit{dmax}$}
+		\Cost{$c_{9}$}{$2(n - 1)$}
 			\State $\mathit{dmax} \gets d \cdot d$
+			\Cost{$c_{10}$}{$2(n - 1)$}
 			\label{alg:getvertex-1-savedmax}
 			\State $\mathit{v1} \gets i$
+			\Cost{$c_{11}$}{$n - 1$}
 		\EndIf
 		\State $i \gets i + 1$
+		\Cost{$c_{13}$}{$n - 1$}
 	\EndFor
 	\label{alg:getvertex-1-loop-end}
 	\algstore{brk-getvertex1-distance}

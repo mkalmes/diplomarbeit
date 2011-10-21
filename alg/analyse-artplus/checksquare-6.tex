@@ -1,30 +1,45 @@
-\begin{algorithm}[ht]
-\caption{\textproc{checkSquare} (Fortsetzung)}
+\begin{algorithm}[!ht]
+\caption{\textproc{checkSquare} (3. Fall)}
 \label{alg:checksquare-6}
 \begin{algorithmic}[1]
 	\algrestore{brk-checksquare-5-case2}
-	\ElsIf{$\mathit{wvnum1} == 0 \land \mathit{wvnum2} > 1$}
-		\State $\mathit{v2} \gets (\mathit{v1} + \mathit{marker\_infoTWO \to coord\_num} - 1) / 2$
+	\ElsIf{$\mathit{wvnum1} = 0 \land \mathit{wvnum2} > 1$}
+	\Cost{$c_{58}$}{$3$}
+		\State $\mathit{v2} \gets (\mathit{v1} + \mathit{marker\_infoTWO.coord\_num} - 1) / 2$
+		\Cost{$c_{59}$}{$5$}
 		\label{alg:checksquare-6-v2}
 		\State $\mathit{wvnum1} \gets 0$
+		\Cost{$c_{60}$}{$1$}
 		\State $\mathit{wvnum2} \gets 0$
-		\State $x \gets \mathit{marker\_infoTWO \to x\_coord}$
-		\State $y \gets \mathit{marker\_infoTWO \to y\_coord}$
+		\Cost{$c_{61}$}{$1$}
+		\State $x \gets \mathit{marker\_infoTWO.x\_coord}$
+		\Cost{$c_{62}$}{$2$}
+		\State $y \gets \mathit{marker\_infoTWO.y\_coord}$
+		\Cost{$c_{63}$}{$2$}
 		\If{\Call{getVertex}{$x, y, \mathit{v1}, \mathit{v2}, \mathit{thresh}, \mathit{wv1}, \mathit{wvnum1}$} $< 0$}
+		\Cost{$c_{64}$}{$\frac{n}{4} \log \frac{n}{4}$}
 		\label{alg:checksquare-6-vertex1}
 			\State \textbf{return}$(-1)$
 		\EndIf
-		\State $x \gets \mathit{marker\_infoTWO \to x\_coord}$
-		\State $y \gets \mathit{marker\_infoTWO \to y\_coord}$
-		\State $\mathit{num} \gets \mathit{marker\_infoTWO \to coord\_num} - 1$
+		\State $x \gets \mathit{marker\_infoTWO.x\_coord}$
+		\Cost{$c_{67}$}{$2$}
+		\State $y \gets \mathit{marker\_infoTWO.y\_coord}$
+		\Cost{$c_{68}$}{$2$}
+		\State $\mathit{num} \gets \mathit{marker\_infoTWO.coord\_num} - 1$
+		\Cost{$c_{69}$}{$3$}
 		\If{\Call{getVertex}{$x, y, \mathit{v2}, \mathit{num}, \mathit{thresh}, \mathit{wv2}, \mathit{wvnum2}$} $< 0$}
+		\Cost{$c_{70}$}{$\frac{n}{4} \log \frac{n}{4}$}
 		\label{alg:checksquare-6-vertex2}
 			\State \textbf{return}$(-1)$
 		\EndIf
-		\If{$\mathit{wvnum1} == 1 \land \mathit{wvnum2} == 1$}
+		\If{$\mathit{wvnum1} = 1 \land \mathit{wvnum2} = 1$}
+		\Cost{$c_{73}$}{$3$}
 			\State $\mathit{vertex}[1] \gets \mathit{v1}$
+			\Cost{$c_{74}$}{$2$}
 			\State $\mathit{vertex}[2] \gets \mathit{wv1}[0]$
+			\Cost{$c_{75}$}{$3$}
 			\State $\mathit{vertex}[3] \gets \mathit{wv2}[0]$
+			\Cost{$c_{76}$}{$3$}
 		\Else
 			\State \textbf{return}$(-1)$
 		\EndIf

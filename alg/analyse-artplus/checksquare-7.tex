@@ -1,17 +1,23 @@
-\begin{algorithm}[ht]
+\begin{algorithm}[!ht]
 \caption{\textproc{checkSquare} (Fortsetzung)}
 \label{alg:checksquare-7}
 \begin{algorithmic}[1]
 	\algrestore{brk-checksquare-6-case3}
-	\State $\mathit{marker\_infoTWO \to vertex}[0] \gets \mathit{vertex}[0]$
+	\State $\mathit{marker\_infoTWO.vertex}[0] \gets \mathit{vertex}[0]$
+	\Cost{$c_{83}$}{$4$}
 	\label{alg:checksquare-7-savesxsy}
-	\State $\mathit{marker\_infoTWO \to vertex}[1] \gets \mathit{vertex}[1]$
+	\State $\mathit{marker\_infoTWO.vertex}[1] \gets \mathit{vertex}[1]$
+	\Cost{$c_{84}$}{$4$}
 	\label{alg:checksquare-7-save1}
-	\State $\mathit{marker\_infoTWO \to vertex}[2] \gets \mathit{vertex}[2]$
-	\State $\mathit{marker\_infoTWO \to vertex}[3] \gets \mathit{vertex}[3]$
+	\State $\mathit{marker\_infoTWO.vertex}[2] \gets \mathit{vertex}[2]$
+	\Cost{$c_{85}$}{$4$}
+	\State $\mathit{marker\_infoTWO.vertex}[3] \gets \mathit{vertex}[3]$
+	\Cost{$c_{86}$}{$4$}
 	\label{alg:checksquare-7-save3}
-	\State $\mathit{marker\_infoTWO \to vertex}[4] \gets \mathit{marker\_infoTWO \to coord\_num} - 1$
+	\State $\mathit{marker\_infoTWO.vertex}[4] \gets \mathit{marker\_infoTWO.coord\_num} - 1$
+	\Cost{$c_{87}$}{$5$}
 	\label{alg:checksquare-7-savelast}
 	\State \textbf{return} $0$
+	\Cost{$c_{88}$}{$1$}
 \end{algorithmic}
 \end{algorithm}
