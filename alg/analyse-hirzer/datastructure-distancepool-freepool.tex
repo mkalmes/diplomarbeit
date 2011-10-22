@@ -4,8 +4,11 @@
 \begin{algorithmic}[1]
 	\Require $p$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\State $\mathit{p.count} \gets 0$
+	\Cost{$c_{4}$}{$2$}
 \end{algorithmic}
 \end{algorithm}

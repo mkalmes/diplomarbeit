@@ -25,14 +25,16 @@ Auch bei diesem Verfahren wird ein Array mit festert Größe $N$ und einer Zähl
 
 Mit \autoref{alg:distancepool-adddistance}
 \input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
-können Distanzwerte dem Speicherbereich hinzugefügt werden. Die Laufzeit zum hinzufügen ist dabei
- konstant.
+können Distanzwerte dem Speicherbereich hinzugefügt werden. Die Laufzeit zum hinzufügen ist dabei konstant und die
+ Laufzeitfunktion ist im schlechtesten Fall $T(n) = 12$.
 
 Durch \autoref{alg:distancepool-distancecount}
 \input{alg/analyse-hirzer/datastructure-distancepool-distancecount}
- kann die Anzahl der gespeicherten Distanzwerte in konstanter Zeit ausgelesen werden. \textproc{freePool}
-(\autoref{alg:distancepool-freepool}) löscht den Speicherbereich in konstanter Zeit.
+ kann die Anzahl der gespeicherten Distanzwerte in konstanter Zeit ausgelesen werden. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 3$.
+
+\textproc{freePool} (\autoref{alg:distancepool-freepool}) löscht den Speicherbereich in konstanter Zeit.
 \input{alg/analyse-hirzer/datastructure-distancepool-freepool}
+Die Laufzeitfunktion ist im schlechsten Fall ebenfalls $T(n) = 3$.
 
 Die Laufzeit der Methoden für \textproc{distance} sind alle konstant und somit $T(n)=\Theta(n)$.
 

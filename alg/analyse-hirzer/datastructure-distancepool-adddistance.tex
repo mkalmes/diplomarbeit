@@ -4,13 +4,20 @@
 \begin{algorithmic}[1]
 	\Require $p,d$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\If{$\lnot \left(\mathit{p.count} < N\right)$}
+	\Cost{$c_{4}$}{$3$}
 		\State \textbf{return} \Comment Speicher voll
+		\Cost{$c_{5}$}{$1$}
 	\EndIf
 	\State $c \gets \mathit{p.count}$
+	\Cost{$c_{7}$}{$2$}
 	\State $\mathit{p.data}[c] \gets d$
+	\Cost{$c_{8}$}{$3$}
 	\State $\mathit{p.count} \gets c + 1$
+	\Cost{$c_{9}$}{$3$}
 \end{algorithmic}
 \end{algorithm}
