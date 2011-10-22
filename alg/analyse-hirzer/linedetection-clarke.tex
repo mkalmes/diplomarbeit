@@ -4,26 +4,28 @@
 	\begin{algorithmic}[1]
 		\Require $I_m$
 		\For{$y \gets 0$ \textbf{to} $y < \mathit{imageHeight}$}
-		% \Cost{$c_3$}{$\tfrac{h}{40} + 1$}
+		\Cost{$c_{1}$}{$\frac{h}{40} + 1$}
 		\label{alg:linedetection-clarke-start}
 			\For{$x \gets 0$ \textbf{to} $x < \mathit{imageWidth}$}
-			% \Cost{$c_4$}{$\sum_{y=0}^{\tfrac{h}{40}} \left(\tfrac{w}{40} + 1\right)$}
+			\Cost{$c_{2}$}{$\frac{h}{40}(\frac{w}{40} + 1)$}
 				\State \Call{findEdgels}{$I_m,E,x,y$}
-				% \Cost{$c_5$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\Cost{$c_{3}$}{$\frac{h \cdot w}{1600} t_{1}$}
 				\label{alg:linedetection-clarke-call-start}
 				\State \Call{findLineSegments}{$E,L$}
-				% \Cost{$c_6$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\Cost{$c_{4}$}{$\frac{h \cdot w}{1600} t_{2}$}
 				\label{alg:linedetection-clarke-call-end}
 				\State \ldots \Comment{Speichern der Liniensegmente zur weiteren Verarbeitung}
 				\State \Call{resetMemoryPool}{$E$}
+				\Cost{$c_{6}$}{$\frac{h \cdot w}{1600} \Theta(1)$}
 				\label{alg:linedetection-clarke-reset-start}
 				\State \Call{resetMemoryPool}{$L$}
+				\Cost{$c_{7}$}{$\frac{h \cdot w}{1600} \Theta(1)$}
 				\label{alg:linedetection-clarke-reset-end}
 				\State $ x \gets x + \mathit{regionSize}$
-				% \Cost{$c_7$}{$\sum_{y = 0}^{\frac{h}{40}} \sum_{x = 0}^{\frac{w}{40}} t_y t_x$}
+				\Cost{$c_{8}$}{$\frac{h \cdot w}{1600} 2$}
 			\EndFor
 			\State $y \gets y + \mathit{regionSize}$
-			% \Cost{$c_9$}{$\sum_{y = 0}^{\frac{h}{40}} t_y$}
+			\Cost{$c_{10}$}{$\frac{h}{40} 2$}
 		\EndFor
 		\label{alg:linedetection-clarke-end}
 	\end{algorithmic}

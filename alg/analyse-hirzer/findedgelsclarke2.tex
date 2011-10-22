@@ -1,33 +1,48 @@
 \begin{algorithm}[!ht]
-	\caption{\textproc{findEdgels} (Vertikale Scanlines)}
-	\label{alg:findedgels-vertical}
-	\begin{algorithmic}[1]
-	\algrestore{brkfindedgels}
-		\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
-		\label{alg:findedgels-vertical-scanlinestart}
-			\State $p_1 \gets 0$
-			\State $p_2 \gets 0$
-			\For{$y \gets t$ \textbf{to} $y < t + \mathit{regionSize}$}
-				\State $currentEdgel \gets$ \Call{convoluteKernelY}{$I_m,x,y,\mathit{imageWidth},\mathit{imageHeight}$}
-				\If{$currentEdgel > threshold$}
-					\Comment Möglicherweise ein Egdel
-				\Else
-					\State $currentEdgel \gets 0$
-				\EndIf
-				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
-				\label{alg:findedgels-vertical-maxima}
-					\Comment $p_1$ ist lokales Maximum
-					\State $edgel \gets \infty$
-					\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}
-					\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth}, \mathit{imageHeight}, x,y - 1$}
-					\State \Call{addEdgel}{$E,\mathit{edgel}$}
-				\EndIf
-				\State $p_2 \gets p_1$
-				\State $p_1 \gets currentEdgel$
-				\State $y \gets y + 1$
-			\EndFor
-			\State $x \gets x + 5$
+\caption{\textproc{findEdgels} (Vertikale Scanlines)}
+\label{alg:findedgels-vertical}
+\begin{algorithmic}[1]
+\algrestore{brkfindedgels}
+	\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
+	\Cost{$c_{21}$}{$\frac{40}{5} + 1$}
+	\label{alg:findedgels-vertical-scanlinestart}
+		\State $p_1, p_2 \gets 0$
+		\Cost{$c_{22}$}{$8(2)$}
+		\For{$y \gets t$ \textbf{to} $y < t + \mathit{regionSize}$}
+		\Cost{$c_{23}$}{$8(40 + 1)$}
+			\State $currentEdgel \gets$ \Call{convoluteKernelY}{$I_m,x,y,\mathit{imageWidth},\mathit{imageHeight}$}
+			\Cost{$c_{24}$}{$320t_{3}$}
+			\If{$currentEdgel > threshold$}
+			\Comment Möglicherweise ein Egdel
+			\Cost{$c_{25}$}{$320$}
+			\Else
+				\State $currentEdgel \gets 0$
+				\Cost{$c_{27}$}{$320$}
+			\EndIf
+			\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
+			\Comment $p_1$ ist lokales Maximum
+			\Cost{$c_{29}$}{$320(5)$}
+			\label{alg:findedgels-vertical-maxima}
+				\State $edgel \gets \infty$
+				\Cost{$c_{30}$}{$320$}
+				\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}
+				\Cost{$c_{31}$}{$320 \cdot \Theta(1)$}
+				\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth},
+				 \mathit{imageHeight}, x,y - 1$}
+				\Cost{$c_{32}$}{$320t_{4}$}
+				\State \Call{addEdgel}{$E,\mathit{edgel}$}
+				\Cost{$c_{33}$}{$320 \cdot \Theta(1)$}
+			\EndIf
+			\State $p_2 \gets p_1$
+			\Cost{$c_{35}$}{$320$}
+			\State $p_1 \gets currentEdgel$
+			\Cost{$c_{36}$}{$320$}
+			\State $y \gets y + 1$
+			\Cost{$c_{37}$}{$320$}
 		\EndFor
-		\label{alg:findedgels-vertical-scanlineend}
-	\end{algorithmic}
+		\State $x \gets x + 5$
+		\Cost{$c_{39}$}{$8(2)$}
+	\EndFor
+	\label{alg:findedgels-vertical-scanlineend}
+\end{algorithmic}
 \end{algorithm}

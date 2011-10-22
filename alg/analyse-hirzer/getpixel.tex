@@ -4,20 +4,30 @@
 	\begin{algorithmic}[1]
 		\Require $I_m, x, y, w, h$
 		\If{$x < 0$}
+		\Cost{$c_{1}$}{$1$}
 		\label{alg:getpixel-startcheck}
 			\State $x \gets 0$
+			\Cost{$c_{2}$}{$1$}
 		\EndIf
 		\If{$y < 0$}
+		\Cost{$c_{4}$}{$1$}
 			\State $y \gets 0$
+			\Cost{$c_{5}$}{$1$}
 		\EndIf
 		\If{$x \geq w$}
+		\Cost{$c_{7}$}{$1$}
 			\State $x \gets w - 1$
+			\Cost{$c_{8}$}{$2$}
 		\EndIf
 		\If{$y \geq h$}
+		\Cost{$c_{10}$}{$1$}
 			\State $y \gets h -1$
+			\Cost{$c_{11}$}{$2$}
 		\EndIf
 		\label{alg:getpixel-stopcheck}
 		\State $i \gets x + \left(y \cdot w\right)$
+		\Cost{$c_{13}$}{$3$}
 		\State \textbf{return} $I_m[i]$
+		\Cost{$c_{14}$}{$2$}
 	\end{algorithmic}
 \end{algorithm}

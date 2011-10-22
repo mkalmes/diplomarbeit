@@ -17,8 +17,8 @@ Um auf \gls{pixel} zugreifen zu können, wird \autoref{alg:getpixel} verwendet.
 Es wird der Puffer $I_m$ als Zeiger übergeben und die Position $x$ und $y$ des gewünschten \gls{pixel}. $w$ und $h$
  entsprechen der Breite und Höhe von $I_m$. Zeile~\ref{alg:getpixel-startcheck} bis Zeile~\ref{alg:getpixel-stopcheck}
  sorgen dafür, dass keine Werte außerhalb des Puffers gelesen werden können. Dies ist für die Randbehandlung bei
- Faltungsoperationen (Vgl. \autoref{sub:filter}) wichtig und wiederholt den \gls{pixel}.Die Laufzeit von
- \autoref{alg:getpixel} ist konstant und somit $T(n)=\Theta(1)$.
+ Faltungsoperationen (Vgl. \autoref{sub:filter}) wichtig und wiederholt den \gls{pixel}. Die Laufzeitfunktion von
+ \autoref{alg:getpixel} ist im schlimmsten Fall $T(n) = 13$ und somit konstant.
 
 Der Algorithmus von \citeauthor{clarke96} ist in \autoref{alg:linedetection-clarke} aufgeführt und benötigt das
  monochrome Bildsignal $I_m$.
