@@ -4,17 +4,23 @@
 \begin{algorithmic}[1]
 	\Require $p,i$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:linepool-getline-validpointer-start}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\label{alg:linepool-getline-validpointer-end}
 	\State $c \gets \mathit{p.count}$
+	\Cost{$c_{4}$}{$2$}
 	\If{$\lnot \left(c > i\right)$}
+	\Cost{$c_{5}$}{$2$}
 	\label{alg:linepool-getline-validrange-start}
 		\State \textbf{return}
+		\Cost{$c_{6}$}{$1$}
 	\EndIf
 	\label{alg:linepool-getline-validrange-end}
 	\State \textbf{return} $\mathit{p.data}[i]$
+	\Cost{$c_{8}$}{$3$}
 	\label{alg:linepool-getline-returnline}
 \end{algorithmic}
 \end{algorithm}

@@ -4,11 +4,14 @@
 \begin{algorithmic}[1]
 	\Require $l, e, \mathit{pos}$
 	\If{$\mathit{pos} > \mathit{MAXEDGELS} - 1$}
+	\Cost{$c_{1}$}{$2$}
 	\label{alg:linesegmentaddedgel-hasvalidrange}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 		\label{alg:linesegmentaddedgel-notvalidrange}
 	\EndIf
 	\State $\mathit{l.support}[\mathit{pos}] \gets e$
+	\Cost{$c_{4}$}{$3$}
 	\label{alg:linesegmentaddedgel-storeedgel}
 \end{algorithmic}
 \end{algorithm}

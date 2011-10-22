@@ -4,11 +4,14 @@
 \begin{algorithmic}[1]
 	\Require $p$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:linepool-count-validpointer-start}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\label{alg:linepool-count-validpointer-end}
 	\State \textbf{return} $\mathit{p.count}$
+	\Cost{$c_{4}$}{$2$}
 	\label{alg:linepool-count-counter}
 \end{algorithmic}
 \end{algorithm}

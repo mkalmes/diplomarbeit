@@ -4,26 +4,41 @@
 \begin{algorithmic}[1]
 	\Require $\mathit{left}, \mathit{right}$
 	\State $\mathit{intersection} \gets \infty$
+	\Cost{$c_{1}$}{$1$}
 	\State $\mathit{x1} \gets \mathit{left.start.coordinate.x}$
+	\Cost{$c_{2}$}{$4$}
 	\label{alg:linesegmenintersection-var-start}
 	\State $\mathit{y1} \gets \mathit{left.start.coordinate.y}$
+	\Cost{$c_{3}$}{$4$}
 	\State $\mathit{x2} \gets \mathit{left.end.coordinate.x}$
+	\Cost{$c_{4}$}{$4$}
 	\State $\mathit{y2} \gets \mathit{left.end.coordinate.y}$
+	\Cost{$c_{5}$}{$4$}
 	\State $\mathit{x3} \gets \mathit{right.start.coordinate.x}$
+	\Cost{$c_{6}$}{$4$}
 	\State $\mathit{y3} \gets \mathit{right.start.coordinate.y}$
+	\Cost{$c_{7}$}{$4$}
 	\State $\mathit{x4} \gets \mathit{right.end.coordinate.x}$
+	\Cost{$c_{8}$}{$4$}
 	\State $\mathit{y4} \gets \mathit{right.end.coordinate.y}$
+	\Cost{$c_{9}$}{$4$}
 	\label{alg:linesegmenintersection-var-end}
 	\State $\mathit{numerator} \gets \bigl((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y1} - \mathit{y3})\bigr)
 	 - \bigl((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x1} - \mathit{x3})\bigr)$
+	\Cost{$c_{10}$}{$8$}
 	\label{alg:linesegmenintersection-intersect-start}
 	\State $\mathit{denumerator} \gets \bigl((\mathit{y4} - \mathit{y3}) \cdot (\mathit{x2} - \mathit{x1})\bigr)
 	 - \bigl((\mathit{x4} - \mathit{x3}) \cdot (\mathit{y2} - \mathit{y1})\bigr)$
+	\Cost{$c_{11}$}{$8$}
 	\State $\mathit{u\_a} \gets \mathit{numerator} / \mathit{denumerator}$
+	\Cost{$c_{12}$}{$2$}
 	\State $\mathit{intersection.x} \gets \mathit{x1} + \mathit{u\_a} \cdot (\mathit{x2} - \mathit{x1})$
+	\Cost{$c_{13}$}{$5$}
 	\State $\mathit{intersection.y} \gets \mathit{y1} + \mathit{u\_a} \cdot (\mathit{y2} - \mathit{y1})$
+	\Cost{$c_{14}$}{$5$}
 	\label{alg:linesegmenintersection-intersect-end}
 	\State \textbf{return} $\mathit{intersection}$
+	\Cost{$c_{15}$}{$1$}
 	\label{alg:linesegmenintersection-return}
 \end{algorithmic}
 \end{algorithm}

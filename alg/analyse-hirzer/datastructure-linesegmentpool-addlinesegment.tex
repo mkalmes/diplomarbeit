@@ -4,19 +4,26 @@
 \begin{algorithmic}[1]
 	\Require $p,l$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:linesegmentpool-addline-validpointer-start}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\label{alg:linesegmentpool-addline-validpointer-end}
 	\If{$\lnot \left(\mathit{p.count} < N\right)$}
+	\Cost{$c_{4}$}{$2$}
 	\label{alg:linepool-addline-checkspace-start}
 		\State \textbf{return} \Comment Speicher voll
+		\Cost{$c_{5}$}{$1$}
 	\EndIf
 	\label{alg:linesegmentpool-addline-checkspace-end}
 	\State $c \gets \mathit{p.count}$
+	\Cost{$c_{7}$}{$2$}
 	\label{alg:linesegmentpool-addline-add-start}
 	\State $\mathit{p.data}[c] \gets l$
+	\Cost{$c_{8}$}{$3$}
 	\State $\mathit{p.count} \gets c + 1$
+	\Cost{$c_{9}$}{$3$}
 	\label{alg:linesegmentpool-addline-add-end}
 \end{algorithmic}
 \end{algorithm}

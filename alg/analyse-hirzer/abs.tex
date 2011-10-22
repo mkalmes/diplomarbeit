@@ -4,9 +4,12 @@
 \begin{algorithmic}[1]
 	\Require $a$
 	\If{$a < 0$}
+	\Cost{$c_{1}$}{$1$}
 		\State \textbf{return} $-a$
+		\Cost{$c_{2}$}{$1$}
 	\Else
 		\State \textbf{return} $a$
+		\Cost{$c_{4}$}{$1$}
 	\EndIf
 \end{algorithmic}
 \end{algorithm}

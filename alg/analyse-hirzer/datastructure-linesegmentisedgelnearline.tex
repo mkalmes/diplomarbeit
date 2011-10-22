@@ -4,24 +4,36 @@
 \begin{algorithmic}[1]
 	\Require $l,e$
 	\If{$\lnot$ \Call{isCompatible}{$\mathit{l.start,e}$}}
+	\Cost{$c_{1}$}{$1+8$}
 	\label{alg:isedgelnearline-iscompatible}
 		\State \textbf{return FALSE}
+		\Cost{$c_{2}$}{$1$}
 		\label{alg:isedgelnearline-notcompatible}
 	\EndIf
 	\State $a \gets \mathit{l.end.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\Cost{$c_{4}$}{$8$}
 	\label{alg:isedgelnearline-distance-start}
 	\State $b \gets \mathit{l.end.coordinate.y} - \mathit{l.start.coordinate.y}$
+	\Cost{$c_{5}$}{$8$}
 	\State $c \gets$ \Call{sqrt}{$(a \cdot a)+(b \cdot b)$}
+	\Cost{$c_{6}$}{$3+1$}
 	\label{alg:isedgelnearline-distance-end}
 	\State $\mathit{AB1} \gets \mathit{l.end.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\Cost{$c_{7}$}{$8$}
 	\label{alg:isedgelnearline-pointline-start}
 	\State $\mathit{AC2} \gets \mathit{e.coordinate.y} - \mathit{l.start.coordinate.y}$
+	\Cost{$c_{8}$}{$7$}
 	\State $\mathit{AC1} \gets \mathit{e.coordinate.x} - \mathit{l.start.coordinate.x}$
+	\Cost{$c_{9}$}{$7$}
 	\State $\mathit{AB2} \gets \mathit{l.end.coordinate.y} - \mathit{l.start.coordinate.y}$
+	\Cost{$c_{10}$}{$8$}
 	\State $\mathit{crossproduct} \gets (\mathit{AB1} \cdot \mathit{AC2}) - (\mathit{AC1} \cdot \mathit{AB2})$
+	\Cost{$c_{11}$}{$4$}
 	\State $\mathit{distance} \gets$ \Call{ABS}{$\mathit{crossproduct}/c$}
+	\Cost{$c_{12}$}{$3+2$}
 	\label{alg:isedgelnearline-pointline-end}
 	\State \textbf{return} $\mathit{distance} < 0.75$
+	\Cost{$c_{13}$}{$2$}
 	\label{alg:isedgelnearline-return}
 \end{algorithmic}
 \end{algorithm}
