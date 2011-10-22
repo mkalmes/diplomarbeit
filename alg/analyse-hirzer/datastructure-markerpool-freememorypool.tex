@@ -4,11 +4,16 @@
 \begin{algorithmic}[1]
 	\Require $p$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\State \Call{resetMemoryPool}{$p$}
+	\Cost{$c_{4}$}{$3$}
 	\If{$p \geq \mathit{data} \land p \leq \mathit{data} + S$}
+	\Cost{$c_{5}$}{$4$}
 		\State $\mathit{pool} \gets p$
+		\Cost{$c_{6}$}{$1$}
 	\EndIf
 \end{algorithmic}
 \end{algorithm}
