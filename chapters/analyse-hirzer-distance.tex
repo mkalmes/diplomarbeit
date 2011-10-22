@@ -10,7 +10,7 @@ Wie bei \gls{edgel} oder Liniensegmenten, kann \textproc{distance} in einem Spei
 \input{alg/analyse-hirzer/datastructure-distancepool}
 Auch bei diesem Verfahren wird ein Array mit festert Größe $N$ und einer Zählvariable verwendet. Im Gegensatz zu den
  anderen Speicherbereichen wird bei \textproc{distance} auf einen Speichervorrat verzichtet. Die Verwaltung eines
- Speichervorrat wird manuel durchgeführt.
+ Speichervorrat wird manuell durchgeführt.
 
 % Mit \autoref{alg:distancepool-adddistance}
 % \input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
@@ -36,6 +36,6 @@ Durch \autoref{alg:distancepool-distancecount}
 \input{alg/analyse-hirzer/datastructure-distancepool-freepool}
 Die Laufzeitfunktion ist im schlechsten Fall ebenfalls $T(n) = 3$.
 
-Die Laufzeit der Methoden für \textproc{distance} sind alle konstant und somit $T(n)=\Theta(n)$.
+Die Laufzeit der Methoden für \textproc{distance} sind alle konstant und somit $T(n)=\Theta(1)$.
 
 % subsubsection distanz (end)

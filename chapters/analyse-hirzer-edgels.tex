@@ -88,8 +88,7 @@ Damit \glspl{edgel} aus einem Array entfernt werden können, wird \autoref{alg:e
 Es wird der Zeiger $p$ auf einen Speicherblock und das zu löschenden \glspl{edgel} übergeben. In Zeile
  \ref{alg:edgelpool-removeedgel-position} wird mit \textproc{edgelPosition} (\autoref{alg:edgelpool-edgelposition}) die
  Position des \gls{edgel} gesucht. Falls das \gls{edgel} nicht gefunden wurde, wird in Zeile
- \ref{alg:edgelpool-removeedgel-error} das Verfahren abgebrochen. Wenn das \gls{edgel} innerhalb des zulässigen
- Speicherbereichs liegt (Zeile \ref{alg:edgelpool-removeedgel-isvalid}), gibt es zwei zu behandelnde Fälle um ein
+ \ref{alg:edgelpool-removeedgel-error} das Verfahren abgebrochen. Ansonsten gibt es zwei zu behandelnde Fälle um ein
  \gls{edgel} zu löschen. Der \gls{edgel} liegt
 \begin{enumerate}
 	\item nicht am Ende des Arrays oder \label{removeedgel-worst}
@@ -179,7 +178,8 @@ In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und s
 	\label{fig:regression-memmove2}
 \end{figure}
 Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} am Ende der Liste
- gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 36$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und $n_{0} = 36$, $21n + 36 = \Theta(n)$
+ gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 37$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und
+ $n_{0} = 37$, $21n + 37= \Theta(n)$
 
 Um einen Speicherblock für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz.
 \input{alg/analyse-hirzer/datastructure-edgelpool-resetmemorypool}
