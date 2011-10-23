@@ -1,17 +1,37 @@
 \begin{subequations}
+\label{eq:findedgels2}
 \begin{align}
-\label{eq:findedgels4}
-T(n)& =
-c_{17} \cdot (\frac{n}{5} + 1) + (c_{18} + c_{19} + c_{32}) \cdot \sum_{x=0}^{\frac{n}{5}} 1
- + c_{20} \cdot \sum_{x=0}^{\frac{n}{5}} (n+1) \\
-& \quad + (c_{21} + c_{22} + c_{23} + c_{24} + c_{25} + c_{26} + c_{27} + c_{28} + c_{29} + c_{30} + c_{31})
- \cdot \sum_{x=0}^{\frac{n}{5}} \sum_{y=0}^{n} 1 \nonumber \\
-\label{eq:findedgels5}
-T(n)& = c_{17} + (c_{17} + c_{18} + c_{19} + c_{20} + c_{32}) \cdot \frac{n}{5} + (c_{20} + \ldots + c_{31})
-\cdot (\frac{n}{5} \cdot n) \\
-\label{eq:findedgels6}
-T(n)& = \frac{1}{5}n^2 \\
-\label{eq:findedgels4-end}
-T(n)& = n^2
+\label{eq:findedgels2-1}
+T(r)& =
+c_{21}(\frac{r}{5} + 1)
++ c_{22}2\frac{r}{5}
++ c_{23}\frac{r}{5}(r + 1)
++ c_{24}r\frac{r}{5} \cdot \Theta(1)
++ c_{25}r\frac{r}{5}
++ c_{27}r\frac{r}{5}
+\\
+& \quad
++ c_{29}r\frac{r}{5}5
++ c_{30}r\frac{r}{5}
++ c_{31}r\frac{r}{5} \cdot \Theta(1)
++ c_{32}r\frac{r}{5} \cdot \Theta(1)
++ c_{33}r\frac{r}{5} \cdot \Theta(1)
+\nonumber \\
+& \quad
++ c_{35}r\frac{r}{5}
++ c_{36}r\frac{r}{5}
++ c_{37}r\frac{r}{5}
++ c_{39}2\frac{r}{5}
+\nonumber \\
+\label{eq:findedgels2-2}
+T(r)& =
+\frac{1}{5} + (c_{21}r + 2c_{22}r + c_{23}r + 2c_{39}r + 5c_{21})
+\\
+& \quad
++ \frac{r^2}{5} (c_{23} + c_{25} + c_{27} + 5c_{29} + c_{30}+ c_{35} + c_{36} + c_{37})
+\nonumber \\
+& \quad
++ \frac{r^2}{5}(c_{24} + c_{31} + c_{32} + c_{33}) \Theta(1)
+\nonumber
 \end{align}
 \end{subequations}

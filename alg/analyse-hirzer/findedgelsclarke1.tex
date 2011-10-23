@@ -4,52 +4,52 @@
 	\begin{algorithmic}[1]
 		\Require $I_m, E, t, l$
 		\For{$y \gets t$ \textbf{to} $y < t + \mathit{regionSize}$}
-		\Cost{$c_{1}$}{$\frac{40}{5} + 1$}
+		\Cost{$c_{1}$}{$\frac{r}{5} + 1$}
 		\label{alg:findedgels-horizontal-scanlinestart}
 			\State $p_1, p_2 \gets 0$
-			\Cost{$c_{2}$}{$8(2)$}
+			\Cost{$c_{2}$}{$\frac{r}{5}(2)$}
 			\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
-			\Cost{$c_{3}$}{$8(40 + 1)$}
+			\Cost{$c_{3}$}{$\frac{r}{5}(r + 1)$}
 			\label{alg:findedgels-horizontal-loopstart}
 				\State $\mathit{currentEdgel} \gets$
 				 \Call{convoluteKernelX}{$I_m,x,y,\mathit{imageWidth},\mathit{imageHeight}$}
-				\Cost{$c_{4}$}{$320 t_{1}$}
+				\Cost{$c_{4}$}{$r\frac{r}{5} \cdot \Theta(1)$}
 				\label{alg:findedgels-horizontal-convolute}
 				\If{$\mathit{currentEdgel} > \mathit{threshold}$}
 				\Comment Möglicherweise ein Egdel
-				\Cost{$c_{5}$}{$320$}
+				\Cost{$c_{5}$}{$r\frac{r}{5}$}
 				\label{alg:findedgels-horizontal-foundedgel}
 				\Else
 					\State $\mathit{currentEdgel} \gets 0$
-					\Cost{$c_{7}$}{$320$}
+					\Cost{$c_{7}$}{$r\frac{r}{5}$}
 				\EndIf
 				\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > \mathit{currentEdgel}$}
 				\Comment $p_1$ ist lokales Maximum
-				\Cost{$c_{9}$}{$320(5)$}
+				\Cost{$c_{9}$}{$r\frac{r}{5}(5)$}
 				\label{alg:findedgels-horizontal-maxima}
 					\State $\mathit{edgel} \gets \infty$
-					\Cost{$c_{10}$}{$320$}
+					\Cost{$c_{10}$}{$r\frac{r}{5}$}
 					\State \Call{vectorSetCoordinate}{$\mathit{edgel},x - 1,y$}
-					\Cost{$c_{11}$}{$320 \cdot \Theta(1)$}
+					\Cost{$c_{11}$}{$r\frac{r}{5} \cdot \Theta(1)$}
 					\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth},
 					 \mathit{imageHeight}, x - 1,y$}
-					\Cost{$c_{12}$}{$320 t_{2}$}
+					\Cost{$c_{12}$}{$r\frac{r}{5} \cdot \Theta(1)$}
 					\State \Call{addEdgel}{$E,\mathit{edgel}$}
-					\Cost{$c_{13}$}{$320 \cdot \Theta(1)$}
+					\Cost{$c_{13}$}{$r\frac{r}{5} \cdot \Theta(1)$}
 				\EndIf
 				\label{alg:findedgels-horizontal-maxima-end}
 				\State $p_2 \gets p_1$
-				\Cost{$c_{15}$}{$320$}
+				\Cost{$c_{15}$}{$r\frac{r}{5}$}
 				\label{alg:findedgels-horizontal-copy-prev1}
 				\State $p_1 \gets currentEdgel$
-				\Cost{$c_{16}$}{$320$}
+				\Cost{$c_{16}$}{$r\frac{r}{5}$}
 				\label{alg:findedgels-horizontal-copy-edgel}
 				\State $x \gets x + 1$
-				\Cost{$c_{17}$}{$320$}
+				\Cost{$c_{17}$}{$r\frac{r}{5}$}
 			\EndFor
 			\label{alg:findedgels-horizontal-loopend}
 			\State $y \gets y + 5$
-			\Cost{$c_{19}$}{$8(2)$}
+			\Cost{$c_{19}$}{$\frac{r}{5}(2)$}
 			\label{alg:findedgels-horizontal-increment}
 		\EndFor
 		\label{alg:findedgels-horizontal-scanlineend}

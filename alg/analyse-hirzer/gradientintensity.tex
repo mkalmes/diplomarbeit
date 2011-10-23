@@ -4,40 +4,68 @@
 \begin{algorithmic}[1]
 	\Require $I_m, x, y, w, h$
 	\State $p_{x_1} \gets$ \Call{getPixel}{$I_m, x -1, y - 1, w, h$}
+	\Cost{$c_{1}$}{$3 + \Theta(1)$}
 	\label{alg:gradientintensity-readstart}
 	\State $p_{x_2} \gets$ \Call{getPixel}{$I_m, x, y - 1, w, h$}
+	\Cost{$c_{2}$}{$2 + \Theta(1)$}
 	\State $p_{x_3} \gets$ \Call{getPixel}{$I_m, x + 1, y - 1, w, h$}
+	\Cost{$c_{3}$}{$3 + \Theta(1)$}
 	\State $p_{x_4} \gets$ \Call{getPixel}{$I_m, x - 1, y + 1, w, h$}
+	\Cost{$c_{4}$}{$3 + \Theta(1)$}
 	\State $p_{x_5} \gets$ \Call{getPixel}{$I_m, x, y + 1, w, h$}
+	\Cost{$c_{5}$}{$2 + \Theta(1)$}
 	\State $p_{x_6} \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
+	\Cost{$c_{6}$}{$3 + \Theta(1)$}
 	\State $p_{y_1} \gets$ \Call{getPixel}{$I_m, x - 1, y - 1, w, h$}
+	\Cost{$c_{7}$}{$3 + \Theta(1)$}
 	\State $p_{y_2} \gets$ \Call{getPixel}{$I_m, x - 1, y, w, h$}
+	\Cost{$c_{8}$}{$2 + \Theta(1)$}
 	\State $p_{y_3} \gets$ \Call{getPixel}{$I_m, x - 1, y + 1, w, h$}
+	\Cost{$c_{9}$}{$3 + \Theta(1)$}
 	\State $p_{y_4} \gets$ \Call{getPixel}{$I_m, x + 1, y - 1, w, h$}
+	\Cost{$c_{10}$}{$3 + \Theta(1)$}
 	\State $p_{y_5} \gets$ \Call{getPixel}{$I_m, x + 1, y, w, h$}
+	\Cost{$c_{11}$}{$2 + \Theta(1)$}
 	\State $p_{y_6} \gets$ \Call{getPixel}{$I_m, x + 1, y + 1, w, h$}
+	\Cost{$c_{12}$}{$2 + \Theta(1)$}
 	\label{alg:gradientintensity-readend}
 	% \State $g_x \gets 0$
 	% \State $g_y \gets 0$
 	\State $g_x \gets g_x + p_{x_1}$
+	\Cost{$c_{13}$}{$2$}
 	\label{alg:gradientintensity-convolutestart}
 	\State $g_x \gets g_x + \left(p_{x_2} \cdot 2\right)$
+	\Cost{$c_{14}$}{$3$}
 	\State $g_x \gets g_x + p_{x_3}$
+	\Cost{$c_{15}$}{$2$}
 	\State $g_x \gets g_x - p_{x_4}$
+	\Cost{$c_{16}$}{$2$}
 	\State $g_x \gets g_x - \left(p_{x_5} \cdot 2\right)$
+	\Cost{$c_{17}$}{$3$}
 	\State $g_x \gets g_x - p_{x_6}$
+	\Cost{$c_{18}$}{$2$}
 	\State $g_y \gets g_y + p_{y_1}$
+	\Cost{$c_{19}$}{$2$}
 	\State $g_y \gets g_y + \left(p_{y_2} \cdot 2\right)$
+	\Cost{$c_{20}$}{$3$}
 	\State $g_y \gets g_y + p_{y_3}$
+	\Cost{$c_{21}$}{$2$}
 	\State $g_y \gets g_y - p_{y_4}$
+	\Cost{$c_{22}$}{$2$}
 	\State $g_y \gets g_y - \left(p_{y_5} \cdot 2\right)$
+	\Cost{$c_{23}$}{$3$}
 	\State $g_y \gets g_y - p_{y_6}$
+	\Cost{$c_{24}$}{$2$}
 	\label{alg:gradientintensity-convoluteend}
 	\State $\mathit{slope} \gets \infty$
+	\Cost{$c_{25}$}{$1$}
 	\State \Call{vectorSetCoordinate}{$\mathit{slope},\mathit{gy},\mathit{gx}$}
+	\Cost{$c_{26}$}{$\Theta(1)$}
 	\label{alg:gradientintensity-vector-start}
 	\State \Call{normalized}{$\mathit{slope}$}
+	\Cost{$c_{27}$}{$\Theta(1)$}
 	\label{alg:gradientintensity-vector-end}
 	\State \textbf{return} $\mathit{slope}$
+	\Cost{$c_{28}$}{$1$}
 \end{algorithmic}
 \end{algorithm}

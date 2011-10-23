@@ -4,18 +4,28 @@
 \begin{algorithmic}[1]
 	\Require $I_m,x,y,w,h$
 	\State $p_1 \gets$ \Call{getpixel}{$I_m, x - 2, y, w, h$}
+	\Cost{$c_{1}$}{$2 + \Theta(1)$}
 	\label{alg:convolutekernel-horizontal-readstart}
 	\State $p_2 \gets$ \Call{getpixel}{$I_m, x - 1, y, w, h$}
+	\Cost{$c_{2}$}{$2 + \Theta(1)$}
 	% \State $p_3 \gets$ \Call{getpixel}{$I_m, x, y, w, h$}
 	\State $p_4 \gets$ \Call{getpixel}{$I_m, x + 1, y, w, h$}
+	\Cost{$c_{3}$}{$2 + \Theta(1)$}
 	\State $p_5 \gets$ \Call{getpixel}{$I_m, x + 2, y, w, h$}
+	\Cost{$c_{4}$}{$2 + \Theta(1)$}
 	\label{alg:convolutekernel-horizontal-readend}
 	\State $v \gets 0$
+	\Cost{$c_{5}$}{$1$}
 	\State $v \gets v + \left( -3 \cdot p_1 \right)$
+	\Cost{$c_{6}$}{$3$}
 	\State $v \gets v + \left( -5 \cdot p_2 \right)$
+	\Cost{$c_{7}$}{$3$}
 	% \State $v \gets v + \left( 0 \cdot p_3 \right)$
 	\State $v \gets v + \left( 5 \cdot p_4 \right)$
+	\Cost{$c_{8}$}{$3$}
 	\State $v \gets v + \left( 3 \cdot p_5 \right)$
+	\Cost{$c_{9}$}{$3$}
 	\State \textbf{return} $v$
+	\Cost{$c_{10}$}{$1$}
 \end{algorithmic}
 \end{algorithm}

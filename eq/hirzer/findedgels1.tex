@@ -1,17 +1,37 @@
 \begin{subequations}
-\begin{align}
 \label{eq:findedgels1}
-T(n)& =
-c_1 \cdot (\frac{n}{5} + 1) + (c_2 + c_3 + c_{16}) \cdot \sum_{y=0}^{\frac{n}{5}} 1
- + c_4 \cdot \sum_{y=0}^{\frac{n}{5}} (n+1) \\
-& \quad + (c_5 + c_6 + c_7 + c_8 + c_9 + c_{10} + c_{11} + c_{12} + c_{13} + c_{14} + c_{15})
- \cdot \sum_{y=0}^{\frac{n}{5}} \sum_{x=0}^{n} 1 \nonumber \\
-\label{eq:findedgels2}
-T(n)& = c_1 + (c_1 + c_2 + c_3 + c_4 + c_{16}) \cdot \frac{n}{5} + (c_4 + \ldots + c_{15})
-\cdot (\frac{n}{5} \cdot n) \\
-\label{eq:findedgels3}
-T(n)& = \frac{1}{5}n^2 \\
-\label{eq:findedgels1-end}
-T(n)& = n^2
+\begin{align}
+\label{eq:findedgels1-1}
+T(r)& =
+c_{1}(\frac{r}{5} + 1)
++ c_{2}2\frac{r}{5}
++ c_{3}\frac{r}{5}(r + 1)
++ c_{4}r\frac{r}{5} \cdot \Theta(1)
++ c_{5}r\frac{r}{5}
++ c_{7}r\frac{r}{5}
+\\
+& \quad
++ c_{9}r\frac{r}{5}5
++ c_{10}r\frac{r}{5}
++ c_{11}r\frac{r}{5} \cdot \Theta(1)
++ c_{12}r\frac{r}{5} \cdot \Theta(1)
++ c_{13}r\frac{r}{5} \cdot \Theta(1)
+\nonumber \\
+& \quad
++ c_{15}r\frac{r}{5}
++ c_{16}r\frac{r}{5}
++ c_{17}r\frac{r}{5}
++ c_{19}2\frac{r}{5}
+\nonumber \\
+\label{eq:findedgels1-2}
+T(r)& =
+\frac{1}{5}(c_{1}r + 2c_{2}r + c_{3}r + 2c_{19}r + 5c_{1})
+\\
+& \quad
++  \frac{r^2}{5}(c_{3} + c_{5} + c_{7} + 5c_{9} + c_{10} + c_{15} + c_{16} + c_{17})
+\nonumber \\
+& \quad
++ \frac{r^2}{5}(c_{4} + c_{11} + c_{12} + c_{13}) \Theta(1)
+\nonumber
 \end{align}
 \end{subequations}

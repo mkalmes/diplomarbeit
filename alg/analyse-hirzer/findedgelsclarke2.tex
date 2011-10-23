@@ -4,44 +4,44 @@
 \begin{algorithmic}[1]
 \algrestore{brkfindedgels}
 	\For{$x \gets l$ \textbf{to} $x < l + \mathit{regionSize}$}
-	\Cost{$c_{21}$}{$\frac{40}{5} + 1$}
+	\Cost{$c_{21}$}{$\frac{r}{5} + 1$}
 	\label{alg:findedgels-vertical-scanlinestart}
 		\State $p_1, p_2 \gets 0$
-		\Cost{$c_{22}$}{$8(2)$}
+		\Cost{$c_{22}$}{$\frac{r}{5}(2)$}
 		\For{$y \gets t$ \textbf{to} $y < t + \mathit{regionSize}$}
-		\Cost{$c_{23}$}{$8(40 + 1)$}
+		\Cost{$c_{23}$}{$\frac{r}{5}(r + 1)$}
 			\State $currentEdgel \gets$ \Call{convoluteKernelY}{$I_m,x,y,\mathit{imageWidth},\mathit{imageHeight}$}
-			\Cost{$c_{24}$}{$320t_{3}$}
+			\Cost{$c_{24}$}{$\frac{r^2}{5} \cdot \Theta(1)$}
 			\If{$currentEdgel > threshold$}
 			\Comment Möglicherweise ein Egdel
-			\Cost{$c_{25}$}{$320$}
+			\Cost{$c_{25}$}{$\frac{r^2}{5}$}
 			\Else
 				\State $currentEdgel \gets 0$
-				\Cost{$c_{27}$}{$320$}
+				\Cost{$c_{27}$}{$\frac{r^2}{5}$}
 			\EndIf
 			\If{$p_1 > 0 \land p_1 > p_2 \land p_1 > currentEdgel$}
 			\Comment $p_1$ ist lokales Maximum
-			\Cost{$c_{29}$}{$320(5)$}
+			\Cost{$c_{29}$}{$\frac{r^2}{5}(5)$}
 			\label{alg:findedgels-vertical-maxima}
 				\State $edgel \gets \infty$
-				\Cost{$c_{30}$}{$320$}
+				\Cost{$c_{30}$}{$\frac{r^2}{5}$}
 				\State \Call{vectorSetCoordinate}{$\mathit{edgel},x,y - 1$}
-				\Cost{$c_{31}$}{$320 \cdot \Theta(1)$}
+				\Cost{$c_{31}$}{$\frac{r^2}{5} \cdot \Theta(1)$}
 				\State $\mathit{edgel.slope} \gets$ \Call{gradientIntensity}{$I_m, \mathit{imageWidth},
 				 \mathit{imageHeight}, x,y - 1$}
-				\Cost{$c_{32}$}{$320t_{4}$}
+				\Cost{$c_{32}$}{$\frac{r^2}{5} \cdot \Theta(1)$}
 				\State \Call{addEdgel}{$E,\mathit{edgel}$}
-				\Cost{$c_{33}$}{$320 \cdot \Theta(1)$}
+				\Cost{$c_{33}$}{$\frac{r^2}{5} \cdot \Theta(1)$}
 			\EndIf
 			\State $p_2 \gets p_1$
-			\Cost{$c_{35}$}{$320$}
+			\Cost{$c_{35}$}{$\frac{r^2}{5}$}
 			\State $p_1 \gets currentEdgel$
-			\Cost{$c_{36}$}{$320$}
+			\Cost{$c_{36}$}{$\frac{r^2}{5}$}
 			\State $y \gets y + 1$
-			\Cost{$c_{37}$}{$320$}
+			\Cost{$c_{37}$}{$\frac{r^2}{5}$}
 		\EndFor
 		\State $x \gets x + 5$
-		\Cost{$c_{39}$}{$8(2)$}
+		\Cost{$c_{39}$}{$\frac{r}{5}(2)$}
 	\EndFor
 	\label{alg:findedgels-vertical-scanlineend}
 \end{algorithmic}
