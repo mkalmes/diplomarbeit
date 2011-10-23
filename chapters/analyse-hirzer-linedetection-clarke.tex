@@ -121,11 +121,12 @@ Die Wachstumsrate der Laufzeitfunktion $T(r) = \tfrac{1}{5} (12r^2 + 6r + 5) + \
  = \tfrac{1}{5} (16r^2 + 6r + 5)$, für für $c_{1} = 16$, $c_{2} = 17$ und $r_{0} = 6$, ist $16r^2 + 6r = \Theta(r^2)$
  und entspricht der Wachstumsrate von \autoref{alg:findedgels-horizontal}. Damit ist die Wachstumsrate von \textproc{findEdgels} $\Theta(r^2) + \Theta(r^2) = \Theta(r^2)$.
 
-\autoref{alg:convolutekernel-horizontal} und \autoref{alg:convolutekernel-vertical} berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
+\textproc{convoluteKernelX} (\autoref{alg:convolutekernel-horizontal}) und \textproc{convoluteKernelY}
+ (\autoref{alg:convolutekernel-vertical}) berechnen den Gradienten durch Faltung mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
 -3& -5& 0& 5& 3
 \end{smallmatrix} \right)$
- auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Zeiger des monochromen
+auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Zeiger des monochromen
  Bildsignals $I_m$, die Position des Pixels ($x$ und $y$), sowie die Breite $w$ und Höhe $h$ von $I_m$. In Zeile
  \ref{alg:convolutekernel-horizontal-readstart}--\ref{alg:convolutekernel-horizontal-readend} werden durch die
  Funktion \textproc{getpixel} (Vgl. \autoref{alg:getpixel}, S. \pageref{alg:getpixel}) die benötigten Pixelwerte
@@ -139,8 +140,8 @@ Bei genauer Betrachtung von \autoref{alg:convolutekernel-horizontal} und \autore
  fällt auf, dass der Wert $p_3$ in der Berechnung nicht vorkommt.
 \input{alg/analyse-hirzer/convolutekernely}
 Dies ist darauf zurückzuführen, dass der Gauß-Kernel an der dritten Stelle mit $0$ definiert ist. Somit kann die
- Multiplikation vernachlässigt werden. Die Laufzeit von \autoref{alg:convolutekernel-horizontal} und
- \autoref{alg:convolutekernel-vertical} ist konstant.
+ Multiplikation vernachlässigt werden. Die Laufzeitfunktion von \autoref{alg:convolutekernel-horizontal} und
+ \autoref{alg:convolutekernel-vertical} ist $T(n) = 4 \cdot \Theta(1) + 22$ und somit konstant.
 
 In \autoref{alg:gradientintensity} wird mittels Faltung die Orientierung eines \glspl{edgel} bestimmt. Als
  Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$, sowie die Position des
@@ -176,8 +177,8 @@ den Gradienten $G_x$ und $G_y$ bestimmen. Wie in \autoref{alg:convolutekernel-ho
 \end{equation}
 kann die Orientierung berechnet werden. $G_x$ und $G_y$ werden mit \autoref{alg:vectorsetcoordinate} als
  \textproc{vector} gespeichert und normalisiert
- (Zeile \ref{alg:gradientintensity-vector-start}--\ref{alg:gradientintensity-vector-end}). Die Laufzeit von
- \autoref{alg:gradientintensity} ist konstant.
+ (Zeile \ref{alg:gradientintensity-vector-start}--\ref{alg:gradientintensity-vector-end}). Die Laufzeitfunktion von
+ \autoref{alg:gradientintensity} ist $T(n) = 14 \cdot \Theta(1) + 61$. Die Wachstumsrate ist konstant.
 
 Um aus den gefundenen \glspl{edgel} Liniensegmente zu erzeugen, wird \autoref{alg:findlinesegments1} verwendet. Das
  Verfahren benötigt den Speicherblock $E$, in dem die \glspl{edgel} vorliegen, und den Speicherblock $L$, der zur
