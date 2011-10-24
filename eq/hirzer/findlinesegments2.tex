@@ -1,14 +1,52 @@
 \begin{subequations}
-\label{eq:findlinesegments-startendy}
+\label{eq:findlinesegments-2}
 \begin{align}
-\label{eq:findlinesegments4}
-T(n)& = (c_{1} + c_{2} + c_{3} + c_{4} + c_{5} + c_{6}) \cdot 1 + c_{7} \cdot n\\
-& \quad + (c_{8} + c_{9} + c_{10} + c_{11} + c_{12} + c_{13} + c_{14} + c_{15}) \cdot \sum_{j=0}^{n-1} 1 \nonumber \\
-\label{eq:findlinesegments5}
-T(n)& = (c_{1} + c_{2} + c_{3} + c_{4} + c_{5} + c_{6}) \cdot 1 \\
-& \quad + (c_{7} + c_{8} + c_{9} + c_{10} + c_{11} + c_{12} + c_{13} + c_{14} + c_{15}) \cdot n \nonumber \\
-& \quad - (c_{8} + c_{9} + c_{10} + c_{11} + c_{12} + c_{13} + c_{14} + c_{15}) \cdot 1 \nonumber \\
-\label{eq:findlinesegments6}
-T(n)& = n
+\label{eq:findlinesegments-2-1}
+T_{worst}(n)& =
+c_{12}1
++ c_{13}1
++ c_{14}2
++ c_{15}2
++ c_{16}3
++ c_{17}2
++ c_{18}2
++ c_{19}2
++ c_{20}2
+\\
+& \quad
++ c_{21}(n+1)
++ c_{22}n(1 + \Theta(1))
++ c_{23}n(1 + \Theta(1))
++ c_{24}n\bigl(\Theta(1)\bigr)
+\nonumber \\
+& \quad
++ c_{25}4n
++ c_{27}n
++ c_{29}3
++ c_{30}1
+\nonumber \\
+\label{eq:findlinesegments-2-2}
+T_{worst}(n)& =
+(c_{12} + c_{13} + 2c_{14} + 2c_{15} + 3c_{16} + 2c_{17} + 2c_{18} + 2c_{19} + 2c_{20}
+\\
+& \quad \quad
++ c_{21} + 3c_{29} + c_{30})
+\nonumber \\
+& \quad
++ n(4c_{25} + c_{27} + c_{21} + c_{22} + c_{23})
+\nonumber \\
+& \quad
++ n(c_{22}\Theta(1) + c_{23}\Theta(1) + c_{24}\Theta(1))
+\nonumber
+% \\
+% \label{eq:findlinesegments-2-3}
+% T_{worst}(n)& =
+% 8n + 22 + n(\Theta(1) + \Theta(1) + \Theta(1))
+% \\
+% & = 11n + 22
+% \nonumber \\
+% \label{eq:findlinesegments-2-4}
+% T_{worst}\bigl(\frac{1}{5}(r^2 - 2r)\bigr)& =
+% \frac{11}{5}(r^2 - 2r) + 22
 \end{align}
 \end{subequations}

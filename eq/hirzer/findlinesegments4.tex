@@ -1,9 +1,31 @@
 \begin{subequations}
-\label{eq:findlinesegments-all}
+\label{eq:findlinesegments-4}
 \begin{align}
-\label{eq:findlinesegments10}
-T(n)& = \Theta(n) + \Theta(n)\\
-\label{eq:findlinesegments11}
-T(n)& = \Theta(n)
+\label{eq:findlinesegments-4-1}
+T_{worst}(n)& = 
+c_{20}(n+1)
++ c_{21}3n
++ c_{22}3n
++ c_{23}3n
++ c_{24}2n
++ c_{26}3n
+\\
+& \quad
++ c_{27}3n
++ c_{28}2n
++ c_{30}n
+\nonumber \\
+\label{eq:findlinesegments-4-2}
+T_{worst}(n)& = 
+n(c_{20} + 3c_{21} + 3c_{22} + 3c_{23} + 2c_{24} + 3c_{26} + 3c_{27}
+\\
+& \quad \quad
++ 2c_{28} + c_{30}) + c_{20}
+\nonumber%  \\
+% \label{eq:findlinesegments-4-4}
+% T_{worst}(n)& = 21n + 1
+% \\
+% \label{eq:findlinesegments-4-5}
+% T_{worst}\bigl(\frac{1}{5}(r^2 - 2r)\bigr)& = \frac{21}{5}(r^2 - 2r) + 1
 \end{align}
 \end{subequations}

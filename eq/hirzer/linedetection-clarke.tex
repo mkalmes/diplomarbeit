@@ -2,23 +2,34 @@
 \label{eq:linedetection-clarke}
 \begin{align}
 \label{eq:linedetection-clarke-1}
-T(n)& = c_{1} (\frac{n}{2r} + 1) + c_{2} \sum_{y=0}^{\frac{n}{2r}}
- \left(\frac{n}{2r} + 1\right) + c_3 \sum_{y=0}^{\frac{n}{2r}}
- \sum_{x=0}^{\frac{n}{2r}} (\frac{2 r^2}{5})^2 \\
-& \quad + c_4 \sum_{y=0}^{\frac{n}{2r}} \sum_{x=0}^{\frac{n}{2r}} \frac{1}{25}(r - 2)^2 r^2
- + (c_{5} + c_{6} + c_{7}) \sum_{y=0}^{\frac{n}{2r}} \sum_{x=0}^{\frac{n}{2r}} 1
-+ c_8 \sum_{y=0}^{\frac{n}{2r}} 1 \nonumber \\
+T_{worst}(wh)& =
+c_{1}(\frac{h}{r} + 1)
++ c_{2}\frac{h}{r}(\frac{w}{r} + 1)
++ c_{3}\frac{hw}{r^2} \cdot \Theta(r^2)
++ c_{4}\frac{hw}{r^2} \cdot \Theta(mn^2)
+\\
+& \quad
++ c_{5}\frac{hw}{r^2} \cdot \Theta(1)
++ c_{6}\frac{hw}{r^2} \cdot \Theta(1)
++ c_{7}\frac{2hw}{r^2}
++ c_{9}\frac{2h}{r}
+\nonumber \\
 \label{eq:linedetection-clarke-2}
-T(n)& = (c_{1} + c_{8}) (\frac{n}{2r} + 1) + c_{3} \frac{4}{25} r^2 (\frac{n}{2r} + 1)^2
-+ c_{4} \frac{1}{25} (r - 2)^2 r^2 (\frac{n}{2r} + 1)^2 \\
-& \quad + (c_{2} + c_{5} + c_{6} + c_{7}) (\frac{n}{2r} + 1)^2 \nonumber \\
+T_{worst}(wh)& =
+c_{1}(\frac{h}{r} + 1)
++ c_{2}\frac{h}{r}(\frac{w}{r} + 1)
++ c_{3}\frac{hw\cdot\Theta(r^2)}{r^2}
++ c_{4}\frac{hw\cdot\Theta(mn^2)}{r^2}
+\\
+& \quad
++ (c_{5} + c_{6})\frac{hw}{r^2} \cdot \Theta(1)
++ c_{7}\frac{2hw}{r^2}
++ c_{9}\frac{2h}{r}
+\nonumber \\
 \label{eq:linedetection-clarke-3}
-T(n)& = (r - 2)^2 r^2 (\frac{n}{2r} + 1)^2 + r^2 (\frac{n}{2r} + 1)^2 + (\frac{n}{2r} + 1)^2 + \frac{n}{2r} + 1 \\
+T_{worst}(wh)& = \frac{1}{r^2}(hwmn^2) + \frac{5}{r^2}(hw) + \frac{4}{r}(h) + hw + 1
+\\
 \label{eq:linedetection-clarke-4}
-T(n)& = 2312001 (\frac{1}{80} n + 1)^2 + \frac{1}{80} n + 1 \\
-\label{eq:linedetection-clarke-5}
-T(n)& = n^2+ n\\
-\label{eq:linedetection-clarke-6}
-T(n)& = n^2
+T_{worst}(wh)& = \frac{1}{1600}(hwmn^2) + \frac{5}{1600}(hw) + \frac{4}{40}(h) + hw + 1
 \end{align}
 \end{subequations}

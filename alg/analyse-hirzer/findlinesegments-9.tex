@@ -2,7 +2,7 @@
    {\textbf{do}}
    [1]{\textbf{while} #1}
 \begin{algorithm}[!ht]
-\caption{\textproc{findLineSegments} (Analyse im günstigsten Fall)}
+\caption{\textproc{findLineSegments} (Analyse im schlechtesten Fall)}
 \label{alg:findlinesegments9}
 \begin{algorithmic}[1]
 	\Require $E, L$
@@ -11,40 +11,41 @@
 	\State $\mathit{edgelsInRegion} \gets 0$
 	\Cost{$c_{2}$}{$1$}
 	\DO
+	\label{alg:findlinesegments9-do}
 		\State $\mathit{presentLine.supportCount} \gets 0$
-		\Cost{$c_{3}$}{$1$}
+		\Cost{$c_{4}$}{$2m$}
 		\For{$i \gets 0$ \textbf{to} $i < 25$}
 		\label{alg:findlinesegments9-loop-start}
-		\Cost{$c_{4}$}{$25 + 1$}
+		\Cost{$c_{5}$}{$(25 + 1)m$}
 			\State \autoref{alg:findlinesegments2}
-			\Cost{$c_{5}$}{$\sum_{i=0}^{25}1$}
+			\Cost{$c_{6}$}{$25m \cdot \Theta(1)$}
 			\State \autoref{alg:findlinesegments3}
-			\Cost{$c_{6}$}{$\sum_{i=0}^{25}64$}
+			\Cost{$c_{7}$}{$25m \cdot \Theta(1)$}
 			\State \autoref{alg:findlinesegments4}
-			\Cost{$c_{7}$}{$\sum_{i=0}^{25}n$}
+			\Cost{$c_{8}$}{$25m \cdot \Theta(n)$}
 			\State $i \gets i + 1$
-			\Cost{$c_{8}$}{$\sum_{i=0}^{25}1$}
+			\Cost{$c_{9}$}{$25m$}
 		\EndFor
 		\label{alg:findlinesegments9-loop-end}
 		\If{$\mathit{presentLine.supportCount} > \mathit{minEdgels}$}
-		\label{alg:findlinesegments9-failure}
-		\Cost{$c_{9}$}{$1$}
+		\label{alg:findlinesegments9-hasmoresupport}
+		\Cost{$c_{11}$}{$2$}
+			\State \autoref{alg:findlinesegments5}
+			\Cost{$c_{12}$}{$m\cdot \Theta(n)$}
 			\State \autoref{alg:findlinesegments6}
-			% \Cost{$c_{10}$}{$n$}
+			\Cost{$c_{13}$}{$m\cdot \Theta(n)$}
 			\State \autoref{alg:findlinesegments7}
-			% \Cost{$c_{11}$}{$n$}
-			\State \autoref{alg:findlinesegments8}
-			% \Cost{$c_{12}$}{$nm$}
+			\Cost{$c_{14}$}{$m\cdot \Theta(n^2)$}
 		\EndIf
 		\State $\mathit{edgelsInRegion} \gets$ \Call{getEdgelCount}{$E$}
 		\label{alg:findlinesegments9-edgels}
-		\Cost{$c_{13}$}{$1$}
+		\Cost{$c_{16}$}{$m$}
 	\WHILE{$\left(
 	\begin{aligned}
 		& \quad \mathit{presentLine.supportCount} > \mathit{minEdgels}\\
 		& \land \mathit{edgelsInRegion} > \mathit{minEdgels}
 	\end{aligned}\right)$}
-	\Cost{$c_{14}$}{$1$}
-	\label{alg:findlinesegments9-break}
+	\Cost{$c_{17}$}{$4(m+1)$}
+	\label{alg:findlinesegments9-while}
 \end{algorithmic}
 \end{algorithm}

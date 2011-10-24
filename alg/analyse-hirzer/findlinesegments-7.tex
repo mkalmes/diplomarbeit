@@ -2,35 +2,56 @@
    {\textbf{do}}
    [1]{\textbf{while} #1}
 \begin{algorithm}[!ht]
-\caption{\textproc{findLineSegments} (Neuer Start- und Endpunkt für x)}
+\caption{\textproc{findLineSegments} (Unterstützungsedgel entfernen)}
 \label{alg:findlinesegments7}
 \begin{algorithmic}[1]
-	\algrestore{brk-findlinesegments6-if}
-	\Else
-		\For{$k \gets 0$ \textbf{to} $k < \mathit{presentLine.supportCount}$}
-		\Cost{$c_{16}$}{$n$}
+	\algrestore{brk-findlinesegments6-else}
+	\State $\mathit{m} \gets$ \textproc{vectorSubtract}$\left(
+	\begin{aligned}
+		&\mathit{presentLine.end.coordinate},\\
+		&\mathit{presentLine.start.coordinate}
+	\end{aligned}\right)$
+	\Cost{$c_{33}$}{$\bigl(1 + \Theta(1)\bigr)$}
+	\State $\mathit{angle} \gets$ \Call{dotProduct}{$\mathit{m},\mathit{ortho}$}
+	\Cost{$c_{34}$}{$\bigl(1 + \Theta(1)\bigr)$}
+	\If{$\mathit{angle} < 0$}
+	\Cost{$c_{35}$}{$1$}
+		\State $\mathit{newEnd} \gets \mathit{presentLine.start}$
+		\Cost{$c_{36}$}{$2$}
 		\label{alg:findlinesegments7-newstart-start}
-			\State $\mathit{edgel} \gets \mathit{presentLine.support}[k]$
-			\Cost{$c_{17}$}{$\sum_{k=0}^{n-1}1$}
-			\If{$\mathit{edgel.coordinate.x} > \mathit{start}$}
-			\Cost{$c_{18}$}{$\sum_{k=0}^{n-1}1$}
-				\State $\mathit{start} \gets \mathit{edgel.coordinate.x}$
-				\Cost{$c_{19}$}{$\sum_{k=0}^{n-1}1$}
-				\State $\mathit{presentLine.start} \gets \mathit{edgel}$
-				\Cost{$c_{20}$}{$\sum_{k=0}^{n-1}1$}
-			\EndIf
-			\If{$\mathit{edgel.coordinate.x} < end$}
-			\Cost{$c_{21}$}{$\sum_{k=0}^{n-1}1$}
-				\State $\mathit{end} \gets \mathit{edgel.coordinate.x}$
-				\Cost{$c_{22}$}{$\sum_{k=0}^{n-1}1$}
-				\State $\mathit{presentLine.end} \gets \mathit{edgel}$
-				\Cost{$c_{23}$}{$\sum_{k=0}^{n-1}1$}
-			\EndIf
-			\State $\mathit{k} \gets k + 1$
-			\Cost{$c_{24}$}{$\sum_{k=0}^{n-1}1$}
-		\EndFor
+		\State $\mathit{presentLine.start} \gets \mathit{presentLine.end}$
+		\Cost{$c_{37}$}{$3$}
+		\State $\mathit{presentLine.end} \gets \mathit{newEnd}$
+		\Cost{$c_{38}$}{$2$}
 		\label{alg:findlinesegments7-newstart-end}
 	\EndIf
-	\algstore{brk-findlinesegments7-else}
+	\State $\mathit{m} \gets$ \textproc{vectorSubtract}$\left(
+	\begin{aligned}
+		&\mathit{presentLine.end.coordinate},\\
+		&\mathit{presentLine.start.coordinate}
+	\end{aligned}\right)$
+	\Cost{$c_{40}$}{$\bigl(1 + \Theta(1)\bigr)$}
+	\label{alg:findlinesegments7-save-start}
+	\State \Call{normalized}{$\mathit{m}$}
+	\Cost{$c_{41}$}{$\Theta(1)$}
+	\State $\mathit{presentLine.slope} \gets \mathit{m}$
+	\Cost{$c_{42}$}{$2$}
+	\label{alg:findlinesegments7-save-end}
+	\State \Call{addLineSegment}{$L,\mathit{presentLine}$}
+	\Cost{$c_{43}$}{$\Theta(1)$}
+	\label{alg:findlinesegments7-addtomempool}
+	\State $\mathit{supportCount} \gets \mathit{presentLine.supportCount}$
+	\Cost{$c_{44}$}{$1$}
+	\For{$i \gets 0$ \textbf{to} $i < \mathit{supportCount}$}
+	\Cost{$c_{45}$}{$(n + 1)$}
+	\label{alg:findlinesegments7-removeedgel-start}
+		\State $\mathit{remove} \gets \mathit{presentLine.support}[i]$
+		\Cost{$c_{46}$}{$3n$}
+		\State \Call{removeEdgel}{$E,\mathit{remove}$}
+		\Cost{$c_{47}$}{$n \cdot \Theta(n)$}
+		\State $i \gets i + 1$
+		\Cost{$c_{48}$}{$n$}
+	\EndFor
+	\label{alg:findlinesegments7-removeedgel-end}
 \end{algorithmic}
 \end{algorithm}

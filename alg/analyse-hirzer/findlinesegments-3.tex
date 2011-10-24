@@ -9,17 +9,23 @@
 	\DO
 	\label{alg:findlinesegments3-loop-start}
 		\State $\mathit{first} \gets$ \Call{rand} $ \bmod \mathit{numberOfEdgels}$
+		\Cost{$c_{6}$}{$64(2 + \Theta(1))$}
 		\label{alg:findlinesegments3-first}
 		\State $\mathit{last} \gets$ \Call{rand} $ \bmod \mathit{numberOfEdgels}$
+		\Cost{$c_{7}$}{$64(2 + \Theta(1))$}
 		\label{alg:findlinesegments3-last}
 		\State $\mathit{start} \gets$ \Call{getEdgel}{$E,\mathit{first}$}
+		\Cost{$c_{8}$}{$64(1 + \Theta(1))$}
 		\label{alg:findlinesegments3-start}
 		\State $\mathit{end} \gets$ \Call{getEdgel}{$E,\mathit{last}$}
+		\Cost{$c_{9}$}{$64(1 + \Theta(1))$}
 		\label{alg:findlinesegments3-end}
 		\State $\mathit{iterator} \gets \mathit{iterator} + 1$
+		\Cost{$c_{10}$}{$64$}
 		\label{alg:findlinesegments3-inc}
 	\WHILE{$\bigl(\mathit{first} = \mathit{last} \lor \lnot \textproc{isCompatible}(\mathit{start},\mathit{end})\bigr)
 	 \land \mathit{iterator} < \mathit{maxIteration}$}
+	\Cost{$c_{11}$}{$(64 + 1)\bigl(4 + \Theta(1)\bigr)$}
 	\label{alg:findlinesegments3-loop-end}
 	\algstore{brk-findlinesegments3-dowhile}
 \end{algorithmic}

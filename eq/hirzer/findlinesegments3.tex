@@ -1,13 +1,44 @@
 \begin{subequations}
-\label{eq:findlinesegments-startendx}
+\label{eq:findlinesegments-3}
 \begin{align}
-\label{eq:findlinesegments7}
-T(n)& = c_{16} \cdot n + (c_{17} + c_{18} + c_{19} + c_{20} + c_{21} + c_{22} + c_{23} + c_{24}) \cdot
- \sum_{k=0}^{n-1} 1 \\
-\label{eq:findlinesegments8}
-T(n)& = (c_{16} + c_{17} + c_{18} + c_{19} + c_{20} + c_{21} + c_{22} + c_{23} + c_{24}) \cdot n \\
-& \quad - (c_{17} + c_{18} + c_{19} + c_{20} + c_{21} + c_{22} + c_{23} + c_{24}) \cdot 1 \nonumber \\
-\label{eq:findlinesegments9}
-T(n)& = n
+\label{eq:findlinesegments-3-1}
+T_{worst}(n)& =
+c_{1}
++ c_{2}
++ c_{3}\bigl(1 + \Theta(1)\bigr)
++ c_{4}5
++ c_{5}5
++ c_{6}\bigl(3 + 2 \cdot \Theta(1)\bigr)
+\\
+& \quad
++ c_{7}(n+1)
++ c_{8}3n
++ c_{9}3n
++ c_{10}3n
++ c_{11}2n
++ c_{13}3n
++ c_{14}3n
+\nonumber \\
+& \quad
++ c_{15}2n
++ c_{17}n
+\nonumber \\
+\label{eq:findlinesegments-3-2}
+T_{worst}(n)& =
+(c_{1} + c_{2} + c_{3} + c_{4}5 + c_{5}5 + c_{6}3 + c_{7})
++ (c_{3} + 2c_{6})\Theta(1)
+\\
+& \quad
++ n(c_{7} + 3c_{8} + 3c_{9} + 3c_{10} + 2c_{11} + 3c_{13} + 3c_{14} + 2c_{15} + c_{17})
+\nonumber
+% \\
+% \label{eq:findlinesegments-3-3}
+% T_{worst}(n)& =
+% 21n + 17 + 3\cdot \Theta(1)
+% \\
+% & = 21n + 20
+% \nonumber \\
+% \label{eq:findlinesegments-3-4}
+% T_{worst}\bigl(\frac{1}{5}(r^2 - 2r)\bigr)& = \frac{21}{5}(r^2 - 2r) + 20
 \end{align}
 \end{subequations}

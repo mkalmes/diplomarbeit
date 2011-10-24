@@ -5,27 +5,24 @@
 		\Require $I_m$
 		\For{$y \gets 0$ \textbf{to} $y < \mathit{imageHeight}$}
 		\label{alg:linedetection-clarke-analyse-loopy-start}
-		\Cost{$c_1$}{$\tfrac{n}{2r} + 1$}
+		\Cost{$c_{1}$}{$(\frac{h}{r} + 1)$}
 			\For{$x \gets 0$ \textbf{to} $x < \mathit{imageWidth}$}
 			\label{alg:linedetection-clarke-analyse-loopx-start}
-			\Cost{$c_2$}{$\sum_{y=0}^{\tfrac{n}{2r}}
-			\left(\tfrac{n}{2r} + 1\right)$}
+			\Cost{$c_{2}$}{$\frac{h}{r}(\frac{w}{r} + 1)$}
 				\State \Call{findEdgels}{$I_m,E,x,y$}
-				\Cost{$c_3$}{$\sum_{y=0}^{\tfrac{n}{2r}} \sum_{x=0}^{\tfrac{n}{2r}}
-				 \Theta\bigl((\tfrac{2 r^2}{5})^2\bigr)$}
+				\Cost{$c_{3}$}{$\frac{hw}{r^2} \cdot \Theta(r^2)$}
 				\State \Call{findLineSegments}{$E,L$}
-				\Cost{$c_4$}{$\sum_{y=0}^{\tfrac{n}{2r}} \sum_{x=0}^{\tfrac{n}{2r}}
-				 \Theta\bigl(\tfrac{1}{25}(r - 2)^2 r^2\bigr)$}
+				\Cost{$c_{4}$}{$\frac{hw}{r^2} \cdot \Theta(mn^2)$}
 				\State \Call{resetMemoryPool}{$E$}
-				\Cost{$c_5$}{$\sum_{y=0}^{\tfrac{n}{2r}} \sum_{x=0}^{\tfrac{n}{2r}} \Theta(1)$}
+				\Cost{$c_{5}$}{$\frac{hw}{r^2} \cdot \Theta(1)$}
 				\State \Call{resetMemoryPool}{$L$}
-				\Cost{$c_6$}{$\sum_{y=0}^{\tfrac{n}{2r}} \sum_{x=0}^{\tfrac{n}{2r}} \Theta(1)$}
+				\Cost{$c_{6}$}{$\frac{hw}{r^2} \cdot \Theta(1)$}
 				\State $ x \gets x + \mathit{r}$
-				\Cost{$c_7$}{$\sum_{y=0}^{\tfrac{n}{2r}} \sum_{x=0}^{\tfrac{n}{2r}} 1$}
+				\Cost{$c_{7}$}{$2\frac{hw}{r^2}$}
 			\EndFor
 			\label{alg:linedetection-clarke-analyse-loopx-end}
 			\State $y \gets y + \mathit{r}$
-			\Cost{$c_8$}{$\sum_{y=0}^{\tfrac{n}{2r}} 1$}
+			\Cost{$c_{9}$}{$2\frac{h}{r}$}
 		\EndFor
 		\label{alg:linedetection-clarke-analyse-loopy-end}
 	\end{algorithmic}

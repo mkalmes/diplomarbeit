@@ -1,12 +1,19 @@
 \begin{subequations}
-\begin{align}
 \label{eq:findlinesegments1}
-T(n)& = (c_{1} + c_{2} + c_{9} + c_{10}) \cdot 1 + c_{3} \cdot n + (c_{4} + c_{5} + c_{6} + c_{7} + c_{8}) \cdot
- \sum_{j=0}^{n-1} 1\\
-\label{eq:findlinesegments2}
-T(n)& = (c_{1} + c_{2} + c_{9} + c_{10}) \cdot 1 + (c_{3} + c_{4} + c_{5} + c_{6} + c_{7} + c_{8}) \cdot n\\
-& \quad - (c_{4} + c_{5} + c_{6} + c_{7} + c_{8}) \cdot 1 \nonumber \\
-\label{eq:findlinesegments3}
-T(n)& = n
+\begin{align}
+\label{eq:findlinesegments1-1}
+T(n)& =
+c_{6}64(2 + \Theta(1))
++ c_{7}64(2 + \Theta(1))
++ c_{8}64(1 + \Theta(1))
++ c_{9}64(1 + \Theta(1))
+\\
+& \quad
++ c_{10}64
++ c_{11}(64 + 1)\bigl(4 + \Theta(1)\bigr)
+\nonumber \\
+\label{eq:findlinesegments1-2}
+T(n)& =
+708 + 321\Theta(1)
 \end{align}
 \end{subequations}

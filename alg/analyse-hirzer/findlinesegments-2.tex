@@ -6,9 +6,13 @@
 \label{alg:findlinesegments2}
 \begin{algorithmic}[1]
 	\State $\mathit{start}, \mathit{end}, \mathit{first}, \mathit{last} \gets \infty$
+	\Cost{$c_{1}$}{$4$}
 	\State $\mathit{maxIteration} \gets 64$
+	\Cost{$c_{2}$}{$1$}
 	\State $\mathit{iterator} \gets 0$
+	\Cost{$c_{3}$}{$1$}
 	\State $\mathit{numberOfEdgels} \gets$ \Call{getEdgelCount}{$E$}
+	\Cost{$c_{4}$}{$1 + \Theta(1)$}
 	\algstore{brk-findlinesegments2-init}
 \end{algorithmic}
 \end{algorithm}

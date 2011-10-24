@@ -1,16 +1,49 @@
 \begin{subequations}
-\label{eq:findlinesegments-remove}
+\label{eq:findlinesegments-5}
 \begin{align}
-\label{eq:findlinesegments12}
-T(n)& = (c_{25} + c_{26} + c_{27} + c_{28} + c_{29} + c_{30} + c_{31} + c_{32} + c_{33} + c_{34} + c_{35}) \cdot 1\\
-& \quad + c_{36} \cdot n + (c_{37} + c_{39}) \cdot \sum_{i = 0}^{n - 1} + c_{38} \cdot \sum_{i = 0}^{n-1} m \nonumber \\
-\label{eq:findlinesegments13}
-T(n)& = (c_{25} + c_{26} + c_{27} + c_{28} + c_{29} + c_{30} + c_{31} + c_{32} + c_{33} + c_{34} + c_{35}) \cdot 1 \\
-& \quad + (c_{36} + c_{37} + c_{39}) \cdot n - (c_{37} + c_{39}) \cdot 1 + c_{38} \cdot (n \cdot m) -  c_{38} \cdot m
- \nonumber \\
-\label{eq:findlinesegments14}
-T(n)& = n + n \cdot m - m\\
-\label{eq:findlinesegments15}
-T(n)& = n \cdot m
+\label{eq:findlinesegments-5-1}
+T_{worst}(n)& =
+c_{33}\bigl(1 + \Theta(1)\bigr)
++ c_{34}\bigl(1 + \Theta(1)\bigr)
++ c_{35}1
++ c_{36}2
++ c_{37}3
++ c_{38}2
+\\
+& \quad
++ c_{40}\bigl(1 + \Theta(1)\bigr)
++ c_{41}\Theta(1)
++ c_{42}2
++ c_{43}\Theta(1)
++ c_{44}1
++ c_{45}(n+1)
+\nonumber \\
+& \quad
++ c_{46}3n
++ c_{47}n \cdot \Theta(n)
++ c_{48}n
+\nonumber \\
+\label{eq:findlinesegments-5-2}
+T_{worst}(n)& =
+(c_{33} + c_{34} + c_{35} + c_{36}2 + c_{37}3 + c_{38}2 + c_{40} + c_{42}2
+\\
+& \quad \quad
+ + c_{44} + c_{45})
+\nonumber \\
+& \quad
++ n(c_{45} + 3c_{46} + c_{48})
+(c_{33} + c_{34} + c_{40} + c_{41} + c_{43}) \cdot \Theta(1)
+\nonumber \\
+& \quad
++ c_{47}n \cdot \Theta(n)
+\nonumber%  \\
+% \label{eq:findlinesegments-5-3}
+% T_{worst}(n)& =
+% n \cdot \Theta(n) + 5n + 15 + 5 \cdot \Theta(1)
+% \\
+% & = n^2 + 5n + 20
+% \nonumber \\
+% \label{eq:findlinesegments-5-4}
+% T_{worst}\bigl(\frac{1}{5}(r^2 - 2r)\bigr)& = \bigl(\frac{1}{5}(r^2 - 2r)\bigr)^2 + 5\bigl(\frac{1}{5}(r^2 - 2r)\bigr) + 20
 \end{align}
 \end{subequations}
