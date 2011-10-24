@@ -31,11 +31,12 @@ Das Verfahren benötigt das RGB-Signal $I$, die Position des \gls{pixel} ($x$, $
  sichergestellt, dass kein \gls{pixel} ausserhalb der Bildgrenzen gelesen werden können. In Zeile
  \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des \gls{pixel} wird in
  Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
- \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeit des
- Verfahrens ist konstant. Da \textproc{getRGBValue}, wie \textproc{getPixel} (\autoref{alg:getpixel}), eine konstante
- Laufzeit hat, ändern sich die Laufzeiten der betroffenen Methoden nicht.
+ \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeitfunktion
+ des Verfahrens ist im schlechtesten Fall $T(n) = 18$. Die Wachstumsrate des Verfahrens ist $18 = \Theta(1)$, für
+ $c_{1} = 17$, $c_{2} = 18$ und $n_{0} = 1$. Da \textproc{getRGBValue}, wie \textproc{getPixel}
+ (\autoref{alg:getpixel}), eine konstante Laufzeit hat, ändern sich die Laufzeiten der betroffenen Methoden nicht.
 
-\clearpage
+% \clearpage
 
 Das Verfahren von \citeauthor{clarke96} (\autoref{sub:linienerkennung_nach_clarke96}) liefert als Ergebnis nur kurze
  Liniensegmente, die zur Erkennung einer Marke ungeeignet sind. Im Verfahren von \citeauthor{hirzer08} werden kurze
