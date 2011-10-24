@@ -12,21 +12,15 @@ Auch bei diesem Verfahren wird ein Array mit festert Größe $N$ und einer Zähl
  anderen Speicherbereichen wird bei \textproc{distance} auf einen Speichervorrat verzichtet. Die Verwaltung eines
  Speichervorrat wird manuell durchgeführt.
 
-% Mit \autoref{alg:distancepool-adddistance}
-% \input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
-%  und \autoref{alg:distancepool-removedistance}
-% \input{alg/analyse-hirzer/datastructure-distancepool-removeline}
-%  können Distanzwerte dem Speicherbereich hinzugefügt und entfernt werden. Die Laufzeit zum hinzufügen ist dabei
-%  konstant. Bei \autoref{alg:distancepool-removedistance} ist im besten Fall der Index $i$ ausserhalb des Bereichs der
-%  gespeicherten Daten (Zeile \ref{alg:distancepool-isvalid-start}--\ref{alg:distancepool-isvalid-end}), und die Laufzeit
-%  somit $T_{best}=\Theta(1)$. Im schlechtesten Fall müssen mit \textproc{memmove} $n-1$ Einträge an Position $0$
-%  verschoben werden. Die Laufzeit beträgt dann
-%  $T_{worst}=\Theta(n)$ (Vgl. \autoref{sub:datenstruktur-edgels}, S. \pageref{sub:datenstruktur-edgels-memmove}).
-
 Mit \autoref{alg:distancepool-adddistance}
 \input{alg/analyse-hirzer/datastructure-distancepool-adddistance}
 können Distanzwerte dem Speicherbereich hinzugefügt werden. Die Laufzeit zum hinzufügen ist dabei konstant und die
  Laufzeitfunktion ist im schlechtesten Fall $T(n) = 12$.
+
+Mit \autoref{alg:distancepool-removedistance}
+\input{alg/analyse-hirzer/datastructure-distancepool-removeline}
+können Distanzwerte aus dem Speicherbereich wieder gelöscht werden. Die Laufzeitfunktion ist im schlechtesten Fall
+ $T(n) = 17$ und somit konstant.
 
 Durch \autoref{alg:distancepool-distancecount}
 \input{alg/analyse-hirzer/datastructure-distancepool-distancecount}

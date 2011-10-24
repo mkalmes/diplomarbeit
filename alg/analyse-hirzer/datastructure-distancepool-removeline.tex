@@ -4,17 +4,24 @@
 \begin{algorithmic}[1]
 	\Require $p,i$
 	\If{$\lnot p$}
+	\Cost{$c_{1}$}{$1$}
 		\State \textbf{return}
+		\Cost{$c_{2}$}{$1$}
 	\EndIf
 	\State $c \gets \mathit{p.count}$
+	\Cost{$c_{4}$}{$2$}
 	\If{$i < 0 \lor i > c$}
+	\Cost{$c_{5}$}{$3$}
 	\label{alg:distancepool-isvalid-start}
 		\State \textbf{return}
+		\Cost{$c_{6}$}{$1$}
 	\EndIf
 	\label{alg:distancepool-isvalid-end}
 	\If{$c > i + 1$}
+	\Cost{$c_{8}$}{$2$}
 		\State \Call{memmove}{$\mathit{p.data}[\mathit{i}], \mathit{p.data}[\mathit{i} + 1], \left(c - \mathit{i}
 		 + 1\right) \cdot \textproc{sizeof}(d)$}
+		\Cost{$c_{9}$}{$8 + \Theta(1)$}
 	\EndIf
 \end{algorithmic}
 \end{algorithm}
