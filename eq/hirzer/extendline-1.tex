@@ -1,0 +1,26 @@
+\begin{subequations}
+\label{eq:extendline-1}
+\begin{align}
+\label{eq:extendline-1-1}
+T_{worst}(\mathit{length})& =
+c_{1}3
++ c_{2}3
++ c_{3}
++ c_{4}(\mathit{length} + 1)
++ c_{5}\mathit{length} \bigl(1 + \Theta(1)\bigr)
+\\
+& \quad
++ c_{6}\mathit{length} \bigl(3 + \Theta(1)\bigr)
++ c_{7}\mathit{length} \bigl(3 + \Theta(1)\bigr)
++ c_{8}5\mathit{length}
+\nonumber \\
+\label{eq:extendline-1-2}
+T_{worst}(\mathit{length})& =
+(c_{1}3 + c_{2}3 + c_{3} + c_{4})
++ \mathit{length}(c_{4} + 5c_{8})
+\\
+& \quad
++ \mathit{length}(c_{5}\bigl(1 + \Theta(1)\bigr) + c_{6}\bigl(3 + \Theta(1)\bigr) + c_{7}\bigl(3 + \Theta(1)\bigr))
+\nonumber
+\end{align}
+\end{subequations}

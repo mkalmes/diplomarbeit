@@ -141,7 +141,11 @@ Desweiteren wird die zu untersuchende Länge der Linie und das Bildsignal $I$ be
  gespeichert. In Zeile \ref{alg:extendline1-threshold} wird überprüft, ob der Gradient kleiner ist als die Hälfte des
  festgelegten Schwellwerts. Dadurch kann festgestellt werden, ob an der Positon $\mathit{start}$ sich tatsächlich ein
  \gls{edgel} befindet. Falls dem nicht so ist, wird in Zeile \ref{alg:extendline1-break} die boolsche Variable
- aktualisiert und die Schleife abgebrochen. Andernfalls wird in Zeile
+ aktualisiert und die Schleife abgebrochen. Die Laufzeitfunktion für den schlechtesten Fall von
+ \autoref{alg:extendline1} ist in \autoref{eq:extendline-1} angegeben. Die Wachstumsrate ist
+ $16\mathit{length} + 8 = \Theta(length)$, für $c_{1} = 15$, $c_{2} = 16$ und $\mathit{length}_{0} = 1$.
+\input{eq/hirzer/extendline-1}
+Wenn die Bedingung in Zeile \ref{alg:extendline1-threshold} nicht erfüllt ist, wird in Zeile
  \ref{alg:extendline2-orientation-start}--\ref{alg:extendline2-orientation-end} (\autoref{alg:extendline2}) die
  Orientierung an der Position von $\mathit{start}$ berechnet und der Winkel zum Gradienten ermittelt.
 \input{alg/analyse-hirzer/extendline-2}
@@ -154,7 +158,12 @@ In Zeile \ref{alg:extendline2-iscompatible} wird überprüft, ob der Winkel sich
  eine Linie nicht zwangsweise gerade sein muss. Falls dieser Vergleich wieder fehlschlägt, wird die boolsche Variable
  in Zeile \ref{alg:extendline2-false} gesetzt und die Schleife abgebrochen. In Zeile
  \ref{alg:extendline2-endofline} wird das Ende der Linie aktualisiert und der Wert der boolschen Variable in Zeile
- \ref{alg:extendline2-return} als Ergebnis zurückgegeben.
+ \ref{alg:extendline2-return} als Ergebnis zurückgegeben. Die Laufzeitfunktion von \autoref{alg:extendline2} ist für
+ den schlechtesten Fall in \autoref{eq:extendline-2} angegeben. Die Wachstumsrate ist
+ $27 \mathit{length} + 3 = \Theta(\mathit{length})$. für $c_{1} = 26$, $c_{2} = 27$ und $n_{0} = 1$.
+\input{eq/hirzer/extendline-2}
+Somit ist die Wachstumsrate für \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2})
+ $\Theta(\mathit{length}) + \Theta(\mathit{length}) = \Theta(\mathit{length})$.
 
 Wie in \autoref{sub:line_detection} bereits erläutert, wird das Zusammenführen von Linien einmal für jede Region und
  einmal auf dem gesamten Bildsignal durchgeführt. Der Ablauf ist in \autoref{alg:linedetection-hirzermerging}
