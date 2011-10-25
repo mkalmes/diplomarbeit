@@ -61,7 +61,12 @@ In Zeile \ref{alg:mergelines2-ignore-start}--\ref{alg:mergelines2-ignore-end} we
  Position ignoriert und die Schleife mit einem neuen Lauf wiederholt. Danach wird in Zeile \ref{alg:mergelines2-j} ein
  Liniensegment an Position $j$ ausgewählt. In Zeile
  \ref{alg:mergelines2-orientation-start}--\ref{alg:mergelines2-orientation-end} wird die Orientierung der beiden
- Liniensegmente und die Orientierung der Verbindungslinie berechnet. In Zeile
+ Liniensegmente und die Orientierung der Verbindungslinie berechnet. Die Laufzeitfunktion von \autoref{alg:mergelines2}
+ ist in \autoref{eq:mergelines-j} angegeben. Die Wachstumsrate von $18l + 1 = \Theta(l)$, für $c_{1} = 17$,
+ $c_{2} = 18$ und $l_{0} = 1$.
+\input{eq/hirzer/mergelines-j-1}
+
+In Zeile
  \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
  die sowohl für die Lininesegmente, als auch für die Verbindungsline, nur geringfügig abweichen darf.
 \input{alg/analyse-hirzer/mergelines-3}
