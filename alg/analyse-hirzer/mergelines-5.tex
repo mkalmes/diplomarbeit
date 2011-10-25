@@ -3,7 +3,9 @@
 \label{alg:mergelines5}
 \begin{algorithmic}[1]
 	\algrestore{mergelines4}
-	\If{\Call{extendLine}{$\mathit{startpoint},\mathit{lineSlope},\mathit{start.end.slope},\mathit{endpoint},\mathit{length},I$}}
+	\If{\Call{extendLine}{$\mathit{startpoint},\mathit{lineSlope},\mathit{start.end.slope},\mathit{endpoint},
+	\mathit{length},I$}}
+	\Cost{$c_{11}$}{$l \cdot \Theta(\mathit{length})$}
 	\label{alg:mergelines5-extendline}
 		\State $\mathit{pool.data}[i]\mathit{.end} \gets \mathit{pool.data}[j]\mathit{.end}$
 		\Cost{$c_{12}$}{$6l$}

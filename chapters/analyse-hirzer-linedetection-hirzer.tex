@@ -77,6 +77,8 @@ Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cli
  angegeben. Die Wachstumsrate von \autoref{alg:mergelines3} ist
  $(l \cdot \mathit{length}) + 27l = \Theta(l \cdot \mathit{length})$.
 \input{eq/hirzer/mergelines-j-2}
+Die Wachstumsrate der Funktion, um zwei kompatible Liniensegmente zu finden (\autoref{alg:mergelines2} und
+ \autoref{alg:mergelines3}), beträgt $\Theta(l \cdot \mathit{length}) + \Theta(l) = \Theta(l \cdot \mathit{length})$.
 
 \textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungsline $\mathit{connectionLine}$ und das
  Bildsignal $I$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
@@ -100,7 +102,7 @@ Nachdem in \autoref{alg:mergelines2}--\autoref{alg:mergelines3} kompatible Linie
 \input{alg/analyse-hirzer/mergelines-4}
 In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden die Liniensegmente anhand ihrers
  Abstands aufsteigend sortiert. Dazu wird die Funktion \textproc{qsort} verwendet, die eine Wachstumsrate von
- $\Theta(l \log l)$ hat\footcite{qsort}. Die Funktion \textproc{distanceCompare} wird von \textproc{qsort} zum
+ $O(l \log l)$ hat\footcite{qsort}. Die Funktion \textproc{distanceCompare} wird von \textproc{qsort} zum
  sortieren verwendent (Vgl. \autoref{alg:distancecompare}).
 \input{alg/analyse-hirzer/datastructure-distancecompare}
 \textproc{distanceCompare} benötigt zwei Distanzwerte $a$ und $b$ deren Länge subtrahiert und als Ergebnis zurückgegebn
@@ -108,14 +110,20 @@ In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden
  \autoref{alg:mergelines5} werden die Liniensegmente vorbereitet. Dazu wird aus dem sortiereten Speicherblock
  $\mathit{distancepool}$ der Index des Liniensegments ausgelesen und gespeichert. Die Start- und Endedgel, sowie die
  Länge der Linie und ihre Orientierung werden berechnet
- (Zeile \ref{alg:mergelines4-merge-start}--\ref{alg:mergelines4-merge-end}).
-\input{alg/analyse-hirzer/mergelines-5}
+ (Zeile \ref{alg:mergelines4-merge-start}--\ref{alg:mergelines4-merge-end}). Die Laufzeitfunktion von
+ \autoref{alg:mergelines2} ist für den schlechtesten Fall in \autoref{eq:mergelines-merge-1} aufgeführt. Die
+ Wachstumsrate ist $20l + O(l \log l) + 4 = O(l \log l)$.
+\input{eq/hirzer/mergelines-merge-1}
 In Zeile \ref{alg:mergelines5-extendline} wird mit der Methode \textproc{extendLine} überprüft, ob sich die Linie
- erweitern lässt (Vgl. \autoref{alg:extendline1}). Falls dem so ist, wird in Zeile
- \ref{alg:mergelines5-merge-start}--\ref{alg:mergelines5-merge-end} der Linie an Position $i$ der neue Endpunkt der
- Linie an Position $j$ zugewiesen. Danach wird die Orientierung der Linie berechnet und das Liniensegment an Position
- $j$ zum löschen markiert. Wenn sich eine Linie nicht durch \textproc{extendLine} erweitern lässt, wird die Schleife
- abgebrochen.
+ erweitern lässt (Vgl. \autoref{alg:extendline1}).
+\input{alg/analyse-hirzer/mergelines-5}
+Falls dem so ist, wird in Zeile \ref{alg:mergelines5-merge-start}--\ref{alg:mergelines5-merge-end} der Linie an
+ Position $i$ der neue Endpunkt der Linie an Position $j$ zugewiesen. Danach wird die Orientierung der Linie berechnet
+ und das Liniensegment an Position $j$ zum löschen markiert. Wenn sich eine Linie nicht durch \textproc{extendLine}
+ erweitern lässt, wird die Schleife abgebrochen. Die Laufzeitfunktion von \autoref{alg:mergelines5} ist für den
+ schlechtesten Fall in \autoref{eq:mergelines-merge-2} angegeben. Die Wachstumsrate beträgt
+ $l \cdot \Theta(\mathit{lentgth}) + 26l = \Theta(l\cdot\mathit{lentgth})$.
+\input{eq/hirzer/mergelines-merge-2}
 
 Mit \autoref{alg:mergelines6} werden die markierten Liniensegmente gelöscht. Dazu wird der Speicherblock $L$
  vollständig durchlaufen (Zeile \ref{alg:mergelines6-del-start}--\ref{alg:mergelines6-del-end}).
@@ -126,7 +134,8 @@ Wenn die Überprüfung in Zeile \ref{alg:mergelines6-shouldremove} ein markierte
  somit Liniensegmente verschmolzen wurden, wird die Variable $i$ auf den Wert $-1$ gesetzt
  (Zeile \ref{alg:mergelines6-wasmerged-start}--\ref{alg:mergelines6-wasmerged-end}). Dies hat zur Folge, dass das
  Verfahren \textproc{mergeLines} in Zeile \ref{alg:mergelines1-loop-start} von \autoref{alg:mergelines1} wieder bei $0$
- beginnt und alle verbundenen Linien mit den restlichen Liniensegmenten verglichen werden.
+ beginnt und alle verbundenen Linien mit den restlichen Liniensegmenten verglichen werden. Die Laufzeitfunktion ist für den schlechtesten Fall in \autoref{eq:mergelines-delete} angegeben. Die Wachstumsrate des Verfahrens ist $9l + 4 = \Theta(l)$, für $c_{1} = 8$, $c_{2} = 9$, $l_{0} = 1$.
+\input{eq/hirzer/mergelines-delete}
 
 \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2}) vergleicht jeden Punkt zwischen Start und
  Endpunkt auf Kompatibilität der Orientierung und benötigt dazu den Start- und Endpunkt der Linie, ihre Richtung
