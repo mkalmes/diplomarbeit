@@ -189,8 +189,12 @@ Somit ist die Wachstumsrate für \textproc{extendLine} (\autoref{alg:extendline1
 Wie in \autoref{sub:line_detection} bereits erläutert, wird das Zusammenführen von Linien einmal für jede Region und
  einmal auf dem gesamten Bildsignal durchgeführt. Der Ablauf ist in \autoref{alg:linedetection-hirzermerging}
  dargestellt.
-
 \input{alg/analyse-hirzer/linedetection-hirzer-merging}
-
 In Zeile \ref{alg:linedetection-hirzermerging-mergeregion} werden Liniensegmente für die aktuelle Region
- zusammengeführt. Danach wird in Zeile \ref{alg:linedetection-hirzermerging-mergeall} alle Linien und Liniensegemente zusammengeführt.
+ zusammengeführt. Danach wird in Zeile \ref{alg:linedetection-hirzermerging-mergeall} alle Linien und Liniensegemente
+ zusammengeführt. Die Laufzeitfunktion von \autoref{alg:linedetection-hirzermerging} ist in
+ \autoref{eq:linedetection-hirzer-merging} aufgeführt.
+\input{eq/hirzer/linedetection-hirzer-merging}
+Durch Substitution von $r = 40$ in \autoref{eq:linedetection-hirzer-merging-3}, kann die Laufzeitfunktion vereinfacht
+ werden. Die Wachstumsrate von \autoref{eq:linedetection-hirzer-merging-4} ist
+$hwl^2\mathit{length} + hwmn^2 + l^2\cdot\mathit{length} + hw + h = \Theta(hwl^2\mathit{length} + hwmn^2)$.
