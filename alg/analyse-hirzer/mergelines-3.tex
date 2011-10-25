@@ -4,14 +4,20 @@
 \begin{algorithmic}[1]
 	\algrestore{brk-mergelines2}
 		\If{$\mathit{lineOrientation} > 0.99 \land \mathit{connectionOrientation} > 0.99$}
+		\Cost{$c_{10}$}{$3l$}
 		\label{alg:mergelines3-isorientationcompatible}
 			\State $\mathit{cLine} \gets \infty$
+			\Cost{$c_{11}$}{$l$}
 			\label{alg:mergelines3-cline-start}
 			\State $\mathit{cLine.start} \gets \mathit{start.end}$
+			\Cost{$c_{12}$}{$2l$}
 			\State $\mathit{cLine.end} \gets \mathit{tmp.start}$
+			\Cost{$c_{13}$}{$3l$}
 			\State $\mathit{cLine.slope} \gets \mathit{start.slope}$
+			\Cost{$c_{14}$}{$3l$}
 			\label{alg:mergelines3-cline-end}
 			\If{$\lnot$ \Call{isConnectionLineBridged}{$cLine, I$}}
+			\Cost{$c_{15}$}{$l \cdot \Theta(\mathit{length})$}
 			\label{alg:mergelines3-isbridged}
 				\State $\mathit{connectionLine} \gets$ \textproc{vectorSubtract}
 				$\left(
@@ -19,16 +25,23 @@
 					& \mathit{tmp.start.coordinate},\\
 					& \mathit{start.end.coordinate}
 				\end{aligned}\right)$
+				\Cost{$c_{16}$}{$\bigl(5 + \Theta(1)\bigr)l$}
 				\label{alg:mergelines3-save-start}
 				\State $\mathit{squaredLength} \gets$ \Call{squaredLengt}{$\mathit{connectionLine}$}
+				\Cost{$c_{17}$}{$\bigl(1 + \Theta(1)\bigr)l$}
 				\State $\mathit{distance} \gets \infty$
+				\Cost{$c_{18}$}{$l$}
 				\State $\mathit{distance.distance} \gets \mathit{squaredLength}$
+				\Cost{$c_{19}$}{$2l$}
 				\State $\mathit{distance.index} \gets j$
+				\Cost{$c_{20}$}{$2l$}
 				\State \Call{addDistance}{$\mathit{distancepool}, \mathit{distance}$}
+				\Cost{$c_{21}$}{$\Theta(1) \cdot l$}
 				\label{alg:mergelines3-save-end}
 			\EndIf
 		\EndIf
 		\State $j \gets j + 1$
+		\Cost{$c_{24}$}{$l$}
 	\EndFor
 	\label{alg:mergelines3-loop-end}
 \end{algorithmic}

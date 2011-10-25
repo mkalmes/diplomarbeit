@@ -1,0 +1,35 @@
+\begin{subequations}
+\label{eq:connectionlinebridged}
+\begin{align}
+\label{eq:connectionlinebridged-1}
+T_{worst}(\mathit{length})& =
+c_{1}5
++ c_{2}\bigl(1 + \Theta(1)\bigr)
++ c_{3}\bigl(3 + \Theta(1)\bigr)
++ c_{4}(\mathit{length} + 1)
+\\
+& \quad
++ c_{5}\mathit{length}\bigl(2 + \Theta(1)\bigr)
++ c_{6}\mathit{length}
++ c_{7}\mathit{length}\bigl(4 + \Theta(1)\bigr)
+\nonumber \\
+& \quad
++ c_{8}\mathit{length}\bigl(2 + \Theta(1)\bigr)
++ c_{9}\mathit{length}
++ c_{11}\mathit{length}
++ c_{12}\mathit{length}
++ c_{14}
+\nonumber \\
+\label{eq:connectionlinebridged-2}
+T_{worst}(\mathit{length})& =
+(c_{1}5 + c_{4} + c_{14})
++ (c_{2}\bigl(1 + \Theta(1)\bigr) + c_{3}\bigl(3 + \Theta(1)\bigr))
+\\
+& \quad
++ \mathit{length}(c_{4} + c_{6} + c_{9} + c_{11} + c_{12})
+\nonumber \\
+& \quad
++ \mathit{length}(c_{5}\bigl(2 + \Theta(1)\bigr) + c_{7}\bigl(4 + \Theta(1)\bigr) + c_{8}\bigl(2 + \Theta(1)\bigr))
+\nonumber
+\end{align}
+\end{subequations}

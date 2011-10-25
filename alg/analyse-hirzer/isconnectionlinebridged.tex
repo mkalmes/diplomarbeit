@@ -9,29 +9,40 @@
 		& \mathit{connectionLine.end.coordinate},\\
 		& \mathit{connectionLine.start.coordinate}
 	\end{aligned}\right)$
+	\Cost{$c_{1}$}{$5$}
 	\label{alg:isconnectionlinebridged-length-start}
 	\State $\mathit{length} \gets$ \Call{length}{$\mathit{lineLength}$}
+	\Cost{$c_{2}$}{$1 + \Theta(1)$}
 	\State $\mathit{point} \gets \mathit{connectionLine.start.coordinate}$
+	\Cost{$c_{3}$}{$3 + \Theta(1)$}
 	\label{alg:isconnectionlinebridged-length-end}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{length}$}
+	\Cost{$c_{4}$}{$(\mathit{length} + 1)$}
 	\label{alg:isconnectionlinebridged-loop-start}
 		\State $\mathit{point} \gets$ \Call{vectorAdd}{$\mathit{point},\mathit{connectionLine.slope}$}
+		\Cost{$c_{5}$}{$\bigl(2 + \Theta(1)\bigr)\mathit{length}$}
 		\State $\mathit{orientationEdgel} \gets \infty$
-		\State $\mathit{orientationEdgel.slope} \gets$ \Call{gradientIntensity}
+		\Cost{$c_{6}$}{$\mathit{length}$}
+		\State $\mathit{orientationEdgel.slope} \gets$ \textproc{gradientIntensity}
 		$\left(
 		\begin{aligned}
 			& I,\mathit{imageWidth},\\
 			& \mathit{imageHeight},\\
 			& \mathit{point.x}, \mathit{point.y}
 		\end{aligned}\right)$
+		\Cost{$c_{7}$}{$\bigl(4 + \Theta(1)\bigr)\mathit{length}$}
 		\label{alg:isconnectionlinebridged-gradient}
 		\If{\Call{isCompatible}{$\mathit{orientationEdgel},\mathit{connectionLine.start}$}}
+		\Cost{$c_{8}$}{$\bigl(2 + \Theta(1)\bigr)\mathit{length}$}
 		\label{alg:isconnectionlinebridged-iscompatible}
 			\State \textbf{continue}
+			\Cost{$c_{9}$}{$\mathit{length}$}
 		\EndIf
 		\State \textbf{return true}
+		\Cost{$c_{11}$}{$\mathit{length}$}
 		\label{alg:isconnectionlinebridged-bridged}
 		\State $i \gets i + 1$
+		\Cost{$c_{12}$}{$\mathit{length}$}
 	\EndFor
 	\label{alg:isconnectionlinebridged-loop-end}
 	\State \textbf{return false}

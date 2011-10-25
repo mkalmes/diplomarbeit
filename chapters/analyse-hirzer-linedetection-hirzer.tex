@@ -65,9 +65,7 @@ In Zeile \ref{alg:mergelines2-ignore-start}--\ref{alg:mergelines2-ignore-end} we
  ist in \autoref{eq:mergelines-j} angegeben. Die Wachstumsrate von $18l + 1 = \Theta(l)$, für $c_{1} = 17$,
  $c_{2} = 18$ und $l_{0} = 1$.
 \input{eq/hirzer/mergelines-j-1}
-
-In Zeile
- \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
+In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
  die sowohl für die Lininesegmente, als auch für die Verbindungsline, nur geringfügig abweichen darf.
 \input{alg/analyse-hirzer/mergelines-3}
 Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cline-start}--\ref{alg:mergelines3-cline-end}
@@ -75,7 +73,10 @@ Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cli
  Orientierung der Verbindungslinie Punkt für Punkt untersucht (Vgl. \autoref{sub:line_detection}). Wenn der Gradient
  der Verbindungslinie sich nicht verändert hat, wird in Zeile
  \ref{alg:mergelines3-save-start}--\ref{alg:mergelines3-save-end} die Länge zum Quadrat und die Position der
- Verbindungsline in \textproc{distancepool} gespeichert.
+ Verbindungsline in \textproc{distancepool} gespeichert. Die Laufzeitfunktion ist in \autoref{eq:mergelines-j-2}
+ angegeben. Die Wachstumsrate von \autoref{alg:mergelines3} ist
+ $(l \cdot \mathit{length}) + 27l = \Theta(l \cdot \mathit{length})$.
+\input{eq/hirzer/mergelines-j-2}
 
 \textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungsline $\mathit{connectionLine}$ und das
  Bildsignal $I$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
@@ -89,7 +90,10 @@ In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionli
  nicht kompatibel sind, wird in Zeile \ref{alg:isconnectionlinebridged-bridged} das Verfahren abgebrochen. Wenn jeder
  Punkt auf der Verbindungslinie kompatibel zur Verbindungslinie ist, wird die Schleife in Zeile
  \ref{alg:isconnectionlinebridged-loop-start}--\ref{alg:isconnectionlinebridged-loop-end} vollständig durchlaufen und
- das Verfahren in Zeile \ref{alg:isconnectionlinebridged-notbridged} beendet.
+ das Verfahren in Zeile \ref{alg:isconnectionlinebridged-notbridged} beendet. Die Laufzeitfunktion ist in
+ \autoref{eq:connectionlinebridged} aufgeführt. Die Wachstumsrate entspricht
+ $16\mathit{length} + 13 = \Theta(\mathit{length})$, für $c_{1} = 15$, $c_{2} = 16$ und $\mathit{length}_{0} = 1$.
+\input{eq/hirzer/connectionlinebridged}
 
 Nachdem in \autoref{alg:mergelines2}--\autoref{alg:mergelines3} kompatible Liniensegmente ermittelt wurden, kann mit
  \autoref{alg:mergelines4} und \autoref{alg:mergelines5} die Liniensegmente verbunden werden.
