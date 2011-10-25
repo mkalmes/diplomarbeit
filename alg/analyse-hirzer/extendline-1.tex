@@ -4,22 +4,34 @@
 \begin{algorithmic}[1]
 	\Require $\mathit{start}, \mathit{slope}, \mathit{gradient}, \mathit{end}, \mathit{maxLength}, I$
 	\State $\mathit{normal.x} \gets \mathit{slope.y}$
+	\Cost{$c_{1}$}{$3$}
 	\label{alg:extendline1-ortho-start}
 	\State $\mathit{normal.y} \gets - \mathit{slope.x}$
+	\Cost{$c_{2}$}{$3$}
 	\label{alg:extendline1-ortho-end}
 	\State $\mathit{merge} \gets$ \textbf{true}
+	\Cost{$c_{3}$}{$1$}
 	\label{alg:extendline1-boolean}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{maxLength}$}
+	\Cost{$c_{4}$}{$(\mathit{length} + 1)$}
 	\label{alg:extendline1-loop-start}
 		\State $\mathit{start} \gets$ \Call{vectorAdd}{$\mathit{start},\mathit{slope}$}
+		\Cost{$c_{5}$}{$\mathit{length} \bigl(1 + \Theta(1)\bigr)$}
 		\label{alg:extendline1-next}
-		\State $x \gets$ \Call{convoluteKernelX}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},\mathit{imageWidth},\mathit{imageHeight}$}
-		\State $y \gets$ \Call{convoluteKernelY}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},\mathit{imageWidth},\mathit{imageHeight}$}
+		\State $x \gets$ \Call{convoluteKernelX}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},
+		\mathit{imageWidth},\mathit{imageHeight}$}
+		\Cost{$c_{6}$}{$\mathit{length} \bigl(3 + \Theta(1)\bigr)$}
+		\State $y \gets$ \Call{convoluteKernelY}{$I,\mathit{start.x},\mathit{start.y},\mathit{green},
+		\mathit{imageWidth},\mathit{imageHeight}$}
+		\Cost{$c_{7}$}{$\mathit{length} \bigl(3 + \Theta(1)\bigr)$}
 		\If{$x < \mathit{threshold}/2 \land y < \mathit{threshold}/2$}
+		\Cost{$c_{8}$}{$5\mathit{length}$}
 		\label{alg:extendline1-threshold}
 			\State $\mathit{merge} \gets$ \textbf{false}
+			\Cost{$c_{9}$}{$\mathit{length}$}
 			\label{alg:extendline1-break}
 			\State \textbf{break}
+			\Cost{$c_{10}$}{$\mathit{length}$}
 		\EndIf
 		\algstore{alg:extendline1-first}
 \end{algorithmic}

@@ -3,13 +3,18 @@
 \label{alg:extendline2}
 \begin{algorithmic}[1]
 	\algrestore{alg:extendline1-first}
-	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight}, \mathit{start.x}, \mathit{start.y}$}
+	\State $\mathit{intensity} \gets$ \Call{gradientIntensity}{$I, \mathit{imageWidth}, \mathit{imageHeight},
+	 \mathit{start.x}, \mathit{start.y}$}
+	\Cost{$c_{12}$}{$\mathit{length} \bigl(3 + \Theta(1)\bigr)$}
 	\label{alg:extendline2-orientation-start}
 	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
+	\Cost{$c_{13}$}{$\mathit{length} \bigl(1 + \Theta(1)\bigr)$}
 	\label{alg:extendline2-orientation-end}
 	\If{$\mathit{tmp} > 0.38$}
+	\Cost{$c_{14}$}{$\mathit{length}$}
 	\label{alg:extendline2-iscompatible}
 		\State \textbf{continue}
+		\Cost{$c_{15}$}{$\mathit{length}$}
 	\EndIf
 	\State $\mathit{intensity} \gets$ \textproc{gradientIntensity}
 	$\left(
@@ -18,10 +23,14 @@
 		& \mathit{start.x} + \mathit{normal.x},\\
 		& \mathit{start.y} + normal.y
 	\end{aligned}\right)$
+	\Cost{$c_{17}$}{$\mathit{length} \bigl(7 + \Theta(1)\bigr)$}
 	\label{alg:extendline2-pointabove}
 	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
+	\Cost{$c_{18}$}{$\mathit{length} \bigl(1 + \Theta(1)\bigr)$}
 	\If{$\mathit{tmp} > 0.38$}
+	\Cost{$c_{19}$}{$\mathit{length}$}
 		\State \textbf{continue}
+		\Cost{$c_{20}$}{$\mathit{length}$}
 	\EndIf
 	\State $\mathit{intensity} \gets$ \textproc{gradientIntensity}
 	$\left(
@@ -30,20 +39,29 @@
 		& \mathit{start.x} - \mathit{normal.x},\\
 		& \mathit{start.y} - normal.y
 	\end{aligned}\right)$
+	\Cost{$c_{22}$}{$\mathit{length} \bigl(3 + \Theta(1)\bigr)$}
 	\label{alg:extendline2-pointbelow}
 	\State $\mathit{tmp} \gets$ \Call{dotProduct}{$\mathit{intensity},\mathit{gradient}$}
+	\Cost{$c_{23}$}{$\mathit{length} \bigl(1 + \Theta(1)\bigr)$}
 	\If{$\mathit{tmp} > 0.38$}
+	\Cost{$c_{24}$}{$\mathit{length}$}
 		\State \textbf{continue}
+		\Cost{$c_{25}$}{$\mathit{length}$}
 	\EndIf
 	\State $\mathit{merge} \gets$ \textbf{false}
+	\Cost{$c_{27}$}{$\mathit{length}$}
 	\label{alg:extendline2-false}
 	\State \textbf{break}
+	\Cost{$c_{28}$}{$\mathit{length}$}
 	\State $i \gets i + 1$
+	\Cost{$c_{29}$}{$\mathit{length}$}
 	\EndFor
 	\label{alg:extendline2-loop-end}
 	\State $\mathit{end} \gets$ \Call{vectorSubtract}{$\mathit{start},\mathit{slope}$}
+	\Cost{$c_{31}$}{$1 + \Theta(1)$}
 	\label{alg:extendline2-endofline}
 	\State \textbf{return} $\mathit{merge}$
+	\Cost{$c_{32}$}{$1$}
 	\label{alg:extendline2-return}
 \end{algorithmic}
 \end{algorithm}

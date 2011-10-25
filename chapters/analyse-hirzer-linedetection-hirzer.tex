@@ -62,7 +62,7 @@ In Zeile \ref{alg:mergelines2-ignore-start}--\ref{alg:mergelines2-ignore-end} we
  Liniensegment an Position $j$ ausgewählt. In Zeile
  \ref{alg:mergelines2-orientation-start}--\ref{alg:mergelines2-orientation-end} wird die Orientierung der beiden
  Liniensegmente und die Orientierung der Verbindungslinie berechnet. Die Laufzeitfunktion von \autoref{alg:mergelines2}
- ist in \autoref{eq:mergelines-j} angegeben. Die Wachstumsrate von $18l + 1 = \Theta(l)$, für $c_{1} = 17$,
+ ist in \autoref{eq:mergelines-j-1} angegeben. Die Wachstumsrate von $18l + 1 = \Theta(l)$, für $c_{1} = 17$,
  $c_{2} = 18$ und $l_{0} = 1$.
 \input{eq/hirzer/mergelines-j-1}
 In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
@@ -99,8 +99,9 @@ Nachdem in \autoref{alg:mergelines2}--\autoref{alg:mergelines3} kompatible Linie
  \autoref{alg:mergelines4} und \autoref{alg:mergelines5} die Liniensegmente verbunden werden.
 \input{alg/analyse-hirzer/mergelines-4}
 In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden die Liniensegmente anhand ihrers
- Abstands aufsteigend sortiert. Dazu wird die Funktion \textproc{qsort} verwendet\footcite{qsort}. Die Funktion
- \textproc{distanceCompare} wird von \textproc{qsort} zum sortieren verwendent (Vgl. \autoref{alg:distancecompare}).
+ Abstands aufsteigend sortiert. Dazu wird die Funktion \textproc{qsort} verwendet, die eine Wachstumsrate von
+ $\Theta(l \log l)$ hat\footcite{qsort}. Die Funktion \textproc{distanceCompare} wird von \textproc{qsort} zum
+ sortieren verwendent (Vgl. \autoref{alg:distancecompare}).
 \input{alg/analyse-hirzer/datastructure-distancecompare}
 \textproc{distanceCompare} benötigt zwei Distanzwerte $a$ und $b$ deren Länge subtrahiert und als Ergebnis zurückgegebn
  wird. In Zeile \ref{alg:mergelines4-loop-start}--\ref{alg:mergelines5-loop-end} von \autoref{alg:mergelines4} und
@@ -117,8 +118,9 @@ In Zeile \ref{alg:mergelines5-extendline} wird mit der Methode \textproc{extendL
  abgebrochen.
 
 Mit \autoref{alg:mergelines6} werden die markierten Liniensegmente gelöscht. Dazu wird der Speicherblock $L$
- vollständig durchlaufen (Zeile \ref{alg:mergelines6-del-start}--\ref{alg:mergelines6-del-end}). Wenn die Überprüfung
- in Zeile \ref{alg:mergelines6-shouldremove} ein markiertes Lininesegment findet, wird es in Zeile
+ vollständig durchlaufen (Zeile \ref{alg:mergelines6-del-start}--\ref{alg:mergelines6-del-end}).
+\input{alg/analyse-hirzer/mergelines-6}
+Wenn die Überprüfung in Zeile \ref{alg:mergelines6-shouldremove} ein markiertes Lininesegment findet, wird es in Zeile
  \ref{alg:mergelines6-remove} entfernt und die Laufvariable dekrementiert. Zusätzlich wird in Zeile
  \ref{alg:mergelines6-merged} die boolsche Variable gesetzt. Wenn die Variable $\mathit{merged}$ gesetzt wurde, und
  somit Liniensegmente verschmolzen wurden, wird die Variable $i$ auf den Wert $-1$ gesetzt
@@ -126,21 +128,15 @@ Mit \autoref{alg:mergelines6} werden die markierten Liniensegmente gelöscht. Da
  Verfahren \textproc{mergeLines} in Zeile \ref{alg:mergelines1-loop-start} von \autoref{alg:mergelines1} wieder bei $0$
  beginnt und alle verbundenen Linien mit den restlichen Liniensegmenten verglichen werden.
 
-\input{alg/analyse-hirzer/mergelines-6}
-
 \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2}) vergleicht jeden Punkt zwischen Start und
  Endpunkt auf Kompatibilität der Orientierung und benötigt dazu den Start- und Endpunkt der Linie, ihre Richtung
- $\mathit{slope}$ und die Orientierung. Desweiteren wird die zu untersuchende Länge der Linie und das Bildsignal $I$
- benötigt.
-
+ $\mathit{slope}$ und die Orientierung.
 \input{alg/analyse-hirzer/extendline-1}
-
-In Zeile \ref{alg:extendline1-ortho-start}--\ref{alg:extendline1-ortho-end} wird die Orthogonale der Richtung berechnet
- und gespeichert. Die boolsche Variable wird in Zeile \ref{alg:extendline1-boolean} initialisiert. In der Schleife in
- Zeile \ref{alg:extendline1-loop-start}--\ref{alg:extendline2-loop-end} wird die Länge der Linie Punkt für Punkt
- untersucht.
-
-Die Addition von $\mathit{start}$ und $\mathit{slope}$ rückt die Position der Linie um einen Punkt weiter (Zeile
+Desweiteren wird die zu untersuchende Länge der Linie und das Bildsignal $I$ benötigt. In Zeile
+ \ref{alg:extendline1-ortho-start}--\ref{alg:extendline1-ortho-end} wird die Orthogonale der Richtung berechnet und
+ gespeichert. Die boolsche Variable wird in Zeile \ref{alg:extendline1-boolean} initialisiert. In der Schleife in Zeile
+ \ref{alg:extendline1-loop-start}--\ref{alg:extendline2-loop-end} wird die Länge der Linie Punkt für Punkt untersucht.
+ Die Addition von $\mathit{start}$ und $\mathit{slope}$ rückt die Position der Linie um einen Punkt weiter (Zeile
  \ref{alg:extendline1-next}). Die Faltung für die vertikale und horizontale Richtung wird in den Variablen $x$ und $y$
  gespeichert. In Zeile \ref{alg:extendline1-threshold} wird überprüft, ob der Gradient kleiner ist als die Hälfte des
  festgelegten Schwellwerts. Dadurch kann festgestellt werden, ob an der Positon $\mathit{start}$ sich tatsächlich ein
@@ -148,9 +144,7 @@ Die Addition von $\mathit{start}$ und $\mathit{slope}$ rückt die Position der L
  aktualisiert und die Schleife abgebrochen. Andernfalls wird in Zeile
  \ref{alg:extendline2-orientation-start}--\ref{alg:extendline2-orientation-end} (\autoref{alg:extendline2}) die
  Orientierung an der Position von $\mathit{start}$ berechnet und der Winkel zum Gradienten ermittelt.
-
 \input{alg/analyse-hirzer/extendline-2}
-
 In Zeile \ref{alg:extendline2-iscompatible} wird überprüft, ob der Winkel sich innerhalb des festgelegten Grenzwertes
  befinden. Falls dem so ist, wird ein neuer Schleifendurchlauf ausgeführt. Doch falls der Winkel nicht dem vorgegeben
  Grenzwert entspricht, wird der Gradient in Zeile \ref{alg:extendline2-pointabove} an der Position untersucht, die

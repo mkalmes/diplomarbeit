@@ -6,6 +6,7 @@
 	\If{\Call{extendLine}{$\mathit{startpoint},\mathit{lineSlope},\mathit{start.end.slope},\mathit{endpoint},\mathit{length},I$}}
 	\label{alg:mergelines5-extendline}
 		\State $\mathit{pool.data}[i]\mathit{.end} \gets \mathit{pool.data}[j]\mathit{.end}$
+		\Cost{$c_{12}$}{$6l$}
 		\label{alg:mergelines5-merge-start}
 		\State $\mathit{newLineSlope} \gets$ \textproc{vectorSubtract}
 		$\left(
@@ -13,14 +14,20 @@
 			& \mathit{pool.data}[i]\mathit{.end.coordinate},\\
 			& \mathit{pool.data}[i]\mathit{.start.coordinate}
 		\end{aligned}\right)$
+		\Cost{$c_{13}$}{$l\bigl(9 + \Theta(1)\bigr)$}
 		\State $\mathit{newLineSlope} \gets$ \Call{normalized}{$\mathit{newLineSlope}$}
+		\Cost{$c_{14}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 		\State $\mathit{pool.data}[i]\mathit{.slope} \gets \mathit{newLineSlope}$
+		\Cost{$c_{15}$}{$4l$}
 		\State $\mathit{pool.data}[j]\mathit{.remove} \gets$ \textbf{true}
+		\Cost{$c_{16}$}{$3l$}
 		\label{alg:mergelines5-merge-end}
 	\Else
 		\State \textbf{break}
+		\Cost{$c_{18}$}{$l$}
 	\EndIf
 	\State $k \gets k + 1$
+	\Cost{$c_{20}$}{$l$}
 	\EndFor
 	\label{alg:mergelines5-loop-end}
 	\algstore{brk-mergelines5}

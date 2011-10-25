@@ -3,19 +3,29 @@
 \label{alg:mergelines4}
 \begin{algorithmic}[1]
 	\State $\mathit{numberOfDistances} \gets$ \Call{getDistanceCount}{$\mathit{distancepool}$}
+	\Cost{$c_{1}$}{$2+\Theta(1)$}
 	\label{alg:mergelines4-sort-start}
 	\State \Call{qsort}{$\mathit{distancepool}, \mathit{numberOfDistances}, \mathit{size},$ \textproc{distanceCompare}}
+	\Cost{$c_{2}$}{$\Theta(l \log l)$}
 	\label{alg:mergelines4-sort-end}
 		\For{$k \gets 0$ \textbf{to} $k < \mathit{numberOfDistances}$}
+		\Cost{$c_{3}$}{$(l + 1)$}
 		\label{alg:mergelines4-loop-start}
 			\State $j \gets \mathit{distancepool.data}[k]\mathit{.index}$
+			\Cost{$c_{4}$}{$4l$}
 			\label{alg:mergelines4-merge-start}
 			\State $\mathit{startpoint} \gets \mathit{start.end.coordinate}$
+			\Cost{$c_{5}$}{$3l$}
 			\State $\mathit{endpoint} \gets$ \Call{getLineSegment}{$L,j$}$\mathit{.start.coordinate}$
+			\Cost{$c_{6}$}{$l\bigl(3 + \Theta(1)\bigr)$}
 			\State $\mathit{lineLength} \gets$ \Call{vectorSubtract}{$\mathit{endpoint},\mathit{startpoint}$}
+			\Cost{$c_{7}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 			\State $\mathit{lineSlope} \gets$ \Call{vectorSubtract}{$\mathit{endpoint},\mathit{startpoint}$}
+			\Cost{$c_{8}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 			\State $\mathit{length} \gets$ \Call{length}{$\mathit{lineLength}$}
+			\Cost{$c_{9}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 			\State $\mathit{lineSlope} \gets$ \Call{normalized}{$\mathit{lineSlope}$}
+			\Cost{$c_{10}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 			\label{alg:mergelines4-merge-end}
 			\algstore{mergelines4}
 \end{algorithmic}
