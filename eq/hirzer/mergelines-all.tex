@@ -1,0 +1,29 @@
+\begin{subequations}
+\label{eq:mergelines-all}
+\begin{align}
+\label{eq:mergelines-all-1}
+T_{worst}(l)& =
+c_{1}1
++ c_{2}(l+1)\bigl(1 + \Theta(1)\bigr)
++ c_{3}l\bigl(\Theta(1)\bigr)
++ c_{4}l\bigl(1 + \Theta(1)\bigr)
+\\
+& \quad
++ c_{5}l\bigl(\Theta(l \cdot \mathit{length})\bigr)
++ c_{6}l\bigl(1 + \Theta(1)\bigr)
+% + c_{7}l
++ c_{9}l\bigl(\Theta(l \cdot \mathit{length})\bigr)
++ c_{10}l
+\nonumber \\
+\label{eq:mergelines-all-1}
+T_{worst}(l)& =
+l\Bigl(c_{2}\bigl(1 + \Theta(1)\bigr) + c_{3}\bigl(\Theta(1)\bigr) + c_{4}\bigl(1 + \Theta(1)\bigr)
+\\
+& \quad \quad
+ + c_{5}\bigl(\Theta(l \cdot \mathit{length})\bigr) + c_{6}\bigl(1 + \Theta(1)\bigr) + c_{9}\bigl(\Theta(l \cdot \mathit{length})\bigr) + c_{10}\Bigl)
+\nonumber \\
+& \quad
++ (c_{1} + c_{2}\bigl(1 + \Theta(1)\bigr))
+\nonumber
+\end{align}
+\end{subequations}

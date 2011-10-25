@@ -111,7 +111,7 @@ In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden
  $\mathit{distancepool}$ der Index des Liniensegments ausgelesen und gespeichert. Die Start- und Endedgel, sowie die
  Länge der Linie und ihre Orientierung werden berechnet
  (Zeile \ref{alg:mergelines4-merge-start}--\ref{alg:mergelines4-merge-end}). Die Laufzeitfunktion von
- \autoref{alg:mergelines2} ist für den schlechtesten Fall in \autoref{eq:mergelines-merge-1} aufgeführt. Die
+ \autoref{alg:mergelines4} ist für den schlechtesten Fall in \autoref{eq:mergelines-merge-1} aufgeführt. Die
  Wachstumsrate ist $20l + O(l \log l) + 4 = O(l \log l)$.
 \input{eq/hirzer/mergelines-merge-1}
 In Zeile \ref{alg:mergelines5-extendline} wird mit der Methode \textproc{extendLine} überprüft, ob sich die Linie
@@ -134,8 +134,20 @@ Wenn die Überprüfung in Zeile \ref{alg:mergelines6-shouldremove} ein markierte
  somit Liniensegmente verschmolzen wurden, wird die Variable $i$ auf den Wert $-1$ gesetzt
  (Zeile \ref{alg:mergelines6-wasmerged-start}--\ref{alg:mergelines6-wasmerged-end}). Dies hat zur Folge, dass das
  Verfahren \textproc{mergeLines} in Zeile \ref{alg:mergelines1-loop-start} von \autoref{alg:mergelines1} wieder bei $0$
- beginnt und alle verbundenen Linien mit den restlichen Liniensegmenten verglichen werden. Die Laufzeitfunktion ist für den schlechtesten Fall in \autoref{eq:mergelines-delete} angegeben. Die Wachstumsrate des Verfahrens ist $9l + 4 = \Theta(l)$, für $c_{1} = 8$, $c_{2} = 9$, $l_{0} = 1$.
+ beginnt und alle verbundenen Linien mit den restlichen Liniensegmenten verglichen werden. Die Laufzeitfunktion ist für
+ den schlechtesten Fall in \autoref{eq:mergelines-delete} angegeben. Die Wachstumsrate von \autoref{alg:mergelines6}
+ ist $9l + 4 = \Theta(l)$, für $c_{1} = 8$, $c_{2} = 9$, $l_{0} = 1$.
 \input{eq/hirzer/mergelines-delete}
+Somit kann die Wachstumsrate zum zusammenführen von Liniensegmenten (\autoref{alg:mergelines4},
+ \autoref{alg:mergelines5} und \autoref{alg:mergelines6}) zu
+ $O(l \log l) + \Theta(l\cdot\mathit{length}) + \Theta(l) = \Theta(l\cdot\mathit{length})$ zusammengefasst werden.
+
+In \autoref{alg:mergelines7} sind alle Kosten von \textproc{mergeLines} aufgeführt, um die Laufzeit zu bestimmen.
+\input{alg/analyse-hirzer/mergelines-7}
+In \autoref{eq:mergelines-all} ist die Funktion des Verfahrens für den schlechtesten Fall aufgeführt.
+\input{eq/hirzer/mergelines-all}
+Die Wachstumsrate von \autoref{alg:mergelines7} ist
+ $2 \cdot l \cdot \Theta(l \cdot \mathit{length}) + 8l + 3 = \Theta(l^2 \cdot \mathit{length})$.
 
 \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2}) vergleicht jeden Punkt zwischen Start und
  Endpunkt auf Kompatibilität der Orientierung und benötigt dazu den Start- und Endpunkt der Linie, ihre Richtung
