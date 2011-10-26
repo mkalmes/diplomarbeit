@@ -99,8 +99,14 @@ Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle an
  Startpunkt und des ersten Eckpunktes definiert. Diese Linie trennt die Kontur in eine linke und eine rechte Hälfte.
  Für jeden \gls{pixel} der Kontur einer dieser Hälfte wird der Abstand zur Linie berechnet. Dadurch findet das
  Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines \gls{pixel} größer als ein festgelegter
- Schwellwert ist. \autoref{fig:} illustriert das vorgestellte Verfahren.
-
+ Schwellwert ist. \autoref{fig:rectangle-fitting} illustriert das vorgestellte Verfahren.
+\begin{figure}[!ht]
+	\centering
+	\input{resources/rectangle-fitting.pdf_tex}
+	\caption{Die Linie zwischen Punkt $0$ und $v_{1}$ trennt die Kontur in zwei Hälften, um danach Eckpunkt $1$ und
+	 Eckpunkt $2$ zu berechnen.}
+	\label{fig:rectangle-fitting}
+\end{figure}
 Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab falls mehr als vier Ecken gefunden wurden. Im Falle,
  dass Rectangle Fitting alle Konturpixel untersucht hat und dabei weniger als vier Ecken gefunden hat, handelt es sich
  bei der Kontur nicht um ein Rechteck und die Kontur kann verworfen werden. Nur wenn exakt vier Eckpunkte gefunden
