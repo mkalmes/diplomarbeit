@@ -4,20 +4,31 @@
 \begin{algorithmic}[1]
 	\Require $L$
 	\State $\mathit{lineCount} \gets$ \Call{getLineCount}{$L$}
+	\Cost{$c_{1}$}{$1 + \Theta(1)$}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{lineCount}$}
+	\Cost{$c_{2}$}{$(l + 1)$}
 	\label{alg:extendlinesinpool-loop-start}
 		\State $l \gets \mathit{L.data}[i]$
+		\Cost{$c_{3}$}{$3l$}
 		\label{alg:extendlinesinpool-line}
 		\State $\mathit{slope} \gets \mathit{l.slope}$
+		\Cost{$c_{4}$}{$2l$}
 		\label{alg:extendlinesinpool-slope}
-		\State \Call{extendLine}{$\mathit{l.end.coordinate}, \mathit{slope}, \mathit{l.end.slope}, \mathit{l.end.coordinate},999,I$}
+		\State \Call{extendLine}{$\mathit{l.end.coordinate}, \mathit{slope}, \mathit{l.end.slope},
+		 \mathit{l.end.coordinate},999,I$}
+		\Cost{$c_{5}$}{$l\cdot\Theta(999)$}
 		\State $\mathit{slope.x} \gets \mathit{slope.x} \cdot - 1$
+		\Cost{$c_{6}$}{$4l$}
 		\label{alg:extendlinesinpool-slopex-invert}
 		\State $\mathit{slope.y} \gets \mathit{slope.y} \cdot - 1$
+		\Cost{$c_{7}$}{$4l$}
 		\label{alg:extendlinesinpool-slopey-invert}
-		\State \Call{extendLine}{$\mathit{l.start.coordinate}, \mathit{slope}, \mathit{l.end.slope}, \mathit{l.start.coordinate},999,I$}
+		\State \Call{extendLine}{$\mathit{l.start.coordinate}, \mathit{slope}, \mathit{l.end.slope},
+		 \mathit{l.start.coordinate},999,I$}
+		\Cost{$c_{8}$}{$l\cdot\Theta(999)$}
 		\label{alg:extendlinesinpool-extend-start}
 		\State $i \gets i + 1$
+		\Cost{$c_{9}$}{$l$}
 	\EndFor
 	\label{alg:extendlinesinpool-loop-end}
 \end{algorithmic}

@@ -1,0 +1,27 @@
+\begin{subequations}
+\label{eq:extendlinesinpool}
+\begin{align}
+\label{eq:extendlinesinpool-1}
+T_{worst}(l)& =
+c_{1}\bigl(1 + \Theta(1)\bigr)
++ c_{2}(l+1)
++ c_{3}3l
++ c_{4}2l
++ c_{5}\bigl(l \cdot \Theta(999)\bigr)
+\\
+& \quad
++ c_{6}4l
++ c_{7}4l
++ c_{8}\bigl(l \cdot \Theta(999)\bigr)
++ c_{9}l
+\nonumber \\
+\label{eq:extendlinesinpool-2}
+T_{worst}(l)& =
+\Bigl(c_{1}\bigl(1 + \Theta(1)\bigr) + c_{2}\Bigr)
++ l(c_{2} + c_{3}3 + c_{4}2 + c_{6}4 + c_{7}4 + c_{9})
+\\
+& \quad
++ l\bigl(c_{5}\Theta(999) + c_{8}\Theta(999)\bigr)
+\nonumber
+\end{align}
+\end{subequations}

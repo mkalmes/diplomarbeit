@@ -1,17 +1,20 @@
 $\mathit{extendLinesInPool}$ erweitert, wie in \autoref{sub:line_extension} beschrieben, die Linien am Anfang und am
  Ende. Das Verfahren ist in \autoref{alg:extendlinesinpool} dargestellt und benötigt als Parameter den Speicherblock
  $L$ mit Linien.
-
 \input{alg/analyse-hirzer/extendlinesinpool}
-
 In der Schleife in Zeile \ref{alg:extendlinesinpool-loop-start}--\ref{alg:extendlinesinpool-loop-end} wird jede Linie im
  Speicherblock $L$ erweitert. Dazu wird zuerst in Zeile \ref{alg:extendlinesinpool-line} und
  \ref{alg:extendlinesinpool-slope} die Linie an Position $i$ ausgewählt und ihre Richtung ausgelesen. Danach wird durch
  \textproc{extendLine} die Linie erweitert. Die Methode \textproc{extendLine} wurde in
  \autoref{sub:linienerkennung_nach_hirzer08} beschrieben. Der Parameter $\mathit{maxLength}$ wird mit einem großen Wert
- verwendet, um die Linie soweit wie möglich zu erweitern. Danach wird die Orientierung der Linie in Zeile
+ verwendet, um die Linie soweit wie möglich zu erweitern. Die Wachstumsrate $\Theta(\mathit{length})$ von
+ \textproc{extendLine} wird in diesem Verfahren mit dem konstanten Wert $\mathit{maxLength} = 999$ verwendet. Danach
+ wird die Orientierung der Linie in Zeile
  \ref{alg:extendlinesinpool-slopex-invert}--\ref{alg:extendlinesinpool-slopey-invert} umgekehrt und in Zeile
- \ref{alg:extendlinesinpool-extend-start} der Anfang der Linie erweitert.
+ \ref{alg:extendlinesinpool-extend-start} der Anfang der Linie erweitert. Die Laufzeitfunktion des Verfahrens ist für
+ den schlechtesten Fall in \autoref{eq:extendlinesinpool-1} angegeben. Die Wachstumsrate ist $2013l + 3 = \Theta(l)$,
+ für $c_{1} = 2012$, $c_{2} = 2013$ und $l_{0} = 1$.
+\input{eq/hirzer/extendlinesinpool}
 
 Ob eine erweiterte Linie zur Markenerkennung geeignet ist, wird dadurch bestimmt, ob über das Linienende hinaus ein
  heller Pixel liegt. Dazu wird das Verfahren $\mathit{findLinesWithCornersInLinePool}$ verwedent
