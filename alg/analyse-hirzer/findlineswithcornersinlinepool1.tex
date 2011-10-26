@@ -4,25 +4,38 @@
 \begin{algorithmic}[1]
 	\Require $L,C$
 	\State \Call{resetMemoryPool}{$C$}
+	\Cost{$c_{1}$}{$\Theta(1)$}
 	\label{alg:findlineswithcornersinlinepool1-clear}
 	\State $w \gets \mathit{imageWidth}$ 
+	\Cost{$c_{2}$}{$1$}
 	\State $h \gets \mathit{imageHeight}$
+	\Cost{$c_{3}$}{$1$}
 	\State $n \gets$ \Call{getLineCount}{L}
+	\Cost{$c_{4}$}{$\bigl(1 + \Theta(1)\bigr)$}
 	\For{$i \gets 0$ \textbf{to} $i < n$}
+	\Cost{$c_{5}$}{$(l + 1)$}
 	\label{alg:findlineswithcornersinlinepool1-loop-start}
 		\State $l \gets \mathit{pool.data}[i]$
+		\Cost{$c_{6}$}{$2l$}
 		\label{alg:findlineswithcornersinlinepool1-line}
 		\State $\mathit{dx} \gets l\mathit{.slope.x} \cdot 4$
+		\Cost{$c_{7}$}{$4l$}
 		\label{alg:findlineswithcornersinlinepool1-dx}
 		\State $\mathit{dy} \gets l\mathit{.slope.y} \cdot 4$
+		\Cost{$c_{8}$}{$4l$}
 		\label{alg:findlineswithcornersinlinepool1-dy}
 		\State $x \gets l\mathit{.start.coordinate.x} - dx$
+		\Cost{$c_{9}$}{$5l$}
 		\label{alg:findlineswithcornersinlinepool1-x}
 		\State $y \gets l\mathit{.start.coordinate.y} - dy$
+		\Cost{$c_{10}$}{$5l$}
 		\label{alg:findlineswithcornersinlinepool1-y}
 		\State $r \gets$ \Call{getRGBValue}{$I,x,y,red,w,h$}
+		\Cost{$c_{11}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 		\State $g \gets$ \Call{getRGBValue}{$I,x,y,green,w,h$}
+		\Cost{$c_{12}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 		\State $b \gets$ \Call{getRGBValue}{$I,x,y,blue,w,h$}
+		\Cost{$c_{13}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 	\algstore{brk-findlineswithcornersinlinepool1}
 \end{algorithmic}
 \end{algorithm}

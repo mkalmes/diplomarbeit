@@ -4,26 +4,38 @@
 \begin{algorithmic}[1]
 	\algrestore{brk-findlineswithcornersinlinepool1}
 		\If{$r > 10 \land g > 10 \land b > 10$}
+		\Cost{$c_{14}$}{$5l$}
 		\label{alg:findlineswithcornersinlinepool2-iswhite-start}
 			\State $l\mathit{.startCorner} \gets$ \textbf{true}
+			\Cost{$c_{15}$}{$2l$}
 		\EndIf
 		\State $x \gets l\mathit{.end.coordinate.x} + dx$
+		\Cost{$c_{17}$}{$5l$}
 		\label{alg:findlineswithcornersinlinepool2-lineend-start}
 		\State $y \gets l\mathit{.end.coordinate.y} + dy$
+		\Cost{$c_{18}$}{$5l$}
 		\State $r \gets$ \Call{getRGBValue}{$I,x,y,red,w,h$}
+		\Cost{$c_{19}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 		\State $g \gets$ \Call{getRGBValue}{$I,x,y,green,w,h$}
+		\Cost{$c_{20}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 		\State $b \gets$ \Call{getRGBValue}{$I,x,y,blue,w,h$}
+		\Cost{$c_{21}$}{$l\bigl(1 + \Theta(1)\bigr)$}
 		\label{alg:findlineswithcornersinlinepool2-lineend-end}
 		\If{$r > 10 \land g > 10 \land b > 10$}
+		\Cost{$c_{22}$}{$5l$}
 		\label{alg:findlineswithcornersinlinepool2-iswhite-end}
 			\State $l\mathit{.endCorner} \gets$ \textbf{true}
+			\Cost{$c_{23}$}{$2l$}
 		\EndIf
 		\If{$l\mathit{.startCorner} \lor l\mathit{.endCorner}$}
+		\Cost{$c_{25}$}{$3l$}
 		\label{alg:findlineswithcornersinlinepool2-hascorner}
 			\State \Call{addLineSegment}{$C,l$}
+			\Cost{$c_{26}$}{$l\bigl(\Theta(1)\bigr)$}
 			\label{alg:findlineswithcornersinlinepool2-addline}
 		\EndIf
 		\State $i \gets i + 1$
+		\Cost{$c_{28}$}{$l$}
 	\EndFor
 	\label{alg:findlineswithcornersinlinepool2-loop-end}
 \end{algorithmic}
