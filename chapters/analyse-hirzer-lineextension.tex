@@ -55,4 +55,10 @@ Das Verfahren der Linienerweiterung wird in \textproc{lineDetection} integriert 
 \input{alg/analyse-hirzer/linedetection-hirzer-extending}
 In Zeile \ref{alg:linedetection-hirzerextending-extend} werden zuerst die Linien in $M$ erweitert. Im Anschluß daran
  werden in Zeile \ref{alg:linedetection-hirzerextending-corner} die Linien auf ihre Tauglichkeit zur Markenerkennung
- untersucht. Alle Linien die zur Erkennung geeignet sind, werden in Speicherblock $L$ gespeichert.
+ untersucht. Alle Linien die zur Erkennung geeignet sind, werden in Speicherblock $L$ gespeichert. Die Laufzeitfunktion
+ ist in \autoref{eq:linedetection-hirzer-extending} angegeben. In \autoref{eq:linedetection-hirzer-extending-3} wurde
+ durch Substitution von  $r = 40$ die Funktion zu \autoref{eq:linedetection-hirzer-extending-4} vereinfacht.
+\input{eq/hirzer/linedetection-hirzer-extending}
+Die Wachstumsrate für das Verfahren beträgt somit
+$hwmn^2 + hw(l^2\cdot\mathit{length}) + l^2\cdot\mathit{length} + 2hwl + 3hw + h + 3
+ = \Theta(hwmn^2 + hwl^2\cdot\mathit{length})$.

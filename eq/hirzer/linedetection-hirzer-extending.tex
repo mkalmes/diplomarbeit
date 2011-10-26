@@ -1,0 +1,81 @@
+\begin{subequations}
+\label{eq:linedetection-hirzer-extending}
+\begin{align}
+\label{eq:linedetection-hirzer-extending-1}
+T_{worst}(wh)& =
+c_{1}(\frac{h}{r} + 1)
++ c_{2}\frac{h}{r}(\frac{w}{r} + 1)
++ c_{3}\frac{hw}{r^2}\cdot\Theta(r^2)
++ c_{4}\frac{hw}{r^2}\cdot\Theta(mn^2)
+\\
+& \quad
++ c_{5}\frac{hw}{r^2}\cdot\Theta(l^2\cdot\mathit{length})
++ c_{6}\frac{hw}{r^2}\bigl(1 + \Theta(1)\bigr)
++ c_{7}\frac{hw}{r^2}(l + 1)
+\nonumber \\
+& \quad
++ c_{8}\frac{hw}{r^2}l\bigl(\Theta(1) + \Theta(1)\bigr)
++ c_{9}\frac{hw}{r^2}l
++ c_{11}\frac{hw}{r^2}\cdot\Theta(1)
++ c_{12}\frac{hw}{r^2}\cdot\Theta(1)
++ c_{13}2\frac{hw}{r^2}
+\nonumber \\
+& \quad
++ c_{15}2\frac{h}{r}
++ c_{17}\Theta(l^2\cdot\mathit{length})
++ c_{18}\Theta(l)
++ c_{19}\Theta(l)
+\nonumber \\
+\label{eq:linedetection-hirzer-extending-2}
+T_{worst}(wh)& =
+c_{1} + \frac{h}{r}(c_{1} + c_{2} + c_{15}2)
+\\
+& \quad
++ \frac{hw}{r^2}(c_{2} + c_{3}\cdot\Theta(r^2) + c_{4}\cdot\Theta(mn^2) + c_{5}\cdot\Theta(l^2\cdot\mathit{length})
+\nonumber \\
+& \quad \quad + c_{6}\bigl(1 + \Theta(1)\bigr) + c_{11}\Theta(1) + c_{12}\Theta(1) + c_{13}2)
+\nonumber \\
+& \quad
++ \frac{hw}{r^2}(c_{7} + c_{7}l + c_{8}l\bigl(\Theta(1) + \Theta(1)\bigr) + c_{9}l)
+\nonumber \\
+& \quad
++ c_{17}\Theta(l^2\cdot\mathit{length}) + c_{18}\Theta(l) + c_{19}\Theta(l)
+\nonumber \\
+\label{eq:linedetection-hirzer-extending-3}
+T_{worst}(wh)& =
+1
++ \frac{4}{r}h
++ \frac{5}{r^2}hw
++ \frac{1}{r^2}hw\cdot\Theta(r^2)
++ \frac{1}{r^2}hw\cdot\Theta(mn^2)
+\\
+& \quad
++ \frac{1}{r^2}hw\cdot\Theta(l^2\cdot\mathit{length})
++ \frac{3}{r^2}hw\cdot\Theta(1)
++ \frac{2}{r^2}hwl
+\nonumber \\
+& \quad
++ \frac{2}{r^2}hwl\cdot\Theta(1)
++ \Theta(l^2\cdot\mathit{length})
++ 2\cdot\Theta(l)
+\nonumber \\
+\label{eq:linedetection-hirzer-extending-4}
+T_{worst}(wh)& =
+1
++ \frac{4}{40}h
++ \frac{5}{1600}hw
++ \frac{1}{1600}hw\cdot\Theta(1600)
++ \frac{1}{1600}hw\cdot\Theta(mn^2)
+\\
+& \quad
++ \frac{1}{1600}hw\cdot\Theta(l^2\cdot\mathit{length})
++ \frac{3}{1600}hw\cdot\Theta(1)
++ \frac{2}{1600}hwl
+\nonumber \\
+& \quad
++ \frac{2}{1600}hwl\cdot\Theta(1)
++ \Theta(l^2\cdot\mathit{length})
++ 2\cdot\Theta(l)
+\nonumber
+\end{align}
+\end{subequations}

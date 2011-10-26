@@ -4,25 +4,41 @@
 	\begin{algorithmic}[1]
 		\Require $I$
 		\For{$y \gets 0$ \textbf{to} $y < \mathit{imageHeight}$}
+		\Cost{$c_{1}$}{$(\frac{h}{r} + 1)$}
 			\For{$x \gets 0$ \textbf{to} $x < \mathit{imageWidth}$}
+			\Cost{$c_{2}$}{$\frac{h}{r}(\frac{w}{r} + 1)$}
 				\State \Call{findEdgels}{$I,E,x,y$}
+				\Cost{$c_{3}$}{$\frac{hw}{r^2}\cdot\Theta(r^2)$}
 				\State \Call{findLineSegments}{$E,L$}
+				\Cost{$c_{4}$}{$\frac{hw}{r^2}\cdot\Theta(mn^2)$}
 				\State \Call{mergeLines}{$L$}
+				\Cost{$c_{5}$}{$\frac{hw}{r^2}\cdot\Theta(l^2\cdot\mathit{length})$}
 				\State $n \gets$ \Call{getLineCount}{$L$}
+				\Cost{$c_{6}$}{$\frac{hw}{r^2}\bigl(1 + \Theta(1)\bigr)$}
 				\For{$i \gets 0$ \textbf{to} $i < n$}
+				\Cost{$c_{7}$}{$\frac{hw}{r^2}(l + 1)$}
 					\State \Call{addLineSegment}{$M,$\textproc{getLineSegment}$(L,i)$}
+					\Cost{$c_{8}$}{$\frac{hw}{r^2}l\bigl(\Theta(1) + \Theta(1)\bigr)$}
 					\State $i \gets i + 1$
+					\Cost{$c_{9}$}{$\frac{hw}{r^2}l$}
 				\EndFor
 				\State \Call{resetMemoryPool}{$E$}
+				\Cost{$c_{11}$}{$\frac{hw}{r^2}\cdot\Theta(1)$}
 				\State \Call{resetMemoryPool}{$L$}
+				\Cost{$c_{12}$}{$\frac{hw}{r^2}\cdot\Theta(1)$}
 				\State $ x \gets x + 40$
+				\Cost{$c_{13}$}{$2\frac{hw}{r^2}$}
 			\EndFor
 			\State $y \gets y + 40$
+			\Cost{$c_{15}$}{$2\frac{h}{r}$}
 		\EndFor
 		\State \Call{mergeLines}{$M$}
+		\Cost{$c_{17}$}{$\Theta(l^2\cdot\mathit{length})$}
 		\State \Call{extendLinesInPool}{$M$}
+		\Cost{$c_{18}$}{$\Theta(l)$}
 		\label{alg:linedetection-hirzerextending-extend}
 		\State \Call{findLinesWithCornersInPool}{$M,L$}
+		\Cost{$c_{19}$}{$\Theta(l)$}
 		\label{alg:linedetection-hirzerextending-corner}
 	\end{algorithmic}
 \end{algorithm}
