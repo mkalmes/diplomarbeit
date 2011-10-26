@@ -1,0 +1,31 @@
+\begin{subequations}
+\label{eq:findchainoflines}
+\begin{align}
+\label{eq:findchainoflines-1}
+T_{worst}(n)& =
+c_{1}1
++ c_{2}3
++ c_{6}2(n+1)
++ c_{7}n\bigl(2 + \Theta(1)\bigr)
++ c_{10}n
++ c_{11}5n
+\\
+& \quad
++ c_{15}n\bigl(1 + \Theta(1)\bigr)
++ c_{16}n\bigl(1 + \Theta(1)\bigr)
++ c_{17}n
++ c_{20}8n
++ c_{21}8n
++ c_{22}5n
++ c_{23}n
+\nonumber \\
+\label{eq:findchainoflines-2}
+T_{worst}(n)& =
+n(c_{6}2 + c_{10} + c_{11}5 + c_{17} + c_{20}8 + c_{21}8 + c_{22}5 + c_{23})
+\\
+& \quad
++ n(c_{7}\bigl(2 + \Theta(1)\bigr) + c_{15}\bigl(1 + \Theta(1)\bigr) + c_{16}\bigl(1 + \Theta(1)\bigr))
++ (c_{1}1 + c_{2}3 + c_{6}1)
+\nonumber
+\end{align}
+\end{subequations}

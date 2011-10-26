@@ -28,27 +28,39 @@
 		\DO
 		\label{alg:linedetection-hirzerquaddetection-do}
 			\State \Call{resetMemoryPool}{$C$}
+			\Cost{$c_{21}$}{$l\bigl(\Theta(1)\bigr)$}
 			\State $\mathit{chain} \gets \mathit{L.data}[0]$
+			\Cost{$c_{22}$}{$3l$}
 			\State \Call{removeLine}{$L,0$}
+			\Cost{$c_{23}$}{$l\bigl(\Theta(1)\bigr)$}
 			\label{alg:linedetection-hirzerquaddetection-removeline}
 			\State $\mathit{length} \gets 1$
+			\Cost{$c_{24}$}{$l$}
 			\State \Call{findChainOfLines}{$L,\mathit{chain},$\textbf{true}$,\mathit{length},C$}
+			\Cost{$c_{25}$}{$l\bigl(O(l)\bigr)$}
 			\label{alg:linedetection-hirzerquaddetection-find1}
 			\State \Call{addLine}{$C,\mathit{chain}$}
+			\Cost{$c_{26}$}{$l\bigl(\Theta(1)\bigr)$}
 			\label{alg:linedetection-hirzerquaddetection-addline}
 			\If{$\mathit{length} < 4$}
+			\Cost{$c_{27}$}{$l$}
 			\label{alg:linedetection-hirzerquaddetection-find2-start}
 				\State \Call{findChainOfLines}{$L,\mathit{chain},$\textbf{false}$,\mathit{length},C$}
+				\Cost{$c_{28}$}{$l\bigl(O(l)\bigr)$}
 			\EndIf
 			\label{alg:linedetection-hirzerquaddetection-find2-end}
 			\If{$\mathit{length} > 2$}
+			\Cost{$c_{30}$}{$l$}
 			\label{alg:linedetection-hirzerquaddetection-twolines}
 				\State $\mathit{marker} \gets$ \Call{reconstructCorners}{$C$}
+				\Cost{$c_{31}$}{$l\bigl(1+\Theta(1)\bigr)$}
 				\label{alg:linedetection-hirzerquaddetection-reconstruct}
 				\State \Call{addMarker}{$Q,\mathit{marker}$}
+				\Cost{$c_{32}$}{$l\bigl(\Theta(1)\bigr)$}
 				\label{alg:linedetection-hirzerquaddetection-marker}
 			\EndIf
 		\WHILE{\Call{getLineCount}{$L$}}
+		\Cost{$c_{34}$}{$(l + 1)\bigl(\Theta(1)\bigr)$}
 		\label{alg:linedetection-hirzerquaddetection-while}
 	\end{algorithmic}
 \end{algorithm}

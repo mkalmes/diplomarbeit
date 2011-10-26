@@ -4,28 +4,42 @@
 \begin{algorithmic}[1]
 	\Require $C$
 	\State $\mathit{marker} \gets \infty$
+	\Cost{$c_{1}$}{$1$}
 	\State $\mathit{c1} \gets$ \Call{intersection}{$\mathit{C.data}[0],\mathit{C.data}[1]$}
+	\Cost{$c_{2}$}{$5+\Theta(1)$}
 	\label{alg:reconstructcorners-c1}
 	\State $\mathit{c2} \gets$ \Call{intersection}{$\mathit{C.data}[1],\mathit{C.data}[2]$}
+	\Cost{$c_{3}$}{$5+\Theta(1)$}
 	\label{alg:reconstructcorners-c2}
 	\State $\mathit{c3},\mathit{c4} \gets \infty$
+	\Cost{$c_{4}$}{$2$}
 	\If{\Call{getLineCount}{$C$}$ = 4$}
+	\Cost{$c_{5}$}{$1+\Theta(1)$}
 	\label{alg:reconstructcorners-4lines-start}
 		\State $\mathit{c3} \gets$ \Call{intersection}{$\mathit{C.data}[2],\mathit{C.data}[3]$}
+		\Cost{$c_{6}$}{$5+\Theta(1)$}
 		\State $\mathit{c4} \gets$ \Call{intersection}{$\mathit{C.data}[3],\mathit{C.data}[0]$}
+		\Cost{$c_{7}$}{$5+\Theta(1)$}
 	\label{alg:reconstructcorners-4lines-end}
 	\Else
 	\label{alg:reconstructcorners-else-start}
 		\State $\mathit{c3} \gets \mathit{C.data}[2]\mathit{.end.coordinate}$
+		\Cost{$c_{9}$}{$5+\Theta(1)$}
 		\State $\mathit{c4} \gets \mathit{C.data}[0]\mathit{.start.coordinate}$
+		\Cost{$c_{10}$}{$5+\Theta(1)$}
 	\EndIf
 	\label{alg:reconstructcorners-else-end}
 	\State $\mathit{marker.c1} \gets \mathit{c1}$
+	\Cost{$c_{12}$}{$2$}
 	\label{alg:reconstructcorners-return-start}
 	\State $\mathit{marker.c2} \gets \mathit{c2}$
+	\Cost{$c_{13}$}{$2$}
 	\State $\mathit{marker.c3} \gets \mathit{c3}$
+	\Cost{$c_{14}$}{$2$}
 	\State $\mathit{marker.c4} \gets \mathit{c4}$
+	\Cost{$c_{15}$}{$2$}
 	\State \textbf{return} $\mathit{marker}$
+	\Cost{$c_{16}$}{$1$}
 	\label{alg:reconstructcorners-return-end}
 \end{algorithmic}
 \end{algorithm}

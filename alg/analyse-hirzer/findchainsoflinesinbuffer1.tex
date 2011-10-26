@@ -4,17 +4,23 @@
 \begin{algorithmic}[1]
 	\Require $B,\mathit{start},\mathit{fromStart},\mathit{chainLength},C$
 	\If{$\mathit{fromStart}$}
+	\Cost{$c_{1}$}{$1$}
 	\label{alg:findchainoflines1-fromstart}
 		\State $\mathit{startPoint} \gets \mathit{start.start.coordinate}$
+		\Cost{$c_{2}$}{$3$}
 	\Else
 		\State $\mathit{startPoint} \gets \mathit{start.end.coordinate}$
+		\Cost{$c_{4}$}{$3$}
 	\EndIf
 	\label{alg:findchainoflines1-fromend}
 	\For{$i \gets 0$ \textbf{to} $i < \mathit{B.count}$}
+	\Cost{$c_{6}$}{$2(n + 1)$}
 	\label{alg:findchainoflines1-loop-start}
 		\If{\Call{isOrientationCompatible}{$\mathit{start},\mathit{B.data}[i]$}}
+		\Cost{$c_{7}$}{$n\bigl(2 + \Theta(1)\bigr)$}
 		\label{alg:findchainoflines1-iscompatible}
 			\State \textbf{continue}
+			\Cost{$c_{8}$}{$n$}
 			\label{alg:findchainoflines1-parallel}
 		\EndIf
 		\algstore{brk-findchainoflines1}

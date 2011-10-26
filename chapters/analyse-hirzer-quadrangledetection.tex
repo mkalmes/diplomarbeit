@@ -1,62 +1,75 @@
 Bei dem letzten Schritt im Verfahren von \citeauthor{hirzer08}, der Quadrangle Detection, werden die gefundenen Linien
  untersucht, um daraus eine quadratische Marke zu erkennen. Dazu wird das Verfahren \textproc{findChainsOfLines}
- verwendet, dass in \autoref{alg:findchainoflines1}--\autoref{alg:findchainoflines4} dargestellt ist.
-
+ verwendet, dass in \autoref{alg:findchainoflines1}--\autoref{alg:findchainoflines4} dargestellt ist. Das Verfahren
+ benötigt einen Speicherblock $B$ mit Linien, eine Startlinie $\mathit{start}$, sowie eine boolsche Aussage
+ $\mathit{fromStart}$, ob der Anfang der Linie oder das Ende der Linie untersucht werden soll. Zusätzlich wird die zu
+ untersuchende Länge einer Linie benötigt und ein Speicherblock $C$, in dem eine Linienkette gespeichert wird. In Zeile
+ \ref{alg:findchainoflines1-fromstart}--\ref{alg:findchainoflines1-fromend} wird der Startpunkt der zu
+ untersuchenden Linie festgelegt und ist von der boolschen Variable $\mathit{fromStart}$ abhängig.
 \input{alg/analyse-hirzer/findchainsoflinesinbuffer1}
-
-Das Verfahren benötigt einen Speicherblock $B$ mit Linien, eine Startlinie $\mathit{start}$, sowie eine boolsche
- Aussage $\mathit{fromStart}$, ob der Anfang der Linie oder das Ende der Linie untersucht werden soll. Zusätzlich wird
- die zu untersuchende Länge einer Linie benötigt und ein Speicherblock $C$, in dem eine Linienkette gespeichert wird.
-
-In Zeile \ref{alg:findchainoflines1-fromstart}--\ref{alg:findchainoflines1-fromend} wird der Startpunkt der zu
- untersuchenden Linie festgelegt und ist von der boolschen Variable $\mathit{fromStart}$ abhängig. Danach wird in Zeile
- \ref{alg:findchainoflines1-loop-start}--\ref{alg:findchainoflines4-loop-end} jede Linie aus $B$ untersucht. In Zeile
- \ref{alg:findchainoflines1-iscompatible} wird überprüft, ob Linie $\mathit{start}$ und die Linie an Position $i$ des
- Speicherblocks fast parallel zueinander stehen. Falls dem so ist wird in Zeile \ref{alg:findchainoflines1-parallel}
- die Untersuchung der nächsten Linie eingeleitet. Nur wenn die Linien nicht paralle ausgerichtet sind, wird das
- Verfahren in \autoref{alg:findchainoflines2} fortgesetzt.
-
-\input{alg/analyse-hirzer/findchainsoflinesinbuffer2}
+Danach wird in Zeile \ref{alg:findchainoflines1-loop-start}--\ref{alg:findchainoflines4-loop-end} jede Linie aus $B$
+ untersucht. In Zeile \ref{alg:findchainoflines1-iscompatible} wird überprüft, ob Linie $\mathit{start}$ und die Linie
+ an Position $i$ des Speicherblocks fast parallel zueinander stehen. Falls dem so ist wird in Zeile
+ \ref{alg:findchainoflines1-parallel} die Untersuchung der nächsten Linie eingeleitet. Nur wenn die Linien nicht
+ paralle ausgerichtet sind, wird das Verfahren in \autoref{alg:findchainoflines2} fortgesetzt.
 
 In Zeile \ref{alg:findchainoflines2-endpointend}--\ref{alg:findchainoflines2-endpointstart} wird nun der Endpunkt der
- Linie $i$ festgelegt. Wie beim Startpunkt auch, ist der Endpunkt von der Variablen $\mathit{fromStart}$ abhängig. In
- Zeile \ref{alg:findchainoflines2-distance} und Zeile \ref{alg:findchainoflines2-length} wird dann der Abstand der
+ Linie $i$ festgelegt.
+\input{alg/analyse-hirzer/findchainsoflinesinbuffer2}
+Wie beim Startpunkt auch, ist der Endpunkt von der Variablen $\mathit{fromStart}$ abhängig. In Zeile
+ \ref{alg:findchainoflines2-distance} und Zeile \ref{alg:findchainoflines2-length} wird dann der Abstand der
  Linienenden von $\mathit{start}$ und $i$ berechnet. Wenn der Abstand zu groß ist, wird mit der nächsten Linie die
  Untersuchung wiederholt (Zeile \ref{alg:findchainoflines2-toofar}). Andernfalls wird das Verfahren in
  \autoref{alg:findchainoflines3} fortgesetzt.
 
-\input{alg/analyse-hirzer/findchainsoflinesinbuffer3}
-
 In Zeile \ref{alg:findchainoflines3-vectorproduct-start}--\ref{alg:findchainoflines3-vectorproduct-end} wird das
  Kreuzprodukt der Linienorientierung berechnet um danach in Zeile \ref{alg:findchainoflines3-checkorientation} die
- Orientierung zu überprüfen. Je nachdem ob $\mathit{fromStart}$ gesetzt ist oder nicht, wird die Orientierung
- unterschiedlich betrachtet. Wenn $\mathit{fromStart}$ wahr ist, muss die Orientierung der beiden Linien kleiner oder
- gleich $0$ sein. Damit wird die Orientierung als negativer Winkel betrachtet und der Wertebereich entspricht
- $\left[-1,0\right]$. Andernfalls, wenn $\mathit{fromStart}$ falsch ist, muss die Orientierung größer oder gleich $0$
- sein. In diesem Fall wird die Orientierung als positiver Winkel betrachtet und der Wertebereich entspricht
- $\left[0,1\right]$. Werden diese Bedingungen erfüllt, eignet sich diese Linienkombination nicht zur Markenerkennung
- und es wird eine andere Linie untersucht. Falls die Bedingungen nicht erfüllt werden, eigent sich diese
- Linienkombination zur Erkennung einer Marke. In diesem Fall wird in Zeile \ref{alg:findchainoflines3-incchain} die
- Anzahl der Linienkette erhöht und die Linie an Position $i$ in der Variable $\mathit{chainSegment}$ hinterlegt. In
- Zeile \ref{alg:findchainoflines3-removeline} wird danach die Linie an Position $i$ aus dem Speicherblock $B$ entfernt.
- Danach wird in Zeile \ref{alg:findchainoflines3-has4lines} die Anzahl der Linienketten untersucht. Wenn genau vier
- Linienketten vorhanden sind, wird in Zeile \ref{alg:findchainoflines3-saveline} die Linie in $\mathit{chainSegment}$
- zum Speicherblock $C$ hinzugefügt und danach das Verfahren beendet. Anonsten wird in Zeile
+ Orientierung zu überprüfen.
+\input{alg/analyse-hirzer/findchainsoflinesinbuffer3}
+Je nachdem ob $\mathit{fromStart}$ gesetzt ist oder nicht, wird die Orientierung unterschiedlich betrachtet. Wenn
+ $\mathit{fromStart}$ wahr ist, muss die Orientierung der beiden Linien kleiner oder gleich $0$ sein. Damit wird die
+ Orientierung als negativer Winkel betrachtet und der Wertebereich entspricht $\left[-1,0\right]$. Andernfalls, wenn
+ $\mathit{fromStart}$ falsch ist, muss die Orientierung größer oder gleich $0$ sein. In diesem Fall wird die
+ Orientierung als positiver Winkel betrachtet und der Wertebereich entspricht $\left[0,1\right]$. Werden diese
+ Bedingungen erfüllt, eignet sich diese Linienkombination nicht zur Markenerkennung und es wird eine andere Linie
+ untersucht. Falls die Bedingungen nicht erfüllt werden, eigent sich diese Linienkombination zur Erkennung einer Marke.
+ In diesem Fall wird in Zeile \ref{alg:findchainoflines3-incchain} die Anzahl der Linienkette erhöht und die Linie an
+ Position $i$ in der Variable $\mathit{chainSegment}$ hinterlegt. In Zeile \ref{alg:findchainoflines3-removeline} wird
+ danach die Linie an Position $i$ aus dem Speicherblock $B$ entfernt. Danach wird in Zeile
+ \ref{alg:findchainoflines3-has4lines} die Anzahl der Linienketten untersucht. Wenn genau vier Linienketten vorhanden
+ sind, wird in Zeile \ref{alg:findchainoflines3-saveline} die Linie in $\mathit{chainSegment}$ zum Speicherblock $C$
+ hinzugefügt und danach das Verfahren beendet. Anonsten wird in Zeile
  \ref{alg:findchainoflines4-savelineifnotfromstart} (\autoref{alg:findchainoflines4}) die Linie zum Speicherblock
  hinzugefügt, wenn $\mathit{fromStart}$ falsch ist.
 
-\input{alg/analyse-hirzer/findchainsoflinesinbuffer4}
-
 Danach wird in Zeile \ref{alg:findchainoflines4-callmethod} $\mathit{findChainsOfLines}$ rekursiv aufgerufen, um
- weitere passende Linien zur Markenerkennung zu identifizieren. Abschliessend wird in Zeile
- \ref{alg:findchainoflines4-isfromstart} überprüft, ob $\mathit{fromStart}$ wahr ist, was dazu führt, dass die Linie in
- $\mathit{chainSegment}$ dem Speicherblock $C$ hinzugefügt wird. Danach wird die Ausführung abgebrochen.
+ weitere passende Linien zur Markenerkennung zu identifizieren.
+\input{alg/analyse-hirzer/findchainsoflinesinbuffer4}
+Abschliessend wird in Zeile \ref{alg:findchainoflines4-isfromstart} überprüft, ob $\mathit{fromStart}$ wahr ist, was
+ dazu führt, dass die Linie in $\mathit{chainSegment}$ dem Speicherblock $C$ hinzugefügt wird. Danach wird die
+ Ausführung abgebrochen. Die Laufzeitfunktion (\autoref{eq:findchainoflines}) des Verfahrens führt im schlechtesten Fall
+ keine Rekursion aus und fährt mit der nächsten Linienuntersuchung in Zeile \ref{alg:findchainoflines3-worstcase} fort.
+ Die Wachstumsrate des Verfahrens entspricht dann $38n + 5 = O(n)$, für $c = 38$ und $n_{0} = 1$.
+\input{eq/hirzer/findchainoflines}
 
-Das Verfahren \textproc{findChainOfLines} ist in \textproc{lineDetection}
+Mit \textproc{reconstructCorners} (\autoref{alg:reconstructcorners}) werden die Eckpunkte einer Marke aufbereitet. Dazu
+ benötigt das Verfahren den Speicherblock $C$, mit den Linien der Marke.
+\input{alg/analyse-hirzer/reconstructcorners}
+In Zeile \ref{alg:reconstructcorners-c1} wird der erste Eckpunkt erstellt, indem der Schnittpunkt der Linien an
+ Position $1$ und Position $2$ ermittelt wird. Für den zweiten Eckpunkt in Zeile \ref{alg:reconstructcorners-c2} werden
+ die Linien $2$ und $3$ verwendet. Wenn exakt vier Linien gefunden wurden, werden die Eckpunkte für $\mathit{c3}$ und
+ $\mathit{c4}$ durch den Schnittpunkt der Linien ermittelt (Zeile
+ \ref{alg:reconstructcorners-4lines-start}--\ref{alg:reconstructcorners-4lines-end}). Ansonsten werden die Eckpunkte in
+ Zeile \ref{alg:reconstructcorners-else-start}--\ref{alg:reconstructcorners-else-end} nur durch die Linienenden
+ dargestellt werden, was möglicherweise zu ungenauen Ergebnissen führt (Vgl. \autoref{sub:quadrangle_detection}). In
+ Zeile \ref{alg:reconstructcorners-return-start}--\ref{alg:reconstructcorners-return-end} werden die Eckpunkte in
+ $\mathit{marker}$ gespeichert und als Ergebnis an die aufrufende Methode zurückgeliefert. Die Laufzeitfunktion
+ $T(n) = 38$ von \textproc{reconstructCorners} hat eine Wachstumsrate von $\Theta(1)$, für $c_{1} = 37$, $c_{2} = 38$
+ und $n_{0} = 1$.
+
+Die Verfahren \textproc{findChainOfLines} und \textproc{reconstructCorners} sind in \textproc{lineDetection}
  (\autoref{alg:linedetection-hirzerquaddetection}) integriert, um aus den gefundenen Linien eine Marke zu konstruieren.
-
 \input{alg/analyse-hirzer/linedetection-hirzer-quaddetection}
-
 Dazu werden alle Linien in der Schleife von Zeile
  \ref{alg:linedetection-hirzerquaddetection-do}--\ref{alg:linedetection-hirzerquaddetection-while} untersucht. Der
  Speicherblock $C$ wir zubeginn jeder Iteration gelöscht, um nur Linien einer Marke zu speichern. Danach wird aus dem
@@ -74,19 +87,13 @@ Dazu werden alle Linien in der Schleife von Zeile
  \ref{alg:linedetection-hirzerquaddetection-reconstruct} durch \textproc{reconstructCorners} wiederherstellen. Danach
  wird in Zeile \ref{alg:linedetection-hirzerquaddetection-marker} die Marke $\mathit{marker}$ dem Speicherblock $Q$
  hinzugefügt. Das Verfahren wird solange wiederholt, bis keine Linie mehr im Speicherblock vorhanden ist. Danach sind
- erkannte Marken in Speicherblock $Q$ hinterlegt.
-
-Mit \textproc{reconstructCorners} (\autoref{alg:reconstructcorners}) werden die Eckpunkte einer Marke aufbereitet. Dazu
- benötigt das Verfahren den Speicherblock $C$, mit den Linien der Marke.
-
-\input{alg/analyse-hirzer/reconstructcorners}
-
-In Zeile \ref{alg:reconstructcorners-c1} wird der erste Eckpunkt erstellt, indem der Schnittpunkt der Linien an
- Position $1$ und Position $2$ ermittelt wird. Für den zweiten Eckpunkt in Zeile \ref{alg:reconstructcorners-c2} werden
- die Linien $2$ und $3$ verwendet. Wenn exakt vier Linien gefunden wurden, werden die Eckpunkte für $\mathit{c3}$ und
- $\mathit{c4}$ durch den Schnittpunkt der Linien ermittelt (Zeile
- \ref{alg:reconstructcorners-4lines-start}--\ref{alg:reconstructcorners-4lines-end}). Ansonsten werden die Eckpunkte in
- Zeile \ref{alg:reconstructcorners-else-start}--\ref{alg:reconstructcorners-else-end} nur durch die Linienenden
- dargestellt werden, was möglicherweise zu ungenauen Ergebnissen führt (Vgl. \autoref{sub:quadrangle_detection}). In
- Zeile \ref{alg:reconstructcorners-return-start}--\ref{alg:reconstructcorners-return-end} werden die Eckpunkte in
- $\mathit{marker}$ gespeichert und als Ergebnis an die aufrufende Methode zurückgeliefert.
+ erkannte Marken in Speicherblock $Q$ hinterlegt. Im schlechtesten Fall wird in der Schleife von Zeile
+ \ref{alg:linedetection-hirzerquaddetection-do} bis Zeile \ref{alg:linedetection-hirzerquaddetection-while} keine Marke
+ gefunden. Somit werden alle Linien in Zeile \ref{alg:linedetection-hirzerquaddetection-removeline} gelöscht, bis keine
+ Linie mehr vorhanden ist und das Verfahren in Zeile \ref{alg:linedetection-hirzerquaddetection-while} beendet wird.
+ Die Laufzeitfunktion für diesen Fall ist in \autoref{eq:linedetection-hirzer-quaddetection} angegeben.
+\input{eq/hirzer/linedetection-hirzer-quaddetection}
+Die Wachstumsrate ist $2 \cdot O(l^2) + 10l = O(l^2)$, für $c = 3$ und $l_{0} = 10$. Somit ist die Wachstumsrate des
+ Verfahrens nach \citeauthor{hirzer08}, bestehend aus \autoref{eq:linedetection-hirzer-extending} und
+ \autoref{eq:linedetection-hirzer-quaddetection},
+ $\Theta(hwmn^2 + hwl^2\cdot\mathit{length}) + O(l^2) = \Theta(hwmn^2 + hwl^2\cdot\mathit{length})$.

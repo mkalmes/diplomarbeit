@@ -4,18 +4,25 @@
 \begin{algorithmic}[1]
 	\algrestore{brk-findchainoflines1}
 		\If{$\mathit{fromStart}$}
+		\Cost{$c_{10}$}{$n$}
 		\label{alg:findchainoflines2-endpointend}
 			\State $\mathit{endpoint} \gets \mathit{B.data}[i]\mathit{.end.coordinate}$
+			\Cost{$c_{11}$}{$5n$}
 		\Else
 			\State $\mathit{endpoint} \gets \mathit{B.data}[i]\mathit{.start.coordinate}$
+			\Cost{$c_{13}$}{$5n$}
 		\EndIf
 		\label{alg:findchainoflines2-endpointstart}
 		\State $\mathit{distance} \gets$ \Call{vectorSubtract}{$\mathit{startPoint},\mathit{endpoint}$}
+		\Cost{$c_{15}$}{$n\bigl(1 + \Theta(1)\bigr)$}
 		\label{alg:findchainoflines2-distance}
 		\State $\mathit{squaredLength} \gets$ \Call{squaredLength}{$\mathit{distance}$}
+		\Cost{$c_{16}$}{$n\bigl(1 + \Theta(1)\bigr)$}
 		\label{alg:findchainoflines2-length}
 		\If{$\mathit{squaredLength} > 16$}
+		\Cost{$c_{17}$}{$n$}
 			\State \textbf{continue}
+			\Cost{$c_{18}$}{$n$}
 			\label{alg:findchainoflines2-toofar}
 		\EndIf
 	\algstore{brk-findchainoflines2}

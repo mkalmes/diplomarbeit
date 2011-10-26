@@ -4,23 +4,35 @@
 \begin{algorithmic}[1]
 	\algrestore{brk-findchainoflines2}
 		\State $\mathit{test} \gets (\mathit{start.slope.x} \cdot \mathit{B.data}[i]\mathit{.slope.y})$
+		\Cost{$c_{20}$}{$8n$}
 		\label{alg:findchainoflines3-vectorproduct-start}
 		\State $\mathit{test} \gets \mathit{test} - (\mathit{start.slope.y} \cdot \mathit{B.data}[i]\mathit{.slope.x})$
+		\Cost{$c_{21}$}{$8n$}
 		\label{alg:findchainoflines3-vectorproduct-end}
-		\If{$(\mathit{fromStart} \land \mathit{test} \leq 0) \lor (\lnot \mathit{fromStart} \land \mathit{test} \geq 0)$}
+		\If{$(\mathit{fromStart} \land \mathit{test} \leq 0) \lor (\lnot \mathit{fromStart} \land \mathit{test}
+		 \geq 0)$}
+		\Cost{$c_{22}$}{$5n$}
 		\label{alg:findchainoflines3-checkorientation}
 			\State \textbf{continue}
+			\label{alg:findchainoflines3-worstcase}
+			\Cost{$c_{23}$}{$n$}
 		\EndIf
 		\State $\mathit{chainLength} \gets \mathit{chainLength} + 1$
+		\Cost{$c_{25}$}{$2n$}
 		\label{alg:findchainoflines3-incchain}
 		\State $\mathit{chainSegment} \gets \mathit{B.data}[i]$
+		\Cost{$c_{26}$}{$3n$}
 		\State \Call{removeLine}{$B,i$}
+		\Cost{$c_{27}$}{$n\cdot\Theta(1)$}
 		\label{alg:findchainoflines3-removeline}
 		\If{$\mathit{chainLength} = 4$}
+		\Cost{$c_{28}$}{$n$}
 		\label{alg:findchainoflines3-has4lines}
 			\State \Call{addLine}{$C,\mathit{chainSegment}$}
+			\Cost{$c_{29}$}{$n\cdot\Theta(1)$}
 			\label{alg:findchainoflines3-saveline}
 			\State \textbf{return}
+			\Cost{$c_{30}$}{$n$}
 		\EndIf
 	\algstore{brk-findchainoflines3}
 \end{algorithmic}

@@ -4,17 +4,23 @@
 \begin{algorithmic}[1]
 	\algrestore{brk-findchainoflines3}
 		\If{$\lnot \mathit{fromStart}$}
+		\Cost{$c_{32}$}{$n$}
 			\State \Call{addLine}{$C,chainSegment$}
+			\Cost{$c_{33}$}{$n\cdot\Theta(1)$}
 			\label{alg:findchainoflines4-savelineifnotfromstart}
 		\EndIf
 		\State \Call{findChainOfLines}{$B,\mathit{chainSegment},\mathit{fromStart},\mathit{chainLength},C$}
 		\label{alg:findchainoflines4-callmethod}
 		\If{$\mathit{fromStart}$}
+		\Cost{$c_{36}$}{$n$}
 		\label{alg:findchainoflines4-isfromstart}
 			\State \Call{addLine}{$C,\mathit{chainSegment}$}
+			\Cost{$c_{37}$}{$n\cdot\Theta(1)$}
 		\EndIf
 		\State \textbf{return}
+		\Cost{$c_{33}$}{$n$}
 		\State $i \gets i + 1$
+		\Cost{$c_{33}$}{$n$}
 	\EndFor
 	\label{alg:findchainoflines4-loop-end}
 \end{algorithmic}
