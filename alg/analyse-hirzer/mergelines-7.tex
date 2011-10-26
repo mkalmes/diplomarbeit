@@ -1,0 +1,27 @@
+\begin{algorithm}[!ht]
+\caption{\textproc{mergeLines} (Analyse)}
+\label{alg:mergelines7}
+\begin{algorithmic}[1]
+	\Require $L$
+	\State $\mathit{distancepool} \gets \infty$
+	\Cost{$c_{1}$}{$1$}
+	\For{$i \gets 0$ \textbf{to} $i <$ \Call{getLineCount}{$L$}}
+	\Cost{$c_{2}$}{$\bigl(1 + \Theta(1)\bigr)(l + 1)$}
+		\State \Call{freePool}{$\mathit{distancepool}$}
+		\Cost{$c_{3}$}{$(l\cdot \Theta(1)$}
+		\State $\mathit{start} \gets$ \Call{getLineSegment}{$L,i$}
+		\Cost{$c_{4}$}{$l \cdot \bigl(1 + \Theta(1)\bigr)$}
+		\State \autoref{alg:mergelines2} und \autoref{alg:mergelines3}
+		\Cost{$c_{5}$}{$l \cdot \bigl(\Theta(l \cdot \mathit{length})\bigr)$}
+		\If{$\lnot$ \Call{getDistanceCount}{$\mathit{distancepool}$}}
+		\Cost{$c_{6}$}{$(l \cdot \bigl(1 + \Theta(1)\bigr)$}
+			\State \textbf{continue}
+			\Cost{$c_{7}$}{$l$}
+		\EndIf
+		\State \autoref{alg:mergelines4}, \autoref{alg:mergelines5} und \autoref{alg:mergelines6}
+		\Cost{$c_{9}$}{$l \cdot \bigl(\Theta(l \cdot \mathit{length})\bigr)$}
+		\State $i \gets i + 1$
+		\Cost{$c_{10}$}{$l$}
+	\EndFor
+\end{algorithmic}
+\end{algorithm}
