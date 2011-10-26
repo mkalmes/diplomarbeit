@@ -11,7 +11,7 @@
 		\If{$\mathit{pool.data}[j]\mathit{.remove} =$ \textbf{true}}
 		\Cost{$c_{24}$}{$4l$}
 		\label{alg:mergelines6-shouldremove}
-			\State \Call{removeDistance}{$L,j$}
+			\State \Call{removeLine}{$L,j$}
 			\Cost{$c_{25}$}{$l \cdot \Theta(1)$}
 			\label{alg:mergelines6-remove}
 			\State $j \gets j - 1$

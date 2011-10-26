@@ -91,6 +91,11 @@ Als Parameter werden ein Zeiger $p$ und ein Index $i$ übergeben. Der Index gibt
  der Grenzen der gespeicherten Linien befindet. Wenn dies der Fall ist, wird in Zeile
  \ref{alg:linepool-getline-returnline} die Linie in konstanter Zeit zurückgegeben. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 8$.
 
+Mit \autoref{alg:linesegment-removeline}
+\input{alg/analyse-hirzer/datastructure-linesegmentremoveline}
+können Liniensegmente aus dem Speicherbereich wieder gelöscht werden. Die Laufzeitfunktion ist im schlechtesten Fall
+ $T(n) = 17$ und somit konstant.
+
 Mit \autoref{alg:linepool-resetmemorypool} werden die Einträge im Speicherblock gelöscht.
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-resetmemorypool}
 Dazu wird der Zeiger $p$ auf den Speicherblock übergeben und in Zeile
@@ -111,8 +116,10 @@ Die Anzahl der Einträge in einem Pool werden durch \autoref{alg:linepool-count}
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-count}
 Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 3$ und der Zugriff auf die Variable erfolgt in konstanter Zeit.
 
-Im Verfahren nach \citeauthor{clarke96} werden Liniensegmente nicht aus dem Speicherpool gelöscht. Darum kann auf
- einen Algorithmus zum löschen der Einträge, wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel}, verzichtet
- werden. Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
+% Im Verfahren nach \citeauthor{clarke96} werden Liniensegmente nicht aus dem Speicherpool gelöscht. Darum kann auf
+%  einen Algorithmus zum löschen der Einträge, wie \autoref{alg:edgelpool-removeedgel} bei \glspl{edgel}, verzichtet
+%  werden. Alle Operationen für Linien erfolgen somit in konstanter Zeit $T(n) = \Theta(1)$.
+
+Alle vorgestellten Operationen für Linien erfolgen in konstanter Zeit $T(n) = \Theta(1)$.
 
 % subsection datenstruktur-liniensegmente (end)
