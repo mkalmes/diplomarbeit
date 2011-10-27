@@ -1,21 +1,36 @@
 \begin{align}
 \label{eq:analyse-arlabeling-all-1}
+% T_{worst}(\mathit{lxsize},\mathit{lysize})& =
+%  (39)
+%  + (6\mathit{lxsize} + 1)
+%  + (8\mathit{lysize} + 9)
+% \\
+% & \quad
+%  + (40999\mathit{lxsize} \cdot \mathit{lysize} - 81998\mathit{lxsize} - 81998\mathit{lysize} + 163997)
+% \nonumber \\
+% & \quad
+%  + (7\mathit{wk\_max} - 3)
+%  + (4\mathit{size} + 8)
+%  + (4\mathit{size}' + 4)
+% \nonumber \\
+% & \quad
+%  + (18\mathit{label\_num} + 1)
+%  + (90\mathit{wk\_max} + 1)
+%  + (20\mathit{label\_num} + 6)
+% \nonumber
 T_{worst}(\mathit{lxsize},\mathit{lysize})& =
- (39)
- + (6\mathit{lxsize} + 1)
- + (8\mathit{lysize} + 9)
+\Theta(1)
++ \Theta(\mathit{lysize})
++ O(\mathit{lxsize}\cdot\mathit{lysize})
++ \Theta(\mathit{wk\_max})
 \\
 & \quad
- + (40999\mathit{lxsize} \cdot \mathit{lysize} - 81998\mathit{lxsize} - 81998\mathit{lysize} + 163997)
++ \Theta(\mathit{size})
++ \Theta(\mathit{size}')
++ \Theta(\mathit{label\_num})
++ \Theta(\mathit{wk\_max})
 \nonumber \\
 & \quad
- + (7\mathit{wk\_max} - 3)
- + (4\mathit{size} + 8)
- + (4\mathit{size}' + 4)
-\nonumber \\
-& \quad
- + (18\mathit{label\_num} + 1)
- + (90\mathit{wk\_max} + 1)
- + (20\mathit{label\_num} + 6)
++ \Theta(\mathit{label\_num})
 \nonumber
 \end{align}

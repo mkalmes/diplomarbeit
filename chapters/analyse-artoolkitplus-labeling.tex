@@ -160,8 +160,8 @@ In Zeile \ref{alg:arlabeling-neighbour-case2-1-n} wird der Wert $N_2$ in $n$ hin
  \autoref{eq:analyse-arlabeling-neighbour-case2-1-1} angegben und ist konstant. Die Laufzeitfunktion für den
  schlechtesten Fall ist in \autoref{eq:analyse-arlabeling-neighbour-case2-1-2} angegeben und durchläuft Zeile
  \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}. Für
- $T_{worst}(\mathit{wk\_max})=5 \mathit{wk\_max} + 14$ und den Werten $c_{1}=5$, $c_{2}=6$ und
- $\mathit{wk\_max}_{0} = 14$ ist $5 \mathit{wk\_max} + 14 = \Theta(n)$.
+ $T_{worst}(\mathit{wk\_max})=5 \mathit{wk\_max} + 14$ und den Werten $c =5$ und
+ $\mathit{wk\_max}_{0} = 1$ ist $5 \mathit{wk\_max} = O(n)$.
 \input{eq/artplus/arlabeling-neighbour-case2-1}
 
 \autoref{alg:arlabeling-neighbour-case2-2} behandelt den Fall, dass $N_4$ und $N_1$ eine Markierung aufweisen. Das Verfahren entspricht dem Verfahren in \autoref{alg:arlabeling-neighbour-case2-1}.
@@ -236,8 +236,8 @@ Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die nu
  Regionenbild ist in $\mathit{l\_image}$ gespeichert. Der schlechteste Fall der Nachbarschaftsuntersuchung ist der 2.
  Fall. Die Laufzeitfunktion (\autoref{eq:analyse-arlabeling-neighbour}) setzt sich aus den Kosten der Verzweigung in
  \autoref{alg:arlabeling-neighbour} und \autoref{alg:arlabeling-neighbour-case2}, sowie der Laufzeifunktion aus
- \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c_{1} = 5$, $c_{2} = 6$ und $\mathit{wk\_max}_{0} = 24$ ist
- $5 \mathit(wk\_max) + 24 = \Theta(\mathit{wk\_max})$.
+ \autoref{alg:arlabeling-neighbour-case2-1}, zusammen. Für $c = 6$ und $\mathit{wk\_max}_{0} = 1$ ist
+ $5 \mathit(wk\_max) = O(\mathit{wk\_max})$.
 \input{eq/artplus/arlabeling-neighbour}
 
 Nachdem die Laufzeitfunktion der einzelnen Fälle der Regionenmarkierung bekannt sind, kann die Laufzeitfunktion von
@@ -251,9 +251,9 @@ Durch Substitution der Konstanten $c$ mit $1$ folgt $T_{worst}(\mathit{lxsize},\
  $\mathit{lysize}$ abhänging und kann nicht mehr als $8192$ Einträge enthalten. Wird $t$ durch $5 \cdot 8192 + 24$
  substituiert, folgt die Laufzeitfunktion in \autoref{eq:analyse-arlabeling-regionlabeling-3}.
 \input{eq/artplus/arlabeling-regionlabeling-3}
-Für $c_{1} = 2$, $c_{2} = 40999$, $\mathit{lxsize}_{0} = 5$ und $\mathit{lysize}_{0} = 4$ ist die Wachstumsrate von
+Für $c = 41000$, $\mathit{lxsize}_{0} = 1$ und $\mathit{lysize}_{0} = 1$ ist die Wachstumsrate von
  $40999\mathit{lxsize}\cdot\mathit{lysize} -81998\mathit{lxsize} -81998\mathit{lysize}
- = \Theta(\mathit{lxsize}\cdot\mathit{lysize})$.
+ = O(\mathit{lxsize}\cdot\mathit{lysize})$.
 
 Die erfassten Daten müssen nach der Regionenmarkierung in Schritt \ref{label-cleaning} von
  \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte in
@@ -366,19 +366,19 @@ Die Eingabemenge des Algorithmus ist das Bildsignal $I$, dass aus $\mathit{lxsiz
  \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil \cdot 2 \cdot 4$.
 Dadurch wird \autoref{eq:analyse-arlabeling-all-1} zu \autoref{eq:analyse-arlabeling-all-2} überführt.
 \input{eq/artplus/arlabeling-all-2}
-Das Wachstum der Laufzeitfunktion ist
-\begin{equation*}
-\frac{1}{2}82041\mathit{lxsize} \cdot \mathit{lysize} -81992\mathit{lxsize} -81990\mathit{lysize}
- = \Theta(\mathit{lxsize}\cdot\mathit{lysize})
-\end{equation*}
-für
-\begin{equation*}
-c_{1} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
- -163980\mathit{lysize}}{\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
-\end{equation*}
-\begin{equation*}
-c_{2} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
- -163980\mathit{lysize}}{2\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
-\end{equation*}
-$\mathit{lxsize}_{0} = 1$ und $\mathit{lysize}_{0} = 1$.
+Das Wachstum der Laufzeitfunktion \autoref{eq:analyse-arlabeling-all-2-2} ist $O(\mathit{lxsize\cdot\mathit{lysize}})$.
+% \begin{equation*}
+% \frac{1}{2}82041\mathit{lxsize} \cdot \mathit{lysize} -81992\mathit{lxsize} -81990\mathit{lysize}
+%  = \Theta(\mathit{lxsize}\cdot\mathit{lysize})
+% \end{equation*}
+% für
+% \begin{equation*}
+% c_{1} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
+%  -163980\mathit{lysize}}{\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
+% \end{equation*}
+% \begin{equation*}
+% c_{2} = \frac{82041\mathit{lxsize}\cdot\mathit{lysize} -163984\mathit{lxsize}
+%  -163980\mathit{lysize}}{2\mathit{lxsize}\cdot\mathit{lysize}} \text{,}
+% \end{equation*}
+% $\mathit{lxsize}_{0} = 1$ und $\mathit{lysize}_{0} = 1$.
 % subsubsection regionenmarkierung (end)
