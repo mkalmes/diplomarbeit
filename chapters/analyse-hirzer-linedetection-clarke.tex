@@ -9,8 +9,8 @@ Der Algorithmus verwendet als Parameter das Bildsignal $I$ und einen Zeiger $I_m
  danach wiederverwendet werden kann. In Zeile~\ref{alg:convertmonochrome-baseaddress} wird die Adresse des
  Luminanz-Kanals $Y$ ausgelesen. Die Funktionen \textproc{width} und \textproc{height} liefern die Breite und Höhe des
  Signals in Pixeln, mit denen die Länge der Daten berechnet wird. Anschließend werden die Daten in den Puffer kopiert.
- Die Konvertierung des Bildsignals ist Verarbeitungsschritt der vor dem Verfahren von \citeauthor{clarke96} durchgeführt
- wird und wird nur der Vollständigkeit erwähnt.
+ Die Konvertierung des Bildsignals ist ein Verarbeitungsschritt der vor dem Verfahren von \citeauthor{clarke96}
+ durchgeführt wird und wird nur der Vollständigkeit erwähnt.
 
 Um auf \gls{pixel} zugreifen zu können, wird \autoref{alg:getpixel} verwendet.
 \input{alg/analyse-hirzer/getpixel}
@@ -155,7 +155,7 @@ In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init
  Danach wird in Zeile \ref{alg:findlinesegments1-line-start}--\ref{alg:findlinesegments1-line-end} ein zufälliges
  Liniensegment in der Region erstellt und untersucht
  (Vgl. \autoref{alg:findlinesegments2}--\autoref{alg:findlinesegments4}). Die Erstellung eines Liniensegments wird
- mehrmahls wiederholt, um das Liniensegment mit den meisten Unterstützungsedgels zu finden. In Zeile
+ mehrmals wiederholt, um das Liniensegment mit den meisten Unterstützungsedgels zu finden. In Zeile
  \ref{alg:findlinesegments1-hasenoughsupport} wird die Anzahl der der unterstützenden \gls{edgel} mit der Anzahl der
  benötigten \gls{edgel} verglichen. Nur wenn genügend \gls{edgel} das Liniensegment unterstützen, wird in
  \autoref{alg:findlinesegments6}--\autoref{alg:findlinesegments7} das Verfahren fortgesetzt und die
@@ -284,7 +284,7 @@ Wenn der Winkel kleiner als $0$ ist, werden Start- und Endpunkt in Zeile
  RANSAC-Verfahren wiederholt werden kann ohne die gleichen \gls{edgel} erneut zu betrachten, oder, wenn nicht mehr
  genügend \gls{edgel} in der Region vorhanden sind, das Verfahren abzubrechen und die Linienerkennung zu beenden. Die
  Laufzeit von \autoref{alg:findlinesegments7} ist abhängig von dem Bereich $[0,\mathit{supportCount}) = n$. Die
- Kosten lassen sich zu \autoref{eq:findlinesegments12} zusammen fassen. Die Methoden \textproc{vectorSubtract},
+ Kosten lassen sich zu \autoref{eq:findlinesegments-5} zusammen fassen. Die Methoden \textproc{vectorSubtract},
  \textproc{dotProduct}, \textproc{normalized} und \textproc{addLineSegment} haben eine konstante Laufzeit.
  \textproc{removeEdgel} hat eine Laufzeit von $T_{worst}(n)=\Theta(n)$, für $n = \mathit{numberOfEdgels}$. Die
  Laufzeitfunktion ist in \autoref{eq:findlinesegments-5} angegeben.
@@ -324,7 +324,7 @@ m = \left\lfloor\frac{1}{2}(\sqrt{8n+25} - 5)\right\rfloor
 lässt sich die maximale Anzahl $m$ der Wiederholung ermitteln, die mit $n$ \gls{edgel} möglich sind. % Die maximal
 %  mögliche Anzahl von \gls{edgel} ist $n = \frac{1}{5}(\mathit{regionSize}^2 - 2\mathit{regionSize})$.
 Die Kosten der  Algorithmen sind zur Analyse des schlechtesten Falls in \autoref{alg:findlinesegments9} aufgeführt. Die
- Laufzeitfuntion des RANSAC Verfahrens ist in \autoref{} angegeben.
+ Laufzeitfuntion des RANSAC Verfahrens ist in \autoref{eq:findlinesegments-7} angegeben.
 \input{eq/hirzer/findlinesegments7}
 Die Wachstumsrate ist $25mn^2 + 75mn + 108m = \Theta(mn^2)$, für $c_{1} = 11$, $c_{2} = 26$ und $n_{0} = 77$.
 
