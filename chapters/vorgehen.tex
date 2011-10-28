@@ -7,13 +7,43 @@
 	Gleiche Kriterien (selbes Bild, selbes Video)
 \end{comment}
 
-% Geräte
+Um das Verfahren ARToolKitPlus und das Verfahren von \citeauthor{hirzer08} zu analysieren werden die Kosten der
+ Algorithmen berechent und ihre Wachstumsrate ermittlet. Elementare Operationen, wie Addition, Zuweisung und
+ Arrayzugriffe, werden in Abhängigkeit von der Größe der Eingabemenge berechnet. Daraus wird wiederum das aymptotische
+ Wachstum ermittelt.
 
-% Bilddatenbeschaffung
-Das Videosignal wird unter iOS durch das AVFoundation Framework\footcite{avfoundation} zur Verfügung gestellt.
+Bei Verfahren, deren Algorithmen nicht im Quellcode vorliegen, wird durch eine experimentelle Analyse die Laufzeit des
+ Verfahrens für unterschiedliche Eingabemengen untersucht. Die Durchführung der experimentellen Analyse erfolgt dabei
+ auf einem iPod touch (4. Generation) mit einem ARMv7 Befehlssatz. Alle Programme der Analyse wurden mit LLVM GCC 4.2
+ und Kompileroptimierung $\mathit{-Os}$\footcite[Vgl.][]{cc} erstellt.
 
-% Vergleichsanalyse
-Durch das kontinuierliche Hinzufügen von Anwendungsschritten von einer leeren Main-Loop bis zum vollständigen Rendern
- eines augmentierten Objekts, lässt sich ein Vergleich für verschiedene Geräte erstellen\footcite[Vgl.][]{wagner09b}.
+\paragraph{Bilddatenbeschaffung:} % (fold)
+\label{par:bilddatenbeschaffung}
+Das Videosignal wird unter iOS durch das AVFoundation Framework zur Verfügung gestellt und ermöglicht durch Delegation
+ den Zugriff auf einzelne Frames\footcite{avfoundation}. AVFoundation erlaubt die Einstellung von fünf verschiedenen
+ Auflösungen für Videosignale, von Low, Medium, High über $640 \times 480$ bis zu $1280 \times 720$. Ferner unterstützt
+ AVFoundation die Bildformate $YCbCr$ mit $8$-Bit und $BGRA$ mit $32$-Bit.
+% paragraph bilddatenbeschaffung (end)
+
+\paragraph{Vergleichsanalyse:} % (fold)
+\label{par:vergleichsanalyse}
+Um beide Verfahren miteinander zu vergleichen wird die Laufzeit der Programme gemessen. Dazu wird durch hinzufügen von
+ Anwendungsschritten, von der Bildbeschaffung hin zur Erkennung einer Marke, eine Laufzeit erstellt. Dieses Verfahren
+ wurd von \citeauthor{wagner09b}\footcite[Vgl.][]{wagner09b} verwendet um Studierstube 4 auf unterschiedlichen Geräten
+ zu beurteilen. In meiner Analyse wird mit der gleichen Technik ARToolKitPlus und das Verfahren von
+ \citeauthor{hirzer08} auf einem iPod touch untersucht.
+% paragraph vergleichsanalyse (end)
+
+\paragraph{ARToolKitPlus:} % (fold)
+\label{par:artoolkitplus}
+Die Untersuchung von ARToolKitPlus unter iOS 4 erfolgt mit VRToolKit\footcite[Vgl.][]{vrtoolkit} von \citeauthor{vrtoolkit}. VRToolKit ist ein Obj-C Wrapper für ARToolKitPlus. VRToolKit konfigueriert das ARToolKitPlus System zur Verarbeitung von Marken und sorgt für die Bereitstellung von Bildsignalen der Kamera.
+% paragraph artoolkitplus (end)
+
+\paragraph{Verfahren nach \citeauthor{hirzer08}:} % (fold)
+\label{par:verfahren_nach_hirzer}
+Das Verfahren von \citeauthor{hirzer08} ist eine Eigenentwicklung in Obj-C und C, die nach dem Konzept von VRToolKit und
+ dem Softwarehersteller infi\footcite[Vgl.][]{infi} entworfen wurde. Die Implementierung sorgt für die Bereitstellung
+ und Verarbeitung des Bildsignals.
+% paragraph verfahren_nach_hirzer (end)
 
 % section vorgehen (end)

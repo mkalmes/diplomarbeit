@@ -1,9 +1,77 @@
 \section{Allgemein} % (fold)
 \label{sec:allgemein}
 
-Die in diesem Abschnitt vorgestellten Algorithmen sind sowohl in ARToolKit als auch in dem Verfahren nach Hirzer
- anzutreffen.
+Bei ARToolKitPlus und dem Verfahren nach Hirzer wird das Bildsignal durch AVFoundation zur Verfügung gestellt. Um
+ auszuschliessen, dass eine Kombination von Bildformat und Auflösung zu einem Performanzproblem wird, wurde die
+ Geschwindigkeit des Systems untersucht.
 
-\ldots
+AVFoundation bietet auf einem iPod touch die Möglichkeit, Bildsignale in den Auflösungen von $192 \times 144$ (Low),
+ $480 \times 360$ (Medium), $640 times 480$ und $1280 \times 720$ (High) anzufordern. Als Bildformat kann entweder
+ $\mathit{YCbCr}$ oder $\mathit{RGBA}$ gewählt werden. In \autoref{fig:videoperformance-rgb} wurde für jede unterstützte
+ Auflösung mit dem Bildformat $\mathit{RGBA}$ $300$ Messdaten erfasst.
+\begin{figure}[!ht]
+	\centering
+	\subfigure[$\mathit{RGBA}$ Low]{
+		% \def\svgwidth{7cm}
+		\input{resources/RGB-Low.pdf_tex}
+		\label{fig:videoperformance-rgb-low}
+	}
+	\subfigure[$\mathit{RGBA}$ Medium]{
+		% \def\svgwidth{7cm}
+		\input{resources/RGB-Medium.pdf_tex}
+		\label{fig:videoperformance-rgb-medium}
+	}
+	\subfigure[$\mathit{RGBA}$ $640 \times 480$]{
+		% \def\svgwidth{7cm}
+		\input{resources/RGB-640x480.pdf_tex}
+		\label{fig:videoperformance-rgb-640}
+	}
+	\subfigure[$\mathit{RGBA}$ High]{
+		% \def\svgwidth{7cm}
+		\input{resources/RGB-High.pdf_tex}
+		\label{fig:videoperformance-rgb-high}
+	}
+	\caption{$\mathit{RGBA}$ Analyse für die Auflösung Low (\autoref{fig:videoperformance-rgb-low}),
+	 Medium (\autoref{fig:videoperformance-rgb-medium}), $640 \times 480$ (\autoref{fig:videoperformance-rgb-640}) und
+	 High (\autoref{fig:videoperformance-rgb-high}). Der Median ist als blaue Linie eingezeichnet.}
+	\label{fig:videoperformance-rgb}
+\end{figure}
+Bei der kleinsten Auflösung (\autoref{fig:videoperformance-rgb-low}) liegt der Median der Bildwiederholfrequenz bei $15$
+ FPS. Bei den restlichen Auflösungen beträgt der Median der Bildwiederholfrequenz $30$ FPS. In
+ \autoref{fig:videoperformance-ycbcr} wurde die Analyse für das Videoformat $\mathit{YCbCr}$ wiederholt.
+\begin{figure}[!ht]
+	\centering
+	\subfigure[$\mathit{YCbCr}$ Low]{
+		% \def\svgwidth{6cm}
+		\input{resources/YCbCr-Low.pdf_tex}
+		\label{fig:videoperformance-ycbcr-low}
+	}
+	\subfigure[$\mathit{YCbCr}$ Medium]{
+		% \def\svgwidth{6cm}
+		\input{resources/YCbCr-Medium.pdf_tex}
+		\label{fig:videoperformance-ycbcr-medium}
+	}
+	\subfigure[$\mathit{YCbCr}$ $640 \times 480$]{
+		% \def\svgwidth{6cm}
+		\input{resources/YCbCr-640x480.pdf_tex}
+		\label{fig:videoperformance-ycbcr-640}
+	}
+	\subfigure[$\mathit{YCbCr}$ High]{
+		% \def\svgwidth{6cm}
+		\input{resources/YCbCr-High.pdf_tex}
+		\label{fig:videoperformance-ycbcr-high}
+	}
+	\caption{$\mathit{YCbCr}$ Analyse für die Auflösung Low (\autoref{fig:videoperformance-ycbcr-low}),
+	 Medium (\autoref{fig:videoperformance-ycbcr-medium}), $640 \times 480$ (\autoref{fig:videoperformance-ycbcr-640})
+	 und High (\autoref{fig:videoperformance-ycbcr-high}). Der Median ist als blaue Linie eingezeichnet.}
+	\label{fig:videoperformance-ycbcr}
+\end{figure}
+Auch bei dieser Untersuchung liegt der Median bei der kleinsten Auflösung (\autoref{fig:videoperformance-ycbcr-low})
+ bei $15$ FPS. Die restlichen Auflösungen ereichen eine Bildwiederholrate von $30$ FPS.
+
+Bei beiden Bildformaten werden, unabhängig von der Auflösunge, gleiche Ergebnisse erzielt. Die wenigsten Abweichung der
+ Bildwiederholfrequenz sind in \autoref{} und \autoref{} für die Auflösung von $640 \times 480$ \gls{pixel} zu
+ beobachten. Für die Analyse der Verfahren wird die Auflösung $640 \times 480$ mit dem Bildformat $\mathit{RGBA}$
+ verwendet.
 
 % section allgemein (end)
