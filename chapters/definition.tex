@@ -29,7 +29,23 @@ Nach \citeauthor{moeller2008}\footcite[Vgl.][S.~1]{moeller2008} ist Interaktion 
  eine Geschwindigkeit von $6$ FPS noch als interaktiv gilt. Diese Definition wird von \citeauthor{wagner09b} in ihrer
  Untersuchung\footcite[Vgl.][S.~8--9]{wagner09b} unterstützt.
 
-\subsubsection{Bitonale Marken}
+\subsection{Tracking Verfahren} % (fold)
+\label{sec:tracking_verfahren}
+Tracking Verfahren bezeichnet bei \gls{AR}-Systemen die Fähigkeit, die reale Position eines Benutzers oder eines
+ Displays in Relation zur Position einer \gls{AR}-Umgebung zu setzen. Tracking Verfahren müssen, wie in der Definition
+ von \citeauthor{azuma97} schon erwähnt, in Echtzeit agieren. Zusätzlich müssen Tracking Verfahren, je nach
+ Anwendungsgebiet, unter unterschiedlichen Lichtverhältnissen arbeiten können.
+
+Ein Bereich der Tracking Verfahren ist das Fiducial Tracking, auch Markenbasiertes Tracking genannt. Bei diesem
+ Tracking Verfahren wird durch Hilfe einer Marke die Position im realen und virtuellen Raum berechnet. Die bereits
+ erwähnten Systeme ARToolKit, ARToolKitPlus und Studierstube, sind Markenbasierte Verfahren und suchen in einem
+ Bildsignal nach einer bitonalen Marke. Das erste Markenbasierte \gls{AR}-System war
+ Matrix\footcite{rekimoto1998matrix} von \citeauthor{rekimoto1998matrix}. \citeauthor{fiala2004artaga} entwickelte mit
+ ARTag\footcite{fiala2004artaga} ein \gls{AR}-System, dass die Idee eines 2D-Codes zur Identifizierung von Matrix
+ übernahm. In ARToolKitPlus wurde die Identifizierung von 2D-Codes ebenfalls implementiert.
+% subsection tracking_verfahren (end)
+
+\subsection{Bitonale Marken} % (fold)
 \label{sub:bitonalemarken}
 Bei Markenbasierten \gls{AR}-Verfahren werden bitonale Marken zur Erkennung und Verfolgung von realen Objekten
  eingesetzt. Eine Marke besteht aus einem schwarzen quadratischen Rahmen auf weißem Untergrund und trägt in der Mitte
@@ -43,23 +59,23 @@ Bei Markenbasierten \gls{AR}-Verfahren werden bitonale Marken zur Erkennung und 
 
 \begin{figure}[!ht]
 	\centering
-	\subfigure[]{
+	\subfigure[ARToolKit]{
 		\label{fig:marke-artoolkit}
 		\includegraphics[scale=1]{resources/Marker-ART.pdf}
 	}
-	\subfigure[]{
+	\subfigure[ARTag]{
 		\label{fig:marke-artag}
 		\includegraphics[scale=1]{resources/Marker-ARTag.pdf}
 	}
-	\subfigure[]{
+	\subfigure[ARToolKitPlus]{
 		\label{fig:marke-artoolkitplus}
 		\includegraphics[scale=1]{resources/Marker-ART+.pdf}
 	}
 	\caption{Verschiedene bitonale Marken.
-		ARToolKit \subref{fig:marke-artoolkit}, ARTag \subref{fig:marke-artag} und ARToolKitPlus \subref{fig:marke-artag}.
 	}
 	\label{fig:bitonale-marken}
 \end{figure}
+% subsection bitonale_marken (end)
 
 \begin{comment}
 	(wagner/schmalstieg ARToolKitPlus fpr Pose Tracking on Mobile Devices S.4)
