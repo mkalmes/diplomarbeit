@@ -75,8 +75,8 @@ wird. In den meisten Fällen wird die Information eines Farbbildes in drei Kompo
 jeweils 8 Bit, kodiert. Somit besteht ein Pixel aus \(3 \cdot 8 = 24\) Bits mit einem Wertebereich von
 \(\left[0 \dotsc 255\right]\) pro Farbkomponente.
 
-Der Aufbau der Farbinformationen ist abhängig von der Anordnung, die in \autoref{sub:pixelanordnung} genauer definiert
- wird.
+Der Aufbau der Farbinformationen ist abhängig von der Anordnung und wird in \autoref{sub:pixelanordnung} genauer
+ definiert.
 
 % subsection bildtypen (end)
 
@@ -463,7 +463,7 @@ Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur 
 
 Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird ein Binärbild in zwei Schritten
  untersucht. Im ersten Schritt werden im Binärbild vorläufige Markierungen für Regionen gespeichert und im zweiten
- Schritt werden mehrfache Makierungen für eine Region aufgelöst.
+ Schritt werden mehrfache Makierungen, sogenannte Kollisionen, für eine Region aufgelöst.
 
 \subsubsection{Vorläufige Makierung} % (fold)
 \label{sec:vorläufige_makierung}
@@ -471,8 +471,8 @@ Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wi
 Zuerst muss das Binärbild zeilenweise von oben nach unten auf das Vorhandensein von Vordergrundpixel untersucht werden.
 Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nachbarschaftsbeziehung, ebenfalls
  untersucht. Zwei gebräuchliche Definitonen von Nachbarschaftsbeziehungen sind zum einen die 4er-Nachbarschaft und zum
- anderen die 8er-Nachbarschaft. Für ein \gls{pixel} $I(u,v)$ werden bei der 4er-Nachbarschaft die beiden angrenzenden
- \gls{pixel} $I(u-1,v)$ und $I(u,v+1)$ untersucht. Bei der 8er-Nachbarschaft werden die vier Nachbarn $I(u-1,v)$,
+ anderen die 8er-Nachbarschaft. Für ein \gls{pixel} $I(u,v)$ werden bei der 4er"=Nachbarschaft die beiden angrenzenden
+ \gls{pixel} $I(u-1,v)$ und $I(u,v+1)$ untersucht. Bei der 8er"=Nachbarschaft werden die vier Nachbarn $I(u-1,v)$,
  $I(u-1,v+1)$, $I(u,v+1)$ und $I(u+1,v+1)$ untersucht. Beide Nachbarschaftsbeziehungen sind in
  \autoref{fig:nachbarschaft} abgebildet.
 \begin{figure}[!ht]
