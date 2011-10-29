@@ -4,19 +4,34 @@
 	Problemstellung: Problemstellung und Frage im Detail erläutern
 \end{comment}
 
-Wie in \autoref{sec:forschungsstand} schon erwähnt, gibt es keine aktuellen und im Quellcode verfügbaren Systeme zur Entwicklung von \gls{AR} Anwendungen. Somit war eine Eigenentwicklung unumgänglich.
+Die Erforschung von \gls{AR} Verfahren und Anwendungen wurde in der Vergangenheit auf leistungsfähigen Computern
+ durchgeführt. Die Untersuchung der Verfahren auf mobilen Geräten ist ein noch neuer Bereich, der durch die Limitierung
+ der Hardware eine Herausforderung darstellt.
 
-Um eine bitonale Marke, üblicherweise Schwarz/Weiß, zu erkennen, werden Verfahren zur Erkennung von Linien eingesetzt,
- die aus dem Bereich der digitalen Bildverarbeitung stammen. Anders als bei der herkömmlichen Bildverarbeitung muss
- Bildverarbeitung für \gls{AR} die Verarbeitungsschritte so schnell ausführen, dass eine Analyse eines Bildes in
- Echtzeit stattfinden kann. Bei Bildverarbeitung außerhalb der \gls{AR} ist dies kein notwendiges Kriterium. Als
- Grundlage für eine Eigenentwicklung kommt das Verfahren von \citeauthor{clarke96}\footcite{clarke96} zum Einsatz,
- dass in \autoref{sub:verfahren_nach_hirzer} vorgestellt wird.
+Um eine bitonale Marke zu erkennen, werden Verfahren zur Erkennung von Linien eingesetzt, die aus dem Bereich der
+ digitalen Bildverarbeitung stammen. Anders als bei der herkömmlichen Bildverarbeitung muss Bildverarbeitung für
+ \gls{AR} die Verarbeitungsschritte so schnell ausführen, dass eine Analyse eines Bildes in Echtzeit stattfinden kann.
+ Bei Bildverarbeitung außerhalb der \gls{AR} ist dies kein notwendiges Kriterium.
 
-Der Bezug von Bildern über den Kamerasensor eines Smartphones muss so schnell wie möglich erfolgen um für die Weiterverarbeitung verwendet werden zu können. Bei Smartphones werden in aller Regel Kamerasensoren aus dem Verbraucherbereich verwendet. Diese Kamerasysteme liefern nicht die Performanz wie professionelle Kameras. Daraus bedingt müssen die zur Verfügung stehenden Mittel so gut es geht ausgenutzt werden. Beim Bezug der Bilder ist darauf zu achten, dass die Geschwindigkeit bei Bildtypenkonvertierungen nicht darunter leidet.
+Der Bilddatenbeschaffung über den Kamerasensor eines Smartphones muss so schnell wie möglich erfolgen um für die
+ Weiterverarbeitung verwendet werden zu können. Bei Smartphones werden in aller Regel Kamerasensoren aus dem
+ Verbraucherbereich verwendet. Diese Kamerasysteme liefern nicht die Performanz einer professionellen Kamera. Dadurch
+ bedingt müssen die zur Verfügung stehenden Mittel so gut es geht ausgenutzt werden.
 
-Die Softwarearchitektur für \gls{AR} auf Smartphones unterscheidet sich von einer PC Architektur, abgesehen von der Prozessorgeschwindigkeit, grundsätzlich durch die Menge und Bandbreite des Arbeitsspeichers. Dies bedeutet, dass alle Arbeitsschritte durch eine ineffektive Ausnutzung des zur Verfügung stehenden Speichers verlangsamt werden.
+Die Softwarearchitektur für \gls{AR} auf Smartphones unterscheidet sich von einer PC Architektur, abgesehen von der
+ Prozessorgeschwindigkeit, grundsätzlich durch die Menge und Bandbreite des Arbeitsspeichers. Dies bedeutet, dass alle
+ Arbeitsschritte durch eine ineffektive Ausnutzung des zur Verfügung stehenden Speichers verlangsamt werden.
 
-Die Software kann nach gängigen Entwurfskriterien entworfen werden wobei die Vor- und Nachteile von dynamischen und statischen Bibliotheken berücksichtigt werden müs\-sen.
+Wie in \autoref{sec:forschungsstand} erwähnt, ist ARToolKitPlus das einzige aktuelle Tracking Verfahren, das im
+ Quellcode verfügbar ist. Wie \citeauthor{wagner09a} festgestellt haben, eignet sich ARToolKitPlus nur noch bedingt für
+ mobile Plattformen\footcite{wagner09a}, sodass sie mit Studierstube ein neues Tracking Verfahren entworfen haben. Ein
+ modernes Verfahren zur Markenerkennung wurde von \citeauthor{hirzer08} vorgestellt\footcite{hirzer08}, dass im Rahmen
+ dieser Arbeit implementiert wurde.
+
+Diese Arbeit vergleicht die unterschiedlichen Tracking Verfahren von ARToolKitPlus und dem Verfahren von
+ \citeauthor{hirzer08} zur Erkennung einer bitonalen Marke auf einem iPod touch (4. Generation) unter iOS 4.
+
+Der Fokus dieser Arbeit liegt dabei auf die Einhaltung der Echtzeitbedinung von \citeauthor{azuma97}.
+
 
 % section problemstellung (end)
