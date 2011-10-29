@@ -27,14 +27,18 @@ Identifizierung von Marken eine \textit{Runtime Tracking Pipeline} bestehend aus
 ARToolKitPlus erkennt Marken, indem in einem Binärbild Kanten gesucht werden, um daraus zusammenhängende Bildregionen
  zu erstellen. Diese Regionen werden isoliert betrachtet und daraufhin untersucht, ob es sich dabei um ein Rechteck
  handelt. Dazu wird \autoref{fiducialdetection} und \autoref{rectanglefitting} aus der
- \textit{Runtime Tracking Pipeline} verwendet.
-
+ \textit{Runtime Tracking Pipeline} verwendet. Die anderen Verfahren dienen der Identifizierung einer Marke und der
+ Berechnung der Lage im Raum und sind für diese Untersuchung nicht von Bedeutung.
 
 \subsubsection{Fiducial Detection} % (fold)
 \label{sub:fiducial_detection}
 
-Fiducial Detection sorgt mit zwei Verfahren für die Eingrenzung der Bilddaten auf Bereiche in denen eine Marke sein könnte. Dazu müssen zuerst zusammenhängende Bildregionen identifiziert werden, um im Anschluss die Umrisse der Regionen zu berechnen.
+Fiducial Detection sorgt mit zwei Verfahren für die Eingrenzung der Bilddaten auf Bereiche in denen eine Marke sein
+ könnte. Dazu müssen zuerst zusammenhängende Bildregionen identifiziert werden, um im Anschluss die Umrisse der
+ Regionen zu berechnen.
 
+\paragraph{Bildregionen:} % (fold)
+\label{par:bildregionen}
 Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln in einem Binärbild, die es zu finden
  gilt. ARToolKitPlus benutzt zur Erkennung von zusammenhängenden Bildregionen eine abgewandelte Form der sequentiellen
  Regionenmarkierung (Vgl. \autoref{sec:regionen_in_binärbilder}). Im Unterschied zum bereits vorgestellten Verfahren,
@@ -44,8 +48,10 @@ Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln i
  Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um einen
  Vordergrundpixel.
 
-Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und wird an Position $(u,v)$ als $0$ gespeichert. Da ARToolKitPlus ein Binärbild während der Regionenmarkierung erstellt, wird auf eine expliziete Speicherung eines Vordergrundpixel verzichetet. Somit verwendet ARToolKitPlus folgende numerischen Werte zur Markierung:
-
+Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und wird an Position $(u,v)$ als $0$
+ gespeichert. Da ARToolKitPlus ein Binärbild während der Regionenmarkierung erstellt, wird auf eine expliziete
+ Speicherung eines Vordergrundpixel verzichetet. Somit verwendet ARToolKitPlus folgende numerischen Werte zur
+ Markierung:
 \begin{equation*}
 	I(u,v) = \begin{cases}
 	0 & \textrm{Hintergrund}\\
@@ -57,9 +63,8 @@ Bei einem Vordergrundpixel wird die Beziehung des \gls{pixel} zu seinen Nachbarn
  untersucht. Bei der Zuweisung einer Markierung unterscheidet sich ARToolKitPlus von dem Verfahren in
  \autoref{sec:regionen_in_binärbilder}. Eine Kollision der Markierung durch unterschiedliche Markierungen der Nachbarn
  wird direkt verarbeitet. Dazu werden die numerischen Werte der Makierungen verglichen und alle größeren Werte durch
- die Markierung mit kleinerem Wert überschrieben. Dadurch müssen Kollisionen nicht in einem zusätzlichen Schritt
- aufgelöst werden. Dabei ist zu erwähnen, dass die Markierungen im Bildspeicher nicht ersetzt werden. ARToolKitPlus
- speichert die Information der Markierungen in einer eigenen Liste.
+ die Markierung mit kleinerem Wert überschrieben. ARToolKitPlus speichert die Information der Markierungen in einer
+ eigenen Liste um Markierungen nicht im Bildspeicher ersetzen zu müssen.
 
 Nachdem das Eingangssignal vollständig markiert wurde, enthält die Liste mit Markierungen duch aufgetretene Kollisionen
  keine fortlaufenden Werte. Um eine Liste mit fortlaufenden Markierungswerten zu erhalten, wird die Liste für jede
@@ -71,7 +76,10 @@ Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, v
  Speicherbereich. Eine Region besteht in ARToolKitPlus aus der Markierung, der Start- und Endposition der Region, des
  Flächeninhalts der Region und den Koordinaten des Zentrums. Diese Daten werden mithilfe der Liste der Markierungen
  generiert und das Verfahren in \autoref{sec:artoolkitplus} erläutert.
+% paragraph bildregionen (end)
 
+\paragraph{Konturen:} % (fold)
+\label{par:konturen}
 Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt. ARToolKitPlus verwendet dazu die Liste
  der Markierungen und das markierte Bild. Um die Kontur einer Region zu ermitteln, muss eine Region auf bestimmte
  Merkmale hin untersucht werden. Dazu wird für jede gefundene Regionenmakierung der Flächeninhalt der Region
@@ -84,6 +92,7 @@ Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt.
  Kontur zu finden, wird die Region verworfen, da sie sich nicht zur Erkennung
  eignet\footcite[Vgl.][S.~41--42]{wagner07a}. Liegt eine geschlossene Kontur vor, ist das Verfahren des Fiducial
  Detection beendet und die Kontur wird zur weiteren Verarbeitung an Rectangle Fitting übergeben.
+% paragraph konturen (end)
 
 % subsubsection fiducial_detection (end)
 
@@ -121,13 +130,13 @@ Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab falls mehr 
 
 Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbild der \textit{pixel connectivity edge
  linking based algorithms} entworfen und ist in drei Hauptteile aufgebaut. Zuerst werden Liniensegmente erstellt,
- indem \glspl{edgel} auf einem Suchraster gefunden und zusammengeführt werden. Die kurzen Liniensegmente werden dann zu
+ indem \gls{edgel} auf einem Suchraster gefunden und zusammengeführt werden. Die kurzen Liniensegmente werden dann zu
  längeren Linien zusammengeführt. Anschließend werden im zweiten Schritt alle gefundenen Linien erweitert um die
  Gesamtlänge einer Linie zu erhalten. Im letzten Schritt werden die Linien zu Vierecken verbunden. Im weiteren Verlauf
  werden diese Schritte als Line Detection, Line Extension und Quadrangle Detection bezeichnet.
 
-\subsubsection{Line Detection} % (fold)
-\label{sub:line_detection}
+\subsubsection{Line Detection nach \citeauthor{clarke96}} % (fold)
+\label{sub:line_detection_clarke}
 Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
  Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC-Verfahren
  (\textit{Random Sample Consensus}) eine Linienhypothese zu erstellen und zu bewerten.
@@ -149,11 +158,13 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
  Linie mit der meisten Edgelunterstützung zu finden. Wenn eine solche dominante Linie gefunden wurde, gilt die
  Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstüztung der Hypothese
  der Linie galten, werden aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle
- Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind.
-
-Das Verfahren ist in \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:} illustriert.
-
+ Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind. Das Verfahren ist in
+ \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:} illustriert.
 \input{alg/untersuchungsdesign/linedetection-clarke}
+% subsection line_detection_nach_clarke96 (end)
+
+\subsubsection{Line Detection nach \citeauthor{hirzer08}} % (fold)
+\label{sub:line_detection_hirzer}
 
 \citeauthor{hirzer08} hat das Verfahren von \citeauthor{clarke96} abgewandelt, um es zur Erkennung einer bitonalen
  Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt eines monochromen Bildsignals, ein farbiges Bildsignal
@@ -162,24 +173,22 @@ Das Verfahren ist in \autoref{alg:linedetection-clarke-overview} dargestellt und
  allen drei Kanälen höher als der festgelegte Schwellwert, handelt es sich um einen Übergang  von Schwarz nach Weiß.
  Ist dies nicht der Fall, handelt es sich um einen farbigen Übergang und ist somit zur Erkennung einer Marke
  uninteressant. Da ein monochromes Signal wie in \autoref{sub:bildtypen} beschrieben nur ein Kanal besitzt, kann hier
- diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \glspl{edgel}
+ diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \gls{edgel}
  führt\footcite[Vgl.][S.~6--7]{hirzer08}.
-
-\input{alg/untersuchungsdesign/linemerging-hirzer}
 
 Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur kurze Liniensegmente. Um eine Kante
  entlang einer Marke zu erkennen, müssen die kurzen Liniensegmente zusammengeführt werden
- (Vgl. \autoref{alg:linemerging-hirzer}). Dazu werden alle Liniensegmente miteinander verglichen um jede
- Kombinationsmöglichkeit zu testen. Ob zwei Liniensegmente zu einer Linie zusammengeführt werden können, ist von drei
- Kriterien abhängig: Zuerst müssen zwei Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig
- abweichen darf um als Ergebnis eine gerade Linien zu erhalten. Als zweites Kriterium muss eine Verbindungslinie
- zwischen den Liniensegmenten ebenfalls eine kompatible Orientierung aufweisen. Dadurch wird sichergestellt, dass keine
- Liniensegmente zusammengeführt werden, die zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen.
- Als letztes Kriterium muss die Orientierung des Gradienten für alle Punkte der Verbindungslinie kompatible mit der
- Linienorientierung sein. Dieses Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man dies
- Unterscheidung vernachlässigen, würden mehrere Kanten unterschiedlicher Marken zusammengeführt
- (Vgl.~\autoref{fig:linemerging-kriterium3}).
-
+ (Vgl. \autoref{alg:linemerging-hirzer}).
+\input{alg/untersuchungsdesign/linemerging-hirzer}
+Dazu werden alle Liniensegmente miteinander verglichen um jede Kombinationsmöglichkeit zu testen. Ob zwei
+ Liniensegmente zu einer Linie zusammengeführt werden können, ist von drei Kriterien abhängig: Zuerst müssen zwei
+ Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig abweichen darf um als Ergebnis eine gerade
+ Linien zu erhalten. Als zweites Kriterium muss eine Verbindungslinie zwischen den Liniensegmenten ebenfalls eine
+ kompatible Orientierung aufweisen. Dadurch wird sichergestellt, dass keine Liniensegmente zusammengeführt werden, die
+ zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen. Als letztes Kriterium muss die
+ Orientierung des Gradienten für alle Punkte der Verbindungslinie kompatible mit der Linienorientierung sein. Dieses
+ Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man dies Unterscheidung vernachlässigen,
+ würden mehrere Kanten unterschiedlicher Marken zusammengeführt (Vgl.~\autoref{fig:linemerging-kriterium3}).
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -242,19 +251,18 @@ Um aus den gefundenen Linien eine quadratische Marke zu erkennen, werden Eckpunk
  Linien entstehen. Dies wird durch Quadrangle Detection erreicht indem alle Linienkombinationen untersucht werden um
  vier Eckpunkte zu finden.
 
+\autoref{alg:quadrangledetection-hirzer} vergleicht alle Linienkombinationen auf drei Kriterien.
 \input{alg/untersuchungsdesign/quadrangledetection-hirzer}
-
-\autoref{alg:quadrangledetection-hirzer} vergleicht alle Linienkombinationen auf drei Kriterien. Zuerst dürfen zwei
- Linien nicht parallel zueinander liegen, da sonst keine quadratische Marke gefunden werden kann. Danach wird als
- zweites Kriterium der Abstand der Linienenden untersucht. Bleibt der Abstand unter einem festgelegten Schwellwert,
- wird das Verfahren fortgesetzt. Zuletzt wird die Orientierung der beiden Linien untersucht. Eine quadratische Marke
- besteht aus einem schwarzen Rahmen auf weißem Untergund und wird dadurch von den Linien eingeschlossen
- (Vgl.~\autoref{sub:bitonalemarken}). Somit muss die Orientierung der Linien sich um $90^\circ$ unterscheiden. Wenn
- alle drei Kriterien erfüllt sind, wird der Überschneidungspunkt der Linien als Eckpunkt der Marke gespeichert und das
- Verfahren mit der zweiten Linien rekursiv wiederholt bis vier Eckpunkte gefunden wurden. Falls weniger als vier
- Eckpunkte gefunden wurden, wird das Verfahren am anderen Ende der ersten Linie wiederholt. Dadurch wird
- sichergestellt, dass die Eckpunkte durch eine Kette von Linien verbunden sind. Idealerweise wird eine geschlossene
- Kette mit vier Eckpunkten gefunden.
+Zuerst dürfen zwei Linien nicht parallel zueinander liegen, da sonst keine quadratische Marke gefunden werden kann.
+ Danach wird als zweites Kriterium der Abstand der Linienenden untersucht. Bleibt der Abstand unter einem festgelegten
+ Schwellwert, wird das Verfahren fortgesetzt. Zuletzt wird die Orientierung der beiden Linien untersucht. Eine
+ quadratische Marke besteht aus einem schwarzen Rahmen auf weißem Untergund und wird dadurch von den Linien
+ eingeschlossen (Vgl.~\autoref{sub:bitonalemarken}). Somit muss die Orientierung der Linien sich um $90^\circ$
+ unterscheiden. Wenn alle drei Kriterien erfüllt sind, wird der Überschneidungspunkt der Linien als Eckpunkt der Marke
+ gespeichert und das Verfahren mit der zweiten Linien rekursiv wiederholt bis vier Eckpunkte gefunden wurden. Falls
+ weniger als vier Eckpunkte gefunden wurden, wird das Verfahren am anderen Ende der ersten Linie wiederholt. Dadurch
+ wird sichergestellt, dass die Eckpunkte durch eine Kette von Linien verbunden sind. Idealerweise wird eine
+ geschlossene Kette mit vier Eckpunkten gefunden.
 
 Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt und somit eine Marke erkannt. Wurden
  weniger als vier Eckpunkte gefunden, kann das Quadrat wie folgt wiederhergestellt werden: Mit drei Eckpunkten ist es
@@ -264,7 +272,6 @@ Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt
  Line Extension. Je besser die Linienerweiterung ist, desto genauer ist das Ergebnis
  (Vgl.~\autoref{fig:quadrangledetection}). Wenn nur ein Eckpunkt gefunden wurde, ist eine Wiederherstellung der Marke
  nicht möglich und die Linien werden gelöscht.
-
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
