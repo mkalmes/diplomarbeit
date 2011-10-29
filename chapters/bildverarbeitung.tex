@@ -27,27 +27,32 @@ Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, benötigen wir e
 	% section grundlagen (end)
 \end{comment}
 
-Bevor ich mich den \gls{AR}-Verfahren widme, möchte ich die grundlegenden Aspekte der digitalen Bildverarbeitung benennen, die in den nachfolgenden Kapiteln benötigt werden. Dabei werde ich keinen kompletten Überblick über Digitale Bildverarbeitung vermitteln, sondern nur Bereiche besprechen die für die Untersuchung der \gls{AR} berücksichtigt werden müssen.
-
+Bevor ich mich den \gls{AR}-Verfahren widme, möchte ich die grundlegenden Aspekte der digitalen Bildverarbeitung
+ benennen, die in den nachfolgenden Kapiteln benötigt werden. Dabei werde ich keinen kompletten Überblick über Digitale
+ Bildverarbeitung vermitteln, sondern nur Bereiche besprechen die für die Untersuchung der \gls{AR} berücksichtigt
+ werden müssen.
 
 \subsection{Grundlagen} % (fold)
 \label{sub:grundlagen}
 
-Ein digitales Bild ist eine Ansammlung numerischer Werte, die in einem Array gespeichert sind. Durch die Höhe und Breite des Bildes kann das Array, wie in \autoref{fig:bildmatrix}, als Matrix dargestellt werden. Die Höhe $N$ entspricht dann den Zeilen und die Breite $M$ den Spalten der Matrix. Ein Bild $I$ ist somit definiert als eine Funktion auf einer Menge von Bildwerten $\mathbb{P}$, wie in \autoref{eq:digitalesBild} dargestellt ist.
-
-\begin{figure}
+Ein digitales Bild ist eine Ansammlung numerischer Werte, die in einem Array gespeichert sind. Durch die Höhe und Breite des Bildes kann das Array, wie in \autoref{fig:bildmatrix}, als Matrix dargestellt werden.
+\begin{figure}[!ht]
 	\centering
 	\input{resources/Bildmatrix.pdf_tex}
 	\caption{Digitales Bild in Matrixdarstellung.}
 	\label{fig:bildmatrix}
 \end{figure}
-
+Die Höhe $N$ entspricht dann den Zeilen und die Breite $M$ den Spalten der Matrix. Ein Bild $I$ ist somit definiert als
+ eine Funktion auf einer Menge von Bildwerten $\mathbb{P}$, wie in \autoref{eq:digitalesBild} dargestellt ist.
 \begin{equation}
 	I\left(u,v\right)\in\mathbb{P} \text{ und } u,v\in\mathbb{N}
 	\label{eq:digitalesBild}
 \end{equation}
-
-Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, bedienen wir uns eines Koordinatensystems. Im Unterschied zu einem kartesischen Koordinatensystem ist bei Bildern der Ursprungspunkt links oben. Die \(x\)-Achse verläuft von links nach rechts und die \(y\)-Achse von oben nach unten. \begin{comment}\\TODO:vgl abbildung\end{comment} Welche Werte in einem \gls{pixel} gespeichert sind und wie diese Werte zu interpretieren sind, ist abhängig vom verwendeten Bildtyp.
+Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, bedienen wir uns eines Koordinatensystems. Im
+ Unterschied zu einem kartesischen Koordinatensystem ist bei Bildern der Ursprungspunkt links oben. Die \(x\)-Achse
+ verläuft von links nach rechts und die \(y\)-Achse von oben nach unten. \begin{comment}\\TODO:vgl abbildung\end{comment}
+Welche Werte in einem \gls{pixel} gespeichert sind und wie diese Werte zu interpretieren sind, ist abhängig vom
+ verwendeten Bildtyp.
 
 % section grundlagen (end)
 
@@ -58,7 +63,7 @@ Der Wert eines \gls{pixel} ist als binärer Wert der Länge $k$ angegeben. Darü
  über die weiteren Informationen eines \gls{pixel}.
 
 Monochrome Bilder, die im allgemeinen Sprachgebrauch als Schwarzweiß-Bilder bezeichnet werden, besitzen nur eine
- Komponente, die als Luminanz oder auch Intensität bezeichnet wird. Die Information des \gls{pixel} wird im Allgemeinen
+ Komponente, die als \gls{luminanz} bezeichnet wird. Die Information des \gls{pixel} wird im Allgemeinen
  mit 8 Bit kodiert, so dass sich ein Wertebereich von $2^8 = \left[0\dotsc255\right]$ ergibt.
 
 Binäre Bilder sind eine spezielle Form der monochromen Bilder. In binären Bildern werden nur Schwarzweiß-Werte
@@ -86,7 +91,6 @@ Bei digitaler Bildverarbeitung gibt es unterschiedliche Farbräume für verschie
 
 Der RGB-Farbraum ist in in der digitalen Bildverarbeitung der am häufigsten eingesetzte Farbraum und besteht aus roten,
  grünen und blauen Komponenten (\autoref{fig:rgbLenna}).
-
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -114,13 +118,7 @@ Der RGB-Farbraum ist in in der digitalen Bildverarbeitung der am häufigsten ein
 
 Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Primärfarben einen Farbton und dessen
  Helligkeit generiert\footcite[Vgl.][S.~233]{burger05}. Der RGB Farbraum kann als dreidimensionaler Würfel dargestellt
- werden (\autoref{fig:rgbWuerfel}). Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und
- Blau dar. Normiert man den Würfel zu einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von
- \(\left[0 \dotsc 1.0\right]\). Innerhalb dieses Würfels kann durch Verschiebung der Koordinate jeder Farbton generiert
- werden. Die Grundfarben können in diesem Würfel durch die Punkte $R = \left(1,0,0\right)$, $G = \left(0,1,0\right)$
- und $B = \left(0,0,1\right)$ dargestellt werden. Schwarz ($S = \left(0,0,0\right)$) und Weiß
- ($W = \left(1,1,1\right)$) werden auf die gleiche Weise dargestellt.
-
+ werden (\autoref{fig:rgbWuerfel}).
 \begin{figure}[!ht]
 	\centering
 	\def\svgwidth{.2\columnwidth}
@@ -128,7 +126,11 @@ Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Pri
 	\caption{RGB-Farbwürfel}
 	\label{fig:rgbWuerfel}
 \end{figure}
-
+Seine Koordinatenachsen stellen den Wertebereich für die Grundfarben Rot, Grün und Blau dar. Normiert man den Würfel zu
+ einem Einheitswürfel der Länge $1$, umfasst jede Achse einen Bereich von \(\left[0 \dotsc 1.0\right]\). Innerhalb
+ dieses Würfels kann durch Verschiebung der Koordinate jeder Farbton generiert werden. Die Grundfarben können in diesem
+ Würfel durch die Punkte $R = \left(1,0,0\right)$, $G = \left(0,1,0\right)$ und $B = \left(0,0,1\right)$ dargestellt
+ werden. (Vgl. \autoref{tbl:rgbwerte})
 \begin{table}[!ht]
 	\begin{center}
 	\begin{tabular}[]{r|c|c|c}
@@ -144,6 +146,7 @@ Bei RGB handelt es sich um ein additives Farbsystem, dass durch Mischung der Pri
  	\label{tbl:rgbwerte}
 	\end{center}
 \end{table}
+Schwarz ($S = \left(0,0,0\right)$) und Weiß ($W = \left(1,1,1\right)$) werden auf die gleiche Weise dargestellt.
 
 % subsubsection rgb (end)
 
@@ -154,7 +157,6 @@ YUV und YCbCr sind standardisierte Formate zur Aufnahme, Darstellung und Übertr
 stellen andere Farbräume dar. YUV findet Verwendung bei analogen PAL und NTSC Systemen während YCbCr bei digitalen
 Systemen verwendet wird. Beide Farbräume unterteilen die Informationen in eine Luminanzkomponente $Y$ und zwei
 Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (\autoref{fig:yuvLenna}).
-
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -181,26 +183,22 @@ Komponenten zur Darstellung unterschiedlicher \gls{chrominanz} (\autoref{fig:yuv
 \end{figure}
 
 Bei YUV ist die Chromakomponente $U$ als Differenz zwischen der Luminanz $Y$ und dem Blauanteil definiert (Vgl.~\autoref{eq:uchroma}).
-
 \begin{equation}
 	U = 0.492 \cdot \left(B-Y\right)
 	\label{eq:uchroma}
 \end{equation}
-
 Die Chromakomponente $V$ definiert die Differenz von Luminanz $Y$ und dem Rotanteil (Vgl.~\autoref{eq:vchroma}).
-
 \begin{equation}
 	V = 0.877 \cdot \left(R-Y\right)
 	\label{eq:vchroma}
 \end{equation}
-
 Die Chromakomponenten $Cb$ und $Cr$ von YCbCr sind, wie bei YUV, Differenzwerte des Blau- und Rotanteil und der
- Luminanz. Der Unterschied zwischen YUV und YCbCr besteht in der unterschiedlichen Berechnung der \gls{chrominanz} und
- ist in \citeauthor{burger05}\footcite[][S.265--266]{burger05} beschrieben.
+ \gls{luminanz}. Der Unterschied zwischen YUV und YCbCr besteht in der unterschiedlichen Berechnung der
+ \gls{chrominanz} und ist in \citeauthor{burger05}\footcite[][S.265--266]{burger05} beschrieben.
 
-Durch die Trennung der Luminanz und \gls{chrominanz} ist es möglich das Signal auf Schwarzweiß-Fernsehern zu nutzen,
- indem nur die Luminanzkomponente berücksichtigt wird. Bei Farbfernsehern werden zusätzlich die Chromakomponenten
- verwendet.
+Durch die Trennung der gls{luminanz} und \gls{chrominanz} ist es möglich das Signal auf Schwarzweiß-Fernsehern zu
+ nutzen, indem nur die Luminanzkomponente berücksichtigt wird. Bei Farbfernsehern werden zusätzlich die
+ Chromakomponenten verwendet.
 
 % subsubsection yuv_und_ycbcr (end)
 
@@ -213,17 +211,23 @@ Bei Pixeln gibt es unterschiedliche Modelle der Anordnung von Farbkomponenten. M
  Farbinformationen ist dabei abhängig vom eingesetzten Farbraum. Im weiteren Verlauf wird die gepackte Anordnung für den
  RGB Farbraum erläutert. Für YCbCr sind die vorgestellten Modelle anzupassen.
 
+\subsubsection{Planare Anordnung} % (fold)
+\label{sub:planare_anordnung}
 Bei der planaren Anordnung werden die Farbkomponenten in jeweils eigenen Arrays mit gleicher Größe gespeichert. Ein Bild
-
 \begin{equation}
 	I = \left(I_R, I_G, I_B\right)
 	\label{eq:planarImage}
 \end{equation}
-
-besteht aus den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (\autoref{fig:planareAnordnung}). Der Zugriff auf ein
- \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in
+besteht aus den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (\autoref{fig:planareAnordnung}).
+\begin{figure}[!ht]
+	\centering
+	\input{resources/planareAnordnung.pdf_tex}
+	\caption{Planare Anordnung. Information der Pixel sind in den Matritzen $I_R$, $I_G$ und $I_B$ hinterlegt.}
+	\label{fig:planareAnordnung}
+\end{figure}
+Der Zugriff auf ein \gls{pixel} erfolgt über das Auslesen aller drei Arrays, wie in
  \citeauthor{burger05}\footcite[Vgl.][S.~235--236]{burger05} beschrieben. Der Zugriff erfolgt durch
-
+ \autoref{eq:readPlanarImage}.
 \begin{equation}
 	\begin{pmatrix}
 		R\\
@@ -235,35 +239,28 @@ besteht aus den drei Luminanzbildern $I_R$, $I_G$ und $I_B$ (\autoref{fig:planar
 		I_R\left(u,v\right)\\
 		I_G\left(u,v\right)\\
 		I_B\left(u,v\right)
-	\end{pmatrix}.
+	\end{pmatrix}
 	\label{eq:readPlanarImage}
 \end{equation}
+% subsection planare_anordnung (end)
 
-\begin{figure}[!ht]
-	\centering
-	\input{resources/planareAnordnung.pdf_tex}
-	\caption{Planare Anordnung. Information der Pixel sind in den Matritzen $I_R$, $I_G$ und $I_B$ hinterlegt.}
-	\label{fig:planareAnordnung}
-\end{figure}
-
-Bei der gepackten Anordnung sind alle Farbkomponenten in einem \gls{pixel} gespeichert und in einem Array hinterlegt (\autoref{fig:gepackteAnordnung}). Die gepackte Anordnung ist mit
-
-\begin{equation}
-	I\left(u,v\right) = \left(R,G,B\right)
-	\label{eq:packedImage}
-\end{equation}
-
-definiert.
-
+\subsubsection{Gepackte Anordnung} % (fold)
+\label{sub:gepackte_anordnung}
+Bei der gepackten Anordnung sind alle Farbkomponenten in einem \gls{pixel} gespeichert und in einem Array hinterlegt
+ (\autoref{fig:gepackteAnordnung}).
 \begin{figure}[!ht]
 	\centering
 	\input{resources/gepackteAnordnung.pdf_tex}
 	\caption{Die gepackte Anordnung speichert die Farbinformationen eines Pixels an einer Stelle.}
 	\label{fig:gepackteAnordnung}
 \end{figure}
-
-Im Allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \autoref{eq:readPackedRGB} zugegriffen.
-
+Die gepackte Anordnung ist mit
+\begin{equation}
+	I\left(u,v\right) = \left(R,G,B\right)
+	\label{eq:packedImage}
+\end{equation}
+definiert. Im Allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \autoref{eq:readPackedRGB}
+ zugegriffen.
 \begin{equation}
 	\begin{pmatrix}
 		R\\
@@ -278,16 +275,17 @@ Im Allgemeinen wird ein Element an Stelle $(u,v)$ eines Bildes $I$ durch \autore
 	\end{pmatrix}
 	\label{eq:readPackedRGB}
 \end{equation}
-
 $Red()$, $Green()$ und $Blue()$ sind abhängig vom eingesetzten Format\footcite[Vgl.][S.~236--237]{burger05}.
+% subsection gepackte_anordnung (end)
+
 % subsection pixelanordnung (end)
 
 \subsection{Filter und Faltung} % (fold)
 \label{sub:filter}
 Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine mathematische Abbildung in ein
- Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen operieren Filter auf Regionen, um zum Beispiel
- Bilder zu glätten oder zu schärfen (Vgl.~\autoref{fig:filterbeispiel}).
-
+ Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen, die nur einen \gls{pixel} betreffen, operieren
+ Filter auf Regionen von \gls{pixel}, um zum Beispiel Bilder zu glätten oder zu schärfen
+ (Vgl.~\autoref{fig:filterbeispiel}).
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -308,22 +306,20 @@ Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine 
 \end{figure}
 
 Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird der neue Pixelwert $I'(u,v)$ berechnet. Die Größe der
- Filterregion bestimmt die Anzahl der Pixel aus $I$, die zur Berechnung des neuen Pixelwerts $I'(u,v)$ verwendet
- werden (Vgl.~\autoref{fig:region-filter}). Üblicherweise werden $3 \times 3$ oder $5 \times 5$ Filter verwendet, aber
- auch größere Filter mit $21 \times 21$ Pixeln sind möglich. Anhand der Schreibweise der Filter erkennt man, das es
- sich bei den Filtern um Matrizen handelt.
-
+ Filterregion bestimmt die Anzahl der gls{pixel} aus $I$, die zur Berechnung des neuen Pixelwerts $I'(u,v)$ verwendet
+ werden (Vgl.~\autoref{fig:region-filter}).
 \begin{figure}[!ht]
 	\centering
 	\input{resources/Region-Filter.pdf_tex}
 	\caption{Anwendung eines Filters. Aus der Region $R_{u,v}$ wird der neue Wert $I'(u,v)$ berechnet.}
 	\label{fig:region-filter}
 \end{figure}
+Üblicherweise werden $3 \times 3$ oder $5 \times 5$ Filter verwendet, aber auch größere Filter mit $21 \times 21$
+ Pixeln sind möglich. Anhand der Schreibweise der Filter erkennt man, das es sich bei den Filtern um Matrizen handelt.
 
 Bei einer Filtermatrix wird ein eigenes Koordinatensystem verwendet, dessen Ursprung in der Mitte der Matrix liegt.
  Aufgrund dieses Koordinatensystem sind die Koordinaten sowohl positiv als auch negativ. Bei einer $3 \times 3$
  Filtermatrix $H$ sähen die absoluten Koordinaten an der Stelle $(i,j)$ wie folgt aus:
-
 \begin{equation}
 	H(i,j) =
 	\begin{pmatrix}
@@ -332,29 +328,23 @@ Bei einer Filtermatrix wird ein eigenes Koordinatensystem verwendet, dessen Ursp
 		\left(i-1, j+1\right)&	\left(i, j+1\right)&	\left(i+1, j+1\right)
 	\end{pmatrix}
 \end{equation}
-
 Somit können alle Pixel von $I'$ durch
-
 \begin{equation}
 	I'\left(u,v\right) \gets
 	\sum \limits_{\left(i = -1\right)}^{i = 1}
 	\sum \limits_{\left(j = -1\right)}^{j = 1}
 	I\left(u + i, v + j\right) \cdot H\left(i,j\right)
 \end{equation}
-
 berechnet werden. Für Filter mit einer anderen Größe als $3 \times 3$, lautet die Formel
-
 \begin{equation}
 	I'\left(u,v\right) \gets
 	\sum_{\left(i,j\right)\in\mathbb{R}} I\left(u + i, v + j\right) \cdot H\left(i,j\right)
 \end{equation}
-
 wobei $\mathbb{R}$ die Größe des Filters angibt\footcite[Vgl.][S.~92--93]{burger05}.
 
 Filter können an den Rändern nicht mathematisch korrekt berechnet werden\footcite[Vgl.][S.~113]{burger05}, da der
  Filter $H$ an den Bildrändern über die definierte Bildmenge hinausragt. Um dieses Problem zu umgehen, gibt es die
  Möglichkeit
-
 \begin{enumerate}
 	\item am Randbereich einen konstanten Wert zuzuweisen,\label{konstant}
 	\item den ursprünglichen Bildwert beizubehalten,\label{nix}
@@ -370,9 +360,7 @@ Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autor
  angewendet. Bei \autoref{berechneKonstant} kann die Zuweisung eines konstanten Wertes, beispielsweise Schwarz, das
  Ergebnis verfälschen. \autoref{berechneRand} weist die geringste Verfälschung auf. Bei \autoref{berechneBild} wird
  durch die Wiederholung des Bildes eine periodische Funktion betrachtet. Die möglichen Randbehandlungen sind in
- \autoref{fig:randbeispiel} illustriert. Welche dieser Randbetrachtung eingesetzt wird ist abhängig von den
- benötigten Ergebnissen und Filtern und muss für jede Anwendung gesondert betrachtet werden.
-
+ \autoref{fig:randbeispiel} illustriert.
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -407,38 +395,33 @@ Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autor
 	 während bei \subref{fig:randbeispiel-3c} das Eingangsbild an den Rändern wiederholt wird.}
 	\label{fig:randbeispiel}
 \end{figure}
+Welche dieser Randbetrachtung eingesetzt wird ist abhängig von den benötigten Ergebnissen und Filtern und muss für jede
+ Anwendung gesondert betrachtet werden.
 
 In der digitalen Bildverarbeitung basieren Filter auf der mathematischen Operation der Faltung
 \footcite[Vgl.][S.~101--104]{burger05}, bei der für zwei Funktionen ein dritte Funktion erzeugt wird. Die diskrete
  lineare Faltung ist definiert als
-
 \begin{equation}
 	I'\left(u,v\right) =
 	\sum \limits_{i = -\infty}^{\infty}
 	\sum \limits_{j = -\infty}^{\infty}
 	I\left(u - i, v - j\right) \cdot H\left(i,j\right)
 \end{equation}
-
 und gekürzt
-
 \begin{equation}
 	I' = I * H,
 \end{equation}
-
 wobei $I$ dem Bildsignal und $H$ dem Faltungskern entspricht. Die Operation der Faltung ist die Grundlage aller
  linearen Filter in der digitalen Bildverarbeitung. Unterschiedliche Filter sind nur durch den Filterkern (Kernel)
  definiert. Die Faltungsoperation besitzt die algebraischen Eigenschaften der Kommutativität, Assoziativität und
  Distributivität.
-
 \begin{align}
 	&\text{Kommutativität: } &I * H = H * I\\
 	&\text{Assoziativität: } &A * (B * C) = (A * B) * C\\
 	&\text{Distributivität: } &H * \left(I_1 + I_2\right) = \left(H * I_1\right) + \left(H * I_2\right)
 \end{align}
-
 Durch die Assoziativität kann ein Kernel $H$ als Produkt mehrerer kleiner Kernel ausgedrückt werden was wiederum
  Rechenoperationen einspart. Ein $3 \times 3$ Filter kann in eine $x$-Richtung und $y$-Richtung aufgeteilt werden.
-
 \begin{align}
 	H_{xy} = & H_x * H_y\\
 	\begin{pmatrix}
@@ -456,7 +439,6 @@ Durch die Assoziativität kann ein Kernel $H$ als Produkt mehrerer kleiner Kerne
 		1
 	\end{pmatrix}
 \end{align}
-
 Bei der Berechnung von $I * H_{xy}$ entspricht dies $3 \cdot 3 = 9$ Multiplikationen und bei der Berechnung von
  $I * H_x * H_y = 3 + 3 = 6$ Multiplikationen.
 
@@ -471,7 +453,6 @@ Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur 
  Bildregionen in einem Binärbild zu erkennen, werden zusammenhängende \gls{pixel} makiert, was auch als
  \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Makierung von \gls{pixel} werden folgende
  numerischen Werte verwendet:
-
 \begin{equation*}
 	I(u,v) = \begin{cases}
 	0 & \textrm{Hintergrund}\\
@@ -494,7 +475,6 @@ Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nac
  \gls{pixel} $I(u-1,v)$ und $I(u,v+1)$ untersucht. Bei der 8er-Nachbarschaft werden die vier Nachbarn $I(u-1,v)$,
  $I(u-1,v+1)$, $I(u,v+1)$ und $I(u+1,v+1)$ untersucht. Beide Nachbarschaftsbeziehungen sind in
  \autoref{fig:nachbarschaft} abgebildet.
-
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -510,9 +490,7 @@ Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nac
 	 $N_3 = (u,v+1)$ und $N_4 = I(u+1,v+1)$.}
 	\label{fig:nachbarschaft}
 \end{figure}
-
 Die Zuweisung einer Markierung für einen \gls{pixel} ist davon abhängig ob
-
 \begin{enumerate}
 	\item alle Nachbarn Hintergrundpixel sind, \label{labeling-all-background}
 	\item genau ein Nachbar eine Makierung hat oder \label{labeling-one-neighbour}
@@ -524,21 +502,20 @@ Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wi
  die Makierungen miteinander verglichen werden. Wenn alle Nachbarn die gleiche Makierung besitzen wird sie für Position
  $(u,v)$ übernommen. Falls es sich aber um verschiedene Makierungen handelt, spricht man von einer Kollision der
  Makierungen. Eine Kollision bedeutet, dass eine zusammenhängende Regionen durch zwei unterschiedliche Makierungen
- dargestellt wird (Vgl.~\autoref{fig:kollision}). Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn
- zugewiesen und die Kollision wird vermerkt. Nach \citeauthor{burger05} werden diese Kollisionen in einer dynamischen
- Datenstruktur gespeichert und zu einem späteren Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
-
+ dargestellt wird (Vgl.~\autoref{fig:kollision}).
 \begin{figure}[!ht]
 	\centering
 	\input{resources/Kollision.pdf_tex}
 	\caption{Beispiel einer Kollision zwischen Markierung $2$ und Markierung $3$.}
 	\label{fig:kollision}
 \end{figure}
+Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn zugewiesen und die Kollision wird vermerkt. Nach
+ \citeauthor{burger05} werden diese Kollisionen in einer dynamischen Datenstruktur gespeichert und zu einem späteren
+ Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
 
 Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundpixeln wurde eine vorläufige Markierung
  zugeteilt. Dabei wurden auftretende Kollisionen der Markierungen gespeichert. Der Ablauf des ersten Schritts ist in
  \autoref{fig:markierung} dargestellt.
-
 \begin{figure}[!ht]
 	\centering
 	\subfigure[]{
@@ -580,16 +557,15 @@ Die Menge der im letzten Schritt verwendeten vorläufigen Makierungen wird verwe
  durchlaufen. Jede vorläufige Makierung wird nun mit der Menge der neuen Markierung verglichen und eine eindeutige
  Markierung zugewiesen.
 
-Betrachten wir \autoref{alg:resolve-label-collision} an folgendem Beispiel: In Zeile
- \ref{resolve-label-collsion-partition-start}--\ref{resolve-label-collsion-partition-end} wird die Menge $L$ der
- vorläufigen Markierungen aufgeteilt und Kollisionen aufgelöst. Nehmen wir an, dass wir eine Kollision $C_i = (2,3)$
- auflösen wollen, wird die Mengen $R_2 = \{2\}$ und $R_3 = \{3\}$  zu $R_2 = \{2,3\}$ vereint
+Betrachten wir \autoref{alg:resolve-label-collision} an folgendem Beispiel:
+\input{alg/untersuchungsdesign/resolve-label-collision}
+In Zeile \ref{resolve-label-collsion-partition-start}--\ref{resolve-label-collsion-partition-end} wird die Menge $L$
+ der vorläufigen Markierungen aufgeteilt und Kollisionen aufgelöst. Nehmen wir an, dass wir eine Kollision
+ $C_i = (2,3)$ auflösen wollen, wird die Mengen $R_2 = \{2\}$ und $R_3 = \{3\}$  zu $R_2 = \{2,3\}$ vereint
  (Zeile \ref{resolve-label-collsion-set-start}--\ref{resolve-label-collsion-set-end}). Die Menge $R_3$ ist danach leer.
  Nun werden in Zeile \ref{resolve-label-collsion-relabel-start}--\ref{resolve-label-collsion-relabel-end} alle
  Makierungen untersucht. Wird dabei eine Makierung an Position $(u,v)$ gefunden, die zur Menge $R_2 = \{2,3\}$ gehört,
  wird der kleinste Wert von $R_2$ an Position $(u,v)$ geschrieben (Zeile \ref{resolve-label-collsion-set-new-label}).
-
-\input{alg/untersuchungsdesign/resolve-label-collision}
 
 Nach diesem letzten Schritt sind alle zusammenhängende Regionen in einem Binärbild eindeutig gekennzeichnet und können
  nun mit anderen Verfahren weiterverarbeitet werden, um beispielsweise die Form einer Region zu erkennen.
