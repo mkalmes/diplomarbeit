@@ -451,21 +451,21 @@ Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur 
  und Hintergrund bezeichnen können. Das Interesse bei einem Binärbild gilt dementsprechend den Informationen im
  Vordergrund. Eine zusammenhängende Struktur von Vordergrundpixeln wird als Bildregion bezeichnet. Um diese
  Bildregionen in einem Binärbild zu erkennen, werden zusammenhängende \gls{pixel} makiert, was auch als
- \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Makierung von \gls{pixel} werden folgende
+ \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Markierung von \gls{pixel} werden folgende
  numerischen Werte verwendet:
 \begin{equation*}
 	I(u,v) = \begin{cases}
 	0 & \textrm{Hintergrund}\\
 	1 & \textrm{Vordergrund}\\
-	2,3,\ldots,n & \textrm{Regionenmakierung}
+	2,3,\ldots,n & \textrm{Regionenmarkierung}
 	\end{cases}
 \end{equation*}
 
-Bei der sequentiellen Regionenmakierung\footcite[Vgl.][S.~200--206]{burger05} wird ein Binärbild in zwei Schritten
+Bei der sequentiellen Regionenmarkierung\footcite[Vgl.][S.~200--206]{burger05} wird ein Binärbild in zwei Schritten
  untersucht. Im ersten Schritt werden im Binärbild vorläufige Markierungen für Regionen gespeichert und im zweiten
- Schritt werden mehrfache Makierungen, sogenannte Kollisionen, für eine Region aufgelöst.
+ Schritt werden mehrfache Markierungen, sogenannte Kollisionen, für eine Region aufgelöst.
 
-\subsubsection{Vorläufige Makierung} % (fold)
+\subsubsection{Vorläufige Markierung} % (fold)
 \label{sec:vorläufige_makierung}
 
 Zuerst muss das Binärbild zeilenweise von oben nach unten auf das Vorhandensein von Vordergrundpixel untersucht werden.
@@ -493,23 +493,23 @@ Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nac
 Die Zuweisung einer Markierung für einen \gls{pixel} ist davon abhängig ob
 \begin{enumerate}
 	\item alle Nachbarn Hintergrundpixel sind, \label{labeling-all-background}
-	\item genau ein Nachbar eine Makierung hat oder \label{labeling-one-neighbour}
-	\item mehrere Nachbarn eine Makierung haben. \label{labeling-many-neighbours}
+	\item genau ein Nachbar eine Markierung hat oder \label{labeling-one-neighbour}
+	\item mehrere Nachbarn eine Markierung haben. \label{labeling-many-neighbours}
 \end{enumerate}
 
-Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wird eine Makierung an Position $(u,v)$
- geschrieben. Bei \autoref{labeling-one-neighbour} wird die Makierung des Nachbarn übernommen. Im letzten Fall müssen
- die Makierungen miteinander verglichen werden. Wenn alle Nachbarn die gleiche Makierung besitzen wird sie für Position
- $(u,v)$ übernommen. Falls es sich aber um verschiedene Makierungen handelt, spricht man von einer Kollision der
- Makierungen. Eine Kollision bedeutet, dass eine zusammenhängende Regionen durch zwei unterschiedliche Makierungen
- dargestellt wird (Vgl.~\autoref{fig:kollision}).
+Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wird eine Markierung an Position $(u,v)$
+ geschrieben. Bei \autoref{labeling-one-neighbour} wird die Markierung des Nachbarn übernommen. Im letzten Fall müssen
+ die Markierungen miteinander verglichen werden. Wenn alle Nachbarn die gleiche Markierung besitzen wird sie für
+ Position $(u,v)$ übernommen. Falls es sich aber um verschiedene Markierungen handelt, spricht man von einer Kollision
+ der Markierungen. Eine Kollision bedeutet, dass eine zusammenhängende Regionen durch zwei unterschiedliche
+ Markierungen dargestellt wird (Vgl.~\autoref{fig:kollision}).
 \begin{figure}[!ht]
 	\centering
 	\input{resources/Kollision.pdf_tex}
 	\caption{Beispiel einer Kollision zwischen Markierung $2$ und Markierung $3$.}
 	\label{fig:kollision}
 \end{figure}
-Dem \gls{pixel} an Position $(u,v)$ wird eine Makierung eines Nachbarn zugewiesen und die Kollision wird vermerkt. Nach
+Dem \gls{pixel} an Position $(u,v)$ wird eine Markierung eines Nachbarn zugewiesen und die Kollision wird vermerkt. Nach
  \citeauthor{burger05} werden diese Kollisionen in einer dynamischen Datenstruktur gespeichert und zu einem späteren
  Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
 
@@ -551,10 +551,10 @@ In diesem Schritt müssen nun die gespeicherten Kollisionen der Markierungen auf
  Aufgabe  als nicht trivial, da kollidierende Regionen auch durch weitere Region zusammenhängen
  können\footcite[Vgl.][S.~205]{burger05} (Vgl.~\autoref{fig:markierung-3}).
 
-Die Menge der im letzten Schritt verwendeten vorläufigen Makierungen wird verwendet, um die Menge der Kollisionen
+Die Menge der im letzten Schritt verwendeten vorläufigen Markierungen wird verwendet, um die Menge der Kollisionen
  zu vereinen. Dazu wird eine Kollision der Markierung von $a$ und $b$ zu einer Menge zusammengeführt. Das bedeutet,
  dass alle \gls{pixel} mit Markierung $b$ zu $a$ gehören. Danach wird das vorläufig markierte Binärbild erneut
- durchlaufen. Jede vorläufige Makierung wird nun mit der Menge der neuen Markierung verglichen und eine eindeutige
+ durchlaufen. Jede vorläufige Markierung wird nun mit der Menge der neuen Markierung verglichen und eine eindeutige
  Markierung zugewiesen.
 
 Betrachten wir \autoref{alg:resolve-label-collision} an folgendem Beispiel:
@@ -564,7 +564,7 @@ In Zeile \ref{resolve-label-collsion-partition-start}--\ref{resolve-label-collsi
  $C_i = (2,3)$ auflösen wollen, wird die Mengen $R_2 = \{2\}$ und $R_3 = \{3\}$  zu $R_2 = \{2,3\}$ vereint
  (Zeile \ref{resolve-label-collsion-set-start}--\ref{resolve-label-collsion-set-end}). Die Menge $R_3$ ist danach leer.
  Nun werden in Zeile \ref{resolve-label-collsion-relabel-start}--\ref{resolve-label-collsion-relabel-end} alle
- Makierungen untersucht. Wird dabei eine Makierung an Position $(u,v)$ gefunden, die zur Menge $R_2 = \{2,3\}$ gehört,
+ Markierungen untersucht. Wird dabei eine Markierung an Position $(u,v)$ gefunden, die zur Menge $R_2 = \{2,3\}$ gehört,
  wird der kleinste Wert von $R_2$ an Position $(u,v)$ geschrieben (Zeile \ref{resolve-label-collsion-set-new-label}).
 
 Nach diesem letzten Schritt sind alle zusammenhängende Regionen in einem Binärbild eindeutig gekennzeichnet und können

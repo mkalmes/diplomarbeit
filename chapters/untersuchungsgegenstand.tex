@@ -43,7 +43,7 @@ Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln i
  gilt. ARToolKitPlus benutzt zur Erkennung von zusammenhängenden Bildregionen eine abgewandelte Form der sequentiellen
  Regionenmarkierung (Vgl. \autoref{sec:regionen_in_binärbilder}). Im Unterschied zum bereits vorgestellten Verfahren,
  integriert ARToolKitPlus die Erstellung eines Binärbild, durch eine Schwellwertanalyse, in das Verfahren der
- Regionenmakierung. Dazu wird das Bildsignal zeilenweise von links oben nach rechts unten \gls{pixel} für \gls{pixel}
+ Regionenmarkierung. Dazu wird das Bildsignal zeilenweise von links oben nach rechts unten \gls{pixel} für \gls{pixel}
  untersucht. Wenn der Wert eines \gls{pixel} dabei über einem Schwellwert liegt, handelt es sich um einen
  Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um einen
  Vordergrundpixel.
@@ -55,14 +55,14 @@ Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und 
 \begin{equation*}
 	I(u,v) = \begin{cases}
 	0 & \textrm{Hintergrund}\\
-	1,2\ldots,n & \textrm{Regionenmakierung}
+	1,2\ldots,n & \textrm{Regionenmarkierung}
 	\end{cases}
 \end{equation*}
 
 Bei einem Vordergrundpixel wird die Beziehung des \gls{pixel} zu seinen Nachbarn durch eine 8er-Nachbarschaft
  untersucht. Bei der Zuweisung einer Markierung unterscheidet sich ARToolKitPlus von dem Verfahren in
  \autoref{sec:regionen_in_binärbilder}. Eine Kollision der Markierung durch unterschiedliche Markierungen der Nachbarn
- wird direkt verarbeitet. Dazu werden die numerischen Werte der Makierungen verglichen und alle größeren Werte durch
+ wird direkt verarbeitet. Dazu werden die numerischen Werte der Markierungen verglichen und alle größeren Werte durch
  die Markierung mit kleinerem Wert überschrieben. ARToolKitPlus speichert die Information der Markierungen in einer
  eigenen Liste um Markierungen nicht im Bildspeicher ersetzen zu müssen.
 
@@ -82,7 +82,7 @@ Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, v
 \label{par:konturen}
 Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt. ARToolKitPlus verwendet dazu die Liste
  der Markierungen und das markierte Bild. Um die Kontur einer Region zu ermitteln, muss eine Region auf bestimmte
- Merkmale hin untersucht werden. Dazu wird für jede gefundene Regionenmakierung der Flächeninhalt der Region
+ Merkmale hin untersucht werden. Dazu wird für jede gefundene Regionenmarkierung der Flächeninhalt der Region
  untersucht. Falls die Fläche einer Region zu klein oder zu groß zur Analyse ist, wird sie verworfen. Anschließend
  werden die Start- und Endkoordinaten der Region untersucht. Liegen diese Koordinaten am Rand des Bildsignals eignen
  sie sich nicht zur Erkennung und die Region wird ebenfalls verworfen. Wenn eine Region diese Überprüfung bestanden
