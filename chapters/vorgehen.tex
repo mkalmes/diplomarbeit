@@ -36,7 +36,15 @@ Um beide Verfahren miteinander zu vergleichen wird die Laufzeit der Programme ge
 
 \paragraph{ARToolKitPlus:} % (fold)
 \label{par:artoolkitplus}
-Die Untersuchung von ARToolKitPlus unter iOS 4 erfolgt mit VRToolKit\footcite[Vgl.][]{vrtoolkit} von \citeauthor{vrtoolkit}. VRToolKit ist ein Obj-C Wrapper für ARToolKitPlus. VRToolKit konfigueriert das ARToolKitPlus System zur Verarbeitung von Marken und sorgt für die Bereitstellung von Bildsignalen der Kamera.
+Die Untersuchung von ARToolKitPlus unter iOS 4 erfolgt mit VRToolKit\footcite[Vgl.][]{vrtoolkit} von
+ \citeauthor{vrtoolkit}. VRToolKit ist ein Obj-C Wrapper für ARToolKitPlus. VRToolKit konfigueriert das ARToolKitPlus
+ System zur Verarbeitung von Marken und sorgt für die Bereitstellung von Bildsignalen der Kamera.
+
+ARToolKitPlus bietet die Möglichkeit einer automatischen Schwellwertanpassung, um auch bei wechselnden
+ Lichtverhältnissen bessere Ergebnisse zu erzielen\footcite[Vgl.][S.~142]{wagner07b}. Diese Option wurde zur Analyse
+ des Verfahrens nicht aktiviert. Zusätzlich erlaubt ARToolKitPlus die Verarbeitung eines Bildsignals, indem nur die
+ Hälfte der horizontalen und die Hälfte der vertikalen Pixeln untersucht wird. Dies Option wurde explizit in der
+ Analyse untersucht (Vgl. \autoref{sec:fiducial_detection}).
 % paragraph artoolkitplus (end)
 
 \paragraph{Verfahren nach \citeauthor{hirzer08}:} % (fold)

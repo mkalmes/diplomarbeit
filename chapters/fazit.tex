@@ -1,0 +1,19 @@
+\chapter{Fazit} % (fold)
+\label{cha:fazit}
+
+Wie in \autoref{cha:ergebnisse} gezeigt, erfüllen beide Verfahren die Echtzeitbedingung von \citeauthor{azuma97}. Die Verwendung der Verfahren unter iOS auf einem iPod touch ist durch die experimentelle Analyse bewiesen worden.
+
+Wie die Analyse in \autoref{cha:analyse} gezeigt hat, sind beide Verfahren von der Eingabemenge des Bildsignals abhängig. Da ARToolKitPlus und das Verfahren von \citeauthor{hirzer} unterschiedliche Verfahren zur Erkennung einer Marke verwenden, ist eine Aussage über das asymptotische Wachstum schwierig. Da beide Verfahren Optimierungsstrategieen anwenden, um die Menge der zu verarbeitenden Daten zu reduzieren, fällt dieser Optimierungsschritt in der Untersuchung des Wachstums weg. Erst die experimentelle Analyse offenbahrte die Leistungsfähigkeit der Tracking Verfahren.
+
+Betrachtet man lediglich die Geschwindigkeit der beiden Verfahren, so müsste ARToolKitPlus gegenüber dem Verfahren von \citeauthor{hirzer08} besser abschneiden.
+
+Die Stärke von ARToolKitPlus liegt in der Geschwindigkeit der Verarbeitung eines Bildsignals, jedoch wird diese Geschwindigkeit auf Kosten der Erkennungsrate gewonnen. Da ARToolKitPlus eine Marke durch eine Region in einem Binärbild erkennt, wird bei ungünstigen Lichtverhältnissen keine Marke erkannt, da das Verfahren einen Schatten im Bereich der Marke als große Region betrachtet.
+
+Diese Schwäche wird durch die Betrachtung von Liniensegmenten im Verfahren von \citeauthor{hirzer08} vermieden. Auch wenn beispielsweise eine Ecke einer Marke verdeckt ist, erkennt das Verfahren eine Marke. Der Schwachpunkt des Verfahrens nach \citeauthor{hizer08} ist bei vielen Hell/Dunkel Wechsel zu erkennen. Bei einer Jalousie, durch die Sonnenlicht eintritt, erkennt das Verfahren alle Wechsel als möglicher \gls{edgel}, der durch die parallele Ausrichtung der Jalousie zu einer Linie erweitert wird.
+
+
+% Die Optimierung bei ARToolKitPlus, nur die Hälfte der vertikalen \gls{pixel} und die Hälfte der horizontalen \gls{pixel} zu untersuchen, wird durch die Betrachtung der Wachstumsrate nicht ersichtlicht. Das gleiche gilt für die Optimierung bei dem Verfahren nach \citeauthor{hirzer08}.
+% Hier muss durch die Verarbeitung der Scanlines im Abstand von $5$ \gls{pixel} weniger Daten verarbeitet werden als Eingabedaten vorhanden sind.
+
+
+% chapter fazit (end)

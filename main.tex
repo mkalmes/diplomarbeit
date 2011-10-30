@@ -35,8 +35,8 @@ Dies ist die deutsche Zusammenfassung
 % chapter zusammenfassung (end)
 
 \tableofcontents
-\printglossary[style=altlist,title=Glossar]
-\printglossary[type=\acronymtype,title=Abkürzungsverzeichnis]
+% \printglossary[style=altlist,title=Glossar]
+% \printglossary[type=\acronymtype,title=Abkürzungsverzeichnis]
 
 \mainmatter
 
@@ -44,16 +44,19 @@ Dies ist die deutsche Zusammenfassung
 \include{chapters/untersuchungsdesign}		% Löwenanteil	85% inkl. Analyse + Ergebnisse + Diskussion
 \include{chapters/analyse}					% ausführlich
 \include{chapters/ergebnisse}				% knapp
-\include{chapters/diskussion}				% ausführlich
-\include{chapters/zusammenfassung}			% bis zu 5% der Arbeit
+\include{chapters/fazit}			% bis zu 5% der Arbeit
 
 % Bei Abage auskommentieren
 \nocite{*}
 
 %\bibliographystyle{bib}
 % 7) vorläufige Literaturangabe ist im header
+\appendix
+\include{chapters/anhanga}
+\backmatter
+
 \printbibliography[]
 
-\backmatter
+
 
 \end{document}

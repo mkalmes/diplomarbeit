@@ -1,5 +1,5 @@
-% \documentclass[pdftex,a4paper,twoside,12pt,final,toc=bib]{scrbook}
-\documentclass[pdftex,a4paper,twoside,12pt,draft,toc=bib]{scrbook}
+\documentclass[pdftex,a4paper,twoside,12pt,final,toc=bib]{scrbook}
+%\documentclass[pdftex,a4paper,twoside,12pt,draft,toc=bib]{scrbook}
 \usepackage[ngerman,UKenglish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{scrhack}
@@ -10,9 +10,11 @@
 \usepackage{algorithm,algpseudocode}
 \floatname{algorithm}{Algorithmus}
 % \newcommand*\Cost[2]{\hfill \mbox{#1} \mbox{#2}}
-\newcommand*\Cost[2]{\hfill \begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
+% \newcommand*\Cost[2]{\hfill \begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
 %\newcommand*\Cost[2]{\begin{tabular}{l r} #1 & #2 \\ \end{tabular}}
-
+\newcommand\Cost[2]{{%
+  \leftskip=0ptplus1fil\rightskip=-\leftskip\parfillskip=\leftskip
+  \hfill \phantom{ } \mbox{#1 #2}\par}}
 
 \usepackage{color}
 

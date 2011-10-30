@@ -4,15 +4,15 @@
 	Ergebnisse: Die gewonnen Daten aus Kap. Analyse bewerten.
 \end{comment}
 
-In diesem Kapitel werden die gewonnen Daten aus \autoref{cha:analyse} bewertet.
+In diesem Kapitel werden die gewonnen Daten aus \autoref{cha:analyse} bewertet. Bei beiden Verfahren ist die Eingabemenge ein Bildsignal der Abmessung $640 \times 480$ \gls{pixel}.
 
 Das asymptotische Wachstum von ARToolKitPlus besteht aus den Verfahren \textproc{regionLabeling} und
  \textproc{arDetectMarker2} und kann als $O(\mathit{lxsize}\cdot\mathit{lysize})
  + \Theta(\mathit{label\_num}\cdot n \log n)$ beschrieben werden, wobei $\mathit{lxsize}\cdot\mathit{lysize}$ die Größe
- des Bildsignals darstellt. Das Verfahren ist somit abhängig von der Eingabemenge des Bildsignals. Bei dem Verfahren von
+ des reduzierten Bildsignals darstellt (Vgl. \autoref{par:artoolkitplus}). Bei dem Verfahren von
  \citeauthor{hirzer08} ist das asymptotische Wachstum für das Verfahren \textproc{lineDetection}
- $\Theta(hwmn^2+hwl^2\cdot\mathit{length})$. Auch hier ist $h \cdot w$ die Größe des Bildsignals und das Verfahren
- ebenfalls von dieser Eingabemenge abhängig.
+ $\Theta(hwmn^2+hwl^2\cdot\mathit{length})$. Auch hier ist $h \cdot w$ die Größe des Bildsignals.
+Beide Verfahren sind somit abhängig von der Eingabemenge des Bildsignals.
 
 Die tatsächliche Laufzeit der beiden Verfahren wurde durch Messung der Verarbeitungszeit ermittelt. Die Ergebnisse der Untersuchung sind in \autoref{fig:runtime} grafisch dargestellt.
 \begin{figure}[!ht]
