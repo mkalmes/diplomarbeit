@@ -1,46 +1,6 @@
 \section{ARToolKitPlus} % (fold)
 \label{sec:artoolkitplus}
 
-% Die \textit{Runtime Tracking Pipeline} (Vgl. \autoref{sub:artoolkitplus}, S.~\pageref{sub:artoolkitplus}) von
-%  ARToolKitPlus wird mit der Methode \textproc{calc} (Vgl. \autoref{alg:calc}) gestartet und benötigt das Bildsignal
-%  $I$, sowie den Schwellwert $\mathit{tresh}$. Die Methode \textproc{calc} dient in erster Linie als Einstiegspunkt der
-%  \textit{Runtime Tracking Pipeline}. Verarbeitungsschritte die nicht zur Fiducial Detection oder Rectangle
-%  Fitting gehören werden nicht aufgeführt.
-% \input{alg/analyse-artplus/calc}
-% Die Variablen $\mathit{marker\_info}$ und $\mathit{marker\_num}$ werden in Zeile
-%  \ref{alg:calc-init-start}--\ref{alg:calc-init-end} initialisiert. Bei $\mathit{marker\_info}$ handelt es sich um die
-%  Datenstruktur \textproc{MarkerInfo} (Vgl. \autoref{alg:datastructure-markerinfo}), die der Identifikation einer Marke
-%  dient. In Zeile \ref{alg:calc-check-image-start}--\ref{alg:calc-check-image-end} wird überprüft, ob das Bildsignal
-%  nicht $0$ ist und es sich somit um einen gesetzten Zeiger auf einen Speicherbereich handelt. Falls dies nicht der Fall
-%  ist, wird das Verfahren abgebrochen und ein Fehlerwert von $0$ zurückgeliefert. Anschließend wird in Zeile
-%  \ref{alg:calc-start-detection-start}--\ref{alg:calc-start-detection-end} die Methode \textproc{arDetectMarker}
-%  aufgerufen und ihr Rückgabewert überprüft. Falls während der Ausführung von \textproc{arDetectMarker} einen Fehler
-%  aufgetreten ist, wird die weitere Verarbeitung gestoppt und ein Fehlerwert von $-1$ zurückgegeben. Wenn
-%  \textproc{arDetectMarker} erfolgreich war und eine Marke identifizieren konnte, wird die Verarbeitung fortgesetzt und
-%  letztendlich in Zeile \ref{alg:calc-identified-marker} eine Markenidentifizierung zurückgegeben. Die Laufzeit des
-%  Algorithmus ist konstant.
-
-\subsection{Datenstrukturen} % (fold)
-\label{sec:datenstrukturen}
-\input{chapters/analyse-artoolkitplus-markerinfo}
-
-\subsubsection{Automatischer Schwellwert} % (fold)
-\label{sec:automatischer_schwellwert}
-
-Die automatische Schwellwertanalyse von ARToolKitPlus wird durch \autoref{alg:autothresholdreset} vor ihrer Verwendung
- auf bekannte Startwerte gesetzt. Dabei wird in Zeile \ref{alg:autothresholdreset-minLum} die globale Variable
- $\mathit{minLum}$ gesetzt und in Zeile \ref{alg:autothresholdreset-maxLum} die globale Variable $\mathit{maxLum}$
- gesetzt. Die statischen Größen $\mathit{MINLUM0}$ und $\mathit{MAXLUM0}$ geben dabei die Werte an. Die Laufzeit von
- \autoref{alg:autothresholdreset} ist konstant.
-
-\input{alg/analyse-artplus/autothresholdreset}
-
-% subsubsection automatischer_schwellwert (end)
-
-\input{chapters/analyse-artoolkitplus-checkimagebuffer}
-
-% subsection datenstrukturen (end)
-
 \subsection{Fiducial Detection} % (fold)
 \label{sec:fiducial_detection}
 \input{chapters/analyse-artoolkitplus-fiducial}

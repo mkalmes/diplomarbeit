@@ -1,9 +1,9 @@
-\begin{algorithm}[!ht]
+\begin{algorithm}[!ht]\small
 \caption{\textproc{length}}
 \label{alg:vectorlength}
 	\begin{algorithmic}[1]
 		\Require $\mathit{vector}$
 		\State \textbf{return} \Call{sqrt}{\textproc{squaredlength}$(\mathit{vector})$}
-		\Cost{$c_{1}$}{$1 + 1 + 7$}
+		\Cost{$c_{1}$}{$1 + 1 + \Theta(1)$}
 	\end{algorithmic}
 \end{algorithm}

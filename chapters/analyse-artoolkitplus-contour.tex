@@ -3,12 +3,7 @@
 
 Das zweite Verfahren der Fiducial Detection ermittelt aus einer Regionenmarkierung mit dem Verfahren
  \textproc{arGetContour} eine Kontur. Nachdem \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) beendet ist,
- wird das Regionenbild an die aufrufende Methode \textproc{arDetectMarker} übergeben und in Zeile
- \ref{alg:detectmarker-1-call-labeling} von \autoref{alg:detectmarker-1} gespeichert.
-\input{alg/analyse-artplus/detectmarker-1}
-In Zeile \ref{alg:detectmarker-1-check-il-start} wird überprüft, ob der Speicher des Regionenbildes gültig ist um
- danach in Zeile \ref{alg:detectmarker-1-call-method} die Methode \textproc{arDetectMarker2}
- (\autoref{alg:detectmarker2-1}) aufzurufen.
+ wird das Regionenbild an die Methode \textproc{arDetectMarker2} übergeben.
 
 In \autoref{alg:detectmarker2-1} werden die lokalen Variablen initialisiert, deren Bedeutung bei ihrem ersten Einsatz
  erläutert wird.

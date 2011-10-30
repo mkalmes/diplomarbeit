@@ -1,31 +1,31 @@
-\begin{algorithm}[!ht]
+\begin{algorithm}[!ht]\small
 \caption{\textproc{arDetectMarker}}
 \label{alg:detectmarker}
 \begin{algorithmic}[1]
 	\Require $I,\mathit{thresh},\mathit{marker\_info},\mathit{marker\_num}$
 	\State $I_l \gets$ \textproc{NULL}
-	\Cost{$c_{1}$}{$1$}
+	% \Cost{$c_{1}$}{$1$}
 	\label{alg:detectmarker-init-start}
 	\State $\mathit{label\_num},\mathit{area},\mathit{clip},\mathit{label\_ref},\mathit{pos} \gets \infty$
-	\Cost{$c_{2}$}{$5$}
+	% \Cost{$c_{2}$}{$5$}
 	\label{alg:detectmarker-init-end}
 	\State \Call{autoThreshold.reset}{}
-	\Cost{$c_{3}$}{$\Theta(1)$}
+	% \Cost{$c_{3}$}{$\Theta(1)$}
 	\label{alg:detectmarker-call-autothreshold}
 	\State \Call{checkImageBuffer}{}
-	\Cost{$c_{4}$}{$\Theta(1)$}
+	% \Cost{$c_{4}$}{$\Theta(1)$}
 	\label{alg:detectmarker-call-imagebuffer}
 	\State $\mathit{marker\_num} \gets 0$
-	\Cost{$c_{5}$}{$1$}
+	% \Cost{$c_{5}$}{$1$}
 	\State $I_l \gets$
 	\Call{arLabeling}{$I,\mathit{thresh},\mathit{label\_num},\mathit{area},
 	\mathit{pos},\mathit{clip},\mathit{label\_ref}$}
-	\Cost{$c_{6}$}{$t_{1}$}
+	% \Cost{$c_{6}$}{$t_{1}$}
 	\label{alg:detectmarker-call-labeling}
 	% AR_AREA_MAX (100000) und AR_AREA_MIN (70) sind defines
 	% wmarker_num globale variable
 	\If{$I_l$}
-	\Cost{$c_{7}$}{$1$}
+	% \Cost{$c_{7}$}{$1$}
 	\label{alg:detectmarker-check-il-start}
 		\State $\mathit{marker\_info2} \gets$ \textproc{arDetectMarker2}$\left(
 		\begin{aligned}
@@ -34,10 +34,10 @@
 				& \mathit{AR\_AREA\_MIN},\\
 				& 1.0, \mathit{wmarker\_num}
 		\end{aligned}\right)$
-		\Cost{$c_{8}$}{$t_{2}$}
+		% \Cost{$c_{8}$}{$t_{2}$}
 		\label{alg:detectmarker-call-method}
 		\If{$\mathit{marker\_info2}$}
-		\Cost{$c_{9}$}{$1$}
+		% \Cost{$c_{9}$}{$1$}
 		\label{alg:detectmarker-check-marker-start}
 			\State \ldots \Comment{Weitere Anweisungen zur Identifikation einer Marke.}
 		\EndIf
