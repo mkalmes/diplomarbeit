@@ -34,5 +34,5 @@ clean:
 aspell:
 	${CAT} ${DOC}.tex | ${ASPELL} --lang=de_DE -t list | sort | uniq > ${DOC}.spell ; \
 	for file in ${CHAP}*.tex ; do \
-		${CAT} $$file | ${ASPELL} --lang=de_DE -t list | sort | uniq > $$file.spell ; \
+		${CAT} $$file | ${ASPELL} --lang=de_DE -t list -p ~/.aspell.de_DE.pws | sort | uniq > $$file.spell ; \
 	done
