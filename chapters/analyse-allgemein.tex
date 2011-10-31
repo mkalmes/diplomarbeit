@@ -2,7 +2,7 @@
 \label{sec:allgemein}
 
 Bei ARToolKitPlus und dem Verfahren nach Hirzer wird das Bildsignal durch AVFoundation zur Verfügung gestellt. Um
- auszuschliessen, dass eine Kombination von Bildformat und Auflösung zu einem Performanzproblem wird, wurde die
+ auszuschliessen, dass eine Kombination von Bildformat und Auflösung zu einem Leistungsproblem wird, wurde die
  Geschwindigkeit des Systems untersucht.
 
 AVFoundation bietet auf einem iPod touch die Möglichkeit, Bildsignale in den Auflösungen von $192 \times 144$ (Low),
@@ -59,9 +59,9 @@ Bei der kleinsten Auflösung (\autoref{fig:videoperformance-rgb-low}) liegt der 
 	\label{fig:videoperformance-ycbcr}
 \end{figure}
 Auch bei dieser Untersuchung liegt der Median bei der kleinsten Auflösung (\autoref{fig:videoperformance-ycbcr-low})
- bei $15$ FPS. Die restlichen Auflösungen ereichen eine Bildwiederholrate von $30$ FPS.
+ bei $15$ FPS. Die restlichen Auflösungen erreichen eine Bildwiederholrate von $30$ FPS.
 
-Bei beiden Bildformaten werden, unabhängig von der Auflösunge, gleiche Ergebnisse erzielt. Die wenigsten Abweichung der
+Bei beiden Bildformaten werden, unabhängig von der Auflösung, gleiche Ergebnisse erzielt. Die wenigsten Abweichung der
  Bildwiederholfrequenz sind in \autoref{fig:videoperformance-rgb-640} und \autoref{fig:videoperformance-ycbcr-640} für die
  Auflösung von $640 \times 480$ \gls{pixel} zu beobachten. Für die Analyse der Verfahren wird die Auflösung
  $640 \times 480$ mit dem Bildformat RGBA verwendet.

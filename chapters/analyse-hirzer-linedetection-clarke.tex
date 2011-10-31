@@ -54,7 +54,7 @@ Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet. Zeil
  Dadurch wird sichergestellt, dass kein Maximum an den Rändern existiert, da hier nicht genügend Nachbarn vorhanden sind
  um eine verlässliche Aussage zu treffen. Zeile \ref{alg:findedgels-horizontal-copy-prev1} und
  Zeile \ref{alg:findedgels-horizontal-copy-edgel} kopieren die Werte für den nächsten Durchlauf. Durch das kopieren der
- Werte werden die Nachbarn für den nächsten Durchlauf um eine Position weiterverschoben. Nur bei einem lokalen Maximum
+ Werte werden die Nachbarn für den nächsten Durchlauf um eine Position weiter verschoben. Nur bei einem lokalen Maximum
  (Zeile \ref{alg:findedgels-horizontal-maxima}--\ref{alg:findedgels-horizontal-maxima-end}) wird die Position des
  Edgels gespeichert (Vgl. \autoref{alg:vectorsetcoordinate}, S. \pageref{alg:vectorsetcoordinate}), und seine
  Orientierung berechnet (Vgl. \autoref{alg:gradientintensity}, S. \pageref{alg:gradientintensity}). Der Edgel wird mit
@@ -90,7 +90,7 @@ $\left( \begin{smallmatrix}
 auf der horizontalen und vertikalen Scanline. Als Parameter benötigt der Algorithmus den Zeiger des monochromen
  Bildsignals $I_m$, die Position des Pixels ($x$ und $y$), sowie die Breite $w$ und Höhe $h$ von $I_m$. In Zeile
  \ref{alg:convolutekernel-horizontal-readstart}--\ref{alg:convolutekernel-horizontal-readend} werden durch die
- Funktion \textproc{getpixel} (Vgl. \autoref{alg:getpixel}, S. \pageref{alg:getpixel}) die benötigten Pixelwerte
+ Funktion \textproc{getpixel} (Vgl. \autoref{alg:getpixel}, S. \pageref{alg:getpixel}) die benötigten Werte
  ausgelesen und den Variablen zugewiesen. Im Anschluss werden die Werte mit dem Gauß-Kernel
 $\left( \begin{smallmatrix}
 -3& -5& 0& 5& 3
@@ -108,7 +108,7 @@ In \autoref{alg:gradientintensity} wird mittels Faltung die Orientierung eines \
  Eingabeparameter wird das monochrome Bildsignal $I_m$, dessen Breite $w$ und Höhe $h$, sowie die Position des
  \glspl{edgel} ($x,y$) benötigt.
 \input{alg/analyse-hirzer/gradientintensity}
-In Zeile \ref{alg:gradientintensity-readstart}--\ref{alg:gradientintensity-readend} werden die Pixelwerte ausgelesen
+In Zeile \ref{alg:gradientintensity-readstart}--\ref{alg:gradientintensity-readend} werden die Werte ausgelesen
  und den Variablen zugewiesen. In Zeile
  \ref{alg:gradientintensity-convolutestart}--\ref{alg:gradientintensity-convoluteend} erfolgt die Faltung mit dem
  Sobel-Operator\footcite[Vgl.][S.~120--123]{burger05}, dessen Filter
@@ -166,7 +166,7 @@ In \autoref{alg:findlinesegments2} wird die Initialisierung der Variablen vorgen
 \input{alg/analyse-hirzer/findlinesegments-2}
 Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{edgel} benutzt. $\mathit{first}$ ist der
  Startedgel und $\mathit{last}$ der Endedgel des Liniensegments. Die Variable $\mathit{maxIteration}$ gibt die maximale
- Anzahl der Interationen an, die $\mathit{iterator}$ durchlaufen kann. In $\mathit{numberOfEdgels}$ wird die Anzahl der
+ Anzahl der Iterationen an, die $\mathit{iterator}$ durchlaufen kann. In $\mathit{numberOfEdgels}$ wird die Anzahl der
  \gls{edgel} in $E$ gespeichert. Die Laufzeitfunktion der Initialisierung ist $T(n) = 7 + \Theta(1)$ und somit
   konstant.
 
@@ -179,11 +179,11 @@ Als letzte Bedingung muss die Anzahl der Iterationen unterhalb des festgelegten 
  bleiben. In Zeile \ref{alg:findlinesegments3-first} und Zeile \ref{alg:findlinesegments3-last} werden zufällig zwei
  Indizes aus der Menge der vorhandenen \gls{edgel} errechnet. Diese werden in Zeile
  \ref{alg:findlinesegments3-start}--\ref{alg:findlinesegments3-end} verwendet, um die beiden \gls{edgel}
- $\mathit{start}$ und $\mathit{end}$ auszuwählen. Der Iterator wird anschliessend in Zeile
+ $\mathit{start}$ und $\mathit{end}$ auszuwählen. Der Iterator wird anschließend in Zeile
  \ref{alg:findlinesegments3-inc} inkrementiert.
 
 Die Laufzeit der Funktion \textproc{rand} wurde durch eine Regressionsanalyse mit $300$ Testdaten ermittelt. Wenn diese
- Daten in der grafischen Darstellung in \autoref{fig:regression-rand} betrachtet werden, ist ersichtlicht, dass keine
+ Daten in der grafischen Darstellung in \autoref{fig:regression-rand} betrachtet werden, ist ersichtlich, dass keine
  lineare Abhängigkeit besteht.
 \begin{figure}[!ht]
 	\centering
@@ -209,7 +209,7 @@ Dazu wird in Zeile \ref{alg:findlinesegments4-isbelowmax} überprüft, ob die ma
  wäre $T_{best}(n) = \Theta(1)$. Andernfalls wird in Zeile
  \ref{alg:findlinesegments4-init-start}--\ref{alg:findlinesegments4-init-end} die Variable $\mathit{segment}$ zur
  Speicherung des Liniensegments vorbereitet und der Start- und Endedgel, sowie die Orientierung zugewiesen. Die Anzahl
- der Unterstützungedgels beträgt zu diesem Zeitpunkt noch $0$. In der Schleife in Zeile
+ der Unterstützungsedgels beträgt zu diesem Zeitpunkt noch $0$. In der Schleife in Zeile
  \ref{alg:findlinesegments4-loop-start}--\ref{alg:findlinesegments4-loop-end} werden die \gls{edgel} gezählt, die die
  Linienhypothese unterstützen. Dazu wird in Zeile \ref{alg:findlinesegments4-edgel} ein \gls{edgel} ausgewählt und in
  Zeile \ref{alg:findlinesegments4-isedgelnearline} untersucht, ob der Abstand zur Linie klein genug ist. Wenn nicht,
@@ -240,7 +240,7 @@ Da ein Liniensegment aus zwei zufällig ausgewählten \glspl{edgel} besteht, kö
  tatsächlichen Start- und Endpunkte voneinander abweichen (Vgl. \autoref{fig:}) In Zeile
  \ref{alg:findlinesegments5-start}--\ref{alg:findlinesegments5-end} wird dazu die Variable $\mathit{start}$ mit einem
  kleinen Wert, und die Variable $\mathit{end}$ mit einem großen Wert, initialisiert. Die Steigung des Liniensegments
- und die Orhogonale werden in Zeile \ref{alg:findlinesegments5-slope-start}--\ref{alg:findlinesegments5-slope-end}
+ und die Orthogonale werden in Zeile \ref{alg:findlinesegments5-slope-start}--\ref{alg:findlinesegments5-slope-end}
  berechnet. In Zeile \ref{alg:findlinesegments5-isxsmaller} wird geprüft, ob der Absolutwert der Steigung an Punkt $x$
  kleiner ist als der Punkt $y$. Falls dem so ist, wird in Zeile
  \ref{alg:findlinesegments5-newstart-start}--\ref{alg:findlinesegments5-newstart-end} ein neuer Start- und Endpunkt
@@ -249,24 +249,17 @@ Da ein Liniensegment aus zwei zufällig ausgewählten \glspl{edgel} besteht, kö
  $[0,\mathit{presentLine.supportCount}) = n$ \gls{edgel}. Die Laufzeitfunktion ist in \autoref{eq:findlinesegments-3}
  angegeben.
 \input{eq/hirzer/findlinesegments3}
-% Durch Subsitution von $n = \tfrac{1}{5}(\mathit{regionSize}^2 -2\mathit{regionSize})$ in
-%  \autoref{eq:findlinesegments-3-4} ist die Wachstumsrate des Verfahrens $\tfrac{21}{5}(r^2 - 2r) = \Theta(r^2)$, für
-%  $c_{1} = 4$, $c_{2} = 5$ und $r_{0} = 42$.
 Die Wachstumsrate, für $c_{1} = 20$, $c_{2} = 21$ und $n_{0} = 1$, ist $21n + 20 = \Theta(n)$.
 
 Wenn in \autoref{alg:findlinesegments5} in Zeile \ref{alg:findlinesegments5-isxsmaller} der Absolutwert der Steigung an
  Punkt $x$ größer ist als an Punkt $y$, wird in \autoref{alg:findlinesegments6} in Zeile
  \ref{alg:findlinesegments6-newstart-start}--\ref{alg:findlinesegments6-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $x$-Koordiante aller \glspl{edgel} des Liniensegments untersucht und verglichen werden.
+ gesucht, indem die $x$-Koordinate aller \glspl{edgel} des Liniensegments untersucht und verglichen werden.
 \input{alg/analyse-hirzer/findlinesegments-6}
 Am Ende von \autoref{alg:findlinesegments6} ist in $\mathit{presentLine}$ ein neuer Start- und Endpunkt gespeichert.
  Auch hier ist die Laufzeit des Algorithmus abhängig von $[0,\mathit{presentLine.supportCount}) = n$. Die
  Laufzeitfunktion von \autoref{alg:findlinesegments6} ist in \autoref{eq:findlinesegments-4} aufgeführt.
 \input{eq/hirzer/findlinesegments4}
-% Wie bei \autoref{alg:findlinesegments5} auch, entspricht die Wachstumsrate nach der Subsitution
-%  $\tfrac{21r^2}{5} - \frac{42r}{5} = \Theta(r^2)$, für $c_{1} = 4$, $c_{2} = 5$ und $r_{0} = 42$. Die Wachstumsrate von
-%  \autoref{alg:findlinesegments5} und \autoref{alg:findlinesegments6} ist somit
-%  $\Theta(r^2) + \Theta(r^2) = \Theta(r^2)$.
 Wie bei \autoref{alg:findlinesegments5} auch, entspricht die Wachstumsrate $21n + 1 = \Theta(n)$, für
  $c_{1} = 20$, $c_{2} = 21$ und $n_{0} = 1$. Die Wachstumsrate von \autoref{alg:findlinesegments5} und
  \autoref{alg:findlinesegments6} ist somit $\Theta(n) + \Theta(n) = \Theta(n)$.
@@ -302,11 +295,11 @@ Die Methoden \textproc{vectorSubtract}, \textproc{dotProduct}, \textproc{normali
  haben eine konstante Laufzeit. Die Abbruchbedingung der Schleife ist in Zeile \ref{alg:findlinesegments9-while} von
  \autoref{alg:findlinesegments9} angegeben. Sie besagt, dass die Anzahl der gefundenen Unterstützungsedgel größer sein
  muss als eine festgelegte Mindestanzahl. Zur Untersuchung wird die Mindestanzahl $\mathit{minEdgels} = 0$ festgelegt.
- Somit wird das Verfahren beendet, wenn ein Liniensegment keine Unterstüztungsedgel enthält. Für die Untersuchung des
+ Somit wird das Verfahren beendet, wenn ein Liniensegment keine Unterstützungsedgel enthält. Für die Untersuchung des
  schlechtesten Falls, muss die Anzahl der Wiederholungen der Schleife in Zeile
  \ref{alg:findlinesegments9-do}--\ref{alg:findlinesegments9-while} ermittelt werden. Zeile
  \ref{alg:findlinesegments9-hasmoresupport} überprüft, ob ein neues Liniensegment eine größere Anzahl von
- Unterstützungsedgel besitzt, als ein bereits gefundenes Liniensegment. Bei der ersten Iteratition der Schleife muss
+ Unterstützungsedgel besitzt, als ein bereits gefundenes Liniensegment. Bei der ersten Iteration der Schleife muss
  ein Liniensegment mit einem Unterstützungsedgel gefunden werden. Danach wird das Unterstützungsedgel und das Start-
  und Endedgel des Liniensegments von \autoref{alg:findlinesegments7} in Zeile
  \ref{alg:findlinesegments7-removeedgel-start}--\ref{alg:findlinesegments7-removeedgel-end} gelöscht. Bei der zweiten
@@ -324,7 +317,7 @@ m = \left\lfloor\frac{1}{2}(\sqrt{8n+25} - 5)\right\rfloor
 lässt sich die maximale Anzahl $m$ der Wiederholung ermitteln, die mit $n$ \gls{edgel} möglich sind. % Die maximal
 %  mögliche Anzahl von \gls{edgel} ist $n = \frac{1}{5}(\mathit{regionSize}^2 - 2\mathit{regionSize})$.
 Die Kosten der  Algorithmen sind zur Analyse des schlechtesten Falls in \autoref{alg:findlinesegments9} aufgeführt. Die
- Laufzeitfuntion des RANSAC Verfahrens ist in \autoref{eq:findlinesegments-7} angegeben.
+ Laufzeitfunktion des RANSAC Verfahrens ist in \autoref{eq:findlinesegments-7} angegeben.
 \input{eq/hirzer/findlinesegments7}
 Die Wachstumsrate ist $25mn^2 + 75mn + 108m = \Theta(mn^2)$, für $c_{1} = 11$, $c_{2} = 26$ und $n_{0} = 77$.
 
@@ -338,5 +331,5 @@ Die Eingabemenge von \autoref{alg:linedetection-clarke-analyse} ist $I_m$, wobei
  Regionen erstellt. Von \textproc{findEdgels} werden maximal $n$ \gls{edgel} gefunden, die \textproc{findLineSegments}
  als Eingabe dienen. Die Kosten des Algorithmus sind in \autoref{eq:linedetection-clarke-1} aufgeführt.
 \input{eq/hirzer/linedetection-clarke}
-Durch Subsitution der Variablen $r = \mathit{regionSize} = 40$ in \autoref{eq:linedetection-clarke-4}, ist die
+Durch Substitution der Variablen $r = \mathit{regionSize} = 40$ in \autoref{eq:linedetection-clarke-4}, ist die
  Wachstumsrate $hwmn^2 + hw + h = O(hwmn^2)$.

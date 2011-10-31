@@ -10,7 +10,7 @@
 
 	\subsection{Grundlagen} % (fold)
 	\label{sec:grundlagen}
-	Ein digitales Bild ist definiert durch seine Bildgröße und der Auflösung. Die Bildgröße ist in Höhe und Breite angegeben und eine entsprechende Bildmatrix kann durch die Bildspalten $u$ und Bildzeilen $v$ angegeben werden. Die Auflösung eines Bildes bezeichnet die räumliche Ausdehnung in \gls{dpi}, die in den meisten Bildverarbeitungsschritten vernachlässigt werden kann.
+	Ein digitales Bild ist definiert durch seine Bildgröße und der Auflösung. Die Bildgröße ist in Höhe und Breite angegeben und eine entsprechende Bildmatrix kann durch die Bildspalten $u$ und Bildzeilen $v$ angegeben werden. Die Auflösung eines Bildes bezeichnet die räumliche Ausdehnung in \gls{dpi}, die in den meisten Schritten der Bildverarbeitung vernachlässigt werden kann.
 
 Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, benötigen wir ein Koordinatensystem. Bei digitalen
  Bildern unterscheidet sich das verwendete Koordinatensystem von einem kartesischen Koordinatensystem dadurch, dass der
@@ -19,7 +19,7 @@ Um auf ein \gls{pixel} aus der Bildmatrix zugreifen zu können, benötigen wir e
 
 	Die Information eines \gls{pixel} ist als binärer Wert mit der Länge \(k\) gespeichert. Der Wertebereich eines \gls{pixel} umfasst \(\left[0 \dotsc 2^k\right]\), wobei der genaue Wertebereich abhängig vom eingesetzten Typ ist.
 
-	Man unterscheidet im Allgemeinen zwischen Farb-, Monochrom- und Binärbildern, die eine direkte Auswirkung auf den Wertebereich haben. Bei Farbbildern wird häufig eine Komponente für Rot, Grün und Blau verwendet und ist typischerweise in 8 Bits kodiert. Ein Pixel besteht somit aus \(3 \cdot 8 = 24\) Bits mit einem Wertebereich von \(\left[0 \dotsc 255\right]\) pro Farbkomponente.\\TODO: Bild mit Speicherbeschreibung für RGB
+	Man unterscheidet im Allgemeinen zwischen Farb-, Monochrom- und Binärbildern, die eine direkte Auswirkung auf den Wertebereich haben. Bei Farbbildern wird häufig eine Komponente für Rot, Grün und Blau verwendet und ist typischerweise in 8 Bits kodiert. Ein Pixel besteht somit aus \(3 \cdot 8 = 24\) Bits mit einem Wertebereich von \(\left[0 \dotsc 255\right]\) pro Farbkomponente.\\TODO: Bild mit Beschreibung des Speichers für RGB
 
 	Monochrombilder bestehen nur aus einem Intensitätskanal der ebenfalls mit 8 Bits kodiert wird. Der Wertebereich eines Pixel entspricht \(\left[0 \dotsc 255\right]\).\\TODO: Bild mit Speicherbeschreibung für Monochrom
 
@@ -305,8 +305,8 @@ Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine 
 	\label{fig:filterbeispiel}
 \end{figure}
 
-Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird der neue Pixelwert $I'(u,v)$ berechnet. Die Größe der
- Filterregion bestimmt die Anzahl der gls{pixel} aus $I$, die zur Berechnung des neuen Pixelwerts $I'(u,v)$ verwendet
+Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird der neue Pixel $I'(u,v)$ berechnet. Die Größe der
+ Filterregion bestimmt die Anzahl der gls{pixel} aus $I$, die zur Berechnung des neuen Pixels $I'(u,v)$ verwendet
  werden (Vgl.~\autoref{fig:region-filter}).
 \begin{figure}[!ht]
 	\centering
@@ -390,7 +390,7 @@ Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autor
 	\caption{Filter und Randbehandlung. Das Originalbild \subref{fig:randbeispiel-original} wird je nach eingesetzen
 	 Verfahren unterschiedlich behandelt. Bei \subref{fig:randbeispiel-1} werden die Ränder nicht betrachtet und ein
 	 konstanter Wert zugewiesen (hier schwarz dargestellt).	Die Originalwerte des Eingangsbilds werden bei
-	 \subref{fig:randbeispiel-2} beibehalten. In \subref{fig:randbeispiel-3a} werden ausserhalb des Bildes konstante
+	 \subref{fig:randbeispiel-2} beibehalten. In \subref{fig:randbeispiel-3a} werden außerhalb des Bildes konstante
 	 Werte verwendet (hier schwarz dargestellt). Die Randpixel werden bei \subref{fig:randbeispiel-3b} fortgesetzt,
 	 während bei \subref{fig:randbeispiel-3c} das Eingangsbild an den Rändern wiederholt wird.}
 	\label{fig:randbeispiel}
@@ -450,7 +450,7 @@ Bei der Berechnung von $I * H_{xy}$ entspricht dies $3 \cdot 3 = 9$ Multiplikati
 Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur zwei Werte, die wir auch als Vordergrund
  und Hintergrund bezeichnen können. Das Interesse bei einem Binärbild gilt dementsprechend den Informationen im
  Vordergrund. Eine zusammenhängende Struktur von Vordergrundpixeln wird als Bildregion bezeichnet. Um diese
- Bildregionen in einem Binärbild zu erkennen, werden zusammenhängende \gls{pixel} makiert, was auch als
+ Bildregionen in einem Binärbild zu erkennen, werden zusammenhängende \gls{pixel} markiert, was auch als
  \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Markierung von \gls{pixel} werden folgende
  numerischen Werte verwendet:
 \begin{equation*}
@@ -470,7 +470,7 @@ Bei der sequentiellen Regionenmarkierung\footcite[Vgl.][S.~200--206]{burger05} w
 
 Zuerst muss das Binärbild zeilenweise von oben nach unten auf das Vorhandensein von Vordergrundpixel untersucht werden.
 Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nachbarschaftsbeziehung, ebenfalls
- untersucht. Zwei gebräuchliche Definitonen von Nachbarschaftsbeziehungen sind zum einen die 4er-Nachbarschaft und zum
+ untersucht. Zwei gebräuchliche Definitionen von Nachbarschaftsbeziehungen sind zum einen die 4er-Nachbarschaft und zum
  anderen die 8er-Nachbarschaft. Für ein \gls{pixel} $I(u,v)$ werden bei der 4er"=Nachbarschaft die beiden angrenzenden
  \gls{pixel} $I(u-1,v)$ und $I(u,v+1)$ untersucht. Bei der 8er"=Nachbarschaft werden die vier Nachbarn $I(u-1,v)$,
  $I(u-1,v+1)$, $I(u,v+1)$ und $I(u+1,v+1)$ untersucht. Beide Nachbarschaftsbeziehungen sind in

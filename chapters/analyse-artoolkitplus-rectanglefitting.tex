@@ -3,7 +3,7 @@ In der Rectangle Fitting Phase wird überprüft, ob eine Kontur ein Rechteck ist
  Schritte zum Aufruf der Methode in \textproc{arDetectMarker2} erläutert werden
  (\autoref{alg:detectmarker2-3}).
 \input{alg/analyse-artplus/detectmarker2-3}
-Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis in $\mathit{ret}$ gespeichtert und
+Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis in $\mathit{ret}$ gespeichert und
  anschließend in Zeile \ref{alg:detectmarker2-3-retvalue} geprüft, ob \textproc{arGetContour} nicht mit einem
  Fehlerwert beendet wurde. Ansonsten wird in Zeile \ref{alg:detectmarker2-3-continue} die nächste Iteration der
  Schleife eingeleitet. Danach wird in Zeile \ref{alg:detectmarker2-3-checksquare} die Methode \textproc{checkSquare}
@@ -156,13 +156,13 @@ Wenn der Abstand größer als $\mathit{dmax}$ ist, wird $d$ in Zeile \ref{alg:ge
  Position $i$ des Punktes mit dem größten Abstand zur Linie gespeichert. Die Laufzeitfunktion ist in
  \autoref{eq:analyse-getvertex-distance} aufgeführt.
 \input{eq/artplus/getvertex-distance}
-Die Eingabemenge $n$ entspricht der Anzahl der Einträge im Interval $[1,\mathit{ed}-\mathit{sd})$. Im schlechsten Fall
+Die Eingabemenge $n$ entspricht der Anzahl der Einträge im Interval $[1,\mathit{ed}-\mathit{sd})$. Im schlechtesten Fall
  liegt der Punkt mit dem größten Abstand am Ende der Liste. Die Wachstumsrate für $c_{1} = 13$, $c_{2} = 14$ und
  $n_{0} = 1$ ist $14n = \Theta(n)$.
 
 In \autoref{alg:getvertex-2} wird in Zeile \ref{alg:getvertex-2-isdmaxgreater} der Abstand mit dem Distanzschwellwert
  verglichen. Nur wenn der Abstand größer als der Distanzschwellwert ist, wird das Verfahren fortgesetzt. Zur Analyse
- von \textproc{getVertex} (\autoref{alg:getvertex-2}) wird $\mathit{tresh} = 0$ verwendet. Somit wird das
+ von \textproc{getVertex} (\autoref{alg:getvertex-2}) wird $\mathit{thresh} = 0$ verwendet. Somit wird das
  Verfahren solange ausgeführt, bis der Abstand $\mathit{dmax} = 0$ ist. Dies ist dann der Fall, wenn eine Linie von
  $\mathit{st}$ bis $\mathit{ed}$ genau über einer Kontur liegt. Das Verfahren wird dann in Zeile
  \ref{alg:getvertex-2-done} beendet.

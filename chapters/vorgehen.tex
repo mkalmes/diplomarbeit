@@ -8,14 +8,14 @@
 \end{comment}
 
 Um das Verfahren ARToolKitPlus und das Verfahren von \citeauthor{hirzer08} zu analysieren werden die Kosten der
- Algorithmen berechent und ihre Wachstumsrate ermittlet. Elementare Operationen, wie Addition, Zuweisung und
- Arrayzugriffe, werden in Abhängigkeit von der Größe der Eingabemenge berechnet. Daraus wird wiederum das aymptotische
- Wachstum ermittelt.
+ Algorithmen berechnet und ihre Wachstumsrate ermittelt. Elementare Operationen, wie Addition, Zuweisung und
+ Zugriffe auf ein Array, werden in Abhängigkeit von der Größe der Eingabemenge berechnet. Daraus wird wiederum das
+ asymptotische Wachstum ermittelt.
 
 Bei Verfahren, deren Algorithmen nicht im Quellcode vorliegen, wird durch eine experimentelle Analyse die Laufzeit des
  Verfahrens für unterschiedliche Eingabemengen untersucht. Die Durchführung der experimentellen Analyse erfolgt dabei
  auf einem iPod touch (4. Generation) mit einem ARMv7 Befehlssatz. Alle Programme der Analyse wurden mit LLVM GCC 4.2
- und Kompileroptimierung $\mathit{-Os}$\footcite[Vgl.][]{cc} erstellt.
+ und Kompiliereroptimierung $\mathit{Os}$\footcite[Vgl.][]{cc} erstellt.
 
 \paragraph{Bilddatenbeschaffung:} % (fold)
 \label{par:bilddatenbeschaffung}
@@ -29,7 +29,7 @@ Das Videosignal wird unter iOS durch das AVFoundation Framework zur Verfügung g
 \label{par:vergleichsanalyse}
 Um beide Verfahren miteinander zu vergleichen wird die Laufzeit der Programme gemessen. Dazu wird durch hinzufügen von
  Anwendungsschritten, von der Bildbeschaffung hin zur Erkennung einer Marke, eine Laufzeit erstellt. Dieses Verfahren
- wurd von \citeauthor{wagner09b}\footcite[Vgl.][]{wagner09b} verwendet um Studierstube 4 auf unterschiedlichen Geräten
+ wurde von \citeauthor{wagner09b}\footcite[Vgl.][]{wagner09b} verwendet um Studierstube 4 auf unterschiedlichen Geräten
  zu beurteilen. In meiner Analyse wird mit der gleichen Technik ARToolKitPlus und das Verfahren von
  \citeauthor{hirzer08} auf einem iPod touch untersucht.
 % paragraph vergleichsanalyse (end)
@@ -37,7 +37,7 @@ Um beide Verfahren miteinander zu vergleichen wird die Laufzeit der Programme ge
 \paragraph{ARToolKitPlus:} % (fold)
 \label{par:artoolkitplus}
 Die Untersuchung von ARToolKitPlus unter iOS 4 erfolgt mit VRToolKit\footcite[Vgl.][]{vrtoolkit} von
- \citeauthor{vrtoolkit}. VRToolKit ist ein Obj-C Wrapper für ARToolKitPlus. VRToolKit konfigueriert das ARToolKitPlus
+ \citeauthor{vrtoolkit}. VRToolKit ist ein Obj-C Wrapper für ARToolKitPlus. VRToolKit konfiguriert das ARToolKitPlus
  System zur Verarbeitung von Marken und sorgt für die Bereitstellung von Bildsignalen der Kamera.
 
 ARToolKitPlus bietet die Möglichkeit einer automatischen Schwellwertanpassung, um auch bei wechselnden

@@ -5,9 +5,9 @@
 	Notwendige Kriterien der Algorithmen bestimmen
 
 	Grober Ablauf der Verfahren:
-	* Wer hats erfunden?
-	* Wie ist das Verfahren aufgebaut (Algo in grob)
-	* Welche Kriterien müssen erfüllt sein (monochrom, rgb eingabe)?
+	* Wer hat es erfunden?
+	* Wie ist das Verfahren aufgebaut (Algorithmen in grob)
+	* Welche Kriterien müssen erfüllt sein (monochrom, rgb Eingabe)?
 \end{comment}
 
 \subsection{ARToolKitPlus} % (fold)
@@ -49,8 +49,8 @@ Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln i
  Vordergrundpixel.
 
 Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und wird an Position $(u,v)$ als $0$
- gespeichert. Da ARToolKitPlus ein Binärbild während der Regionenmarkierung erstellt, wird auf eine expliziete
- Speicherung eines Vordergrundpixel verzichetet. Somit verwendet ARToolKitPlus folgende numerischen Werte zur
+ gespeichert. Da ARToolKitPlus ein Binärbild während der Regionenmarkierung erstellt, wird auf eine explizite
+ Speicherung eines Vordergrundpixels verzichtet. Somit verwendet ARToolKitPlus folgende numerischen Werte zur
  Markierung:
 \begin{equation*}
 	I(u,v) = \begin{cases}
@@ -66,10 +66,10 @@ Bei einem Vordergrundpixel wird die Beziehung des \gls{pixel} zu seinen Nachbarn
  die Markierung mit kleinerem Wert überschrieben. ARToolKitPlus speichert die Information der Markierungen in einer
  eigenen Liste um Markierungen nicht im Bildspeicher ersetzen zu müssen.
 
-Nachdem das Eingangssignal vollständig markiert wurde, enthält die Liste mit Markierungen duch aufgetretene Kollisionen
+Nachdem das Eingangssignal vollständig markiert wurde, enthält die Liste mit Markierungen durch aufgetretene Kollisionen
  keine fortlaufenden Werte. Um eine Liste mit fortlaufenden Markierungswerten zu erhalten, wird die Liste für jede
  Markierung durchlaufen. Dabei wird untersucht, ob der aktuelle Wert der Laufvariable entspricht. Falls dem so ist,
- wird die Laufvarible in der Liste gespeichert. Andernfalls wird der vorherige Wert der List an die aktuelle Position
+ wird die Laufvariable in der Liste gespeichert. Andernfalls wird der vorherige Wert der List an die aktuelle Position
  geschrieben. \autoref{fig:} verdeutlicht diesen Vorgang.
 
 Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, verwendet ARToolKitPlus dazu eine eigene
@@ -100,11 +100,11 @@ Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt.
 \label{sub:rectangle_fitting}
 
 In diesem Schritt wird untersucht, ob es sich bei einer geschlossenen Kontur um ein Rechteck handelt.
- \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier annährend geraden Linien, die durch
+ \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier annähernd geraden Linien, die durch
  Überschneidung vier Eckpunkte bilden\footcite[Vgl.][S.~42]{wagner07a}.
 
 Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Der
- \gls{pixel} mit dem grössten Abstand zum Startpunkt ist eine erste Ecke. Anschließend wird eine Linie zwischen dem
+ \gls{pixel} mit dem größten Abstand zum Startpunkt ist eine erste Ecke. Anschließend wird eine Linie zwischen dem
  Startpunkt und des ersten Eckpunktes definiert. Diese Linie trennt die Kontur in eine linke und eine rechte Hälfte.
  Für jeden \gls{pixel} der Kontur einer dieser Hälfte wird der Abstand zur Linie berechnet. Dadurch findet das
  Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines \gls{pixel} größer als ein festgelegter
@@ -156,7 +156,7 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
  die Anzahl größer ist als die minimal geforderte Anzahl von Unterstützungsedgels. Die zufällige Auswahl zweier
  \glspl{edgel}, um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln, wird mehrmals wiederholt, um die
  Linie mit der meisten Edgelunterstützung zu finden. Wenn eine solche dominante Linie gefunden wurde, gilt die
- Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstüztung der Hypothese
+ Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstützung der Hypothese
  der Linie galten, werden aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle
  Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind. Das Verfahren ist in
  \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:} illustriert.
@@ -256,7 +256,7 @@ Um aus den gefundenen Linien eine quadratische Marke zu erkennen, werden Eckpunk
 Zuerst dürfen zwei Linien nicht parallel zueinander liegen, da sonst keine quadratische Marke gefunden werden kann.
  Danach wird als zweites Kriterium der Abstand der Linienenden untersucht. Bleibt der Abstand unter einem festgelegten
  Schwellwert, wird das Verfahren fortgesetzt. Zuletzt wird die Orientierung der beiden Linien untersucht. Eine
- quadratische Marke besteht aus einem schwarzen Rahmen auf weißem Untergund und wird dadurch von den Linien
+ quadratische Marke besteht aus einem schwarzen Rahmen auf weißem Untergrund und wird dadurch von den Linien
  eingeschlossen (Vgl.~\autoref{sub:bitonalemarken}). Somit muss die Orientierung der Linien sich um $90^\circ$
  unterscheiden. Wenn alle drei Kriterien erfüllt sind, wird der Überschneidungspunkt der Linien als Eckpunkt der Marke
  gespeichert und das Verfahren mit der zweiten Linien rekursiv wiederholt bis vier Eckpunkte gefunden wurden. Falls
@@ -266,10 +266,10 @@ Zuerst dürfen zwei Linien nicht parallel zueinander liegen, da sonst keine quad
 
 Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt und somit eine Marke erkannt. Wurden
  weniger als vier Eckpunkte gefunden, kann das Quadrat wie folgt wiederhergestellt werden: Mit drei Eckpunkten ist es
- möglich den fehlenden Eckpunkt zu berechnen, indem die beiden Linien an der Lücke überkreuzt werden. Laut Hirzer ist
- das Ergebnis in den meisten Fällen akurat\footcite[Vgl.][S.15]{hirzer08}. Falls nur zwei Eckpunkte gefunden wurden,
- werden die Linienenden an der Lücke zusammengeschlossen. Das Ergebnis variert je nach Qualität der vorrausgegangen
- Line Extension. Je besser die Linienerweiterung ist, desto genauer ist das Ergebnis
+ möglich den fehlenden Eckpunkt zu berechnen, indem der Schnittpunkt der beiden Linie an der Lücke verwendet wird. Laut
+ Hirzer ist das Ergebnis in den meisten Fällen exakt\footcite[Vgl.][S.15]{hirzer08}. Falls nur zwei Eckpunkte gefunden
+ wurden, werden die Linienenden an der Lücke zusammengeschlossen. Das Ergebnis variiert je nach Qualität der
+ vorausgegangen Line Extension. Je besser die Linienerweiterung ist, desto genauer ist das Ergebnis
  (Vgl.~\autoref{fig:quadrangledetection}). Wenn nur ein Eckpunkt gefunden wurde, ist eine Wiederherstellung der Marke
  nicht möglich und die Linien werden gelöscht.
 \begin{figure}[!ht]
@@ -294,9 +294,9 @@ Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt
 \begin{comment}
 	Der RANSAC Grouper wird verwendet um gerade Liniensegmente zu finden. Dazu werden zwei zufällige edgels ausgewählt
 	 und ihre kompatible Orientierung überprüft. Die Anzahl der supporting edgels wird durch die Distanz des
-	 Liniensegments und der Orientierung bestimmt. Durch wiederholung dieses Prozesses wird die dominante Linie in der
+	 Liniensegments und der Orientierung bestimmt. Durch Wiederholung dieses Prozesses wird die dominante Linie in der
 	 Region bestimmt. Die supporting edgels werden entfernt und der Prozess wird wiederholt bis keine edgels mehr
-	 vorhanden sind oder eine maximale Anzahl von wiederholungen erreicht wurde. Durch dieses Wiederholung wird
+	 vorhanden sind oder eine maximale Anzahl von Wiederholungen erreicht wurde. Durch dieses Wiederholung wird
 	 sichergestellt, dass alle dominanten Linien in einer Region erkannt werden.
 
 	Vorteil: Der Algorithmus ist sehr schnell und lässt sich für gewünschte Liniensegmente anpassen.
@@ -306,7 +306,7 @@ Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt
 	Hirzer hat das Verfahren um zwei Punkte erweitert und angepasst.
 	Wird in einem RGB Bild ein Kanal untersucht und ein Edgel gefunden, werden in den restlichen zwei Kanälen an der
 	 gleichen Position nach einem Edgel gesucht. Falls in allen drei Kanälen ein Edgel gefunden wird, handelt es sich
-	 um ein Linie (Schwarz/Weiß) und keine Farblinie.
+	 um ein Linie (Schwarz/Weiß) und keine farbige Linie.
 
 	Nur das erste Frame wird vollständig untersucht und die Position der gefundenen Marken notiert. In den folgenden
 	 frames wird nur in den Regionen der gefundenen Marke das Verfahren benutzt. Erst nach einer festgelegten Anzahl

@@ -28,7 +28,7 @@ Auch das Verfahren \textproc{gradientIntensity} in \autoref{alg:gradientintensit
 \input{alg/analyse-hirzer/getrgbvalue}
 Das Verfahren benötigt das RGB-Signal $I$, die Position des \gls{pixel} ($x$, $y$), den Farbkanal, sowie die Breite $w$
  und Höhe $h$ von $I$. In den Zeilen \ref{alg:getrgbvalue-sanity-start}--\ref{alg:getrgbvalue-sanity-end} wird
- sichergestellt, dass kein \gls{pixel} ausserhalb der Bildgrenzen gelesen werden können. In Zeile
+ sichergestellt, dass kein \gls{pixel} außerhalb der Bildgrenzen gelesen werden können. In Zeile
  \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des \gls{pixel} wird in
  Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
  \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeitfunktion
@@ -52,7 +52,7 @@ In der Schleife von Zeile \ref{alg:mergelines1-loop-start}--\ref{alg:mergelines1
  \ref{alg:mergelines1-hasdistance-start}--\ref{alg:mergelines1-hasdistance-end} wird die Anzahl der Distanzwerte
  untersucht. Wenn keine Einträge in \textproc{distancepool} vorhanden sind, wird die Verarbeitung mit einem neuen
  Durchlauf der Schleife fortgesetzt. Andernfalls werden in Zeile \ref{alg:mergelines1-mergelines} mit
- \autoref{alg:mergelines4}--\autoref{alg:mergelines6} komaptible Liniensegmente zusammengeführt.
+ \autoref{alg:mergelines4}--\autoref{alg:mergelines6} kompatible Liniensegmente zusammengeführt.
 
 In \autoref{alg:mergelines2} wird in der Schleife \ref{alg:mergelines2-loop-start}--\ref{alg:mergelines3-loop-end} ein
  zweites Liniensegment gesucht, das kompatibel mit dem ersten Liniensegment ist.
@@ -66,28 +66,28 @@ In Zeile \ref{alg:mergelines2-ignore-start}--\ref{alg:mergelines2-ignore-end} we
  $c_{2} = 18$ und $l_{0} = 1$.
 \input{eq/hirzer/mergelines-j-1}
 In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3}) wird die Orientierung untersucht,
- die sowohl für die Lininesegmente, als auch für die Verbindungsline, nur geringfügig abweichen darf.
+ die sowohl für die Liniensegmente, als auch für die Verbindungslinie, nur geringfügig abweichen darf.
 \input{alg/analyse-hirzer/mergelines-3}
 Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cline-start}--\ref{alg:mergelines3-cline-end}
  die Verbindungslinie in \textproc{cLine} gespeichert. In Zeile \ref{alg:mergelines3-isbridged} wird anschließend die
  Orientierung der Verbindungslinie Punkt für Punkt untersucht (Vgl. \autoref{sub:line_detection}). Wenn der Gradient
  der Verbindungslinie sich nicht verändert hat, wird in Zeile
  \ref{alg:mergelines3-save-start}--\ref{alg:mergelines3-save-end} die Länge zum Quadrat und die Position der
- Verbindungsline in \textproc{distancepool} gespeichert. Die Laufzeitfunktion ist in \autoref{eq:mergelines-j-2}
+ Verbindungslinie in \textproc{distancepool} gespeichert. Die Laufzeitfunktion ist in \autoref{eq:mergelines-j-2}
  angegeben. Die Wachstumsrate von \autoref{alg:mergelines3} ist
  $(l \cdot \mathit{length}) + 27l = \Theta(l \cdot \mathit{length})$.
 \input{eq/hirzer/mergelines-j-2}
 Die Wachstumsrate der Funktion, um zwei kompatible Liniensegmente zu finden (\autoref{alg:mergelines2} und
  \autoref{alg:mergelines3}), beträgt $\Theta(l \cdot \mathit{length}) + \Theta(l) = \Theta(l \cdot \mathit{length})$.
 
-\textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungsline $\mathit{connectionLine}$ und das
+\textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungslinie $\mathit{connectionLine}$ und das
  Bildsignal $I$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
 \input{alg/analyse-hirzer/isconnectionlinebridged}
 In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionlinebridged-length-end} wird die Länge
  der Verbindungslinie berechnet und der Startpunkt festgelegt. In der Schleife in Zeile
  \ref{alg:isconnectionlinebridged-loop-start}--\ref{alg:isconnectionlinebridged-loop-end} wird jeder Punkt auf der
  Linie untersucht. In Zeile \ref{alg:isconnectionlinebridged-gradient} wird der Gradient an der Position $i$  der
- Verbindungslinie berechent. Wenn der Gradient in Zeile \ref{alg:isconnectionlinebridged-iscompatible} mit dem Gradient
+ Verbindungslinie berechnet. Wenn der Gradient in Zeile \ref{alg:isconnectionlinebridged-iscompatible} mit dem Gradient
  der Linie kompatibel ist, wird die Schleife fortgesetzt. Andernfalls, wenn die Orientierung des Punktes und der Linie
  nicht kompatibel sind, wird in Zeile \ref{alg:isconnectionlinebridged-bridged} das Verfahren abgebrochen. Wenn jeder
  Punkt auf der Verbindungslinie kompatibel zur Verbindungslinie ist, wird die Schleife in Zeile
@@ -100,14 +100,14 @@ In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionli
 Nachdem in \autoref{alg:mergelines2}--\autoref{alg:mergelines3} kompatible Liniensegmente ermittelt wurden, kann mit
  \autoref{alg:mergelines4} und \autoref{alg:mergelines5} die Liniensegmente verbunden werden.
 \input{alg/analyse-hirzer/mergelines-4}
-In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden die Liniensegmente anhand ihrers
+In Zeile \ref{alg:mergelines4-sort-start}--\ref{alg:mergelines4-sort-end} werden die Liniensegmente anhand ihres
  Abstands aufsteigend sortiert. Dazu wird die Funktion \textproc{qsort} verwendet, die eine Wachstumsrate von
  $O(l \log l)$ hat\footcite{qsort}. Die Funktion \textproc{distanceCompare} wird von \textproc{qsort} zum
- sortieren verwendent (Vgl. \autoref{alg:distancecompare}).
+ sortieren verwendet (Vgl. \autoref{alg:distancecompare}).
 \input{alg/analyse-hirzer/datastructure-distancecompare}
-\textproc{distanceCompare} benötigt zwei Distanzwerte $a$ und $b$ deren Länge subtrahiert und als Ergebnis zurückgegebn
+\textproc{distanceCompare} benötigt zwei Distanzwerte $a$ und $b$ deren Länge subtrahiert und als Ergebnis zurückgegeben
  wird. In Zeile \ref{alg:mergelines4-loop-start}--\ref{alg:mergelines5-loop-end} von \autoref{alg:mergelines4} und
- \autoref{alg:mergelines5} werden die Liniensegmente vorbereitet. Dazu wird aus dem sortiereten Speicherblock
+ \autoref{alg:mergelines5} werden die Liniensegmente vorbereitet. Dazu wird aus dem sortierten Speicherblock
  $\mathit{distancepool}$ der Index des Liniensegments ausgelesen und gespeichert. Die Start- und Endedgel, sowie die
  Länge der Linie und ihre Orientierung werden berechnet
  (Zeile \ref{alg:mergelines4-merge-start}--\ref{alg:mergelines4-merge-end}). Die Laufzeitfunktion von
@@ -128,9 +128,9 @@ Falls dem so ist, wird in Zeile \ref{alg:mergelines5-merge-start}--\ref{alg:merg
 Mit \autoref{alg:mergelines6} werden die markierten Liniensegmente gelöscht. Dazu wird der Speicherblock $L$
  vollständig durchlaufen (Zeile \ref{alg:mergelines6-del-start}--\ref{alg:mergelines6-del-end}).
 \input{alg/analyse-hirzer/mergelines-6}
-Wenn die Überprüfung in Zeile \ref{alg:mergelines6-shouldremove} ein markiertes Lininesegment findet, wird es in Zeile
+Wenn die Überprüfung in Zeile \ref{alg:mergelines6-shouldremove} ein markiertes Liniensegment findet, wird es in Zeile
  \ref{alg:mergelines6-remove} entfernt und die Laufvariable dekrementiert. Zusätzlich wird in Zeile
- \ref{alg:mergelines6-merged} die boolsche Variable gesetzt. Wenn die Variable $\mathit{merged}$ gesetzt wurde, und
+ \ref{alg:mergelines6-merged} die boolesche Variable gesetzt. Wenn die Variable $\mathit{merged}$ gesetzt wurde, und
  somit Liniensegmente verschmolzen wurden, wird die Variable $i$ auf den Wert $-1$ gesetzt
  (Zeile \ref{alg:mergelines6-wasmerged-start}--\ref{alg:mergelines6-wasmerged-end}). Dies hat zur Folge, dass das
  Verfahren \textproc{mergeLines} in Zeile \ref{alg:mergelines1-loop-start} von \autoref{alg:mergelines1} wieder bei $0$
@@ -153,15 +153,15 @@ Die Wachstumsrate von \autoref{alg:mergelines7} ist
  Endpunkt auf Kompatibilität der Orientierung und benötigt dazu den Start- und Endpunkt der Linie, ihre Richtung
  $\mathit{slope}$ und die Orientierung.
 \input{alg/analyse-hirzer/extendline-1}
-Desweiteren wird die zu untersuchende Länge der Linie und das Bildsignal $I$ benötigt. In Zeile
+Darüber hinaus wird die zu untersuchende Länge der Linie und das Bildsignal $I$ benötigt. In Zeile
  \ref{alg:extendline1-ortho-start}--\ref{alg:extendline1-ortho-end} wird die Orthogonale der Richtung berechnet und
- gespeichert. Die boolsche Variable wird in Zeile \ref{alg:extendline1-boolean} initialisiert. In der Schleife in Zeile
+ gespeichert. Die boolesche Variable wird in Zeile \ref{alg:extendline1-boolean} initialisiert. In der Schleife in Zeile
  \ref{alg:extendline1-loop-start}--\ref{alg:extendline2-loop-end} wird die Länge der Linie Punkt für Punkt untersucht.
  Die Addition von $\mathit{start}$ und $\mathit{slope}$ rückt die Position der Linie um einen Punkt weiter (Zeile
  \ref{alg:extendline1-next}). Die Faltung für die vertikale und horizontale Richtung wird in den Variablen $x$ und $y$
  gespeichert. In Zeile \ref{alg:extendline1-threshold} wird überprüft, ob der Gradient kleiner ist als die Hälfte des
- festgelegten Schwellwerts. Dadurch kann festgestellt werden, ob an der Positon $\mathit{start}$ sich tatsächlich ein
- \gls{edgel} befindet. Falls dem nicht so ist, wird in Zeile \ref{alg:extendline1-break} die boolsche Variable
+ festgelegten Schwellwerts. Dadurch kann festgestellt werden, ob an der Position $\mathit{start}$ sich tatsächlich ein
+ \gls{edgel} befindet. Falls dem nicht so ist, wird in Zeile \ref{alg:extendline1-break} die boolesche Variable
  aktualisiert und die Schleife abgebrochen. Die Laufzeitfunktion für den schlechtesten Fall von
  \autoref{alg:extendline1} ist in \autoref{eq:extendline-1} angegeben. Die Wachstumsrate ist
  $16\mathit{length} + 8 = \Theta(length)$, für $c_{1} = 15$, $c_{2} = 16$ und $\mathit{length}_{0} = 1$.
@@ -173,12 +173,12 @@ Wenn die Bedingung in Zeile \ref{alg:extendline1-threshold} nicht erfüllt ist, 
 In Zeile \ref{alg:extendline2-iscompatible} wird überprüft, ob der Winkel sich innerhalb des festgelegten Grenzwertes
  befinden. Falls dem so ist, wird ein neuer Schleifendurchlauf ausgeführt. Doch falls der Winkel nicht dem vorgegeben
  Grenzwert entspricht, wird der Gradient in Zeile \ref{alg:extendline2-pointabove} an der Position untersucht, die
- einen Punkt oberhalb der Linie liegt. Dadurch muss eine Linie im Bildsignal nicht ganz gerade sein und gilt dennnoch
+ einen Punkt oberhalb der Linie liegt. Dadurch muss eine Linie im Bildsignal nicht ganz gerade sein und gilt dennoch
  als eine Linie. Falls diese Untersuchung auch fehlschlägt, wird der Gradient in Zeile \ref{alg:extendline2-pointbelow}
- eine Position unterhalb der Linie untersuchen. Auch hier liegt der Grund für diese Vorgehnsweise darin begründet, dass
- eine Linie nicht zwangsweise gerade sein muss. Falls dieser Vergleich wieder fehlschlägt, wird die boolsche Variable
+ eine Position unterhalb der Linie untersuchen. Auch hier liegt der Grund für diese Vorgehensweise darin begründet, dass
+ eine Linie nicht zwangsweise gerade sein muss. Falls dieser Vergleich wieder fehlschlägt, wird die boolesche Variable
  in Zeile \ref{alg:extendline2-false} gesetzt und die Schleife abgebrochen. In Zeile
- \ref{alg:extendline2-endofline} wird das Ende der Linie aktualisiert und der Wert der boolschen Variable in Zeile
+ \ref{alg:extendline2-endofline} wird das Ende der Linie aktualisiert und der Wert der booleschen Variable in Zeile
  \ref{alg:extendline2-return} als Ergebnis zurückgegeben. Die Laufzeitfunktion von \autoref{alg:extendline2} ist für
  den schlechtesten Fall in \autoref{eq:extendline-2} angegeben. Die Wachstumsrate ist
  $27 \mathit{length} + 3 = \Theta(\mathit{length})$. für $c_{1} = 26$, $c_{2} = 27$ und $n_{0} = 1$.
@@ -191,7 +191,7 @@ Wie in \autoref{sub:line_detection} bereits erläutert, wird das Zusammenführen
  dargestellt.
 \input{alg/analyse-hirzer/linedetection-hirzer-merging}
 In Zeile \ref{alg:linedetection-hirzermerging-mergeregion} werden Liniensegmente für die aktuelle Region
- zusammengeführt. Danach wird in Zeile \ref{alg:linedetection-hirzermerging-mergeall} alle Linien und Liniensegemente
+ zusammengeführt. Danach wird in Zeile \ref{alg:linedetection-hirzermerging-mergeall} alle Linien und Liniensegmente
  zusammengeführt. Die Laufzeitfunktion von \autoref{alg:linedetection-hirzermerging} ist in
  \autoref{eq:linedetection-hirzer-merging} aufgeführt.
 \input{eq/hirzer/linedetection-hirzer-merging}

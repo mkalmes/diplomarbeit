@@ -17,7 +17,7 @@ In der Schleife in Zeile \ref{alg:extendlinesinpool-loop-start}--\ref{alg:extend
 \input{eq/hirzer/extendlinesinpool}
 
 Ob eine erweiterte Linie zur Markenerkennung geeignet ist, wird dadurch bestimmt, ob über das Linienende hinaus ein
- heller Pixel liegt. Dazu wird das Verfahren $\mathit{findLinesWithCornersInLinePool}$ verwedent
+ heller Pixel liegt. Dazu wird das Verfahren $\mathit{findLinesWithCornersInLinePool}$ verwendet
  (\autoref{alg:findlineswithcornersinlinepool1}--\autoref{alg:findlineswithcornersinlinepool2}).
 \input{alg/analyse-hirzer/findlineswithcornersinlinepool1}
 Das Verfahren untersucht alle Linien in Speicherblock $L$ und speichert Linien, die sich zur Erkennung eignen, in Block
@@ -29,7 +29,7 @@ Das Verfahren untersucht alle Linien in Speicherblock $L$ und speichert Linien, 
  $l$ gespeichert wird. Danach wird die Richtung der Linie in Zeile \ref{alg:findlineswithcornersinlinepool1-dx} und
  \ref{alg:findlineswithcornersinlinepool1-dy} verlängert. Die Variable $dx$ und $dy$ sind dienen als Abstand der
  Linienenden. In Zeile \ref{alg:findlineswithcornersinlinepool1-x}--\ref{alg:findlineswithcornersinlinepool1-y} wird
- die Position vor dem Startpunkt der Linie berechent. Danach werden die Farbkomponenten an dieser Position ausgelesen.
+ die Position vor dem Startpunkt der Linie berechnet. Danach werden die Farbkomponenten an dieser Position ausgelesen.
  Die Laufzeitfunktion von \autoref{alg:findlineswithcornersinlinepool1} ist in \autoref{eq:findlinescorners-1}
  angegeben. Die Wachstumsrate, für $c_{1} = 26$, $c_{2} = 27$ und $l_{0} = 1$, ist $27l + 6 = \Theta(l)$.
 \input{eq/hirzer/findlinescorners-1}
@@ -53,7 +53,7 @@ Die Wachstumsrate von \textproc{findLinesWithCornersInLinePool}
 Das Verfahren der Linienerweiterung wird in \textproc{lineDetection} integriert und ist in
  \autoref{alg:linedetection-hirzerextending} dargestellt.
 \input{alg/analyse-hirzer/linedetection-hirzer-extending}
-In Zeile \ref{alg:linedetection-hirzerextending-extend} werden zuerst die Linien in $M$ erweitert. Im Anschluß daran
+In Zeile \ref{alg:linedetection-hirzerextending-extend} werden zuerst die Linien in $M$ erweitert. Im Anschluss daran
  werden in Zeile \ref{alg:linedetection-hirzerextending-corner} die Linien auf ihre Tauglichkeit zur Markenerkennung
  untersucht. Alle Linien die zur Erkennung geeignet sind, werden in Speicherblock $L$ gespeichert. Die Laufzeitfunktion
  ist in \autoref{eq:linedetection-hirzer-extending} angegeben. In \autoref{eq:linedetection-hirzer-extending-3} wurde

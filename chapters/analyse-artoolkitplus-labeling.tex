@@ -3,7 +3,7 @@
 
 Die Methode \textproc{arLabeling} (\autoref{alg:arlabeling-init1}--\autoref{alg:arlabeling-calcregiondata}) wird zur
  Markierung der Regionen in einem Bildsignal $I$ verwendet. Wie in \autoref{sub:fiducial_detection} beschrieben,
- verzichet ARToolKitPlus beim Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der
+ verzichtet ARToolKitPlus beim Aufruf des Verfahrens auf ein Binärbild. Stattdessen wird ein Bildsignal $I$ während der
  Verarbeitung durch eine Schwellwertanalyse untersucht. \textproc{arLabeling} kann in drei Abschnitte unterteilt werden
  (Vgl. \autoref{alg:arlabeling-overview}):
 \begin{enumerate}
@@ -61,7 +61,7 @@ Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist,
  ist das Wachstum $8\mathit{lysize} + 9 = \Theta(lysize)$.
 
 \autoref{label-region} von \autoref{alg:arlabeling-overview} ist für die Regionenmarkierung und das Auflösen von
- Kollisionen verantwortlich. Eine Übersich des Verfahrens ist in \autoref{alg:arlabeling-regionlabeling} dargestellt.
+ Kollisionen verantwortlich. Eine Übersicht des Verfahrens ist in \autoref{alg:arlabeling-regionlabeling} dargestellt.
 \input{alg/analyse-artplus/arlabeling-regionlabeling}
  \textproc{arLabeling} untersucht das Bildsignal $I$ zeilenweise von links oben nach rechts unten. Durch eine
  Schwellwertanalyse wird entschieden, ob ein \gls{pixel} an Position $I(u,v)$ ein Vordergrund- oder Hintergrundpixel
@@ -87,17 +87,17 @@ Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist,
  werden (Vgl. \autoref{alg:arlabeling-neighbour}). Die Laufzeitfunktion für den besten Fall ist in
  \autoref{eq:analyse-arlabeling-regionlabeling-1} angegeben.
 \input{eq/artplus/arlabeling-regionlabeling-1}
-Durch Substition der Konstanten $c$ mit $1$ folgt
+Durch Substitution der Konstanten $c$ mit $1$ folgt
  $T_{best}(\mathit{lxsize},\mathit{lysize}) = 16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
  - 31 \cdot \mathit{lysize} + 61$. Für $c_{1} = 2$, $c_{2} = 16$, $\mathit{lxsize}_{0} = 9$ und
  $\mathit{lysize}_{0} = 3$ ist $16 \cdot \mathit{lxsize} \cdot \mathit{lysize} - 32 \cdot \mathit{lxsize}
  - 31 \cdot \mathit{lysize} = \Theta(\mathit{lxsize} \cdot \mathit{lysize})$. Die Laufzeitfunktion für den schlechtesten
  Fall wird nach Analyse der Nachbarschaftsuntersuchung angegeben.
 
-Die Nachbarschafsuntersuchung in ARToolKitPlus untersucht die vier Nachbarn der Markierung an Position $I(u,v)$. Wie in
- \autoref{sec:vorläufige_makierung} bereits beschrieben, ist eine Regionenmarkierung davon abhängig, ob alle Nachbarn
- Hintergrundpixel sind, genau ein Nachbar eine Markierung hat oder mehrere Nachbarn eine Markierung haben. Die Fälle
- 1, 3 und 4 in \autoref{alg:arlabeling-neighbour} untersuchen, ob genau ein Nachbar eine Markierung hat.
+Die Nachbarschaftsuntersuchung in ARToolKitPlus untersucht die vier Nachbarn der Markierung an Position $I(u,v)$. Wie
+ in \autoref{sec:vorläufige_makierung} bereits beschrieben, ist eine Regionenmarkierung davon abhängig, ob alle
+ Nachbarn Hintergrundpixel sind, genau ein Nachbar eine Markierung hat oder mehrere Nachbarn eine Markierung haben. Die
+ Fälle 1, 3 und 4 in \autoref{alg:arlabeling-neighbour} untersuchen, ob genau ein Nachbar eine Markierung hat.
 \input{alg/analyse-artplus/arlabeling-neighbour}
 Bei Fall 5 sind alle Nachbarn Hintergrundpixel. Nur bei Fall 2 können  mehrere Nachbarn eine Markierung haben. In Zeile
  \ref{alg:arlabeling-neighbour-n3} wird der Variablen $\mathit{pnt1}$ der Nachbar $N_3 = (u,v+1)$ zugewiesen. Die
@@ -123,7 +123,7 @@ In Zeile \ref{alg:arlabeling-neighbour-case1-save-label} wird die Markierung von
  $\mathit{pnt2}$ der Wert der Regionenmarkierung gelesen. Der Wert der Markierung wird zur Berechnung des
  Adressabstands benutzt, um die Werte für die Region an die richtige Stelle zu schreiben. An der Position $0$ von
  $\mathit{work2}$ (Zeile \ref{alg:arlabeling-neighbour-case1-inc-region}) wird die Anzahl der Vordergrundpixel der
- Region erhöht. Position 1 und Position 2 von $\mathit{work2}$ enthalten die akummulierten Werte von $i$ und $j$ für
+ Region erhöht. Position 1 und Position 2 von $\mathit{work2}$ enthalten die akkummulierten Werte von $i$ und $j$ für
  die $x$- und $y$-Koordinaten aller Vordergrundpixel der Region. An Position 6 von $\mathit{work2}$ in Zeile
  \ref{alg:arlabeling-neighbour-case1-save-j} wird die $y$-Koordinate gespeichert. Die Kosten des Algorithmus sind in
  \autoref{alg:arlabeling-neighbour-case1} angegeben. Die Laufzeitfunktion $T(n) = 26$ ist konstant.
@@ -137,7 +137,7 @@ Beim zweiten Fall wird die Markierung $N_4$ betrachtet. Da $N_3$ keine Markierun
  besonders behandelt wird. Das Verfahren ist in \autoref{alg:arlabeling-neighbour-case2} aufgeführt.
 \input{alg/analyse-artplus/arlabeling-neighbour-case2}
 In Zeile \ref{alg:arlabeling-neighbour-case2-n2} wird überprüft, ob $N_2$ eine Markierung enthält. Falls ja, wird
- \autoref{alg:arlabeling-neighbour-case2-1} untersuchen, ob eine Kollision vorliegt und sie gegebenfalls auflösen.
+ \autoref{alg:arlabeling-neighbour-case2-1} untersuchen, ob eine Kollision vorliegt und sie gegebenenfalls auflösen.
  Zeile \ref{alg:arlabeling-neighbour-case2-n1} überprüft $N_1$ auf eine vorhandene Markierung und fährt mit der
  Untersuchung einer evtl. Kollision in \autoref{alg:arlabeling-neighbour-case2-2} fort. Wenn weder $N_2$ noch $N_1$
  eine Markierung haben, ist nur $N_4$ ein Vordergrundpixel und wird mit \autoref{alg:arlabeling-neighbour-case2-3}
@@ -155,9 +155,9 @@ In Zeile \ref{alg:arlabeling-neighbour-case2-1-n} wird der Wert $N_2$ in $n$ hin
  Liste durchlaufen und alle Werte von $m$ durch den Wert $n$ ersetzt. Falls der Wert $m$ kleiner als $n$ ist
  (Zeile \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}) wird das gleiche
  Verfahren angewendet. Lediglich $m$ und $n$ werden getauscht. Wenn es sich bei $m$ und $n$ um den gleichen Wert
- handet, und somit $m$ und $n$ zur gleichen Region gehören, wird der Wert $m$ in $\mathit{l\_image}$ gespeichert
+ handelt, und somit $m$ und $n$ zur gleichen Region gehören, wird der Wert $m$ in $\mathit{l\_image}$ gespeichert
  (Zeile \ref{alg:arlabeling-neighbour-case2-savem}). Die Laufzeitfunktion für den besten Fall ist in
- \autoref{eq:analyse-arlabeling-neighbour-case2-1-1} angegben und ist konstant. Die Laufzeitfunktion für den
+ \autoref{eq:analyse-arlabeling-neighbour-case2-1-1} angegeben und ist konstant. Die Laufzeitfunktion für den
  schlechtesten Fall ist in \autoref{eq:analyse-arlabeling-neighbour-case2-1-2} angegeben und durchläuft Zeile
  \ref{alg:arlabeling-neighbour-case2-nm-start}--\ref{alg:arlabeling-neighbour-case2-nm-stop}. Für
  $T_{worst}(\mathit{wk\_max})=5 \mathit{wk\_max} + 14$ und den Werten $c =5$ und
@@ -217,7 +217,7 @@ Im letzten Fall sind alle Nachbarn Hintergrundpixel und $\mathit{l\_image}$ wird
  zugewiesen (\autoref{alg:arlabeling-neighbour-case5}).
 \input{alg/analyse-artplus/arlabeling-neighbour-case5}
 In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numerische Markierungswert erhöht. Falls der
- Wert in $\mathit{wk\_max}$ größer als ein festgelegter Wert ist, wird das Verfahren abgebrochen, da zuviele Regionen
+ Wert in $\mathit{wk\_max}$ größer als ein festgelegter Wert ist, wird das Verfahren abgebrochen, da zu viele Regionen
  im Bildsignal $I$ vorkommen. Die Markierung wird in Zeile \ref{alg:arlabeling-neighbour-case5-save-uv} in
  $\mathit{l\_image}$ gespeichert. Danach wird der Wert der Markierung in die Liste der Markierungen $\mathit{work}$
  eingetragen. Der Adressabstand für die Region mit der Markierung $\mathit{wk\_max}$ wird in Zeile
@@ -230,7 +230,7 @@ In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numeri
 \input{eq/artplus/arlabeling-neighbour-case5}
 % paragraph fall_5_ (end)
 
-Nachdem die Regionemarkierung abgeschlossen ist, enthält $\mathit{work}$ die numerischen Werte der Regionen. In
+Nachdem die Regionenmarkierung abgeschlossen ist, enthält $\mathit{work}$ die numerischen Werte der Regionen. In
  $\mathit{work2}$ ist für jede Region die Anzahl der Vordergrundpixel, die summierten $x$- und $y$-Koordinaten aller
  Vordergrundpixel, sowie die $x$- und $y$-Koordinate für den ersten und letzten Vordergrundpixel, hinterlegt. Das
  Regionenbild ist in $\mathit{l\_image}$ gespeichert. Der schlechteste Fall der Nachbarschaftsuntersuchung ist der 2.
@@ -248,7 +248,7 @@ Durch Substitution der Konstanten $c$ mit $1$ folgt $T_{worst}(\mathit{lxsize},\
  \cdot \mathit{lysize} + \mathit{lxsize} \cdot \mathit{lysize} \cdot t - 30 \mathit{lxsize} - 2 \mathit{lxsize} \cdot t
  -30 \mathit{lysize} - 2 \mathit{lysize} \cdot t + 61 + 4t$. Die Variable $t$ steht für die Laufzeitfunktion in
  \autoref{eq:analyse-arlabeling-neighbour}. Die Eingabemenge $\mathit{wk\_max}$ ist von $\mathit{lxsize}$ und
- $\mathit{lysize}$ abhänging und kann nicht mehr als $8192$ Einträge enthalten. Wird $t$ durch $5 \cdot 8192 + 24$
+ $\mathit{lysize}$ abhängig und kann nicht mehr als $8192$ Einträge enthalten. Wird $t$ durch $5 \cdot 8192 + 24$
  substituiert, folgt die Laufzeitfunktion in \autoref{eq:analyse-arlabeling-regionlabeling-3}.
 \input{eq/artplus/arlabeling-regionlabeling-3}
 Für $c = 41000$, $\mathit{lxsize}_{0} = 1$ und $\mathit{lysize}_{0} = 1$ ist die Wachstumsrate von
@@ -259,7 +259,7 @@ Die erfassten Daten müssen nach der Regionenmarkierung in Schritt \ref{label-cl
  \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte in
  $\mathit{work}$ sortiert.
 \input{alg/analyse-artplus/arlabeling-sortlabels}
-Die aufsteigenden Markierungswerte in $\mathit{work}$ sind duch Kollisionen in
+Die aufsteigenden Markierungswerte in $\mathit{work}$ sind durch Kollisionen in
  \autoref{alg:arlabeling-neighbour-case2-1} durch kleinere Werte ersetzt worden. Dadurch ist eine Lücke im Interval
  $\left[1,2,3..n\right]$ der numerischen Werte entstanden. Diese Lücke wird durch \autoref{alg:sortlabels}
  entfernt, um wieder ein aufsteigendes Interval zu erhalten.
@@ -293,7 +293,7 @@ Dazu wird in Zeile
  $\mathit{label\_num}$ keine Markierung enthält, wird das Verfahren abgebrochen und das Regionenbild $\mathit{l\_image}$
  zurückgegeben. Andernfalls wird in Zeile
  \ref{alg:arlabeling-initlabelmemory-initwarea-start}--\ref{alg:arlabeling-initlabelmemory-initwarea-end} der Speicher
- des Flächeinhalts $\mathit{warea}$ mit dem Wert $0$ initialisiert, indem über die Größe des Speichers iteriert wird.
+ des Flächeninhalts $\mathit{warea}$ mit dem Wert $0$ initialisiert, indem über die Größe des Speichers iteriert wird.
  Der Speicher zur Berechnung des Mittelpunkts der Regionen wird in Zeile
  \ref{alg:arlabeling-initlabelmemory-initwpos-start}--\ref{alg:arlabeling-initlabelmemory-initwpos-end} nach dem
  gleichen Prinzip initialisiert. Die Laufzeitfunktion für Zeile
@@ -313,14 +313,14 @@ In \autoref{alg:arlabeling-calcregiondata} werden die Daten aller Regionenmarkie
 \input{alg/analyse-artplus/arlabeling-calcregiondata}
 Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arlabeling-calcregiondata-wclip-end} der
  Speicher der Start- und Endkoordinaten initialisiert, indem über die Menge der Regionen iteriert wird und die
- Initialwerte, $\mathit{lxsize}$ und $0$ für die Startkoordiante und $\mathit{lysize}$ und $0$ für die Endkoordinate,
+ Initialwerte, $\mathit{lxsize}$ und $0$ für die Startkoordinate und $\mathit{lysize}$ und $0$ für die Endkoordinate,
  gespeichert werden. In Zeile
  \ref{alg:arlabeling-calcregiondata-work-start}--\ref{alg:arlabeling-calcregiondata-work-end} werden die Werte aus
  $\mathit{work2}$ aufbereitet, indem über die Anzahl der Regionen iteriert wird. In Zeile
- \ref{alg:arlabeling-calcregiondata-label} wird die Regionemarkierung ausgelesen und in $j$ gespeichert. Danach wird
+ \ref{alg:arlabeling-calcregiondata-label} wird die Regionenmarkierung ausgelesen und in $j$ gespeichert. Danach wird
  die Anzahl der Vordergrundpixel für Region $j$ aus $\mathit{work2}$ ausgelesen und in $\mathit{warea}$ gespeichert. In
  Zeile \ref{alg:arlabeling-calcregiondata-sumx}--\ref{alg:arlabeling-calcregiondata-sumy} werden die summierten $x$- und
- $y$-Koordinaten aus $\mathit{work2}$ ausgelsen und in $\mathit{wpos}$ gespeichert. Die Überprüfung des $x$-Werts in
+ $y$-Koordinaten aus $\mathit{work2}$ ausgelesen und in $\mathit{wpos}$ gespeichert. Die Überprüfung des $x$-Werts in
  Zeile \ref{alg:arlabeling-calcregiondata-startx-start}--\ref{alg:arlabeling-calcregiondata-startx-end} sorgt dafür,
  dass die Startkoordinate soweit links wie möglich beginnt. Der $x$-Wert der Endkoordinate wird in Zeile
  \ref{alg:arlabeling-calcregiondata-endx-start}--\ref{alg:arlabeling-calcregiondata-endx-end} überprüft. Bei dieser
@@ -359,7 +359,7 @@ Die Eingabemenge des Algorithmus ist das Bildsignal $I$, dass aus $\mathit{lxsiz
  Variable $\mathit{wk\_max}$ ist auf $8192$ Einträge begrenzt. Die Menge $\mathit{size}$ bei
  \autoref{alg:arlabeling-initlabelmemory} ist abhängig von $\mathit{labelnum}$, die bei einer Bildgröße von
  $\mathit{lxsize} \cdot \mathit{lysize}$ maximal $\bigl\lceil\frac{\mathit{lxsize}}{2}\bigr\rceil
- \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil$ Regionenmarkierungen anlgegen kann.
+ \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil$ Regionenmarkierungen anlegen kann.
  $\mathit{int}$ und $\mathit{float}$ sind jeweils $4$ Byte groß, sodass
  $\mathit{size} = \bigl\lceil\frac{\mathit{lxsize}}{2}\bigr\rceil \cdot \bigl\lceil\frac{\mathit{lysize}}{2}\bigr\rceil
  \cdot 4$ und $\mathit{size}' = \bigl\lceil\frac{\mathit{lxsize}}{2}\bigr\rceil

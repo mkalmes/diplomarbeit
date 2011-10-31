@@ -14,7 +14,7 @@ Eine Linie besteht aus den \glspl{edgel} $\mathit{start}$ und $\mathit{end}$, di
  $\mathit{support}$ dient zur Speicherung von \glspl{edgel}, die eine Linienhypothese unterstützen. Die Lese- und
  Schreibzugriffe auf die Datenstruktur sind konstant.
 
-Mit \autoref{alg:linesegmentaddedgel} wird ein Unterstüzungsedgel zu einem Liniensegment hinzugefügt. Das Verfahren
+Mit \autoref{alg:linesegmentaddedgel} wird ein Unterstützungsedgel zu einem Liniensegment hinzugefügt. Das Verfahren
  benötigt dazu das Liniensegment $l$, den \gls{edgel} $e$ und die Position $\mathit{pos}$, an die der \gls{edgel}
  gespeichert wird.
 \input{alg/analyse-hirzer/datastructure-linesegmentaddedgel}
@@ -37,17 +37,17 @@ Mit \autoref{alg:isedgelnearline} wird der Abstand eines \gls{edgel} zu einem Li
 \input{alg/analyse-hirzer/datastructure-linesegmentisedgelnearline}
 Das Verfahren benötigt dazu ein Liniensegment $l$ und ein \gls{edgel} $e$. In Zeile
  \ref{alg:isedgelnearline-iscompatible} wird überprüft, ob die Orientierung des \gls{edgel} kompatibel mit der
- Orientierung des Liniensegments ist. Wenn dies der Fall ist, wird das Verfahren fortgesetz. Andrenfalls wird das
+ Orientierung des Liniensegments ist. Wenn dies der Fall ist, wird das Verfahren fortgesetzt. Andernfalls wird das
  Verfahren in Zeile \ref{alg:isedgelnearline-notcompatible} abgebrochen. In Zeile
  \ref{alg:isedgelnearline-distance-start}--\ref{alg:isedgelnearline-distance-end} wird die Länge des Abstands der
- Endpunkte der Linie berechnet und in lokalen Variablen gespeichert. Im Anschluß wird in Zeile
+ Endpunkte der Linie berechnet und in lokalen Variablen gespeichert. Im Anschluss wird in Zeile
  \ref{alg:isedgelnearline-pointline-start}--\ref{alg:isedgelnearline-pointline-end} der Abstand des \gls{edgel} zur
  Linie berechnet. Das Präprozessor Makro \textproc{ABS} berechnet den absoluten Betrag der Distanz in konstanter Zeit
  (Vgl. \autoref{alg:abs}).
 \input{alg/analyse-hirzer/abs}
 In Zeile \ref{alg:isedgelnearline-return} wird als Rückgabewert, abhängig vom Vergleich der Distanz, wahr oder falsch
- zurückgegebn. Bleibt der Abstand des \gls{edgel} zur Linie unter $0.75$ wird wahr an die aufrufende Methode
- zurückgeben. Ansonsten, wenn der Abstand größer ist, wird falsch zurückgegeben. Die Laufzeitfunktion von
+ zurückgegeben. Bleibt der Abstand des \gls{edgel} zur Linie unter $0.75$ wird wahr an die aufrufende Methode
+ zurückgegeben. Ansonsten, wenn der Abstand größer ist, wird falsch zurückgegeben. Die Laufzeitfunktion von
  \autoref{alg:isedgelnearline} ist im schlechtesten Fall $T(n) = 71$.
 
 Mit \textproc{intersection} wird der Schnittpunkt zweier Linien berechnet. Dazu benötigt das Verfahren in

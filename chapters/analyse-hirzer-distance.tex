@@ -8,7 +8,7 @@ Die Datenstruktur \textproc{distance} dient zur Speicherung der Länge von Linie
 Wie bei \gls{edgel} oder Liniensegmenten, kann \textproc{distance} in einem Speicherbereich hinterlegt werden und ist
  in \autoref{alg:datastructure-distancepool} dargestellt.
 \input{alg/analyse-hirzer/datastructure-distancepool}
-Auch bei diesem Verfahren wird ein Array mit festert Größe $N$ und einer Zählvariable verwendet. Im Gegensatz zu den
+Auch bei diesem Verfahren wird ein Array mit fester Größe $N$ und einer Zählvariable verwendet. Im Gegensatz zu den
  anderen Speicherbereichen wird bei \textproc{distance} auf einen Speichervorrat verzichtet. Die Verwaltung eines
  Speichervorrat wird manuell durchgeführt.
 
@@ -23,7 +23,7 @@ Durch \autoref{alg:distancepool-distancecount}
 
 \textproc{freePool} (\autoref{alg:distancepool-freepool}) löscht den Speicherbereich in konstanter Zeit.
 \input{alg/analyse-hirzer/datastructure-distancepool-freepool}
-Die Laufzeitfunktion ist im schlechsten Fall ebenfalls $T(n) = 3$.
+Die Laufzeitfunktion ist im schlechtesten Fall ebenfalls $T(n) = 3$.
 
 Die Laufzeit der Methoden für \textproc{distance} sind alle konstant und somit $T(n)=\Theta(1)$.
 
