@@ -5,14 +5,14 @@ In der Rectangle Fitting Phase wird überprüft, ob eine Kontur ein Rechteck ist
 \input{alg/analyse-artplus/detectmarker2-3}
 Nachdem die Kontur in \textproc{arGetContour} ermittelt wurde, wird das Ergebnis in $\mathit{ret}$ gespeichtert und
  anschließend in Zeile \ref{alg:detectmarker2-3-retvalue} geprüft, ob \textproc{arGetContour} nicht mit einem
- Fehlerwert beendet wurde. Sonst wird in Zeile \ref{alg:detectmarker2-3-continue} die nächste Iteration der Schleife
- eingeleitet. Danach wird in Zeile \ref{alg:detectmarker2-3-checksquare} die Methode \textproc{checkSquare} aufgerufen.
- Auch hier wird der Rückgabewert überprüft, um im Fehlerfall einen neuen Durchlauf der Schleife in Zeile
+ Fehlerwert beendet wurde. Ansonsten wird in Zeile \ref{alg:detectmarker2-3-continue} die nächste Iteration der
+ Schleife eingeleitet. Danach wird in Zeile \ref{alg:detectmarker2-3-checksquare} die Methode \textproc{checkSquare}
+ aufgerufen. Auch hier wird der Rückgabewert überprüft, um im Fehlerfall einen neuen Durchlauf der Schleife in Zeile
  \ref{alg:detectmarker2-3-continue2} einzuleiten. Wenn \textproc{checkSquare} erfolgreich beendet wurde, wird in Zeile
  \ref{alg:detectmarker2-3-save-start}--\ref{alg:detectmarker2-3-save-end} der Flächeninhalt und die Position des
  Zentrums der Marke aktualisiert, und die Anzahl der gefundenen Marken wird erhöht. In Zeile
- \ref{alg:detectmarker2-3-maxpatterns} wird die Anzahl der gefundenen Marken mit einem festgelegten Wert verglichen, der
- die maximale Anzahl gleichzeitiger Marken festlegt. Wenn die Werte übereinstimmen, wird die Schleife von Zeile
+ \ref{alg:detectmarker2-3-maxpatterns} wird die Anzahl der gefundenen Marken mit einem festgelegten Wert verglichen,
+ der die maximale Anzahl gleichzeitiger Marken festlegt. Wenn die Werte übereinstimmen, wird die Schleife von Zeile
  \ref{alg:detectmarker2-3-loop-start} bis Zeile \ref{alg:detectmarker2-3-loop-end} abgebrochen. Andernfalls wird die
  Laufvariable $i$ erhöht und ein neuer Schleifendurchgang begonnen. Die Laufzeitfunktion ist in
  \autoref{eq:analyse-detectmarker2-2} angegeben.
@@ -115,7 +115,8 @@ Der dritte Fall bedeutet, dass in der ersten Teilmenge kein Eckpunkt und in der 
 % paragraph 3_fall (end)
 
 Wenn \autoref{alg:checksquare-4}--\autoref{alg:checksquare-6} erfolgreich waren, und Eckpunkte in die Liste der
- Vektoren schreiben konnten, wird mit \autoref{alg:checksquare-7} die Daten in $\mathit{marker\_infoTWO}$ gespeichert.
+ Vektoren schreiben konnten, werden mit \autoref{alg:checksquare-7} die Daten in $\mathit{marker\_infoTWO}$
+ gespeichert.
 \input{alg/analyse-artplus/checksquare-7}
 In Zeile \ref{alg:checksquare-7-savesxsy} wird der Punkt $(\mathit{sx},\mathit{sy})$ als erster Index in die Liste der
  Vektoren von $\mathit{marker\_infoTWO}$ gespeichert. Je nachdem welcher der drei Fälle behandelt wurde, werden die
@@ -123,12 +124,12 @@ In Zeile \ref{alg:checksquare-7-savesxsy} wird der Punkt $(\mathit{sx},\mathit{s
  \ref{alg:checksquare-7-save1}--\ref{alg:checksquare-7-save3} gespeichert. Die Indizes sind danach im Uhrzeigersinn in
  $\mathit{marker\_infoTWO}$ hinterlegt\footcite[Vgl.][S.~44]{wagner07a}. In Zeile \ref{alg:checksquare-7-savelast} wird
  der letzte Index aus $\mathit{marker\_infoTWO}$ in die Liste der Vektoren geschrieben. Da der erste und der letzte
- Index identisch ist (Vgl. \autoref{alg:argetcontour-3}), sind die Eckpunkte so angeordnet, dass sie grafisch einfach
+ Index identisch sind (Vgl. \autoref{alg:argetcontour-3}), sind die Eckpunkte so angeordnet, dass sie grafisch einfach
  dargestellt werden können, indem mit nur einer Linie, vom Startpunkt aus über jeden Eckpunkt zurück zum Startpunkt,
  ein Rahmen gezeichnet wird. Die Laufzeitfunktion ist $T(n) = 22$ und somit konstant.
 
 Das Verfahren \textproc{checkSquare} besteht im schlechtesten Fall aus der Initialisierung
- (\autoref{alg:checksquare-1}), der Distanzberechnung (\autoref{alg:checksquare-2}), Bestimmung von Eckpunkten
+ (\autoref{alg:checksquare-1}), der Distanzberechnung (\autoref{alg:checksquare-2}), der Bestimmung von Eckpunkten
  (\autoref{alg:checksquare-3}), der Untersuchung des 3. Falls (\autoref{alg:checksquare-6}) und der Speicherung der
  Eckpunkte (\autoref{alg:checksquare-7}). Die Laufzeifunktion ist in \autoref{eq:analyse-checksquare-all} angegeben.
 \input{eq/artplus/checksquare-all}
@@ -169,7 +170,7 @@ In \autoref{alg:getvertex-2} wird in Zeile \ref{alg:getvertex-2-isdmaxgreater} d
 Für alle Fälle in denen $\mathit{dmax} > 0$ ist, wird die Eingabemenge $n$ in zwei Problemmengen geteilt. In Zeile
  \ref{alg:getvertex-2-recursiv1} wird die Methode \textproc{getVertex} rekursiv aufgerufen, um die Teilmenge von der
  Startposition $\mathit{st}$ bis zur Position $\mathit{v1}$ zu untersuchen. Da \textproc{getVertex} pro Teilmenge nur
- den größten Abstand als Eckpunkt betrachet, kann durch den rekursiven Aufruf für eine kleinere Menge von Koordinaten
+ den größten Abstand als Eckpunkt betrachtet, kann durch den rekursiven Aufruf für eine kleinere Menge von Koordinaten
  ein weitere Eckpunkt gefunden werden, solange der Abstand größer als der Distanzschwellwert ist. In Zeile
  \ref{alg:getvertex-2-isvnumgreater} wird überprüft, ob nicht mehr als fünf Eckpunkte gefunden wurde. Falls mehr als
  fünf Eckpunkte gefunden wurden, wird das Verfahren in Zeile \ref{alg:getvertex-2-error} mit einem Fehlerwert beendet.

@@ -2,19 +2,19 @@
 \label{sub:vektor}
 
 Die meisten Datenstrukturen in der Implementierung des Verfahrens nach \citeauthor{hirzer08}, benötigen als Basis die
- Datenstruktur $\textproc{vector}$. Bei der Datenstruktur handelt es sich um eine Vektor in $\mathbb{R}^2$ und benötigt
- die beiden Variablen $x$ und $y$ (Vgl. \autoref{alg:vector}).
+ Datenstruktur $\textproc{vector}$. Bei der Datenstruktur handelt es sich um eine Vektor in $\mathbb{R}^2$ und besteht
+ aus den beiden Variablen $x$ und $y$ (Vgl. \autoref{alg:vector}).
 \input{alg/analyse-hirzer/datastructure-vector}
 Operationen mit der Datenstruktur \textproc{vector} umfassen
 
-\begin{itemize}
+\begin{enumerate}
 	\item Addition,
 	\item Subtraktion,
 	\item Skalarprodukt,
 	\item Quadratische Länge eines Vektors,
 	\item Länge eines Vektors und
 	\item Normalisieren von Vektoren.
-\end{itemize}
+\end{enumerate}
 
 Auf die Variablen $x$ und $y$ der Datenstruktur kann direkt zugegriffen werden, sowohl lesend als auch schreibend. Zum
  schreiben der Variablen kann auch \autoref{alg:vectorsetcoordinate} verwendet werden.
@@ -74,7 +74,7 @@ Die Laufzeit von \autoref{alg:vectorlength} ist abhängig von der Funktion \text
 	 Mittelwert der Daten ist als grüne Linie eingezeichnet.}
 	\label{fig:regression-sqrtf}
 \end{figure}
- aufweisen. Der Median und Mittelwert liegt jeweils bei $0$. Damit ist die Laufzeit von \textproc{sqrt}, und somit von
+ aufweisen. Der Median und Mittelwert liegen jeweils bei $0$. Damit ist die Laufzeit von \textproc{sqrt}, und somit von
  \textproc{length}, konstant. Die Laufzeitfunktion ist $T(n) = 9$.
 
 % paragraph länge_eines_vektors (end)

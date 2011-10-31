@@ -3,7 +3,7 @@
 
 Die Datenstruktur eines \glspl{edgel} besteht aus den beiden Variablen $\mathit{coordinate}$ und $\mathit{slope}$
  (\autoref{alg:datastructure-edgel}). Beide Variablen sind vom Datentyp \textproc{vector} (Vgl.
- \autoref{alg:vector}), so dass Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} konstant sind.
+ \autoref{alg:vector}), sodass Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} konstant sind.
 \input{alg/analyse-hirzer/datastructure-edgel}
 
 Wie in \autoref{sub:line_detection} beschrieben, muss im Verfahren von \citeauthor{hirzer08} die Orientierung von zwei
@@ -22,7 +22,7 @@ Mithilfe von \textproc{dotProduct} (\autoref{alg:vectordotproduct}) kann die Ori
 \end{equation}
 
 Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
- (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable um die nächste freie Position im
+ (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable, um die nächste freie Position im
  Array zu markieren.
 \input{alg/analyse-hirzer/datastructure-edgelpool}
 Der Speichervorrat aus \autoref{alg:datastructure-poolimplementation} ist ein Array vom Typ
@@ -89,7 +89,7 @@ Es wird der Zeiger $p$ auf einen Speicherblock und das zu löschenden \glspl{edg
  \ref{alg:edgelpool-removeedgel-position} wird mit \textproc{edgelPosition} (\autoref{alg:edgelpool-edgelposition}) die
  Position des \gls{edgel} gesucht. Falls das \gls{edgel} nicht gefunden wurde, wird in Zeile
  \ref{alg:edgelpool-removeedgel-error} das Verfahren abgebrochen. Ansonsten gibt es zwei zu behandelnde Fälle um ein
- \gls{edgel} zu löschen. Der \gls{edgel} liegt
+ \gls{edgel} zu löschen. Das \gls{edgel} liegt
 \begin{enumerate}
 	\item nicht am Ende des Arrays oder \label{removeedgel-worst}
 	\item liegt am Ende des Arrays. \label{removeedgel-best}
@@ -158,7 +158,8 @@ In \autoref{fig:regression-memmove} sind die Daten grafisch dargestellt.
 	\centering
 	\input{resources/Regression-memmove.pdf_tex}
 	\caption{Lineares Modell der CPU Zeit mit $2200$ Datenpunkten. In der Darstellung sind die Konfidenzintervalle für
-	 $95\%$ und $99\%$ für die vorhergesagten Werte enthalten.}
+	 $95\%$ (grüne Linie) und für $99\%$ (rote Linie) für die vorhergesagten Werte enthalten. Die Regressionsgerade ist
+	 als blaue Linie eingezeichnet.}
 	\label{fig:regression-memmove}
 \end{figure}
 
@@ -179,7 +180,7 @@ In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und s
 \end{figure}
 Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} am Ende der Liste
  gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 37$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und
- $n_{0} = 37$, $21n + 37= \Theta(n)$
+ $n_{0} = 37$, $21n + 37= \Theta(n)$.
 
 Um einen Speicherblock für einen neuen Durchlauf zu löschen, kommt \autoref{alg:edgelpool-resetmemorypool} zum Einsatz.
 \input{alg/analyse-hirzer/datastructure-edgelpool-resetmemorypool}
@@ -198,7 +199,7 @@ Wenn ein Speicherblock nicht mehr benötigt wird, kann er mit \autoref{alg:edgel
  \ref{alg:edgelpool-freememorypool-checkpointer} überprüft, ob $p$ zu dem Array $\mathit{data}$ gehört und nicht größer
  als die definierte Speichergröße ist. Wenn der Test positiv ausfällt, wird der Zeiger $p$ zur weiteren Verwendung in
  $\mathit{pool}$ gespeichert. Das Freigeben eines Speicherblocks erfolgt in konstanter Zeit. Im schlechtesten Fall ist
- Laufzeitfunktion $T(n) = 9$.
+ die Laufzeitfunktion $T(n) = 9$.
 
 Die Anzahl der \glspl{edgel} in einem Speicherblock werden durch \autoref{alg:edgelpool-count} ermittelt.
 \input{alg/analyse-hirzer/datastructure-edgelpool-count}

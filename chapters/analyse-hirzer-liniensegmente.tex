@@ -12,7 +12,7 @@ Eine Linie besteht aus den \glspl{edgel} $\mathit{start}$ und $\mathit{end}$, di
  zur Erkennung, ob ein Liniensegment gelöscht werden muss. Wenn eine Linie einen Eckpunkt am Anfang oder am Ende
  besitzt, wird dies in den Variablen $\mathit{startCorner}$ und $\mathit{endCorner}$ festgehalten.Die letzte Variable
  $\mathit{support}$ dient zur Speicherung von \glspl{edgel}, die eine Linienhypothese unterstützen. Die Lese- und
- Schreibzugriffe auf die Datenstruktur ist konstant.
+ Schreibzugriffe auf die Datenstruktur sind konstant.
 
 Mit \autoref{alg:linesegmentaddedgel} wird ein Unterstüzungsedgel zu einem Liniensegment hinzugefügt. Das Verfahren
  benötigt dazu das Liniensegment $l$, den \gls{edgel} $e$ und die Position $\mathit{pos}$, an die der \gls{edgel}
@@ -46,7 +46,7 @@ Das Verfahren benötigt dazu ein Liniensegment $l$ und ein \gls{edgel} $e$. In Z
  (Vgl. \autoref{alg:abs}).
 \input{alg/analyse-hirzer/abs}
 In Zeile \ref{alg:isedgelnearline-return} wird als Rückgabewert, abhängig vom Vergleich der Distanz, wahr oder falsch
- zurückgegebn. Bleibt der Abstand des \gls{edgel} zur Linie unter $0.75$ wird wahr and die aufrufende Methode
+ zurückgegebn. Bleibt der Abstand des \gls{edgel} zur Linie unter $0.75$ wird wahr an die aufrufende Methode
  zurückgeben. Ansonsten, wenn der Abstand größer ist, wird falsch zurückgegeben. Die Laufzeitfunktion von
  \autoref{alg:isedgelnearline} ist im schlechtesten Fall $T(n) = 71$.
 
@@ -82,7 +82,7 @@ Um eine Linie zu einem Speicherblock hinzuzufügen, wird \autoref{alg:linesegmen
 Es wird ein Zeiger $p$ auf den Speicherblock, sowie eine Linie $l$ übergeben. Wenn es sich um einen gültigen Zeiger $p$
  handelt, und genügend freier Speicherplatz für eine weitere Linie vorhanden ist, wird in Zeile
  \ref{alg:linesegmentpool-addline-add-start}--\ref{alg:linesegmentpool-addline-add-end} die Linie hinzugefügt und die
- Zählvariable inkrementiert. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 12$
+ Zählvariable inkrementiert. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 12$.
 
 Zum auslesen einer Linie aus dem Speicherblock, wird \autoref{alg:linepool-getline} verwendet.
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getlinesegment}
