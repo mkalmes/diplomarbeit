@@ -170,7 +170,7 @@ Für alle Fälle in denen $\mathit{dmax} > 0$ ist, wird die Eingabemenge $n$ in 
  \ref{alg:getvertex-2-recursiv1} wird die Methode \textproc{getVertex} rekursiv aufgerufen, um die Teilmenge von der
  Startposition $\mathit{st}$ bis zur Position $\mathit{v1}$ zu untersuchen. Da \textproc{getVertex} pro Teilmenge nur
  den größten Abstand als Eckpunkt betrachet, kann durch den rekursiven Aufruf für eine kleinere Menge von Koordinaten
- ein weitere Eckpunkt gefunden werden, solange der Abstand größer als der Distanzschwellert ist. In Zeile
+ ein weitere Eckpunkt gefunden werden, solange der Abstand größer als der Distanzschwellwert ist. In Zeile
  \ref{alg:getvertex-2-isvnumgreater} wird überprüft, ob nicht mehr als fünf Eckpunkte gefunden wurde. Falls mehr als
  fünf Eckpunkte gefunden wurden, wird das Verfahren in Zeile \ref{alg:getvertex-2-error} mit einem Fehlerwert beendet.
  Falls jedoch weniger als fünf Eckpunkte gefunden wurden, wird der Index $\mathit{v1}$ in der Liste $\mathit{vertex}$

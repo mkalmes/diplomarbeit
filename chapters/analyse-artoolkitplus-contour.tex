@@ -14,16 +14,16 @@ Die Laufzeitfunktion von \autoref{alg:detectmarker2-1} ist $T(n) = 13$. \autoref
 Dazu wird in Zeile \ref{alg:detectmarker2-2-markernum2} die Variable $\mathit{marker\_num2}$ initialisiert, die zur
  Identifizierung einer Region dient. In Zeile \ref{alg:detectmarker2-2-loop-start}--\ref{alg:detectmarker2-2-loop-end}
  wird jede Regionenmarkierung untersucht. Dazu wird in Zeile
- \ref{alg:detectmarker2-2-area-start}--\ref{alg:detectmarker2-2-area-end} der Fläche der Region $i$ mit dem festgelegten
+ \ref{alg:detectmarker2-2-area-start}--\ref{alg:detectmarker2-2-area-end} die Fläche der Region $i$ mit dem festgelegten
  minimalen und maximalen Wert verglichen. Nur wenn die Fläche der Region sich innerhalb dieser Grenzen befindet, wird
  die Region $i$ weiter untersucht. Andernfalls wird mit der nächsten Region das Verfahren wiederholt. Zeile
  \ref{alg:detectmarker2-2-checkx-start}--\ref{alg:detectmarker2-2-checkx-end} überprüft die $x$-Koordinaten der
- Start- und Endposition, die in $\mathit{wclip}$ gespeichert sind. Wenn die Koordinaten an der Rändern des
+ Start- und Endposition, die in $\mathit{wclip}$ gespeichert sind. Wenn die Koordinaten an den Rändern des
  Regionenbildes $\mathit{limage}$ liegen, wird die weitere Untersuchung in Zeile
- \ref{alg:detectmarker2-2-checkx-continue} abgebrochen. Nur Regionen die nicht an den Rändern liegen, eignen sich zur
- Kontuerenermittlung. In Zeile \ref{alg:detectmarker2-2-checky-start}--\ref{alg:detectmarker2-2-checky-end} wird das
+ \ref{alg:detectmarker2-2-checkx-continue} abgebrochen. Nur Regionen, die nicht an den Rändern liegen, eignen sich zur
+ Konturenermittlung. In Zeile \ref{alg:detectmarker2-2-checky-start}--\ref{alg:detectmarker2-2-checky-end} wird das
  Verfahren für die $y$-Koordinaten wiederholt. Nur wenn eine Region eine festgelegte Größe nicht unter- oder
- überschreitet, und die Region nicht an den Rändern liegt,
+ überschreitet und die Region nicht an den Rändern liegt,
  eignet sie sich zur Konturenermittlung und wird mit der Methode \textproc{arGetContour} in Zeile
  \ref{alg:detectmarker2-2-callcontour} aufgerufen. Die Laufzeitfunktion ist in \autoref{eq:analyse-detectmarker2-1}
  angegeben.
@@ -36,7 +36,7 @@ Dazu wird in Zeile \ref{alg:detectmarker2-2-markernum2} die Variable $\mathit{ma
 Die 8er-Nachbarschaft zur Verfolgung einer Kontur wird in Zeile
  \ref{alg:argetcontour-1-initvar-start}--\ref{alg:argetcontour-1-initvar-neighbour} initialisiert. Die Bildbreite und
  Bildhöhe werden in Zeile \ref{alg:argetcontour-1-initsizex}--\ref{alg:argetcontour-1-initvar-end} in $\mathit{xsize}$
- und $\mathit{ysize}$ gespeichert. Danach wird in Zeile \ref{alg:argetcontour-1-offset} ein Adressabstand berechnet um
+ und $\mathit{ysize}$ gespeichert. Danach wird in Zeile \ref{alg:argetcontour-1-offset} ein Adressabstand berechnet, um
  den Startpunkt der ersten Regionenmarkierung in $\mathit{l\_image}$ in $\mathit{p1}$ zu speichern (Zeile
  \ref{alg:argetcontour-1-p1}). In der Schleife in Zeile
  \ref{alg:argetcontour-1-loop-start}--\ref{alg:argetcontour-1-loop-end} wird der Startpunkt der Region gesucht. Dazu
@@ -67,12 +67,12 @@ Danach wird die Orientiertung der 8er-Nachbarschaft in Zeile \ref{alg:argetconto
  \ref{alg:argetcontour-2-nextorientation} wird die Orientierung der 8er-Nachbarschaft auf die nächste zu untersuchende
  Richtung gedreht. Das drehen der 8er-Nachbarschaft erfolgt, indem von der letzten Position einer Kontur im
  Uhrzeigersinn auf den nächsten Nachbarn weitergerückt wird (Vgl. \autoref{fig:}). In Zeile
- \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} wird in der Schleife die
+ \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} werden in der Schleife die
  Nachbarn im Uhrzeigersinn untersucht. Dazu wird mit Hilfe der 8er-Nachbarschaft in Zeile
  \ref{alg:argetcontour-2-offset} ein Adressabstand berechnet. Durch die Überprüfung einer Regionenmarkierung an der
  Adresse von $\mathit{p1}$ in Zeile \ref{alg:argetcontour-2-haslabel-start}--\ref{alg:argetcontour-2-haslabel-end} wird
  entschieden, ob die Schleife von Zeile
- \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} abgebrochen wird weil eine
+ \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} abgebrochen wird, weil eine
  Markierung gefunden wurde, oder ob ein weiterer Nachbar untersucht werden muss. Falls ein weiterer Nachbar untersucht
  werden muss, wird in Zeile \ref{alg:argetcontour-2-incdir} die Position der 8er-Nachbarschaft um eine Position
  weitergedreht und in Zeile \ref{alg:argetcontour-2-inci} die Laufvariable $i$ erhöht. Falls alle Nachbarn der
@@ -82,7 +82,7 @@ Danach wird die Orientiertung der 8er-Nachbarschaft in Zeile \ref{alg:argetconto
  \ref{alg:argetcontour-2-hasnolabel-start} mit einem Fehlerwert beendet zu werden. Wenn eine weitere Markierung in
  Zeile \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} gefunden und die
  Schleife abgebrochen wurde, wird in Zeile \ref{alg:argetcontour-2-savex}--\ref{alg:argetcontour-2-savey} die
- Markierung gespeichert. Dazu wird die $x$- und $y$-Koordinate der letzten Markierung ausgelesen und die Richtung der
+ Markierung gespeichert. Dazu werden die $x$- und $y$-Koordinate der letzten Markierung ausgelesen und die Richtung der
  8er-Nachbarschaft addiert. Danach wird in Zeile
  \ref{alg:argetcontour-2-iscontourclosed-start}--\ref{alg:argetcontour-2-iscontourclosed-end} überprüft, ob die
  gespeicherte Markierung mit den Anfangskoordinaten übereinstimmt und es sich somit um eine geschlossene Kontur
@@ -100,7 +100,7 @@ Danach wird die Orientiertung der 8er-Nachbarschaft in Zeile \ref{alg:argetconto
 \input{eq/artplus/argetcontour-contour}
 Das Wachstum der Laufzeitfunktion ist $137n -401 = \Theta(n)$ für $c_{1} = 136$, $c_{2} = 137$ und $n_{0} = 401$.
 
-In \autoref{alg:argetcontour-3} wird, nachdem eine geschlossene Kontur vorliegt, die Koordinate mit dem größten Abstand
+In \autoref{alg:argetcontour-3} wird, wenn eine geschlossene Kontur vorliegt, die Koordinate mit dem größten Abstand
  zum Startpunkt der Region gesucht (Zeile
  \ref{alg:argetcontour-3-finddmax-start}--\ref{alg:argetcontour-3-finddmax-end}).
 \input{alg/analyse-artplus/argetcontour-3}
@@ -129,7 +129,7 @@ Dazu wird in Zeile \ref{alg:argetcontour-3-initdmax} die Variable $\mathit{dmax}
 Für $c_{1} = 67$, $c_{2} = 68$ und $n_{0} = 163$ ist $68n - 163 = \Theta(n)$.
 
 Die Laufzeitfunktion der Methode \textproc{arGetContour}, bestehend aus \autoref{alg:argetcontour-1},
- \autoref{alg:argetcontour-2} und \autoref{alg:argetcontour-3} ist in \autoref{eq:analyse-argetcontour-all} angegeben.
+ \autoref{alg:argetcontour-2} und \autoref{alg:argetcontour-3}, ist in \autoref{eq:analyse-argetcontour-all} angegeben.
  Die dominante Eingabegröße des Verfahrens ist $\mathit{AR\_CHAIN\_MAX} = n$ (Vgl. \autoref{alg:argetcontour-2},
  Zeile \ref{alg:argetcontour-2-contourloop-start}--\ref{alg:argetcontour-2-contourloop-end}). Die Variable
  $\mathit{xsize}$ kann durch die Breite des Bildsignals ersetzt werden und entspricht $\mathit{xsize} = \tfrac{640}{2}$.
