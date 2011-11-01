@@ -44,7 +44,7 @@ Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln i
  Regionenmarkierung (Vgl. \autoref{sec:regionen_in_binärbilder}). Im Unterschied zum bereits vorgestellten Verfahren,
  integriert ARToolKitPlus die Erstellung eines Binärbild, durch eine Schwellwertanalyse, in das Verfahren der
  Regionenmarkierung. Dazu wird das Bildsignal zeilenweise von links oben nach rechts unten \gls{pixel} für \gls{pixel}
- untersucht. Wenn der Wert eines \gls{pixel} dabei über einem Schwellwert liegt, handelt es sich um einen
+ untersucht. Wenn der Wert eines \glspl{pixel} dabei über einem Schwellwert liegt, handelt es sich um einen
  Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um einen
  Vordergrundpixel.
 
@@ -59,7 +59,7 @@ Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und 
 	\end{cases}
 \end{equation*}
 
-Bei einem Vordergrundpixel wird die Beziehung des \gls{pixel} zu seinen Nachbarn durch eine 8er-Nachbarschaft
+Bei einem Vordergrundpixel wird die Beziehung des \glspl{pixel} zu seinen Nachbarn durch eine 8er-Nachbarschaft
  untersucht. Bei der Zuweisung einer Markierung unterscheidet sich ARToolKitPlus von dem Verfahren in
  \autoref{sec:regionen_in_binärbilder}. Eine Kollision der Markierung durch unterschiedliche Markierungen der Nachbarn
  wird direkt verarbeitet. Dazu werden die numerischen Werte der Markierungen verglichen und alle größeren Werte durch
@@ -72,10 +72,10 @@ Nachdem das Eingangssignal vollständig markiert wurde, enthält die Liste mit M
  wird die Laufvariable in der Liste gespeichert. Andernfalls wird der vorherige Wert der List an die aktuelle Position
  geschrieben. \autoref{fig:} verdeutlicht diesen Vorgang.
 
-Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, verwendet ARToolKitPlus dazu eine eigene
- Speicherbereich. Eine Region besteht in ARToolKitPlus aus der Markierung, der Start- und Endposition der Region, des
- Flächeninhalts der Region und den Koordinaten des Zentrums. Diese Daten werden mithilfe der Liste der Markierungen
- generiert und das Verfahren in \autoref{sec:artoolkitplus} erläutert.
+Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, verwendet ARToolKitPlus dazu einen
+ eigenen Speicherbereich. Eine Region besteht in ARToolKitPlus aus der Markierung, der Start- und Endposition der
+ Region, des Flächeninhalts der Region und den Koordinaten des Zentrums. Diese Daten werden mithilfe der Liste der
+ Markierungen generiert und das Verfahren in \autoref{sec:artoolkitplus} erläutert.
 % paragraph bildregionen (end)
 
 \paragraph{Konturen:} % (fold)
@@ -106,7 +106,7 @@ In diesem Schritt wird untersucht, ob es sich bei einer geschlossenen Kontur um 
 Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Der
  \gls{pixel} mit dem größten Abstand zum Startpunkt ist eine erste Ecke. Anschließend wird eine Linie zwischen dem
  Startpunkt und des ersten Eckpunktes definiert. Diese Linie trennt die Kontur in eine linke und eine rechte Hälfte.
- Für jeden \gls{pixel} der Kontur einer dieser Hälfte wird der Abstand zur Linie berechnet. Dadurch findet das
+ Für jeden \gls{pixel} der Kontur der beiden Hälften wird der Abstand zur Linie berechnet. Dadurch findet das
  Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines \gls{pixel} größer als ein festgelegter
  Schwellwert ist. \autoref{fig:rectangle-fitting} illustriert das vorgestellte Verfahren.
 \begin{figure}[!ht]
@@ -116,10 +116,10 @@ Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle an
 	 Eckpunkt $2$ zu berechnen.}
 	\label{fig:rectangle-fitting}
 \end{figure}
-Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab falls mehr als vier Ecken gefunden wurden. Im Falle,
- dass Rectangle Fitting alle Konturpixel untersucht hat und dabei weniger als vier Ecken gefunden hat, handelt es sich
- bei der Kontur nicht um ein Rechteck und die Kontur kann verworfen werden. Nur wenn exakt vier Eckpunkte gefunden
- wurden, handelt es sich bei der Kontur um ein Rechteck, und somit eine Marke.
+Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab, falls mehr als vier Ecken gefunden wurden. Im
+ Falle, dass Rectangle Fitting alle Konturpixel untersucht hat und dabei weniger als vier Ecken gefunden hat, handelt
+ es sich bei der Kontur nicht um ein Rechteck und die Kontur kann verworfen werden. Nur wenn exakt vier Eckpunkte
+ gefunden wurden, handelt es sich bei der Kontur um ein Rechteck, und somit eine Marke.
 
 % subsubsection rectangle_fitting (end)
 
@@ -129,22 +129,23 @@ Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab falls mehr 
 \label{sub:verfahren_nach_hirzer}
 
 Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbild der \textit{pixel connectivity edge
- linking based algorithms} entworfen und ist in drei Hauptteile aufgebaut. Zuerst werden Liniensegmente erstellt,
- indem \gls{edgel} auf einem Suchraster gefunden und zusammengeführt werden. Die kurzen Liniensegmente werden dann zu
- längeren Linien zusammengeführt. Anschließend werden im zweiten Schritt alle gefundenen Linien erweitert um die
- Gesamtlänge einer Linie zu erhalten. Im letzten Schritt werden die Linien zu Vierecken verbunden. Im weiteren Verlauf
- werden diese Schritte als Line Detection, Line Extension und Quadrangle Detection bezeichnet.
+ linking based algorithms}\footcite[Vgl.][S.~5]{hirzer08} entworfen und ist in drei Hauptteile aufgebaut. Zuerst werden
+ Liniensegmente erstellt, indem \gls{edgel} auf einem Suchraster gefunden und zusammengeführt werden. Die kurzen
+ Liniensegmente werden dann zu längeren Linien zusammengeführt. Anschließend werden im zweiten Schritt alle gefundenen
+ Linien erweitert, um die Gesamtlänge einer Linie zu erhalten. Im letzten Schritt werden die Linien zu Vierecken
+ verbunden. Im weiteren Verlauf werden diese Schritte als Line Detection, Line Extension und Quadrangle Detection
+ bezeichnet.
 
 \subsubsection{Line Detection nach \citeauthor{clarke96}} % (fold)
 \label{sub:line_detection_clarke}
 Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
- Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet um im zweiten Schritt durch das RANSAC-Verfahren
+ Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet, um im zweiten Schritt durch das RANSAC-Verfahren
  (\textit{Random Sample Consensus}) eine Linienhypothese zu erstellen und zu bewerten.
 
 Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 40$ \gls{pixel} große Regionen
  unterteilt. Jede nachfolgende Operation erfolgt innerhalb einer Region. Eine Region wird wiederum unterteilt in
  horizontale und vertikale Scanlines, die jeweils $5$ \gls{pixel} Abstand zueinander haben. Jedes \gls{pixel} auf den
- Scanlines wird mit einem Gauß-Kernel gefaltet um die Komponente des Gradienten zu bestimmen. Ein lokales Maximum des
+ Scanlines wird mit einem Gauß-Kernel gefaltet, um die Komponente des Gradienten zu bestimmen. Ein lokales Maximum des
  Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgel} betrachtet und seine Orientierung
  berechnet.
 
@@ -167,12 +168,12 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
 \label{sub:line_detection_hirzer}
 
 \citeauthor{hirzer08} hat das Verfahren von \citeauthor{clarke96} abgewandelt, um es zur Erkennung einer bitonalen
- Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt eines monochromen Bildsignals, ein farbiges Bildsignal
+ Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt einem monochromen Bildsignal, ein farbiges Bildsignal
  und untersucht zuerst einen der drei Farbkanäle. Wenn ein \gls{edgel} in einem Kanal gefunden wird, werden die
  verbleibenden Kanäle untersucht, um sicherzustellen, dass auch hier ein \gls{edgel} vorliegt. Ist der Gradient in
  allen drei Kanälen höher als der festgelegte Schwellwert, handelt es sich um einen Übergang  von Schwarz nach Weiß.
  Ist dies nicht der Fall, handelt es sich um einen farbigen Übergang und ist somit zur Erkennung einer Marke
- uninteressant. Da ein monochromes Signal wie in \autoref{sub:bildtypen} beschrieben nur ein Kanal besitzt, kann hier
+ uninteressant. Da ein monochromes Signal wie in \autoref{sub:bildtypen} beschrieben nur einen Kanal besitzt, kann hier
  diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \gls{edgel}
  führt\footcite[Vgl.][S.~6--7]{hirzer08}.
 
@@ -182,12 +183,12 @@ Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur ku
 \input{alg/untersuchungsdesign/linemerging-hirzer}
 Dazu werden alle Liniensegmente miteinander verglichen um jede Kombinationsmöglichkeit zu testen. Ob zwei
  Liniensegmente zu einer Linie zusammengeführt werden können, ist von drei Kriterien abhängig: Zuerst müssen zwei
- Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig abweichen darf um als Ergebnis eine gerade
+ Liniensegmente eine kompatible Orientierung aufweisen, die nur geringfügig abweichen darf, um als Ergebnis eine gerade
  Linien zu erhalten. Als zweites Kriterium muss eine Verbindungslinie zwischen den Liniensegmenten ebenfalls eine
- kompatible Orientierung aufweisen. Dadurch wird sichergestellt, dass keine Liniensegmente zusammengeführt werden, die
+ kompatibel Orientierung aufweisen. Dadurch wird sichergestellt, dass keine Liniensegmente zusammengeführt werden, die
  zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen. Als letztes Kriterium muss die
  Orientierung des Gradienten für alle Punkte der Verbindungslinie kompatible mit der Linienorientierung sein. Dieses
- Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man dies Unterscheidung vernachlässigen,
+ Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man diese Unterscheidung vernachlässigen,
  würden mehrere Kanten unterschiedlicher Marken zusammengeführt (Vgl.~\autoref{fig:linemerging-kriterium3}).
 \begin{figure}[!ht]
 	\centering
@@ -206,29 +207,27 @@ Dazu werden alle Liniensegmente miteinander verglichen um jede Kombinationsmögl
 \end{figure}
 
 \citeauthor{hirzer08} verwendet keinen Schwellwert um einen minimalen oder maximalen Abstand zwischen zwei
- Liniensegmenten festzulegen. \citeauthor{hirzer08} begründet dies Entscheidung damit, dass bei einem zu kleinen
+ Liniensegmenten festzulegen. \citeauthor{hirzer08} begründet diese Entscheidung damit, dass bei einem zu kleinen
  Schwellwert Liniensegmente, die zu weit auseinander liegen, nicht zusammengeführt werden, obwohl sie zusammengehören.
  Wird der Abstand des Schwellwerts aber zu groß gewählt, werden Liniensegmente zusammengeführt, die nicht
  zusammengehören. Um auf einen Distanzschwellwert verzichten zu können, werden die Liniensegmente sortiert, sodass
  diejenigen mit kurzen Verbindungslinien zuerst zusammengeführt werden. Dadurch kann sichergestellt werden, dass
- Liniensegmente zusammengeführt werden die nah beieinander liegen.
+ Liniensegmente zusammengeführt werden, die nah beieinander liegen.
 
-Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerhalb einer Region um alle kurzen
+Das Zusammenführen der Liniensegmente wird zweimal durchgeführt. Zuerst innerhalb einer Region, um alle kurzen
  Liniensegmente zu verbinden. Nachdem innerhalb aller Regionen diese zusammengeführt wurden, wird der Vorgang auf dem
- gesamten Bildsignal wiederholt um größere Liniensegmente zu vereinen. Dadurch müssen nicht alle
- Liniensegmente-Kombinationen im gesamten Bildsignal verglichen werden, was die Laufzeit
+ gesamten Bildsignal wiederholt, um größere Liniensegmente zu vereinen. Dadurch müssen nicht alle
+ Kombinationen von Liniensegmenten im gesamten Bildsignal verglichen werden, was die Laufzeit
  reduziert\footcite[Vgl.][S.~10]{hirzer08}.
 
 % subsubsection line_detection (end)
 
 \subsubsection{Line Extension} % (fold)
 \label{sub:line_extension}
-
-\input{alg/untersuchungsdesign/lineextension-hirzer}
-
 Die aus der Line Detection resultierenden Linien repräsentieren keine tatsächlich vorhandenen Kanten im Bildsignal. In
  den meisten Fällen fehlt am Anfang oder Ende einer Linie ein Stück. Mit Line Extension wird versucht diese fehlenden
- Stücke zu erweitern, um damit eine vollständige Linie abzubilden (Vgl. \autoref{alg:lineextension-hirzer}).
+ Stücke zu erweitern, um eine vollständige Linie abzubilden (Vgl. \autoref{alg:lineextension-hirzer}).
+\input{alg/untersuchungsdesign/lineextension-hirzer}
 
 Um Linien zu erweitern, wird jede Linie \gls{pixel} für \gls{pixel} untersucht. Dabei wird an einem Ende der Linie
  ein \gls{pixel} weitergerückt und die Orientierung dieses \gls{pixel} mit der Orientierung der Linie verglichen. Falls
@@ -248,7 +247,7 @@ Zusätzlich wird überprüft, ob über das Ende der erweiterten Linie hinaus ein
 \label{sub:quadrangle_detection}
 
 Um aus den gefundenen Linien eine quadratische Marke zu erkennen, werden Eckpunkte gesucht, die durch Überkreuzung der
- Linien entstehen. Dies wird durch Quadrangle Detection erreicht indem alle Linienkombinationen untersucht werden um
+ Linien entstehen. Dies wird durch Quadrangle Detection erreicht, indem alle Linienkombinationen untersucht werden, um
  vier Eckpunkte zu finden.
 
 \autoref{alg:quadrangledetection-hirzer} vergleicht alle Linienkombinationen auf drei Kriterien.
@@ -283,7 +282,7 @@ Falls vier Eckpunkte gefunden wurden, wurde eine vollständiges Quadrat entdeckt
 		\label{fig:quadrangledetection-bad}
 	}
 	\caption{Wiederherstellung der Marke mit zwei Eckpunkten (grün dargestellt).
-	 \subref{fig:quadrangledetection-good} Qualität der Linien (Rot) ist gut um damit eine Erkennung der Marke zu
+	 \subref{fig:quadrangledetection-good} Qualität der Linien (Rot) ist gut, um damit eine Erkennung der Marke zu
 	 ermöglichen. \subref{fig:quadrangledetection-bad} Die rechte Linie ist deutlich kürzer als die linke Linie. Eine
 	 Verbindungslinie zwischen den beiden Enden liefert eine schlechte Repräsentation der Marke.}
 	\label{fig:quadrangledetection}

@@ -4,36 +4,95 @@
 	Ergebnisse: Die gewonnen Daten aus Kap. Analyse bewerten.
 \end{comment}
 
-In diesem Kapitel werden die gewonnen Daten aus \autoref{cha:analyse} bewertet. Bei beiden Verfahren ist die Eingabemenge ein Bildsignal der Abmessung $640 \times 480$ \gls{pixel}.
+In diesem Kapitel werden die gewonnen Daten aus \autoref{cha:analyse} bewertet.
 
-Das asymptotische Wachstum von ARToolKitPlus besteht aus den Verfahren \textproc{regionLabeling} und
- \textproc{arDetectMarker2} und kann als $O(\mathit{lxsize}\cdot\mathit{lysize})
- + \Theta(\mathit{label\_num}\cdot n \log n)$ beschrieben werden, wobei $\mathit{lxsize}\cdot\mathit{lysize}$ die Größe
- des reduzierten Bildsignals darstellt (Vgl. \autoref{par:artoolkitplus}). Bei dem Verfahren von
- \citeauthor{hirzer08} ist das asymptotische Wachstum für das Verfahren \textproc{lineDetection}
- $\Theta(hwmn^2+hwl^2\cdot\mathit{length})$. Auch hier ist $h \cdot w$ die Größe des Bildsignals.
-Beide Verfahren sind somit abhängig von der Eingabemenge des Bildsignals.
+ARToolKitPlus benötigt zur Erkennung einer Marke das Verfahren \textproc{regionLabeling} und
+ \textproc{arDetectMarker2}. In \autoref{sec:artoolkitplus} wurde das asymptotische Wachstum des Verfahrens für den
+ schlechtesten Fall auf
+\begin{equation*}
+O(\mathit{lxsize}\cdot\mathit{lysize})  + \Theta(\mathit{label\_num}\cdot n \log n)
+\end{equation*}
+bestimmt. Die Eingabemenge für das Verfahren ist das Bildsignal $I$, dass in der Untersuchung aus $640 \times 480$
+ Pixeln besteht. Als Optimierung des Verfahrens werden nur die Hälfte der horizontalen \gls{pixel} ($\mathit{lxsize}$)
+ und die Hälfte der vertikalen \gls{pixel} ($\mathit{lysize}$) prozessiert (Vgl. \autoref{par:artoolkitplus}).
+ $\mathit{label\_num}$ ist durch $\tfrac{\mathit{lxsize}\cdot\mathit{lysize}}{4}$ begrenzt und beschreibt die maximal
+ mögliche Anzahl von Regionen in einem Bildsignal mit der Größe $\mathit{lxsize}\cdot\mathit{lysize}$. Variable $n$ in
+ $n \log n$ beschreibt die Anzahl der Verarbeitungsschritte in der Konturverfolgung. Die Konstante
+ $\mathit{AR\_CHAIN\_MAX} = 10000$ schränkt $n$ ein, sodass eine Konturverfolgung abgebrochen wird, falls nach $10000$
+ untersuchten \gls{pixel} keine geschlossene Kontur gefunden werden konnte.
 
-Die tatsächliche Laufzeit der beiden Verfahren wurde durch Messung der Verarbeitungszeit ermittelt. Die Ergebnisse der Untersuchung sind in \autoref{fig:runtime} grafisch dargestellt.
-\begin{figure}[!ht]
-	\centering
-	\input{resources/runtime.pdf_tex}
-	\caption{Messergebnis der Verarbeitungszeit. Die Verarbeitungszeit von ARToolKitPlus ist als blaue Linie
-	 eingezeichnet und die Zeit von dem Verfahren nach \citeauthor{hirzer08} als rote Linie.}
-	\label{fig:runtime}
-\end{figure}
- Bei der Untersuchung wurde zuerst nur die Zeit gemessen, die benötigt wurde um das Videosignal anzufordern. Im zweiten
- Schritt wurde das Videosignal durch die erste Stufe der Verfahren verarbeitet. Bei ARToolKitPlus wurde die Zeit
- ermittelt, die das Verfahren \textproc{regionLabeling} benötigt, um eine Regionenmarkierung zu erstellen. Bei dem
- Verfahren von \citeauthor{hirzer08} wurde die Verarbeitungszeit der Linienerkennung gemessen. Bei der letzten
- Untersuchung wurde für beide Verfahren die gesamte Verarbeitungszeit für ein Bildsignal gemessen. Für jeden
- Untersuchungsschritt wurden $300$ Frames prozessiert und der Median der Verarbeitungszeit ermittelt. Bei beiden
- Verfahren liegt der Median der gemessenen Zeit bei der Bildsignalbeschaffung bei $30$ FPS. In der zweiten
- Untersuchung, der Vorverarbeitungsschritt der Verfahren, fällt die Zeit bei beiden Verfahren ab. Bei ARToolKitPlus
- liegt die Verarbeitungszeit bei $19.1$ FPS, während bei dem Verfahren nach \citeauthor{hirzer08} die Verarbeitungszeit
- auf $15.8$ FPS absinkt. Bei der letzten Untersuchung, der vollständigen Verarbeitung des Bildsignals und der Erkennung
- einer Marke, liegt die Verarbeitungszeit von ARToolKitPlus bei $19.1$ FPS. Dies ist die gleiche Geschwindigkeit, wie
- der Untersuchung der Regionenmarkierung. Bei dem Verfahren nach \citeauthor{hirzer08} beträgt die Geschwindigkeit
- $15.7$ FPS, und ist nur geringfügig langsamer als in der vorherigen Untersuchung.
+Das Verfahren von \citeauthor{hirzer08} besteht aus dem Algorithmus \textproc{lineDetection}
+ (\autoref{alg:linedetection-hirzerquaddetection}), um eine Marke zu erkennen. Das asymptotische Wachstum des
+ Verfahrens wurde, für den schlechtesten Fall, in \autoref{sec:hirzer} auf
+\begin{equation*}
+\Theta(hwmn^2+hwl^2\cdot\mathit{length})
+\end{equation*}
+bestimmt. Auch hier ist die Eingabemenge des Verfahrens das Bildsignal $I$, mit einer Bildgröße von $640 \times 480$
+ \gls{pixel}. Die Anzahl der horizontalen \gls{pixel} wird durch die Variable $w$ und die Anzahl der vertikalen
+ \gls{pixel} durch die Variable $h$ beschrieben. Variable $n$ bezeichnet die Anzahl der maximal möglichen Edgel und ist
+ begrenzt auf $\tfrac{1}{5}(\mathit{regionSize}^2 - 2\mathit{regionSize})$, mit $\mathit{regionSize} = 40$. Die Anzahl
+ der maximal möglichen Wiederholungen des RANSAC Verfahrens (\autoref{sub:linienerkennung_nach_clarke96}) ist durch
+ $m = \tfrac{1}{2}(\sqrt{8n + 25} - 5)$ begrenzt. Die Variable $l$ bezeichnet die Menge der Liniensegmente und
+ $\mathit{length}$ bezeichnet die Länge des zu verarbeitenden Liniensegments.
+
+Beide Tracking Verfahren verarbeiten die gleiche Eingabemenge $I$ eines Bildsignals und berechnen für jede im
+ Bildsignal vorhandene Marke vier Eckpunkte. Beide Verfahren sind von der Höhe und der Breite des Bildsignals abhängig.
+ Durch die unterschiedlichen Arbeitsweisen der Verfahren wird das Bildsignal $I$ in nicht vergleichbare Eingabemengen
+ aufgeteilt. Dadurch bedingt ist eine Analyse anhand des asymptotischen Wachstums nicht eindeutig. Da beide Verfahren
+ ein RGB Signal mit $640 \times 480$ \gls{pixel} zu vier Eckpunkten einer Marke verarbeiten, kann durch die Messung
+ der Verarbeitungszeit die Verfahren verglichen werden.
+
+Für die Untersuchung der Laufzeit wurden zuerst $300$ Bilder vom Kamerasensor angefordert ohne sie von den Verfahren
+ prozessieren zu lassen. Die Ergebnisse sind in \autoref{tab:image} angegeben.
+\begin{table}[!ht]
+	\begin{center}
+	\begin{tabular}[]{r..}
+	\toprule
+	& \multicolumn{1} {>{\centering\arraybackslash}m{4cm}}{ARToolKitPlus}
+	& \multicolumn{1} {>{\centering\arraybackslash}m{4cm}}{\citeauthor{hirzer08}} \\
+	\midrule
+	Median		& 30.00  & 30.00  \\
+	Mittelwert	& 30.12  & 30.09  \\
+	Max.		& 252.60 & 218.00 \\
+	Min.		& 5.10   & 9.60   \\
+	\bottomrule
+	\end{tabular}
+	\caption{Messergebnisse der Bilddaten im Überblick.}
+	\label{tab:image}
+	\end{center}
+\end{table}
+Danach wurde in einer zweiten Messung $300$ Bilder durch die Verfahren verarbeitet. Die Ergebnisse der Markenerkennung
+ sind in \autoref{tab:marker} aufgeführt. Für die Untersuchung der Markenerkennung wurde eine Marke auf einem hellen
+ Untergrund platziert und mittig ausgerichtet. Die Erstellung der Messpunkte wurde für beide Verfahren unter gleichen
+ Bedingungen durchgeführt.
+\begin{table}[!ht]
+	\begin{center}
+	\begin{tabular}[]{r..}
+	\toprule
+	& \multicolumn{1} {>{\centering\arraybackslash}m{4cm}}{ARToolKitPlus}
+	& \multicolumn{1} {>{\centering\arraybackslash}m{4cm}}{\citeauthor{hirzer08}} \\
+	\midrule
+	Median		& 19.10  & 15.70 \\
+	Mittelwert	& 18.29  & 15.81 \\
+	Max.		& 20.50  & 20.10 \\
+	Min.		& 1.40   & 5.10  \\
+	\bottomrule
+	\end{tabular}
+	\caption{Messergebnisse der Markenerkennung im Überblick.}
+	\label{tab:marker}
+	\end{center}
+\end{table}
+
+
+% Wie die Ergebnisse zeigen,
+%  Untersuchung wurde für beide Verfahren die gesamte Verarbeitungszeit für ein Bildsignal gemessen. Für jeden
+%  Untersuchungsschritt wurden $300$ Frames prozessiert und der Median der Verarbeitungszeit ermittelt. Bei beiden
+%  Verfahren liegt der Median der gemessenen Zeit bei der Bildsignalbeschaffung bei $30$ FPS. In der zweiten
+%  Untersuchung, der Vorverarbeitungsschritt der Verfahren, fällt die Zeit bei beiden Verfahren ab. Bei ARToolKitPlus
+%  liegt die Verarbeitungszeit bei $19.1$ FPS, während bei dem Verfahren nach \citeauthor{hirzer08} die Verarbeitungszeit
+%  auf $15.8$ FPS absinkt. Bei der letzten Untersuchung, der vollständigen Verarbeitung des Bildsignals und der Erkennung
+%  einer Marke, liegt die Verarbeitungszeit von ARToolKitPlus bei $19.1$ FPS. Dies ist die gleiche Geschwindigkeit, wie
+%  der Untersuchung der Regionenmarkierung. Bei dem Verfahren nach \citeauthor{hirzer08} beträgt die Geschwindigkeit
+%  $15.7$ FPS, und ist nur geringfügig langsamer als in der vorherigen Untersuchung.
 
 % chapter ergebnisse (end)
