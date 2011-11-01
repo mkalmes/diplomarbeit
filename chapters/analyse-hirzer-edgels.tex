@@ -6,9 +6,9 @@ Die Datenstruktur eines \glspl{edgel} besteht aus den beiden Variablen $\mathit{
  \autoref{alg:vector}), sodass Lese- und Schreibzugriffe auf die Elemente eines \glspl{edgel} konstant sind.
 \input{alg/analyse-hirzer/datastructure-edgel}
 
-Wie in \autoref{sub:line_detection} beschrieben, muss im Verfahren von \citeauthor{hirzer08} die Orientierung von zwei
- \glspl{edgel} überprüft werden, was mit \autoref{alg:edgeliscompatible} bewerkstelligt wird. Als Parameter werden
- zwei zu vergleichende \gls{edgel} $\mathit{left}$ und $\mathit{right}$ übergeben.
+Wie in \autoref{sub:line_detection_clarke} beschrieben, muss im Verfahren von \citeauthor{hirzer08} die Orientierung
+ von zwei \glspl{edgel} überprüft werden, was mit \autoref{alg:edgeliscompatible} bewerkstelligt wird. Als Parameter
+ werden zwei zu vergleichende \gls{edgel} $\mathit{left}$ und $\mathit{right}$ übergeben.
 \input{alg/analyse-hirzer/datastructure-edgeliscompatible}
 Mithilfe von \textproc{dotProduct} (\autoref{alg:vectordotproduct}) kann die Orientierung der beiden \gls{edgel}
  überprüft werden. Zwei \gls{edgel} sind dann kompatibel, wenn der Winkel zwischen den Vektoren nicht größer als
@@ -32,10 +32,11 @@ Der Speichervorrat aus \autoref{alg:datastructure-poolimplementation} ist ein Ar
  \citeauthor{kr}\footcite[Vgl.][S.~100--104]{kr}.
 \input{alg/analyse-hirzer/datastructure-edgelpool-getmemorypools}
 Die Variable $n$ gibt die Anzahl der angeforderten Blöcke aus dem Speichervorrat an. In Zeile
- \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Blöcke zur Verfügung stehen und liefert
- im Erfolgsfall die Adresse zu einem Block (\autoref{alg:datastructure-edgelpool}) zurück. Falls keine Blöcke mehr zur
- Verfügung stehen, wird $\mathit{NULL}$ zurückgegeben. Die Laufzeitfunktion ist im schlechtesten Fall $T(n)=7$.
- \autoref{alg:edgelpool-getmemorypool}
+ \ref{alg:edgelpool-getmemorypools-checkpoolsize} wird überprüft, ob genügend Blöcke zur Verfügung stehen. Im
+ Erfolgsfall wird die Adresse zu einem Block (\autoref{alg:datastructure-edgelpool}) zurückgegeben. Falls keine Blöcke
+ mehr zur Verfügung stehen, wird $\mathit{NULL}$ zurückgegeben. Die Laufzeitfunktion ist im schlechtesten Fall
+ $T(n)=7$.
+\autoref{alg:edgelpool-getmemorypool}
 \input{alg/analyse-hirzer/datastructure-edgelpool-getmemorypool}
  vereinfacht die Anforderung von Speicherblöcken, da in den meisten Fällen nur ein Block benötigt wird. Bei einem
  Aufruf kann somit auf einen Parameter verzichtet werden. Die Laufzeitfunktion ist im schlechtesten Fall $T(n)=9$.
