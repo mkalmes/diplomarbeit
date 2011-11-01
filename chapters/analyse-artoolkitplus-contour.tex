@@ -66,9 +66,17 @@ Danach wird die Orientierung der 8er-Nachbarschaft in Zeile \ref{alg:argetcontou
  Regionenmarkierung in $\mathit{p1}$ hinterlegt (Zeile \ref{alg:argetcontour-2-address}). In Zeile
  \ref{alg:argetcontour-2-nextorientation} wird die Orientierung der 8er-Nachbarschaft auf die nächste zu untersuchende
  Richtung gedreht. Das drehen der 8er-Nachbarschaft erfolgt, indem von der letzten Position einer Kontur im
- Uhrzeigersinn auf den nächsten Nachbarn weitergerückt wird (Vgl. \autoref{fig:}). In Zeile
- \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} werden in der Schleife die
- Nachbarn im Uhrzeigersinn untersucht. Dazu wird mit Hilfe der 8er-Nachbarschaft in Zeile
+ Uhrzeigersinn auf den nächsten Nachbarn weitergerückt wird (Vgl. \autoref{fig:nachbarn}).
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Nachbarn.pdf_tex}
+	\caption{Untersuchung im Uhrzeigersinn. Aus Pfeilrichtung kommend, wurde eine Regionenmarkierung an der gekreuzten
+	 Position in der Mitte gefunden. Nun wird Position $1$ auf eine Regionenmarkierung untersucht. Wenn keine
+	 Markierung vorliegt, wird Position $2$ untersucht, usw.}
+	\label{fig:nachbarn}
+\end{figure}
+In Zeile \ref{alg:argetcontour-2-neighbourloop-start}--\ref{alg:argetcontour-2-neighbourloop-end} werden in der
+ Schleife die Nachbarn im Uhrzeigersinn untersucht. Dazu wird mit Hilfe der 8er-Nachbarschaft in Zeile
  \ref{alg:argetcontour-2-offset} ein Adressabstand berechnet. Durch die Überprüfung einer Regionenmarkierung an der
  Adresse von $\mathit{p1}$ in Zeile \ref{alg:argetcontour-2-haslabel-start}--\ref{alg:argetcontour-2-haslabel-end} wird
  entschieden, ob die Schleife von Zeile

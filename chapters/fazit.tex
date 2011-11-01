@@ -1,24 +1,52 @@
 \chapter{Fazit} % (fold)
 \label{cha:fazit}
 
-Wie in \autoref{cha:ergebnisse} gezeigt, erfüllen beide Verfahren die Echtzeitbedingung von \citeauthor{azuma97}. Die Verwendung der Verfahren unter iOS auf einem iPod touch ist durch die experimentelle Analyse bewiesen worden.
+Wie in \autoref{cha:ergebnisse} gezeigt, erfüllen beide Verfahren die Echtzeitbedingung von \citeauthor{azuma97}. Die
+ Verwendung der Verfahren unter iOS auf einem iPod touch ist durch die experimentelle Analyse bewiesen worden.
 
-Wie die Analyse in \autoref{cha:analyse} gezeigt hat, sind beide Verfahren von der Eingabemenge des Bildsignals abhängig. Da ARToolKitPlus und das Verfahren von \citeauthor{hirzer08} unterschiedliche Verfahren zur Erkennung einer Marke verwenden, ist eine Aussage über das asymptotische Wachstum suboptimal. Da beide Verfahren Optimierungsstrategien anwenden, um die Menge der zu verarbeitenden Daten zu reduzieren, fällt dieser Optimierungsschritt in der Untersuchung des Wachstums weg. Erst die experimentelle Analyse offenbarte die Leistungsfähigkeit der Tracking Verfahren.
+Wie die Analyse in \autoref{cha:analyse} gezeigt hat, sind beide Verfahren von der Eingabemenge des Bildsignals
+ abhängig. Da ARToolKitPlus und das Verfahren von \citeauthor{hirzer08} unterschiedliche Eingabemengen zur Erkennung
+ einer Marke verwenden, ist ein Vergleich mit dem asymptotischen Wachstum nur bedingt möglich. Die von beiden Verfahren
+ verwendeten Optimierungsschritte, um nicht alle \gls{pixel} in einem Bildsignal verarbeiten zu müssen, werden durch
+ die Natur der asymptotischen Analyse nicht berücksichtigt. Die Leistungsfähigkeit der vorgestellten Tracking Verfahren
+ wurde erst durch eine experimentelle Analyse deutlich.
 
-Betrachtet man lediglich die Geschwindigkeit der beiden Verfahren, so müsste ARToolKitPlus gegenüber dem Verfahren von \citeauthor{hirzer08} besser abschneiden.
+Die Stärke von ARToolKitPlus ist die Verarbeitungsgeschwindigkeit eines Bildsignals. Diesen Vorteil gegenüber dem
+ Verfahren von \citeauthor{hirzer08} erlangt ARToolKitPlus auf Kosten der Erkennungsrate. Da ARToolKitPlus eine Marke
+ durch eine Region in einem Binärbild erkennt, wird eine Marke schon bei geringer Verdeckung nicht mehr erkannt. Das
+ Problem wird in \autoref{fig:artoolkit-failure} an einem Beispiel verdeutlicht.
+\begin{figure}[!ht]
+	\centering
+	\subfigure[Erfolgreiche Erkennung]{
+		\includegraphics[width=.35\textwidth]{resources/ARToolKitPlus1.pdf}
+		% \label{fig:}
+	}
+	\subfigure[Fehlgeschlagene Erkennung]{
+		\includegraphics[width=.35\textwidth]{resources/ARToolKitPlus2.pdf}
+		% \label{fig:}
+	}
+	\caption{Fehlgeschlagene Erkennung einer Marke bei geringfügiger Verdeckung durch ARToolKitPlus. Aus
+	 \cite{fiala2004artagb}}
+	\label{fig:artoolkit-failure}
+\end{figure}
 
-Die Stärke von ARToolKitPlus liegt in der Geschwindigkeit der Verarbeitung eines Bildsignals, jedoch wird diese Geschwindigkeit auf Kosten der Erkennungsrate gewonnen. Da ARToolKitPlus eine Marke durch eine Region in einem Binärbild erkennt, wird bei ungünstigen Lichtverhältnissen keine Marke erkannt, da das Verfahren einen Schatten im Bereich der Marke als große Region betrachtet.
+Die Schwäche von ARToolKitPlus wird durch die Betrachtung von Liniensegmenten im Verfahren von \citeauthor{hirzer08}
+ vermieden. Auch wenn beispielsweise eine Ecke einer Marke verdeckt ist, erkennt das Verfahren eine Marke, wie in
+ \autoref{fig:arvideo} dargestellt.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.35\textwidth]{resources/ARVideo2.png}
+	\caption{Erkennung einer verdeckten Marke durch das Verfahren von \citeauthor{hirzer08}.}
+	\label{fig:arvideo}
+\end{figure}
+Der Schwachpunkt des Verfahrens nach \citeauthor{hirzer08} tritt bei vielen dunklen Objekten auf, die auf einem hellen
+ Untergrund liegen. Ein Schachbrettmuster beeinflusst die Verarbeitunszeit des Verfahrens erheblich durch die hohe
+ Anzahl von \gls{edgel} und Linien.
 
-Diese Schwäche wird durch die Betrachtung von Liniensegmenten im Verfahren von \citeauthor{hirzer08} vermieden. Auch wenn beispielsweise eine Ecke einer Marke verdeckt ist, erkennt das Verfahren eine Marke. Der Schwachpunkt des Verfahrens nach \citeauthor{hirzer08} ist bei vielen Hell/Dunkel Wechsel zu erkennen. Bei einer Jalousie, durch die Sonnenlicht eintritt, erkennt das Verfahren alle Wechsel als möglicher \gls{edgel}, der durch die parallele Ausrichtung der Jalousie zu einer Linie erweitert wird.
-
-Beide Verfahren sind unter Laborbedingungen mit wenigen Störelemente und guter Ausleuchtung der Marke immer in einer optimalen Verarbeitungszeit. Doch bei Anwendungen die unter Umständen auch bei schlechten Lichtverhältnissen eingesetzt werden müssen sich die Tracking Verfahren bewähren. Somit sind die Verfahren im Zweifelsfall unter realen Bedingungen mit der schlechtesten Laufzeit konfrontiert.
-
-Welches Verfahren eingesetzt wird, muss sorgfältig evaluiert werden, da beide Systeme Schwächen besitzen, die in einer praktischen Anwendung zu Problemen führen kann.
-
-Die Geschwindigkeit eines Tracking Verfahrens alleine kann nicht als alleiniger Entscheidungsgrund genommen werden.
-
-% Die Optimierung bei ARToolKitPlus, nur die Hälfte der vertikalen \gls{pixel} und die Hälfte der horizontalen \gls{pixel} zu untersuchen, wird durch die Betrachtung der Wachstumsrate nicht ersichtlich. Das gleiche gilt für die Optimierung bei dem Verfahren nach \citeauthor{hirzer08}.
-% Hier muss durch die Verarbeitung der Scanlines im Abstand von $5$ \gls{pixel} weniger Daten verarbeitet werden als Eingabedaten vorhanden sind.
-
+Beide Verfahren erreichen unter guten Lichtverhältnissen mit wenigen Störelemente gute Resultate. Sollen die Verfahren
+ jedoch in Anwendungen verwendet werden, die unter Umständen auch bei schlechten Lichtverhältnissen eingesetzt werden,
+ kann nicht die Geschwindigkeit der Verfahren als alleiniges Kriterium verwendet werden. Welches Verfahren eingesetzt
+ wird, muss sorgfältig evaluiert werden, da beide Systeme Schwächen besitzen, die in einer praktischen Anwendung zu
+ Problemen führen kann.
 
 % chapter fazit (end)

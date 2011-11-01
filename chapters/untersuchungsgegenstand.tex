@@ -160,8 +160,15 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
  Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstützung der Hypothese
  der Linie galten, werden aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle
  Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind. Das Verfahren ist in
- \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:} illustriert.
+ \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:ransac} illustriert.
 \input{alg/untersuchungsdesign/linedetection-clarke}
+\begin{figure}[!ht]
+	\centering
+	\input{resources/RANSAC.pdf_tex}
+	\caption{Beispiel des RANSAC-Verfahrens. Die horizontale Linie hat eine größere Unterstützung als die vertikale
+	 Linie und wird von dem Verfahren ausgewählt.}
+	\label{fig:ransac}
+\end{figure}
 % subsection line_detection_nach_clarke96 (end)
 
 \subsubsection{Line Detection nach \citeauthor{hirzer08}} % (fold)

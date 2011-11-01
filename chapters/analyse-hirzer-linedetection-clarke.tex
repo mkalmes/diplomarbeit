@@ -237,7 +237,15 @@ Nachdem ein Liniensegment mit genügend Unterstützung ausgewählt wurde, kann m
  Start- und Endposition des Liniensegments bestimmt werden.
 \input{alg/analyse-hirzer/findlinesegments-5}
 Da ein Liniensegment aus zwei zufällig ausgewählten \glspl{edgel} besteht, können diese \gls{edgel} und die
- tatsächlichen Start- und Endpunkte voneinander abweichen (Vgl. \autoref{fig:}) In Zeile
+ tatsächlichen Start- und Endpunkte voneinander abweichen (Vgl. \autoref{fig:endedgel})
+\begin{figure}[!ht]
+	\centering
+	\input{resources/Endedgel.pdf_tex}
+	\caption{Bestimmung der Linienenden. Die grün markierten Edgel wurden zur Linienerkennung verwendet.
+	 Das Verfahren ermittelt nun die rot markierten Edgel als die tatsächlichen Linienenden.}
+	\label{fig:endedgel}
+\end{figure}
+In Zeile
  \ref{alg:findlinesegments5-start}--\ref{alg:findlinesegments5-end} wird dazu die Variable $\mathit{start}$ mit einem
  kleinen Wert, und die Variable $\mathit{end}$ mit einem großen Wert, initialisiert. Die Steigung des Liniensegments
  und die Orthogonale werden in Zeile \ref{alg:findlinesegments5-slope-start}--\ref{alg:findlinesegments5-slope-end}

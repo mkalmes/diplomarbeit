@@ -42,7 +42,7 @@ Beide Tracking Verfahren verarbeiten die gleiche Eingabemenge $I$ eines Bildsign
  ein RGB Signal mit $640 \times 480$ \gls{pixel} zu vier Eckpunkten einer Marke verarbeiten, kann durch die Messung
  der Verarbeitungszeit die Verfahren verglichen werden.
 
-Für die Untersuchung der Laufzeit wurden zuerst $300$ Bilder vom Kamerasensor angefordert ohne sie von den Verfahren
+Für die Untersuchung der Laufzeit wurden zuerst $1800$ Bilder vom Kamerasensor angefordert ohne sie von den Verfahren
  prozessieren zu lassen. Die Ergebnisse sind in \autoref{tab:image} angegeben.
 \begin{table}[!ht]
 	\begin{center}
@@ -61,7 +61,9 @@ Für die Untersuchung der Laufzeit wurden zuerst $300$ Bilder vom Kamerasensor a
 	\label{tab:image}
 	\end{center}
 \end{table}
-Danach wurde in einer zweiten Messung $300$ Bilder durch die Verfahren verarbeitet. Die Ergebnisse der Markenerkennung
+Bei beiden Verfahren liegt der Median bei $30$ Bildwiederholungen. Dies stimmt mit der Untersuchung der Bildwiederholrate aus \autoref{sec:allgemein} überein.
+
+Danach wurde in einer zweiten Messung $1800$ Bilder durch die Verfahren verarbeitet. Die Ergebnisse der Markenerkennung
  sind in \autoref{tab:marker} aufgeführt. Für die Untersuchung der Markenerkennung wurde eine Marke auf einem hellen
  Untergrund platziert und mittig ausgerichtet. Die Erstellung der Messpunkte wurde für beide Verfahren unter gleichen
  Bedingungen durchgeführt.
@@ -82,7 +84,10 @@ Danach wurde in einer zweiten Messung $300$ Bilder durch die Verfahren verarbeit
 	\label{tab:marker}
 	\end{center}
 \end{table}
-
+Bei ARToolKitPlus liegt die Median der Laufzeit bei $19.10$ Bildwiederholungen, während der Median der Laufzeit bei dem
+ Verfahren von \citeauthor{hirzer08} bei $15.81$ Bildwiederholungen liegt. Das arithmetische Mittel liegt mit $18.29$
+ Bildwiederholungen bei ARToolKitPlus unterhalb des Median. Bei dem Verfahren von \citeauthor{hirzer08} liegt das
+ arithmetische Mittel hingegen mit $15.81$ Bildwiederholungen leicht über dem Median.
 
 % Wie die Ergebnisse zeigen,
 %  Untersuchung wurde für beide Verfahren die gesamte Verarbeitungszeit für ein Bildsignal gemessen. Für jeden
