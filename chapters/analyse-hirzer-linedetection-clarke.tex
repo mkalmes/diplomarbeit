@@ -291,7 +291,7 @@ Wenn der Winkel kleiner als $0$ ist, werden Start- und Endpunkt in Zeile
  \autoref{alg:findlinesegments7} ist $n^2 + 5n = \Theta(n^2)$, für $c_{1} = 1$, $c_{2} = 2$ und $n_{0} = 5$.
 \input{eq/hirzer/findlinesegments5}
 
-Die Laufzeit des RANSAC Verfahrens (\autoref{alg:findlinesegments1}) ist abhängig von der Anzahl der \gls{edgel} in
+Die Laufzeit des RANSAC-Verfahrens (\autoref{alg:findlinesegments1}) ist abhängig von der Anzahl der \gls{edgel} in
  Speicherblock $E$. Für die Analyse des Algorithmus in \autoref{alg:findlinesegments9} wird $n = $ Anzahl der
  \gls{edgel} verwendet.
 \input{alg/analyse-hirzer/findlinesegments-9}
@@ -321,7 +321,7 @@ m = \left\lfloor\frac{1}{2}(\sqrt{8n+25} - 5)\right\rfloor
 lässt sich die maximale Anzahl $m$ der Wiederholung ermitteln, die mit $n$ \gls{edgel} möglich sind. % Die maximal
 %  mögliche Anzahl von \gls{edgel} ist $n = \frac{1}{5}(\mathit{regionSize}^2 - 2\mathit{regionSize})$.
 Die Kosten der  Algorithmen sind zur Analyse des schlechtesten Falls in \autoref{alg:findlinesegments9} aufgeführt. Die
- Laufzeitfunktion des RANSAC Verfahrens ist in \autoref{eq:findlinesegments-7} angegeben.
+ Laufzeitfunktion des RANSAC-Verfahrens ist in \autoref{eq:findlinesegments-7} angegeben.
 \input{eq/hirzer/findlinesegments7}
 Die Wachstumsrate ist $25mn^2 + 75mn + 108m = \Theta(mn^2)$, für $c_{1} = 11$, $c_{2} = 26$ und $n_{0} = 77$.
 

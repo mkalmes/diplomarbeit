@@ -17,7 +17,7 @@ In diesem Abschnitt werden die beiden Tracking-Verfahren ARToolKitPlus und das V
 \label{sub:artoolkitplus}
 
 ARToolKitPlus ist die Weiterentwicklung von ARToolKit von \citeauthor{wagner07b}. ARToolKitPlus verwendet zur
-Identifizierung von Marken eine \textit{Runtime Tracking Pipeline} bestehend aus den fünf Stufen
+Identifizierung von Marken eine \textit{Runtime Tracking Pipeline}\footcite{wagner07a} bestehend aus den fünf Stufen
 
 \begin{enumerate}
 	\item Erkennung einer Bildregion (Fiducial Detection), \label{fiducialdetection}
@@ -45,7 +45,7 @@ Fiducial Detection sorgt mit zwei Verfahren für die Eingrenzung der Bilddaten a
 Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln in einem Binärbild, die es zu finden
  gilt. ARToolKitPlus benutzt zur Erkennung von zusammenhängenden Bildregionen eine abgewandelte Form der sequentiellen
  Regionenmarkierung (Vgl. \autoref{sec:regionen_in_binärbilder}). Im Unterschied zum bereits vorgestellten Verfahren,
- integriert ARToolKitPlus die Erstellung eines Binärbild, durch eine Schwellwertanalyse, in das Verfahren der
+ integriert ARToolKitPlus die Erstellung eines Binärbild durch eine Schwellwertanalyse, in das Verfahren der
  Regionenmarkierung. Dazu wird das Bildsignal zeilenweise von links oben nach rechts unten \gls{pixel} für \gls{pixel}
  untersucht. Wenn der Wert eines \glspl{pixel} dabei über einem Schwellwert liegt, handelt es sich um ein
  Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um ein
@@ -104,9 +104,9 @@ Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt.
  werden die Start- und Endkoordinaten der Region untersucht. Liegen diese Koordinaten am Rand des Bildsignals eignen
  sie sich nicht zur Erkennung und die Region wird ebenfalls verworfen. Wenn eine Region diese Überprüfung bestanden
  hat, wird das erste Pixel der Region als Startpunkt gewählt. Mithilfe einer 8er-Nachbarschaft werden die angrenzenden
- Markierungen untersucht und verfolgt. Dieses Verfahren wird solange wiederholt, bis es eine geschlossene Kontur zurück
- zum Startpunkt finden konnte. Hat das Verfahren eine Markierung bis zum Bildrand untersucht ohne eine geschlossene
- Kontur zu finden, wird die Region verworfen, da sie sich nicht zur Erkennung
+ Markierungen untersucht und verfolgt. Dieses Verfahren wird solange wiederholt, bis eine geschlossene Kontur zurück
+ zum Startpunkt gefunden werden konnte. Hat das Verfahren eine Markierung bis zum Bildrand untersucht ohne eine
+ geschlossene Kontur zu finden, wird die Region verworfen, da sie sich nicht zur Erkennung
  eignet\footcite[Vgl.][S.~41--42]{wagner07a}. Liegt eine geschlossene Kontur vor, ist das Verfahren des Fiducial
  Detection beendet und die Kontur wird zur weiteren Verarbeitung an Rectangle Fitting übergeben.
 % paragraph konturen (end)
@@ -155,16 +155,16 @@ Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbil
 
 \subsubsection{Line Detection nach \texorpdfstring{\citeauthor{clarke96}}{Clarke, Carlsson und Zisserman}} % (fold)
 \label{sub:line_detection_clarke}
-Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
- Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet, um im zweiten Schritt durch das RANSAC-Verfahren
- (\textit{Random Sample Consensus}) eine Linienhypothese zu erstellen und zu bewerten.
+Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96} und besteht aus zwei Schritten. Im ersten
+ Schritt wird das Bildsignal grob abgetastet, um im zweiten Schritt durch das RANSAC-Verfahren
+ (\textit{Random Sample Consensus}) eine Linienhypothese zu erstellen und zu bewerten\footcite{clarke96}.
 
 Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 40$ \gls{pixel} große Regionen
  unterteilt. Jede nachfolgende Operation erfolgt innerhalb einer Region. Eine Region wird wiederum unterteilt in
- horizontale und vertikale Scanlines, die jeweils $5$ \gls{pixel} Abstand zueinander haben. Jedes \gls{pixel} auf den
- Scanlines wird mit einem Gauß-Kernel gefaltet, um die Komponente des Gradienten zu bestimmen. Ein lokales Maximum des
- Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgel} betrachtet und seine Orientierung
- berechnet.
+ horizontale und vertikale Linien, sogenannte Scanlines, die jeweils $5$ \gls{pixel} Abstand zueinander haben. Jedes
+ \gls{pixel} auf den Scanlines wird mit einem Gauß-Kernel gefaltet, um die Komponente des Gradienten zu bestimmen. Ein
+ lokales Maximum des Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgel} betrachtet und
+ seine Orientierung berechnet.
 
 Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gls{edgel} Liniensegmente zu bestimmen.
  Eine Linienhypothese wird durch die zufällige Auswahl zweier \gls{edgel} erstellt, deren Orientierung innerhalb
