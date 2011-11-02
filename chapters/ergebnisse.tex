@@ -4,8 +4,12 @@
 	Ergebnisse: Die gewonnen Daten aus Kap. Analyse bewerten.
 \end{comment}
 
-In diesem Kapitel werden die gewonnen Daten aus \autoref{cha:analyse} bewertet.
+In diesem Kapitel werden die gewonnen Daten aus \autoref{cha:analyse} bewertet. Dazu wird das asymptotische Wachstum
+ der Verfahren beschrieben und ihre Eingabemengen erläutert. Danach werden die Verfahren durch Messung ihrer
+ Verarbeitungszeit miteinander verglichen.
 
+\section{ARToolKitPlus} % (fold)
+\label{sec:section_name}
 ARToolKitPlus benötigt zur Erkennung einer Marke das Verfahren \textproc{regionLabeling} und
  \textproc{arDetectMarker2}. In \autoref{sec:artoolkitplus} wurde das asymptotische Wachstum des Verfahrens für den
  schlechtesten Fall auf
@@ -20,7 +24,10 @@ bestimmt. Die Eingabemenge für das Verfahren ist das Bildsignal $I$, dass in de
  $n \log n$ beschreibt die Anzahl der Verarbeitungsschritte in der Konturverfolgung. Die Konstante
  $\mathit{AR\_CHAIN\_MAX} = 10000$ schränkt $n$ ein, sodass eine Konturverfolgung abgebrochen wird, falls nach $10000$
  untersuchten Pixeln keine geschlossene Kontur gefunden werden konnte.
+% section section_name (end)
 
+\section{Verfahren nach Hirzer} % (fold)
+\label{sec:section_name}
 Das Verfahren von \citeauthor{hirzer08} besteht aus dem Algorithmus \textproc{lineDetection}
  (\autoref{alg:linedetection-hirzerquaddetection}), um eine Marke zu erkennen. Das asymptotische Wachstum des
  Verfahrens wurde, für den schlechtesten Fall, in \autoref{sec:hirzer} auf
@@ -34,12 +41,15 @@ bestimmt. Auch hier ist die Eingabemenge des Verfahrens das Bildsignal $I$, mit 
  der maximal möglichen Wiederholungen des RANSAC Verfahrens (\autoref{sub:linienerkennung_nach_clarke96}) ist durch
  $m = \tfrac{1}{2}(\sqrt{8n + 25} - 5)$ begrenzt. Die Variable $l$ bezeichnet die Menge der Liniensegmente und
  $\mathit{length}$ bezeichnet die Länge des zu verarbeitenden Liniensegments.
+% section section_name (end)
 
+\section{Vergleich der Verfahren} % (fold)
+\label{sec:vergleich_der_verfahren}
 Beide Tracking Verfahren verarbeiten die gleiche Eingabemenge $I$ eines Bildsignals und berechnen für jede im
  Bildsignal vorhandene Marke vier Eckpunkte. Beide Verfahren sind von der Höhe und der Breite des Bildsignals abhängig.
  Durch die unterschiedlichen Arbeitsweisen der Verfahren wird das Bildsignal $I$ in nicht vergleichbare Eingabemengen
  aufgeteilt. Dadurch bedingt ist eine Analyse anhand des asymptotischen Wachstums nicht eindeutig. Da beide Verfahren
- ein RGB Signal mit $640 \times 480$ Pixeln zu vier Eckpunkten einer Marke verarbeiten, kann durch die Messung
+ ein BGRA Signal mit $640 \times 480$ Pixeln zu vier Eckpunkten einer Marke verarbeiten, kann durch die Messung
  der Verarbeitungszeit die Verfahren verglichen werden.
 
 Für die Untersuchung der Laufzeit wurden zuerst $1800$ Bilder vom Kamerasensor angefordert ohne sie von den Verfahren
@@ -61,12 +71,15 @@ Für die Untersuchung der Laufzeit wurden zuerst $1800$ Bilder vom Kamerasensor 
 	\label{tab:image}
 	\end{center}
 \end{table}
-Bei beiden Verfahren liegt der Median bei $30$ Bildwiederholungen. Dies stimmt mit der Untersuchung der Bildwiederholrate aus \autoref{sec:allgemein} überein.
+Bei beiden Verfahren liegt der Median bei $30$ Bildwiederholungen. Dies stimmt mit der Untersuchung der
+ Bildwiederholrate aus \autoref{sec:allgemein} überein. Mit diesen Ergebnissen kann sichergestellt werden, dass bei
+ beiden Verfahren die Anforderung eines Bildsignals vom Bildsensor mit der vollen Geschwindigkeit erfolgt. Die
+ Ausreißer bei beiden Verfahren, wirken sich nur geringfügig auf den Mittelwert aus und können vernachlässigt werden.
 
-Danach wurde in einer zweiten Messung $1800$ Bilder durch die Verfahren verarbeitet. Die Ergebnisse der Markenerkennung
- sind in \autoref{tab:marker} aufgeführt. Für die Untersuchung der Markenerkennung wurde eine Marke auf einem hellen
- Untergrund platziert und mittig ausgerichtet. Die Erstellung der Messpunkte wurde für beide Verfahren unter gleichen
- Bedingungen durchgeführt.
+In einer zweiten Messung wurden von beiden Verfahren $1800$ Bilder zu vier Eckpunkten einer Marke verarbeitet. Für die
+ Untersuchung der Markenerkennung wurde eine Marke auf einem hellen Untergrund platziert und mittig ausgerichtet. Die
+ Erstellung der Messpunkte wurde für beide Verfahren unter gleichen Bedingungen durchgeführt. Die Ergebnisse der
+ Markenerkennung sind in \autoref{tab:marker} aufgeführt.
 \begin{table}[!ht]
 	\begin{center}
 	\begin{tabular}[]{r..}
@@ -84,20 +97,14 @@ Danach wurde in einer zweiten Messung $1800$ Bilder durch die Verfahren verarbei
 	\label{tab:marker}
 	\end{center}
 \end{table}
-Bei ARToolKitPlus liegt die Median der Laufzeit bei $19.10$ Bildwiederholungen, während der Median der Laufzeit bei dem
- Verfahren von \citeauthor{hirzer08} bei $15.81$ Bildwiederholungen liegt. Das arithmetische Mittel liegt mit $18.29$
- Bildwiederholungen bei ARToolKitPlus unterhalb des Median. Bei dem Verfahren von \citeauthor{hirzer08} liegt das
- arithmetische Mittel hingegen mit $15.81$ Bildwiederholungen leicht über dem Median.
-
-% Wie die Ergebnisse zeigen,
-%  Untersuchung wurde für beide Verfahren die gesamte Verarbeitungszeit für ein Bildsignal gemessen. Für jeden
-%  Untersuchungsschritt wurden $300$ Frames prozessiert und der Median der Verarbeitungszeit ermittelt. Bei beiden
-%  Verfahren liegt der Median der gemessenen Zeit bei der Bildsignalbeschaffung bei $30$ FPS. In der zweiten
-%  Untersuchung, der Vorverarbeitungsschritt der Verfahren, fällt die Zeit bei beiden Verfahren ab. Bei ARToolKitPlus
-%  liegt die Verarbeitungszeit bei $19.1$ FPS, während bei dem Verfahren nach \citeauthor{hirzer08} die Verarbeitungszeit
-%  auf $15.8$ FPS absinkt. Bei der letzten Untersuchung, der vollständigen Verarbeitung des Bildsignals und der Erkennung
-%  einer Marke, liegt die Verarbeitungszeit von ARToolKitPlus bei $19.1$ FPS. Dies ist die gleiche Geschwindigkeit, wie
-%  der Untersuchung der Regionenmarkierung. Bei dem Verfahren nach \citeauthor{hirzer08} beträgt die Geschwindigkeit
-%  $15.7$ FPS, und ist nur geringfügig langsamer als in der vorherigen Untersuchung.
+Durch die Verarbeitungszeit der Verfahren fällt die Bildwiederholrate, im Gegensatz zur ersten Untersuchung, bei beiden
+ Verfahren ab. Bei ARToolKitPlus liegt die Median der Laufzeit bei $19.10$ Bildwiederholungen, während der Median der
+ Laufzeit bei dem Verfahren von \citeauthor{hirzer08} bei $15.81$ Bildwiederholungen liegt. Das arithmetische Mittel
+ liegt mit $18.29$ Bildwiederholungen bei ARToolKitPlus unterhalb des Median. Dies ist durch den kleinsten gemessenen
+ Wert von $1.4$ Bildwiederholungen zurückzuführen. Bei dem Verfahren von \citeauthor{hirzer08} liegt das arithmetische
+ Mittel hingegen mit $15.81$ Bildwiederholungen leicht über dem Median, da der kleinste gemessene Wert mit $5.1$
+ Bildwiederholungen schneller war, als bei ARToolKitPlus. Aus diesen Messergebnissen wird deutlich, dass ARToolKitPlus
+ in der gleichen Zeit mehr Bilder verarbeitet als das Verfahren von \citeauthor{hirzer08}.
+% section vergleich_der_verfahren (end)
 
 % chapter ergebnisse (end)

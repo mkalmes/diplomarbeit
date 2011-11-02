@@ -1,8 +1,10 @@
 \chapter{Fazit} % (fold)
 \label{cha:fazit}
-
-Wie in \autoref{cha:ergebnisse} gezeigt, erfüllen beide Verfahren die Echtzeitbedingung von \citeauthor{azuma97}. Die
- Verwendung der Verfahren unter iOS auf einem iPod touch ist durch die experimentelle Analyse bewiesen worden.
+In \autoref{sec:definition} wurden die Bedingungen an Tracking-Verfahren für \gls{AR} Anwendungen definiert. Eine
+ Bedingung von \citeauthor{azuma97} besagt, dass die Interaktion mit \gls{AR} in Echtzeit erfolgen
+ muss\footcite{azuma97}. Interaktion in Echtzeit ist von \citeauthor{moeller2008} mit 15 Bildern pro Sekunde definiert,
+ wobei man bei 6 Bildern pro Sekunde noch von Interaktiv spricht\footcite{moeller2008}. Wie in
+ \autoref{cha:ergebnisse} gezeigt, erfüllen beide Verfahren diese Echtzeitbedingung.
 
 Wie die Analyse in \autoref{cha:analyse} gezeigt hat, sind beide Verfahren von der Eingabemenge des Bildsignals
  abhängig. Da ARToolKitPlus und das Verfahren von \citeauthor{hirzer08} unterschiedliche Eingabemengen zur Erkennung
@@ -18,14 +20,14 @@ Die Stärke von ARToolKitPlus ist die Verarbeitungsgeschwindigkeit eines Bildsig
 \begin{figure}[!ht]
 	\centering
 	\subfigure[Erfolgreiche Erkennung]{
-		\includegraphics[width=.35\textwidth]{resources/ARToolKitPlus1.pdf}
+		\includegraphics[width=.3\textwidth]{resources/ARToolKitPlus1.pdf}
 		% \label{fig:}
 	}
 	\subfigure[Fehlgeschlagene Erkennung]{
-		\includegraphics[width=.35\textwidth]{resources/ARToolKitPlus2.pdf}
+		\includegraphics[width=.3\textwidth]{resources/ARToolKitPlus2.pdf}
 		% \label{fig:}
 	}
-	\caption{Fehlgeschlagene Erkennung einer Marke bei geringfügiger Verdeckung durch ARToolKitPlus. Aus
+	\caption{Fehlgeschlagene Erkennung einer Marke mit ARToolKitPlus bei geringfügiger Verdeckung. Aus
 	 \cite{fiala2004artagb}}
 	\label{fig:artoolkit-failure}
 \end{figure}
@@ -35,8 +37,9 @@ Die Schwäche von ARToolKitPlus wird durch die Betrachtung von Liniensegmenten i
  \autoref{fig:arvideo} dargestellt.
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=.35\textwidth]{resources/ARVideo2.png}
-	\caption{Erkennung einer verdeckten Marke durch das Verfahren von \citeauthor{hirzer08}.}
+	\includegraphics[width=.3\textwidth]{resources/ARVideo2.png}
+	\caption{Erkennung einer verdeckten Marke durch die Implementierung des Verfahrens von \citeauthor{hirzer08} auf
+	 einem iPod touch.}
 	\label{fig:arvideo}
 \end{figure}
 Der Schwachpunkt des Verfahrens nach \citeauthor{hirzer08} tritt bei vielen dunklen Objekten auf, die auf einem hellen
@@ -48,5 +51,7 @@ Beide Verfahren erreichen unter guten Lichtverhältnissen mit wenigen Störeleme
  kann nicht die Geschwindigkeit der Verfahren als alleiniges Kriterium verwendet werden. Welches Verfahren eingesetzt
  wird, muss sorgfältig evaluiert werden, da beide Systeme Schwächen besitzen, die in einer praktischen Anwendung zu
  Problemen führen kann.
+
+Diese Arbeit hat gezeigt, dass Tracking-Verfahren für mobile Endgeräte geeignet sind und die Echtzeitbedingung von \citeauthor{azuma97} erfüllen. Durch die immer fortschreitende Entwicklung von schnelleren Geräten steht dem Einsatz von \gls{AR} Anwendungen auf mobilen Geräten nichts mehr im Wege.
 
 % chapter fazit (end)

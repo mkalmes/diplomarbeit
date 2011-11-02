@@ -2,32 +2,32 @@
 \label{sec:allgemein}
 
 Bei ARToolKitPlus und dem Verfahren nach Hirzer wird das Bildsignal durch AVFoundation zur Verfügung gestellt. Um
- auszuschliessen, dass eine Kombination von Bildformat und Auflösung zu einem Leistungsproblem wird, wurde die
+ auszuschließen, dass eine Kombination von Bildformat und Auflösung zu einer geringen Leistung führt, wurde die
  Geschwindigkeit des Systems untersucht.
 
 AVFoundation bietet auf einem iPod touch die Möglichkeit, Bildsignale in den Auflösungen von $192 \times 144$ (Low),
  $480 \times 360$ (Medium), $640 \times 480$ und $1280 \times 720$ (High) anzufordern. Als Bildformat kann entweder
- YCbCr oder RGBA gewählt werden. In \autoref{fig:videoperformance-rgb} wurde für jede unterstützte
- Auflösung mit dem Bildformat RGBA $300$ Messdaten erfasst.
+ YCbCr oder BGRA gewählt werden. In \autoref{fig:videoperformance-rgb} wurde für jede unterstützte
+ Auflösung mit dem Bildformat BGRA $300$ Messdaten erfasst.
 \begin{figure}[!ht]
 	\centering
-	\subfigure[RGBA Low]{
+	\subfigure[BGRA Low]{
 		\input{resources/RGB-Low.pdf_tex}
 		\label{fig:videoperformance-rgb-low}
 	}
-	\subfigure[RGBA Medium]{
+	\subfigure[BGRA Medium]{
 		\input{resources/RGB-Medium.pdf_tex}
 		\label{fig:videoperformance-rgb-medium}
 	}
-	\subfigure[RGBA $640 \times 480$]{
+	\subfigure[BGRA $640 \times 480$]{
 		\input{resources/RGB-640x480.pdf_tex}
 		\label{fig:videoperformance-rgb-640}
 	}
-	\subfigure[RGBA High]{
+	\subfigure[BGRA High]{
 		\input{resources/RGB-High.pdf_tex}
 		\label{fig:videoperformance-rgb-high}
 	}
-	\caption{RGBA Analyse für die Auflösung Low (\autoref{fig:videoperformance-rgb-low}),
+	\caption{BGRA Analyse für die Auflösung Low (\autoref{fig:videoperformance-rgb-low}),
 	 Medium (\autoref{fig:videoperformance-rgb-medium}), $640 \times 480$ (\autoref{fig:videoperformance-rgb-640}) und
 	 High (\autoref{fig:videoperformance-rgb-high}). Der Median ist als blaue Linie eingezeichnet.}
 	\label{fig:videoperformance-rgb}
@@ -64,6 +64,6 @@ Auch bei dieser Untersuchung liegt der Median bei der kleinsten Auflösung (\aut
 Bei beiden Bildformaten werden, unabhängig von der Auflösung, gleiche Ergebnisse erzielt. Die wenigsten Abweichung der
  Bildwiederholfrequenz sind in \autoref{fig:videoperformance-rgb-640} und \autoref{fig:videoperformance-ycbcr-640} für die
  Auflösung von $640 \times 480$ Pixeln zu beobachten. Für die Analyse der Verfahren wird die Auflösung
- $640 \times 480$ mit dem Bildformat RGBA verwendet.
+ $640 \times 480$ mit dem Bildformat BGRA verwendet.
 
 % section allgemein (end)

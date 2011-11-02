@@ -5,7 +5,7 @@
 \end{comment}
 
 \begin{comment}
-	YUV und RGB bzw. RGBA
+	YUV und RGB bzw. BGRA
 	kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, kCVPixelFormatType_420YpCbCr8BiPlanarFullRange and kCVPixelFormatType_32BGRA, except on iPhone 3G, where the supported pixel formats are kCVPixelFormatType_422YpCbCr8 and kCVPixelFormatType_32BGRA..(AVCaptureVideoDataOutput Class Reference)
 
 	\subsection{Grundlagen} % (fold)
@@ -387,7 +387,7 @@ Bei \autoref{konstant} wird der sichtbare Bildbereich verkleinert und bei \autor
 		\label{fig:randbeispiel-3c}
 		\includegraphics[scale=1]{resources/Rand-3c.pdf}
 	}
-	\caption{Filter und Randbehandlung. Das Originalbild \subref{fig:randbeispiel-original} wird je nach eingesetzen
+	\caption{Filter und Randbehandlung. Das Originalbild \subref{fig:randbeispiel-original} wird je nach eingesetzten
 	 Verfahren unterschiedlich behandelt. Bei \subref{fig:randbeispiel-1} werden die Ränder nicht betrachtet und ein
 	 konstanter Wert zugewiesen (hier schwarz dargestellt).	Die Originalwerte des Eingangsbilds werden bei
 	 \subref{fig:randbeispiel-2} beibehalten. In \subref{fig:randbeispiel-3a} werden außerhalb des Bildes konstante
