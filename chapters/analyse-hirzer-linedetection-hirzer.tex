@@ -1,4 +1,4 @@
-Das Verfahren zur Linienerkennung nach \citeauthor{hirzer08} basiert, wie in \autoref{sub:line_detection} bereits
+Das Verfahren zur Linienerkennung nach \citeauthor{hirzer08} basiert, wie in \autoref{sub:line_detection_clarke} bereits
  erwähnt, auf dem Verfahren von \citeauthor{clarke96}. \citeauthor{hirzer08} verwendet in seinem Verfahren anstatt
  eines monochromen Bildsignals ein RGB-Signal. Dadurch ändern sich einige Algorithmen geringfügig und werden im
  folgenden Abschnitt erläutert.
@@ -70,8 +70,8 @@ In Zeile \ref{alg:mergelines3-isorientationcompatible} (\autoref{alg:mergelines3
 \input{alg/analyse-hirzer/mergelines-3}
 Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cline-start}--\ref{alg:mergelines3-cline-end}
  die Verbindungslinie in \textproc{cLine} gespeichert. In Zeile \ref{alg:mergelines3-isbridged} wird anschließend die
- Orientierung der Verbindungslinie Punkt für Punkt untersucht (Vgl. \autoref{sub:line_detection}). Wenn der Gradient
- der Verbindungslinie sich nicht verändert hat, wird in Zeile
+ Orientierung der Verbindungslinie Punkt für Punkt untersucht (Vgl. \autoref{sub:line_detection_hirzer}). Wenn der
+ Gradient der Verbindungslinie sich nicht verändert hat, wird in Zeile
  \ref{alg:mergelines3-save-start}--\ref{alg:mergelines3-save-end} die Länge zum Quadrat und die Position der
  Verbindungslinie in \textproc{distancepool} gespeichert. Die Laufzeitfunktion ist in \autoref{eq:mergelines-j-2}
  angegeben. Die Wachstumsrate von \autoref{alg:mergelines3} ist
@@ -186,8 +186,8 @@ In Zeile \ref{alg:extendline2-iscompatible} wird überprüft, ob der Winkel sich
 Somit ist die Wachstumsrate für \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2})
  $\Theta(\mathit{length}) + \Theta(\mathit{length}) = \Theta(\mathit{length})$.
 
-Wie in \autoref{sub:line_detection} bereits erläutert, wird das Zusammenführen von Linien einmal für jede Region und
- einmal auf dem gesamten Bildsignal durchgeführt. Der Ablauf ist in \autoref{alg:linedetection-hirzermerging}
+Wie in \autoref{sub:line_detection_hirzer} bereits erläutert, wird das Zusammenführen von Linien einmal für jede Region
+ und einmal auf dem gesamten Bildsignal durchgeführt. Der Ablauf ist in \autoref{alg:linedetection-hirzermerging}
  dargestellt.
 \input{alg/analyse-hirzer/linedetection-hirzer-merging}
 In Zeile \ref{alg:linedetection-hirzermerging-mergeregion} werden Liniensegmente für die aktuelle Region

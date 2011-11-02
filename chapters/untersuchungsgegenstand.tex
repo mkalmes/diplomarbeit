@@ -70,7 +70,21 @@ Nachdem das Eingangssignal vollständig markiert wurde, enthält die Liste mit M
  keine fortlaufenden Werte. Um eine Liste mit fortlaufenden Markierungswerten zu erhalten, wird die Liste für jede
  Markierung durchlaufen. Dabei wird untersucht, ob der aktuelle Wert der Laufvariable entspricht. Falls dem so ist,
  wird die Laufvariable in der Liste gespeichert. Andernfalls wird der vorherige Wert der List an die aktuelle Position
- geschrieben. \autoref{fig:} verdeutlicht diesen Vorgang.
+ geschrieben. \autoref{fig:sortlabels} verdeutlicht diesen Vorgang.
+\begin{figure}[!ht]
+	\centering
+	\subfigure[Unsortierte Regionenmarkierungen]{
+		\input{resources/sortlabels1.pdf_tex}
+		\label{fig:sortlabels-1}
+	}
+	\subfigure[Sortierte Regionenmarkierungen]{
+		\input{resources/sortlabels2.pdf_tex}
+		\label{fig:sortlabels-2}
+	}
+	\caption{In \subref{fig:sortlabels-1} sind durch Kollisionen Abstände zwischen den Markierungen entstanden. Durch
+	 sortieren der Markierungen entstehen in \subref{fig:sortlabels-2} fortlaufende Regionenmarkierungen.}
+	\label{fig:sortlabels}
+\end{figure}
 
 Anstatt die Regionen anhand ihrer Markierungen im Eingangssignal zu speichern, verwendet ARToolKitPlus dazu einen
  eigenen Speicherbereich. Eine Region besteht in ARToolKitPlus aus der Markierung, der Start- und Endposition der
@@ -125,7 +139,7 @@ Das Verfahren verarbeitet die beiden Hälften rekursiv und bricht ab, falls mehr
 
 % subsection artoolkitplus (end)
 
-\subsection{Verfahren nach Hirzer} % (fold)
+\subsection{Verfahren nach \texorpdfstring{\citeauthor{hirzer08}}{Hirzer}} % (fold)
 \label{sub:verfahren_nach_hirzer}
 
 Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbild der \textit{pixel connectivity edge
@@ -136,7 +150,7 @@ Der Algorithmus von \citeauthor{hirzer08}\footcite{hirzer08} ist nach dem Vorbil
  verbunden. Im weiteren Verlauf werden diese Schritte als Line Detection, Line Extension und Quadrangle Detection
  bezeichnet.
 
-\subsubsection{Line Detection nach \citeauthor{clarke96}} % (fold)
+\subsubsection{Line Detection nach \texorpdfstring{\citeauthor{clarke96}}{Clarke, Carlsson und Zisserman}} % (fold)
 \label{sub:line_detection_clarke}
 Die Linienerkennung basiert auf dem Verfahren von \citeauthor{clarke96}\footcite{clarke96} und besteht aus zwei
  Schritten. Im ersten Schritt wird das Bildsignal grob abgetastet, um im zweiten Schritt durch das RANSAC-Verfahren
@@ -171,7 +185,7 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
 \end{figure}
 % subsection line_detection_nach_clarke96 (end)
 
-\subsubsection{Line Detection nach \citeauthor{hirzer08}} % (fold)
+\subsubsection{Line Detection nach \texorpdfstring{\citeauthor{hirzer08}}{Hirzer}} % (fold)
 \label{sub:line_detection_hirzer}
 
 \citeauthor{hirzer08} hat das Verfahren von \citeauthor{clarke96} abgewandelt, um es zur Erkennung einer bitonalen

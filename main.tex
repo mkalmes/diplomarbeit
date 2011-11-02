@@ -5,7 +5,10 @@
 \input{header}
 
 \begin{document}
+
 \frontmatter
+
+\extratitle{\hspace{.1mm}}
 
 \ifpdf
 \DeclareGraphicsExtensions{.pdf, .jpg, .tif}
@@ -13,17 +16,43 @@
 \DeclareGraphicsExtensions{.eps, .jpg}
 \fi
 
-% \include{titel}	% TODO: Titel als eigenes tex-dokument setzen
-\titlehead{Fachhochschule Köln\\ Fakultät für Informatik und Ingenieurwissenschaften}
+\titlehead{
+	\begin{minipage}{3cm}
+  	\includegraphics*{resources/logo.pdf} % Hochschullogo
+	\end{minipage}
+	\begin{minipage}{10.6cm}
+		\begin{flushleft}
+			Fachhochschule Köln\\
+			Fakultät für Informatik und Ingenieurwissenschaften\\
+		\end{flushleft}
+	  \end{minipage}
+}
 \subject{Diplomarbeit}
 \title{Marker-basierte Tracking-Verfahren für Augmented Reality Anwendungen unter iOS 4}
-\author{Marc Kalmes}
-\date{Juli 2011}
-\publishers{betreut durch Prof. Dr. Heiner Klocke}
+\author{
+\normalsize{vorgelegt an der Fachhochschule Köln}\\
+\normalsize{Campus Gummersbach}\\
+\normalsize{im Studiengang Allgemeine Informatik}\\
+\\
+ausgearbeitet von Marc Kalmes
+}
+\date{Gummersbach, im November 2011}
+\publishers{
+\begin{table}[!h]
+	\begin{center}
+	\begin{tabular}[]{rl}
+	\Large{Erster Prüfer:} & \Large{Prof. Dr. Heiner Klocke}\\
+	\Large{Zweiter Prüfer:} & \Large{Prof. Dr. Lutz Köhler}
+	\end{tabular}
+	\end{center}
+\end{table}}
 
 \maketitle
 
+\selectlanguage{ngerman}
+\setcounter{page}{1}
 \tableofcontents
+
 
 \selectlanguage{UKenglish}
 \chapter*{Abstract} % (fold)
@@ -78,6 +107,22 @@ Die Diplomarbeit erläutert abschließend, wie die vorgestellten Verfahren die A
 
 \printbibliography[]
 
+\chapter*{Erklärung}
+Ich versichere, die von mir vorgelegte Arbeit selbständig verfasst zu haben. Alle Stellen, die wörtlich oder sinngemäß
+ aus veröffentlichten oder nicht veröffentlichten Arbeiten anderer entnommen sind, habe ich als entnommen kenntlich
+ gemacht. Sämtliche Quellen und Hilfsmittel, die ich für die Arbeit benutzt habe, sind angegeben. Die Arbeit hat mit
+ gleichem Inhalt bzw. in wesentlichen teilen noch keiner anderen Prüfungsbehörde vorgelegen.
+\\
+\\
+\\
+Köln, am 1. November 2011
+\\
+\\
+\\
+\\
+Marc Kalmes
 
+\thispagestyle{empty}
+\cleardoublepage
 
 \end{document}
