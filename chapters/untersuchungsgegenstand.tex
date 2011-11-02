@@ -189,7 +189,7 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
 \label{sub:line_detection_hirzer}
 
 \citeauthor{hirzer08} hat das Verfahren von \citeauthor{clarke96} abgewandelt, um es zur Erkennung einer bitonalen
- Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt einem monochromen Bildsignal, ein farbiges Bildsignal
+ Marke zu nutzen. Dazu verwendet \citeauthor{hirzer08}, anstatt eines monochromen Bildsignals, ein farbiges Bildsignal
  und untersucht zuerst einen der drei Farbkanäle. Wenn ein \gls{edgel} in einem Kanal gefunden wird, werden die
  verbleibenden Kanäle untersucht, um sicherzustellen, dass auch hier ein \gls{edgel} vorliegt. Ist der Gradient in
  allen drei Kanälen höher als der festgelegte Schwellwert, handelt es sich um einen Übergang  von Schwarz nach Weiß.
@@ -208,7 +208,7 @@ Dazu werden alle Liniensegmente miteinander verglichen um jede Kombinationsmögl
  Linien zu erhalten. Als zweites Kriterium muss eine Verbindungslinie zwischen den Liniensegmenten ebenfalls eine
  kompatibel Orientierung aufweisen. Dadurch wird sichergestellt, dass keine Liniensegmente zusammengeführt werden, die
  zwar eine kompatible Orientierung besitzen aber parallel zueinander liegen. Als letztes Kriterium muss die
- Orientierung des Gradienten für alle Punkte der Verbindungslinie kompatible mit der Linienorientierung sein. Dieses
+ Orientierung des Gradienten für alle Punkte der Verbindungslinie kompatibel mit der Linienorientierung sein. Dieses
  Kriterium dient dazu nebeneinanderliegende Marken zu unterscheiden. Würde man diese Unterscheidung vernachlässigen,
  würden mehrere Kanten unterschiedlicher Marken zusammengeführt (Vgl.~\autoref{fig:linemerging-kriterium3}).
 \begin{figure}[!ht]
