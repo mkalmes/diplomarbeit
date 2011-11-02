@@ -44,8 +44,8 @@ Im Idealfall ist eine Marke eine zusammenhängende Region von schwarzen Pixeln i
  Regionenmarkierung (Vgl. \autoref{sec:regionen_in_binärbilder}). Im Unterschied zum bereits vorgestellten Verfahren,
  integriert ARToolKitPlus die Erstellung eines Binärbild, durch eine Schwellwertanalyse, in das Verfahren der
  Regionenmarkierung. Dazu wird das Bildsignal zeilenweise von links oben nach rechts unten \gls{pixel} für \gls{pixel}
- untersucht. Wenn der Wert eines \glspl{pixel} dabei über einem Schwellwert liegt, handelt es sich um einen
- Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um einen
+ untersucht. Wenn der Wert eines \glspl{pixel} dabei über einem Schwellwert liegt, handelt es sich um ein
+ Hintergrundpixel. Andernfalls, wenn der Wert kleiner als der Schwellwert ist, handelt es sich um ein
  Vordergrundpixel.
 
 Zur Erkennung einer Bildregion ist ein Hintergrundpixel nicht von Bedeutung und wird an Position $(u,v)$ als $0$
@@ -117,11 +117,11 @@ In diesem Schritt wird untersucht, ob es sich bei einer geschlossenen Kontur um 
  \citeauthor{wagner07a} definiert ein Rechteck als eine 2D Struktur mit vier annähernd geraden Linien, die durch
  Überschneidung vier Eckpunkte bilden\footcite[Vgl.][S.~42]{wagner07a}.
 
-Das Verfahren wählt einen \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Der
+Das Verfahren wählt ein \gls{pixel} als Startpunkt und berechnet für alle anderen \gls{pixel} den Abstand. Das
  \gls{pixel} mit dem größten Abstand zum Startpunkt ist eine erste Ecke. Anschließend wird eine Linie zwischen dem
  Startpunkt und des ersten Eckpunktes definiert. Diese Linie trennt die Kontur in eine linke und eine rechte Hälfte.
- Für jeden \gls{pixel} der Kontur der beiden Hälften wird der Abstand zur Linie berechnet. Dadurch findet das
- Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines \gls{pixel} größer als ein festgelegter
+ Für jedes \gls{pixel} der Kontur der beiden Hälften wird der Abstand zur Linie berechnet. Dadurch findet das
+ Verfahren eine Ecke auf jeder Seite der Geraden, wenn der Abstand eines Pixels größer als ein festgelegter
  Schwellwert ist. \autoref{fig:rectangle-fitting} illustriert das vorgestellte Verfahren.
 \begin{figure}[!ht]
 	\centering
@@ -251,7 +251,7 @@ Die aus der Line Detection resultierenden Linien repräsentieren keine tatsächl
 \input{alg/untersuchungsdesign/lineextension-hirzer}
 
 Um Linien zu erweitern, wird jede Linie \gls{pixel} für \gls{pixel} untersucht. Dabei wird an einem Ende der Linie
- ein \gls{pixel} weitergerückt und die Orientierung dieses \gls{pixel} mit der Orientierung der Linie verglichen. Falls
+ ein \gls{pixel} weitergerückt und die Orientierung dieses Pixels mit der Orientierung der Linie verglichen. Falls
  die Orientierung kompatibel ist, wird der Endpunkt der Linie durch das hinzugefügte \gls{pixel} ersetzt. Das Verfahren
  wird solange wiederholt, bis die Orientierung nicht mehr übereinstimmt. Das bedeutet, dass sich der Gradient zu stark
  verändert hat und dadurch das Ende einer Kante gefunden wurde. Somit ist eine Seite der Linie erweitert und das

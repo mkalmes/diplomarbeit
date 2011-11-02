@@ -24,12 +24,12 @@ Auch das Verfahren \textproc{gradientIntensity} in \autoref{alg:gradientintensit
  \textproc{getRGBValue}.
 \input{alg/analyse-hirzer/gradientIntensityhirzer}
 
-\textproc{getRGBValue} dient dem auslesen eines \gls{pixel} für einen angegeben Farbkanal. In \autoref{alg:getrgbvalue} ist das Verfahren beschrieben.
+\textproc{getRGBValue} dient dem auslesen eines Pixels für einen angegeben Farbkanal. In \autoref{alg:getrgbvalue} ist das Verfahren beschrieben.
 \input{alg/analyse-hirzer/getrgbvalue}
-Das Verfahren benötigt das RGB-Signal $I$, die Position des \gls{pixel} ($x$, $y$), den Farbkanal, sowie die Breite $w$
+Das Verfahren benötigt das RGB-Signal $I$, die Position des Pixels ($x$, $y$), den Farbkanal, sowie die Breite $w$
  und Höhe $h$ von $I$. In den Zeilen \ref{alg:getrgbvalue-sanity-start}--\ref{alg:getrgbvalue-sanity-end} wird
  sichergestellt, dass kein \gls{pixel} außerhalb der Bildgrenzen gelesen werden können. In Zeile
- \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des \gls{pixel} wird in
+ \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des Pixels wird in
  Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
  \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeitfunktion
  des Verfahrens ist im schlechtesten Fall $T(n) = 18$. Die Wachstumsrate des Verfahrens ist $18 = \Theta(1)$, für

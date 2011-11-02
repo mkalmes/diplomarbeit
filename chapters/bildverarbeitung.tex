@@ -59,12 +59,12 @@ Welche Werte in einem \gls{pixel} gespeichert sind und wie diese Werte zu interp
 \subsection{Bildtypen} % (fold)
 \label{sub:bildtypen}
 
-Der Wert eines \gls{pixel} ist als binärer Wert der Länge $k$ angegeben. Darüber hinaus bestimmt der verwendete Bildtyp
- über die weiteren Informationen eines \gls{pixel}.
+Der Wert eines Pixels ist als binärer Wert der Länge $k$ angegeben. Darüber hinaus bestimmt der verwendete Bildtyp
+ über die weiteren Informationen eines Pixels.
 
 Monochrome Bilder, die im allgemeinen Sprachgebrauch als Schwarzweiß-Bilder bezeichnet werden, besitzen nur eine
- Komponente, die als \gls{luminanz} bezeichnet wird. Die Information des \gls{pixel} wird im Allgemeinen
- mit 8 Bit kodiert, sodass sich ein Wertebereich von $2^8 = \left[0\dotsc255\right]$ ergibt.
+ Komponente, die als \gls{luminanz} bezeichnet wird. Die Information des Pixels wird im Allgemeinen mit 8 Bit kodiert,
+ sodass sich ein Wertebereich von $2^8 = \left[0\dotsc255\right]$ ergibt.
 
 Binäre Bilder sind eine spezielle Form der monochromen Bilder. In binären Bildern werden nur Schwarzweiß-Werte
  gespeichert. Die Information kann dadurch in nur einem Bit, mit $0$ für Schwarz und $1$ für Weiß, gespeichert werden.
@@ -283,7 +283,7 @@ Farbbilder speichern im Unterschied zu monochromen Bildern mehr Informationen in
 \label{sub:filter}
 Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine mathematische Abbildung in ein
  Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen, die nur einen \gls{pixel} betreffen, operieren
- Filter auf Regionen von \gls{pixel}, um zum Beispiel Bilder zu verwischen oder zu schärfen
+ Filter auf Regionen von Pixeln, um zum Beispiel Bilder zu verwischen oder zu schärfen
  (Vgl.~\autoref{fig:filterbeispiel}).
 \begin{figure}[!ht]
 	\centering
@@ -304,8 +304,8 @@ Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine 
 	\label{fig:filterbeispiel}
 \end{figure}
 
-Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird der neue Pixel $I'(u,v)$ berechnet. Die Größe der
- Filterregion bestimmt die Anzahl der gls{pixel} aus $I$, die zur Berechnung des neuen Pixels $I'(u,v)$ verwendet
+Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird das neue Pixel $I'(u,v)$ berechnet. Die Größe der
+ Filterregion bestimmt die Anzahl der \gls{pixel} aus $I$, die zur Berechnung des neuen Pixels $I'(u,v)$ verwendet
  werden (Vgl.~\autoref{fig:region-filter}).
 \begin{figure}[!ht]
 	\centering
@@ -490,7 +490,7 @@ Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nac
 	 $N_3 = (u,v+1)$ und $N_4 = I(u+1,v+1)$.}
 	\label{fig:nachbarschaft}
 \end{figure}
-Die Zuweisung einer Markierung für einen \gls{pixel} ist davon abhängig ob
+Die Zuweisung einer Markierung für ein \gls{pixel} ist davon abhängig ob
 \begin{enumerate}
 	\item alle Nachbarn Hintergrundpixel sind, \label{labeling-all-background}
 	\item genau ein Nachbar eine Markierung hat oder \label{labeling-one-neighbour}
@@ -509,9 +509,9 @@ Wenn alle Nachbarn Hintergrundpixel sind (\autoref{labeling-all-background}), wi
 	\caption{Beispiel einer Kollision zwischen Markierung $2$ und Markierung $3$.}
 	\label{fig:kollision}
 \end{figure}
-Dem \gls{pixel} an Position $(u,v)$ wird eine Markierung eines Nachbarn zugewiesen und die Kollision wird vermerkt. Nach
- \citeauthor{burger05} werden diese Kollisionen in einer dynamischen Datenstruktur gespeichert und zu einem späteren
- Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
+Einem \gls{pixel} an Position $(u,v)$ wird eine Markierung eines Nachbarn zugewiesen und die Kollision wird vermerkt.
+ Nach \citeauthor{burger05} werden diese Kollisionen in einer dynamischen Datenstruktur gespeichert und zu einem
+ späteren Zeitpunkt bearbeitet\footcite[Vgl.][S.~203--204]{burger05}.
 
 Nach diesem ersten Schritt ist das Binärbild verarbeitet und allen Vordergrundpixeln wurde eine vorläufige Markierung
  zugeteilt. Dabei wurden auftretende Kollisionen der Markierungen gespeichert. Der Ablauf des ersten Schritts ist in

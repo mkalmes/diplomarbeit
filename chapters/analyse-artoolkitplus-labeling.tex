@@ -48,8 +48,8 @@ In der Schleife in Zeile \ref{alg:arlabeling-init2-loop1-start}--\ref{alg:arlabe
  Breite $\mathit{lxsize}$ auf die Adressen addiert wird. Danach wird $i$ inkrementiert. In Zeile
  \ref{alg:arlabeling-init2-label} wird die Markierungsvariable $\mathit{wk\_max}$ mit dem Wert $0$ initialisiert.
  Danach wird die Adresse der Startposition des Regionenbildes in $\mathit{pnt2}$ gespeichert. Dabei ist zu beachten,
- dass die Adresse auf den zweiten \gls{pixel} der zweiten Zeile verweist. $\mathit{pnt}$ wird daraufhin die Adresse des
- Bildsignals $I$ zugewiesen. Der Adresse von $I$ ist der vierte \gls{pixel} der zweiten Zeile. Die Variable
+ dass die Adresse auf das zweite \gls{pixel} der zweiten Zeile verweist. $\mathit{pnt}$ wird daraufhin die Adresse des
+ Bildsignals $I$ zugewiesen. Der Adresse von $I$ ist das vierte \gls{pixel} der zweiten Zeile. Die Variable
  $\mathit{poff}$ ist der Adressabstand der \gls{pixel} in $I$ und dient der Adressierung des nächsten \glspl{pixel}.
  $\mathit{poff}$ wird in der letzten Zeile von \autoref{alg:arlabeling-init2} gesetzt. Die Kosten des Algorithmus sind
  in \autoref{alg:arlabeling-init2} angegeben. Durch Umformung der Kosten von \autoref{eq:analyse-arlabeling-init-1}
@@ -67,7 +67,7 @@ Das asymptotische Wachstum für $T(\mathit{lxsize}) = 6\mathit{lxsize} + 1$ ist,
  Schwellwertanalyse wird entschieden, ob ein \gls{pixel} an Position $I(u,v)$ ein Vordergrund- oder Hintergrundpixel
  ist. Die Regionenmarkierung wird dann in $\mathit{l\_image}$ gespeichert. Das Verfahren wird solange wiederholt, bis
  das Bildsignal $I$ vollständig prozessiert wurde und zusammenhängende Bildregionen in $\mathit{l\_image}$ markiert
- sind. Die Variable $\mathit{pnt}$ enthält die Adresse des zu untersuchenden \gls{pixel} aus $I$. Die nächste freie
+ sind. Die Variable $\mathit{pnt}$ enthält die Adresse des zu untersuchenden Pixels aus $I$. Die nächste freie
  Speicherstelle in $\mathit{l\_image}$ ist in $\mathit{pnt2}$ hinterlegt. In den beiden Schleifen in Zeile
  \ref{alg:arlabeling-regionlabeling-loop1-start}--\ref{alg:arlabeling-regionlabeling-loop1-end} und Zeile
  \ref{alg:arlabeling-regionlabeling-loop2-start}--\ref{alg:arlabeling-regionlabeling-loop2-end} wird das Bildsignal
@@ -222,7 +222,7 @@ In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numeri
  $\mathit{l\_image}$ gespeichert. Danach wird der Wert der Markierung in die Liste der Markierungen $\mathit{work}$
  eingetragen. Der Adressabstand für die Region mit der Markierung $\mathit{wk\_max}$ wird in Zeile
  \ref{alg:arlabeling-neighbour-case5-offset} berechnet. Anschließend wird die neue Region in $\mathit{work2}$
- gespeichert. Der erste Vordergrundpixel wird in Zeile \ref{alg:arlabeling-neighbour-case5-offset-0} an Position $0$
+ gespeichert. Das erste Vordergrundpixel wird in Zeile \ref{alg:arlabeling-neighbour-case5-offset-0} an Position $0$
  von $\mathit{work2}$ gespeichert. Danach werden in Zeile
  \ref{alg:arlabeling-neighbour-case5-offset-1}--\ref{alg:arlabeling-neighbour-case5-offset-6} die Position des ersten
  Vordergrundpixels gespeichert. Die Laufzeitfunktion ist in \autoref{eq:analyse-arlabeling-neighbour-case5} angegeben.
@@ -232,7 +232,7 @@ In Zeile \ref{alg:arlabeling-neighbour-case5-incwk_max} wird der aktuelle numeri
 
 Nachdem die Regionenmarkierung abgeschlossen ist, enthält $\mathit{work}$ die numerischen Werte der Regionen. In
  $\mathit{work2}$ ist für jede Region die Anzahl der Vordergrundpixel, die summierten $x$- und $y$-Koordinaten aller
- Vordergrundpixel, sowie die $x$- und $y$-Koordinate für den ersten und letzten Vordergrundpixel, hinterlegt. Das
+ Vordergrundpixel, sowie die $x$- und $y$-Koordinate für das erste und letzte Vordergrundpixel, hinterlegt. Das
  Regionenbild ist in $\mathit{l\_image}$ gespeichert. Der schlechteste Fall der Nachbarschaftsuntersuchung ist der 2.
  Fall. Die Laufzeitfunktion (\autoref{eq:analyse-arlabeling-neighbour}) setzt sich aus den Kosten der Verzweigung in
  \autoref{alg:arlabeling-neighbour} und \autoref{alg:arlabeling-neighbour-case2}, sowie der Laufzeifunktion aus

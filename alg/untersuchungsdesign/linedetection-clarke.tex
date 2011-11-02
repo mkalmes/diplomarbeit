@@ -6,7 +6,7 @@
 	\State $I_m$ in $40 \times 40$ Pixel große Regionen unterteilen
 		\For{$i \gets 0$, alle Regionen}
 			\State $Liste \gets \infty$
-			\State $i$ in horizontale und vertikale Scanlines unterteilen mit $5$ Pixel Abstand
+			\State $i$ in horizontale und vertikale Scanlines unterteilen mit $5$ Pixeln Abstand
 			\For{$j \gets 0$, alle Pixel auf allen Scanlines}
 				\State $x \gets$ Falte $I_m\left(j\right)$ mit Gauß-Kernel
 				\If{$x > Schwellwert$}

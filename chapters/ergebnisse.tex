@@ -19,7 +19,7 @@ bestimmt. Die Eingabemenge für das Verfahren ist das Bildsignal $I$, dass in de
  mögliche Anzahl von Regionen in einem Bildsignal mit der Größe $\mathit{lxsize}\cdot\mathit{lysize}$. Variable $n$ in
  $n \log n$ beschreibt die Anzahl der Verarbeitungsschritte in der Konturverfolgung. Die Konstante
  $\mathit{AR\_CHAIN\_MAX} = 10000$ schränkt $n$ ein, sodass eine Konturverfolgung abgebrochen wird, falls nach $10000$
- untersuchten \gls{pixel} keine geschlossene Kontur gefunden werden konnte.
+ untersuchten Pixeln keine geschlossene Kontur gefunden werden konnte.
 
 Das Verfahren von \citeauthor{hirzer08} besteht aus dem Algorithmus \textproc{lineDetection}
  (\autoref{alg:linedetection-hirzerquaddetection}), um eine Marke zu erkennen. Das asymptotische Wachstum des
@@ -28,7 +28,7 @@ Das Verfahren von \citeauthor{hirzer08} besteht aus dem Algorithmus \textproc{li
 \Theta(hwmn^2+hwl^2\cdot\mathit{length})
 \end{equation*}
 bestimmt. Auch hier ist die Eingabemenge des Verfahrens das Bildsignal $I$, mit einer Bildgröße von $640 \times 480$
- \gls{pixel}. Die Anzahl der horizontalen \gls{pixel} wird durch die Variable $w$ und die Anzahl der vertikalen
+ Pixeln. Die Anzahl der horizontalen \gls{pixel} wird durch die Variable $w$ und die Anzahl der vertikalen
  \gls{pixel} durch die Variable $h$ beschrieben. Variable $n$ bezeichnet die Anzahl der maximal möglichen Edgel und ist
  begrenzt auf $\tfrac{1}{5}(\mathit{regionSize}^2 - 2\mathit{regionSize})$, mit $\mathit{regionSize} = 40$. Die Anzahl
  der maximal möglichen Wiederholungen des RANSAC Verfahrens (\autoref{sub:linienerkennung_nach_clarke96}) ist durch
@@ -39,7 +39,7 @@ Beide Tracking Verfahren verarbeiten die gleiche Eingabemenge $I$ eines Bildsign
  Bildsignal vorhandene Marke vier Eckpunkte. Beide Verfahren sind von der Höhe und der Breite des Bildsignals abhängig.
  Durch die unterschiedlichen Arbeitsweisen der Verfahren wird das Bildsignal $I$ in nicht vergleichbare Eingabemengen
  aufgeteilt. Dadurch bedingt ist eine Analyse anhand des asymptotischen Wachstums nicht eindeutig. Da beide Verfahren
- ein RGB Signal mit $640 \times 480$ \gls{pixel} zu vier Eckpunkten einer Marke verarbeiten, kann durch die Messung
+ ein RGB Signal mit $640 \times 480$ Pixeln zu vier Eckpunkten einer Marke verarbeiten, kann durch die Messung
  der Verarbeitungszeit die Verfahren verglichen werden.
 
 Für die Untersuchung der Laufzeit wurden zuerst $1800$ Bilder vom Kamerasensor angefordert ohne sie von den Verfahren
