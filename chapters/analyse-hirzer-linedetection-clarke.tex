@@ -287,12 +287,9 @@ Wenn der Winkel kleiner als $0$ ist, werden Start- und Endpunkt in Zeile
  Kosten lassen sich zu \autoref{eq:findlinesegments-5} zusammen fassen. Die Methoden \textproc{vectorSubtract},
  \textproc{dotProduct}, \textproc{normalized} und \textproc{addLineSegment} haben eine konstante Laufzeit.
  \textproc{removeEdgel} hat eine Laufzeit von $T_{worst}(n)=\Theta(n)$, für $n = \mathit{numberOfEdgels}$. Die
- Laufzeitfunktion ist in \autoref{eq:findlinesegments-5} angegeben.
+ Laufzeitfunktion ist in \autoref{eq:findlinesegments-5} angegeben. Die Wachstumsrate von
+ \autoref{alg:findlinesegments7} ist $n^2 + 5n = \Theta(n^2)$, für $c_{1} = 1$, $c_{2} = 2$ und $n_{0} = 5$.
 \input{eq/hirzer/findlinesegments5}
-% Durch Substitution in \autoref{eq:findlinesegments-5-4} ist die Wachstumsrate des Verfahrens
-% $20 - 2r + \tfrac{29}{25}r^2 - \tfrac{4}{25}r^3 + \tfrac{1}{25}r^4 = \Theta(r^4)$.
-Die Wachstumsrate von \autoref{alg:findlinesegments7} ist $n^2 + 5n = \Theta(n^2)$, für $c_{1} = 1$, $c_{2} = 2$ und
- $n_{0} = 5$.
 
 Die Laufzeit des RANSAC Verfahrens (\autoref{alg:findlinesegments1}) ist abhängig von der Anzahl der \gls{edgel} in
  Speicherblock $E$. Für die Analyse des Algorithmus in \autoref{alg:findlinesegments9} wird $n = $ Anzahl der

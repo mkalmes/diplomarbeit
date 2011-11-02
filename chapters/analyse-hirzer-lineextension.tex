@@ -17,8 +17,8 @@ In der Schleife in Zeile \ref{alg:extendlinesinpool-loop-start}--\ref{alg:extend
 \input{eq/hirzer/extendlinesinpool}
 
 Ob eine erweiterte Linie zur Markenerkennung geeignet ist, wird dadurch bestimmt, ob über das Linienende hinaus ein
- heller Pixel liegt. Dazu wird das Verfahren $\mathit{findLinesWithCornersInLinePool}$ verwendet
- (\autoref{alg:findlineswithcornersinlinepool1}--\autoref{alg:findlineswithcornersinlinepool2}).
+ heller Pixel liegt. $\mathit{findLinesWithCornersInLinePool}$ ist für diese Aufgabe zuständig
+(\autoref{alg:findlineswithcornersinlinepool1}--\autoref{alg:findlineswithcornersinlinepool2}).
 \input{alg/analyse-hirzer/findlineswithcornersinlinepool1}
 Das Verfahren untersucht alle Linien in Speicherblock $L$ und speichert Linien, die sich zur Erkennung eignen, in Block
  $C$. Zu Beginn des Verfahrens wird in Zeile \ref{alg:findlineswithcornersinlinepool1-clear} der Speicherblock $C$

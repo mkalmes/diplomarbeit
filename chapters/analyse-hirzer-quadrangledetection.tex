@@ -24,23 +24,22 @@ Wie beim Startpunkt auch, ist der Endpunkt von der Variablen $\mathit{fromStart}
 
 In Zeile \ref{alg:findchainoflines3-vectorproduct-start}--\ref{alg:findchainoflines3-vectorproduct-end} wird das
  Kreuzprodukt der Linienorientierung berechnet um danach in Zeile \ref{alg:findchainoflines3-checkorientation} die
- Orientierung zu überprüfen.
-\input{alg/analyse-hirzer/findchainsoflinesinbuffer3}
-Je nachdem ob $\mathit{fromStart}$ gesetzt ist oder nicht, wird die Orientierung unterschiedlich betrachtet. Wenn
- $\mathit{fromStart}$ wahr ist, muss die Orientierung der beiden Linien kleiner oder gleich $0$ sein. Damit wird die
- Orientierung als negativer Winkel betrachtet und der Wertebereich entspricht $\left[-1,0\right]$. Andernfalls, wenn
- $\mathit{fromStart}$ falsch ist, muss die Orientierung größer oder gleich $0$ sein. In diesem Fall wird die
- Orientierung als positiver Winkel betrachtet und der Wertebereich entspricht $\left[0,1\right]$. Werden diese
- Bedingungen erfüllt, eignet sich diese Linienkombination nicht zur Markenerkennung und es wird eine andere Linie
- untersucht. Falls die Bedingungen nicht erfüllt werden, eignet sich diese Linienkombination zur Erkennung einer Marke.
- In diesem Fall wird in Zeile \ref{alg:findchainoflines3-incchain} die Anzahl der Linienkette erhöht und die Linie an
- Position $i$ in der Variable $\mathit{chainSegment}$ hinterlegt. In Zeile \ref{alg:findchainoflines3-removeline} wird
- danach die Linie an Position $i$ aus dem Speicherblock $B$ entfernt. Danach wird in Zeile
- \ref{alg:findchainoflines3-has4lines} die Anzahl der Linienketten untersucht. Wenn genau vier Linienketten vorhanden
- sind, wird in Zeile \ref{alg:findchainoflines3-saveline} die Linie in $\mathit{chainSegment}$ zum Speicherblock $C$
- hinzugefügt und danach das Verfahren beendet. Ansonsten wird in Zeile
+ Orientierung zu überprüfen. Je nachdem ob $\mathit{fromStart}$ gesetzt ist oder nicht, wird die Orientierung
+ unterschiedlich betrachtet. Wenn $\mathit{fromStart}$ wahr ist, muss die Orientierung der beiden Linien kleiner oder
+ gleich $0$ sein. Damit wird die Orientierung als negativer Winkel betrachtet und der Wertebereich entspricht
+ $\left[-1,0\right]$. Andernfalls, wenn $\mathit{fromStart}$ falsch ist, muss die Orientierung größer oder gleich $0$
+ sein. In diesem Fall wird die Orientierung als positiver Winkel betrachtet und der Wertebereich entspricht
+ $\left[0,1\right]$. Werden diese Bedingungen erfüllt, eignet sich diese Linienkombination nicht zur Markenerkennung
+ und es wird eine andere Linie untersucht. Falls die Bedingungen nicht erfüllt werden, eignet sich diese
+ Linienkombination zur Erkennung einer Marke. In diesem Fall wird in Zeile \ref{alg:findchainoflines3-incchain} die
+ Anzahl der Linienkette erhöht und die Linie an Position $i$ in der Variable $\mathit{chainSegment}$ hinterlegt. In
+ Zeile \ref{alg:findchainoflines3-removeline} wird danach die Linie an Position $i$ aus dem Speicherblock $B$ entfernt.
+ Danach wird in Zeile \ref{alg:findchainoflines3-has4lines} die Anzahl der Linienketten untersucht. Wenn genau vier
+ Linienketten vorhanden sind, wird in Zeile \ref{alg:findchainoflines3-saveline} die Linie in $\mathit{chainSegment}$
+ zum Speicherblock $C$ hinzugefügt und danach das Verfahren beendet. Ansonsten wird in Zeile
  \ref{alg:findchainoflines4-savelineifnotfromstart} (\autoref{alg:findchainoflines4}) die Linie zum Speicherblock
  hinzugefügt, wenn $\mathit{fromStart}$ falsch ist.
+\input{alg/analyse-hirzer/findchainsoflinesinbuffer3}
 
 Danach wird in Zeile \ref{alg:findchainoflines4-callmethod} $\mathit{findChainsOfLines}$ rekursiv aufgerufen, um
  weitere passende Linien zur Markenerkennung zu identifizieren.

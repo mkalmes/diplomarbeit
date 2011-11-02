@@ -8,11 +8,11 @@ Das Verfahren in \autoref{alg:linedetection-hirzer} unterscheidet sich von \auto
  \textproc{findEdgels} und \textproc{findLineSegments}.
 \input{alg/analyse-hirzer/linedetection-hirzer}
 In dem Verfahren zur Erstellung von Edgeln in \autoref{alg:findedgelshirzer-1}--\autoref{alg:findedgelshirzer-2}
-\input{alg/analyse-hirzer/findedgelshirzer-1}
 wird im Gegensatz zu \autoref{alg:findedgels-horizontal} die Faltung für alle drei Farbkanäle durchgeführt (Vgl. Zeile
  \ref{alg:findedgelshirzer-1-color-start}--\ref{alg:findedgelshirzer-1-color-end} in \autoref{alg:findedgelshirzer-1}
  und Zeile \ref{alg:findedgelshirzer-2-color-start}--\ref{alg:findedgelshirzer-2-color-end} in
  \autoref{alg:findedgelshirzer-2}).
+\input{alg/analyse-hirzer/findedgelshirzer-1}
 \input{alg/analyse-hirzer/findedgelshirzer-2}
 Betrachtet man die Methode \textproc{convoluteKernelX} und \textproc{convoluteKernelY} stellt man fest, dass hier eine
  Angabe zum Farbkanal erfolgt. In \autoref{alg:convolutekernelhirzer-horizontal} und
@@ -80,8 +80,7 @@ Wenn die Überprüfung positiv ausfällt, wird in Zeile \ref{alg:mergelines3-cli
 Die Wachstumsrate der Funktion, um zwei kompatible Liniensegmente zu finden (\autoref{alg:mergelines2} und
  \autoref{alg:mergelines3}), beträgt $\Theta(l \cdot \mathit{length}) + \Theta(l) = \Theta(l \cdot \mathit{length})$.
 
-\textproc{isConnectionLineBrigded} benötigt zur Untersuchung die Verbindungslinie $\mathit{connectionLine}$ und das
- Bildsignal $I$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
+\textproc{isConnectionLineBrigded} benötigt zur Untersuchung das Bildsignal $I$ und die Verbindungslinie $\mathit{connectionLine}$. Das Verfahren ist in \autoref{alg:isconnectionlinebridged} aufgeführt.
 \input{alg/analyse-hirzer/isconnectionlinebridged}
 In Zeile \ref{alg:isconnectionlinebridged-length-start}--\ref{alg:isconnectionlinebridged-length-end} wird die Länge
  der Verbindungslinie berechnet und der Startpunkt festgelegt. In der Schleife in Zeile
@@ -144,10 +143,10 @@ Somit kann die Wachstumsrate zum zusammenführen von Liniensegmenten (\autoref{a
 
 In \autoref{alg:mergelines7} sind alle Kosten von \textproc{mergeLines} aufgeführt, um die Laufzeit zu bestimmen.
 \input{alg/analyse-hirzer/mergelines-7}
-In \autoref{eq:mergelines-all} ist die Funktion des Verfahrens für den schlechtesten Fall aufgeführt.
-\input{eq/hirzer/mergelines-all}
-Die Wachstumsrate von \autoref{alg:mergelines7} ist
+In \autoref{eq:mergelines-all} ist die Funktion des Verfahrens für den schlechtesten Fall aufgeführt. Die Wachstumsrate
+ von \autoref{alg:mergelines7} ist
  $2 \cdot l \cdot \Theta(l \cdot \mathit{length}) + 8l + 3 = \Theta(l^2 \cdot \mathit{length})$.
+\input{eq/hirzer/mergelines-all}
 
 \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2}) vergleicht jeden Punkt zwischen Start und
  Endpunkt auf Kompatibilität der Orientierung und benötigt dazu den Start- und Endpunkt der Linie, ihre Richtung
@@ -183,13 +182,13 @@ In Zeile \ref{alg:extendline2-iscompatible} wird überprüft, ob der Winkel sich
  den schlechtesten Fall in \autoref{eq:extendline-2} angegeben. Die Wachstumsrate ist
  $27 \mathit{length} + 3 = \Theta(\mathit{length})$. für $c_{1} = 26$, $c_{2} = 27$ und $n_{0} = 1$.
 \input{eq/hirzer/extendline-2}
-Somit ist die Wachstumsrate für \textproc{extendLine} (\autoref{alg:extendline1}--\autoref{alg:extendline2})
- $\Theta(\mathit{length}) + \Theta(\mathit{length}) = \Theta(\mathit{length})$.
+Somit kann die Wachstumsrate für das Verfahren \textproc{extendLine}, bestehend aus \autoref{alg:extendline1} und
+ \autoref{alg:extendline2}, auf $\Theta(\mathit{length}) + \Theta(\mathit{length}) = \Theta(\mathit{length})$ bestimmt
+ werden.
 
-Wie in \autoref{sub:line_detection_hirzer} bereits erläutert, wird das Zusammenführen von Linien einmal für jede Region
- und einmal auf dem gesamten Bildsignal durchgeführt. Der Ablauf ist in \autoref{alg:linedetection-hirzermerging}
- dargestellt.
 \input{alg/analyse-hirzer/linedetection-hirzer-merging}
+Wie in \autoref{sub:line_detection_hirzer} bereits erläutert, wird das Zusammenführen von Linien einmal für jede Region
+ und einmal auf dem gesamten Bildsignal durchgeführt. Der Ablauf ist in \autoref{alg:linedetection-hirzermerging} dargestellt.
 In Zeile \ref{alg:linedetection-hirzermerging-mergeregion} werden Liniensegmente für die aktuelle Region
  zusammengeführt. Danach wird in Zeile \ref{alg:linedetection-hirzermerging-mergeall} alle Linien und Liniensegmente
  zusammengeführt. Die Laufzeitfunktion von \autoref{alg:linedetection-hirzermerging} ist in

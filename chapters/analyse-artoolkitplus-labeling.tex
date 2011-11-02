@@ -113,8 +113,8 @@ Bei Fall 5 sind alle Nachbarn Hintergrundpixel. Nur bei Fall 2 können  mehrere 
 Wir wissen durch \autoref{alg:arlabeling-regionlabeling}, dass $I(u,v)$ ein Vordergrundpixel ist, dem wir an dieser
  Stelle eine Markierung zuweisen wollen. Im ersten Fall wird die Markierung $N_3$ untersucht. Wenn $N_3$ ein
  Vordergrundpixel ist kann die Markierung für $I(u,v)$ übernommen werden. Falls es sich bei den Nachbarn
- $N_1 = I(u-1,v)$, $N_2 = I(u-1,v+1)$ und $N_4 = I(u+1,v+1)$ um Vordergrundpixel handelt, haben sie die gleiche
- Markierung wie $N_3$ und müssen nicht weiter untersucht werden. Das Verfahren ist in
+ $N_1$, $N_2$ und $N_4$ um Vordergrundpixel handelt, haben sie die gleiche Markierung wie $N_3$ und müssen nicht weiter
+ untersucht werden. Das Verfahren ist in
  \autoref{alg:arlabeling-neighbour-case1} beschrieben.
 \input{alg/analyse-artplus/arlabeling-neighbour-case1}
 In Zeile \ref{alg:arlabeling-neighbour-case1-save-label} wird die Markierung von $N_3$ übernommen und in
@@ -257,30 +257,29 @@ Für $c = 41000$, $\mathit{lxsize}_{0} = 1$ und $\mathit{lysize}_{0} = 1$ ist di
 
 Die erfassten Daten müssen nach der Regionenmarkierung in Schritt \ref{label-cleaning} von
  \autoref{alg:arlabeling-overview} aufbereitet werden. Zuerst werden mit \autoref{alg:sortlabels} die Werte in
- $\mathit{work}$ sortiert.
-\input{alg/analyse-artplus/arlabeling-sortlabels}
-Die aufsteigenden Markierungswerte in $\mathit{work}$ sind durch Kollisionen in
+ $\mathit{work}$ sortiert. Die aufsteigenden Markierungswerte in $\mathit{work}$ sind durch Kollisionen in
  \autoref{alg:arlabeling-neighbour-case2-1} durch kleinere Werte ersetzt worden. Dadurch ist eine Lücke im Intervall
  $\left[1,2,3..n\right]$ der numerischen Werte entstanden. Diese Lücke wird durch \autoref{alg:sortlabels}
  entfernt, um wieder ein aufsteigendes Intervall zu erhalten.
+\input{alg/analyse-artplus/arlabeling-sortlabels}
 
 In Zeile \ref{alg:sortlabels-j} wird $j$ als Variable für die aktuelle Markierung initialisiert. In Zeile
  \ref{alg:sortlabels-address} wird die Adresse der ersten Markierung aus $\mathit{work}$ in $\mathit{wk}$ gespeichert.
  Die Schleife in Zeile \ref{alg:sortlabels-loop-start}--\ref{alg:sortlabels-loop-end} überprüft, ob die numerischen
  Werte ohne Lücken durch Kollisionen gespeichert sind. Dazu wird jeder Eintrag in $\mathit{work}$ mit der Laufvariable
  $i$ verglichen. Falls keine Kollisionen vorliegen, werden die Werte in $\mathit{work}$ immer mit $i$ übereinstimmen,
- da keine Lücken im Intervall vorhanden sind. In Zeile \ref{alg:sortlabels-savelabel} wird dann der Wert aus $j$ an die
- aktuelle Position von $\mathit{work}$ geschrieben und $j$ danach inkrementiert. Bei einer Kollision stimmt der Wert in
+ da keine Lücken im Intervall vorhanden sind. In Zeile \ref{alg:sortlabels-savelabel} wird der Wert aus $j$ an die
+ aktuelle Position von $\mathit{work}$ geschrieben und $j$ inkrementiert. Bei einer Kollision stimmt der Wert in
  $\mathit{work}$ nicht mit $i$ überein
  (Zeile \ref{alg:sortlabels-collision-start}--\ref{alg:sortlabels-collision-end}). In diesem Fall wird der Wert an der
- aktuellen Position von $\mathit{work}$ ausgelesen und dekrementiert. Dieser Wert wird als Index verwendet um den Wert
+ aktuellen Position von $\mathit{work}$ ausgelesen und dekrementiert. Dieser Wert wird als Index verwendet, um den Wert
  des zuletzt zugewiesenen Markierungswert an die aktuelle Position von $\mathit{work}$ zu schreiben. Da die Variable
  $j$ in diesem Fall nicht inkrementiert wird, enthält sie den nächsten Wert des Markierungsintervalls. In Zeile
  \ref{alg:sortlabels-inci} wird die Laufvariable $i$ um $1$ erhöht und in Zeile \ref{alg:sortlabels-incwk} die Adresse
- von $\mathit{work}$ inkrementiert (Vgl. \autoref{fig:sortlabels} in \autoref{par:bildregionen}). In
- \autoref{eq:analyse-arlabeling-sortlabels} ist die Laufzeitfunktion angegeben. Für $c_{1} = 4$, $c_{2} = 7$ und
- $\mathit{wk\_max}_{0} = 1$ ist die Wachstumsrate $7\mathit{wk\_max} - 3 = \Theta(\mathit{wk\_max})$.
+ von $\mathit{work}$ inkrementiert (Vgl. \autoref{fig:sortlabels} in \autoref{par:bildregionen}).
 \input{eq/artplus/arlabeling-sortlabels}
+In \autoref{eq:analyse-arlabeling-sortlabels} ist die Laufzeitfunktion angegeben. Für $c_{1} = 4$, $c_{2} = 7$ und
+ $\mathit{wk\_max}_{0} = 1$ ist die Wachstumsrate $7\mathit{wk\_max} - 3 = \Theta(\mathit{wk\_max})$.
 
 Das Verfahren in \autoref{alg:arlabeling-initlabelmemory} initialisiert den Speicher zur Berechnung des Flächeninhalts
  einer Region und den Speicher der Koordinaten des Mittelpunkts einer Region.
@@ -336,18 +335,18 @@ Dazu wird in Zeile \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arl
 Die Laufzeitfunktion für Zeile
  \ref{alg:arlabeling-calcregiondata-wclip-start}--\ref{alg:arlabeling-calcregiondata-wclip-end} von
  \autoref{alg:arlabeling-calcregiondata} ist in \autoref{eq:analyse-arlabeling-calcregiondata-1} angegeben.
-\input{eq/artplus/arlabeling-calcregiondata-1}
 Die Wachstumsrate, für die Werte $c_{1} = 18$, $c_{2} = 19$ und $\mathit{labelnum}_{0} = 1$, ist
  $18\mathit{labelnum} + 1 = \Theta(\mathit{labelnum})$. Die Laufzeitfunktion von Zeile
  \ref{alg:arlabeling-calcregiondata-work-start}--\ref{alg:arlabeling-calcregiondata-work-end} ist in
  \autoref{eq:analyse-arlabeling-calcregiondata-2} aufgeführt. Für $c_{1} = 90$, $c_{2} = 91$ und
  $\mathit{wk\_max}_{0} = 1$ ist die Wachstumsrate $90\mathit{wk\_max} + 1 = \Theta(wk\_max)$.
-\input{eq/artplus/arlabeling-calcregiondata-2}
 Die letzte Laufzeitfunktion von \autoref{alg:arlabeling-calcregiondata} ist in
  \autoref{eq:analyse-arlabeling-calcregiondata-2} angegeben.
-\input{eq/artplus/arlabeling-calcregiondata-3}
 Die Wachstumsrate entspricht $20\mathit{labelnum} + 6 = \Theta(\mathit{labelnum})$, für $c_{1} = 20$, $c_{2} = 21$ und
  $\mathit{labelnum}_{0} = 6$.
+\input{eq/artplus/arlabeling-calcregiondata-1}
+\input{eq/artplus/arlabeling-calcregiondata-2}
+\input{eq/artplus/arlabeling-calcregiondata-3}
 
 Die Laufzeitfunktion von \textproc{arLabeling} (\autoref{alg:arlabeling-overview}) ist in
  \autoref{eq:analyse-arlabeling-all-1} angegeben und besteht aus der Initialisierung (\autoref{alg:arlabeling-init1}
