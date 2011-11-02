@@ -1,4 +1,4 @@
-\subsubsection{Edgels} % (fold)
+\subsubsection{Edgel} % (fold)
 \label{sub:datenstruktur-edgels}
 
 Die Datenstruktur eines \glspl{edgel} besteht aus den beiden Variablen $\mathit{coordinate}$ und $\mathit{slope}$
@@ -7,7 +7,7 @@ Die Datenstruktur eines \glspl{edgel} besteht aus den beiden Variablen $\mathit{
 \input{alg/analyse-hirzer/datastructure-edgel}
 
 Wie in \autoref{sub:line_detection_clarke} beschrieben, muss im Verfahren von \citeauthor{hirzer08} die Orientierung
- von zwei \glspl{edgel} überprüft werden, was mit \autoref{alg:edgeliscompatible} bewerkstelligt wird. Als Parameter
+ von zwei Edgeln überprüft werden, was mit \autoref{alg:edgeliscompatible} bewerkstelligt wird. Als Parameter
  werden zwei zu vergleichende \gls{edgel} $\mathit{left}$ und $\mathit{right}$ übergeben.
 \input{alg/analyse-hirzer/datastructure-edgeliscompatible}
 Mithilfe von \textproc{dotProduct} (\autoref{alg:vectordotproduct}) kann die Orientierung der beiden \gls{edgel}
@@ -21,7 +21,7 @@ Mithilfe von \textproc{dotProduct} (\autoref{alg:vectordotproduct}) kann die Ori
 	\cos \left(67.5\right) \approx 0.38
 \end{equation}
 
-Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von \glspl{edgel}
+Der Edgelspeicher in \autoref{alg:datastructure-edgelpool} verwendet ein Array von Edgeln
  (Vgl. \autoref{alg:datastructure-edgel}) mit fester Größe $N$ und einer Zählvariable, um die nächste freie Position im
  Array zu markieren.
 \input{alg/analyse-hirzer/datastructure-edgelpool}
@@ -43,15 +43,15 @@ Die Variable $n$ gibt die Anzahl der angeforderten Blöcke aus dem Speichervorra
  Sowohl \autoref{alg:edgelpool-getmemorypools} als auch \autoref{alg:edgelpool-getmemorypool} haben eine konstante
  Laufzeit.
 
-Um \glspl{edgel} in einem Block zu speichern, wird \autoref{alg:edgelpool-addedgel} verwendet.
+Um \gls{edgel} in einem Block zu speichern, wird \autoref{alg:edgelpool-addedgel} verwendet.
 \input{alg/analyse-hirzer/datastructure-edgelpool-addedgel}
-Der Algorithmus benötigt einen Zeiger $p$ auf einen Speicherblock und einen \gls{edgel} $e$. In Zeile
+Der Algorithmus benötigt einen Zeiger $p$ auf einen Speicherblock und ein \gls{edgel} $e$. In Zeile
  \ref{alg:edgelpool-addedgel-validpointer-start}--\ref{alg:edgelpool-addedgel-validpointer-end} wird geprüft, ob der
  Zeiger auf eine Adresse verweist. Falls $p$ null ist, wird der Algorithmus verlassen. In Zeile
  \ref{alg:edgelpool-addedgel-checkspace-start}--\ref{alg:edgelpool-addedgel-checkspace-end} wird geprüft, ob im Array
  genügend Platz für einen weiteren Eintrag vorhanden ist. Die Größe von $N$ Einträgen richtet sich nach der in
  \autoref{alg:datastructure-edgelpool} festgelegten Arraygröße $N$. Wenn genügend Platz vorhanden ist, wird in Zeile
- \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} der \gls{edgel} $e$ an die freie
+ \ref{alg:edgelpool-addedgel-add-start}--\ref{alg:edgelpool-addedgel-add-end} das \gls{edgel} $e$ an die freie
  Position $c$ geschrieben. Danach wird $\mathit{count}$ inkrementiert. Das Hinzufügen eines \glspl{edgel} ist konstant
  und die Laufzeitfunktion entspricht im schlechtesten Fall $T(n) = 12$.
 
@@ -61,34 +61,34 @@ Dazu wird der Zeiger $p$ auf den Speicherblock und das zu suchende \gls{edgel} �
  \ref{alg:edgelpool-edgelposition-validpointer-start}--\ref{alg:edgelpool-edgelposition-validpointer-end} wird
  überprüft, ob der Zeiger $p$ auf einen gültigen Speicherblock verweist. In Zeile
  \ref{alg:edgelpool-edgelposition-count} wird die Anzahl der eingetragenen \gls{edgel} ausgelesen. In Zeile
- \ref{alg:edgelpool-edgelposition-e-start}--\ref{alg:edgelpool-edgelposition-e-end} werden die Daten des \gls{edgel}
- ausgelesen. Die Suche des \gls{edgel} erfolgt in Zeile
+ \ref{alg:edgelpool-edgelposition-e-start}--\ref{alg:edgelpool-edgelposition-e-end} werden die Daten des \glspl{edgel}
+ ausgelesen. Die Suche des \glspl{edgel} erfolgt in Zeile
  \ref{alg:edgelpool-edgelposition-search-start}--\ref{alg:edgelpool-edgelposition-search-end}. Dazu wird in Zeile
  \ref{alg:edgelpool-edgelposition-isequal-start}--\ref{alg:edgelpool-edgelposition-isequal-end} ein \gls{edgel} an der
  aktuellen Position $i$ mit den lokalen Variablen verglichen. Stimmen die Werte überein, wird die Position $i$
  zurückgegeben (Zeile \ref{alg:edgelpool-edgelposition-returni}). Andernfalls wird $i$ inkrementiert und die Suche
  fortgesetzt. Wenn das \gls{edgel} nicht im Speicherblock hinterlegt ist, wird in Zeile
  \ref{alg:edgelpool-edgelposition-returnerror} ein Fehlerwert zurückgegeben. Die Laufzeit des Algorithmus ist im besten
- Fall konstant, wenn das zu suchende \gls{edgel} an der ersten Position gespeichert ist. Im schlimmsten Fall, wenn ein
+ Fall konstant, wenn das gesuchte \gls{edgel} an der ersten Position gespeichert ist. Im schlimmsten Fall, wenn ein
  \gls{edgel} nicht gefunden wird, entspricht die Laufzeitfunktion $T(n) = 21n + 18 $ für
  $n = \text{Anzahl der \gls{edgel}}$. Die Wachstumsrate ist $21n + 18 = \Theta(n)$ für $c_{1}=20$, $c_{2}=21$ und
  $n_{0} = 18$.
 
-\glspl{edgel} werden mittels \autoref{alg:edgelpool-getedgel} aus einem Speicherblock gelesen.
+\gls{edgel} werden mittels \autoref{alg:edgelpool-getedgel} aus einem Speicherblock gelesen.
 \input{alg/analyse-hirzer/datastructure-edgelpool-getedgel}
 Dazu wird der Zeiger $p$ auf den Speicherblock und der Index $i$ übergeben. In Zeile
  \ref{alg:edgelpool-getedgel-validpointer-start}--\ref{alg:edgelpool-getedgel-validpointer-end} wird geprüft, ob es
  sich um einen gesetzten Zeiger handelt. Anschließend wird in Zeile
  \ref{alg:edgelpool-getedgel-validrange-start}--\ref{alg:edgelpool-getedgel-validrange-end} geprüft, ob der Index $i$
- innerhalb des gespeicherten Bereichs der \glspl{edgel} liegt. Danach wird in Zeile
+ innerhalb des gespeicherten Bereichs der \gls{edgel} liegt. Danach wird in Zeile
  \ref{alg:edgelpool-getedgel-returnedgel} der Wert des \glspl{edgel} an Position $i$ zurückgegeben. Der Zugriff auf
- einen \gls{edgel} ist konstant. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 7$.
+ ein \gls{edgel} ist konstant. Die Laufzeitfunktion ist im schlechtesten Fall $T(n) = 7$.
 
-Damit \glspl{edgel} aus einem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet.
+Damit \gls{edgel} aus einem Array entfernt werden können, wird \autoref{alg:edgelpool-removeedgel} verwendet.
 \input{alg/analyse-hirzer/datastructure-edgelpool-removeedgel}
-Es wird der Zeiger $p$ auf einen Speicherblock und das zu löschenden \glspl{edgel} übergeben. In Zeile
+Es wird der Zeiger $p$ auf einen Speicherblock und das zu löschende \gls{edgel} übergeben. In Zeile
  \ref{alg:edgelpool-removeedgel-position} wird mit \textproc{edgelPosition} (\autoref{alg:edgelpool-edgelposition}) die
- Position des \gls{edgel} gesucht. Falls das \gls{edgel} nicht gefunden wurde, wird in Zeile
+ Position des \glspl{edgel} gesucht. Falls das \gls{edgel} nicht gefunden wurde, wird in Zeile
  \ref{alg:edgelpool-removeedgel-error} das Verfahren abgebrochen. Ansonsten gibt es zwei zu behandelnde Fälle um ein
  \gls{edgel} zu löschen. Das \gls{edgel} liegt
 \begin{enumerate}
@@ -166,8 +166,8 @@ In \autoref{fig:regression-memmove} sind die Daten grafisch dargestellt.
 
 In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und somit der Speicher, begrenzt
  (Vgl. \autoref{alg:datastructure-edgelpool}). In der Implementierung des Verfahrens nach \citeauthor{hirzer08} werden
- maximal $N = 8192$ \gls{edgel} gespeichert. Die Regressionsanalyse wurde mit einer Eingabemenge von $4$ \gls{edgel}
- bis $8192$ \gls{edgel} wiederholt. Dies entspricht einer Speichergröße von $64$ Byte bis $131072$ Byte. Der
+ maximal $N = 8192$ \gls{edgel} gespeichert. Die Regressionsanalyse wurde mit einer Eingabemenge von $4$ Edgeln
+ bis $8192$ Edgeln wiederholt. Dies entspricht einer Speichergröße von $64$ Byte bis $131072$ Byte. Der
  Korrelationskoeffizient $r = 0.1332313$ und das Bestimmungsmaß $r^2 = 0.01775$ zeigen, dass eine lineare Abhängigkeit
  in diesem Bereich unwahrscheinlich ist. Wie in \autoref{fig:regression-memmove2} zusehen ist, sind Mittelwert und
  Median parallel zur $x$-Achse. Somit ist die Laufzeit von \textproc{memmove}, für die Untersuchung des Verfahrens nach
@@ -179,7 +179,7 @@ In dem Verfahren nach \citeauthor{hirzer08} ist die Menge der \gls{edgel}, und s
 	 Median als rote Linie.}
 	\label{fig:regression-memmove2}
 \end{figure}
-Im schlechtesten Fall wird ein zu löschender \gls{edgel} in \autoref{alg:edgelpool-removeedgel} am Ende der Liste
+Im schlechtesten Fall wird ein zu löschendes \gls{edgel} in \autoref{alg:edgelpool-removeedgel} am Ende der Liste
  gefunden. Dadurch beträgt die Laufzeit $T(n) = 21n + 37$. Die Wachstumsrate ist, für $c_{1} = 20$, $c_{2} = 21$ und
  $n_{0} = 37$, $21n + 37= \Theta(n)$.
 
@@ -202,7 +202,7 @@ Wenn ein Speicherblock nicht mehr benötigt wird, kann er mit \autoref{alg:edgel
  $\mathit{pool}$ gespeichert. Das Freigeben eines Speicherblocks erfolgt in konstanter Zeit. Im schlechtesten Fall ist
  die Laufzeitfunktion $T(n) = 9$.
 
-Die Anzahl der \glspl{edgel} in einem Speicherblock werden durch \autoref{alg:edgelpool-count} ermittelt.
+Die Anzahl der \gls{edgel} in einem Speicherblock werden durch \autoref{alg:edgelpool-count} ermittelt.
 \input{alg/analyse-hirzer/datastructure-edgelpool-count}
 Als Parameter wird der Zeiger $p$ übergeben und in Zeile
  \ref{alg:edgelpool-count-validpointer-start}--\ref{alg:edgelpool-count-validpointer-end} überprüft. Die Anzahl der

@@ -28,16 +28,16 @@ In der doppelten Schleife in Zeile \ref{alg:linedetection-clarke-start} bis \ref
  in der globalen Variable $\mathit{regionSize}$ gespeichert. In \citeauthor{clarke96}\footcite{clarke96} sind keine
  Hintergrundinformationen zu der Größe einer Region angegeben. Betrachtet man $640 \bmod 40 = 0$ und $480 \bmod 40 = 0$
  ist ersichtlich, dass die Größe der Region und der Aufteilung des Bildsignals in Zusammenhang steht. In Zeile
- \ref{alg:linedetection-clarke-call-start}--\ref{alg:linedetection-clarke-call-end} werden zuerst \glspl{edgel}
+ \ref{alg:linedetection-clarke-call-start}--\ref{alg:linedetection-clarke-call-end} werden zuerst \gls{edgel}
  ermittelt, um im Anschluss daraus Liniensegmente zu erstellen. Wenn für eine Region Liniensegmente erstellt und
  gespeichert wurden, wird der Speicherblock der \gls{edgel} und Liniensegmente in Zeile
  \ref{alg:linedetection-clarke-reset-start}--\ref{alg:linedetection-clarke-reset-end} gelöscht.
 
-Das Verfahren zur Bestimmung der Edgels (\autoref{alg:findedgels-horizontal} und \autoref{alg:findedgels-vertical})
+Das Verfahren zur Bestimmung der Edgel (\autoref{alg:findedgels-horizontal} und \autoref{alg:findedgels-vertical})
  benötigt das monochrome Bildsignal $I_m$, sowie die Position der oberen linken Ecke der Region, die durch oben $t$ und
  links $l$ definiert ist.
 \input{alg/analyse-hirzer/findedgelsclarke1}
-Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet. Zeile
+Der Zeiger $E$ wird zur Speicherung der gefundenen \gls{edgel} verwendet. Zeile
  \ref{alg:findedgels-horizontal-scanlinestart}--\ref{alg:findedgels-horizontal-scanlineend} ist für den Aufbau der
  horizontalen Scanlines verantwortlich. Die Überprüfung sorgt dafür, dass die Scanlines bis zum Ende der Region im
  Abstand von $5$ Pixeln untersucht werden. Nach der Initialisierung der Variablen wird in der Schleife von
@@ -46,7 +46,7 @@ Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet. Zeil
  vorgenommen (Vgl. \autoref{alg:convolutekernel-horizontal}, S. \pageref{alg:convolutekernel-horizontal}). Der Test
  in Zeile \ref{alg:findedgels-horizontal-foundedgel} überprüft anschließend das Ergebnis der Faltung. Wenn der
  Schwellwert nicht überschritten wird, gibt es keinen genügend großen Anstieg des Gradienten und das Ergebnis wird auf
- $0$ gesetzt. Wird der Schwellwert überschritten, handelt es sich um einen Edgel und das Ergebnis wird in den
+ $0$ gesetzt. Wird der Schwellwert überschritten, handelt es sich um ein Edgel und das Ergebnis wird in den
  Bedingungen von Zeile \ref{alg:findedgels-horizontal-maxima} weiter untersucht, ob es sich um ein lokales Maximum
  handelt. Ein lokales Maximum bedeutet, dass ein Edgel einen größeren Gradienten besitzt als seine beiden Nachbarn. Die
  Bedingung in Zeile \ref{alg:findedgels-horizontal-maxima} wird bei der ersten Überprüfung immer fehlschlagen.
@@ -56,7 +56,7 @@ Der Zeiger $E$ wird zur Speicherung der gefundenen \glspl{edgel} verwendet. Zeil
  Werte werden die Nachbarn für den nächsten Durchlauf um eine Position weiter verschoben. Nur bei einem lokalen Maximum
  (Zeile \ref{alg:findedgels-horizontal-maxima}--\ref{alg:findedgels-horizontal-maxima-end}) wird die Position des
  Edgels gespeichert (Vgl. \autoref{alg:vectorsetcoordinate}, S. \pageref{alg:vectorsetcoordinate}), und seine
- Orientierung berechnet (Vgl. \autoref{alg:gradientintensity}, S. \pageref{alg:gradientintensity}). Der Edgel wird mit
+ Orientierung berechnet (Vgl. \autoref{alg:gradientintensity}, S. \pageref{alg:gradientintensity}). Das Edgel wird mit
  \textproc{addEdgel} (\autoref{alg:edgelpool-addedgel}, S. \pageref{alg:edgelpool-addedgel}) in einem Speicherblock zu
  weiteren Verarbeitung gespeichert. Sind alle Pixel auf einer Scanline untersucht, wird in Zeile
  \ref{alg:findedgels-horizontal-increment} die nächste Scanline ausgewählt. Das Verfahren wird solange wiederholt, bis
@@ -140,8 +140,8 @@ kann die Orientierung berechnet werden. $G_x$ und $G_y$ werden mit \autoref{alg:
  (Zeile \ref{alg:gradientintensity-vector-start}--\ref{alg:gradientintensity-vector-end}). Die Laufzeitfunktion von
  \autoref{alg:gradientintensity} ist $T(n) = 14 \cdot \Theta(1) + 61$. Die Wachstumsrate ist konstant.
 
-Um aus den gefundenen \gls{edgel} Liniensegmente zu erzeugen, wird \autoref{alg:findlinesegments1} verwendet. Das
- Verfahren benötigt den Speicherblock $E$, in dem die \glspl{edgel} vorliegen, und den Speicherblock $L$, der zur
+Um aus den gefundenen Edgeln Liniensegmente zu erzeugen, wird \autoref{alg:findlinesegments1} verwendet. Das
+ Verfahren benötigt den Speicherblock $E$, in dem die \gls{edgel} vorliegen, und den Speicherblock $L$, der zur
  Speicherung der gefundenen Liniensegmente dient.
 \input{alg/analyse-hirzer/findlinesegments-1}
 In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init-end} wird die Variable
@@ -154,24 +154,24 @@ In Zeile \ref{alg:findlinesegments1-init-start}--\ref{alg:findlinesegments1-init
  Danach wird in Zeile \ref{alg:findlinesegments1-line-start}--\ref{alg:findlinesegments1-line-end} ein zufälliges
  Liniensegment in der Region erstellt und untersucht
  (Vgl. \autoref{alg:findlinesegments2}--\autoref{alg:findlinesegments4}). Die Erstellung eines Liniensegments wird
- mehrmals wiederholt, um das Liniensegment mit den meisten Unterstützungsedgels zu finden. In Zeile
- \ref{alg:findlinesegments1-hasenoughsupport} wird die Anzahl der der unterstützenden \gls{edgel} mit der Anzahl der
+ mehrmals wiederholt, um das Liniensegment mit den meisten Unterstützungsedgeln zu finden. In Zeile
+ \ref{alg:findlinesegments1-hasenoughsupport} wird die Anzahl der unterstützenden \gls{edgel} mit der Anzahl der
  benötigten \gls{edgel} verglichen. Nur wenn genügend \gls{edgel} das Liniensegment unterstützen, wird in
  \autoref{alg:findlinesegments6}--\autoref{alg:findlinesegments7} das Verfahren fortgesetzt und die
- Unterstützungsedgels aus dem Speicherblock $E$ entfernt.
+ Unterstützungsedgel aus dem Speicherblock $E$ entfernt.
 
 In \autoref{alg:findlinesegments2} wird die Initialisierung der Variablen vorgenommen, die zur Erstellung eines
  Liniensegments benötigt werden.
 \input{alg/analyse-hirzer/findlinesegments-2}
-Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{edgel} benutzt. $\mathit{first}$ ist der
- Startedgel und $\mathit{last}$ der Endedgel des Liniensegments. Die Variable $\mathit{maxIteration}$ gibt die maximale
+Die Variablen $\mathit{start}$ und $\mathit{end}$ werden als Indizes für \gls{edgel} benutzt. $\mathit{first}$ ist das
+ Startedgel und $\mathit{last}$ das Endedgel des Liniensegments. Die Variable $\mathit{maxIteration}$ gibt die maximale
  Anzahl der Iterationen an, die $\mathit{iterator}$ durchlaufen kann. In $\mathit{numberOfEdgels}$ wird die Anzahl der
  \gls{edgel} in $E$ gespeichert. Die Laufzeitfunktion der Initialisierung ist $T(n) = 7 + \Theta(1)$ und somit
   konstant.
 
 Die Auswahl eines Liniensegments erfolgt mit \autoref{alg:findlinesegments3}. Zeile
  \ref{alg:findlinesegments3-loop-start}--\ref{alg:findlinesegments3-loop-end} ist dafür verantwortlich, solange nach
- einem Liniensegment zu suchen, bis der erste und letzte \gls{edgel} sich unterscheiden oder ihre Orientierung
+ einem Liniensegment zu suchen, bis das erste und letzte \gls{edgel} sich unterscheiden oder ihre Orientierung
  zueinander kompatibel ist.
 \input{alg/analyse-hirzer/findlinesegments-3}
 Als letzte Bedingung muss die Anzahl der Iterationen unterhalb des festgelegten Schwellwerts $\mathit{maxIteration}$
@@ -201,14 +201,14 @@ Dies ist auch dadurch begründet, dass \textproc{rand} keine Eingabedaten benöt
 \input{eq/hirzer/findlinesegments1}
 
 Wenn in \autoref{alg:findlinesegments3} ein Liniensegment erstellt wurde, werden in \autoref{alg:findlinesegments4} die
- \gls{edgel} zur unterstüztung der Hypothese hinzugefügt.
+ \gls{edgel} zur Unterstüztung der Hypothese hinzugefügt.
 \input{alg/analyse-hirzer/findlinesegments-4}
 Dazu wird in Zeile \ref{alg:findlinesegments4-isbelowmax} überprüft, ob die maximale Anzahl der Iterationen nicht
  überschritten wurde. Falls dem so ist wird \autoref{alg:findlinesegments4} nicht weiter ausgeführt und die Laufzeit
  wäre $T_{best}(n) = \Theta(1)$. Andernfalls wird in Zeile
  \ref{alg:findlinesegments4-init-start}--\ref{alg:findlinesegments4-init-end} die Variable $\mathit{segment}$ zur
- Speicherung des Liniensegments vorbereitet und der Start- und Endedgel, sowie die Orientierung zugewiesen. Die Anzahl
- der Unterstützungsedgels beträgt zu diesem Zeitpunkt noch $0$. In der Schleife in Zeile
+ Speicherung des Liniensegments vorbereitet und das Start- und Endedgel, sowie die Orientierung zugewiesen. Die Anzahl
+ der Unterstützungsedgel beträgt zu diesem Zeitpunkt noch $0$. In der Schleife in Zeile
  \ref{alg:findlinesegments4-loop-start}--\ref{alg:findlinesegments4-loop-end} werden die \gls{edgel} gezählt, die die
  Linienhypothese unterstützen. Dazu wird in Zeile \ref{alg:findlinesegments4-edgel} ein \gls{edgel} ausgewählt und in
  Zeile \ref{alg:findlinesegments4-isedgelnearline} untersucht, ob der Abstand zur Linie klein genug ist. Wenn nicht,
@@ -235,7 +235,7 @@ Die Wachstumsrate des Verfahrens ist $11n + 22 = \Theta(n)$, für $c_{1} = 10$, 
 Nachdem ein Liniensegment mit genügend Unterstützung ausgewählt wurde, kann mit \autoref{alg:findlinesegments5} die
  Start- und Endposition des Liniensegments bestimmt werden.
 \input{alg/analyse-hirzer/findlinesegments-5}
-Da ein Liniensegment aus zwei zufällig ausgewählten \glspl{edgel} besteht, können diese \gls{edgel} und die
+Da ein Liniensegment aus zwei zufällig ausgewählten Edgeln besteht, können diese \gls{edgel} und die
  tatsächlichen Start- und Endpunkte voneinander abweichen (Vgl. \autoref{fig:endedgel})
 \begin{figure}[!ht]
 	\centering
@@ -251,7 +251,7 @@ In Zeile
  berechnet. In Zeile \ref{alg:findlinesegments5-isxsmaller} wird geprüft, ob der Absolutwert der Steigung an Punkt $x$
  kleiner ist als der Punkt $y$. Falls dem so ist, wird in Zeile
  \ref{alg:findlinesegments5-newstart-start}--\ref{alg:findlinesegments5-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $y$-Koordinate aller Unterstützungsedgels des Liniensegments verglichen werden. Die Kosten von
+ gesucht, indem die $y$-Koordinate aller Unterstützungsedgel des Liniensegments verglichen werden. Die Kosten von
  \textproc{findLineSegments} sind in \autoref{alg:findlinesegments5} aufgelistet. Der Algorithmus ist abhängig von
  $[0,\mathit{presentLine.supportCount}) = n$ \gls{edgel}. Die Laufzeitfunktion ist in \autoref{eq:findlinesegments-3}
  angegeben.
@@ -261,7 +261,7 @@ Die Wachstumsrate, für $c_{1} = 20$, $c_{2} = 21$ und $n_{0} = 1$, ist $21n + 2
 Wenn in \autoref{alg:findlinesegments5} in Zeile \ref{alg:findlinesegments5-isxsmaller} der Absolutwert der Steigung an
  Punkt $x$ größer ist als an Punkt $y$, wird in \autoref{alg:findlinesegments6} in Zeile
  \ref{alg:findlinesegments6-newstart-start}--\ref{alg:findlinesegments6-newstart-end} ein neuer Start- und Endpunkt
- gesucht, indem die $x$-Koordinate aller \glspl{edgel} des Liniensegments untersucht und verglichen werden.
+ gesucht, indem die $x$-Koordinate aller \gls{edgel} des Liniensegments untersucht und verglichen werden.
 \input{alg/analyse-hirzer/findlinesegments-6}
 Am Ende von \autoref{alg:findlinesegments6} ist in $\mathit{presentLine}$ ein neuer Start- und Endpunkt gespeichert.
  Auch hier ist die Laufzeit des Algorithmus abhängig von $[0,\mathit{presentLine.supportCount}) = n$. Die
@@ -306,7 +306,7 @@ Die Methoden \textproc{vectorSubtract}, \textproc{dotProduct}, \textproc{normali
  schlechtesten Falls, muss die Anzahl der Wiederholungen der Schleife in Zeile
  \ref{alg:findlinesegments9-do}--\ref{alg:findlinesegments9-while} ermittelt werden. Zeile
  \ref{alg:findlinesegments9-hasmoresupport} überprüft, ob ein neues Liniensegment eine größere Anzahl von
- Unterstützungsedgel besitzt, als ein bereits gefundenes Liniensegment. Bei der ersten Iteration der Schleife muss
+ Unterstützungsedgeln besitzt, als ein bereits gefundenes Liniensegment. Bei der ersten Iteration der Schleife muss
  ein Liniensegment mit einem Unterstützungsedgel gefunden werden. Danach wird das Unterstützungsedgel und das Start-
  und Endedgel des Liniensegments von \autoref{alg:findlinesegments7} in Zeile
  \ref{alg:findlinesegments7-removeedgel-start}--\ref{alg:findlinesegments7-removeedgel-end} gelöscht. Bei der zweiten

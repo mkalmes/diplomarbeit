@@ -7,7 +7,7 @@ Das Verfahren in \autoref{alg:linedetection-hirzer} unterscheidet sich von \auto
  anstatt einem monochromen Signal $I_m$ ein RGB-Signal $I$ verwendet wird. Dadurch verändern sich auch die Verfahren
  \textproc{findEdgels} und \textproc{findLineSegments}.
 \input{alg/analyse-hirzer/linedetection-hirzer}
-In dem Verfahren zur Erstellung von \gls{edgel} in \autoref{alg:findedgelshirzer-1}--\autoref{alg:findedgelshirzer-2}
+In dem Verfahren zur Erstellung von Edgeln in \autoref{alg:findedgelshirzer-1}--\autoref{alg:findedgelshirzer-2}
 \input{alg/analyse-hirzer/findedgelshirzer-1}
 wird im Gegensatz zu \autoref{alg:findedgels-horizontal} die Faltung für alle drei Farbkanäle durchgeführt (Vgl. Zeile
  \ref{alg:findedgelshirzer-1-color-start}--\ref{alg:findedgelshirzer-1-color-end} in \autoref{alg:findedgelshirzer-1}
@@ -31,7 +31,7 @@ Das Verfahren benötigt das RGB-Signal $I$, die Position des Pixels ($x$, $y$), 
  sichergestellt, dass kein \gls{pixel} außerhalb der Bildgrenzen gelesen werden können. In Zeile
  \ref{alg:getrgbvalue-offset} wird der Adressabstand für ein \gls{pixel} berechnet. Die Adresse des Pixels wird in
  Zeile \ref{alg:getrgbvalue-address} aus der Adresse von $I$ und dem Adressabstand berechnet. Zuletzt wird der Wert des
- \gls{pixel} in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeitfunktion
+ Pixels in Zeile \ref{alg:getrgbvalue-returncolor} für den angegeben Farbkanal zurückgegeben. Die Laufzeitfunktion
  des Verfahrens ist im schlechtesten Fall $T(n) = 18$. Die Wachstumsrate des Verfahrens ist $18 = \Theta(1)$, für
  $c_{1} = 17$, $c_{2} = 18$ und $n_{0} = 1$. Da \textproc{getRGBValue}, wie \textproc{getPixel}
  (\autoref{alg:getpixel}), eine konstante Laufzeit hat, ändern sich die Laufzeiten der betroffenen Methoden nicht.

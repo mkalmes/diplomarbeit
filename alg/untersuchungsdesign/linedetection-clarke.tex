@@ -3,7 +3,7 @@
 \label{alg:linedetection-clarke-overview}
 \begin{algorithmic}[1]
 	\Require $I_m$
-	\State $I_m$ in $40 \times 40$ Pixel große Regionen unterteilen
+	\State $I_m$ in Regionen von $40 \times 40$ Pixeln unterteilen
 		\For{$i \gets 0$, alle Regionen}
 			\State $Liste \gets \infty$
 			\State $i$ in horizontale und vertikale Scanlines unterteilen mit $5$ Pixeln Abstand
@@ -15,18 +15,18 @@
 					\State $Liste \gets edgel$
 				\EndIf
 			\EndFor
-			\While{$Liste > $ min. Support-Edgels $\land$ Support-Edgels > min. Support-Edgels}
+			\While{$Liste > $ min. Support-Edgel $\land$ Support-Edgel > min. Support-Edgel}
 				\State $erkannteLinie \gets 0$
 				\For{$j \gets 1, 25$}
-					\State $Linie \gets$ zwei zufällige Edgels mit kompatibler Orientierung aus $Liste$ wählen
-					\State Anzahl von Support-Edgels in der Nähe der Linie bestimmen
+					\State $Linie \gets$ zwei zufällige Edgel mit kompatibler Orientierung aus $Liste$ wählen
+					\State Anzahl von Support-Edgeln in der Nähe der Linie bestimmen
 					\If{$Linie > erkannteLinie$}
 						\State $erkannteLinie \gets Linie$
 					\EndIf
 				\EndFor
-				\If{Anzahl von Support-Edgels > min. Support-Edgels}
+				\If{Anzahl von Support-Edgeln > min. Support-Edgel}
 					\Comment Linie wurde erkannt
-					\State $Liste \gets Liste -$ Support-Edgels der Linie
+					\State $Liste \gets Liste -$ Support-Edgel der Linie
 				\EndIf
 			\EndWhile
 		\EndFor

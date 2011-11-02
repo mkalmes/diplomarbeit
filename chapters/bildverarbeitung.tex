@@ -282,7 +282,7 @@ Farbbilder speichern im Unterschied zu monochromen Bildern mehr Informationen in
 \subsection{Filter und Faltung} % (fold)
 \label{sub:filter}
 Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine mathematische Abbildung in ein
- Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen, die nur einen \gls{pixel} betreffen, operieren
+ Ausgangsbild $I'$ überführt wird. Im Gegensatz zu Punktoperationen, die nur ein \gls{pixel} betreffen, operieren
  Filter auf Regionen von Pixeln, um zum Beispiel Bilder zu verwischen oder zu schärfen
  (Vgl.~\autoref{fig:filterbeispiel}).
 \begin{figure}[!ht]
@@ -304,7 +304,7 @@ Ein Filter ist eine Operation, mit dessen Hilfe ein Eingangsbild $I$ durch eine 
 	\label{fig:filterbeispiel}
 \end{figure}
 
-Aus einer Region $R_{u,v}$ eines Eingangsbild $I$ wird das neue Pixel $I'(u,v)$ berechnet. Die Größe der
+Aus einer Region $R_{u,v}$ eines Eingangsbildes $I$ wird das neue Pixel $I'(u,v)$ berechnet. Die Größe der
  Filterregion bestimmt die Anzahl der \gls{pixel} aus $I$, die zur Berechnung des neuen Pixels $I'(u,v)$ verwendet
  werden (Vgl.~\autoref{fig:region-filter}).
 \begin{figure}[!ht]
@@ -451,7 +451,7 @@ Binärbilder enthalten, wie in \autoref{sub:bildtypen} bereits beschrieben, nur 
  und Hintergrund bezeichnen können. Das Interesse bei einem Binärbild gilt dementsprechend den Informationen im
  Vordergrund. Eine zusammenhängende Struktur von Vordergrundpixeln wird als Bildregion bezeichnet. Um diese
  Bildregionen in einem Binärbild zu erkennen, werden zusammenhängende \gls{pixel} markiert, was auch als
- \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Markierung von \gls{pixel} werden folgende
+ \textit{region labeling}\footcite[Vgl.][S.~196]{burger05} bekannt ist. Zur Markierung von Pixeln werden folgende
  numerischen Werte verwendet:
 \begin{equation*}
 	I(u,v) = \begin{cases}
@@ -468,7 +468,7 @@ Bei der sequentiellen Regionenmarkierung\footcite[Vgl.][S.~200--206]{burger05} w
 \subsubsection{Vorläufige Markierung} % (fold)
 \label{sec:vorläufige_makierung}
 
-Zuerst muss das Binärbild zeilenweise von oben nach unten auf das Vorhandensein von Vordergrundpixel untersucht werden.
+Zuerst muss das Binärbild zeilenweise von oben nach unten auf das Vorhandensein von Vordergrundpixeln untersucht werden.
 Die Nachbarn eines angrenzenden \glspl{pixel} werden, je nach Definition der Nachbarschaftsbeziehung, ebenfalls
  untersucht. Zwei gebräuchliche Definitionen von Nachbarschaftsbeziehungen sind zum einen die 4er-Nachbarschaft und zum
  anderen die 8er-Nachbarschaft. Für ein \gls{pixel} $I(u,v)$ werden bei der 4er"=Nachbarschaft die beiden angrenzenden

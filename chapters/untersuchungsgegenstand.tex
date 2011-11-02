@@ -100,7 +100,7 @@ Im zweiten Schritt der Fiducial Detection wird der Umriss einer Region bestimmt.
  untersucht. Falls die Fläche einer Region zu klein oder zu groß zur Analyse ist, wird sie verworfen. Anschließend
  werden die Start- und Endkoordinaten der Region untersucht. Liegen diese Koordinaten am Rand des Bildsignals eignen
  sie sich nicht zur Erkennung und die Region wird ebenfalls verworfen. Wenn eine Region diese Überprüfung bestanden
- hat, wird der erste Pixel der Region als Startpunkt gewählt. Mithilfe einer 8er-Nachbarschaft werden die angrenzenden
+ hat, wird das erste Pixel der Region als Startpunkt gewählt. Mithilfe einer 8er-Nachbarschaft werden die angrenzenden
  Markierungen untersucht und verfolgt. Dieses Verfahren wird solange wiederholt, bis es eine geschlossene Kontur zurück
  zum Startpunkt finden konnte. Hat das Verfahren eine Markierung bis zum Bildrand untersucht ohne eine geschlossene
  Kontur zu finden, wird die Region verworfen, da sie sich nicht zur Erkennung
@@ -163,17 +163,17 @@ Im ersten Schritt wird zuerst das monochrome Eingabesignal $I_m$ in $40 \times 4
  Gradienten, dass größer als ein festgelegter Schwellwert ist, wird als \gls{edgel} betrachtet und seine Orientierung
  berechnet.
 
-Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \glspl{edgel} Liniensegmente zu bestimmen.
- Eine Linienhypothese wird durch die zufällige Auswahl zweier \glspl{edgel} erstellt, deren Orientierung innerhalb
+Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gls{edgel} Liniensegmente zu bestimmen.
+ Eine Linienhypothese wird durch die zufällige Auswahl zweier \gls{edgel} erstellt, deren Orientierung innerhalb
  eines Grenzwertes liegen müssen. Ein \gls{edgel} dient als Startpunkt und das andere als Endpunkt der Linie. Im
- Anschluss wird die Anzahl der \glspl{edgel} betrachtet, die in der Nähe dieser Linie liegen und eine kompatible
- Orientierung mit der Linie aufweisen. Diese \glspl{edgel} unterstützen die Hypothese einer Linie im Bildsignal, wenn
- die Anzahl größer ist als die minimal geforderte Anzahl von Unterstützungsedgels. Die zufällige Auswahl zweier
- \glspl{edgel}, um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln, wird mehrmals wiederholt, um die
+ Anschluss wird die Anzahl der \gls{edgel} betrachtet, die in der Nähe dieser Linie liegen und eine kompatible
+ Orientierung mit der Linie aufweisen. Diese \gls{edgel} unterstützen die Hypothese einer Linie im Bildsignal, wenn
+ die Anzahl größer ist als die minimal geforderte Anzahl von Unterstützungsedgeln. Die zufällige Auswahl zweier
+ \gls{edgel}, um eine Linie zu erstellen und deren Edgelunterstützung zu ermitteln, wird mehrmals wiederholt, um die
  Linie mit der meisten Edgelunterstützung zu finden. Wenn eine solche dominante Linie gefunden wurde, gilt die
- Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgels die zur Unterstützung der Hypothese
- der Linie galten, werden aus der Menge der Edgels entfernt und das Verfahren wird solange wiederholt, bis alle
- Liniensegmente gefunden wurden oder nicht mehr genügend Edgels vorhanden sind. Das Verfahren ist in
+ Hypothese als bestätigt und die Linie wird als vorhanden betrachtet. Die Edgel, die zur Unterstützung der Hypothese
+ der Linie galten, werden aus der Menge der Edgel entfernt und das Verfahren wird solange wiederholt, bis alle
+ Liniensegmente gefunden wurden oder nicht mehr genügend Edgel vorhanden sind. Das Verfahren ist in
  \autoref{alg:linedetection-clarke-overview} dargestellt und in \autoref{fig:ransac} illustriert.
 \input{alg/untersuchungsdesign/linedetection-clarke}
 \begin{figure}[!ht]
@@ -195,7 +195,7 @@ Im zweiten Schritt wird das RANSAC-Verfahren verwendet, um aus der Menge der \gl
  allen drei Kanälen höher als der festgelegte Schwellwert, handelt es sich um einen Übergang  von Schwarz nach Weiß.
  Ist dies nicht der Fall, handelt es sich um einen farbigen Übergang und ist somit zur Erkennung einer Marke
  uninteressant. Da ein monochromes Signal wie in \autoref{sub:bildtypen} beschrieben nur einen Kanal besitzt, kann hier
- diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von \gls{edgel}
+ diese Unterscheidung nicht getroffen werden, was zu einer größeren Anzahl von Edgeln
  führt\footcite[Vgl.][S.~6--7]{hirzer08}.
 
 Das vorgestellte Verfahren von \citeauthor{clarke96} liefert als Ergebnis nur kurze Liniensegmente. Um eine Kante

@@ -5,23 +5,23 @@ Die Datenstruktur eines Liniensegments und die Methoden zum hinzufügen, lösche
  dem Vorbild des Edgelspeichers aufgebaut. Die Datenstruktur eines Liniensegments ist in
  \autoref{alg:datastructure-linesegment} definiert.
 \input{alg/analyse-hirzer/datastructure-linesegment}
-Eine Linie besteht aus den \glspl{edgel} $\mathit{start}$ und $\mathit{end}$, die den Start- und Endpunkt der Linie
+Eine Linie besteht aus den Edgeln $\mathit{start}$ und $\mathit{end}$, die den Start- und Endpunkt der Linie
  darstellen. Die Variable $\mathit{slope}$ enthält die Orientierung des Liniensegments, während die Variable
- $\mathit{supportCount}$ die Anzahl der unterstützenden \glspl{edgel} der Linie speichert. $\mathit{remove}$,
+ $\mathit{supportCount}$ die Anzahl der unterstützenden \gls{edgel} der Linie speichert. $\mathit{remove}$,
  $\mathit{startCorner}$ und $\mathit{endCorner}$ sind boolesche Variablen. $\mathit{remove}$ dient im späteren Verlauf
  zur Erkennung, ob ein Liniensegment gelöscht werden muss. Wenn eine Linie einen Eckpunkt am Anfang oder am Ende
- besitzt, wird dies in den Variablen $\mathit{startCorner}$ und $\mathit{endCorner}$ festgehalten.Die letzte Variable
- $\mathit{support}$ dient zur Speicherung von \glspl{edgel}, die eine Linienhypothese unterstützen. Die Lese- und
+ besitzt, wird dies in den Variablen $\mathit{startCorner}$ und $\mathit{endCorner}$ festgehalten. Die letzte Variable
+ $\mathit{support}$ dient zur Speicherung von Edgeln, die eine Linienhypothese unterstützen. Die Lese- und
  Schreibzugriffe auf die Datenstruktur sind konstant.
 
 Mit \autoref{alg:linesegmentaddedgel} wird ein Unterstützungsedgel zu einem Liniensegment hinzugefügt. Das Verfahren
- benötigt dazu das Liniensegment $l$, den \gls{edgel} $e$ und die Position $\mathit{pos}$, an die der \gls{edgel}
+ benötigt dazu das Liniensegment $l$, das \gls{edgel} $e$ und die Position $\mathit{pos}$, an die das \gls{edgel}
  gespeichert wird.
 \input{alg/analyse-hirzer/datastructure-linesegmentaddedgel}
 In Zeile \ref{alg:linesegmentaddedgel-hasvalidrange} wird überprüft, ob genügend Speicherplatz für ein \gls{edgel} zur
  Verfügung steht. Falls dem nicht so ist, wird in Zeile \ref{alg:linesegmentaddedgel-notvalidrange} das Verfahren
  beendet. Andernfalls, wenn genügend Speicherplatz vorhanden ist, wird in Zeile
- \ref{alg:linesegmentaddedgel-storeedgel} der \gls{edgel} im Liniensegment gespeichert. Die Laufzeitfunktion des
+ \ref{alg:linesegmentaddedgel-storeedgel} das \gls{edgel} im Liniensegment gespeichert. Die Laufzeitfunktion des
  Verfahrens ist im schlechtesten Fall $T(n) = 5$.
 
 Die Methode \textproc{isOrientationCompatible} untersucht, ob zwei Liniensegmente $\mathit{left}$ und $\mathit{right}$
@@ -33,20 +33,20 @@ Dazu wird mithilfe von \textproc{dotProduct} die Orientierung berechnet. Wenn di
  falsch zurückgegeben, was bedeutet, dass die Linien nicht parallel sind. Die Laufzeit von
  \autoref{alg:linesegmentisorientationcompatible} ist $T(n) = 10$.
 
-Mit \autoref{alg:isedgelnearline} wird der Abstand eines \gls{edgel} zu einem Liniensegment berechnet.
+Mit \autoref{alg:isedgelnearline} wird der Abstand eines \glspl{edgel} zu einem Liniensegment berechnet.
 \input{alg/analyse-hirzer/datastructure-linesegmentisedgelnearline}
 Das Verfahren benötigt dazu ein Liniensegment $l$ und ein \gls{edgel} $e$. In Zeile
- \ref{alg:isedgelnearline-iscompatible} wird überprüft, ob die Orientierung des \gls{edgel} kompatibel mit der
+ \ref{alg:isedgelnearline-iscompatible} wird überprüft, ob die Orientierung des \glspl{edgel} kompatibel mit der
  Orientierung des Liniensegments ist. Wenn dies der Fall ist, wird das Verfahren fortgesetzt. Andernfalls wird das
  Verfahren in Zeile \ref{alg:isedgelnearline-notcompatible} abgebrochen. In Zeile
  \ref{alg:isedgelnearline-distance-start}--\ref{alg:isedgelnearline-distance-end} wird die Länge des Abstands der
  Endpunkte der Linie berechnet und in lokalen Variablen gespeichert. Im Anschluss wird in Zeile
- \ref{alg:isedgelnearline-pointline-start}--\ref{alg:isedgelnearline-pointline-end} der Abstand des \gls{edgel} zur
+ \ref{alg:isedgelnearline-pointline-start}--\ref{alg:isedgelnearline-pointline-end} der Abstand des \glspl{edgel} zur
  Linie berechnet. Das Präprozessor Makro \textproc{ABS} berechnet den absoluten Betrag der Distanz in konstanter Zeit
  (Vgl. \autoref{alg:abs}).
 \input{alg/analyse-hirzer/abs}
 In Zeile \ref{alg:isedgelnearline-return} wird als Rückgabewert, abhängig vom Vergleich der Distanz, wahr oder falsch
- zurückgegeben. Bleibt der Abstand des \gls{edgel} zur Linie unter $0.75$ wird wahr an die aufrufende Methode
+ zurückgegeben. Bleibt der Abstand des \glspl{edgel} zur Linie unter $0.75$ wird wahr an die aufrufende Methode
  zurückgegeben. Ansonsten, wenn der Abstand größer ist, wird falsch zurückgegeben. Die Laufzeitfunktion von
  \autoref{alg:isedgelnearline} ist im schlechtesten Fall $T(n) = 71$.
 
@@ -72,7 +72,7 @@ Mehrere Speicherblöcke können mit \autoref{alg:linepool-getmemorypools} angefo
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getmemorypools}
  \autoref{alg:linepool-getmemorypool} wird ein Speicherblock angefordert.
 \input{alg/analyse-hirzer/datastructure-linesegmentpool-getmemorypool}
-Der Aufbau der Verfahren entspricht den Verfahren des Speichervorrats für \glspl{edgel}
+Der Aufbau der Verfahren entspricht den Verfahren des Speichervorrats für \gls{edgel}
  (Vgl. \autoref{alg:edgelpool-getmemorypools} und \autoref{alg:edgelpool-getmemorypool}).
 Die Laufzeitfunktion von \autoref{alg:linepool-getmemorypools} ist im schlechtesten Fall $T(n) = 7$ und die
  Laufzeitfunktion von \autoref{alg:linepool-getmemorypool} ist $T(n) = 9$.
